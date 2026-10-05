@@ -1,0 +1,8 @@
+backups/
+diagnostics/
+sources/
+tools/*
+!tools/Dockerfile
+!tools/Dockerfile.nura
+build/
+__pycache__/

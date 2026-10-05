@@ -1,0 +1,25 @@
+{
+  "u-boot-historical": {
+    "url": "https://github.com/dpavlin/u-boot.git",
+    "branch": "phj00-thinkpad-tablet",
+    "commit": "385640388c84e405f817f8e747d4febaa0be0de5"
+  },
+  "linux-historical": {
+    "url": "https://github.com/dpavlin/linux.git",
+    "branch": "thinkpad-tablet-phj00",
+    "commit": "8b626d0a4f6f39a6c12bf6ea4ed61744e4f7a54e"
+  },
+  "linux-nura": {
+    "url": "https://codeberg.org/libre-tegra/linux.git",
+    "branch": "stable",
+    "commit": "bfffc6d6656e87f3de3aa4c09d852849081ef088"
+  },
+  "tegrarcm": {
+    "url": "https://github.com/NVIDIA/tegrarcm.git",
+    "commit": "f6a46f1b342fe5ff531281e605b52b2a604a8aac"
+  },
+  "cbootimage": {
+    "url": "https://github.com/NVIDIA/cbootimage.git",
+    "commit": "80c499ebbe8a64aa2ee4222e6a8f342f465f6680"
+  }
+}
