@@ -103,6 +103,17 @@
 		/delete-node/ isl29018@44;
 	};
 
+	i2c@7000d000 {
+		accelerometer@f {
+			compatible = "kionix,kxtf9";
+			reg = <0x0f>;
+			// Original Indigo axis_map_x=1, axis_map_y=0, negate_z=1.
+			mount-matrix = "0", "1", "0",
+				       "1", "0", "0",
+				       "0", "0", "-1";
+		};
+	};
+
 	/delete-node/ gpio-keys;
 	gpio-keys {
 		compatible = "gpio-keys";

@@ -14,7 +14,8 @@ the attached unit.
 | eMMC | Controller `0xc8000600`, 8-bit, non-removable, power GPIO I6 | Linux enumerates MMC32G; boot-region backups verified; Android partitions require Tegra parser |
 | External SD | Controller `0xc8000400`, 4-bit; power T3, detect I5 active low, write protect H1 active high | 64 GB SDXC card and ext4 OS root verified on Nura 7.0.1; current boot mmcblk0p1 |
 | SDIO Wi-Fi | Controller `0xc8000000`, 4-bit; power K5, reset K6, PMC blink clock; BCM4329 firmware | Nura 7.0.1: scans, WPA2 association to Zone, DHCP, internet ping and HTTPS verified with Linux firmware 4.220.48 |
-| Front / side keys | Q0 WWW, Q1 Home, Q2 Back, Q3 rotation lock, Q4 volume down, Q5 volume up | Linux validation pending |
+| Front / side keys | Q0 WWW, Q1 Home, Q2 Back, Q3 rotation lock, Q4 volume down, Q5 volume up | All four front keys produce complete press/release events on Nura; side volume keys untested |
+| Accelerometer | Kionix KXTF9, I2C `0x7000d000`, address `0x0f`; stock axis map Y/X/-Z | Built-in kxcjk driver exposes kxtf9 IIO device; live dock readings approximately (−0.3, −10, −3.5) m/s². Portrait display and aligned touch confirmed by user |
 | Power keys | C7 and I3, historical active high | Linux validation pending |
 | Proximity | Historical GPIO C1 | Linux validation pending |
 | Audio | WM8903 on I2C, Tegra I2S audio routing from historical Ventana port | WM8903/card detected; playback untested |

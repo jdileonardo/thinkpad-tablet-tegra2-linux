@@ -60,8 +60,9 @@ The user confirmed the **XFCE desktop** on the tablet. Runtime evidence shows:
 - Xorg uses `opentegra`; XFCE session and panel run as `julian`.
 - Xrandr reports 1280×800 at 60.33 Hz. Hardware acceleration performance
   has not been measured; driver initialization alone does not establish it.
-- GPIO keys are exposed through evdev/libinput. Physical key events remain
-  untested. Matching evdev, hid-generic and USB HID modules are on the card.
+- GPIO keys are exposed through evdev/libinput. All four bottom buttons now
+  have verified physical press/release events (see rotation milestone below).
+  Matching evdev, hid-generic and USB HID modules are on the card.
 - Zram swap is active. BCM4329 now enumerates and scans on this kernel;
   association and traffic still require validation (see below).
 - No internal Android filesystem is mounted. Android bootloader and partition
@@ -79,8 +80,8 @@ Evidence: `diagnostics/nura-sd-os-console.txt`,
 `build/nura-sd/card-write-verification.json`.
 
 Boot still requires the host to download U-Boot and the payload through APX.
-Touch/pen, Wi-Fi association, audio playback, suspend, battery and charging
-need further porting and validation. This is a working development desktop,
+Touch and Wi-Fi association now work; physical pen input, audio playback,
+suspend, battery and charging need further validation. This is a working development desktop,
 not a complete hardware port.
 
 ## Storage preservation
@@ -316,6 +317,71 @@ firmware or calibration writes.
 Build it with the legacy container's `arm-linux-gnueabihf-gcc -static`; the
 development tablet currently has it at `/usr/local/bin/input-monitor`.
 
+## Buttons and rotation milestone
+
+All four bottom buttons were physically pressed and released on the running
+7.0.1 desktop. Captured codes are 153 (`KEY_ROTATE_DISPLAY`), 150 (`KEY_WWW`),
+158 (`KEY_BACK`), and 172 (`KEY_HOMEPAGE`). This is the captured press order,
+not a claim about their left-to-right positions. Side volume and power keys
+remain separate tests.
+
+The XFCE shortcuts installed by `port/desktop/setup-indigo-desktop.sh` are:
+
+| Button | Action |
+| --- | --- |
+| Home | Toggle show desktop (`Ctrl+Alt+D`) |
+| Back | Send `Alt+Left` to the focused application |
+| Browser | Launch the preferred web browser; the current minimal desktop opens the application chooser because no browser is installed |
+| Rotation | Lock/unlock automatic rotation; cycle orientations when no gravity reference has been configured |
+
+Injected X11 key events verified both Home state changes, Back handler dispatch,
+Browser chooser launch, and rotation lock/unlock settings. The hardware evdev
+capture separately verifies all four physical keys. Setup over the USB root
+shell must inherit `DBUS_SESSION_BUS_ADDRESS` from the running `xfsettingsd`
+process; a separate D-Bus autolaunch can modify another xfconf daemon instead
+of the active desktop. The normal XFCE autostart inherits the correct session.
+The screensaver also captures keys while locked; unlock before testing shortcuts.
+Evidence: `diagnostics/rotation-tools-installed.txt`,
+`diagnostics/unlocked-button-action-tests.txt`, and
+`diagnostics/browser-key-and-auto-status.txt`.
+
+The stock board source identifies a Kionix KXTF9 at address `0x0f` on the
+`0x7000d000` I2C controller. Binding the current kernel's built-in kxcjk driver
+created `iio:device0`, name `kxtf9`; dock gravity reads approximately
+(-0.3, -10.0, -3.5) m/s² with scale 0.019163. The device-tree node includes
+the stock Y/X/-Z mounting matrix. Its compiled DTB has been installed on the
+SD card and included in the regenerated host APX payload; this node still
+needs a fresh boot test. The current session uses a live I2C device binding.
+
+With the four buttons physically along the bottom, Xrandr rotation `left`
+produces an 800×1280 upright desktop. The user confirmed both upright display
+and aligned touch. `indigo-rotate` changes the display and N-Trig input matrices
+together, verifies both, and restores the old display and inputs on failure.
+It also aligns pen pointer devices when libinput creates them on proximity;
+physical pen verification remains deferred for lack of batteries.
+
+Automatic rotation uses a recorded gravity/display reference, three matching
+samples at 300 ms intervals, and holds orientation when
+flat or near a diagonal. The daemon and user configuration persist through
+XFCE autostart on the SD card. The current session is calibrated and automatic
+rotation is enabled; physical quarter-turn and lock testing remains pending.
+Run `indigo-rotate status`, `lock`, `auto`, or `calibrate` inside the desktop
+session to inspect or change it. Logs are in
+`~/.local/state/indigo-tablet/{rotation,buttons}.log`.
+Evidence: `diagnostics/manual-portrait-rotation.txt`,
+`diagnostics/accelerometer-bind-and-package-trust.txt`, and
+`diagnostics/persist-accelerometer-and-live-rotation.txt`.
+Host geometry, ambiguous gravity and partial-failure rollback tests pass:
+`python3 tests/test_indigo_rotation.py`.
+
+Package installation exposed an image-generation bug: pmbootstrap's temporary
+key bind mounts left `/etc/apk/keys` empty in the copied image. Restoring the
+installed key backups from `/usr/share/apk/keys` fixed repository signature
+validation, and xinput, xdotool and i2c-tools installed successfully. No untrusted
+package bypass was used. The image assembler now restores keys and installs
+the desktop tools, autostart and user rotation defaults. These changes are
+live on the existing SD card; the original exported image has not been rebuilt.
+
 ## Next porting milestones
 
 Wi-Fi reconnected automatically on the next APX/SD boot, and chronyd
@@ -327,7 +393,8 @@ before the first NTP synchronization.
 1. Follow up on physical pen input once the user has batteries: hover, tip,
    pressure, side button and coordinate mapping. Touch is user-confirmed working;
    exhaustive corner calibration and multitouch gestures remain follow-ups.
-2. Validate keys, audio playback, touchscreen, suspend,
+2. Validate physical automatic rotation/lock, side volume and power keys,
+   audio playback, touchscreen gestures, suspend,
    charging, and the current kernel's display driver.
    Historical support for one component does not prove it on this unit.
 3. Design persistent installation only after recovery and power are established.

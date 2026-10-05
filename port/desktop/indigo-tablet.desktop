@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=ThinkPad Tablet Rotation
+Exec=/usr/local/bin/indigo-tablet-start
+OnlyShowIn=XFCE;
+X-GNOME-Autostart-enabled=true

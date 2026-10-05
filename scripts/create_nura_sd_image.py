@@ -36,12 +36,29 @@ stage=/work/build/nura-sd/rootfs
 test -x "$source/sbin/init"
 test ! -e "$stage"
 cp -a "$source" "$stage"
+# pmbootstrap bind-mounts trusted keys while building; restore package backups
+# after those mounts disappear so the installed tablet can verify repositories.
+mkdir -p "$stage/etc/apk/keys"
+cp "$stage/usr/share/apk/keys/"*.pub "$stage/etc/apk/keys/"
 rm -f "$stage/usr/bin/qemu-arm-static"
 rm -rf "$stage/tmp"/* "$stage/mnt/pmbootstrap"
 mkdir -p "$stage/proc" "$stage/sys" "$stage/dev" "$stage/run" "$stage/root"
 if [ -d "$stage/etc/skel" ]; then
     cp -a "$stage/etc/skel/." "$stage/home/julian/"
 fi
+mkdir -p "$stage/home/julian/.config/indigo-tablet" "$stage/etc/xdg/autostart" \
+    "$stage/usr/local/bin"
+cp /work/port/desktop/rotation-default.json \
+    "$stage/home/julian/.config/indigo-tablet/rotation.json"
+cp /work/port/desktop/indigo-tablet.desktop "$stage/etc/xdg/autostart/"
+install -m 755 /work/port/desktop/indigo-rotate.py "$stage/usr/local/bin/indigo-rotate"
+install -m 755 /work/port/desktop/indigo-buttons.sh "$stage/usr/local/bin/indigo-buttons"
+install -m 755 /work/port/desktop/indigo-tablet-start.sh "$stage/usr/local/bin/indigo-tablet-start"
+install -m 755 /work/port/desktop/setup-indigo-desktop.sh "$stage/usr/local/bin/setup-indigo-desktop"
+# Require the desktop dependencies in the newly built rootfs before imaging it.
+for tool in python3 xrandr xinput xdotool xfconf-query; do
+    test -x "$stage/usr/bin/$tool"
+done
 chown -R 10000:10000 "$stage/home/julian"
 test -x "$stage/etc/init.d/chronyd"
 mkdir -p "$stage/etc/runlevels/default"
