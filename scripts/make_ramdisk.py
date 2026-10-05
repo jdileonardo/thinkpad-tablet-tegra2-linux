@@ -34,8 +34,14 @@ if args.profile != 'historical':
     for directory in ['lib', 'lib/firmware', 'lib/firmware/brcm']:
         add(directory, stat.S_IFDIR | 0o755)
     for filename in ['brcmfmac4329-sdio.bin', 'brcmfmac4329-sdio.txt']:
+        firmware_dir = 'build/linux-firmware' if filename.endswith('.bin') else 'build/stock/firmware'
         add('lib/firmware/brcm/' + filename, stat.S_IFREG | 0o644,
-            (root / 'build/stock/firmware' / filename).read_bytes())
+            (root / firmware_dir / filename).read_bytes())
+    add('lib/firmware/LICENCE.broadcom_bcm43xx', stat.S_IFREG | 0o644,
+        (root / 'build/linux-firmware/LICENCE.broadcom_bcm43xx').read_bytes())
+    for filename in (['regulatory.db', 'regulatory.db.p7s'] if args.profile == 'nura-sd' else []):
+        add('lib/firmware/' + filename, stat.S_IFREG | 0o644,
+            (root / 'build/pmbootstrap/chroot_rootfs_nvidia-tegra-armv7/lib/firmware' / filename).read_bytes())
     add('bin/reboot-into-apx', stat.S_IFREG | 0o755,
         (root / 'build/ram-test/reboot-into-apx').read_bytes())
 for name in ['sh', 'mount', 'mkdir', 'cat', 'sleep', 'setsid', 'cttyhack', 'uname',

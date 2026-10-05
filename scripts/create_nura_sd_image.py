@@ -18,7 +18,11 @@ if image.exists():
 kernel = project / 'build/linux-nura/arch/arm/boot/zImage'
 dtb = project / 'build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb'
 initrd = project / 'build/nura-sd-test/initramfs.cpio.gz'
-for path in (kernel, dtb, initrd):
+for path in (kernel, dtb, initrd, project / 'build/ntrig-spi/ntrig_indigo.ko',
+             project / 'build/linux-nura/drivers/reset/reset-gpio.ko',
+             project / 'build/input-monitor',
+             project / 'build/linux-firmware/brcmfmac4329-sdio.bin',
+             project / 'build/linux-firmware/LICENCE.broadcom_bcm43xx'):
     if not path.is_file():
         raise SystemExit(f'Missing boot artifact: {path}')
 release = (project / 'build/linux-nura/include/config/kernel.release').read_text().strip()
@@ -39,6 +43,9 @@ if [ -d "$stage/etc/skel" ]; then
     cp -a "$stage/etc/skel/." "$stage/home/julian/"
 fi
 chown -R 10000:10000 "$stage/home/julian"
+test -x "$stage/etc/init.d/chronyd"
+mkdir -p "$stage/etc/runlevels/default"
+ln -sf /etc/init.d/chronyd "$stage/etc/runlevels/default/chronyd"
 mkdir -p "$stage/etc/lightdm/lightdm.conf.d"
 cat > "$stage/etc/lightdm/lightdm.conf.d/90-indigo.conf" <<'EOF'
 [Seat:*]
@@ -53,26 +60,36 @@ cat >> "$stage/etc/inittab" <<'EOF'
 ttyGS0::respawn:/sbin/getty -n -l /bin/sh -L 115200 ttyGS0 vt100
 EOF
 printf 'UUID=%s / ext4 defaults,noatime 0 1\n' "$ROOT_UUID" > "$stage/etc/fstab"
-printf 'evdev\nhid-generic\nusbhid\n' >> "$stage/etc/modules"
-cp /work/build/stock/firmware/brcmfmac4329-sdio.bin "$stage/lib/firmware/brcm/"
+printf 'evdev\nhid-generic\nusbhid\nreset-gpio\nntrig_indigo\n' >> "$stage/etc/modules"
+cp /work/build/linux-firmware/brcmfmac4329-sdio.bin "$stage/lib/firmware/brcm/"
 cp /work/build/stock/firmware/brcmfmac4329-sdio.txt "$stage/lib/firmware/brcm/"
+mkdir -p "$stage/usr/share/licenses/indigo-wifi"
+cp /work/build/linux-firmware/LICENCE.broadcom_bcm43xx "$stage/usr/share/licenses/indigo-wifi/"
 cp /work/build/linux-nura/arch/arm/boot/zImage "$stage/boot/vmlinuz-indigo"
 cp /work/build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb "$stage/boot/"
 cp /work/build/nura-sd-test/initramfs.cpio.gz "$stage/boot/initramfs-indigo"
 mkdir -p "$stage/usr/local/sbin"
 cp /work/build/ram-test/reboot-into-apx "$stage/usr/local/sbin/"
 chmod 755 "$stage/usr/local/sbin/reboot-into-apx"
+mkdir -p "$stage/usr/local/bin"
+cp /work/build/input-monitor "$stage/usr/local/bin/"
+chmod 755 "$stage/usr/local/bin/input-monitor"
 mkdir -p "$stage/lib/modules/$KERNEL_RELEASE/kernel/drivers/input" \
-    "$stage/lib/modules/$KERNEL_RELEASE/kernel/drivers/hid/usbhid"
+    "$stage/lib/modules/$KERNEL_RELEASE/kernel/drivers/hid/usbhid" \
+    "$stage/lib/modules/$KERNEL_RELEASE/kernel/drivers/reset" \
+    "$stage/lib/modules/$KERNEL_RELEASE/extra"
 cp /work/build/linux-nura/drivers/input/evdev.ko \
    "$stage/lib/modules/$KERNEL_RELEASE/kernel/drivers/input/"
 cp /work/build/linux-nura/drivers/hid/hid-generic.ko \
    "$stage/lib/modules/$KERNEL_RELEASE/kernel/drivers/hid/"
 cp /work/build/linux-nura/drivers/hid/usbhid/usbhid.ko \
    "$stage/lib/modules/$KERNEL_RELEASE/kernel/drivers/hid/usbhid/"
+cp /work/build/linux-nura/drivers/reset/reset-gpio.ko \
+   "$stage/lib/modules/$KERNEL_RELEASE/kernel/drivers/reset/"
+cp /work/build/ntrig-spi/ntrig_indigo.ko "$stage/lib/modules/$KERNEL_RELEASE/extra/"
 cp /work/build/linux-nura/modules.builtin /work/build/linux-nura/modules.builtin.modinfo \
    "$stage/lib/modules/$KERNEL_RELEASE/"
-printf 'kernel/drivers/input/evdev.ko\nkernel/drivers/hid/hid-generic.ko\nkernel/drivers/hid/usbhid/usbhid.ko\n' \
+printf 'kernel/drivers/input/evdev.ko\nkernel/drivers/hid/hid-generic.ko\nkernel/drivers/hid/usbhid/usbhid.ko\nkernel/drivers/reset/reset-gpio.ko\nextra/ntrig_indigo.ko\n' \
     > "$stage/lib/modules/$KERNEL_RELEASE/modules.order"
 depmod -b "$stage" "$KERNEL_RELEASE"
 mkdir -p "$stage/boot/extlinux"
@@ -113,6 +130,13 @@ manifest = {'root_uuid': root_uuid, 'kernel_release': release,
             'sha256': digest(image),
             'boot_artifacts': {str(p.relative_to(project)): digest(p)
                                for p in (kernel, dtb, initrd)},
+            'hardware_artifacts': {
+                name: digest(project / name) for name in (
+                    'build/ntrig-spi/ntrig_indigo.ko',
+                    'build/linux-nura/drivers/reset/reset-gpio.ko',
+                    'build/linux-firmware/brcmfmac4329-sdio.bin',
+                    'build/stock/firmware/brcmfmac4329-sdio.txt',
+                    'build/linux-firmware/LICENCE.broadcom_bcm43xx')},
             'sources': json.loads((project / 'sources.lock.json').read_text()),
             'verified': 'e2fsck -fn before disk-image assembly',
             'installation': 'external SD; tablet bootloader remains on Android'}

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-only
 // Indigo overrides for the current Tegra tree, based on the verified 2019 port.
 #include "tegra20-ventana.dts"
+#include <dt-bindings/soc/tegra-pmc.h>
 
 / {
 	model = "Lenovo ThinkPad Tablet (Indigo)";
@@ -17,7 +18,76 @@
 
 	mmc@c8000000 {
 		/delete-property/ power-gpios;
-		bus-width = <8>;
+		bus-width = <4>;
+		non-removable;
+		vmmc-supply = <&vdd_wifi>;
+		mmc-pwrseq = <&wifi_pwrseq>;
+	};
+
+	wifi_pwrseq: wifi-pwrseq {
+		compatible = "mmc-pwrseq-simple";
+		clocks = <&tegra_pmc TEGRA_PMC_CLK_BLINK>;
+		clock-names = "ext_clock";
+		reset-gpios = <&gpio TEGRA_GPIO(K, 6) GPIO_ACTIVE_LOW>;
+		post-power-on-delay-ms = <200>;
+	};
+
+	vdd_wifi: regulator-wifi {
+		compatible = "regulator-fixed";
+		regulator-name = "wifi-enable";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		gpio = <&gpio TEGRA_GPIO(K, 5) GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		startup-delay-us = <100000>;
+	};
+
+	usb-phy@c5008000 {
+		vbus-supply = <&vdd_usb_host>;
+	};
+
+	vdd_usb_host: regulator-usb-host {
+		compatible = "regulator-fixed";
+		regulator-name = "usb-host-vbus";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		gpio = <&gpio TEGRA_GPIO(D, 3) GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		regulator-always-on;
+	};
+
+	spi@7000d400 {
+		status = "okay";
+		touchscreen@0 {
+			compatible = "ntrig,duosense-spi";
+			reg = <0>;
+			spi-max-frequency = <3000000>;
+			interrupt-parent = <&gpio>;
+			interrupts = <TEGRA_GPIO(V, 6) IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-gpios = <&gpio TEGRA_GPIO(V, 6) GPIO_ACTIVE_HIGH>;
+			power-gpios = <&gpio TEGRA_GPIO(A, 5) GPIO_ACTIVE_HIGH>;
+			enable-gpios = <&gpio TEGRA_GPIO(Q, 7) GPIO_ACTIVE_HIGH>;
+			touchscreen-size-x = <9601>;
+			touchscreen-size-y = <7201>;
+		};
+	};
+
+	// Ventana leaves SPI1 pads tristated; Indigo connects its N-Trig here.
+	pinmux@70000014 {
+		pinmux {
+			conf_ntrig_spi_down {
+				nvidia,pins = "spid", "spif";
+				nvidia,function = "spi1";
+				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
+				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+			};
+			conf_ntrig_spi_up {
+				nvidia,pins = "spie";
+				nvidia,function = "spi1";
+				nvidia,pull = <TEGRA_PIN_PULL_UP>;
+				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+			};
+		};
 	};
 
 	mmc@c8000400 {

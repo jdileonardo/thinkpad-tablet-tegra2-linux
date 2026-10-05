@@ -34,5 +34,14 @@
   "linux-stock": {
     "url": "https://github.com/Koshu/thinkpad_tablet_jb_kernel.git",
     "commit": "271082d9581abcedf2ccbb0981ab8f375c457376"
+  },
+  "linux-firmware": {
+    "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/iwlwifi/linux-firmware",
+    "commit": "04e6d3f371ab3ad6970603be194023bd4c700126",
+    "tag": "iwlwifi-fw-2025-01-15",
+    "files": {
+      "brcm/brcmfmac4329-sdio.bin": "d61983946b1e733e4c75dbe6841ac0f1250ebed2e3ee9058cdfdbbba3ba37c93",
+      "LICENCE.broadcom_bcm43xx": "b16056fc91b82a0e3e8de8f86c2dac98201aa9dc3cbd33e8d38f1b087fcec30d"
+    }
   }
 }

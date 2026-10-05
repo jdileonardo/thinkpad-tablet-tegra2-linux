@@ -62,8 +62,8 @@ The user confirmed the **XFCE desktop** on the tablet. Runtime evidence shows:
   has not been measured; driver initialization alone does not establish it.
 - GPIO keys are exposed through evdev/libinput. Physical key events remain
   untested. Matching evdev, hid-generic and USB HID modules are on the card.
-- Zram swap is active. Wi-Fi currently has no interface on this newer kernel;
-  historical Wi-Fi initialization does not prove current support.
+- Zram swap is active. BCM4329 now enumerates and scans on this kernel;
+  association and traffic still require validation (see below).
 - No internal Android filesystem is mounted. Android bootloader and partition
   contents were not modified by this installation.
 
@@ -198,12 +198,14 @@ must be checked against the captured stock partition ranges when booted.
 The new kernel uses the official pmaports ARMv7 configuration with USB ACM,
 Wi-Fi dependencies and firmware support built in, reduced debug information,
 and the Indigo device tree / fixed panel patch. The kernel build script also
-builds the three matching input modules needed by the desktop.
+builds the matching desktop input modules, the GPIO reset controller needed
+by the Wi-Fi power sequence, and the experimental N-Trig SPI module.
 
 ```sh
 docker build -t thinkpad-nura-build:2026-10-05 -f tools/Dockerfile.nura .
 docker build -t thinkpad-pmbootstrap:2026-10-05 -f tools/Dockerfile.pmbootstrap .
 bash scripts/build_nura_kernel.sh
+python3 scripts/fetch_wifi_firmware.py
 python3 scripts/build_nura_rootfs.py
 bash scripts/build_recovery_helpers.sh
 ```
@@ -250,14 +252,78 @@ python3 scripts/ram_console.py --command 'cat /etc/os-release' --command 'cat /p
 The root-only `reboot-into-apx` helper uses Tegra's existing `forced-recovery`
 restart handler. It is installed on the development card at
 `/usr/local/sbin/reboot-into-apx`, and has worked for repeated RAM boot tests.
+SD desktop restarts have sometimes returned to Android instead; check APX's
+USB ID before downloading, and use physical recovery entry when necessary.
+
+## Touch, pen and Wi-Fi bring-up
+
+BCM4329 SDIO enumeration needs the original K5 power enable, K6 reset,
+and PMC blink clock. The current kernel's `mmc-pwrseq-simple` also needs
+`reset-gpio.ko`, loaded from the SD root. Both the device tree and module
+installation are now in the reproducible build scripts.
+
+The original Android firmware (4.218.248.25) boots, but emits BCDC v1 packets
+that the modern driver rejects: `non-BCDC packet received, flags 0x10`.
+The pinned Linux firmware (4.220.48, SHA256
+`d61983946b1e733e4c75dbe6841ac0f1250ebed2e3ee9058cdfdbbba3ba37c93`)
+with this tablet's original NVRAM enables scanning. The tablet found `Zone`
+networks after resetting the SDIO controller, and loaded the new firmware
+automatically on the next SD boot. It connected to `Zone` with the laptop's
+saved profile, obtained `192.168.0.174` by DHCP, passed three internet pings
+(0% loss), and completed an HTTPS connectivity request. Correcting the clock
+resolved TLS certificate rejection; chronyd subsequently synchronized to NTP.
+The private NetworkManager profile is mode 0600 on the SD card and excluded
+from Git. Evidence: `diagnostics/wifi-association-touch-test.txt` and
+`diagnostics/wifi-https-clock-test.txt`.
+Evidence: `diagnostics/wifi-linux-reset-result.txt` and
+`diagnostics/touch-first-probe.txt`. Firmware provenance and its redistribution
+license are captured by `sources.lock.json` and `fetch_wifi_firmware.py`.
+
+`port/ntrig-spi/` contains a modern out-of-tree input driver based on the
+pinned stock GPL SPI protocol. It registers separate touchscreen and pen
+devices, uses Type B multitouch slots, and exposes read-only transport counts
+in `/sys/bus/spi/devices/spi0.0/stats`. Its parser has passed host ASan/UBSan
+checks for fragmentation, invalid lengths, corruption recovery, and a million
+random bytes. Run `python3 tests/test_ntrig_parser.py` to repeat them.
+`python3 tests/test_ntrig_reports.py` additionally checks the driver's actual
+decoders for raw contact confidence/release, palm exclusion, report bounds,
+pen hover/tip/button/eraser and pressure clamping under ASan/UBSan.
+
+The first device probe registered both inputs, but received no valid packets.
+The generic Ventana device tree tristates the SPI1 pads, unlike the stock
+Indigo pinmux. An Indigo override now matches the original SPID/SPIF pull-down,
+SPIE pull-up and enabled pads. This correction restored valid sensor replies
+and finger reports with no parser or SPI errors. A real evdev capture contains
+finger position `(4230, 6982)`, touch-down and release. XFCE recognizes the
+touchscreen. Setting X/Y resolution to 42/48 units per mm, based on the
+229x149 mm panel, also makes libinput accept the pen as a tablet device.
+Evidence: `diagnostics/touch-pad-fix-result.txt`,
+`diagnostics/touch-capture-sample.txt` and
+`diagnostics/wifi-association-touch-test.txt`.
+Corner mapping, multitouch behavior, pen reports/pressure/buttons and desktop
+interaction remain unverified by the user. No pen report has been received yet.
+The raw SPI vendor confidence byte is 1 while present; the stock TrackLib
+processed "removed" flag inverted that meaning. The port now uses the raw
+confidence for contact state and excludes the vendor palm flag. The pen invert
+flag selects the eraser tool; it is not exposed as a second barrel button.
+The driver sends only the stock DRIVER_ALIVE command; it performs no sensor
+firmware or calibration writes.
+
+`scripts/input_monitor.c` is a read-only evdev capture tool for those tests.
+Build it with the legacy container's `arm-linux-gnueabihf-gcc -static`; the
+development tablet currently has it at `/usr/local/bin/input-monitor`.
 
 ## Next porting milestones
 
-1. Restore BCM4329 SDIO enumeration and validate Wi-Fi association on 7.0.1.
-   The stock kernel identifies Wi-Fi power K5, reset K6 and a 32 kHz blink clock.
-2. Port the stock N-Trig SPI touchscreen/pen protocol. Stock wiring is SPI0,
-   chip select 0, 3 MHz, power A5, output enable Q7 and interrupt V6.
-3. Validate keys, audio playback, touchscreen, suspend,
+Wi-Fi reconnected automatically on the next APX/SD boot, and chronyd
+subsequently corrected the initial 2009 RTC date without a manual clock set.
+Evidence: `diagnostics/reboot-wifi-input-validation.txt` and
+`diagnostics/touch-validity-reload.txt`. HTTPS can fail during the brief interval
+before the first NTP synchronization.
+
+1. Verify finger coordinate mapping and pen input/pressure on the physical
+   tablet; investigate pen power if it sends no reports.
+2. Validate keys, audio playback, touchscreen, suspend,
    charging, and the current kernel's display driver.
    Historical support for one component does not prove it on this unit.
-4. Design persistent installation only after recovery and power are established.
+3. Design persistent installation only after recovery and power are established.

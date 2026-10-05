@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Transfer files over the diagnostic shell, with end-to-end SHA256 checks.
 
-Uploads are restricted to RAM-backed /tmp or /run. Downloads only read files.
+Uploads are restricted to /tmp or /run on the diagnostic OS. Downloads only read files.
 """
 import argparse
 import base64
@@ -20,6 +20,8 @@ parser.add_argument('local', type=Path)
 parser.add_argument('remote')
 parser.add_argument('--device', default='/dev/ttyACM0')
 parser.add_argument('--timeout', type=float, default=45)
+parser.add_argument('--private', action='store_true',
+                    help='Create uploads with mode 0600 and suppress transcript/hash output')
 args = parser.parse_args()
 node = Path(args.device)
 usb_parent = None
@@ -34,12 +36,14 @@ remote = shlex.quote(args.remote)
 if args.direction == 'upload':
     parts = Path(args.remote).parts
     if len(parts) < 3 or parts[1] not in ('tmp', 'run') or '..' in parts:
-        raise SystemExit('Uploads must target /tmp or /run in the diagnostic RAM environment')
+        raise SystemExit('Uploads must target /tmp or /run on the diagnostic OS')
     source = args.local.read_bytes()
     payload = (
-        f"\n/bin/busybox base64 -d > {remote} <<'THINKPAD_PAYLOAD_END'\n".encode()
+        (f'\nthinkpad_transfer_umask=$(umask); umask 077\n' if args.private else '\n').encode()
+        + f"/bin/busybox base64 -d > {remote} <<'THINKPAD_PAYLOAD_END'\n".encode()
         + base64.encodebytes(source)
         + f'THINKPAD_PAYLOAD_END\n/bin/busybox sha256sum {remote}; echo THINKPAD_TRANSFER_DONE\n'.encode()
+        + (b'umask "$thinkpad_transfer_umask"\n' if args.private else b'')
     )
 else:
     payload = (f'\necho THINKPAD_DATA_BEGIN; /bin/busybox base64 {remote}; '
@@ -73,7 +77,8 @@ finally:
 transcript = bytes(data).replace(b'\r\n', b'\n')
 hashes = re.findall(rb'(?:^|\n)([0-9a-f]{64})  ', transcript)
 if not hashes:
-    print(transcript[-2000:].decode(errors='replace'))
+    if not args.private:
+        print(transcript[-2000:].decode(errors='replace'))
     raise SystemExit('No device SHA256 received; transfer incomplete')
 if args.direction == 'download':
     try:
@@ -87,4 +92,7 @@ if actual != hashes[-1].decode():
 if args.direction == 'download':
     args.local.parent.mkdir(parents=True, exist_ok=True)
     args.local.write_bytes(source)
-print(f'{args.direction}: {len(source)} bytes; SHA256 {actual}; {args.local} <-> {args.remote}')
+if args.private:
+    print(f'{args.direction}: {len(source)} private bytes; SHA256 verified')
+else:
+    print(f'{args.direction}: {len(source)} bytes; SHA256 {actual}; {args.local} <-> {args.remote}')
