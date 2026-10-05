@@ -436,6 +436,50 @@ configuration has not been tested on this unit. Manual pages 24 and 36–40 cove
 power checkout and battery removal. Source:
 https://thinkpads.com/support/hmm/hmm_pdf/tp_tablet_hmm_en_0a96158_04.pdf
 
+The complete manual is already saved locally as
+`diagnostics/lenovo-hardware-manual.pdf` (SHA256
+`54c40ceb5833d9b2fd3308fca93ccc70b99f39dfcc8cd577e3daed94c32c294f`), with searchable
+text alongside it. The user's intended use is docked; battery hardware tests
+are deferred because no testable pack is available. Battery reporting may be
+ported independently, but validated charging control is not a prerequisite
+for a docked Plasma Mobile trial.
+
+## Plasma Mobile trial prerequisites
+
+The current SD desktop runs XFCE/X11 and OpenRC. Runtime inventory confirms
+Mesa EGL/GBM/GLES packages, `/dev/dri/card0`, `/dev/dri/renderD128`, and a Tegra
+DRI loader. This does not verify which renderer actually works or GPU
+acceleration. Available memory was approximately 696 MiB, with 293 MiB used
+and no zram swap in use. `diagnostics/plasma-readiness-inventory.txt` captures
+these observations; no rendering benchmark has been run.
+
+Before installing Plasma, validate EGL/OpenGL ES and the actual renderer,
+then run a minimal Wayland compositor to check the panel, touch and memory
+behavior. Also boot the updated baseline once to confirm the new accelerometer
+DTB, autostart, button configuration and Wi-Fi survive reboot, keeping the USB
+diagnostic shell available for recovery. XFCE remains the working reference.
+
+During the Plasma trial, replace the Xrandr/xinput rotation helper and XFCE
+shortcuts with compositor-native display/input rotation and Plasma bindings.
+The existing sensor's mounting matrix and physical orientation must be verified
+through iio-sensor-proxy/KScreen, rather than assuming the X11 calibration applies.
+Confirm the on-screen keyboard and keep the user's automatic login and disabled
+password-lock preference in the test session.
+
+The pinned Plasma Mobile UI package supports armv7, but its OpenRC install hook
+enables tinydm and selects Plasma at startup. Do not install it without accounting
+for the existing LightDM session. Current Nura guidance favors systemd for Plasma
+and describes OpenRC integration as unmaintained. Decide the trial's service/session
+layout after the graphics probe; a separate test rootfs is an option that preserves
+the known working XFCE environment. References:
+`sources/pmaports/main/postmarketos-ui-plasma-mobile/APKBUILD`, its OpenRC
+post-install hook, https://plasma-mobile.org/ and
+https://nura.eco/blog/2026/06/21/v26.06-release/.
+
+Audio playback, volume/power keys, brightness controls, USB host/Ethernet,
+suspend/resume, pen input and battery integration remain follow-ups. They do not
+all need to be completed before testing whether Plasma performs acceptably.
+
 ## Next porting milestones
 
 Wi-Fi reconnected automatically on the next APX/SD boot, and chronyd
