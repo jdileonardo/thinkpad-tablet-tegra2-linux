@@ -9,6 +9,7 @@ the attached unit.
 | USB device port | Tegra USB1 `0xc5000000`, UTMI PHY, `nvidia,tegra20-udc`, peripheral mode | USB ACM works on historical Linux and Nura 7.0.1, including the SD desktop |
 | Display | LG LP101WX1, RGB, 1280×800, 6 bits per channel, 229×149 mm | Nura 7.0.1 XFCE desktop visually confirmed; Xrandr 1280×800, 60.33 Hz |
 | Pixel timing | 71.5 MHz; horizontal front/sync/back 48/32/80; vertical front/sync/back 2/6/15 | Historical Linux panel driver, not U-Boot's different timings |
+| 3D graphics | Tegra20 GR3D; experimental Libre Tegra/Grate Gallium implementation | Current Mesa uses llvmpipe, accelerated=no; drawing crashes at unsupported d16 register access. Softpipe override cannot initialize; hardware 3D unverified |
 | Backlight | PWM2, 5,000,000 ns period; enable GPIO D4; backlight supply GPIO W0 | Driver loaded, readable display confirmed; brightness adjustment untested |
 | Panel supply / enable | Supply GPIO C6; panel enable GPIO B2 | Working historical display path verified |
 | eMMC | Controller `0xc8000600`, 8-bit, non-removable, power GPIO I6 | Linux enumerates MMC32G; boot-region backups verified; Android partitions require Tegra parser |

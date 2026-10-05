@@ -448,16 +448,21 @@ for a docked Plasma Mobile trial.
 
 The current SD desktop runs XFCE/X11 and OpenRC. Runtime inventory confirms
 Mesa EGL/GBM/GLES packages, `/dev/dri/card0`, `/dev/dri/renderD128`, and a Tegra
-DRI loader. This does not verify which renderer actually works or GPU
-acceleration. Available memory was approximately 696 MiB, with 293 MiB used
-and no zram swap in use. `diagnostics/plasma-readiness-inventory.txt` captures
-these observations; no rendering benchmark has been run.
+DRI loader. Actual rendering checks subsequently identified llvmpipe software
+rendering and reproducible illegal-instruction failures during drawing; see
+`docs/graphics-performance.md`. Initial available memory was approximately
+696 MiB, with 293 MiB used and no zram swap in use.
+`diagnostics/plasma-readiness-inventory.txt` captures that earlier inventory.
 
 Before installing Plasma, validate EGL/OpenGL ES and the actual renderer,
 then run a minimal Wayland compositor to check the panel, touch and memory
 behavior. Also boot the updated baseline once to confirm the new accelerometer
 DTB, autostart, button configuration and Wi-Fi survive reboot, keeping the USB
 diagnostic shell available for recovery. XFCE remains the working reference.
+The current graphics checks have exposed a prerequisite fix: the Mesa JIT emits
+an instruction accessing an unsupported floating-point register on this CPU.
+CPU/memory/storage measurements completed successfully; full rendering and
+Wayland checks remain pending a usable renderer.
 
 During the Plasma trial, replace the Xrandr/xinput rotation helper and XFCE
 shortcuts with compositor-native display/input rotation and Plasma bindings.
