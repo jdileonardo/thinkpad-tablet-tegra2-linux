@@ -32,8 +32,12 @@ class RotationTests(unittest.TestCase):
 
     def test_calibrated_orientation(self):
         config = {'reference': 0, 'reference_rotation': 'left'}
-        for direction, orientation in enumerate(('left', 'inverted', 'right', 'normal')):
+        for direction, orientation in enumerate(('left', 'normal', 'right', 'inverted')):
             self.assertEqual(rotate.sensor_rotation(direction, config), orientation)
+        # With buttons at the bottom, opposite sideways holds must select
+        # opposite landscape rotations, matching the physical panel axes.
+        self.assertEqual(rotate.sensor_rotation(rotate.gravity_direction((9.8, 0, 0)), config), 'normal')
+        self.assertEqual(rotate.sensor_rotation(rotate.gravity_direction((-9.8, 0, 0)), config), 'inverted')
         self.assertIsNone(rotate.sensor_rotation(None, config))
         self.assertIsNone(rotate.sensor_rotation(0, {'reference': None}))
 

@@ -118,7 +118,9 @@ def sensor_rotation(direction, config):
     if direction is None or config.get('reference') is None:
         return None
     base = ROTATIONS.index(config['reference_rotation'])
-    return ROTATIONS[(base + direction - config['reference']) % 4]
+    # Raw gravity and Xrandr rotation run in opposite directions. Physical
+    # quarter-turn tests on Indigo confirmed the old sign inverted landscape.
+    return ROTATIONS[(base - direction + config['reference']) % 4]
 
 
 def notify(message):

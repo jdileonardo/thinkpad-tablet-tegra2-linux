@@ -24,5 +24,18 @@ shortcut HomePage home
 shortcut XF86Back back
 shortcut XF86WWW browser
 shortcut XF86RotateWindows rotate
+boolean_setting() {
+    channel=$1
+    property=$2
+    if xfconf-query -c "$channel" -p "$property" >/dev/null 2>&1; then
+        xfconf-query -c "$channel" -p "$property" -s false
+    else
+        xfconf-query -c "$channel" -p "$property" -n -t bool -s false
+    fi
+}
+# User-requested convenience settings for this development tablet. LightDM
+# already autologins; waking the display and resuming must not ask for a password.
+boolean_setting xfce4-screensaver /lock/enabled
+boolean_setting xfce4-power-manager /xfce4-power-manager/lock-screen-suspend-hibernate
 touch "$config_dir/buttons-configured"
-echo 'Configured Home, Back, Browser and Rotation buttons for XFCE'
+echo 'Configured tablet buttons and disabled desktop password locks'

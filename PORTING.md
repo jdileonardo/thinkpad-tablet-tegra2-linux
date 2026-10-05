@@ -228,9 +228,12 @@ verifies the source hash, writes, reads back every image byte, then expands and
 checks the filesystem. `scripts/write_nura_sd.py` is a destructive card operation;
 only run it for a freshly identified card whose contents may be erased.
 
-The first-login password is generated in ignored, mode-0600
-`build/nura-first-login.txt`; it is not stored in Git. The development card uses
-XFCE autologin for `julian` and a wired root shell on `ttyGS0` for bring-up.
+The first-login password is held in ignored, mode-0600
+`build/nura-first-login.txt`; it is not stored in Git. Initially generated,
+it was subsequently replaced with the user's chosen password both in that file
+and on the running SD system. Rebuilding the rootfs reuses that local value.
+The development card uses XFCE autologin for `julian`, disabled idle/resume
+password locks, and a wired root shell on `ttyGS0` for bring-up.
 
 The current payload layout is kernel `0x01000000`, initramfs `0x02400000`,
 and device tree `0x02600000`. Earlier 32 MiB initramfs placement overlapped
@@ -340,7 +343,10 @@ capture separately verifies all four physical keys. Setup over the USB root
 shell must inherit `DBUS_SESSION_BUS_ADDRESS` from the running `xfsettingsd`
 process; a separate D-Bus autolaunch can modify another xfconf daemon instead
 of the active desktop. The normal XFCE autostart inherits the correct session.
-The screensaver also captures keys while locked; unlock before testing shortcuts.
+The screensaver captured keys while locked during initial testing. The user's
+requested convenience settings now disable `/lock/enabled` in xfce4-screensaver
+and `/xfce4-power-manager/lock-screen-suspend-hibernate`; the display may still
+blank for power saving, but waking it does not require typing the password.
 Evidence: `diagnostics/rotation-tools-installed.txt`,
 `diagnostics/unlocked-button-action-tests.txt`, and
 `diagnostics/browser-key-and-auto-status.txt`.
@@ -364,7 +370,11 @@ Automatic rotation uses a recorded gravity/display reference, three matching
 samples at 300 ms intervals, and holds orientation when
 flat or near a diagonal. The daemon and user configuration persist through
 XFCE autostart on the SD card. The current session is calibrated and automatic
-rotation is enabled; physical quarter-turn and lock testing remains pending.
+rotation is enabled. The first physical left/right quarter-turn test rotated
+both landscape positions upside down: the raw gravity and Xrandr directions
+had opposite signs. Subtracting the measured gravity direction fixes the
+mapping; the updated controller is installed and its corrected orientation
+tests pass. Physical confirmation of the corrected mapping remains pending.
 Run `indigo-rotate status`, `lock`, `auto`, or `calibrate` inside the desktop
 session to inspect or change it. Logs are in
 `~/.local/state/indigo-tablet/{rotation,buttons}.log`.
@@ -373,6 +383,11 @@ Evidence: `diagnostics/manual-portrait-rotation.txt`,
 `diagnostics/persist-accelerometer-and-live-rotation.txt`.
 Host geometry, ambiguous gravity and partial-failure rollback tests pass:
 `python3 tests/test_indigo_rotation.py`.
+The password change and both lock settings were applied live. A forced screensaver
+activation/deactivation returned to the desktop without a password dialog.
+Evidence: `diagnostics/rotation-sign-and-password-lock-fix.txt`,
+`diagnostics/password-and-unlocked-screensaver-verification.txt`, and
+`diagnostics/verify-user-password.txt`.
 
 Package installation exposed an image-generation bug: pmbootstrap's temporary
 key bind mounts left `/etc/apk/keys` empty in the copied image. Restoring the
