@@ -1,0 +1,11 @@
+#!/bin/sh
+# Process-local selection: the distribution Mesa installation stays available.
+set -eu
+mesa_prefix=/opt/indigo-mesa/647c79415a02
+if [ ! -r "$mesa_prefix/lib/libEGL.so.1" ]; then
+    echo "Private Indigo Mesa is not installed at $mesa_prefix" >&2
+    exit 1
+fi
+export LD_LIBRARY_PATH="$mesa_prefix/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export LIBGL_DRIVERS_PATH="$mesa_prefix/lib/dri"
+exec "$@"

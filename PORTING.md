@@ -462,7 +462,11 @@ diagnostic shell available for recovery. XFCE remains the working reference.
 The current graphics checks have exposed a prerequisite fix: the Mesa JIT emits
 an instruction accessing an unsupported floating-point register on this CPU.
 CPU/memory/storage measurements completed successfully; full rendering and
-Wayland checks remain pending a usable renderer.
+Wayland checks remain pending a usable renderer. Subsequent GPU work passes
+basic hardware triangle drawing and X11 presentation with patched Grate Mesa
+25.1.9, plus a working private softpipe fallback. Shader arithmetic, constants,
+textures and blending remain incomplete, so it has not been selected globally.
+See `docs/gpu-driver.md` for the compatible ABI, patches and physical evidence.
 
 During the Plasma trial, replace the Xrandr/xinput rotation helper and XFCE
 shortcuts with compositor-native display/input rotation and Plasma bindings.

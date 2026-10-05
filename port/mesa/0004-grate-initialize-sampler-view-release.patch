@@ -1,0 +1,9 @@
+diff --git a/src/gallium/drivers/grate/grate_resource.c b/src/gallium/drivers/grate/grate_resource.c
+--- a/src/gallium/drivers/grate/grate_resource.c
++++ b/src/gallium/drivers/grate/grate_resource.c
+@@ -510,4 +510,5 @@ grate_context_resource_init(struct pipe_context *pcontext)
+    pcontext->flush_resource = grate_flush_resource;
+    pcontext->clear_render_target = grate_clear_render_target;
+    pcontext->clear_depth_stencil = grate_clear_depth_stencil;
++   pcontext->sampler_view_release = u_default_sampler_view_release;
+ }

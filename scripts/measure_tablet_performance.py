@@ -123,8 +123,14 @@ def main():
     parser.add_argument('--phase', choices=('system', 'graphics'), required=True)
     parser.add_argument('--driver', choices=('llvmpipe', 'softpipe'),
                         help='Process-local Gallium driver selection for graphics tests')
+    parser.add_argument('--private-mesa', action='store_true',
+                        help='Run graphics tests through /usr/local/bin/indigo-gpu-run')
+    parser.add_argument('--workload', choices=('glmark2', 'simple-triangle'), default='glmark2',
+                        help='Graphics workload; simple-triangle checks rendered pixels')
     args = parser.parse_args()
     result = {'phase': args.phase, 'graphics_driver_override': args.driver,
+              'private_mesa': args.private_mesa,
+              'graphics_workload': args.workload,
               'kernel': os.uname().release, 'baseline': snapshot(), 'tests': []}
     if args.phase == 'system':
         for threads in (1, 2):
@@ -136,12 +142,27 @@ def main():
         result['storage'] = storage()
     else:
         for resolution in ('400x300', '800x1280'):
-            command = (f'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority glmark2-es2 '
+            launcher = '/usr/local/bin/indigo-gpu-run ' if args.private_mesa else ''
+            command = (f'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority {launcher}glmark2-es2 '
                        f'--off-screen --size {resolution} --frame-end finish --results fps:cpu '
                        '-b build:use-vbo=true:duration=4 -b shading:shading=phong:duration=4')
+            if args.workload == 'simple-triangle':
+                command = f'{launcher}/usr/local/bin/gpu-pixel-check --benchmark --size={resolution}'
             if args.driver:
-                command = f'GALLIUM_DRIVER={args.driver} ' + command
-            result['tests'].append(run(f'GLES2-{resolution}', ['su', 'julian', '-c', command], timeout=30))
+                command = f'LIBGL_ALWAYS_SOFTWARE=1 GBM_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER={args.driver} ' + command
+            measured = run(f'GLES2-{resolution}', ['su', 'julian', '-c', command], timeout=30)
+            unsupported = 'TGSI UNIMPLEMENTED' in measured['output']
+            measured['driver_reported_unsupported_shaders'] = unsupported
+            selection_verified = (not args.driver or
+                                  f'renderer={args.driver}' in measured['output'] or
+                                  f'GL_RENDERER:    {args.driver}' in measured['output'])
+            measured['requested_driver_selection_verified'] = bool(selection_verified)
+            measured['valid_graphics_performance_result'] = (
+                not measured['timed_out'] and not unsupported and selection_verified and
+                (measured['exit_code'] == 0 or
+                 (args.driver == 'softpipe' and args.workload == 'simple-triangle' and measured['exit_code'] == 2)) and
+                (args.workload != 'simple-triangle' or 'pixel_check=PASS' in measured['output']))
+            result['tests'].append(measured)
     result['final'] = snapshot()
     args.output.write_text(json.dumps(result, indent=2) + '\n')
     print(f'Report: {args.output}', flush=True)

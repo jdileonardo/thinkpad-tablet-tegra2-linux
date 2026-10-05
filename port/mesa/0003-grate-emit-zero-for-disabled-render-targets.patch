@@ -1,0 +1,18 @@
+diff --git a/src/gallium/drivers/grate/grate_state.c b/src/gallium/drivers/grate/grate_state.c
+--- a/src/gallium/drivers/grate/grate_state.c
++++ b/src/gallium/drivers/grate/grate_state.c
+@@ -575,8 +575,12 @@ emit_render_targets(struct grate_context *context)
+    }
+ 
+    grate_stream_push(stream, host1x_opcode_incr(TGR3D_RT_PTR(0), fb->num_rts));
+-   for (i = 0; i < fb->num_rts; ++i)
+-      grate_stream_push_reloc(stream, fb->bos[i], 0);
++   for (i = 0; i < fb->num_rts; ++i) {
++      if (fb->bos[i])
++         grate_stream_push_reloc(stream, fb->bos[i], 0);
++      else
++         grate_stream_push(stream, 0);
++   }
+ 
+    grate_stream_push(stream, host1x_opcode_incr(TGR3D_RT_ENABLE, 1));
+    grate_stream_push(stream, fb->mask);

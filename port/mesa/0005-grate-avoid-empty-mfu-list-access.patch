@@ -1,0 +1,14 @@
+diff --git a/src/gallium/drivers/grate/fp/tgsi.c b/src/gallium/drivers/grate/fp/tgsi.c
+--- a/src/gallium/drivers/grate/fp/tgsi.c
++++ b/src/gallium/drivers/grate/fp/tgsi.c
+@@ -228,6 +228,10 @@ grate_tgsi_to_fp(struct grate_fp_shader *fp, struct tgsi_parse_context *tgsi)
+       }
+    }
+ 
++   /* Constant-only shaders have no interpolation instructions. */
++   if (list_is_empty(&fp->mfu_instructions))
++      return;
++
+    /*
+     * HACK: insert barycentric interpolation setup
+     * This will overwrite instructions in some cases, need proper scheduler

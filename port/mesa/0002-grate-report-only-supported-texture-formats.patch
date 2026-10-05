@@ -1,0 +1,19 @@
+diff --git a/src/gallium/drivers/grate/grate_screen.c b/src/gallium/drivers/grate/grate_screen.c
+--- a/src/gallium/drivers/grate/grate_screen.c
++++ b/src/gallium/drivers/grate/grate_screen.c
+@@ -366,10 +366,11 @@ grate_screen_is_format_supported(struct pipe_screen *pscreen,
+                                  unsigned storage_sample_count,
+                                  unsigned usage)
+ {
+-   if (usage & (PIPE_BIND_RENDER_TARGET | PIPE_BIND_DEPTH_STENCIL)) {
+-      if (grate_pixel_format(format) < 0)
+-         return false;
+-   }
++   /* Texture allocation uses grate_pixel_format regardless of bind flags. */
++   if (target != PIPE_BUFFER && grate_pixel_format(format) < 0)
++      return false;
++   if (sample_count > 1 || storage_sample_count > 1)
++      return false;
+ 
+    return true;
+ }

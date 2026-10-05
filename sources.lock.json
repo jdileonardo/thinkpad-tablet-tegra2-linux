@@ -9,6 +9,11 @@
     "branch": "thinkpad-tablet-phj00",
     "commit": "8b626d0a4f6f39a6c12bf6ea4ed61744e4f7a54e"
   },
+  "mesa-grate": {
+    "url": "https://codeberg.org/libre-tegra/mesa.git",
+    "branch": "grate-25.1.9",
+    "commit": "647c79415a02cad7a39cb666ca26a17e45bf12df"
+  },
   "linux-nura": {
     "url": "https://codeberg.org/libre-tegra/linux.git",
     "branch": "stable",

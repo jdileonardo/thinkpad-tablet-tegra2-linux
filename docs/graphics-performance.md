@@ -96,9 +96,12 @@ A current hardware-driver source exists in Libre Tegra's Mesa fork:
 https://codeberg.org/libre-tegra/mesa, branch `grate-26.2.3`, observed commit
 `2a7bf9cc5eb1b9ab07373c1814cd1320073af450`. Its actual
 `src/gallium/drivers/grate/meson.build` contains the Grate Gallium driver and
-Tegra DRM integration. It has not been built or tested on this unit. Investigate
-a private/staged build of this driver and a compatible software fallback,
-then repeat the drawing and Wayland checks.
+Tegra DRM integration. Subsequent builds and physical tests found that this
+branch targets a different kernel ABI. A patched `grate-25.1.9` build now passes
+basic hardware triangle drawing and offers a working softpipe fallback. Its
+shader and texture support remains incomplete; the standard benchmark's FPS
+cannot be accepted. See [the GPU bring-up report](gpu-driver.md) for the active
+revision, patches, limitations and narrower validated workload.
 
 ## Repeating the measurements
 
