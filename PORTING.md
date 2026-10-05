@@ -300,8 +300,11 @@ touchscreen. Setting X/Y resolution to 42/48 units per mm, based on the
 Evidence: `diagnostics/touch-pad-fix-result.txt`,
 `diagnostics/touch-capture-sample.txt` and
 `diagnostics/wifi-association-touch-test.txt`.
-Corner mapping, multitouch behavior, pen reports/pressure/buttons and desktop
-interaction remain unverified by the user. No pen report has been received yet.
+The user confirmed that touch works well and improved substantially with the
+last contact-validity correction. Exhaustive corner calibration and multitouch
+gestures remain separate checks. No pen report has been received yet: the user
+has the pen but no batteries for it. Physical pen testing is deferred until
+batteries are available; driver registration does not establish pen operation.
 The raw SPI vendor confidence byte is 1 while present; the stock TrackLib
 processed "removed" flag inverted that meaning. The port now uses the raw
 confidence for contact state and excludes the vendor palm flag. The pen invert
@@ -321,8 +324,9 @@ Evidence: `diagnostics/reboot-wifi-input-validation.txt` and
 `diagnostics/touch-validity-reload.txt`. HTTPS can fail during the brief interval
 before the first NTP synchronization.
 
-1. Verify finger coordinate mapping and pen input/pressure on the physical
-   tablet; investigate pen power if it sends no reports.
+1. Follow up on physical pen input once the user has batteries: hover, tip,
+   pressure, side button and coordinate mapping. Touch is user-confirmed working;
+   exhaustive corner calibration and multitouch gestures remain follow-ups.
 2. Validate keys, audio playback, touchscreen, suspend,
    charging, and the current kernel's display driver.
    Historical support for one component does not prove it on this unit.

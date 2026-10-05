@@ -19,7 +19,7 @@ the attached unit.
 | Proximity | Historical GPIO C1 | Linux validation pending |
 | Audio | WM8903 on I2C, Tegra I2S audio routing from historical Ventana port | WM8903/card detected; playback untested |
 | Battery / EC | Stock Android EC_Battery at I2C2 address `0x58` | Stock readings available; no Linux charging integration verified |
-| Touchscreen / pen | Stock N-Trig SPI0, CS0, mode 0, 3 MHz; power A5, output enable Q7, IRQ V6; SPID/SPIF pull-down, SPIE pull-up, pads enabled | Pad correction restored real finger position/down/up events; XFCE accepts both inputs after axis-resolution fix. User coordinate mapping and actual pen events pending |
+| Touchscreen / pen | Stock N-Trig SPI0, CS0, mode 0, 3 MHz; power A5, output enable Q7, IRQ V6; SPID/SPIF pull-down, SPIE pull-up, pads enabled | User confirms good touch after contact-validity fix. XFCE accepts pen device; actual pen testing deferred until batteries are available |
 
 The upstream Nura source has a modern Ventana device tree but no Indigo tree.
 Its generic Ventana SD power pins, keys, and panel differ from the historical
