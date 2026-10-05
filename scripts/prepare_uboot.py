@@ -6,6 +6,8 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--direct-linux', action='store_true')
+parser.add_argument('--nura', action='store_true')
+parser.add_argument('--nura-sd', action='store_true')
 args = parser.parse_args()
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,12 +43,16 @@ CONFIG_FASTBOOT_BUF_SIZE=0x08000000
 # CONFIG_FASTBOOT_CMD_OEM_FORMAT is not set
 # CONFIG_PYLIBFDT is not set
 '''
-if args.direct_linux:
-    ramdisk_size = (ROOT / 'build/ram-test/initramfs.cpio.gz').stat().st_size
+if args.direct_linux or args.nura or args.nura_sd:
+    ramdisk_dir = ('build/nura-sd-test' if args.nura_sd else
+                   'build/nura-ram-test' if args.nura else 'build/ram-test')
+    ramdisk_size = (ROOT / ramdisk_dir / 'initramfs.cpio.gz').stat().st_size
+    ramdisk_addr = 0x02400000 if args.nura or args.nura_sd else 0x02000000
+    dtb_addr = 0x02600000 if args.nura or args.nura_sd else 0x02200000
     boot_command = (
         'setenv bootargs console=tty0 console=ttyS0,115200 loglevel=7 '
         'panic=0 rdinit=/init; echo Starting ThinkPad diagnostic Linux from RAM; '
-        f'bootz 0x01000000 0x02000000:0x{ramdisk_size:x} 0x02200000'
+        f'bootz 0x01000000 0x{ramdisk_addr:08x}:0x{ramdisk_size:x} 0x{dtb_addr:08x}'
     )
     extra = extra.replace('CONFIG_BOOTCOMMAND="fastboot usb 0"',
                           f'CONFIG_BOOTCOMMAND="{boot_command}"')
@@ -60,4 +66,4 @@ if original_dts.count(old) != 1:
     raise SystemExit('Unexpected USB controller device-tree layout')
 (SOURCE / 'arch/arm/dts/tegra20-ventana.dts').write_text(original_dts.replace(old, new))
 print('Prepared RAM bootstrap: transient environment, flash/format disabled; '
-      + ('direct Linux boot.' if args.direct_linux else 'USB fastboot.'))
+      + ('direct Linux boot.' if args.direct_linux or args.nura or args.nura_sd else 'USB fastboot.'))

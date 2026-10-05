@@ -44,6 +44,45 @@ This is an initial hardware bootstrap, not a finished Nura installation.
 The historical kernel is a comparison baseline for the current Nura Tegra
 kernel, not the final OS target.
 
+## Nura SD desktop milestone
+
+On 2026-10-05 the dedicated Indigo device tree and panel driver patch booted
+the pinned Nura Tegra **7.0.1** source on this tablet. USB ACM and readable
+1280×800 text were verified on the physical device. The ARMv7 Nura edge root
+filesystem was then built with pmbootstrap, XFCE and OpenRC, written to the
+user-authorized 64 GB SD card, and booted through the RAM-loaded U-Boot.
+
+The user confirmed the **XFCE desktop** on the tablet. Runtime evidence shows:
+
+- `/etc/os-release`: `PRETTY_NAME="Nura edge"`, `ID="nura"`.
+- `/dev/mmcblk0p1` mounted as `/`, ext4; this controller is `c8000400.mmc`.
+- Kernel `7.0.1-nura-indigo-ram`, both CPUs, approximately 1 GB RAM.
+- Xorg uses `opentegra`; XFCE session and panel run as `julian`.
+- Xrandr reports 1280×800 at 60.33 Hz. Hardware acceleration performance
+  has not been measured; driver initialization alone does not establish it.
+- GPIO keys are exposed through evdev/libinput. Physical key events remain
+  untested. Matching evdev, hid-generic and USB HID modules are on the card.
+- Zram swap is active. Wi-Fi currently has no interface on this newer kernel;
+  historical Wi-Fi initialization does not prove current support.
+- No internal Android filesystem is mounted. Android bootloader and partition
+  contents were not modified by this installation.
+
+The SD card was freshly identified as the 64,043,876,352-byte removable disk
+through reader serial `201506301013`. The initial 4,296,015,872-byte image
+passed full on-card SHA256 read-back (`c328bd19526cd0421b72872492f498b597fb0925c0bac9a7e95211ed6912ac62`).
+Its ext4 partition was expanded across the card and passed `e2fsck -fn`.
+It showed about 57.6 GiB free before first boot. Do not reuse that disk letter
+or reader identity without a fresh enumeration on a future write.
+
+Evidence: `diagnostics/nura-sd-os-console.txt`,
+`diagnostics/nura-desktop-status.txt`, and
+`build/nura-sd/card-write-verification.json`.
+
+Boot still requires the host to download U-Boot and the payload through APX.
+Touch/pen, Wi-Fi association, audio playback, suspend, battery and charging
+need further porting and validation. This is a working development desktop,
+not a complete hardware port.
+
 ## Storage preservation
 
 No persistent flash, environment save, partition change, or filesystem write
@@ -78,7 +117,8 @@ not been tested. The tablet's battery still requires separate investigation.
 
 Source directories and generated binaries are excluded from version control.
 Historical source preparation scripts require the exact pinned revisions.
-The current Nura source is only a sparse research checkout so far.
+Current Nura, pmaports and pmbootstrap checkouts are pinned in
+`sources.lock.json`. Local port changes are tracked on `port/nura-kernel`.
 
 ## Rebuild the diagnostic RAM payload
 
@@ -151,13 +191,71 @@ partition table, so Android partitions do not appear as block nodes. The
 current Nura Tegra configuration enables `CONFIG_TEGRA_PARTITION=y`; this
 must be checked against the captured stock partition ranges when booted.
 
+## Rebuild the Nura SD boot
+
+The new kernel uses the official pmaports ARMv7 configuration with USB ACM,
+Wi-Fi dependencies and firmware support built in, reduced debug information,
+and the Indigo device tree / fixed panel patch. The kernel build script also
+builds the three matching input modules needed by the desktop.
+
+```sh
+docker build -t thinkpad-nura-build:2026-10-05 -f tools/Dockerfile.nura .
+docker build -t thinkpad-pmbootstrap:2026-10-05 -f tools/Dockerfile.pmbootstrap .
+bash scripts/build_nura_kernel.sh
+python3 scripts/build_nura_rootfs.py
+bash scripts/build_recovery_helpers.sh
+```
+
+Create an external-root UUID in `build/nura-sd-root.uuid`, then build the
+initramfs using that UUID, followed by the matching U-Boot and payload:
+
+```sh
+python3 scripts/make_ramdisk.py --profile nura-sd --root-uuid "$(cat build/nura-sd-root.uuid)"
+bash scripts/build_uboot.sh --nura-sd
+python3 scripts/make_ram_payload.py --profile nura-sd
+python3 scripts/create_nura_sd_image.py
+```
+
+The image script operates on files only and checks the ext4 filesystem before
+assembling the MBR image. The writer requires an explicitly identified removable
+whole USB disk, reader serial and exact size; it rechecks identity and mounts,
+verifies the source hash, writes, reads back every image byte, then expands and
+checks the filesystem. `scripts/write_nura_sd.py` is a destructive card operation;
+only run it for a freshly identified card whose contents may be erased.
+
+The first-login password is generated in ignored, mode-0600
+`build/nura-first-login.txt`; it is not stored in Git. The development card uses
+XFCE autologin for `julian` and a wired root shell on `ttyGS0` for bring-up.
+
+The current payload layout is kernel `0x01000000`, initramfs `0x02400000`,
+and device tree `0x02600000`. Earlier 32 MiB initramfs placement overlapped
+the larger ARM kernel's relocated decompressor and produced a VFS root panic.
+The payload builder now checks the kernel symbol map and compressed size for
+that overlap, and keeps the download below U-Boot's 40 MiB startup stack.
+The SD initramfs restricts root discovery to the external SD controller and
+the exact UUID, and falls back to a RAM rescue shell if the card is unavailable.
+
+Once APX is freshly identified:
+
+```sh
+bash scripts/tegrarcm.sh --usb-timeout=5000 \
+  --bct=/work/backups/MP0GKR7-20261005T160450Z/active.bct \
+  --bootloader=/work/build/nura-sd-test/thinkpad-ram-payload.bin \
+  --loadaddr=0x108000
+python3 scripts/ram_console.py --command 'cat /etc/os-release' --command 'cat /proc/mounts'
+```
+
+The root-only `reboot-into-apx` helper uses Tegra's existing `forced-recovery`
+restart handler. It is installed on the development card at
+`/usr/local/sbin/reboot-into-apx`, and has worked for repeated RAM boot tests.
+
 ## Next porting milestones
 
-1. Implement a dedicated Indigo device tree against the current Nura Tegra
-   kernel. Use historical proven hardware settings rather than renaming a
-   generic Ventana image and assuming compatibility.
-2. Boot a Nura ARMv7 root filesystem from RAM or removable storage.
-3. Validate keys, Wi-Fi association, audio playback, touchscreen, suspend,
+1. Restore BCM4329 SDIO enumeration and validate Wi-Fi association on 7.0.1.
+   The stock kernel identifies Wi-Fi power K5, reset K6 and a 32 kHz blink clock.
+2. Port the stock N-Trig SPI touchscreen/pen protocol. Stock wiring is SPI0,
+   chip select 0, 3 MHz, power A5, output enable Q7 and interrupt V6.
+3. Validate keys, audio playback, touchscreen, suspend,
    charging, and the current kernel's display driver.
    Historical support for one component does not prove it on this unit.
 4. Design persistent installation only after recovery and power are established.

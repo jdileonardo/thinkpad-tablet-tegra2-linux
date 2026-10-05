@@ -1,0 +1,92 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// Indigo overrides for the current Tegra tree, based on the verified 2019 port.
+#include "tegra20-ventana.dts"
+
+/ {
+	model = "Lenovo ThinkPad Tablet (Indigo)";
+	compatible = "lenovo,indigo", "nvidia,tegra20";
+
+	usb@c5000000 {
+		compatible = "nvidia,tegra20-udc";
+		dr_mode = "peripheral";
+	};
+
+	usb-phy@c5000000 {
+		dr_mode = "peripheral";
+	};
+
+	mmc@c8000000 {
+		/delete-property/ power-gpios;
+		bus-width = <8>;
+	};
+
+	mmc@c8000400 {
+		power-gpios = <&gpio TEGRA_GPIO(T, 3) GPIO_ACTIVE_HIGH>;
+	};
+
+	mmc@c8000600 {
+		power-gpios = <&gpio TEGRA_GPIO(I, 6) GPIO_ACTIVE_HIGH>;
+	};
+
+	// Ventana's light sensor wiring was not present in the historical Indigo tree.
+	i2c@7000c000 {
+		/delete-node/ isl29018@44;
+	};
+
+	/delete-node/ gpio-keys;
+	gpio-keys {
+		compatible = "gpio-keys";
+
+		key-www {
+			label = "www";
+			gpios = <&gpio TEGRA_GPIO(Q, 0) GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_WWW>;
+		};
+		key-homepage {
+			label = "homepage";
+			gpios = <&gpio TEGRA_GPIO(Q, 1) GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_HOMEPAGE>;
+		};
+		key-back {
+			label = "back";
+			gpios = <&gpio TEGRA_GPIO(Q, 2) GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_BACK>;
+		};
+		key-rotation {
+			label = "rotation";
+			gpios = <&gpio TEGRA_GPIO(Q, 3) GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_ROTATE_DISPLAY>;
+		};
+		key-volumedown {
+			label = "volumedown";
+			gpios = <&gpio TEGRA_GPIO(Q, 4) GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_VOLUMEDOWN>;
+		};
+		key-volumeup {
+			label = "volumeup";
+			gpios = <&gpio TEGRA_GPIO(Q, 5) GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_VOLUMEUP>;
+		};
+		key-power {
+			label = "Power";
+			gpios = <&gpio TEGRA_GPIO(C, 7) GPIO_ACTIVE_HIGH>;
+			linux,code = <KEY_POWER>;
+			wakeup-source;
+		};
+		key-power2 {
+			label = "Power2";
+			gpios = <&gpio TEGRA_GPIO(I, 3) GPIO_ACTIVE_HIGH>;
+			linux,code = <KEY_POWER2>;
+		};
+		key-proximity {
+			label = "proximity";
+			gpios = <&gpio TEGRA_GPIO(C, 1) GPIO_ACTIVE_HIGH>;
+			linux,code = <KEY_DASHBOARD>;
+		};
+	};
+};
+
+&panel {
+	compatible = "lg,lp101wx1";
+	/delete-property/ ddc-i2c-bus;
+};

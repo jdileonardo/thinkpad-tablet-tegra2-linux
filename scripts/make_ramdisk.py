@@ -1,11 +1,22 @@
 #!/usr/bin/env python3
-"""Build a reproducible diagnostic initramfs; it never mounts tablet storage."""
+"""Build a RAM diagnostic or external-SD bootstrap; never mount internal storage."""
 import gzip
 import stat
+import argparse
+import uuid
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
-out = root / 'build/ram-test'
+parser = argparse.ArgumentParser()
+parser.add_argument('--profile', choices=['historical', 'nura', 'nura-sd'], default='historical')
+parser.add_argument('--root-uuid', help='External SD filesystem UUID for nura-sd')
+args = parser.parse_args()
+if args.profile == 'nura-sd':
+    if not args.root_uuid:
+        parser.error('nura-sd requires --root-uuid')
+    args.root_uuid = str(uuid.UUID(args.root_uuid))
+out = root / {'historical': 'build/ram-test', 'nura': 'build/nura-ram-test',
+              'nura-sd': 'build/nura-sd-test'}[args.profile]
 out.mkdir(parents=True, exist_ok=True)
 entries = []
 
@@ -19,6 +30,14 @@ for name in ['bin', 'dev', 'etc', 'proc', 'sys', 'run', 'tmp']:
 add('dev/console', stat.S_IFCHR | 0o600, rdev=(5, 1))
 add('dev/null', stat.S_IFCHR | 0o666, rdev=(1, 3))
 add('bin/busybox', stat.S_IFREG | 0o755, (root / 'build/busybox/busybox').read_bytes())
+if args.profile != 'historical':
+    for directory in ['lib', 'lib/firmware', 'lib/firmware/brcm']:
+        add(directory, stat.S_IFDIR | 0o755)
+    for filename in ['brcmfmac4329-sdio.bin', 'brcmfmac4329-sdio.txt']:
+        add('lib/firmware/brcm/' + filename, stat.S_IFREG | 0o644,
+            (root / 'build/stock/firmware' / filename).read_bytes())
+    add('bin/reboot-into-apx', stat.S_IFREG | 0o755,
+        (root / 'build/ram-test/reboot-into-apx').read_bytes())
 for name in ['sh', 'mount', 'mkdir', 'cat', 'sleep', 'setsid', 'cttyhack', 'uname',
              'dmesg', 'ls', 'find', 'ip', 'ifconfig', 'reboot', 'poweroff', 'echo',
              'grep', 'head', 'tail', 'hexdump', 'sync', 'stty', 'env']:
@@ -65,6 +84,41 @@ while :; do
     sleep 1
 done
 '''
+if args.profile == 'nura-sd':
+    switch = '''# Only the external SD controller is eligible for the OS root.
+mkdir -p /newroot
+rootdev=
+tries=0
+while [ "$tries" -lt 60 ]; do
+    for block in /sys/class/block/mmcblk*p*; do
+        [ -e "$block" ] || continue
+        case "$(/bin/busybox readlink -f "$block")" in
+            *c8000400.mmc*) ;;
+            *) continue ;;
+        esac
+        dev=/dev/${block##*/}
+        found=$(/bin/busybox blkid "$dev" | /bin/busybox sed -n 's/.*UUID="\\([^"]*\\)".*/\\1/p')
+        [ "$found" = 'ROOT_UUID' ] && rootdev=$dev && break
+    done
+    [ -n "$rootdev" ] && break
+    tries=$((tries + 1))
+    sleep 1
+done
+if [ -n "$rootdev" ] && mount -t ext4 -o rw "$rootdev" /newroot; then
+    if [ -x /newroot/sbin/init ]; then
+        echo "Starting Nura from external SD: $rootdev" >/dev/console
+        for fs in proc sys dev run; do
+            mkdir -p /newroot/$fs
+            mount --move /$fs /newroot/$fs || exit 1
+        done
+        exec /bin/busybox switch_root /newroot /sbin/init
+    fi
+    /bin/busybox umount /newroot
+fi
+echo 'SD root unavailable; staying in RAM rescue console.' >/dev/console
+'''.replace('ROOT_UUID', args.root_uuid)
+    init = init.replace('while :; do\n    echo \'ThinkPad RAM test console.',
+                        switch + 'while :; do\n    echo \'ThinkPad RAM test console.')
 add('init', stat.S_IFREG | 0o755, init.encode())
 add('etc/issue', stat.S_IFREG | 0o644, b'ThinkPad RAM diagnostic environment\n')
 add('TRAILER!!!', 0)

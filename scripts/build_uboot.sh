@@ -5,6 +5,10 @@ cd "$project_root"
 build_output=uboot-ram
 if [[ "${1:-}" == "--direct-linux" ]]; then
   build_output=uboot-direct
+elif [[ "${1:-}" == "--nura" ]]; then
+  build_output=uboot-nura
+elif [[ "${1:-}" == "--nura-sd" ]]; then
+  build_output=uboot-nura-sd
 fi
 python3 scripts/prepare_uboot.py "$@"
 docker run --rm --user "$(id -u):$(id -g)" -v "$project_root:/work" \

@@ -1,0 +1,4 @@
+FROM thinkpad-nura-build:2026-10-05
+RUN apk add --no-cache git util-linux multipath-tools procps tar kmod rsync \
+    dosfstools e2fsprogs e2fsprogs-extra shadow
+WORKDIR /work

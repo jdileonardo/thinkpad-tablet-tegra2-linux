@@ -1,0 +1,4 @@
+FROM alpine:edge
+RUN apk add --no-cache build-base bash clang llvm lld bison flex openssl openssl-dev \
+    elfutils-dev dtc python3 perl pahole linux-headers bc xz zstd cpio
+WORKDIR /work

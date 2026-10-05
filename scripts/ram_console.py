@@ -2,6 +2,7 @@
 """Collect the ThinkPad diagnostic USB shell; default commands are read-only."""
 import argparse
 import os
+import re
 import select
 import time
 import tty
@@ -42,7 +43,7 @@ try:
                 chunk = os.read(fd, 65536)
                 if chunk:
                     data.extend(chunk)
-                    if not commands_started and b'~ # ' in data:
+                    if not commands_started and re.search(rb'(?:^|[\r\n])[^\r\n]*# ', data):
                         pending = command_payload
                         commands_started = True
             except BlockingIOError:

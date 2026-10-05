@@ -4,5 +4,6 @@ sources/
 tools/*
 !tools/Dockerfile
 !tools/Dockerfile.nura
+!tools/Dockerfile.pmbootstrap
 build/
 __pycache__/

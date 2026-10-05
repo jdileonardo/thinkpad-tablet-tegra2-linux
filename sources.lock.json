@@ -21,5 +21,18 @@
   "cbootimage": {
     "url": "https://github.com/NVIDIA/cbootimage.git",
     "commit": "80c499ebbe8a64aa2ee4222e6a8f342f465f6680"
+  },
+  "pmaports": {
+    "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports.git",
+    "branch": "main",
+    "commit": "7cf3996f2221482efff559ff986473aba5ca8296"
+  },
+  "pmbootstrap": {
+    "url": "https://gitlab.postmarketos.org/postmarketOS/pmbootstrap.git",
+    "commit": "4ed5555f34c6bbb3b6899003336fd233bd402218"
+  },
+  "linux-stock": {
+    "url": "https://github.com/Koshu/thinkpad_tablet_jb_kernel.git",
+    "commit": "271082d9581abcedf2ccbb0981ab8f375c457376"
   }
 }

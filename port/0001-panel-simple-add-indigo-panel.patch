@@ -1,0 +1,39 @@
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -5099,7 +5099,36 @@
+ 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+ };
+ 
++/* Fixed RGB timing verified on the Lenovo ThinkPad Tablet (Indigo). */
++static const struct drm_display_mode lg_lp101wx1_mode = {
++	.clock = 71500,
++	.hdisplay = 1280,
++	.hsync_start = 1280 + 48,
++	.hsync_end = 1280 + 48 + 32,
++	.htotal = 1280 + 48 + 32 + 80,
++	.vdisplay = 800,
++	.vsync_start = 800 + 2,
++	.vsync_end = 800 + 2 + 6,
++	.vtotal = 800 + 2 + 6 + 15,
++};
++
++static const struct panel_desc lg_lp101wx1 = {
++	.modes = &lg_lp101wx1_mode,
++	.num_modes = 1,
++	.bpc = 6,
++	.size = {
++		.width = 229,
++		.height = 149,
++	},
++	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
++	.connector_type = DRM_MODE_CONNECTOR_DPI,
++};
++
+ static const struct of_device_id platform_of_match[] = {
++	{
++		.compatible = "lg,lp101wx1",
++		.data = &lg_lp101wx1,
++	},
+ 	{
+ 		.compatible = "ampire,am-1280800n3tzqw-t00h",
+ 		.data = &ampire_am_1280800n3tzqw_t00h,
