@@ -85,9 +85,11 @@ not a complete hardware port.
 
 ## Storage preservation
 
-No persistent flash, environment save, partition change, or filesystem write
-from the diagnostic Linux environment is intended by these boot scripts.
-The initramfs mounts only proc, sysfs, devtmpfs, tmpfs, and configfs.
+The boot scripts do not flash or save U-Boot's environment, change Android
+partitions, or mount internal Android filesystems. Historical and Nura RAM
+diagnostic profiles mount only proc, sysfs, devtmpfs, tmpfs, and configfs.
+The Nura SD profile additionally mounts the authorized external-card UUID
+as the OS root; normal desktop writes go to that card.
 U-Boot uses a transient environment and disables fastboot flashing/formatting.
 
 `backups/MP0GKR7-20261005T160450Z/` contains verified boot, recovery, system,
