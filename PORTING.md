@@ -374,7 +374,7 @@ rotation is enabled. The first physical left/right quarter-turn test rotated
 both landscape positions upside down: the raw gravity and Xrandr directions
 had opposite signs. Subtracting the measured gravity direction fixes the
 mapping; the updated controller is installed and its corrected orientation
-tests pass. Physical confirmation of the corrected mapping remains pending.
+tests pass. The user subsequently confirmed that physical rotation works correctly.
 Run `indigo-rotate status`, `lock`, `auto`, or `calibrate` inside the desktop
 session to inspect or change it. Logs are in
 `~/.local/state/indigo-tablet/{rotation,buttons}.log`.
@@ -397,6 +397,45 @@ package bypass was used. The image assembler now restores keys and installs
 the desktop tools, autostart and user rotation defaults. These changes are
 live on the existing SD card; the original exported image has not been rebuilt.
 
+## Battery investigation
+
+Android's initial, second and final captures all reported an AC supply, battery
+present, 0%, 3.351 V, 20.7 °C, and `Not charging`. These were actual EC register
+reads in the stock driver, rather than hardcoded voltage/temperature defaults.
+However, the driver's `Good` health result is only based on nonzero design
+capacity at register `0x08`; it does not establish cell health.
+Evidence: `diagnostics/battery-{initial,second,final}.txt`,
+`diagnostics/power-supplies.txt`, and
+`sources/linux-stock/drivers/power/EC_battery.c`.
+
+The current Nura kernel exposes no power supplies because the Indigo EC driver
+has not been ported. Nevertheless, the EC is accessible at I2C address `0x58`
+on the PTA branch of controller `0x7000c400`: runtime adapter `i2c-5`, device-tree
+path `/i2cmux/i2c@1`. Do not confuse this with hardware controller I2C3 at
+`0x7000c500`, or assume adapter numbering remains fixed in future builds.
+
+Read-only SMBus word transactions using the stock driver's telemetry commands
+returned 0% (`0x00`), 2674 mV (`0x01`), full capacity raw 2292 (`0x07`), design
+capacity raw 2405 (`0x08`), unavailable/zero temperature (`0x0a`), and charging
+status 2, meaning not charging (`0x0b`). Capacity units are not established;
+stored full/design numbers do not prove usable capacity. No charge-control,
+reset, EEPROM or firmware commands were issued. The voltage reading is not
+an independent multimeter measurement. A depleted/failed pack or protection
+fault is plausible; temperature/telemetry or charger faults are not ruled out.
+Evidence: `diagnostics/battery-linux-initial.txt`,
+`diagnostics/battery-i2c-controller-map.txt`,
+`diagnostics/battery-ec-read-only-registers.txt`, and
+`diagnostics/battery-ec-repeat-readings.txt`.
+
+Lenovo's original Hardware Maintenance Manual lists a 24 Wh, two-cell Li-ion
+assembly, FRUs `42T4963` and `42T4965`. Verify the installed label, connector,
+dimensions and replacement provenance before ordering. The manual's power
+checkout explicitly tests dock power with the battery removed, so a dock-only
+configuration is a supported diagnostic option; Linux operation in that physical
+configuration has not been tested on this unit. Manual pages 24 and 36–40 cover
+power checkout and battery removal. Source:
+https://thinkpads.com/support/hmm/hmm_pdf/tp_tablet_hmm_en_0a96158_04.pdf
+
 ## Next porting milestones
 
 Wi-Fi reconnected automatically on the next APX/SD boot, and chronyd
@@ -408,7 +447,7 @@ before the first NTP synchronization.
 1. Follow up on physical pen input once the user has batteries: hover, tip,
    pressure, side button and coordinate mapping. Touch is user-confirmed working;
    exhaustive corner calibration and multitouch gestures remain follow-ups.
-2. Validate physical automatic rotation/lock, side volume and power keys,
+2. Validate physical rotation lock, side volume and power keys,
    audio playback, touchscreen gestures, suspend,
    charging, and the current kernel's display driver.
    Historical support for one component does not prove it on this unit.
