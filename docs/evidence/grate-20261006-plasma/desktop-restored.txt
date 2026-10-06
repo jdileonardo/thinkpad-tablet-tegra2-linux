@@ -1,0 +1,53 @@
+
+~ # uname -a; rc-service lightdm status; su julian -c "DISPLAY=:0 XAUTHORITY=/ho
+me/julian/.Xauthority xrandr --current" | head -12; ps -eo pid,args | grep -E "X
+org|xfce4-session|weston --|qmlscene|kwin_wayland|seatd"; cat /proc/sys/kernel/t
+ainted; grep -E "MemAvailable|CmaTotal|CmaFree" /proc/meminfo; ping -c 1 -W 2 19
+2.168.0.147; sha256sum /tmp/graphics-stack-check /tmp/wayland-egl-check /tmp/tab
+let-native-weston-trial.py /tmp/qt-wayland-scenegraph-check.qml; ls /tmp/indigo-
+dri3-trial.active /run/indigo-native-weston-trial.json /etc/lightdm/lightdm.conf
+.d/99-indigo-dri3-trial.conf; dmesg | tail -15; echo GRAPHICS_FINAL_STATE_DONE
+Linux thinkpad-indigo 7.0.1-nura-indigo-ram #3 SMP Tue Oct  6 14:10:41 UTC 2026 armv7l Linux
+ * status: started
+Screen 0: minimum 320 x 200, current 800 x 1280, maximum 4096 x 4096
+HDMI-0 disconnected (normal left inverted right x axis y axis)
+Unknown-0 connected 800x1280+0+0 left (normal left inverted right x axis y axis) 0mm x 0mm
+   1280x800      60.33*+
+26405 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+26426 xfce4-session
+26444 /usr/sbin/dbus-launch --sh-syntax --exit-with-session xfce4-session
+28189 grep -E Xorg|xfce4-session|weston --|qmlscene|kwin_wayland|seatd
+12288
+MemAvailable:     734904 kB
+CmaTotal:          65536 kB
+CmaFree:            1632 kB
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=35.623 ms
+
+--- 192.168.0.147 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 35.623/35.623/35.623 ms
+b29fe647f3651963a9ebf48eba3b624bb0fbb357aa1b11fbb75a04b980f8190c  /tmp/graphics-stack-check
+d3ff01f3cb74d519c17e94f6846123269cdb3f682d2a26324639cb2975f33846  /tmp/wayland-egl-check
+1ef1d52bb2a624050b924ba255a7b43033cd4b46324aa6f81fbbf78431adfb5c  /tmp/tablet-native-weston-trial.py
+a0b4201ee882dfbd4f808e9b1e93a007efbd8f7147017ff21867c52fa4f05f37  /tmp/qt-wayland-scenegraph-check.qml
+ls: /tmp/indigo-dri3-trial.active: No such file or directory
+ls: /run/indigo-native-weston-trial.json: No such file or directory
+ls: /etc/lightdm/lightdm.conf.d/99-indigo-dri3-trial.conf: No such file or directory
+[   10.274678] usbhid: USB HID core driver
+[   12.516338] zram0: detected capacity change from 0 to 3041280
+[   12.537511] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   15.085238] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+[   20.315464] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.315503] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.315514] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   20.316254] platform sound-hdmi: deferred probe pending: asoc-simple-card: parse error
+[   20.316274] tegra-mc 7000f000.memory-controller: sync_state() pending due to 6001a000.vde
+[   20.316304] tegra-pmc 7000e400.pmc: sync_state() pending due to 6001a000.vde
+[ 1293.512437] drm drm: failed to allocate buffer of size 132710400: -12
+[ 1293.623749] Xorg (15531): drop_caches: 1
+[ 1293.624042] drm drm: failed to allocate buffer of size 132710400: -12
+[ 1293.624444] drm drm: failed to allocate buffer of size 132710400: -12
+[ 1293.845705] drm drm: failed to allocate buffer of size 132710400: -12
+GRAPHICS_FINAL_STATE_DONE
+~ #

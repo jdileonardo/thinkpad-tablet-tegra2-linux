@@ -1,0 +1,1 @@
+capture=/tmp/weston-native-draw-1.ppm CRTC=66 framebuffer=107 size=1280x800 pitch=5120 format=34325258 modifier=0

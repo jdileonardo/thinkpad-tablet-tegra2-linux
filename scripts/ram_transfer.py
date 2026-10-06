@@ -5,6 +5,7 @@ Uploads are restricted to /tmp or /run on the diagnostic OS. Downloads only read
 """
 import argparse
 import base64
+import fcntl
 import hashlib
 import os
 import re
@@ -59,6 +60,11 @@ else:
                f"printf '\\n{end_marker}\\n'; /bin/busybox sha256sum {remote}; "
                f"printf '\\n{done_marker}\\n'\n").encode()
 fd = os.open(node, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+try:
+    fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+except BlockingIOError:
+    os.close(fd)
+    raise SystemExit('Diagnostic console is in use; finish the other console/transfer first')
 tty.setraw(fd)
 data = bytearray()
 pending = memoryview(payload)

@@ -2,10 +2,10 @@
 
 ## Current checkpoint
 
-The [nested compositor checkpoint](gpu-compositor.md) verifies Weston drawing
-and blending through the private Tegra GPU driver. Native DRM Wayland,
-accelerated Wayland client buffers and Plasma/KWin remain untested. The ordinary
-XFCE configuration is the recovery desktop.
+The [native Wayland evaluation](gpu-plasma-evaluation.md) verifies direct display
+and hardware Wayland clients using 32-bit buffers. RGB565 rendering and KWin's
+3D-texture requirement are current blockers; Plasma/KWin remain unvalidated.
+The ordinary XFCE configuration is the recovery desktop.
 
 The current boot has three parts:
 

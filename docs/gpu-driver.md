@@ -1,5 +1,10 @@
 # Indigo Grate GPU build
 
+The next [native Wayland and Plasma evaluation](gpu-plasma-evaluation.md)
+verifies native GPU display and hardware Wayland clients, and identifies
+RGB565 rendering and KWin's missing 3D-texture requirement as current blockers.
+The checkpoints below retain their earlier validation scope.
+
 Current checkpoint (2026-10-06): the candidate Mesa build now passes nested
 Weston hardware compositing, with changing Wayland surfaces and alpha layers
 matching the software reference. Server-pixmap sharing and native 800x1280 X11

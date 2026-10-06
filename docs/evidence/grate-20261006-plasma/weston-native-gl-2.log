@@ -1,0 +1,110 @@
+Date: 2026-10-06 EDT
+[10:50:32.565] weston 16.0.0
+               https://wayland.freedesktop.org
+               Bug reports to: https://gitlab.freedesktop.org/wayland/weston/issues/
+               Build: 16.0.0
+[10:50:32.566] Command line: /sbin/weston --backend=drm --renderer=gl --drm-device=card0 --socket=weston-native-gl-2 --config=/tmp/weston-native-gl-2.ini --log=/tmp/weston-native-gl-2.log
+[10:50:32.566] OS: Linux, 7.0.1-nura-indigo-ram, #3 SMP Tue Oct  6 14:10:41 UTC 2026, armv7l
+[10:50:32.566] Flight recorder: enabled, scopes subscribed: log
+[10:50:32.566] Using config file '/tmp/weston-native-gl-2.ini'
+[10:50:32.567] Output repaint window is 7 ms maximum.
+[10:50:32.567] Loading module '/usr/lib/libweston-16/drm-backend.so'
+[10:50:32.572] initializing drm backend
+[10:50:32.572] Trying libseat launcher...
+[10:50:32.573] [libseat/libseat.c:62] Seat opened with backend 'seatd'
+[10:50:32.573] [libseat/backend/seatd.c:218] Enabling seat
+[10:50:32.573] libseat: session control granted
+[10:50:32.574] using /dev/dri/card0
+[10:50:32.574] DRM: supports atomic modesetting
+[10:50:32.574] DRM: supports GBM modifiers
+[10:50:32.574] DRM: does not support Atomic async page flip
+[10:50:32.574] DRM: supports picture aspect ratio
+[10:50:32.576] DRM: head 'HDMI-A-1' found, connector 34 is disconnected.
+[10:50:32.577] DRM: head 'DPI-1' found, connector 68 is connected, EDID make 'unknown', model 'unknown', serial ''
+               Supported EOTF modes: SDR
+               Supported colorimetry modes: default
+               Supported VRR modes: (none),
+               Supported color formats: AUTO
+[10:50:32.779] Loading module '/usr/lib/libweston-16/gl-renderer.so'
+[10:50:32.815] Using rendering device: /dev/dri/renderD128
+[10:50:32.815] EGL version: 1.4
+[10:50:32.815] EGL vendor: Mesa Project
+[10:50:32.815] EGL client APIs: OpenGL OpenGL_ES
+[10:50:32.815] EGL features:
+               EGL Wayland extension: no
+               context priority: no
+               buffer age: yes
+               partial update: no
+               swap buffers with damage: no
+               configless context: yes
+               surfaceless context: yes
+               dmabuf support: modifiers
+               fence sync: yes (wait)
+[10:50:32.917] GL version: OpenGL ES 2.0 Mesa 26.2.3
+[10:50:32.917] GLSL version: OpenGL ES GLSL ES 1.0.16
+[10:50:32.917] GL vendor: Grate
+[10:50:32.917] GL renderer: Tegra
+[10:50:33.160] GL ES 2.0 - renderer features:
+               read-back format: ARGB8888
+               glReadPixels supports y-flip: yes
+               glReadPixels supports PBO: yes
+               wl_shm 10 bpc formats: no
+               wl_shm 16 bpc formats: no
+               wl_shm half-float formats: no
+               internal R and RG formats: no
+               OES_EGL_image_external: yes
+               GPU timeline: no
+               Texture immutability: yes
+               Required precision: yes
+               In-shader blending: no
+[10:50:33.161] Using GL renderer
+[10:50:33.186] event3  - N-Trig Indigo Touchscreen: is tagged by udev as: Touchscreen
+[10:50:33.187] event3  - N-Trig Indigo Touchscreen: device is a touch device
+[10:50:33.191] event4  - N-Trig Indigo Pen: is tagged by udev as: Tablet
+[10:50:33.192] event4  - N-Trig Indigo Pen: device is a tablet
+[10:50:33.194] event2  - gpio-keys: is tagged by udev as: Keyboard
+[10:50:33.195] event2  - gpio-keys: device is a keyboard
+[10:50:33.198] event0  - NVIDIA Tegra Ventana Headphones Jack: is tagged by udev as: Switch
+[10:50:33.253] event0  - not using input device '/dev/input/event0'
+[10:50:33.256] event1  - NVIDIA Tegra Ventana Mic Jack: is tagged by udev as: Switch
+[10:50:33.313] event1  - not using input device '/dev/input/event1'
+[10:50:33.315] Touchscreen - N-Trig Indigo Touchscreen - /sys/devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input3/event3
+[10:50:33.315] libinput: configuring device "N-Trig Indigo Touchscreen".
+[10:50:33.315] input device event3 has no enabled output associated (none named), skipping calibration for now.
+[10:50:33.315] libinput: configuring device "N-Trig Indigo Pen".
+[10:50:33.315] input device event4 has no enabled output associated (none named), skipping calibration for now.
+[10:50:33.358] libinput: configuring device "gpio-keys".
+[10:50:33.358] Registered plugin API 'weston_drm_output_api_v1' of size 20
+[10:50:33.358] Color manager: no-op
+                 protocol support: no
+[10:50:33.359] Setting output 'DPI-1' to color AUTO format
+[10:50:33.359] Output 'DPI-1' attempts EOTF mode SDR and colorimetry mode default.
+[10:50:33.359] Output 'DPI-1' using color profile: stock sRGB color profile
+[10:50:33.360] Chosen EGL config details: id:  65 rgba: 8 8 8 0 buf: 24 dep:  0 stcl: 0 int: 1-1 type: win val: fix vis_id: XRGB8888 (0x34325258)
+[10:50:33.361] Output DPI-1 (crtc 66) video modes:
+               1280x800@60.3, preferred, current, 71.5 MHz
+[10:50:33.362] associating input device event3 with output DPI-1 (none by udev)
+[10:50:33.362] associating input device event4 with output DPI-1 (none by udev)
+[10:50:33.362] associating input device event2 with output DPI-1 (none by udev)
+[10:50:33.362] Output 'DPI-1' enabled with head(s) DPI-1
+[10:50:33.362] Compositor capabilities:
+               arbitrary surface rotation: yes
+               screen capture uses y-flip: yes
+               cursor planes: yes
+               arbitrary resolutions: no
+               view mask clipping: yes
+               explicit sync: no
+               color operations: no
+               color representation: yes
+               in-shader blending: no
+               presentation clock: CLOCK_MONOTONIC, id 1
+               presentation clock resolution: 0.000000001 s
+[10:50:33.363] Loading module '/usr/lib/weston/desktop-shell.so'
+[10:50:33.367] launching '/usr/libexec/weston-keyboard'
+[10:50:33.371] launching '/usr/libexec/weston-desktop-shell'
+[10:50:44.524] caught signal 15
+[10:50:44.528] event3  - N-Trig Indigo Touchscreen: device removed
+[10:50:44.529] [libseat/backend/seatd.c:317] Could not poll connection: Broken pipe
+[10:50:44.529] libseat: Could not close device 2[10:50:44.603] event4  - N-Trig Indigo Pen: device removed
+[10:50:44.603] libseat: Could not close device 3[10:50:44.693] event2  - gpio-keys: device removed
+[10:50:44.693] libseat: Could not close device 4[10:50:44.736] libseat: Could not close device 1

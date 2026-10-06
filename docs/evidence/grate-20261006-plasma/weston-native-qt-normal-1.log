@@ -1,0 +1,110 @@
+Date: 2026-10-06 EDT
+[11:10:31.826] weston 16.0.0
+               https://wayland.freedesktop.org
+               Bug reports to: https://gitlab.freedesktop.org/wayland/weston/issues/
+               Build: 16.0.0
+[11:10:31.826] Command line: /sbin/weston --backend=drm --renderer=gl --drm-device=card0 --socket=weston-native-qt-normal-1 --config=/tmp/weston-native-qt-normal-1.ini --log=/tmp/weston-native-qt-normal-1.log
+[11:10:31.826] OS: Linux, 7.0.1-nura-indigo-ram, #3 SMP Tue Oct  6 14:10:41 UTC 2026, armv7l
+[11:10:31.826] Flight recorder: enabled, scopes subscribed: log
+[11:10:31.827] Using config file '/tmp/weston-native-qt-normal-1.ini'
+[11:10:31.827] Output repaint window is 7 ms maximum.
+[11:10:31.827] Loading module '/usr/lib/libweston-16/drm-backend.so'
+[11:10:31.831] initializing drm backend
+[11:10:31.831] Trying libseat launcher...
+[11:10:31.831] [libseat/libseat.c:62] Seat opened with backend 'seatd'
+[11:10:31.832] [libseat/backend/seatd.c:218] Enabling seat
+[11:10:31.832] libseat: session control granted
+[11:10:31.832] using /dev/dri/card0
+[11:10:31.832] DRM: supports atomic modesetting
+[11:10:31.833] DRM: supports GBM modifiers
+[11:10:31.833] DRM: does not support Atomic async page flip
+[11:10:31.833] DRM: supports picture aspect ratio
+[11:10:31.835] DRM: head 'HDMI-A-1' found, connector 34 is disconnected.
+[11:10:31.835] DRM: head 'DPI-1' found, connector 68 is connected, EDID make 'unknown', model 'unknown', serial ''
+               Supported EOTF modes: SDR
+               Supported colorimetry modes: default
+               Supported VRR modes: (none),
+               Supported color formats: AUTO
+[11:10:31.892] Loading module '/usr/lib/libweston-16/gl-renderer.so'
+[11:10:31.909] Using rendering device: /dev/dri/renderD128
+[11:10:31.909] EGL version: 1.4
+[11:10:31.909] EGL vendor: Mesa Project
+[11:10:31.909] EGL client APIs: OpenGL OpenGL_ES
+[11:10:31.909] EGL features:
+               EGL Wayland extension: no
+               context priority: no
+               buffer age: yes
+               partial update: no
+               swap buffers with damage: no
+               configless context: yes
+               surfaceless context: yes
+               dmabuf support: modifiers
+               fence sync: yes (wait)
+[11:10:31.919] GL version: OpenGL ES 2.0 Mesa 26.2.3
+[11:10:31.920] GLSL version: OpenGL ES GLSL ES 1.0.16
+[11:10:31.920] GL vendor: Grate
+[11:10:31.920] GL renderer: Tegra
+[11:10:31.989] GL ES 2.0 - renderer features:
+               read-back format: ARGB8888
+               glReadPixels supports y-flip: yes
+               glReadPixels supports PBO: yes
+               wl_shm 10 bpc formats: no
+               wl_shm 16 bpc formats: no
+               wl_shm half-float formats: no
+               internal R and RG formats: no
+               OES_EGL_image_external: yes
+               GPU timeline: no
+               Texture immutability: yes
+               Required precision: yes
+               In-shader blending: no
+[11:10:31.990] Using GL renderer
+[11:10:32.015] event3  - N-Trig Indigo Touchscreen: is tagged by udev as: Touchscreen
+[11:10:32.016] event3  - N-Trig Indigo Touchscreen: device is a touch device
+[11:10:32.020] event4  - N-Trig Indigo Pen: is tagged by udev as: Tablet
+[11:10:32.020] event4  - N-Trig Indigo Pen: device is a tablet
+[11:10:32.023] event2  - gpio-keys: is tagged by udev as: Keyboard
+[11:10:32.024] event2  - gpio-keys: device is a keyboard
+[11:10:32.027] event0  - NVIDIA Tegra Ventana Headphones Jack: is tagged by udev as: Switch
+[11:10:32.103] event0  - not using input device '/dev/input/event0'
+[11:10:32.106] event1  - NVIDIA Tegra Ventana Mic Jack: is tagged by udev as: Switch
+[11:10:32.163] event1  - not using input device '/dev/input/event1'
+[11:10:32.163] Touchscreen - N-Trig Indigo Touchscreen - /sys/devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input3/event3
+[11:10:32.163] libinput: configuring device "N-Trig Indigo Touchscreen".
+[11:10:32.163] input device event3 has no enabled output associated (none named), skipping calibration for now.
+[11:10:32.163] libinput: configuring device "N-Trig Indigo Pen".
+[11:10:32.164] input device event4 has no enabled output associated (none named), skipping calibration for now.
+[11:10:32.206] libinput: configuring device "gpio-keys".
+[11:10:32.207] Registered plugin API 'weston_drm_output_api_v1' of size 20
+[11:10:32.207] Color manager: no-op
+                 protocol support: no
+[11:10:32.207] Setting output 'DPI-1' to color AUTO format
+[11:10:32.207] Output 'DPI-1' attempts EOTF mode SDR and colorimetry mode default.
+[11:10:32.207] Output 'DPI-1' using color profile: stock sRGB color profile
+[11:10:32.209] Chosen EGL config details: id:  65 rgba: 8 8 8 0 buf: 24 dep:  0 stcl: 0 int: 1-1 type: win val: fix vis_id: XRGB8888 (0x34325258)
+[11:10:32.210] Output DPI-1 (crtc 66) video modes:
+               1280x800@60.3, preferred, current, 71.5 MHz
+[11:10:32.210] associating input device event3 with output DPI-1 (none by udev)
+[11:10:32.210] associating input device event4 with output DPI-1 (none by udev)
+[11:10:32.211] associating input device event2 with output DPI-1 (none by udev)
+[11:10:32.211] Output 'DPI-1' enabled with head(s) DPI-1
+[11:10:32.211] Compositor capabilities:
+               arbitrary surface rotation: yes
+               screen capture uses y-flip: yes
+               cursor planes: yes
+               arbitrary resolutions: no
+               view mask clipping: yes
+               explicit sync: no
+               color operations: no
+               color representation: yes
+               in-shader blending: no
+               presentation clock: CLOCK_MONOTONIC, id 1
+               presentation clock resolution: 0.000000001 s
+[11:10:32.211] Loading module '/usr/lib/weston/desktop-shell.so'
+[11:10:32.212] launching '/usr/libexec/weston-keyboard'
+[11:10:32.215] launching '/usr/libexec/weston-desktop-shell'
+[11:10:46.186] caught signal 15
+[11:10:46.189] BUG: finalizing a layer with views still on it.
+[11:10:46.190] event3  - N-Trig Indigo Touchscreen: device removed
+[11:10:46.263] event4  - N-Trig Indigo Pen: device removed
+[11:10:46.303] event2  - gpio-keys: device removed
+[11:10:46.325] destroying output DPI-1 (id 0) with a pending flip, but as we are shutting down we can't wait to destroy it when the flip completes... destroying it now

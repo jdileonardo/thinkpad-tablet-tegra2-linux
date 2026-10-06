@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/usr/local/bin/indigo-gpu-run",
+    "/sbin/weston",
+    "--backend=drm",
+    "--renderer=gl",
+    "--drm-device=card0",
+    "--socket=weston-native-gl-2",
+    "--config=/tmp/weston-native-gl-2.ini",
+    "--log=/tmp/weston-native-gl-2.log"
+  ],
+  "seconds": 12,
+  "exit_code_before_cleanup": null,
+  "kernel_taint_before": "12288",
+  "kernel_taint_after": "12288"
+}

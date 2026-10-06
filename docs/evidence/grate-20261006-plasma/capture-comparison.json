@@ -1,0 +1,276 @@
+{
+  "weston-native-draw-1": {
+    "size": [
+      1280,
+      800
+    ],
+    "colors": [
+      {
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "pixels": 512000
+      },
+      {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "pixels": 512000
+      }
+    ],
+    "rgb_sha256": "45b2fe88b77f64fa696e11a2140636f5237a98e6f5ad9b00c06f5457b7a9f9fa"
+  },
+  "weston-native-draw-final": {
+    "size": [
+      1280,
+      800
+    ],
+    "colors": [
+      {
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "pixels": 512000
+      },
+      {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "pixels": 512000
+      }
+    ],
+    "rgb_sha256": "45b2fe88b77f64fa696e11a2140636f5237a98e6f5ad9b00c06f5457b7a9f9fa"
+  },
+  "weston-native-egl-1": {
+    "size": [
+      1280,
+      800
+    ],
+    "colors": [
+      {
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "pixels": 512000
+      },
+      {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "pixels": 512000
+      }
+    ],
+    "rgb_sha256": "45b2fe88b77f64fa696e11a2140636f5237a98e6f5ad9b00c06f5457b7a9f9fa"
+  },
+  "weston-native-qt-1": {
+    "size": [
+      1280,
+      800
+    ],
+    "colors": [
+      {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "pixels": 1024000
+      }
+    ],
+    "rgb_sha256": "322d5399ad0999195b49b32b46738194f3f43658bb8335b1cbe6da5adbed2d36"
+  },
+  "weston-native-qt-allcpu-1": {
+    "size": [
+      1280,
+      800
+    ],
+    "colors": [
+      {
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "pixels": 512000
+      },
+      {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "pixels": 512000
+      }
+    ],
+    "rgb_sha256": "45b2fe88b77f64fa696e11a2140636f5237a98e6f5ad9b00c06f5457b7a9f9fa"
+  },
+  "weston-native-qt-cpu-1": {
+    "size": [
+      1280,
+      800
+    ],
+    "colors": [
+      {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "pixels": 510962
+      },
+      {
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "pixels": 507215
+      },
+      {
+        "rgb": [
+          127,
+          127,
+          255
+        ],
+        "pixels": 3502
+      },
+      {
+        "rgb": [
+          255,
+          127,
+          127
+        ],
+        "pixels": 987
+      },
+      {
+        "rgb": [
+          255,
+          255,
+          255
+        ],
+        "pixels": 445
+      },
+      {
+        "rgb": [
+          28,
+          28,
+          255
+        ],
+        "pixels": 31
+      },
+      {
+        "rgb": [
+          104,
+          104,
+          255
+        ],
+        "pixels": 27
+      },
+      {
+        "rgb": [
+          60,
+          60,
+          255
+        ],
+        "pixels": 24
+      }
+    ],
+    "rgb_sha256": "ff57b606c96e4342b7fdc5950491b2929a4c5e9d85f84e4e882133c0016cb2f7"
+  },
+  "weston-native-qt-cpu-settled": {
+    "size": [
+      1280,
+      800
+    ],
+    "colors": [
+      {
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "pixels": 512000
+      },
+      {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "pixels": 512000
+      }
+    ],
+    "rgb_sha256": "45b2fe88b77f64fa696e11a2140636f5237a98e6f5ad9b00c06f5457b7a9f9fa"
+  },
+  "weston-native-qt-hw-normal-2": {
+    "size": [
+      1280,
+      800
+    ],
+    "colors": [
+      {
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "pixels": 1024000
+      }
+    ],
+    "rgb_sha256": "cf7e7512d147673daca57f52445d2fb6034eabf8fae3d3013de66b4872fedcf3"
+  },
+  "weston-native-qt-hw-normal-settled": {
+    "size": [
+      1280,
+      800
+    ],
+    "colors": [
+      {
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "pixels": 1024000
+      }
+    ],
+    "rgb_sha256": "cf7e7512d147673daca57f52445d2fb6034eabf8fae3d3013de66b4872fedcf3"
+  },
+  "weston-native-qt-normal-1": {
+    "size": [
+      1280,
+      800
+    ],
+    "colors": [
+      {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "pixels": 512000
+      },
+      {
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "pixels": 512000
+      }
+    ],
+    "rgb_sha256": "c0361ae0b52caf9bd447022c6bc4cf03aa7fe922d3559972f8b265780715fa7f"
+  }
+}

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Collect the ThinkPad diagnostic USB shell; default commands are read-only."""
 import argparse
+import fcntl
 import os
 import re
 import select
@@ -29,6 +30,11 @@ commands = args.command or [
     'cat /proc/bus/input/devices',
 ]
 fd = os.open(node, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+try:
+    fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+except BlockingIOError:
+    os.close(fd)
+    raise SystemExit('Diagnostic console is in use; finish the other console/transfer first')
 tty.setraw(fd)
 data = bytearray()
 command_payload = ('\n'.join(commands) + '\n').encode()

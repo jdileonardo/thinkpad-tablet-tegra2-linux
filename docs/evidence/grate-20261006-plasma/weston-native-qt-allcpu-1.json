@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/local/bin/indigo-gpu-run",
+    "/sbin/weston",
+    "--backend=drm",
+    "--renderer=pixman",
+    "--drm-device=card0",
+    "--socket=weston-native-qt-allcpu-1",
+    "--config=/tmp/weston-native-qt-allcpu-1.ini",
+    "--log=/tmp/weston-native-qt-allcpu-1.log"
+  ],
+  "seconds": 12,
+  "exit_code_before_cleanup": null,
+  "client_exit_code": 0,
+  "capture_exit_code": 0,
+  "kernel_taint_before": "12288",
+  "kernel_taint_after": "12288",
+  "client_deadline_seconds": 20,
+  "ready_for_capture": true,
+  "qml_software_reference": true,
+  "scanout_matches_expected": true
+}

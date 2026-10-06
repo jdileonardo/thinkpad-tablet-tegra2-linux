@@ -1,0 +1,3 @@
+qt.tools.qmlscene.deprecated: Warning: qmlscene is deprecated and will be removed in a future version of Qt. Please use qml instead.
+qt.scenegraph.general: Loading backend software
+qml: READY_CAPTURE QtQuick frames=361 size=800x1280 final=left-red,right-blue

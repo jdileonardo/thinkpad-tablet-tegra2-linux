@@ -1,0 +1,479 @@
+{
+  "date_utc": "2026-10-06",
+  "device": "ThinkPad Tablet Indigo Tegra20",
+  "kernel": "7.0.1-nura-indigo-ram #3",
+  "previous_checkpoint": "gpu-compositor-checkpoint.json",
+  "kernel_payload_sha256": "cc0ac12d9cc0c0c989d7f75c646b83abbec9fa7296c5e9e5aab84561b8496d08",
+  "mesa_source_commit": "ad06de32d309506c48e4169a15f56e2f95e9712d",
+  "gallium_driver_sha256": "4f15e3d2837c312bca89b3c1ece10cf6db1b926b596c5e64ef74487f453283b2",
+  "graphics_packages": [
+    "kwin-6.7.5-r1",
+    "kwin-lang-6.7.5-r1",
+    "libweston-16.0.0-r0",
+    "qt6-qtbase-6.11.1-r3",
+    "qt6-qtbase-wayland-6.11.1-r3",
+    "qt6-qtbase-x11-6.11.1-r3",
+    "qt6-qtdeclarative-6.11.1-r1",
+    "qt6-qtwayland-6.11.1-r2",
+    "seatd-0.9.3-r1",
+    "seatd-openrc-0.9.3-r1",
+    "weston-16.0.0-r0",
+    "weston-backend-drm-16.0.0-r0",
+    "weston-backend-x11-16.0.0-r0",
+    "weston-clients-16.0.0-r0",
+    "weston-shell-desktop-16.0.0-r0"
+  ],
+  "probe_build": {
+    "sha256": {
+      "port/opentegra/graphics-stack-check.c": "251ce83277bbe0432d1b6c25c5fdd5c526339e2888f9be81b7026c73875f6fa7",
+      "port/opentegra/wayland-egl-check.c": "55c8e16b2463d0a8d8533c4fb800b81ca5a8473fc244d742f5583ae1f466b0d2",
+      "port/opentegra/qt-wayland-scenegraph-check.qml": "a0b4201ee882dfbd4f808e9b1e93a007efbd8f7147017ff21867c52fa4f05f37",
+      "scripts/build_graphics_stack_probes.sh": "35952c9fbdbcdd6f8dc0c29e00b3c118ea5f0d3b58ecb245d11d4418fcbf2eb6",
+      "scripts/tablet_native_weston_trial.py": "1ef1d52bb2a624050b924ba255a7b43033cd4b46324aa6f81fbbf78431adfb5c",
+      "build/graphics-stack-check": "b29fe647f3651963a9ebf48eba3b624bb0fbb357aa1b11fbb75a04b980f8190c",
+      "build/wayland-egl-check": "d3ff01f3cb74d519c17e94f6846123269cdb3f682d2a26324639cb2975f33846",
+      "build/compositor-probes/xdg-shell-protocol.c": "9e12fcd5676d8c6b6cfd233c2eba563163c0ea7e586cb6e27f202a328323c7f0",
+      "build/compositor-probes/xdg-shell-client-protocol.h": "a09726137ea9fe1a23d58c95f1d33ab77a3fc692c63726bc82fbc91ab8e5c6fc",
+      "build/mesa-sysroot/lib/apk/db/installed": "e7ed6a989d371456f09d85342fef8f0235dd5920a20e00dcc225eeaa91685e73"
+    },
+    "compiler_flags": "-O2 -march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=hard -Wall -Wextra -Werror",
+    "builder_image_id": "sha256:8331397b4fb1d93b006792b50498fe9c2a991e68ede14a3758d208ddfb9127af",
+    "full_dependency_pinning": false
+  },
+  "passed": {
+    "native_drm_gbm_atomic_startup": true,
+    "wayland_egl_client_8888": true,
+    "matrix_vertex_and_indexed_drawing_8888": true,
+    "final_probe_gpu_samples": 6,
+    "native_rgb_capture_size": [
+      1280,
+      800
+    ],
+    "full_frame_pixels": 1024000,
+    "final_hardware_capture_matches_software_reference": true,
+    "software_qt_client_through_gpu_compositor_with_rotation": true
+  },
+  "failures": {
+    "kwin_gles_extension_gate_missing": [
+      "GL_OES_texture_3D"
+    ],
+    "kwin_shader_gate": "not reached or independently verified",
+    "qt_opengl_rgb565_settled_scanout": "1024000 blue pixels; expected red and blue halves",
+    "rgb565_matrix_quad": "first local sample blue instead of red; GL error zero",
+    "rgb565_scissored_clear": "first local sample blue instead of red; GL error zero",
+    "kwin_softpipe_reference": "DRM-device discovery fails before context test"
+  },
+  "scope": {
+    "native_kwin_verified": false,
+    "plasma_mobile_shell_tested": false,
+    "qt_hardware_rendering_correct": false,
+    "gpu_driver_modified_this_checkpoint": false,
+    "fps_measured": false,
+    "sustained_stability_verified": false,
+    "physical_touch_rotation_retested": false,
+    "fresh_sd_image_integration": false,
+    "full_dependency_pinning": false
+  },
+  "restored": {
+    "desktop": "XFCE with distribution Xorg module",
+    "display": "800x1280 left",
+    "wifi_ping": true,
+    "kernel_taint": 12288,
+    "active_drm_clients": [
+      "Xorg"
+    ],
+    "cma_free_kib_earlier": 1632,
+    "cma_free_kib_final": 4268,
+    "cma_allocation_lifetime_verified": false
+  },
+  "captures": {
+    "weston-native-draw-1": {
+      "size": [
+        1280,
+        800
+      ],
+      "colors": [
+        {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "pixels": 512000
+        },
+        {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "pixels": 512000
+        }
+      ],
+      "rgb_sha256": "45b2fe88b77f64fa696e11a2140636f5237a98e6f5ad9b00c06f5457b7a9f9fa"
+    },
+    "weston-native-draw-final": {
+      "size": [
+        1280,
+        800
+      ],
+      "colors": [
+        {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "pixels": 512000
+        },
+        {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "pixels": 512000
+        }
+      ],
+      "rgb_sha256": "45b2fe88b77f64fa696e11a2140636f5237a98e6f5ad9b00c06f5457b7a9f9fa"
+    },
+    "weston-native-egl-1": {
+      "size": [
+        1280,
+        800
+      ],
+      "colors": [
+        {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "pixels": 512000
+        },
+        {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "pixels": 512000
+        }
+      ],
+      "rgb_sha256": "45b2fe88b77f64fa696e11a2140636f5237a98e6f5ad9b00c06f5457b7a9f9fa"
+    },
+    "weston-native-qt-1": {
+      "size": [
+        1280,
+        800
+      ],
+      "colors": [
+        {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "pixels": 1024000
+        }
+      ],
+      "rgb_sha256": "322d5399ad0999195b49b32b46738194f3f43658bb8335b1cbe6da5adbed2d36"
+    },
+    "weston-native-qt-allcpu-1": {
+      "size": [
+        1280,
+        800
+      ],
+      "colors": [
+        {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "pixels": 512000
+        },
+        {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "pixels": 512000
+        }
+      ],
+      "rgb_sha256": "45b2fe88b77f64fa696e11a2140636f5237a98e6f5ad9b00c06f5457b7a9f9fa"
+    },
+    "weston-native-qt-cpu-1": {
+      "size": [
+        1280,
+        800
+      ],
+      "colors": [
+        {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "pixels": 510962
+        },
+        {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "pixels": 507215
+        },
+        {
+          "rgb": [
+            127,
+            127,
+            255
+          ],
+          "pixels": 3502
+        },
+        {
+          "rgb": [
+            255,
+            127,
+            127
+          ],
+          "pixels": 987
+        },
+        {
+          "rgb": [
+            255,
+            255,
+            255
+          ],
+          "pixels": 445
+        },
+        {
+          "rgb": [
+            28,
+            28,
+            255
+          ],
+          "pixels": 31
+        },
+        {
+          "rgb": [
+            104,
+            104,
+            255
+          ],
+          "pixels": 27
+        },
+        {
+          "rgb": [
+            60,
+            60,
+            255
+          ],
+          "pixels": 24
+        }
+      ],
+      "rgb_sha256": "ff57b606c96e4342b7fdc5950491b2929a4c5e9d85f84e4e882133c0016cb2f7"
+    },
+    "weston-native-qt-cpu-settled": {
+      "size": [
+        1280,
+        800
+      ],
+      "colors": [
+        {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "pixels": 512000
+        },
+        {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "pixels": 512000
+        }
+      ],
+      "rgb_sha256": "45b2fe88b77f64fa696e11a2140636f5237a98e6f5ad9b00c06f5457b7a9f9fa"
+    },
+    "weston-native-qt-hw-normal-2": {
+      "size": [
+        1280,
+        800
+      ],
+      "colors": [
+        {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "pixels": 1024000
+        }
+      ],
+      "rgb_sha256": "cf7e7512d147673daca57f52445d2fb6034eabf8fae3d3013de66b4872fedcf3"
+    },
+    "weston-native-qt-hw-normal-settled": {
+      "size": [
+        1280,
+        800
+      ],
+      "colors": [
+        {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "pixels": 1024000
+        }
+      ],
+      "rgb_sha256": "cf7e7512d147673daca57f52445d2fb6034eabf8fae3d3013de66b4872fedcf3"
+    },
+    "weston-native-qt-normal-1": {
+      "size": [
+        1280,
+        800
+      ],
+      "colors": [
+        {
+          "rgb": [
+            255,
+            0,
+            0
+          ],
+          "pixels": 512000
+        },
+        {
+          "rgb": [
+            0,
+            0,
+            255
+          ],
+          "pixels": 512000
+        }
+      ],
+      "rgb_sha256": "c0361ae0b52caf9bd447022c6bc4cf03aa7fe922d3559972f8b265780715fa7f"
+    }
+  },
+  "evidence_sha256": {
+    "evidence/grate-20261006-plasma/capture-comparison.json": "62f25741925b7f12e9824888ff07fbe36cce782f17b0d3238118c1a87c18df0c",
+    "evidence/grate-20261006-plasma/console-raw-evidence.tar.gz": "cc8d9793a6e1ebf10da09f1b330e07575d6819164932be2fd40e56a1fbc731ae",
+    "evidence/grate-20261006-plasma/desktop-final.txt": "998c6e1c0a0b879caf75e34a237a21c523f89ba7283f6e002a415107439bc62d",
+    "evidence/grate-20261006-plasma/desktop-restored.txt": "e9a7c82ec6dbee6e740fc405a00615e96c17b36d917c738fa15687f5c1d50e1b",
+    "evidence/grate-20261006-plasma/graphics-stack-capabilities.log": "b492becb420156c13c186022f50cb8b3a2442437df1bbb0ff8faa30c49269d1b",
+    "evidence/grate-20261006-plasma/indigo-plasma-packages.log": "8ce1980a4979c40c751b211470fc4117f33010ee30ed620b66801b3298dd695d",
+    "evidence/grate-20261006-plasma/kwin-cpu-1.log": "b9e75030b3669168861a075201711e92798f171db465a02e33d062a031a810e0",
+    "evidence/grate-20261006-plasma/kwin-gl-1.log": "c1ffaf8531cbacc0a150a64e909d5175b047ca68e7038d69f9faea98f1f35892",
+    "evidence/grate-20261006-plasma/kwin-gles-1.log": "90d7a3b1c7aeb35e585b4fe02b751fa011123ddb4081892488dd04909abd1fcf",
+    "evidence/grate-20261006-plasma/plasma-evaluation-dmesg.log": "3f28b5b286b6a0b9f720ea0ab0d087ad4e33e9546d7886cd474b1695d1d521c6",
+    "evidence/grate-20261006-plasma/plasma-evaluation-manifest.json": "ca7fed0621dcf0ad1022fb250dd6e889d88a0762f42fcb1f162e829c49318839",
+    "evidence/grate-20261006-plasma/plasma-evaluation-packages.txt": "2d1db49d51a8c3bf80a2e8cd9b9f4b3b87bf25a41398c0d3326321cc116f7924",
+    "evidence/grate-20261006-plasma/probe-build.json": "f0b33a71e8b42c656ae2f2c008882b0f16997cb2b5fdb77f57c68b0a3cf6a4d4",
+    "evidence/grate-20261006-plasma/tablet-raw-evidence.tar.gz": "30553debc68bf107162486320989c8f1176ce0f84ae130e0f9383fe4c34b947c",
+    "evidence/grate-20261006-plasma/weston-native-draw-1.capture.log": "5af8ead763bb4ee47e0c2c7dfcbf5b86a6de75e640dda4ae07d962e309ac417b",
+    "evidence/grate-20261006-plasma/weston-native-draw-1.client.log": "df3eb41b3bbd921ba117e5e7070815c50dbc02e0c53982079022d5da218ff20d",
+    "evidence/grate-20261006-plasma/weston-native-draw-1.ini": "aa6ea20dacc8b7e25b688e5e2543c972fa0591ee7cc474a39ea46265728d24c0",
+    "evidence/grate-20261006-plasma/weston-native-draw-1.json": "28815daead22591a4ffad95ee7b7eb4279333987311ee74677165c73f36d22d3",
+    "evidence/grate-20261006-plasma/weston-native-draw-1.log": "698c63f24ed9721d0b8d13d7aeebcdc15ef8d372d48f2028fa2802ad18340551",
+    "evidence/grate-20261006-plasma/weston-native-draw-1.png": "7905faa3d974d941c2c1d294d8370e1482a4b9f747e4642a262fc523607bc34a",
+    "evidence/grate-20261006-plasma/weston-native-draw-1.stderr.log": "c2d0cd75fb0fa9ad55c507f1bb95e827b8c2f56735e3a7c05fcdd1628ddd4623",
+    "evidence/grate-20261006-plasma/weston-native-draw-final.capture.log": "9cc90eefebd7b07ae7f2d2cdd84bcf265706730e52d9bf04ce48a16c9502b8b8",
+    "evidence/grate-20261006-plasma/weston-native-draw-final.client.log": "9b6861a3f57a686afa9dee87a942e004f4dd215e83cf48bae91ea4e69f5828d2",
+    "evidence/grate-20261006-plasma/weston-native-draw-final.ini": "aa6ea20dacc8b7e25b688e5e2543c972fa0591ee7cc474a39ea46265728d24c0",
+    "evidence/grate-20261006-plasma/weston-native-draw-final.json": "6d3f157a5feb72e49e7efea7baff898d28b5b7671ecfdd1df0bbe54d157f7090",
+    "evidence/grate-20261006-plasma/weston-native-draw-final.log": "ada1dc83332144a09736d04ac9e82f8eb4fb4b9ba30281b2446f0ae239b30c7b",
+    "evidence/grate-20261006-plasma/weston-native-draw-final.png": "7905faa3d974d941c2c1d294d8370e1482a4b9f747e4642a262fc523607bc34a",
+    "evidence/grate-20261006-plasma/weston-native-draw-final.stderr.log": "49057484c8249126f4a05ba4e4c3af37e08d8e713b77dc8658f4c04b1d1de5a6",
+    "evidence/grate-20261006-plasma/weston-native-egl-1.capture.log": "02b375bd72f85d246f5db2214e3eb613f1285dedcd7dde5b2c4e3f2cbeb8d26d",
+    "evidence/grate-20261006-plasma/weston-native-egl-1.client.log": "abad84745f73a697e2b123166f0b06251505c19d6baba376390e5ac5e6b93999",
+    "evidence/grate-20261006-plasma/weston-native-egl-1.ini": "aa6ea20dacc8b7e25b688e5e2543c972fa0591ee7cc474a39ea46265728d24c0",
+    "evidence/grate-20261006-plasma/weston-native-egl-1.json": "06af2eee828f7b31ed0d7198a9cd0a5abb8463bb419838ea8a06d57588f9a698",
+    "evidence/grate-20261006-plasma/weston-native-egl-1.log": "fa9e185bace79475247456aa2f70b222af0ed07164daaa3ffa7b61bc5fa0eb43",
+    "evidence/grate-20261006-plasma/weston-native-egl-1.png": "7905faa3d974d941c2c1d294d8370e1482a4b9f747e4642a262fc523607bc34a",
+    "evidence/grate-20261006-plasma/weston-native-egl-1.stderr.log": "3010559e2a0321235370433c4b729585da466383284ab7fce9a06cc9bf9c14bd",
+    "evidence/grate-20261006-plasma/weston-native-gl-1.ini": "aa6ea20dacc8b7e25b688e5e2543c972fa0591ee7cc474a39ea46265728d24c0",
+    "evidence/grate-20261006-plasma/weston-native-gl-1.stderr.log": "5903b2914ab02a6e3f58cf7bb8e85c556448d54f435cd9fd353d1b8fe012c308",
+    "evidence/grate-20261006-plasma/weston-native-gl-2.ini": "aa6ea20dacc8b7e25b688e5e2543c972fa0591ee7cc474a39ea46265728d24c0",
+    "evidence/grate-20261006-plasma/weston-native-gl-2.json": "b429d5694cc40344db3ac8d4426ea81a2be197263ade1cba45d7074da9d4e0df",
+    "evidence/grate-20261006-plasma/weston-native-gl-2.log": "686c42945082a82ae9960669741852edea284785db023f21ff446efbc0918079",
+    "evidence/grate-20261006-plasma/weston-native-gl-2.stderr.log": "2fcc3d97986b482775ba695f7379997da800a586d44709f2a8bfc51268610bce",
+    "evidence/grate-20261006-plasma/weston-native-qt-1.capture.log": "480be27501b9495d7c1d394b74f6bfe7eb86696b73687d121d78b65619af8d8e",
+    "evidence/grate-20261006-plasma/weston-native-qt-1.client.log": "a850b4368f14ac3d0d1cf67d127e46068581406f5177f0bbf6dfe9588d71118b",
+    "evidence/grate-20261006-plasma/weston-native-qt-1.ini": "aa6ea20dacc8b7e25b688e5e2543c972fa0591ee7cc474a39ea46265728d24c0",
+    "evidence/grate-20261006-plasma/weston-native-qt-1.json": "1ae0f607d735d639bde008e33d2352c14495ffabc873b20cbb105dcdd6a55819",
+    "evidence/grate-20261006-plasma/weston-native-qt-1.log": "1d540692fffe9120d3aff5f9378f41c2ed578dba100b2c6c5a74758db69eea3a",
+    "evidence/grate-20261006-plasma/weston-native-qt-1.png": "a8f81de8af669b7a35570047d1e0c33a2c0f3c5c859c5fafc7a54004c3f6cec9",
+    "evidence/grate-20261006-plasma/weston-native-qt-1.stderr.log": "adcbe06132e78cdb0641405d681c441c3ab664e7631d56e9fb7c0d24a5b96861",
+    "evidence/grate-20261006-plasma/weston-native-qt-allcpu-1.capture.log": "d00c7497db8ba2a891803aa0d7fbcb7c36d545e34b8b8632173ec2a5d7492afa",
+    "evidence/grate-20261006-plasma/weston-native-qt-allcpu-1.client.log": "3a88eae190612c4e0c4042a6916cbf6659b7ab12a0fcdbc01c2d20c9a5d710e8",
+    "evidence/grate-20261006-plasma/weston-native-qt-allcpu-1.ini": "aa6ea20dacc8b7e25b688e5e2543c972fa0591ee7cc474a39ea46265728d24c0",
+    "evidence/grate-20261006-plasma/weston-native-qt-allcpu-1.json": "e7fb53e2cc3752bb77077b1a8e4270d55e5b9af863ba946c83bf4a1ae219e0d3",
+    "evidence/grate-20261006-plasma/weston-native-qt-allcpu-1.log": "b160023f0b74d8e05698b31058cca05e79a350f995f4b53a02b8b073e34be645",
+    "evidence/grate-20261006-plasma/weston-native-qt-allcpu-1.png": "7905faa3d974d941c2c1d294d8370e1482a4b9f747e4642a262fc523607bc34a",
+    "evidence/grate-20261006-plasma/weston-native-qt-allcpu-1.stderr.log": "0cd3b0536ded1696319b114bf57d13dcf5895aca82991f77ae16d00dfcde2344",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-1.capture.log": "b95dfe147f8dbb9a867948b6119014be3239cbf5800345bb5829d197864505a0",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-1.client.log": "086e9bd873a84980cca7cb7d2f7b2a5576d00e73eb866903827414bfd563630a",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-1.ini": "aa6ea20dacc8b7e25b688e5e2543c972fa0591ee7cc474a39ea46265728d24c0",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-1.json": "235792f4de2ba0b0953c0972a9b3d50e3d0b7ff3961783a06a296d8744a3ef93",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-1.log": "4125448e81cd65e27c1dcf0200fe844f5508be2bb5f13426bf454a710d66843f",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-1.png": "8557f17f4995a67e178741d7ad4aee8b067616410f8aa8211206411528ac9d58",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-1.stderr.log": "43b47dffdbb39be98464743f74822ca15d1e9c617d0b89afa5e16141e7b19950",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-settled.capture.log": "a1e567763c772f2bea9c5870e85663e05339f4e7c7610ccea261b659ef48507a",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-settled.client.log": "9c307b65d510c8f732c348036282998ccd8b35d749de8e779f81f3ec60a5beaf",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-settled.ini": "aa6ea20dacc8b7e25b688e5e2543c972fa0591ee7cc474a39ea46265728d24c0",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-settled.json": "b1a088b9a88c105366fded011b49205f5856d551659cd3b0b7c3f1c25266696c",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-settled.log": "97da30208610dbec4d0f38370fa7f6f38fb9d3fb22d25c5d8b8bb0027618f400",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-settled.png": "7905faa3d974d941c2c1d294d8370e1482a4b9f747e4642a262fc523607bc34a",
+    "evidence/grate-20261006-plasma/weston-native-qt-cpu-settled.stderr.log": "601216fcecd0e89a82b8ad9ba4d57f047f9c89577560f10680ab26912bfc7f26",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-1.capture.log": "27c4b4560ad82c99f305d1e2e29e55eb21b27a5d4a1c78d1db3f88e01a4adafd",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-1.client.log": "1cd1400272cdf559e326f6bc33a61715bd0f0a161f513cc17272c971388db931",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-1.ini": "1fe79699e3a9d12295feb7e39cb01d9c738d7492eca52ce92dedfd180cb48107",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-1.json": "5be90c3bc5aebc1a2abd9fc8646796f03eeaeb1b438d6d4f0f5e4fd1cadfa4c0",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-1.log": "cafac7d0bed6eec82e622e331a509ea3920d1dd4a4223618288aee7460d3b9e8",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-1.stderr.log": "147beafcc7c45e4db1fbd4cc7a2e437e58fe69dfb22a35ed107eb9d8c3507301",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-2.capture.log": "742051c0cc9ccb8bee868a8560074af996e9e3d2bc8647896dd5a5628b13747d",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-2.client.log": "6044cf0a289d56edd2ea9ddfdcc5c8346a0973e770db60ff1467f1c433b5215c",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-2.ini": "1fe79699e3a9d12295feb7e39cb01d9c738d7492eca52ce92dedfd180cb48107",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-2.json": "be0e4d8194f954a54ba79d36907a7ac98e0a911f6318c24b27623d84818071a9",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-2.log": "3106de871084f7467fa340301a3febc72707167808299f2f7b761cd632c6de2f",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-2.png": "903a67f1cb77af9c144327cd30d9d6e3ed0c9ac52b88a6c1b70c2ea8ffaf537d",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-2.stderr.log": "3a74d918cb93cc5d46b2b0bbdb1453c413fd830b11832552997d9bcef53a6d6b",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-settled.capture.log": "cdb4a13d06d9fb3e5936337cb4f21432e98e2a8ac0bd02189a061476fcc3691b",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-settled.client.log": "89366d899e1241ff5f95d5fe53d3aed64b68b5322ac5f2cad0669ea59efc7c3c",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-settled.ini": "1fe79699e3a9d12295feb7e39cb01d9c738d7492eca52ce92dedfd180cb48107",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-settled.json": "5962e0fa116b75130ac53e9676ce21e2beb87d57ebf05b7718419e581c526a12",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-settled.log": "365be85a8579bdf9add66db8e53f39fba82db2ad4824f5a240fae2c1767fcb35",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-settled.png": "903a67f1cb77af9c144327cd30d9d6e3ed0c9ac52b88a6c1b70c2ea8ffaf537d",
+    "evidence/grate-20261006-plasma/weston-native-qt-hw-normal-settled.stderr.log": "85cfa030e99e0c4b0b66abba9261fdaa0589b63c843f3ff4e4dab92a54b70af9",
+    "evidence/grate-20261006-plasma/weston-native-qt-normal-1.capture.log": "02bf88dc9e50ba0fc8c3f200138c1c146370def19c85f2f39d9938989be6d09d",
+    "evidence/grate-20261006-plasma/weston-native-qt-normal-1.client.log": "d6a0808ae8e72939c6694a00b0ba321441c651258c59a8419a15abc97495a999",
+    "evidence/grate-20261006-plasma/weston-native-qt-normal-1.ini": "1fe79699e3a9d12295feb7e39cb01d9c738d7492eca52ce92dedfd180cb48107",
+    "evidence/grate-20261006-plasma/weston-native-qt-normal-1.json": "ecb9c54487d3f9257d5a1c17ca192a3fd267ce73e4efb68ffd56d0813d7ea04c",
+    "evidence/grate-20261006-plasma/weston-native-qt-normal-1.log": "22add7430f8a06c78a4057fb6a20f26509101ee7e932d213e711895e0aac6092",
+    "evidence/grate-20261006-plasma/weston-native-qt-normal-1.png": "9082350782f2551bc6018f58960b7df32322605d2d69ae1ce418cec940fbc5bb",
+    "evidence/grate-20261006-plasma/weston-native-qt-normal-1.stderr.log": "687ce865c8c202b575c44d9e6c081c09945ed519687bdbea9f6b29fcc224b035",
+    "evidence/grate-20261006-plasma/weston-native-rgb565-clear-1.client.log": "2934e9818044c602b01f6478ce54409e8121913883e4e1f9d3439a46c9c199eb",
+    "evidence/grate-20261006-plasma/weston-native-rgb565-clear-1.ini": "1fe79699e3a9d12295feb7e39cb01d9c738d7492eca52ce92dedfd180cb48107",
+    "evidence/grate-20261006-plasma/weston-native-rgb565-clear-1.json": "d448202311978355f88fd16ce1472618755661ca3e59cf7b63938c23871b122d",
+    "evidence/grate-20261006-plasma/weston-native-rgb565-clear-1.log": "81c98eca5f2a53595d29cb7c72363ceb1e35f9b4f3fd0c801195ce1fa3a2933b",
+    "evidence/grate-20261006-plasma/weston-native-rgb565-clear-1.stderr.log": "7038e75686de0c1d7c5cf89dfbec3ea33cdbab7f1cddd5e09741bf231a50503b",
+    "evidence/grate-20261006-plasma/weston-native-rgb565-draw-1.client.log": "ac9d33c343b72390fbc08a88401eb5f337a6278e782305012fadf277be00d9b2",
+    "evidence/grate-20261006-plasma/weston-native-rgb565-draw-1.ini": "1fe79699e3a9d12295feb7e39cb01d9c738d7492eca52ce92dedfd180cb48107",
+    "evidence/grate-20261006-plasma/weston-native-rgb565-draw-1.json": "adb4849000867ebe8aec7b026d73d0ccd99a98a127957865c51320c4701416d8",
+    "evidence/grate-20261006-plasma/weston-native-rgb565-draw-1.log": "79b20c32198d54ebcbfc6c7f140be7c25188055d0be138c3d8ed549b21972c3c",
+    "evidence/grate-20261006-plasma/weston-native-rgb565-draw-1.stderr.log": "3b6270d335c7df3a4d5e73b03af14b7ca1749f70c6429fdc1e4d1339c3af4739"
+  },
+  "reviewable_logs_normalized": true,
+  "raw_log_identity_manifest": "evidence/grate-20261006-plasma/plasma-evaluation-manifest.json (names/hashes refer to tablet-raw-evidence.tar.gz contents)",
+  "raw_console_sha256": {
+    "desktop-restored.txt": "0d52a0da2154b1a2d3f16eccf20a0258ed4822f303a0fcfb2d6b28cb412c809a",
+    "desktop-final.txt": "26de4a1b1115570db50d0e4ca0a2ac2fa4427a1a07aaddf72661d3c68856a329"
+  }
+}

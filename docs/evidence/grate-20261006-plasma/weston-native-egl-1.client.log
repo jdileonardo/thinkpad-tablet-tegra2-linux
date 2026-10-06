@@ -1,0 +1,9 @@
+Wayland client vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3 EGL=1.4 size=800x1280
+frame=0 side=0 GPU_rgb=255,0,0 expected=255,0,0
+frame=0 side=1 GPU_rgb=0,0,255 expected=0,0,255
+frame=1 side=0 GPU_rgb=0,255,0 expected=0,255,0
+frame=1 side=1 GPU_rgb=255,255,0 expected=255,255,0
+frame=2 side=0 GPU_rgb=255,0,0 expected=255,0,0
+frame=2 side=1 GPU_rgb=0,0,255 expected=0,0,255
+READY_CAPTURE frames=3 local_samples=6 final=left-red,right-blue
+RESULT PASS hardware Wayland EGL swaps and local GPU samples; verify independent scanout separately

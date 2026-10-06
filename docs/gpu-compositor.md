@@ -1,5 +1,9 @@
 # Indigo nested hardware compositor
 
+The subsequent [native Wayland and Plasma evaluation](gpu-plasma-evaluation.md)
+adds native display/client checks and records the current Qt/KWin blockers.
+This page preserves the earlier nested-compositor result.
+
 Weston 16.0.0 now composites Wayland surfaces using the private Mesa 26.2.3
 Grate/Tegra driver on the physical tablet. Two final runs each passed 48 Xorg
 pixel samples across 12 changing frames. Both full 640x480 captures and sample

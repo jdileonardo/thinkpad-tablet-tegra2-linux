@@ -1,0 +1,375 @@
+Downloading 124 packages...
+(  1/124) Downloading libb2-0.98.1-r3
+(  2/124) Downloading double-conversion-3.4.0-r0
+(  3/124) Downloading libpcre2-16-10.49-r0
+(  4/124) Downloading qt6-qtbase-6.11.1-r3
+(  5/124) Downloading xcb-util-image-0.4.1-r0
+(  6/124) Downloading xcb-util-renderutil-0.3.10-r0
+(  7/124) Downloading xcb-util-cursor-0.1.5-r0
+(  8/124) Downloading xcb-util-wm-0.4.2-r0
+(  9/124) Downloading xcb-util-keysyms-0.4.1-r0
+( 10/124) Downloading qt6-qtbase-x11-6.11.1-r3
+( 11/124) Downloading qt6-qtsvg-6.11.1-r0
+( 12/124) Downloading qt6-qtdeclarative-6.11.1-r1
+( 13/124) Downloading kconfig-6.30.0-r0
+( 14/124) Downloading qt6-qtbase-wayland-6.11.1-r3
+( 15/124) Downloading kguiaddons-6.30.0-r0
+( 16/124) Downloading ki18n-6.30.0-r0
+( 17/124) Downloading kcolorscheme-6.30.0-r0
+( 18/124) Downloading kcoreaddons-6.30.0-r0
+( 19/124) Downloading breeze-icons-6.30.0-r0
+( 20/124) Downloading kirigami-6.30.0-r1
+( 21/124) Downloading karchive-6.30.0-r0
+( 22/124) Downloading kwidgetsaddons-6.30.0-r0
+( 23/124) Downloading kiconthemes-6.30.0-r0
+( 24/124) Downloading qqc2-breeze-style-6.7.5-r1
+( 25/124) Downloading sonnet-6.30.0-r0
+( 26/124) Downloading qqc2-desktop-style-6.30.0-r0
+( 27/124) Downloading kcodecs-6.30.0-r0
+( 28/124) Downloading kconfigwidgets-6.30.0-r0
+( 29/124) Downloading kitemviews-6.30.0-r0
+( 30/124) Downloading kcrash-6.30.0-r0
+( 31/124) Downloading kdbusaddons-6.30.0-r0
+( 32/124) Downloading kservice-6.30.0-r0
+( 33/124) Downloading kded-6.30.0-r0
+( 34/124) Downloading kbookmarks-6.30.0-r0
+( 35/124) Downloading kcompletion-6.30.0-r0
+( 36/124) Downloading libxml2-utils-2.13.9-r2
+( 37/124) Downloading docbook-xml-4.5-r10
+( 38/124) Downloading docbook-xsl-ns-1.79.2-r13
+( 39/124) Downloading docbook-xsl-nons-1.79.2-r13
+( 40/124) Downloading docbook-xsl-1.79.2-r13
+( 41/124) Downloading kdoctools-6.30.0-r0
+( 42/124) Downloading knotifications-6.30.0-r0
+( 43/124) Downloading kjobwidgets-6.30.0-r0
+( 44/124) Downloading libplist-2.7.0-r1
+( 45/124) Downloading libimobiledevice-glue-1.3.2-r0
+( 46/124) Downloading libusbmuxd-2.1.1-r0
+( 47/124) Downloading libimobiledevice-1.4.0-r0
+( 48/124) Downloading solid-libs-6.30.0-r0
+( 49/124) Downloading kwindowsystem-6.30.0-r0
+( 50/124) Downloading kio-6.30.0-r0
+( 51/124) Downloading kglobalaccel-6.30.0-r0
+( 52/124) Downloading kxmlgui-6.30.0-r0
+( 53/124) Downloading kcmutils-6.30.0-r0
+( 54/124) Downloading kpackage-6.30.0-r0
+( 55/124) Downloading ksvg-6.30.0-r0
+( 56/124) Downloading qt6-qttools-libs-6.11.1-r0
+( 57/124) Downloading kdecoration-6.7.5-r0
+( 58/124) Downloading aurorae-6.7.5-r0
+( 59/124) Downloading hwdata-usb-0.412-r0
+( 60/124) Downloading hwdata-pnp-0.412-r0
+( 61/124) Downloading hwdata-net-0.412-r0
+( 62/124) Downloading eudev-hwids-9999.3.2.14-r7
+( 63/124) Downloading qt6-qtmultimedia-6.11.1-r0
+( 64/124) Downloading qt6-qtwayland-6.11.1-r2
+( 65/124) Downloading libtirpc-conf-1.3.5-r1
+( 66/124) Downloading libtirpc-nokrb-1.3.5-r1
+( 67/124) Downloading xwayland-24.1.13-r0
+( 68/124) Downloading polkit-qt6-0.201.1-r1
+( 69/124) Downloading kauth-6.30.0-r0
+( 70/124) Downloading kidletime-6.30.0-r0
+( 71/124) Downloading attica-6.30.0-r0
+( 72/124) Downloading syndication-6.30.0-r0
+( 73/124) Downloading knewstuff-6.30.0-r0
+( 74/124) Downloading kglobalacceld-6.7.5-r0
+( 75/124) Downloading kholidays-6.30.0-r0
+( 76/124) Downloading qt6-qtpositioning-6.11.1-r0
+( 77/124) Downloading knighttime-6.7.5-r0
+( 78/124) Downloading libkscreen-6.7.5-r0
+( 79/124) Downloading layer-shell-qt-6.7.5-r0
+( 80/124) Downloading plasma-activities-libs-6.7.5-r0
+( 81/124) Downloading libplasma-6.7.5-r0
+( 82/124) Downloading kscreenlocker-6.7.5-r0
+( 83/124) Downloading kwayland-6.7.5-r0
+( 84/124) Downloading libeis-1.6.0-r0
+( 85/124) Downloading libqaccessibilityclient-0.6.0-r0
+( 86/124) Downloading kwin-6.7.5-r1
+( 87/124) Downloading kconfigwidgets-lang-6.30.0-r0
+( 88/124) Downloading kglobalaccel-lang-6.30.0-r0
+( 89/124) Downloading sonnet-lang-6.30.0-r0
+( 90/124) Downloading kholidays-lang-6.30.0-r0
+( 91/124) Downloading kbookmarks-lang-6.30.0-r0
+( 92/124) Downloading kxmlgui-lang-6.30.0-r0
+( 93/124) Downloading kiconthemes-lang-6.30.0-r0
+( 94/124) Downloading kconfig-lang-6.30.0-r0
+( 95/124) Downloading kitemviews-lang-6.30.0-r0
+( 96/124) Downloading kwindowsystem-lang-6.30.0-r0
+( 97/124) Downloading kirigami-lang-6.30.0-r1
+( 98/124) Downloading kauth-lang-6.30.0-r0
+( 99/124) Downloading kdbusaddons-lang-6.30.0-r0
+(100/124) Downloading kjobwidgets-lang-6.30.0-r0
+(101/124) Downloading kcmutils-lang-6.30.0-r0
+(102/124) Downloading aurorae-lang-6.7.5-r0
+(103/124) Downloading kcodecs-lang-6.30.0-r0
+(104/124) Downloading qqc2-desktop-style-lang-6.30.0-r0
+(105/124) Downloading ki18n-lang-6.30.0-r0
+(106/124) Downloading libkscreen-lang-6.7.5-r0
+(107/124) Downloading kdecoration-lang-6.7.5-r0
+(108/124) Downloading karchive-lang-6.30.0-r0
+(109/124) Downloading kcoreaddons-lang-6.30.0-r0
+(110/124) Downloading kio-lang-6.30.0-r0
+(111/124) Downloading knewstuff-lang-6.30.0-r0
+(112/124) Downloading libplasma-lang-6.7.5-r0
+(113/124) Downloading kpackage-lang-6.30.0-r0
+(114/124) Downloading kwin-lang-6.7.5-r1
+(115/124) Downloading kcolorscheme-lang-6.30.0-r0
+(116/124) Downloading kservice-lang-6.30.0-r0
+(117/124) Downloading kwidgetsaddons-lang-6.30.0-r0
+(118/124) Downloading kcompletion-lang-6.30.0-r0
+(119/124) Downloading kscreenlocker-lang-6.7.5-r0
+(120/124) Downloading qt6-qtmultimedia-ffmpeg-6.11.1-r0
+(121/124) Downloading seatd-0.9.3-r1
+(122/124) Downloading seatd-openrc-0.9.3-r1
+(123/124) Downloading libseat-0.9.3-r1
+(124/124) Downloading weston-backend-drm-16.0.0-r0
+Proceeding with upgrade...
+(  1/126) Installing libb2 (0.98.1-r3)
+(  2/126) Installing double-conversion (3.4.0-r0)
+(  3/126) Installing libpcre2-16 (10.49-r0)
+(  4/126) Installing qt6-qtbase (6.11.1-r3)
+(  5/126) Installing xcb-util-image (0.4.1-r0)
+(  6/126) Installing xcb-util-renderutil (0.3.10-r0)
+(  7/126) Installing xcb-util-cursor (0.1.5-r0)
+(  8/126) Installing xcb-util-wm (0.4.2-r0)
+(  9/126) Installing xcb-util-keysyms (0.4.1-r0)
+( 10/126) Installing qt6-qtbase-x11 (6.11.1-r3)
+( 11/126) Installing qt6-qtsvg (6.11.1-r0)
+( 12/126) Installing qt6-qtdeclarative (6.11.1-r1)
+( 13/126) Installing kconfig (6.30.0-r0)
+( 14/126) Installing qt6-qtbase-wayland (6.11.1-r3)
+( 15/126) Installing kguiaddons (6.30.0-r0)
+( 16/126) Installing ki18n (6.30.0-r0)
+( 17/126) Installing kcolorscheme (6.30.0-r0)
+( 18/126) Installing kcoreaddons (6.30.0-r0)
+( 19/126) Installing breeze-icons (6.30.0-r0)
+( 20/126) Installing kde-default-icon-theme (6.30.0-r0)
+( 21/126) Installing kirigami (6.30.0-r1)
+( 22/126) Installing karchive (6.30.0-r0)
+( 23/126) Installing kwidgetsaddons (6.30.0-r0)
+( 24/126) Installing kiconthemes (6.30.0-r0)
+( 25/126) Installing qqc2-breeze-style (6.7.5-r1)
+( 26/126) Installing sonnet (6.30.0-r0)
+( 27/126) Installing qqc2-desktop-style (6.30.0-r0)
+( 28/126) Installing kcodecs (6.30.0-r0)
+( 29/126) Installing kconfigwidgets (6.30.0-r0)
+( 30/126) Installing kitemviews (6.30.0-r0)
+( 31/126) Installing kcrash (6.30.0-r0)
+( 32/126) Installing kdbusaddons (6.30.0-r0)
+( 33/126) Installing kservice (6.30.0-r0)
+( 34/126) Installing kded (6.30.0-r0)
+( 35/126) Installing kbookmarks (6.30.0-r0)
+( 36/126) Installing kcompletion (6.30.0-r0)
+( 37/126) Installing libxml2-utils (2.13.9-r2)
+( 38/126) Installing docbook-xml (4.5-r10)
+  Executing docbook-xml-4.5-r10.post-install
+( 39/126) Installing docbook-xsl-ns (1.79.2-r13)
+  Executing docbook-xsl-ns-1.79.2-r13.post-install
+( 40/126) Installing docbook-xsl-nons (1.79.2-r13)
+  Executing docbook-xsl-nons-1.79.2-r13.post-install
+( 41/126) Installing docbook-xsl (1.79.2-r13)
+( 42/126) Installing kdoctools (6.30.0-r0)
+( 43/126) Installing knotifications (6.30.0-r0)
+( 44/126) Installing kjobwidgets (6.30.0-r0)
+( 45/126) Installing libplist (2.7.0-r1)
+( 46/126) Installing libimobiledevice-glue (1.3.2-r0)
+( 47/126) Installing libusbmuxd (2.1.1-r0)
+( 48/126) Installing libimobiledevice (1.4.0-r0)
+( 49/126) Installing solid-libs (6.30.0-r0)
+( 50/126) Installing kwindowsystem (6.30.0-r0)
+( 51/126) Installing kio (6.30.0-r0)
+( 52/126) Installing kglobalaccel (6.30.0-r0)
+( 53/126) Installing kxmlgui (6.30.0-r0)
+( 54/126) Installing kcmutils (6.30.0-r0)
+( 55/126) Installing kpackage (6.30.0-r0)
+( 56/126) Installing ksvg (6.30.0-r0)
+( 57/126) Installing qt6-qttools-libs (6.11.1-r0)
+( 58/126) Installing kdecoration (6.7.5-r0)
+( 59/126) Installing aurorae (6.7.5-r0)
+( 60/126) Installing hwdata-usb (0.412-r0)
+( 61/126) Installing hwdata-pnp (0.412-r0)
+( 62/126) Installing hwdata-net (0.412-r0)
+( 63/126) Installing hwdata (0.412-r0)
+( 64/126) Installing eudev-hwids (9999.3.2.14-r7)
+( 65/126) Installing qt6-qtmultimedia (6.11.1-r0)
+( 66/126) Installing qt6-qtwayland (6.11.1-r2)
+( 67/126) Installing libtirpc-conf (1.3.5-r1)
+( 68/126) Installing libtirpc-nokrb (1.3.5-r1)
+( 69/126) Installing xwayland (24.1.13-r0)
+( 70/126) Installing polkit-qt6 (0.201.1-r1)
+( 71/126) Installing kauth (6.30.0-r0)
+( 72/126) Installing kidletime (6.30.0-r0)
+( 73/126) Installing attica (6.30.0-r0)
+( 74/126) Installing syndication (6.30.0-r0)
+( 75/126) Installing knewstuff (6.30.0-r0)
+( 76/126) Installing kglobalacceld (6.7.5-r0)
+( 77/126) Installing kholidays (6.30.0-r0)
+( 78/126) Installing qt6-qtpositioning (6.11.1-r0)
+( 79/126) Installing knighttime (6.7.5-r0)
+( 80/126) Installing libkscreen (6.7.5-r0)
+( 81/126) Installing layer-shell-qt (6.7.5-r0)
+( 82/126) Installing plasma-activities-libs (6.7.5-r0)
+( 83/126) Installing libplasma (6.7.5-r0)
+( 84/126) Installing kscreenlocker (6.7.5-r0)
+( 85/126) Installing kwayland (6.7.5-r0)
+( 86/126) Installing libeis (1.6.0-r0)
+( 87/126) Installing libqaccessibilityclient (0.6.0-r0)
+( 88/126) Installing kwin (6.7.5-r1)
+( 89/126) Installing kconfigwidgets-lang (6.30.0-r0)
+( 90/126) Installing kglobalaccel-lang (6.30.0-r0)
+( 91/126) Installing sonnet-lang (6.30.0-r0)
+( 92/126) Installing kholidays-lang (6.30.0-r0)
+( 93/126) Installing kbookmarks-lang (6.30.0-r0)
+( 94/126) Installing kxmlgui-lang (6.30.0-r0)
+( 95/126) Installing kiconthemes-lang (6.30.0-r0)
+( 96/126) Installing kconfig-lang (6.30.0-r0)
+( 97/126) Installing kitemviews-lang (6.30.0-r0)
+( 98/126) Installing kwindowsystem-lang (6.30.0-r0)
+( 99/126) Installing kirigami-lang (6.30.0-r1)
+(100/126) Installing kauth-lang (6.30.0-r0)
+(101/126) Installing kdbusaddons-lang (6.30.0-r0)
+(102/126) Installing kjobwidgets-lang (6.30.0-r0)
+(103/126) Installing kcmutils-lang (6.30.0-r0)
+(104/126) Installing aurorae-lang (6.7.5-r0)
+(105/126) Installing kcodecs-lang (6.30.0-r0)
+(106/126) Installing qqc2-desktop-style-lang (6.30.0-r0)
+(107/126) Installing ki18n-lang (6.30.0-r0)
+(108/126) Installing libkscreen-lang (6.7.5-r0)
+(109/126) Installing kdecoration-lang (6.7.5-r0)
+(110/126) Installing karchive-lang (6.30.0-r0)
+(111/126) Installing kcoreaddons-lang (6.30.0-r0)
+(112/126) Installing kio-lang (6.30.0-r0)
+(113/126) Installing knewstuff-lang (6.30.0-r0)
+(114/126) Installing libplasma-lang (6.7.5-r0)
+(115/126) Installing kpackage-lang (6.30.0-r0)
+(116/126) Installing kwin-lang (6.7.5-r1)
+(117/126) Installing kcolorscheme-lang (6.30.0-r0)
+(118/126) Installing kservice-lang (6.30.0-r0)
+(119/126) Installing kwidgetsaddons-lang (6.30.0-r0)
+(120/126) Installing kcompletion-lang (6.30.0-r0)
+(121/126) Installing kscreenlocker-lang (6.7.5-r0)
+(122/126) Installing qt6-qtmultimedia-ffmpeg (6.11.1-r0)
+(123/126) Installing seatd (0.9.3-r1)
+  Executing seatd-0.9.3-r1.pre-install
+  Executing seatd-0.9.3-r1.post-install
+  * If you need seatd-launch SUID binary, install it: apk add cmd:seatd-launch.
+(124/126) Installing seatd-openrc (0.9.3-r1)
+(125/126) Installing libseat (0.9.3-r1)
+(126/126) Installing weston-backend-drm (16.0.0-r0)
+Executing busybox-1.38.0-r7.trigger
+Executing dbus-1.16.2-r3.trigger
+Executing shared-mime-info-2.4-r7.trigger
+Executing postmarketos-mkinitfs-2.11.1-r0.trigger
+* 10:47:52.726778 Generating for kernel version: 7.0.1-postmarketos-grate
+* 10:47:52.727014 Output directory: /boot
+* 10:47:52.727037 Unknown or no compression format set, using gzip
+* 10:47:52.727051 == Generating initramfs ==
+* 10:47:52.727069 - Using compression format gzip with level "default"
+* 10:47:52.727214 - Searching for directories specified in /usr/share/mkinitfs/dirs
+* 10:47:52.728460 -- Creating directories from: /usr/share/mkinitfs/dirs/00-initramfs-base.dirs
+* 10:47:52.731683 - Searching for directories specified in /etc/mkinitfs/dirs
+* 10:47:52.733725 - Searching for file lists from /usr/share/mkinitfs/files
+* 10:47:52.734549 -- Including files from: /usr/share/mkinitfs/files/00-device-nvidia-tegra-armv7-modules.files
+* 10:47:52.736703 -- Including files from: /usr/share/mkinitfs/files/00-initramfs-base.files
+* 10:47:52.739505 --- Unable to find optional path, skipping...
+* 10:47:52.739673 --- Unable to find optional path, skipping...
+* 10:47:52.761586 -- Including files from: /usr/share/mkinitfs/files/10-wireless-regdb.files
+* 10:47:52.764992 -- Including files from: /usr/share/mkinitfs/files/postmarketos-base.files
+* 10:47:52.767055 - Searching for file lists from /etc/mkinitfs/files
+* 10:47:52.767862 - Searching for hook scripts from /usr/share/mkinitfs/hooks
+* 10:47:52.768498 - Searching for hook scripts from /etc/mkinitfs/hooks
+* 10:47:52.769097 - Searching for hook scripts from /usr/share/mkinitfs/hooks-cleanup
+* 10:47:52.769159 -- Unable to find dir, skipping...
+* 10:47:52.769220 - Searching for hook scripts from /etc/mkinitfs/hooks-cleanup
+* 10:47:52.769267 -- Unable to find dir, skipping...
+* 10:47:52.770901 - Searching for kernel modules from /usr/share/mkinitfs/modules
+* 10:47:52.771082 -- Including modules from: /usr/share/mkinitfs/modules/00-default.modules
+* 10:47:52.902437 -- Including modules from: /usr/share/mkinitfs/modules/00-device-nvidia-tegra-armv7.modules
+* 10:47:53.086234 - Searching for kernel modules from /etc/mkinitfs/modules
+* 10:47:53.098138 - Searching for file lists from /usr/share/mkinitfs/files-extra
+* 10:47:53.100145 -- Including files from: /usr/share/mkinitfs/files-extra/00-initramfs-extra-base.files
+* 10:47:53.283012 -- Including files from: /usr/share/mkinitfs/files-extra/30-postmarketos-bootsplash.files
+* 10:47:53.497619 - Searching for file lists from /etc/mkinitfs/files-extra
+* 10:47:53.498412 - Searching for hook scripts from /usr/share/mkinitfs/hooks-extra
+* 10:47:53.499131 - Searching for hook scripts from /etc/mkinitfs/hooks-extra
+* 10:47:53.500295 - Searching for kernel modules from /usr/share/mkinitfs/modules-extra
+* 10:47:53.500945 -- Including modules from: /usr/share/mkinitfs/modules-extra/00-default-extra.modules
+* 10:47:53.507820 - Searching for kernel modules from /etc/mkinitfs/modules-extra
+* 10:48:01.950303 initramfs completed in: 9.22s
+* 10:48:01.950401 == Using boot-deploy to finalize/install files ==
+* ==> Running hooks
+* ==> kernel: device-tree blob operations
+* ==> Generating extlinux.conf
+* Parsing /usr/lib/kernel-cmdline.d/00-base.conf
+* Parsing /usr/lib/kernel-cmdline.d/20-plymouth.conf
+* Parsing /usr/lib/kernel-cmdline.d/50-device-nvidia-tegra-armv7.conf
+* Parsing /usr/lib/kernel-cmdline.d/00-base.conf
+* Parsing /usr/lib/kernel-cmdline.d/20-plymouth.conf
+* Parsing /usr/lib/kernel-cmdline.d/50-device-nvidia-tegra-armv7.conf
+* systemd-boot: systemd-boot EFI app or powervm-boot not found, skipping
+* ==> Checking free space at /boot
+* ... OK!
+* ==> Installing: /boot/initramfs
+* ==> Installing: /boot/tegra20-trimslice.dtb
+* ==> Installing: /boot/tegra20-medcom-wide.dtb
+* ==> Installing: /boot/tegra30-apalis-eval.dtb
+* ==> Installing: /boot/tegra20-asus-tf101.dtb
+* ==> Installing: /boot/tegra30-pegatron-chagall.dtb
+* ==> Installing: /boot/tegra124-jetson-tk1.dtb
+* ==> Installing: /boot/tegra114-microsoft-surface-2-efi.dtb
+* ==> Installing: /boot/tegra20-samsung-galaxy-tab-p4wifi.dtb
+* ==> Installing: /boot/tegra124-nyan-big-fhd.dtb
+* ==> Installing: /boot/tegra124-venice2.dtb
+* ==> Installing: /boot/tegra114-microsoft-surface-2-0b.dtb
+* ==> Installing: /boot/tegra20-paz00.dtb
+* ==> Installing: /boot/tegra30-asus-tf600t.dtb
+* ==> Installing: /boot/tegra30-ouya.dtb
+* ==> Installing: /boot/tegra20-plutux.dtb
+* ==> Installing: /boot/tegra30-cardhu-a02.dtb
+* ==> Installing: /boot/tegra30-asus-nexus7-grouper-PM269.dtb
+* ==> Installing: /boot/tegra30-beaver.dtb
+* ==> Installing: /boot/tegra30-lenovo-ideapad-yoga-11-efi.dtb
+* ==> Installing: /boot/tegra30-asus-tf300tg.dtb
+* ==> Installing: /boot/tegra30-asus-tf300t.dtb
+* ==> Installing: /boot/tegra20-acer-a500-picasso.dtb
+* ==> Installing: /boot/tegra20-colibri-iris.dtb
+* ==> Installing: /boot/tegra114-asus-tf701t.dtb
+* ==> Installing: /boot/tegra30-microsoft-surface-rt-efi.dtb
+* ==> Installing: /boot/tegra124-nyan-big.dtb
+* ==> Installing: /boot/tegra114-dalmore.dtb
+* ==> Installing: /boot/tegra30-lenovo-ideapad-yoga-11.dtb
+* ==> Installing: /boot/tegra30-apalis-v1.1-eval.dtb
+* ==> Installing: /boot/tegra124-apalis-eval.dtb
+* ==> Installing: /boot/tegra20-colibri-eval-v3.dtb
+* ==> Installing: /boot/tegra30-cardhu-a04.dtb
+* ==> Installing: /boot/tegra20-tec.dtb
+* ==> Installing: /boot/tegra30-asus-tf300tl.dtb
+* ==> Installing: /boot/tegra30-asus-p1801-t.dtb
+* ==> Installing: /boot/tegra124-apalis-v1.2-eval.dtb
+* ==> Installing: /boot/tegra30-lenovo-ideatab-a2109a.dtb
+* ==> Installing: /boot/tegra20-glide.dtb
+* ==> Installing: /boot/tegra114-roth.dtb
+* ==> Installing: /boot/tegra30-microsoft-surface-rt.dtb
+* ==> Installing: /boot/tegra30-asus-tf700t.dtb
+* ==> Installing: /boot/tegra20-harmony.dtb
+* ==> Installing: /boot/tegra30-asus-nexus7-tilapia-E1565.dtb
+* ==> Installing: /boot/tegra20-qemu.dtb
+* ==> Installing: /boot/tegra124-nyan-blaze.dtb
+* ==> Installing: /boot/tegra20-asus-sl101.dtb
+* ==> Installing: /boot/tegra124-xiaomi-mocha.dtb
+* ==> Installing: /boot/tegra30-colibri-eval-v3.dtb
+* ==> Installing: /boot/tegra114-tn7.dtb
+* ==> Installing: /boot/tegra30-asus-nexus7-grouper-E1565.dtb
+* ==> Installing: /boot/tegra20-ventana.dtb
+* ==> Installing: /boot/tegra114-microsoft-surface-2-13.dtb
+* ==> Installing: /boot/tegra30-lg-p895.dtb
+* ==> Installing: /boot/tegra30-asus-tf201.dtb
+* ==> Installing: /boot/tegra20-seaboard.dtb
+* ==> Installing: /boot/tegra30-lg-p880.dtb
+* ==> Installing: /boot//extlinux/extlinux.conf
+* 10:48:17.017929 boot-deploy completed in: 15.07s
+* 10:48:17.040602 mkinitfs completed in: 24.32s
+Executing eudev-hwids-9999.3.2.14-r7.trigger
+Executing gtk-update-icon-cache-3.24.52-r0.trigger
+Executing desktop-file-utils-0.28-r0.trigger
+OK: 1311.0 MiB in 913 packages

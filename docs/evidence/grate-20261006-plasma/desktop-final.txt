@@ -1,0 +1,27 @@
+
+~ # cat /sys/kernel/debug/dri/0/clients; cat /sys/kernel/debug/dri/0/framebuffer
+s; rc-service lightdm status; su julian -c "DISPLAY=:0 XAUTHORITY=/home/julian/.
+Xauthority xrandr --current" | head -5; ping -I wlan0 -c 1 -W 2 192.168.0.147; c
+at /proc/sys/kernel/tainted; grep -E "MemAvailable|CmaFree" /proc/meminfo; echo
+FINAL_NATIVE_CHECKS_DONE; python3 /tmp/collect-plasma-evidence.py; echo FINAL_AR
+CHIVE_DONE
+             command  tgid dev master a   uid      magic                                                             name                   id
+                Xorg 29643   0   y    y     0          0                                                          <unset>                  152
+104: user size: 1280 x 800, depth 24, 32 bpp, refcount 2
+103: user size: 800 x 1280, depth 24, 32 bpp, refcount 1
+101: user size: 1280 x 800, depth 24, 32 bpp, refcount 1
+ * status: started
+Screen 0: minimum 320 x 200, current 800 x 1280, maximum 4096 x 4096
+HDMI-0 disconnected (normal left inverted right x axis y axis)
+Unknown-0 connected 800x1280+0+0 left (normal left inverted right x axis y axis) 0mm x 0mm
+   1280x800      60.33*+
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=60.650 ms
+
+--- 192.168.0.147 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 60.650/60.650/60.650 ms
+12288
+MemAvailable:     734972 kB
+CmaFree:            4268 kB
+FINAL_NATIVE_CHECKS_DONE

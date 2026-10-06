@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/local/bin/indigo-gpu-run",
+    "/sbin/weston",
+    "--backend=drm",
+    "--renderer=gl",
+    "--drm-device=card0",
+    "--socket=weston-native-rgb565-draw-1",
+    "--config=/tmp/weston-native-rgb565-draw-1.ini",
+    "--log=/tmp/weston-native-rgb565-draw-1.log"
+  ],
+  "seconds": 12,
+  "output_transform": "normal",
+  "exit_code_before_cleanup": null,
+  "client_exit_code": 1,
+  "capture_exit_code": null,
+  "kernel_taint_before": "12288",
+  "kernel_taint_after": "12288",
+  "client_deadline_seconds": 20,
+  "capture_settle_seconds": 2,
+  "ready_for_capture": false,
+  "qml_software_reference": false,
+  "scanout_matches_expected": false
+}

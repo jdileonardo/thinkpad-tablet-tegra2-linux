@@ -1,0 +1,4 @@
+Wayland client vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3 EGL=1.4 size=1280x800 buffer_bits=16
+draw frame=0 matrix=orthographic attribute_components=4 indexed=0
+frame=0 side=0 GPU_rgb=0,0,255 expected=255,0,0
+FAIL client GPU readback EGL=3000 GL=0

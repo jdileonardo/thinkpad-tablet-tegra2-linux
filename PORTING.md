@@ -1,6 +1,6 @@
 # ThinkPad Tablet Indigo Linux port
 
-The latest GPU result is the [nested compositor checkpoint](docs/gpu-compositor.md).
+The latest GPU result is the [native Wayland and Plasma evaluation](docs/gpu-plasma-evaluation.md).
 See [development workflow and internal installation](docs/development-workflow.md)
 for the current RAM/SD arrangement and the path toward a standalone installation.
 The milestones below retain their historical scope and validation limits.

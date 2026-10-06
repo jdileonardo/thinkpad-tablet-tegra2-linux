@@ -1,0 +1,2 @@
+active framebuffer=110 size=1280x800 pitch=2560 format=36314752 modifier=0 handles=1,0
+capture=/tmp/weston-native-qt-hw-normal-2.ppm CRTC=66 framebuffer=110 size=1280x800 pitch=2560 format=36314752 modifier=0

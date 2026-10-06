@@ -1,0 +1,33 @@
+Failed to gain real time thread priority (See CAP_SYS_NICE in the capabilities(7) man page). error: Not a tty
+kwin_scene_opengl: Egl Initialize succeeded
+kwin_scene_opengl: EGL version:  1 . 4
+Accepting client connections on sockets: QList("indigo-kwin-gl-1")
+kwin_wayland_x11windowed: X server supports SHM extension but not shared pixmaps
+kwin_scene_opengl: Created EGL context with attributes:
+Version requested:	true
+Version:	2.0
+Robust:	false
+Reset on video memory purge:	false
+Forward compatible:	false
+Core profile:	false
+Compatibility profile:	false
+High priority:	false
+kwin_wayland_x11windowed: Could not initialize rendering context
+kwin_core: Could not fulfill the requested compositing mode in KWIN_COMPOSE: 1 . Exiting.
+kwin_decorations: Could not locate decoration plugin "org.kde.breeze"
+kwin_core: Failed to load cursor theme "default"
+kwin_core: Failed to load cursor theme "default"
+kwin_core: Unable to load any cursor theme
+kwin_scene_opengl: Created EGL context with attributes:
+Version requested:	true
+Version:	2.0
+Robust:	false
+Reset on video memory purge:	false
+Forward compatible:	false
+Core profile:	false
+Compatibility profile:	false
+High priority:	false
+kwin_wayland_x11windowed: Could not initialize rendering context
+kwin_core: Could not fulfill the requested compositing mode in KWIN_COMPOSE: 1 . Exiting.
+kwin_core: The used windowing system requires compositing
+kwin_core: We are going to quit KWin now as it is broken

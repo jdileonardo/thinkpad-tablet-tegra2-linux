@@ -1,0 +1,15 @@
+00:00:00.000 [INFO] [seatd/seat.c:50] Created seat seat0
+00:00:00.000 [INFO] [seatd/seatd.c:194] seatd started
+00:00:00.059 [INFO] [seatd/server.c:145] New client connected (pid: 6596, uid: 0, gid: 0)
+00:00:00.059 [INFO] [seatd/seat.c:248] Added client 1 to seat0
+00:00:00.060 [INFO] [seatd/seat.c:584] Opened client 1 on seat0
+could not load cursor 'dnd-move'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+could not load cursor 'dnd-move'
+could not load cursor 'dnd-copy'
+could not load cursor 'dnd-none'
+00:00:14.930 [INFO] [seatd/seat.c:158] No clients on seat0 to activate
+00:00:14.930 [INFO] [seatd/seat.c:297] Removed client 1 from seat0
+00:00:14.930 [INFO] [seatd/client.c:480] Client disconnected
+00:00:16.611 [INFO] [seatd/seatd.c:218] seatd stopped
