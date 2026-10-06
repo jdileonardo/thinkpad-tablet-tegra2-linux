@@ -1,0 +1,81 @@
+Writing 4296015872 checked bytes to /dev/sda: USB3.0 CRW -SD, serial 201506301013, 64043876352 bytes.
+/dev/card: 2 bytes were erased at offset 0x000001fe (dos): 55 aa
+Write 128/4097 MiB
+Write 256/4097 MiB
+Write 384/4097 MiB
+Write 512/4097 MiB
+Write 640/4097 MiB
+Write 768/4097 MiB
+Write 896/4097 MiB
+Write 1024/4097 MiB
+Write 1152/4097 MiB
+Write 1280/4097 MiB
+Write 1408/4097 MiB
+Write 1536/4097 MiB
+Write 1664/4097 MiB
+Write 1792/4097 MiB
+Write 1920/4097 MiB
+Write 2048/4097 MiB
+Write 2176/4097 MiB
+Write 2304/4097 MiB
+Write 2432/4097 MiB
+Write 2560/4097 MiB
+Write 2688/4097 MiB
+Write 2816/4097 MiB
+Write 2944/4097 MiB
+Write 3072/4097 MiB
+Write 3200/4097 MiB
+Write 3328/4097 MiB
+Write 3456/4097 MiB
+Write 3584/4097 MiB
+Write 3712/4097 MiB
+Write 3840/4097 MiB
+Write 3968/4097 MiB
+Write 4096/4097 MiB
+Write complete; checking every written byte from the card.
+Full card-image read-back verified: 46a71647f042c8441c92461ce95676f7382fbb81643720ffbb9bdb2c2c0ff413
+Checking that no-one is using this disk right now ... OK
+
+Partition #1 contains a ext4 signature.
+Disk /dev/card: 59.65 GiB, 64043876352 bytes, 125085696 sectors
+Disk model: USB3.0 CRW   -SD
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x14de2ff2
+
+Old situation:
+
+Device     Boot Start     End Sectors Size Id Type
+/dev/card1 *     2048 8390655 8388608   4G 83 Linux
+
+>>> Script header accepted.
+>>> Script header accepted.
+>>> Created a new DOS (MBR) disklabel with disk identifier 0xe68acb45.
+/dev/card1: Created a new partition 1 of type 'Linux' and of size 59.6 GiB.
+/dev/card2: Done.
+
+New situation:
+Disklabel type: dos
+Disk identifier: 0xe68acb45
+
+Device     Boot Start       End   Sectors  Size Id Type
+/dev/card1 *     2048 125085695 125083648 59.6G 83 Linux
+
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+NURA_INDIGO: 53510/262144 files (0.2% non-contiguous), 310770/1048576 blocks
+resize2fs 1.47.4 (6-Mar-2025)
+Resizing the filesystem on /dev/cardp1 to 15635456 (4k) blocks.
+The filesystem on /dev/cardp1 is now 15635456 (4k) blocks long.
+
+e2fsck 1.47.4 (6-Mar-2025)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+NURA_INDIGO: 53510/3915776 files (0.2% non-contiguous), 541299/15635456 blocks
+Nura SD card write, full read-back, expansion and filesystem checks complete.

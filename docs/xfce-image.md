@@ -104,7 +104,7 @@ freeze a new release before adopting changed inputs.
 The writer now accepts the candidate manifest:
 
 ```sh
-python3 scripts/write_nura_sd.py --manifest build/nura-sd-20261006-cmafix/image-manifest.json \
+python3 scripts/write_nura_sd.py --manifest build/nura-sd-20261006-touch-watchdog/image-manifest.json \
   --device DEVICE --expected-serial SERIAL --expected-size BYTES
 ```
 
@@ -113,6 +113,13 @@ guards require the expected removable whole USB disk, matching reader identity
 and capacity, and no mounted partitions. The writer verifies image SHA256
 before erasing, verifies all written bytes, expands the filesystem, checks it,
 and records evidence beside the selected image manifest.
+
+The 64,043,876,352-byte card in reader serial `201506301013` has now been
+written with this candidate. Full image read-back matched SHA256
+`46a71647f042c8441c92461ce95676f7382fbb81643720ffbb9bdb2c2c0ff413`,
+then the root filesystem was expanded to 15,635,456 four-KiB blocks and passed
+`e2fsck -fn`. The [card verification](evidence/image-20261006/card-write-verification.json)
+and [writer log](evidence/image-20261006/card-write.log) record the physical write.
 
 Fresh-image boot, repeated APX boots, physical touch/rotation/buttons and
 longer application operation remain required. APX RAM boot and the external-SD
