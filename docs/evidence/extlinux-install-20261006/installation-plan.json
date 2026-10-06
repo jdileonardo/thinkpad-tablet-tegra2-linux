@@ -1,0 +1,45 @@
+{
+  "phase_1": {
+    "purpose": "Cold boot from existing external SD without host",
+    "target_identity": {
+      "cid": "1101004d4d4333324703100a18dd6e00",
+      "controller": "c8000600.mmc",
+      "main_sectors": 62521344
+    },
+    "target": "hardware boot0 area only; discover device by CID/controller",
+    "offset_bytes": 0,
+    "write_bytes": 2097152,
+    "image": "build/internal-boot-20261006/boot-region-padded.img",
+    "image_sha256": "0f16cc41acc0383839467b1c539c2de86ead52d6b4fb0f8bfc820c757881dc6d",
+    "boot1_and_user_area_writes": false,
+    "mmc_boot_configuration_changes": false,
+    "root_filesystem": "existing SD UUID 2a6e5a89-5a50-46c6-95ec-b718e7abd62b",
+    "guard_script": "port/internal/boot0-install.sh",
+    "approval_received_for_execution": true,
+    "cold_boot_tested": false
+  },
+  "phase_2": {
+    "purpose": "Self-contained Linux, no SD card required",
+    "target": "eMMC main/user area; freshly rediscover identity before deployment",
+    "image": "build/nura-internal-20261006/internal-user-area.img",
+    "image_manifest": "docs/evidence/extlinux-install-20261006/internal-image-manifest.json",
+    "initial_write_bytes": 4296015872,
+    "initial_root_start_sector": 2048,
+    "initial_root_sectors": 8388608,
+    "expanded_root_sectors": 62519296,
+    "root_uuid": "a1b59fdc-49f7-46bb-b099-4c6012334c07",
+    "status": "host image prepared; complete stage-one cold boot first",
+    "android_preservation_required": false,
+    "internal_root_boot_tested": false,
+    "approval_received_for_execution": true
+  },
+  "recovery": {
+    "apx_bct": "backups/MP0GKR7-20261005T160450Z/active.bct",
+    "apx_payload": "build/nura-sd-test/thinkpad-ram-payload.bin",
+    "phase_1_boot0_restore_image": "backups/MP0GKR7-20261005T160450Z/emmc-boot0.img",
+    "phase_1_boot0_restore_sha256": "8b5ba2a6e48071b990498a22720e0c3173e601789b35fec6c3520aadcd943c3b",
+    "keep_working_sd": true,
+    "physical_apx_entry_needed_if_software_reboot_returns_to_android": true
+  },
+  "authorization": "User explicitly authorized completing the flash while away on 2026-10-06."
+}

@@ -1,0 +1,20 @@
+
+~ # 
+~ # 
+~ # 
+~ # ~ # ^[[6n
+cat /proc/cmdline; rc-service lightdm status; ip -4 addr show wlan0; sha256sum /boot/extlinux/extlinux.conf; cat /sys/class/block/mmcblk1boot0/force_ro /sys/class/block/mmcblk1boot1/force_ro; pgrep -a xfdesktop
+/bin/sh: /: Permission denied
+~ # cat /proc/cmdline; rc-service lightdm status; ip -4 addr show wlan0; sha256s
+um /boot/extlinux/extlinux.conf; cat /sys/class/block/mmcblk1boot0/force_ro /sys
+/class/block/mmcblk1boot1/force_ro; pgrep -a xfdesktop
+console=tty0 console=ttyS0,115200 panic=0 rdinit=/init indigo_boot=extlinux-a
+ [1m[32m*[m status: started[K
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.191/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 7190sec preferred_lft 7190sec
+ecd207ab6189d4e0b6586715c436d26e0ca5286d13aaacd78569a30b1e90c1e6  /boot/extlinux/extlinux.conf
+1
+1
+2072 xfdesktop
+~ # [6n

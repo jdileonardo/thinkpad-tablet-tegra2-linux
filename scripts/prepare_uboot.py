@@ -15,6 +15,8 @@ profiles.add_argument('--nura-storage-test', action='store_true',
                       help='Verify SD boot and an eMMC read, with an APX RAM fallback')
 profiles.add_argument('--nura-storage', action='store_true',
                       help='Load verified boot files from SD without preloaded Linux')
+profiles.add_argument('--nura-extlinux', action='store_true',
+                      help='Load replaceable extlinux configuration from SD, then eMMC')
 args = parser.parse_args()
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -64,6 +66,40 @@ if args.direct_linux or args.nura or args.nura_sd:
     extra = extra.replace('CONFIG_BOOTCOMMAND="fastboot usb 0"',
                           f'CONFIG_BOOTCOMMAND="{boot_command}"')
 config_name = 'thinkpad_ram_defconfig'
+if args.nura_extlinux:
+    boot_command = (
+        'setenv kernel_addr_r 0x01000000; '
+        'setenv ramdisk_addr_r 0x02400000; '
+        'setenv fdt_addr_r 0x02600000; '
+        'setenv pxefile_addr_r 0x03000000; '
+        'for indigo_mmc in 1 0; do '
+        'if mmc dev ${indigo_mmc}; then '
+        'echo Loading extlinux from mmc ${indigo_mmc}:1; '
+        'sysboot mmc ${indigo_mmc}:1 any ${pxefile_addr_r} '
+        '/boot/extlinux/extlinux.conf; fi; done; '
+        'echo No bootable Indigo storage configuration; fastboot usb 0'
+    )
+    extra = extra.replace('CONFIG_BOOTCOMMAND="fastboot usb 0"',
+                          f'CONFIG_BOOTCOMMAND="{boot_command}"')
+    extra += '''
+CONFIG_CMD_PXE=y
+# CONFIG_MMC_WRITE is not set
+# CONFIG_MMC_HW_PARTITIONING is not set
+'''
+    config_name = 'thinkpad_extlinux_defconfig'
+    output = ROOT / 'build/uboot-nura-extlinux'
+    output.mkdir(parents=True, exist_ok=True)
+    (output / 'storage-boot-plan.json').write_text(json.dumps({
+        'source_revision': EXPECTED, 'config_name': config_name,
+        'boot_command': boot_command, 'ram_fallback': False,
+        'storage_write_commands_enabled': False,
+        'boot_order': ['SD mmc1:1', 'internal eMMC mmc0:1'],
+        'configuration_path': '/boot/extlinux/extlinux.conf',
+        'boot_files_embedded_in_uboot': False,
+        'boot_file_hashes_embedded_in_uboot': False,
+        'memory_layout': {'kernel': '0x01000000', 'initramfs': '0x02400000',
+                          'dtb': '0x02600000', 'configuration': '0x03000000'},
+    }, indent=2) + '\n')
 if args.nura_storage_test or args.nura_storage:
     # Keep the released RAM payload and its locked inputs unchanged. These
     # profiles only read storage; the test alone has copies for RAM recovery.

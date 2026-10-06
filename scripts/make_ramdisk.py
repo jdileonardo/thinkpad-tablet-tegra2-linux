@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a RAM diagnostic or external-SD bootstrap; never mount internal storage."""
+"""Build diagnostic, SD, or explicitly selected internal-root bootstraps."""
 import gzip
 import stat
 import argparse
@@ -8,15 +8,17 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument('--profile', choices=['historical', 'nura', 'nura-sd'], default='historical')
-parser.add_argument('--root-uuid', help='External SD filesystem UUID for nura-sd')
+parser.add_argument('--profile', choices=['historical', 'nura', 'nura-sd', 'nura-internal'], default='historical')
+parser.add_argument('--root-uuid', help='Required filesystem UUID for either storage profile')
 args = parser.parse_args()
-if args.profile == 'nura-sd':
+storage_profile = args.profile in ('nura-sd', 'nura-internal')
+if storage_profile:
     if not args.root_uuid:
-        parser.error('nura-sd requires --root-uuid')
+        parser.error('Storage profiles require --root-uuid')
     args.root_uuid = str(uuid.UUID(args.root_uuid))
 out = root / {'historical': 'build/ram-test', 'nura': 'build/nura-ram-test',
-              'nura-sd': 'build/nura-sd-test'}[args.profile]
+              'nura-sd': 'build/nura-sd-test',
+              'nura-internal': 'build/nura-internal-test'}[args.profile]
 out.mkdir(parents=True, exist_ok=True)
 entries = []
 
@@ -39,7 +41,7 @@ if args.profile != 'historical':
             (root / firmware_dir / filename).read_bytes())
     add('lib/firmware/LICENCE.broadcom_bcm43xx', stat.S_IFREG | 0o644,
         (root / 'build/linux-firmware/LICENCE.broadcom_bcm43xx').read_bytes())
-    for filename in (['regulatory.db', 'regulatory.db.p7s'] if args.profile == 'nura-sd' else []):
+    for filename in (['regulatory.db', 'regulatory.db.p7s'] if storage_profile else []):
         add('lib/firmware/' + filename, stat.S_IFREG | 0o644,
             (root / 'build/pmbootstrap/chroot_rootfs_nvidia-tegra-armv7/lib/firmware' / filename).read_bytes())
     add('bin/reboot-into-apx', stat.S_IFREG | 0o755,
@@ -90,7 +92,7 @@ while :; do
     sleep 1
 done
 '''
-if args.profile == 'nura-sd':
+if storage_profile:
     switch = '''# Only the external SD controller is eligible for the OS root.
 mkdir -p /newroot
 rootdev=
@@ -123,6 +125,14 @@ if [ -n "$rootdev" ] && mount -t ext4 -o rw "$rootdev" /newroot; then
 fi
 echo 'SD root unavailable; staying in RAM rescue console.' >/dev/console
 '''.replace('ROOT_UUID', args.root_uuid)
+    if args.profile == 'nura-internal':
+        switch = switch.replace('external SD controller', 'internal eMMC controller')
+        switch = switch.replace('c8000400.mmc', 'c8000600.mmc')
+        switch = switch.replace('external SD', 'internal eMMC')
+        switch = switch.replace('SD root unavailable', 'Internal root unavailable')
+        switch = switch.replace('s/.*UUID=', 's/.* UUID=')
+        init = init.replace('internal storage is not mounted.',
+                            'internal root requires the configured eMMC controller and UUID.')
     init = init.replace('while :; do\n    echo \'ThinkPad RAM test console.',
                         switch + 'while :; do\n    echo \'ThinkPad RAM test console.')
 add('init', stat.S_IFREG | 0o755, init.encode())

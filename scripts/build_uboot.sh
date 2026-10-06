@@ -16,6 +16,9 @@ elif [[ "${1:-}" == "--nura-storage-test" ]]; then
 elif [[ "${1:-}" == "--nura-storage" ]]; then
   build_output=uboot-nura-storage
   build_config=thinkpad_storage_defconfig
+elif [[ "${1:-}" == "--nura-extlinux" ]]; then
+  build_output=uboot-nura-extlinux
+  build_config=thinkpad_extlinux_defconfig
 fi
 python3 scripts/prepare_uboot.py "$@"
 builder_id=sha256:bdeae42b66b5d1d1a70fe3f1505a17ba156eca8efdfa8364e9db3411e06beb2c

@@ -1,0 +1,39 @@
+{
+  "source_image": "build/nura-sd-20261006-touch-watchdog/thinkpad-nura-sd.img",
+  "source_image_sha256": "46a71647f042c8441c92461ce95676f7382fbb81643720ffbb9bdb2c2c0ff413",
+  "root_uuid": "a1b59fdc-49f7-46bb-b099-4c6012334c07",
+  "root_controller": "c8000600.mmc",
+  "image_bytes": 4296015872,
+  "image_sha256": "5edc6763f85c754991be57e6a8dbcad3f054bd987f43d934f1bcdcdc0d162078",
+  "filesystem_bytes": 4294967296,
+  "filesystem_sha256": "d71b08f7aa5be0f83637c35dc9f7dd1e9a42c4d205acae33954be2924afdcc24",
+  "partition_table": {
+    "label": "dos",
+    "id": "0x12334c07",
+    "device": "build/nura-internal-20261006/internal-user-area.img",
+    "unit": "sectors",
+    "sectorsize": 512,
+    "partitions": [
+      {
+        "node": "build/nura-internal-20261006/internal-user-area.img1",
+        "start": 2048,
+        "size": 8388608,
+        "type": "83",
+        "bootable": true
+      }
+    ]
+  },
+  "changed_files": {
+    "/etc/fstab": "b9362e9a34ab2dc24e5bff06e61653881fed73e50540b0663be467a7d5ce6a1b",
+    "/boot/extlinux/extlinux.conf": "75fb3a407a8f0c571e442d16c98f78dda1dbbf147feb2e2c265650b0e1dcc55f",
+    "/boot/initramfs-indigo": "095877922ca4aec038af2e5fd52db12d0642a0fa8b03cf8844613c4e547d9fc2"
+  },
+  "filesystem_check_passed": true,
+  "internal_writes_performed": false,
+  "physical_internal_boot_tested": false,
+  "notes": [
+    "Cloned validated SD contents; this is a clean internal user-area candidate.",
+    "Keep the private image out of Git: it includes the existing login and Wi-Fi configuration.",
+    "The initial 4 GiB filesystem can be expanded after device write/readback verification."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "source_revision": "385640388c84e405f817f8e747d4febaa0be0de5",
+  "config_name": "thinkpad_extlinux_defconfig",
+  "boot_command": "setenv kernel_addr_r 0x01000000; setenv ramdisk_addr_r 0x02400000; setenv fdt_addr_r 0x02600000; setenv pxefile_addr_r 0x03000000; for indigo_mmc in 1 0; do if mmc dev ${indigo_mmc}; then echo Loading extlinux from mmc ${indigo_mmc}:1; sysboot mmc ${indigo_mmc}:1 any ${pxefile_addr_r} /boot/extlinux/extlinux.conf; fi; done; echo No bootable Indigo storage configuration; fastboot usb 0",
+  "ram_fallback": false,
+  "storage_write_commands_enabled": false,
+  "boot_order": [
+    "SD mmc1:1",
+    "internal eMMC mmc0:1"
+  ],
+  "configuration_path": "/boot/extlinux/extlinux.conf",
+  "boot_files_embedded_in_uboot": false,
+  "boot_file_hashes_embedded_in_uboot": false,
+  "memory_layout": {
+    "kernel": "0x01000000",
+    "initramfs": "0x02400000",
+    "dtb": "0x02600000",
+    "configuration": "0x03000000"
+  },
+  "uboot_bytes": 486624,
+  "uboot_sha256": "4d149856d87dd4872b4c50f1c6ffcd2e195486459822cb3ac8e50141288ca71b",
+  "physical_config_a_test": "passed",
+  "physical_config_b_test": "passed: different kernel pathname and marker, same U-Boot binary",
+  "new_bct_apx_test": "passed",
+  "cold_boot_from_internal_flash_tested": false
+}

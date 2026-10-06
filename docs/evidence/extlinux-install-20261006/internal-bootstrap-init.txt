@@ -1,0 +1,72 @@
+#!/bin/sh
+export PATH=/bin
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t devtmpfs devtmpfs /dev
+mount -t tmpfs tmpfs /run
+mount -t tmpfs tmpfs /tmp
+mkdir -p /sys/kernel/config
+mount -t configfs configfs /sys/kernel/config
+echo 'ThinkPad diagnostic RAM boot: internal root requires the configured eMMC controller and UUID.' >/dev/console
+g=/sys/kernel/config/usb_gadget/thinkpad
+mkdir -p "$g"
+echo 0x17ef >"$g/idVendor"
+echo 0x741c >"$g/idProduct"
+mkdir -p "$g/strings/0x409"
+echo thinkpad-ram-test >"$g/strings/0x409/serialnumber"
+echo 'Lenovo ThinkPad port' >"$g/strings/0x409/manufacturer"
+echo 'Diagnostic RAM console' >"$g/strings/0x409/product"
+mkdir -p "$g/configs/c.1/strings/0x409"
+echo 'USB serial console' >"$g/configs/c.1/strings/0x409/configuration"
+echo 250 >"$g/configs/c.1/MaxPower"
+mkdir -p "$g/functions/acm.usb0"
+/bin/busybox ln -s "$g/functions/acm.usb0" "$g/configs/c.1/acm.usb0"
+while :; do
+    for u in /sys/class/udc/*; do
+        [ -e "$u" ] || continue
+        echo "${u##*/}" >"$g/UDC"
+        break 2
+    done
+    echo 'Waiting for Tegra USB device controller' >/dev/console
+    sleep 2
+done
+# Only the internal eMMC controller is eligible for the OS root.
+mkdir -p /newroot
+rootdev=
+tries=0
+while [ "$tries" -lt 60 ]; do
+    for block in /sys/class/block/mmcblk*p*; do
+        [ -e "$block" ] || continue
+        case "$(/bin/busybox readlink -f "$block")" in
+            *c8000600.mmc*) ;;
+            *) continue ;;
+        esac
+        dev=/dev/${block##*/}
+        found=$(/bin/busybox blkid "$dev" | /bin/busybox sed -n 's/.* UUID="\([^"]*\)".*/\1/p')
+        [ "$found" = 'a1b59fdc-49f7-46bb-b099-4c6012334c07' ] && rootdev=$dev && break
+    done
+    [ -n "$rootdev" ] && break
+    tries=$((tries + 1))
+    sleep 1
+done
+if [ -n "$rootdev" ] && mount -t ext4 -o rw "$rootdev" /newroot; then
+    if [ -x /newroot/sbin/init ]; then
+        echo "Starting Nura from internal eMMC: $rootdev" >/dev/console
+        for fs in proc sys dev run; do
+            mkdir -p /newroot/$fs
+            mount --move /$fs /newroot/$fs || exit 1
+        done
+        exec /bin/busybox switch_root /newroot /sbin/init
+    fi
+    /bin/busybox umount /newroot
+fi
+echo 'Internal root unavailable; staying in RAM rescue console.' >/dev/console
+while :; do
+    echo 'ThinkPad RAM test console. No internal filesystems mounted.' >/dev/ttyGS0
+    uname -a >/dev/ttyGS0
+    dmesg >/dev/ttyGS0
+    # cttyhack would select the physical UART from console/active.
+    # Explicitly make USB serial stdin the shell's controlling terminal.
+    setsid -c sh -i </dev/ttyGS0 >/dev/ttyGS0 2>&1
+    sleep 1
+done

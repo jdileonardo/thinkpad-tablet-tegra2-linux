@@ -1,0 +1,60 @@
+{
+  "cbootimage_source_revision": "80c499ebbe8a64aa2ee4222e6a8f342f465f6680",
+  "original_bct_sha256": "3d089f88af9ffaf2dec929c2b27e02d63da70b186548bdcffb95e1477beb9421",
+  "uboot_sha256": "4d149856d87dd4872b4c50f1c6ffcd2e195486459822cb3ac8e50141288ca71b",
+  "uboot_bytes": 486624,
+  "image_bytes": 1011200,
+  "image_sha256": "00a1504729aa0237462f91c9904d736774886e68232ab68807dc61d833a101b7",
+  "bct_sha256": "21a2b045d023aeb5c14c6fb5f0dcc98a4305b665a4e75323424f939618036eda",
+  "bct_copies": 2,
+  "bootloader_copies": 2,
+  "padded_image_bytes": 2097152,
+  "padded_image_sha256": "0f16cc41acc0383839467b1c539c2de86ead52d6b4fb0f8bfc820c757881dc6d",
+  "bct_layout": {
+    "crypto_hash": [
+      0,
+      16
+    ],
+    "badblock_table": [
+      2184,
+      520
+    ],
+    "bootloader_used": [
+      2704,
+      4
+    ],
+    "bootloader": [
+      2708,
+      176
+    ],
+    "reserved": [
+      4077,
+      3
+    ],
+    "customer_data": [
+      2884,
+      1184
+    ],
+    "sdram_params": [
+      136,
+      2048
+    ],
+    "dev_params": [
+      68,
+      64
+    ],
+    "odm_data": [
+      4068,
+      4
+    ]
+  },
+  "board_parameters_byte_preserved": true,
+  "old_bootloader_descriptors_removed": true,
+  "internal_writes_performed": false,
+  "rom_cold_boot_tested": false,
+  "notes": [
+    "Host packaging only; no target boot region or MMC configuration has been written.",
+    "Validate BCT through APX and complete bounded write/recovery planning before installation."
+  ],
+  "bct_and_bootloader_cmac_independently_verified": true
+}

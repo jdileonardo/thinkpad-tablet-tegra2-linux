@@ -1,0 +1,11 @@
+
+~ # [6nif [ "$(/bin/busybox blkid /dev/mmcblk0p1 | sed -n 's/.* UUID="\([^" ]*\)".*
+/\1/p')" = '2a6e5a89-5a50-46c6-95ec-b718e7abd62b' ] && [ "$(sha256sum /boot/extl
+inux/extlinux.conf | cut -d ' ' -f 1)" = '8e7dfcafc776a5548c90129bea7770290c6313
+e90643af67bb66d8cbbad95799' ]; then cp -p /boot/extlinux/extlinux.conf /boot/ext
+linux/extlinux.conf.pre-extlinux; cp /tmp/extlinux-a.conf /boot/extlinux/extlinu
+x.conf.new; chmod 644 /boot/extlinux/extlinux.conf.new; mv /boot/extlinux/extlin
+ux.conf.new /boot/extlinux/extlinux.conf; sync; sha256sum /boot/extlinux/extlinu
+x.conf; else echo CONFIG_GUARD_FAILED; fi
+ecd207ab6189d4e0b6586715c436d26e0ca5286d13aaacd78569a30b1e90c1e6  /boot/extlinux/extlinux.conf
+~ # [6n

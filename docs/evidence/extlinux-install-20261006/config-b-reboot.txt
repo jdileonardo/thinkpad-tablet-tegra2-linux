@@ -1,0 +1,8 @@
+
+~ # [6nrc-service lightdm stop; sync; echo u > /proc/sysrq-trigger; sleep 2; if awk
+ '$2 == "/" && $1 ~ /^\/dev\/mmcblk/ {n=split($4,a,","); for(i=1;i<=n;i++) if(a[
+i]=="ro") ok=1} END {exit !ok}' /proc/mounts; then echo ROOT_RO_APX_REBOOT; /usr
+/local/sbin/reboot-into-apx; else echo ROOT_NOT_RO_ABORT; fi
+ [1m[32m*[m Stopping Display Manager[K ...
+ [ ok ]
+ROOT_RO_APX_REBOOT

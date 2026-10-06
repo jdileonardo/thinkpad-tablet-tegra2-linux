@@ -1,0 +1,11 @@
+
+~ # [6nif [ "$(sha256sum /boot/extlinux/extlinux.conf | cut -d ' ' -f 1)" = 'ecd207
+ab6189d4e0b6586715c436d26e0ca5286d13aaacd78569a30b1e90c1e6' ]; then cp -p /boot/
+vmlinuz-indigo /boot/vmlinuz-indigo-candidate; cp /tmp/extlinux-b.conf /boot/ext
+linux/extlinux.conf.new; chmod 644 /boot/extlinux/extlinux.conf.new; mv /boot/ex
+tlinux/extlinux.conf.new /boot/extlinux/extlinux.conf; sync; sha256sum /boot/vml
+inuz-indigo-candidate /boot/extlinux/extlinux.conf; else echo CONFIG_GUARD_FAILE
+D; fi
+5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff  /boot/vmlinuz-indigo-candidate
+b5612d2523a1ca4d4ad02fdf137464567ae8d1f7ab8819d34219fe4ce8220da9  /boot/extlinux/extlinux.conf
+~ # [6n

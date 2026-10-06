@@ -52,12 +52,12 @@ if args.direction == 'upload':
         (f'\nthinkpad_transfer_umask=$(umask); umask 077\n' if args.private else '\n').encode()
         + f"/bin/busybox base64 -d > {remote} <<'{payload_marker}'\n".encode()
         + base64.encodebytes(source)
-        + f"{payload_marker}\n/bin/busybox sha256sum {remote}; printf '\\n{done_marker}\\n'\n".encode()
+        + f"{payload_marker}\nprintf '\\n'; /bin/busybox sha256sum {remote}; printf '\\n{done_marker}\\n'\n".encode()
         + (b'umask "$thinkpad_transfer_umask"\n' if args.private else b'')
     )
 else:
     payload = (f"\nprintf '\\n{begin_marker}\\n'; /bin/busybox base64 {remote}; "
-               f"printf '\\n{end_marker}\\n'; /bin/busybox sha256sum {remote}; "
+               f"printf '\\n{end_marker}\\n'; printf '\\n'; /bin/busybox sha256sum {remote}; "
                f"printf '\\n{done_marker}\\n'\n").encode()
 fd = os.open(node, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
 try:

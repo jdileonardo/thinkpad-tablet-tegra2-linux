@@ -1,0 +1,38 @@
+
+~ # 
+~ # 
+~ # 
+~ # ~ # ^[[6n
+cat /proc/cmdline; rc-service lightdm status; ip -4 addr show wlan0; sha256sum /boot/vmlinuz-indigo-candidate /boot/extlinux/extlinux.conf; command -v blockdev; dd --help 2>&1 | head -n 18; pgrep -a xfdesktop
+/bin/sh: /: Permission denied
+~ # cat /proc/cmdline; rc-service lightdm status; ip -4 addr show wlan0; sha256s
+um /boot/vmlinuz-indigo-candidate /boot/extlinux/extlinux.conf; command -v block
+dev; dd --help 2>&1 | head -n 18; pgrep -a xfdesktop
+console=tty0 console=ttyS0,115200 panic=0 rdinit=/init indigo_boot=extlinux-b
+ [1m[32m*[m status: started[K
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.191/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 7174sec preferred_lft 7174sec
+5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff  /boot/vmlinuz-indigo-candidate
+b5612d2523a1ca4d4ad02fdf137464567ae8d1f7ab8819d34219fe4ce8220da9  /boot/extlinux/extlinux.conf
+/sbin/blockdev
+BusyBox v1.38.0 (2026-09-22 18:41:43 UTC) multi-call binary.
+
+Usage: dd [if=FILE] [of=FILE] [ibs=N obs=N/bs=N] [count=N] [skip=N] [seek=N]
+	[conv=notrunc|noerror|sync|fsync]
+	[iflag=skip_bytes|count_bytes|fullblock|direct] [oflag=seek_bytes|append|direct]
+
+Copy a file with converting and formatting
+
+	if=FILE		Read from FILE instead of stdin
+	of=FILE		Write to FILE instead of stdout
+	bs=N		Read and write N bytes at a time
+	ibs=N		Read N bytes at a time
+	obs=N		Write N bytes at a time
+	count=N		Copy only N input blocks
+	skip=N		Skip N input blocks
+	seek=N		Skip N output blocks
+	conv=notrunc	Don't truncate output file
+	conv=noerror	Continue after read errors
+2055 xfdesktop
+~ # [6n

@@ -1,0 +1,4 @@
+~ # PRECHECK_OK: /dev/mmcblk1boot0, boot0 only, offset 0, 4096 sectors, SHA256 0f16cc41acc0383839467b1c539c2de86ead52d6b4fb0f8bfc820c757881dc6d
+No internal writes performed.
+PREFLIGHT_EXIT=0
+~ # [6n
