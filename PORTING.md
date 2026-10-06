@@ -1,5 +1,10 @@
 # ThinkPad Tablet Indigo Linux port
 
+The latest GPU result is the [nested compositor checkpoint](docs/gpu-compositor.md).
+See [development workflow and internal installation](docs/development-workflow.md)
+for the current RAM/SD arrangement and the path toward a standalone installation.
+The milestones below retain their historical scope and validation limits.
+
 ## Device and first RAM experiment
 
 This project targets the original 2011 Lenovo ThinkPad Tablet, Tegra20,
