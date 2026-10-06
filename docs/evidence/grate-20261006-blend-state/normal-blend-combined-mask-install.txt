@@ -1,0 +1,40 @@
+
+~ # [6nsh -c 'set -e
+> cd /tmp/mesa-sfu
+> wget -q -O mesa-grate-armv7.tar.gz http://192.168.0.147:8766/mesa-grate-armv7.
+tar.gz
+> wget -q -O SHA256SUMS http://192.168.0.147:8766/SHA256SUMS
+> sha256sum -c SHA256SUMS
+> python3 install_tablet_mesa.py /tmp/mesa-sfu --revision ad06de32d309
+> sha256sum /opt/indigo-mesa/ad06de32d309/lib/libgallium-26.2.3.so
+> set +e
+> su julian -c '"'"'INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 20 /usr/lo
+cal/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/gpu-pixel-check --blend
+'"'"'
+> echo PIXEL_EXIT=$?
+> su julian -c '"'"'GRATE_FS_TRACE=1 INDIGO_MESA_REVISION=ad06de32d309 timeout -
+s KILL 35 /usr/local/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/gpu-bl
+end-check --state > /tmp/normal-blend-combined-mask-hw.log 2>&1'"'"'
+> echo HW_EXIT=$?
+> su julian -c '"'"'LIBGL_ALWAYS_SOFTWARE=1 GBM_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER
+=softpipe INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 35 /usr/local/bin/in
+digo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/gpu-blend-check --state > /tmp/no
+rmal-blend-combined-mask-cpu.log 2>&1'"'"'
+> echo CPU_EXIT=$?
+> echo normal-blend-combined-mask_DONE
+> '
+mesa-grate-armv7.tar.gz: OK
+gpu-pixel-check: OK
+indigo-gpu-run: OK
+Installed private Mesa on /dev/mmcblk0p1; run indigo-gpu-run gpu-pixel-check
+1c8e48d2ccac54761dfb180babbdae0a1e5bb68b6dbe72166f9dd3d60d93c45a  /opt/indigo-mesa/ad06de32d309/lib/libgallium-26.2.3.so
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+PIXEL_EXIT=0
+HW_EXIT=0
+CPU_EXIT=0
+normal-blend-combined-mask_DONE
+~ # [6n
+Captured 1702 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T130451Z.txt

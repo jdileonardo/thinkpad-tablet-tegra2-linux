@@ -1,0 +1,78 @@
+
+~ # [6nsh -c 'set +e
+> for i in 1 2 3; do
+>  su julian -c "INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 35 /usr/local
+/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/gpu-blend-check --state > 
+/tmp/normal-blend-final-$i.log 2>&1"
+>  echo BLEND_$i=$?
+>  su julian -c "INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 35 /usr/local
+/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/fptest-sfu-isolation > /tm
+p/normal-regression-$i.log 2>&1"
+>  echo REGRESSION_$i=$?
+> done
+> su julian -c '"'"'LIBGL_ALWAYS_SOFTWARE=1 GBM_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER
+=softpipe INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 35 /usr/local/bin/in
+digo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/fptest-sfu-isolation > /tmp/norma
+l-regression-cpu.log 2>&1'"'"'
+> echo CPU_REGRESSION=$?
+> su julian -c '"'"'INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 20 /usr/lo
+cal/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/vstest'"'"'
+> su julian -c '"'"'INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 20 /usr/lo
+cal/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/quadtest'"'"'
+> echo FINAL_CHECKS_DONE
+> uname -r
+> uptime
+> ip -4 addr show wlan0
+> pgrep -a xfce4-session
+> pgrep -a Xorg
+> cat /proc/mounts | head -n 3
+> grep -E '"'"'CmaFree|MemAvailable'"'"' /proc/meminfo
+> dmesg | tail -n 12
+> '
+BLEND_1=0
+REGRESSION_1=0
+BLEND_2=0
+REGRESSION_2=0
+BLEND_3=0
+REGRESSION_3=0
+CPU_REGRESSION=0
+# renderer: Tegra
+mvp scale=0.50 tx=0.25 -> red spans x 24..55
+# glerr 0x0
+p0 32,32,64,255
+p1 128,32,64,255
+p2 224,32,64,255
+p3 32,128,64,255
+p4 128,128,64,255
+p5 224,128,64,255
+p6 32,224,64,255
+p7 128,224,64,255
+p8 224,224,64,255
+err 0x0
+FINAL_CHECKS_DONE
+7.0.1-nura-indigo-ram
+ 00:05:01 up  7:10,  0 users,  load average: 0.25, 0.23, 0.19
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.174/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 4848sec preferred_lft 4848sec
+1820 xfce4-session
+1603 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+proc /proc proc rw,relatime 0 0
+sysfs /sys sysfs rw,relatime 0 0
+devtmpfs /dev devtmpfs rw,nosuid,noexec,relatime,size=10240k,nr_inodes=118225,mode=755 0 0
+MemAvailable:     734344 kB
+CmaFree:            3428 kB
+[19249.360205] Xorg (1603): drop_caches: 1
+[19249.360346] drm drm: failed to allocate buffer of size 132710400: -12
+[19249.360539] drm drm: failed to allocate buffer of size 132710400: -12
+[21190.419987] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.420283] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.991801] drm drm: failed to allocate buffer of size 5636096: -12
+[22555.721619] tegra-mc 7000f000.memory-controller: fdcdrd: read @0x666e1050: EMEM address decode error (EMEM decode error)
+[22555.889958] tegra-mc 7000f000.memory-controller: fdcdrd: read @0x666e1070: EMEM address decode error (EMEM decode error)
+[24996.022520] drm drm: failed to allocate buffer of size 132710400: -12
+[24996.100443] Xorg (1603): drop_caches: 1
+[24996.100598] drm drm: failed to allocate buffer of size 132710400: -12
+[24996.100815] drm drm: failed to allocate buffer of size 132710400: -12
+~ # [6n
+Captured 3315 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T040523Z.txt

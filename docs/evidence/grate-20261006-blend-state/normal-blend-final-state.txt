@@ -1,0 +1,44 @@
+
+~ # [6ndate -u; uptime; uname -r; sha256sum /opt/indigo-mesa/ad06de32d309/lib/libga
+llium-26.2.3.so; grep ' / ' /proc/mounts; grep -E 'MemAvailable|CmaFree' /proc/m
+eminfo; ip -4 addr show wlan0; pgrep -a xfce4-session; pgrep -a Xorg; grep -A 5 
+-i n-trig /proc/bus/input/devices; dmesg | tail -n 10; echo NORMAL_BLEND_FINAL_S
+TATE
+Tue Oct  6 13:05:44 UTC 2026
+ 09:05:44 up 16:10,  0 users,  load average: 0.14, 0.16, 0.12
+7.0.1-nura-indigo-ram
+1c8e48d2ccac54761dfb180babbdae0a1e5bb68b6dbe72166f9dd3d60d93c45a  /opt/indigo-mesa/ad06de32d309/lib/libgallium-26.2.3.so
+/dev/mmcblk0p1 / ext4 rw,noatime 0 0
+MemAvailable:     747516 kB
+CmaFree:            2944 kB
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.174/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 5244sec preferred_lft 5244sec
+1820 xfce4-session
+1603 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+N: Name="N-Trig Indigo Touchscreen"
+P: Phys=
+S: Sysfs=/devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input5
+U: Uniq=
+H: Handlers=event3 
+B: PROP=2
+--
+N: Name="N-Trig Indigo Pen"
+P: Phys=
+S: Sysfs=/devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input6
+U: Uniq=
+H: Handlers=event4 
+B: PROP=2
+[19249.360539] drm drm: failed to allocate buffer of size 132710400: -12
+[21190.419987] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.420283] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.991801] drm drm: failed to allocate buffer of size 5636096: -12
+[22555.721619] tegra-mc 7000f000.memory-controller: fdcdrd: read @0x666e1050: EMEM address decode error (EMEM decode error)
+[22555.889958] tegra-mc 7000f000.memory-controller: fdcdrd: read @0x666e1070: EMEM address decode error (EMEM decode error)
+[24996.022520] drm drm: failed to allocate buffer of size 132710400: -12
+[24996.100443] Xorg (1603): drop_caches: 1
+[24996.100598] drm drm: failed to allocate buffer of size 132710400: -12
+[24996.100815] drm drm: failed to allocate buffer of size 132710400: -12
+NORMAL_BLEND_FINAL_STATE
+~ # [6n
+Captured 2196 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T130551Z.txt

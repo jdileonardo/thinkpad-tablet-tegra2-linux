@@ -1,0 +1,810 @@
+--- a/src/gallium/drivers/grate/fp/nir.c
++++ b/src/gallium/drivers/grate/fp/nir.c
+@@ -28,6 +28,7 @@
+ 
+ struct fp_nir_ctx {
+    struct grate_fp_shader *fp;
++   unsigned color_target;
+    int *ssa_slot;
+    unsigned num_ssa;
+    unsigned num_slots;
+@@ -72,9 +73,14 @@
+     * has been read for the last time, but not before the instruction being
+     * built is emitted, or a pending operation would read a reused register */
+    unsigned *last_use;
++   unsigned *component_last_use;
++   unsigned varying_last_use[16][4];
++   unsigned instruction_index;
++   unsigned last_row_clobber;
++   int dead_slot;
+    unsigned free_slot[FP_NUM_GLOBALS + FP_SPILL_COUNT];
+    unsigned num_free;
+-   unsigned dying[FP_MAX_SLOTS];
++   unsigned dying[FP_NUM_GLOBALS + FP_SPILL_COUNT];
+    unsigned num_dying;
+ 
+    struct fp_alu_instr batch[FP_MAX_SLOTS];
+@@ -257,6 +263,27 @@
+          }
+ 
+          op.index = GRATE_FP_UNIFORM_BASE + slot;
++         op.datatype = FP_DATATYPE_FP20;
++         return op;
++      }
++
++      case nir_intrinsic_load_output: {
++         int slot = ctx->tex_slot[src.ssa->index * 4 + comp];
++         if (slot <= -2) {
++            /* Destination UNORM channels retained as packed FX10 in R0/R1,
++             * away from the R2/R3 color output and the global scalar file. */
++            unsigned o = comp < 3 ? 2 - comp : 3;
++            op.index = o / 2;
++            op.datatype = FP_DATATYPE_FIXED10;
++            op.sub_reg_select_high = o & 1;
++            return op;
++         }
++         if (slot < 0) {
++            fprintf(stderr, "GRATE FRAG: framebuffer result not available\n");
++            ctx->fp->unsupported = true;
++            return fp_src_zero();
++         }
++         op.index = fp_reg_for_slot(ctx, slot);
+          op.datatype = FP_DATATYPE_FP20;
+          return op;
+       }
+@@ -552,6 +579,8 @@
+    return d;
+ }
+ 
++static const nir_def *fp_peel(nir_src src, unsigned *comp);
++
+ static void
+ fp_emit_form(struct fp_nir_ctx *ctx, nir_alu_instr *alu, enum fp_alu_op op,
+              enum fp_form form, enum fp_condition cond)
+@@ -579,6 +608,42 @@
+    case FP_FORM_ONE_MINUS: rA = s[0]; rA.negate = !rA.negate;
+                      rB = fp_src_one(); rC = fp_src_one();              break;
+    default: UNREACHABLE("bad fragment source form");
++   }
++
++   /* An ALU can read and replace its source register in one operation.
++    * Reuse a last-use scalar operand before allocating another register;
++    * fp_prepare has already separated any earlier write from this read. */
++   for (unsigned i = 0; i < n && i < 3; ++i) {
++      unsigned comp = alu->src[i].swizzle[0];
++      const nir_def *def = fp_peel(alu->src[i].src, &comp);
++      if (comp == 0 && ctx->last_use[def->index] == ctx->instruction_index &&
++          ctx->ssa_slot[def->index] >= 0) {
++         ctx->ssa_slot[alu->def.index] = ctx->ssa_slot[def->index];
++         ctx->ssa_slot[def->index] = -1;
++         break;
++      }
++      /* Fetches and preserved varyings use per-component slots rather than
++       * scalar SSA slots. They can be replaced at their last component use
++       * too, provided the preservation copy has already been emitted. */
++      const nir_instr *parent = nir_def_instr(def);
++      const nir_intrinsic_instr *intr = parent->type == nir_instr_type_intrinsic ?
++         nir_instr_as_intrinsic(parent) : NULL;
++      bool varying = intr && (intr->intrinsic == nir_intrinsic_load_input ||
++                             intr->intrinsic == nir_intrinsic_load_interpolated_input);
++      bool cached = varying || parent->type == nir_instr_type_tex ||
++         (intr && intr->intrinsic == nir_intrinsic_load_output);
++      unsigned row = varying ? nir_intrinsic_base(intr) : 0;
++      if (cached && comp < 4 && (!varying || row < 16)) {
++         unsigned last = varying ? ctx->varying_last_use[row][comp] :
++            ctx->component_last_use[def->index * 4 + comp];
++         int *cache = varying ? &ctx->varying_slot[row][comp] :
++            &ctx->tex_slot[def->index * 4 + comp];
++         if (last == ctx->instruction_index && *cache >= 0) {
++            ctx->ssa_slot[alu->def.index] = *cache;
++            *cache = -1;
++            break;
++         }
++      }
+    }
+ 
+    struct fp_alu_instr out = {
+@@ -1016,6 +1081,55 @@
+    }
+ }
+ 
++/* PSEQ runs before the ALU: copy the fetched pixel in that instruction,
++ * preserving it while blend arithmetic consumes the original source color.
++ */
++static void
++fp_emit_fbfetch(struct fp_nir_ctx *ctx, nir_intrinsic_instr *intr)
++{
++   fp_flush(ctx);
++   unsigned location = nir_intrinsic_io_semantics(intr).location;
++   if (location != FRAG_RESULT_DATA0) {
++      fprintf(stderr, "GRATE FRAG: framebuffer fetch target %u unsupported\n", location);
++      ctx->fp->unsupported = true;
++      return;
++   }
++   struct fp_instr *inst = fp_new_instr();
++   struct fp_alu_instr_packet *pkt = fp_new_packet(ctx->fp);
++   inst->pseq = 0x0080000a | (ctx->color_target << 16);
++   inst->alu_sched.address = list_length(&ctx->fp->alu_instructions);
++   inst->alu_sched.num_instructions = 1;
++   unsigned read = nir_def_components_read(&intr->def);
++   for (unsigned c = 0; c < 4; ++c) {
++      if (!(read & (1u << c)))
++         continue;
++      bool packed = ctx->instruction_index >= ctx->last_row_clobber;
++      unsigned o = c < 3 ? 2 - c : 3;
++      struct fp_alu_dst_operand dst;
++      if (packed) {
++         ctx->tex_slot[intr->def.index * 4 + c] = -2 - c;
++         dst = (struct fp_alu_dst_operand){
++            .index = o / 2, .write_low_sub_reg = !(o & 1),
++            .write_high_sub_reg = o & 1,
++         };
++      } else {
++         unsigned slot = fp_alloc_slot(ctx);
++         ctx->tex_slot[intr->def.index * 4 + c] = slot;
++         dst = (struct fp_alu_dst_operand){
++            .index = fp_reg_for_slot(ctx, slot),
++            .write_low_sub_reg = true, .write_high_sub_reg = true,
++         };
++      }
++      pkt->slots[c] = (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++         .dst = dst,
++         .src = { fp_src_tex(c), fp_src_one(), fp_src_zero(), fp_src_zero() },
++      };
++   }
++   list_addtail(&pkt->link, &ctx->fp->alu_instructions);
++   list_addtail(&inst->link, &ctx->fp->fp_instructions);
++}
++
+ static void
+ fp_emit_intrinsic(struct fp_nir_ctx *ctx, nir_intrinsic_instr *intr)
+ {
+@@ -1029,6 +1143,10 @@
+ 
+    case nir_intrinsic_store_output:
+       fp_emit_store_output(ctx, intr);
++      return;
++
++   case nir_intrinsic_load_output:
++      fp_emit_fbfetch(ctx, intr);
+       return;
+ 
+    default:
+@@ -1159,6 +1277,10 @@
+    struct fp_use_ctx *u = data;
+ 
+    u->ctx->last_use[src->ssa->index] = u->idx;
++   unsigned mask = nir_src_components_read(src);
++   for (unsigned c = 0; c < 4; ++c)
++      if (mask & (1u << c))
++         u->ctx->component_last_use[src->ssa->index * 4 + c] = u->idx;
+    return true;
+ }
+ 
+@@ -1169,6 +1291,12 @@
+    unsigned *slot = &u->ctx->last_use[src->ssa->index];
+ 
+    *slot = MAX2(*slot, u->idx);
++   unsigned mask = nir_src_components_read(src);
++   for (unsigned c = 0; c < 4; ++c)
++      if (mask & (1u << c)) {
++         unsigned *component = &u->ctx->component_last_use[src->ssa->index * 4 + c];
++         *component = MAX2(*component, u->idx);
++      }
+    return true;
+ }
+ 
+@@ -1178,6 +1306,36 @@
+    struct fp_use_ctx *u = data;
+    struct fp_nir_ctx *ctx = u->ctx;
+    unsigned i = src->ssa->index;
++
++   nir_instr *parent = nir_def_instr(src->ssa);
++   nir_intrinsic_instr *intr = parent->type == nir_instr_type_intrinsic ?
++      nir_instr_as_intrinsic(parent) : NULL;
++   bool varying = intr && (intr->intrinsic == nir_intrinsic_load_input ||
++                          intr->intrinsic == nir_intrinsic_load_interpolated_input);
++   bool cached = varying || parent->type == nir_instr_type_tex ||
++      (intr && intr->intrinsic == nir_intrinsic_load_output);
++   unsigned row = varying ? nir_intrinsic_base(intr) : 0;
++   unsigned mask = nir_src_components_read(src);
++   if (cached && (!varying || row < 16)) {
++      for (unsigned c = 0; c < 4; ++c) {
++         unsigned last = varying ? ctx->varying_last_use[row][c] :
++            ctx->component_last_use[i * 4 + c];
++         if (!(mask & (1u << c)) || last != u->idx)
++            continue;
++         int *cache = varying ? &ctx->varying_slot[row][c] : &ctx->tex_slot[i * 4 + c];
++         int slot = *cache;
++         *cache = -1;
++         /* A first use can still have its preservation copy pending. It
++          * must execute before this slot becomes available after flush. */
++         for (unsigned k = 0; k < ctx->num_keep; ++k)
++            if (ctx->keep[k].commit == cache) {
++               slot = ctx->keep[k].slot;
++               ctx->keep[k].commit = &ctx->dead_slot;
++            }
++         if (slot >= 0 && ctx->num_dying < ARRAY_SIZE(ctx->dying))
++            ctx->dying[ctx->num_dying++] = slot;
++      }
++   }
+ 
+    if (ctx->last_use[i] != u->idx || ctx->ssa_slot[i] < 0)
+       return true;
+@@ -1189,7 +1347,7 @@
+ }
+ 
+ void
+-grate_nir_to_fp(struct grate_fp_shader *fp, nir_shader *s)
++grate_nir_to_fp(struct grate_fp_shader *fp, nir_shader *s, unsigned color_target)
+ {
+    list_inithead(&fp->fp_instructions);
+    list_inithead(&fp->alu_instructions);
+@@ -1230,6 +1388,7 @@
+ 
+    struct fp_nir_ctx ctx = { 0 };
+    ctx.fp = fp;
++   ctx.color_target = color_target;
+    for (unsigned r = 0; r < 16; ++r)
+       for (unsigned c = 0; c < 4; ++c) {
+          ctx.varying_slot[r][c] = -1;
+@@ -1249,6 +1408,7 @@
+     * where that is before translating anything.
+     */
+    ctx.last_use = CALLOC(impl->ssa_alloc, sizeof(unsigned));
++   ctx.component_last_use = CALLOC(impl->ssa_alloc * 4, sizeof(unsigned));
+    {
+       unsigned idx = 0;
+       nir_foreach_block(block, impl) {
+@@ -1282,9 +1442,54 @@
+       }
+    }
+ 
++   /* Several loads can name the same varying component. Retire its shared
++    * preservation slot only after the last actual use across all loads. */
++   nir_foreach_block(block, impl) {
++      nir_foreach_instr(instr, block) {
++         if (instr->type != nir_instr_type_intrinsic)
++            continue;
++         nir_intrinsic_instr *intr = nir_instr_as_intrinsic(instr);
++         if (intr->intrinsic != nir_intrinsic_load_input &&
++             intr->intrinsic != nir_intrinsic_load_interpolated_input)
++            continue;
++         unsigned row = nir_intrinsic_base(intr);
++         if (row >= 16)
++            continue;
++         for (unsigned c = 0; c < 4; ++c)
++            ctx.varying_last_use[row][c] = MAX2(ctx.varying_last_use[row][c],
++               ctx.component_last_use[intr->def.index * 4 + c]);
++      }
++   }
++
++   /* R0/R1 are available for the packed destination only after the last
++    * interpolation, texture preservation and SFU operation. Otherwise keep
++    * the ordinary scalar copies. Blend lowering's math uses only the ALU. */
+    unsigned idx = 0;
+    nir_foreach_block(block, impl) {
+       nir_foreach_instr(instr, block) {
++         if (instr->type == nir_instr_type_tex)
++            ctx.last_row_clobber = MAX2(ctx.last_row_clobber,
++               ctx.last_use[nir_instr_as_tex(instr)->def.index]);
++         if (instr->type == nir_instr_type_intrinsic) {
++            nir_intrinsic_instr *intr = nir_instr_as_intrinsic(instr);
++            if (intr->intrinsic == nir_intrinsic_load_input ||
++                intr->intrinsic == nir_intrinsic_load_interpolated_input)
++               ctx.last_row_clobber = MAX2(ctx.last_row_clobber,
++                  ctx.last_use[intr->def.index]);
++         }
++         if (instr->type == nir_instr_type_alu) {
++            nir_op op = nir_instr_as_alu(instr)->op;
++            if (op == nir_op_ffract || op == nir_op_ffloor || op == nir_op_frcp ||
++                op == nir_op_frsq || op == nir_op_fsqrt)
++               ctx.last_row_clobber = MAX2(ctx.last_row_clobber, idx);
++         }
++         idx++;
++      }
++   }
++   idx = 0;
++   nir_foreach_block(block, impl) {
++      nir_foreach_instr(instr, block) {
++         ctx.instruction_index = idx;
+          switch (instr->type) {
+          case nir_instr_type_alu:
+             fp_emit_alu(&ctx, nir_instr_as_alu(instr));
+@@ -1317,6 +1522,7 @@
+    FREE(ctx.ssa_slot);
+    FREE(ctx.tex_slot);
+    FREE(ctx.last_use);
++   FREE(ctx.component_last_use);
+ 
+    /* store what the ALU built up in R2-R3, once, at the end */
+    if (!list_is_empty(&fp->fp_instructions)) {
+--- a/src/gallium/drivers/grate/grate_compiler.h
++++ b/src/gallium/drivers/grate/grate_compiler.h
+@@ -72,7 +72,7 @@
+ 
+ 
+ void
+-grate_nir_to_fp(struct grate_fp_shader *fp, struct nir_shader *s);
++grate_nir_to_fp(struct grate_fp_shader *fp, struct nir_shader *s, unsigned color_target);
+ 
+ void
+ grate_fp_finish(struct grate_fp_shader *fp);
+--- a/src/gallium/drivers/grate/grate_context.h
++++ b/src/gallium/drivers/grate/grate_context.h
+@@ -52,10 +52,12 @@
+ 
+    struct grate_zsa_state *zsa;
+    struct pipe_blend_state *blend;
++   struct pipe_blend_color blend_color;
+    struct grate_rasterizer_state *rast;
+ 
+    struct grate_vertex_shader_state *vshader;
+    struct grate_fragment_shader_state *fshader;
++   struct grate_fs_variant *fs_variant;
+ 
+    struct pipe_sampler_view *sampler_views[GRATE_MAX_SAMPLERS];
+    struct pipe_sampler_state *samplers[GRATE_MAX_SAMPLERS];
+--- a/src/gallium/drivers/grate/grate_draw.c
++++ b/src/gallium/drivers/grate/grate_draw.c
+@@ -252,8 +252,8 @@
+                        TGR3D_PSEQ_CTL_MERGE_REGISTERS |
+                        TGR3D_PSEQ_CTL_REMOVE_KILLED_PIXELS |
+                        TGR3D_PSEQ_CTL_ALLOW_QID_COLLISIONS |
+-                       TGR3D_PSEQ_CTL_MAX_OUT(context->fshader->pseq_max_out) |
+-                       TGR3D_PSEQ_CTL_MIN_OUT(context->fshader->pseq_min_out);
++                       TGR3D_PSEQ_CTL_MAX_OUT(context->fs_variant->pseq_max_out) |
++                       TGR3D_PSEQ_CTL_MIN_OUT(context->fs_variant->pseq_min_out);
+ 
+    /* MIN_OUT starts at bit 14. An IMM command only carries 16 data bits,
+     * silently discarding almost all of that field (even MIN_OUT=4).
+@@ -350,6 +350,9 @@
+    if (!indirect && (!draws[0].count || !info->instance_count))
+       return;
+ 
++   if (!grate_select_fs_variant(context))
++      return;
++
+    err = grate_stream_begin(stream, &ptr);
+    if (err < 0) {
+       grate_loge("grate_stream_begin() failed: %d\n", err);
+--- a/src/gallium/drivers/grate/grate_nir.c
++++ b/src/gallium/drivers/grate/grate_nir.c
+@@ -8,8 +8,42 @@
+  */
+ #include "compiler/nir/nir.h"
+ #include "compiler/nir/nir_builder.h"
++#include "compiler/nir/nir_lower_blend.h"
+ 
+ #include "grate_nir.h"
++#include "grate_program.h"
++
++static bool
++grate_lower_blend_constant(nir_builder *b, nir_intrinsic_instr *intr, void *data)
++{
++   if (intr->intrinsic != nir_intrinsic_load_blend_const_color_rgba)
++      return false;
++   const float *color = data;
++   b->cursor = nir_before_instr(&intr->instr);
++   nir_def *value = nir_imm_vec4(b, color[0], color[1], color[2], color[3]);
++   nir_def_rewrite_uses(&intr->def, value);
++   nir_instr_remove(&intr->instr);
++   return true;
++}
++
++/* Keep destination reads close to the blend math. Fetching before the
++ * source is computed extends both live ranges and consumes row registers. */
++static bool
++grate_sink_fbfetch(nir_builder *b, nir_intrinsic_instr *intr, void *data)
++{
++   if (intr->intrinsic != nir_intrinsic_load_output)
++      return false;
++   nir_index_instrs(b->impl);
++   nir_instr *first = NULL;
++   nir_foreach_use(use, &intr->def) {
++      nir_instr *parent = nir_src_use_instr(use);
++      if (parent->block != intr->instr.block)
++         return false;
++      if (!first || parent->index < first->index)
++         first = parent;
++   }
++   return first && nir_instr_move(nir_before_instr(first), &intr->instr);
++}
+ 
+ /* io is addressed in whole vec4 slots, one per location */
+ static unsigned
+@@ -75,7 +109,7 @@
+ }
+ 
+ void
+-grate_nir_lower_fs(nir_shader *s)
++grate_nir_lower_fs(nir_shader *s, const struct grate_fs_key *key)
+ {
+    NIR_PASS(_, s, nir_lower_vars_to_ssa);
+    NIR_PASS(_, s, nir_lower_returns);
+@@ -89,8 +123,35 @@
+    NIR_PASS(_, s, nir_lower_global_vars_to_local);
+    NIR_PASS(_, s, nir_lower_vars_to_ssa);
+ 
++   NIR_PASS(_, s, nir_lower_fragcolor, 1);
+    NIR_PASS(_, s, nir_lower_io, nir_var_shader_in | nir_var_shader_out,
+             grate_type_size, 0);
++
++   if (!getenv("GRATE_DEBUG_ALPHA_OVER") && key->rt.colormask &&
++       (key->rt.blend_enable || key->rt.colormask != 0xf)) {
++      nir_lower_blend_options options = { 0 };
++      options.rt[0].format = key->format;
++      options.rt[0].colormask = key->rt.colormask;
++      options.rt[0].rgb = (nir_lower_blend_channel){
++         .func = PIPE_BLEND_ADD, .src_factor = PIPE_BLENDFACTOR_ONE,
++         .dst_factor = PIPE_BLENDFACTOR_ZERO,
++      };
++      options.rt[0].alpha = options.rt[0].rgb;
++      if (key->rt.blend_enable) {
++         options.rt[0].rgb = (nir_lower_blend_channel){
++            key->rt.rgb_func, key->rt.rgb_src_factor, key->rt.rgb_dst_factor,
++         };
++         options.rt[0].alpha = (nir_lower_blend_channel){
++            key->rt.alpha_func, key->rt.alpha_src_factor, key->rt.alpha_dst_factor,
++         };
++      }
++      NIR_PASS(_, s, nir_lower_blend, &options);
++      /* The state tracker already lowered the application shader. Blend
++       * lowering introduces fresh lerps, so permit the pass to run again. */
++      s->info.flrp_lowered = false;
++      NIR_PASS(_, s, nir_shader_intrinsics_pass, grate_lower_blend_constant,
++               nir_metadata_control_flow, (void *)key->blend_color);
++   }
+ 
+    /* the ALU has no lerp, only multiply-add */
+    NIR_PASS(_, s, nir_lower_flrp, 32, false);
+@@ -104,8 +165,19 @@
+ 
+    grate_nir_optimize(s);
+ 
++   /* MAD computes the final sum without materializing both products.
++    * Reuse Mesa's contraction pass to reduce live values and instructions. */
++   NIR_PASS(_, s, nir_opt_algebraic_before_ffma);
++   grate_nir_optimize(s);
++   NIR_PASS(_, s, nir_opt_algebraic_late);
++   NIR_PASS(_, s, nir_opt_copy_prop);
++   NIR_PASS(_, s, nir_opt_dce);
++
+    NIR_PASS(_, s, nir_convert_from_ssa, true, false);
+    NIR_PASS(_, s, nir_opt_dce);
++
++   NIR_PASS(_, s, nir_shader_intrinsics_pass, grate_sink_fbfetch,
++            nir_metadata_control_flow, NULL);
+ 
+    nir_index_ssa_defs(nir_shader_get_entrypoint(s));
+ 
+--- a/src/gallium/drivers/grate/grate_nir.h
++++ b/src/gallium/drivers/grate/grate_nir.h
+@@ -9,6 +9,7 @@
+ 
+ /* Bring a fragment shader into the shape the fragment unit can take: scalar
+  * maths, no control flow, varyings resolved to load_input. */
+-void grate_nir_lower_fs(struct nir_shader *s);
++struct grate_fs_key;
++void grate_nir_lower_fs(struct nir_shader *s, const struct grate_fs_key *key);
+ 
+ #endif
+--- a/src/gallium/drivers/grate/grate_program.c
++++ b/src/gallium/drivers/grate/grate_program.c
+@@ -244,26 +244,45 @@
+    return true;
+ }
+ 
+-static void *
+-grate_create_fs_state(struct pipe_context *pcontext,
+-                      const struct pipe_shader_state *template)
+-{
+-   grate_trace();
+-   struct grate_context *context = grate_context(pcontext);
+-   struct grate_fragment_shader_state *so = CALLOC_STRUCT(grate_fragment_shader_state);
++static void
++grate_free_fp(struct grate_fp_shader *fp)
++{
++   list_for_each_entry_safe(struct fp_instr, i, &fp->fp_instructions, link)
++      FREE(i);
++   list_for_each_entry_safe(struct fp_alu_instr_packet, a, &fp->alu_instructions, link)
++      FREE(a);
++   list_for_each_entry_safe(struct fp_mfu_instr, m, &fp->mfu_instructions, link)
++      FREE(m);
++}
++
++static struct grate_fs_variant *
++grate_compile_fs_variant(struct grate_context *context,
++                         struct grate_fragment_shader_state *fs,
++                         const struct grate_fs_key *key)
++{
++   struct grate_fs_variant *so = CALLOC_STRUCT(grate_fs_variant);
+    enum drm_tegra_soc_id soc_id = context->drm->soc_id;
+-
+    if (!so)
+       return NULL;
+-
+-   so->base = *template;
+-
++   so->key = *key;
++   nir_shader *nir = nir_shader_clone(NULL, fs->base.ir.nir);
++   if (!nir) {
++      FREE(so);
++      return NULL;
++   }
+    struct grate_fp_shader fp;
+-
+-   grate_nir_lower_fs(template->ir.nir);
+-   grate_nir_to_fp(&fp, template->ir.nir);
++   grate_nir_lower_fs(nir, key);
++   grate_nir_to_fp(&fp, nir, key->target);
++   if (fp.unsupported) {
++      grate_free_fp(&fp);
++      ralloc_free(nir);
++      FREE(so);
++      return NULL;
++   }
+    bool alpha_over = getenv("GRATE_DEBUG_ALPHA_OVER") != NULL;
+-   if (alpha_over && !grate_debug_alpha_over(&fp, getenv("GRATE_DEBUG_COLOR_RT1") ? 1 : 0)) {
++   if (alpha_over && !grate_debug_alpha_over(&fp, key->target)) {
++      grate_free_fp(&fp);
++      ralloc_free(nir);
+       FREE(so);
+       return NULL;
+    }
+@@ -363,7 +382,11 @@
+       fprintf(stderr, "GRATE FRAG: %d instructions exceeds the 63 the pixel "
+                       "sequencer can address; this shader will render wrong\n",
+               num_fp_instrs);
+-      num_fp_instrs = 63;
++      util_dynarray_fini(&buf);
++      grate_free_fp(&fp);
++      ralloc_free(nir);
++      FREE(so);
++      return NULL;
+    }
+ 
+    /*
+@@ -371,10 +394,13 @@
+     * count: grate's reference shaders use 1 for both a one-EXEC and a two-EXEC
+     * program, and each has exactly one "DW: store".
+     */
++   bool fbfetch = false;
+    int num_dw_instrs = 0;
+-   list_for_each_entry(struct fp_instr, instr, &fp.fp_instructions, link)
++   list_for_each_entry(struct fp_instr, instr, &fp.fp_instructions, link) {
++      fbfetch |= instr->pseq != 0;
+       if (instr->dw.enable)
+          num_dw_instrs++;
++   }
+ 
+    PUSH(host1x_opcode_incr(REG_TGR3D_PSEQ_COMMAND_EVEN(0), 1));
+    // TODO: document/convert the remaining bits
+@@ -383,7 +409,7 @@
+    PUSH(host1x_opcode_incr(REG_TGR3D_PSEQ_DWR_IF_STATE, 1));
+    /* START=0, COUNT=1. Feeding num_dw_instrs in here instead was measured to
+     * change nothing, so the hardware evidently does not want the store count. */
+-   PUSH(TGR3D_PSEQ_DWR_IF_STATE_START(0) | TGR3D_PSEQ_DWR_IF_STATE_COUNT((pseq_read || alpha_over) ? num_fp_instrs : 1));
++   PUSH(TGR3D_PSEQ_DWR_IF_STATE_START(0) | TGR3D_PSEQ_DWR_IF_STATE_COUNT((pseq_read || alpha_over || fbfetch) ? num_fp_instrs : 1));
+ 
+    if (soc_id == DRM_TEGRA_SOC_T114) {
+       // TODO: document/convert these values
+@@ -455,9 +481,9 @@
+       /* the shader names colour target n; the surface it lives in is offset by
+        * however many surfaces come before the colour targets */
+       struct fp_dw_instr dw = instr->dw;
+-      dw.index += context->framebuffer.rt_base;
+-      if (getenv("GRATE_DEBUG_COLOR_RT1"))
+-         dw.index++;
++      dw.index += key->target;
++      if (key->rt.colormask == 0)
++         dw.enable = false;
+       PUSH(grate_fp_pack_dw(&dw));
+    }
+ 
+@@ -474,7 +500,88 @@
+    so->blob.num_commands = buf.size / sizeof(uint32_t);
+    so->blob.commands = buf.data;
+    so->info = fp.info;
++   grate_free_fp(&fp);
++   ralloc_free(nir);
+    return so;
++}
++
++static void *
++grate_create_fs_state(struct pipe_context *pcontext,
++                      const struct pipe_shader_state *template)
++{
++   struct grate_fragment_shader_state *so = CALLOC_STRUCT(grate_fragment_shader_state);
++   if (!so)
++      return NULL;
++   so->base = *template; /* Gallium transfers ownership of the original NIR. */
++   return so;
++}
++
++bool
++grate_select_fs_variant(struct grate_context *context)
++{
++   struct grate_fragment_shader_state *fs = context->fshader;
++   if (!fs)
++      return false;
++   if (context->blend && context->blend->logicop_enable) {
++      fprintf(stderr, "GRATE FRAG: logic operations are not implemented\n");
++      return false;
++   }
++   struct grate_fs_key key;
++   memset(&key, 0, sizeof(key));
++   key.rt.colormask = 0xf;
++   if (context->blend) {
++      const struct pipe_rt_blend_state *rt = &context->blend->rt[0];
++      key.rt.colormask = rt->colormask;
++      key.rt.blend_enable = rt->blend_enable;
++      if (rt->blend_enable) {
++         key.rt.rgb_func = rt->rgb_func;
++         key.rt.rgb_src_factor = rt->rgb_src_factor;
++         key.rt.rgb_dst_factor = rt->rgb_dst_factor;
++         key.rt.alpha_func = rt->alpha_func;
++         key.rt.alpha_src_factor = rt->alpha_src_factor;
++         key.rt.alpha_dst_factor = rt->alpha_dst_factor;
++         memcpy(key.blend_color, context->blend_color.color, sizeof(key.blend_color));
++      }
++   }
++   key.format = context->framebuffer.base.nr_cbufs ?
++      context->framebuffer.base.cbufs[0].format : PIPE_FORMAT_R8G8B8A8_UNORM;
++   key.target = context->framebuffer.rt_base + (getenv("GRATE_DEBUG_COLOR_RT1") ? 1 : 0);
++   struct grate_fs_variant **link = &fs->variants;
++   struct grate_fs_variant *variant;
++   while ((variant = *link)) {
++      if (!memcmp(&variant->key, &key, sizeof(key))) {
++         *link = variant->next;
++         variant->next = fs->variants;
++         fs->variants = variant;
++         context->fs_variant = variant;
++         return true;
++      }
++      link = &variant->next;
++   }
++   variant = grate_compile_fs_variant(context, fs, &key);
++   if (!variant) {
++      fprintf(stderr, "GRATE FRAG: blend variant compilation failed\n");
++      return false;
++   }
++   variant->next = fs->variants;
++   fs->variants = variant;
++   context->fs_variant = variant;
++   if (++fs->num_variants > 32) {
++      /* Constants are part of the key, so animated blend colors must not
++       * grow the cache indefinitely. Keep the 32 most recently used variants.
++       */
++      link = &fs->variants;
++      while ((*link)->next)
++         link = &(*link)->next;
++      FREE((*link)->blob.commands);
++      FREE(*link);
++      *link = NULL;
++      fs->num_variants--;
++   }
++   if (getenv("GRATE_FS_TRACE"))
++      fprintf(stderr, "GRATE FS VARIANT: compiled blend=%u mask=%x cache=%u\n",
++              key.rt.blend_enable, key.rt.colormask, fs->num_variants);
++   return true;
+ }
+ 
+ static void
+@@ -482,12 +589,22 @@
+ {
+    grate_trace();
+    grate_context(pcontext)->fshader = so;
++   grate_context(pcontext)->fs_variant = NULL;
+ }
+ 
+ static void
+-grate_delete_fs_state(struct pipe_context *pcontext, void *so)
+-{
+-   grate_trace();
++grate_delete_fs_state(struct pipe_context *pcontext, void *state)
++{
++   struct grate_fragment_shader_state *so = state;
++   if (!so)
++      return;
++   while (so->variants) {
++      struct grate_fs_variant *v = so->variants;
++      so->variants = v->next;
++      FREE(v->blob.commands);
++      FREE(v);
++   }
++   ralloc_free(so->base.ir.nir);
+    FREE(so);
+ }
+ 
+--- a/src/gallium/drivers/grate/grate_program.h
++++ b/src/gallium/drivers/grate/grate_program.h
+@@ -17,13 +17,30 @@
+    uint16_t output_mask;
+ };
+ 
+-struct grate_fragment_shader_state {
+-   struct pipe_shader_state base;
++struct grate_fs_key {
++   struct pipe_rt_blend_state rt;
++   enum pipe_format format;
++   unsigned target;
++   float blend_color[4];
++};
++
++struct grate_fs_variant {
++   struct grate_fs_key key;
+    struct grate_shader_blob blob;
+    struct grate_fp_info info;
+    unsigned pseq_max_out;
+    unsigned pseq_min_out;
++   struct grate_fs_variant *next;
+ };
++
++struct grate_fragment_shader_state {
++   struct pipe_shader_state base;
++   struct grate_fs_variant *variants;
++   unsigned num_variants;
++};
++
++struct grate_context;
++bool grate_select_fs_variant(struct grate_context *context);
+ 
+ void
+ grate_context_program_init(struct pipe_context *pcontext);
+--- a/src/gallium/drivers/grate/grate_screen.c
++++ b/src/gallium/drivers/grate/grate_screen.c
+@@ -463,6 +463,8 @@
+    .force_indirect_unrolling_sampler = true,
+    .max_unroll_iterations = 32,
+     */
++   .lower_flrp32 = true,
++   .float_mul_add32 = nir_float_muladd_support_has_ffma | nir_float_muladd_support_fuse,
+    .lower_fdiv = true,
+    .no_integers = true,
+ };
+--- a/src/gallium/drivers/grate/grate_state.c
++++ b/src/gallium/drivers/grate/grate_state.c
+@@ -251,7 +251,7 @@
+ grate_set_blend_color(struct pipe_context *pctx,
+                       const struct pipe_blend_color *blend_color)
+ {
+-   grate_unimplemented();
++   grate_context(pctx)->blend_color = *blend_color;
+ }
+ 
+ static void
+@@ -306,14 +306,6 @@
+ static void
+ grate_bind_blend_state(struct pipe_context *pcontext, void *so)
+ {
+-   /*
+-    * Kept, but it changes nothing yet: there is no blending in the register
+-    * set at all - the data write stage offers a logic op and nothing else -
+-    * and the one destination read path the hardware does have (see
+-    * GLOBAL_MEMORY_OUTPUT_READS in grate_draw.c) delivers the destination
+-    * after the fragment program has run, so a shader cannot combine with it.
+-    * Everything therefore draws opaque.
+-    */
+    grate_context(pcontext)->blend = so;
+ }
+ 
+@@ -966,7 +958,7 @@
+    uint32_t cull_face_linker_setup;
+ 
+    emit_shader(stream, ptrp, &context->vshader->blob);
+-   emit_shader(stream, ptrp, &context->fshader->blob);
++   emit_shader(stream, ptrp, &context->fs_variant->blob);
+ 
+    cull_face_linker_setup = TGR3D_SU_PARAM_SUBPIX_XOFF(0x38) |
+                             TGR3D_SU_PARAM_SUBPIX_YOFF(0x38) |
+@@ -977,7 +969,7 @@
+    cull_face_linker_setup |= context->rast->cull_face[context->y_invert];
+ 
+    /* depends on linking */
+-   struct grate_fp_info *info = &context->fshader->info;
++   struct grate_fp_info *info = &context->fs_variant->info;
+    cull_face_linker_setup |= TGR3D_SU_PARAM_LAST_INST(0 < info->num_inputs ?
+                                                       (info->num_inputs - 1) : 0);
+ 

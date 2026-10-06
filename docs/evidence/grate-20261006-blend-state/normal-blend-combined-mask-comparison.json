@@ -1,0 +1,16 @@
+{
+  "hardware_renderer": "Tegra",
+  "software_renderer": "softpipe",
+  "tolerance": 2,
+  "expected_samples": 1107,
+  "hardware_samples": 1107,
+  "software_samples": 1107,
+  "coverage_complete": true,
+  "logs_valid": true,
+  "passing": 1107,
+  "failing": 0,
+  "failed": {},
+  "hardware_diagnostics": [],
+  "software_diagnostics": [],
+  "pass": true
+}

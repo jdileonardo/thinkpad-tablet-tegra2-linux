@@ -280,9 +280,9 @@ destination, then adds both contributions on the GPU. Alpha uses source factor
 ONE and destination factor ONE_MINUS_SRC_ALPHA. This follows the existing
 opentegra equation with separate pipeline instructions for temporary feedback.
 `GRATE_DEBUG_ALPHA_OVER=1` enables the probe; it does not yet follow dynamic
-Gallium blend state, other equations/factors or color masks. Ordinary
-`glEnable(GL_BLEND)` still fails its control check. Do not promote this to
-normal desktop blending before implementing and checking shader variants.
+Gallium blend state, other equations/factors or color masks. At that checkpoint,
+ordinary `glEnable(GL_BLEND)` still failed its control check. The subsequent
+normal-state implementation is recorded below.
 
 `gpu-blend-check` contains 99 sampled results covering overlapping primitives
 in one draw, separate draws, six layers, transparent destinations, five alpha
@@ -298,11 +298,74 @@ of 33,33,64,255 with no GL error. The earlier intermittent texture issue remains
 `libgallium-26.2.3.so`; `tegra_dri.so` is its loader stub. The new checkpoint
 hashes both and checks the actual Gallium ELF against the live tablet.
 
-The next work is cached shader variants driven by blend state, additional blend
-factors/equations/masks, and native presentation. The inspected opentegra source
+The following work was cached shader variants driven by blend state, additional
+blend factors/equations/masks, and native presentation. The inspected opentegra source
 still lacks DRI3. Desktop integration, stability and the final OS image remain
 unverified. XFCE and Wi-Fi remain running; touch configuration and boot setup
 have not changed, and physical touch was not retested in this GPU investigation.
+
+## Normal GL blend-state integration
+
+Patch 0015 now follows ordinary Gallium blend state. It clones the original
+fragment NIR, lowers factors, separate RGB/alpha equations and color masks with
+Mesa's `nir_lower_blend`, and caches the compiled shader using blend state,
+blend color, render-target format and target index. The per-shader LRU holds
+at most 32 variants; command buffers, temporary compiler IR and cloned NIR are
+released. Disabled blending and zero color masks retain their normal semantics.
+No `GRATE_DEBUG_ALPHA_OVER` or target override is required for this path.
+
+The compiler reuses the verified PSEQ destination read. It keeps fetched
+normalized channels as packed FX10 in R0/R1 when all interpolation, texture
+preservation and SFU work has finished; R2/R3 remain the color output. When
+later work can overwrite R0/R1, it uses scalar preservation instead. Cached
+varying/texture components are retired after their last use, and an ALU result
+can reuse its last-use source register. Mesa's multiply-add contraction pass
+reduces both register pressure and instruction count.
+
+These changes address failures exposed by the first normal-state tests:
+`nir_lower_blend` introduced lerps into NIR already marked as lowered, and
+the optimizer could recreate them without the driver's lowering option.
+Holding source, destination and intermediate values also exceeded the global
+register file in several blend equations. Merely increasing ALU buffer rows
+did not fix the generated shaders: existing opentegra assembly also accounts
+for pipeline register positions. This patch retains the verified one-row
+configuration. Broader spill scheduling remains an unverified limitation.
+
+On the tablet, `gpu-blend-check --state` now compares **1,107 samples** with
+the identical softpipe executable, with zero failures and a maximum channel
+difference of two. It covers all 15 tested GLES2 source factors, 14 destination
+factors, ADD/SUBTRACT/REVERSE_SUBTRACT with separate equations, all 16 RGBA
+masks with blending both enabled and disabled, enable/disable transitions,
+40 blend constants and cache eviction/reuse, and RGBA/RGB framebuffer switches.
+The original overlap, six-layer, transparency, shared-edge, varying and texture
+tests remain included. Trace output confirms the cache never exceeds 32 entries;
+an evicted constant is recompiled and recent constants are reused.
+
+Three additional runs of the preceding 945-sample probe all pass using the
+same Gallium ELF, without trace or debug overrides. The 367-sample shader/SFU/
+texture regression also passes three times; matrix and textured-quad checks
+retain their expected pixels and report no GL errors. The earlier intermittent
+NPOT failure remains a stability concern despite these passing runs.
+
+Build hashes, comparisons and device transcripts are preserved in
+[gpu-blend-state-checkpoint.json](gpu-blend-state-checkpoint.json) and
+`docs/evidence/grate-20261006-blend-state/`. The installed Gallium ELF and build
+metadata match the host artifact. System Mesa, kernel, SD boot configuration
+and touch configuration are unchanged; XFCE and Wi-Fi remain running and
+N-Trig input nodes are present. Physical touch and rotation were not retested.
+
+The next integration step is native accelerated presentation and a real
+compositor. The Mesa 26 candidate has DRI3 but no DRI2 X11 hardware path,
+while opentegra provides DRI2. Native candidate X11 currently falls back to
+softpipe. Graphics memory pressure, additional shader/framebuffer coverage,
+complete dependency pinning, image packaging and device boot/input validation
+also remain. Normal blend support alone does not complete GPU bring-up.
+
+```sh
+su julian -c 'INDIGO_MESA_REVISION=ad06de32d309 /usr/local/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/gpu-blend-check --state'
+su julian -c 'LIBGL_ALWAYS_SOFTWARE=1 GBM_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=softpipe INDIGO_MESA_REVISION=ad06de32d309 /usr/local/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/gpu-blend-check --state'
+python3 scripts/compare_grate_fptest.py HW.log CPU.log --expected-samples 1107 --tolerance 2 --output comparison.json
+```
 
 ## Building
 

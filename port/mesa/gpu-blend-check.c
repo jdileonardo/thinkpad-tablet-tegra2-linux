@@ -66,8 +66,122 @@ static void sample(const char *name)
         }
 }
 
-int main(void)
+static void state_cases(GLuint color, GLuint buffer)
 {
+    /* Use the same linked program and FBO for state changes and cache reuse.
+     * A full-screen quad makes every sampled pixel exercise the equation. */
+    const GLfloat quad[] = {-1,-1, .65,.35,.2,.4, 1,-1, .65,.35,.2,.4,
+                           -1,1, .65,.35,.2,.4, 1,1, .65,.35,.2,.4};
+    vertices(buffer, quad, 4);
+    glUseProgram(color);
+    glClearColor(.25, .5, .75, .6);
+    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+    glEnable(GL_BLEND);
+    glBlendEquation(GL_FUNC_ADD);
+    glBlendColor(.2, .4, .7, .3);
+    const GLenum factors[] = {
+        GL_ZERO, GL_ONE, GL_SRC_COLOR, GL_ONE_MINUS_SRC_COLOR,
+        GL_DST_COLOR, GL_ONE_MINUS_DST_COLOR, GL_SRC_ALPHA,
+        GL_ONE_MINUS_SRC_ALPHA, GL_DST_ALPHA, GL_ONE_MINUS_DST_ALPHA,
+        GL_CONSTANT_COLOR, GL_ONE_MINUS_CONSTANT_COLOR,
+        GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA, GL_SRC_ALPHA_SATURATE,
+    };
+    char name[48];
+    for (unsigned i = 0; i < sizeof(factors) / sizeof(factors[0]); ++i) {
+        glBlendFuncSeparate(factors[i], GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        snprintf(name, sizeof(name), "src_factor_%u", i);
+        sample(name);
+        /* SRC_ALPHA_SATURATE is a source-only factor in GLES2. */
+        if (factors[i] == GL_SRC_ALPHA_SATURATE) continue;
+        glBlendFuncSeparate(GL_SRC_ALPHA, factors[i], GL_ONE, factors[i]);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        snprintf(name, sizeof(name), "dst_factor_%u", i);
+        sample(name);
+    }
+    const GLenum equations[] = {GL_FUNC_ADD, GL_FUNC_SUBTRACT, GL_FUNC_REVERSE_SUBTRACT};
+    glBlendFuncSeparate(GL_ONE, GL_ONE, GL_ONE, GL_ONE);
+    for (int i = 0; i < 3; ++i) {
+        glBlendEquationSeparate(equations[i], equations[2 - i]);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        snprintf(name, sizeof(name), "equation_%d", i);
+        sample(name);
+    }
+    glBlendEquation(GL_FUNC_ADD);
+    glDisable(GL_BLEND);
+    for (unsigned i = 0; i < 16; ++i) {
+        glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glColorMask(i & 1, (i >> 1) & 1, (i >> 2) & 1, (i >> 3) & 1);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        snprintf(name, sizeof(name), "mask_%u", i);
+        sample(name);
+    }
+    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    for (int i = 0; i < 3; ++i) {
+        if (i == 1) glEnable(GL_BLEND); else glDisable(GL_BLEND);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        snprintf(name, sizeof(name), "enable_%d", i);
+        sample(name);
+    }
+    glEnable(GL_BLEND);
+    glBlendFuncSeparate(GL_CONSTANT_COLOR, GL_ONE_MINUS_CONSTANT_COLOR,
+                        GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
+    /* More unique colors than the 32-entry variant cache, followed by
+     * revisits to evicted and recent keys; each variant must be correct. */
+    for (int i = 0; i < 43; ++i) {
+        int k = i < 40 ? i : (i == 40 ? 0 : i == 41 ? 19 : 39);
+        glBlendColor(k / 40.f, .4, .7, (40 - k) / 40.f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        snprintf(name, sizeof(name), "constant_%d", i);
+        sample(name);
+    }
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    for (unsigned i = 0; i < 16; ++i) {
+        glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glColorMask(i & 1, (i >> 1) & 1, (i >> 2) & 1, (i >> 3) & 1);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        snprintf(name, sizeof(name), "blend_mask_%u", i);
+        sample(name);
+    }
+    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+    GLint original_fbo;
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &original_fbo);
+    GLuint rgb, rgb_fbo;
+    glGenTextures(1, &rgb);
+    glBindTexture(GL_TEXTURE_2D, rgb);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 64, 64, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glGenFramebuffers(1, &rgb_fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, rgb_fbo);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, rgb, 0);
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+        fprintf(stderr, "FRAMEBUFFER_FAIL rgb\n");
+        exit(1);
+    }
+    glClear(GL_COLOR_BUFFER_BIT);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    sample("format_rgb");
+    glBindFramebuffer(GL_FRAMEBUFFER, original_fbo);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    sample("format_rgba_restored");
+    glDeleteFramebuffers(1, &rgb_fbo);
+    glDeleteTextures(1, &rgb);
+}
+
+int main(int argc, char **argv)
+{
+    if (argc > 2 || (argc == 2 && strcmp(argv[1], "--state"))) {
+        fprintf(stderr, "Usage: gpu-blend-check [--state]\n");
+        return 1;
+    }
     setbuf(stdout, NULL);
     setenv("EGL_PLATFORM", "surfaceless", 0);
     EGLDisplay display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
@@ -161,6 +275,7 @@ int main(void)
     glClear(GL_COLOR_BUFFER_BIT);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     sample("texture_alpha");
+    if (argc == 2) state_cases(color, buffer);
     glFinish();
     glDeleteProgram(color); glDeleteProgram(textured);
     glDeleteBuffers(1, &buffer); glDeleteFramebuffers(1, &fbo);
