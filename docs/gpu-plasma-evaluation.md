@@ -127,7 +127,12 @@ ordinary device transfers/readouts work with the lock.
 
 ## Remaining work
 
-Prioritize the reproduced RGB565 rendering failure, then KWin's 3D-texture
+The user subsequently chose XFCE for a calendar and Spotify-controller workload
+on 2026-10-06. The [current desktop plan](development-workflow.md#desktop-target-and-priorities)
+supersedes the Plasma-oriented priorities below. These findings remain open;
+they do not all need to be resolved to deliver the XFCE target.
+
+If Plasma evaluation resumes, prioritize the reproduced RGB565 rendering failure, then KWin's 3D-texture
 requirement and shader compatibility. Follow with native KWin, accelerated
 Qt/Plasma, sustained frame swaps, meaningful performance measurements and
 Wayland input/rotation integration. Existing client-array and intermittent

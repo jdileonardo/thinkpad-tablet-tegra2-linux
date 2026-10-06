@@ -5,7 +5,33 @@
 The [native Wayland evaluation](gpu-plasma-evaluation.md) verifies direct display
 and hardware Wayland clients using 32-bit buffers. RGB565 rendering and KWin's
 3D-texture requirement are current blockers; Plasma/KWin remain unvalidated.
-The ordinary XFCE configuration is the recovery desktop.
+The ordinary XFCE configuration is the intended desktop and the recovery path.
+
+## Desktop target and priorities
+
+On 2026-10-06 the user chose to focus on XFCE. The intended docked workload is
+displaying a calendar and eventually controlling Spotify playback. Application
+choices, calendar source and the Spotify playback device remain undecided.
+Local Spotify audio playback is not currently a requirement.
+
+Prioritize the working XFCE session on the tablet's approximately 1 GB of RAM:
+
+1. Establish an idle memory/CPU baseline and check sustained desktop operation,
+   touch, rotation and Wi-Fi. Investigate the observed Xorg CMA allocation
+   failures before claiming long-term graphics stability.
+2. Integrate the verified system into a reproducible SD image. Experimental
+   graphics installations and packages should be included only when they are
+   needed and validated for the intended workload.
+3. Select and test calendar and Spotify-control applications against the actual
+   services, measuring responsiveness and memory pressure on the tablet.
+4. Configure reliable startup into the selected display/controller workflow,
+   then evaluate host-independent boot and eventual internal installation.
+
+Plasma, KWin's 3D-texture requirement and native Wayland integration are deferred.
+Continue GPU work where it improves XFCE or the chosen applications; RGB565 and
+other reproduced driver defects remain documented rather than prerequisites
+for this desktop target. Battery reporting and pen testing remain follow-ups
+under the user's existing docked-use and pen-battery constraints.
 
 The current boot has three parts:
 
@@ -21,7 +47,7 @@ kernel changes require rebuilding the RAM payload and booting it again.
 
 ## Workflow for the next bring-up work
 
-Keep RAM boot and the SD root while testing native Wayland and KWin. This
+Keep RAM boot and the SD root while validating XFCE and its applications. This
 allows kernel rollback without changing the internal bootloader and keeps
 the working XFCE desktop available between reversible graphics trials.
 
@@ -47,7 +73,7 @@ not yet included in the exported image.
 
 On 2026-10-06 the user said they are willing to flash internal storage
 eventually. No internal flash is part of this checkpoint. Internal installation
-does not resolve the outstanding GPU or Plasma compatibility work.
+does not resolve outstanding graphics defects or validate application behavior.
 
 First make the candidate reproducible on a fresh SD image and verify the
 intended desktop, recovery path and repeated boots. Then inspect the tablet's
