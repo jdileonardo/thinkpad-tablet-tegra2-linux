@@ -1,0 +1,32 @@
+
+~ # [6nsh -c 'su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority time
+out -s KILL 25 /tmp/indigo-dri3/dri3-share-check > /tmp/dri3-share-first.log 2>&
+1'"'"'; cat /tmp/dri3-share-first.log; pidof Xorg; apk policy weston weston-clie
+nts; dmesg | tail -15'
+DRI3=1.0
+size=8x8 stride=32 bytes=4096 depth=24 bpp=32
+mmap: Permission denied
+24812
+weston policy:
+  16.0.0-r0:
+    https://dl-cdn.alpinelinux.org/alpine/edge/community
+weston-clients policy:
+  16.0.0-r0:
+    https://dl-cdn.alpinelinux.org/alpine/edge/community
+[24996.100443] Xorg (1603): drop_caches: 1
+[24996.100598] drm drm: failed to allocate buffer of size 132710400: -12
+[24996.100815] drm drm: failed to allocate buffer of size 132710400: -12
+[58316.912911] drm drm: failed to allocate buffer of size 132710400: -12
+[58316.981307] Xorg (1603): drop_caches: 1
+[58316.981454] drm drm: failed to allocate buffer of size 132710400: -12
+[58316.981659] drm drm: failed to allocate buffer of size 132710400: -12
+[59769.274437] [drm:tegra_drm_copy_and_patch_cmdstream] *ERROR* invalid class id 0x0 (process:gpu-present-che pid:891)
+[59769.496227] [drm:tegra_drm_copy_and_patch_cmdstream] *ERROR* invalid class id 0x0 (process:gpu-present-che pid:891)
+[59769.759795] [drm:tegra_drm_copy_and_patch_cmdstream] *ERROR* invalid class id 0x0 (process:gpu-present-che pid:891)
+[61175.332910] drm drm: failed to allocate buffer of size 132710400: -12
+[61175.455374] Xorg (16502): drop_caches: 1
+[61175.455535] drm drm: failed to allocate buffer of size 132710400: -12
+[61175.455815] drm drm: failed to allocate buffer of size 132710400: -12
+[61175.678286] drm drm: failed to allocate buffer of size 132710400: -12
+~ # [6n
+Captured 1719 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T140358Z.txt

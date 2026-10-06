@@ -1,0 +1,12 @@
+
+~ # [6nsha256sum /lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/input/evdev.ko /
+lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/hid/hid-generic.ko /lib/modules
+/7.0.1-nura-indigo-ram/kernel/drivers/hid/usbhid/usbhid.ko /lib/modules/7.0.1-nu
+ra-indigo-ram/kernel/drivers/reset/reset-gpio.ko; sync; /usr/local/sbin/reboot-i
+nto-apx
+19c41181b490b96a86f046e620487b110715b0a8c9db18d5ae6cbd9a6fcb90d3  /lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/input/evdev.ko
+c2c8c5eac58dd941dd75ff1215f6fdccf550092f3d1e76aed03ec85d9899c274  /lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/hid/hid-generic.ko
+c7de6638beedfa8177fa27bc169acff07080025f7cb59e233ade52d8c4ea8466  /lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/hid/usbhid/usbhid.ko
+c6554ace207a3dc3e027ba96b45280d4ffd5489285d02563676c4205430958f2  /lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/reset/reset-gpio.ko
+
+Captured 890 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T141204Z.txt

@@ -1,0 +1,182 @@
+{
+  "date_utc": "2026-10-06",
+  "device": "ThinkPad Tablet Indigo Tegra20",
+  "kernel": "7.0.1-nura-indigo-ram #3",
+  "kernel_build": {
+    "source_commit": "bfffc6d6656e87f3de3aa4c09d852849081ef088",
+    "source_diff_sha256": "c8f1becf54d908bf06abe3df50150a35119be5e9b4e6c58cc7168c2642acc142",
+    "patches": {
+      "0001-panel-simple-add-indigo-panel.patch": "b5b4a8f693fed7f3fed3d412d115ce6ea84c7051ef2df15872d9d47d293cfc4e",
+      "0002-grate-sync-only-streaming-dma-bufs.patch": "3119d039bb78f2d7f57531a50c7402a10081bad82130b99f43350bb3e52ca337"
+    },
+    "dts_sha256": "502968c5fcfb73790eec3ad1774c2cecf22d7fcbada2fabefc7d569bb7a4f678",
+    "config_sha256": "7a9e9f5119960e68d83fee13ba552540dbebc99339e9d166ef63824af6add7f8",
+    "zimage_sha256": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
+    "dtb_sha256": "b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b",
+    "payload_sha256": "cc0ac12d9cc0c0c989d7f75c646b83abbec9fa7296c5e9e5aab84561b8496d08",
+    "build_script_sha256": "bf04c13f5ffad28398b08167f53831568259fa37909266fb6d3ac58f4fa7c69a",
+    "prepare_script_sha256": "a07a24901124a065d76d3880e93ed676bde44650c6b33447423c391a9b875ac3",
+    "compiler": "Alpine Clang 23.1.2, LLD 23.1.2",
+    "build": "#3 SMP Tue Oct 6 14:10:41 UTC 2026",
+    "installed_module_hashes": {
+      "lib/modules/7.0.1-nura-indigo-ram/extra/ntrig_indigo.ko": "d3b5dade596b88b9f668e3ec4305ddc225f91e3cd2c413237209120897e5e0d6",
+      "lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/input/evdev.ko": "19c41181b490b96a86f046e620487b110715b0a8c9db18d5ae6cbd9a6fcb90d3",
+      "lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/hid/hid-generic.ko": "c2c8c5eac58dd941dd75ff1215f6fdccf550092f3d1e76aed03ec85d9899c274",
+      "lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/hid/usbhid/usbhid.ko": "c7de6638beedfa8177fa27bc169acff07080025f7cb59e233ade52d8c4ea8466",
+      "lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/reset/reset-gpio.ko": "c6554ace207a3dc3e027ba96b45280d4ffd5489285d02563676c4205430958f2"
+    },
+    "full_dependency_pinning": false
+  },
+  "mesa_source_commit": "ad06de32d309506c48e4169a15f56e2f95e9712d",
+  "gallium_driver_sha256": "4f15e3d2837c312bca89b3c1ece10cf6db1b926b596c5e64ef74487f453283b2",
+  "mesa_artifact_sha256": "f4b3d5ba640207ef7ed150604fa6d30cf96ef7dfae4742c4c65b6da6dd531768",
+  "mesa_checkpoint": "gpu-dri3-checkpoint.json",
+  "opentegra_build": {
+    "source_commit": "f78958d37c80b22de66f41167ec39339035f43d0",
+    "source_diff_sha256": "b538c12a38f6a5bce2234d94f422012048bfc288f9a891a0ea97b52db9df8889",
+    "patches": {
+      "0001-add-linear-dri3-and-present-copy-path.patch": "e31d3f4dbf28a11d451e3cc650ef22057c794a8b5ee1ae063352916d2eee97aa",
+      "0002-export-read-write-dma-buf.patch": "158a2d635fb58c504a25420e9668eee9dd18fb3f1c89e6c2b14b6ee46a2cebdc"
+    },
+    "module_sha256": "8b2ff35427379cec8e8b87de35235090e197e91c495a22f5f4bfb3a444b5e24d",
+    "probe_sha256": "f47fdb842a2fac81759dc9eb7c091fe7343a4014c831a9632974cc8129a18277",
+    "probe_source_sha256": "5d98793acc47fa6598fde4ec290c93e350895d2390fb35dba7ac0a99d047a362",
+    "sharing_probe_sha256": "e0aef1daebcf8ba95cb00ae9bb06d79e2f7092aa832bc6e5a621f632c4b0c2ee",
+    "sharing_probe_source_sha256": "7c1f793ca83baa656acb71dc7d9e804ada4637da0fb6ad69471382af4429f8e4",
+    "capture_probe_sha256": "6be585fd76f51c5e820911f0dcf00392063e6b32cf4e54c847184c921ba4a1a3",
+    "capture_probe_source_sha256": "46a22a1e546e2c2b8e5fb41a6b4a2f43c47a8c542bc44840823675ef42335a7a",
+    "compositor_probe_sha256": "66f96809ba53ae94e6b397b900a55965a8b8dcd4acc9052c553d295ff327f3d9",
+    "compositor_probe_source_sha256": "fbc692376e6454ad8ffa9cc1e06b8a2142de8db869640194208b750acbeefc9b",
+    "xdg_shell_protocol_sha256": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+    "builder_sha256": "f5229d7de8819b6daa9eb928281c6a9d7870c6607308c64f7d2975e3988fe49b",
+    "dockerfile_sha256": "f068f2e700728488f1a547f9f755ad4987b65d2fd68d1127c410951afdd0e62c",
+    "sdk_package_database_sha256": "e7ed6a989d371456f09d85342fef8f0235dd5920a20e00dcc225eeaa91685e73",
+    "compiler_flags": "-O2 -march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=hard",
+    "full_dependency_pinning": false,
+    "presentation": "DRI3 v1 linear buffers and Present copy with fake vblank; no page flips"
+  },
+  "weston_packages": {
+    "libweston": "16.0.0-r0",
+    "weston": "16.0.0-r0",
+    "weston-clients": "16.0.0-r0",
+    "weston-backend-x11": "16.0.0-r0",
+    "weston-shell-desktop": "16.0.0-r0"
+  },
+  "renderer": "GL renderer Tegra, vendor Grate, GLES 2.0 Mesa 26.2.3",
+  "trial_runner_sha256": "817b532e543ee95d4f5ccbeaf742bcf98f8d28583bac2bb8d9022f550384a6c8",
+  "tested_runner_sha256": {
+    "weston-final-hw1": "66798f58afa528d8154d7169251c1706a97ec852e601845de2937616e9207efe",
+    "weston-final-hw2": "bb7d3fc28c8da1c1bee2dcfc7cb33aa8bd11d93d5f08d1a47b36df51b60a89e2",
+    "weston-fixed-cpu3": "33ae1fd41210d83c2931d880874859d86ee81065eb9c2c3df56493e968b0fd77"
+  },
+  "results": {
+    "hardware_compositor": {
+      "hardware_runs": 2,
+      "frames_per_run": 12,
+      "pixel_samples_per_run": 48,
+      "software_reference_samples": 48,
+      "sample_logs_identical": true,
+      "captures_byte_identical": true,
+      "capture_size": [
+        640,
+        480
+      ],
+      "capture_colors": [
+        [
+          24576,
+          [
+            255,
+            128,
+            128
+          ]
+        ],
+        [
+          282624,
+          [
+            255,
+            0,
+            0
+          ]
+        ]
+      ],
+      "tolerance": 2
+    },
+    "buffer_sharing": "87/87 across three sizes, repeated twice on final kernel",
+    "native_presentation": "6/6 Xorg pixels at 800x1280, renderer Tegra",
+    "kernel": "no post-fix kernel faults; taint 12288 retains only existing out-of-tree/unsigned module bits",
+    "final_desktop": "XFCE with original Xorg module path; Wi-Fi ping succeeds; portrait 800x1280 left; touch/pen/GPIO enumerate"
+  },
+  "scope_limits": {
+    "nested_x11_compositor_verified": true,
+    "native_drm_wayland_verified": false,
+    "accelerated_wayland_clients_verified": false,
+    "plasma_mobile_verified": false,
+    "physical_touch_rotation_retested": false,
+    "default_system_driver_promoted": false,
+    "full_dependency_pinning": false,
+    "full_goal_complete": false
+  },
+  "preserved_failures": [
+    "read-only DMA-BUF export fixed",
+    "pre-fix coherent-buffer cache synchronization caused bad-page flags; fixed kernel tested after clean APX boot",
+    "early samples caught startup fade; software update test needs frame callbacks",
+    "one hardware repeat interrupted by auto restore; runner now guards remaining time",
+    "Weston shutdown logs finalizing a layer with views still on it in hardware and software"
+  ],
+  "remaining": [
+    "native Wayland and accelerated Wayland client interoperability",
+    "Plasma/KWin compatibility",
+    "sustained unpaced presentation, memory pressure and performance",
+    "prior NPOT/stale frame and specific client-array submission errors",
+    "Weston termination warning",
+    "pin package/container dependencies and integrate private GPU builds into exported SD image",
+    "physical touch/rotation confirmation; pen and battery deferred"
+  ],
+  "evidence_sha256": {
+    "comparison.json": "277c960c59189f28f4d738a3366ff37b1426fcac526d50b7ab3b4899fc15c7e8",
+    "dma-sync-native-presentation.log": "124c4df1c033ca9d537b512b86598631dfdea489d5f9ebb77bbd2243f6d3e922",
+    "dma-sync-reboot-apx.txt": "33491171560865028a63f351357361259c86cef8d7705a96a4d0e1e49448e4d4",
+    "dma-sync-share-console.txt": "a72e31e713e304f3be78ccea5f6c29ea1df462fa64e5b517bbb404245f10ceb5",
+    "dma-sync-share-repeat.log": "cd635ad4c39346835587c278b733d5a1ddfd0a7de6d74d9647e507050093b32c",
+    "dma-sync-share.log": "cd635ad4c39346835587c278b733d5a1ddfd0a7de6d74d9647e507050093b32c",
+    "dri3-share-first-console.txt": "c30baabbbd04c796b1484a47ce161f396067244c377b7a5b8444b3481b4207f2",
+    "dri3-share-rw-console.txt": "03276f1ffbcb08cbf0a1dc5279e8071d34346995fc143cd4cf4adf7f51f5b217",
+    "dri3-share-weston-dmesg.log": "ebbdbf7e30e5b3a60914da710853a06160c159010851214a7b2927311cc68f85",
+    "kernel-build.json": "04213884950c6f05955148b3ccade4221823393766a8fdb26696fbf0be9269c7",
+    "kernel-payload-manifest.json": "aa89b3e0c3bf2ea2a620e551edafa96218db057c84b82196032b55db5b7025bc",
+    "nura-dma-sync-clean-boot.txt": "fb0c882a803a4df83f7c8808d38b53c59da2a55e66fe171ec6cb10541349c552",
+    "nura-dma-sync-fix-apx-download.txt": "417e9f973985bae50a157b8e88a0e4ee39692d0e83bcfa63c3021d82f450af45",
+    "nura-dma-sync-fix-build.txt": "207681d8a191a22f3a88c32b97d20e29612c537ae4380c3a0eecdc9ed63470cc",
+    "opentegra-build.json": "8462fb3945f322319bd704ae1fc7012d412395ec765fe9e3fc88aabd05145ce9",
+    "pre-clean-boot.txt": "b9d7e12da51f1943d6e796d652f7c2068481d5c4bcb380817e9d389ad46b8d5a",
+    "tablet-raw-evidence.tar.gz": "c575097c2bed6b1a1e0344056e7bd43e328992f2fb48a410f788a8341321aa3a",
+    "weston-final-desktop-ready.txt": "5522a6a18ac2d7ed6a48d3ffc3ae0fbcbe898ddbbdb4c5e1925c9c9434a21db0",
+    "weston-final-dmesg.log": "314d963454204a6e24327c4a1a15242aff8a3cf27e056bfe28ccd4c8f850909a",
+    "weston-final-hw1-trial.log": "6a04161ddd313820c503229a1a15e1f2815828dd9a75b93a372ce64d0ffb5ae9",
+    "weston-final-hw1.log": "55e61864eba803cbf1ee89e00f7ccb499d80f85d0482fd11c85ef4dd2a034c32",
+    "weston-final-hw1.pixels.log": "57325be511fe2bf96239c1f6963e64add207c90fe181c81ce16d2926cdf00927",
+    "weston-final-hw1.stderr.log": "5aa246d4266af395770ec5630632e9b336725b13567399a824ff15a287e028c3",
+    "weston-final-hw2-trial.log": "b0039ea6d7b4f15372cd16da2105a041899e5972524d400c27f4bfb435e68dec",
+    "weston-final-hw2.log": "acafe6126544059ac25d40b4dc58d3e5e912c7253829afe2e9db4274cb029564",
+    "weston-final-hw2.pixels.log": "57325be511fe2bf96239c1f6963e64add207c90fe181c81ce16d2926cdf00927",
+    "weston-final-hw2.stderr.log": "5aa246d4266af395770ec5630632e9b336725b13567399a824ff15a287e028c3",
+    "weston-final-regressions.txt": "89aaa62ed59f39dc75db584bf4a0ccc44d7d945a133fc102bbbf3955dc204e86",
+    "weston-final-restored.txt": "2c6552d45d6d753d64d755315ec6fa4389a504ca11aa81d6cb3e81e19bfb7b26",
+    "weston-final-trial.txt": "62e18e9f1322ad1c0d02b33d5edab2e9aa31c2fb52248a6976831618c05572b5",
+    "weston-final-xorg.log": "689559a61127eb691c528f0210161dbaae2fc1483f35fcd21bb63be65b52264d",
+    "weston-final.png": "e07a57a1800767804856d861f31ac6b707d078db8956175e786b57902721ea8c",
+    "weston-fixed-cpu1.log": "be6bdd062575acdd56db2d804d48fa27eed3eb2cb3f9ff48f0d913dc118fc383",
+    "weston-fixed-cpu1.pixels.log": "023f8215b7c931f834d11ed235200b5ee8b3cc980a1579f8a272542c0d745a09",
+    "weston-fixed-cpu2.log": "ad0d7a78521976d2c529d035ae31a60407d095914cc786b1906738e589caed2c",
+    "weston-fixed-cpu2.pixels.log": "b73d4bfeba9bd0339cfb1daf21d4dd1b8301b467e51ad0b3456c1de61320f13b",
+    "weston-fixed-cpu3.log": "4d15b8772db606c0098197d4a537809617b0de5d954e7447bda73e60acd3050f",
+    "weston-fixed-cpu3.pixels.log": "57325be511fe2bf96239c1f6963e64add207c90fe181c81ce16d2926cdf00927",
+    "weston-fixed-hw1.log": "1683e7feae82d7baaaab12db2263ce1fbe331d5b0682c837c9ef5c80dd30187c",
+    "weston-fixed-hw1.pixels.log": "023f8215b7c931f834d11ed235200b5ee8b3cc980a1579f8a272542c0d745a09",
+    "weston-fixed-hw1.stderr.log": "5aa246d4266af395770ec5630632e9b336725b13567399a824ff15a287e028c3",
+    "weston-fixed-hw3-trial.log": "d83d6ec657db8d3446fa0e37393ec548e2e7d87e0b8774ac628096dad81a9165",
+    "weston-fixed2-trial.txt": "d6ee47e35f372e64f6bdf0c0a570573d5815708dcc60efc59dc4e1574a675dce",
+    "weston-repeat-trial.txt": "1329af04980ec54b9e0deead40a0678782c4bf89e6106ee067cf46cdb557a4f6",
+    "weston-startup-fade.png": "12eaa1837e423cf967ea4675719fba041eb4b40489ce302838cc02ab25189f17"
+  }
+}

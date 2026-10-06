@@ -1,5 +1,10 @@
 # Indigo hardware window presentation
 
+The next checkpoint verifies server-pixmap sharing and a nested Weston hardware
+compositor, including a required kernel DMA-BUF fix. See
+[gpu-compositor.md](gpu-compositor.md) for the current results. The evidence
+below preserves the earlier window-presentation checkpoint.
+
 The private Mesa 26.2.3 Grate build now creates hardware EGL and GLX contexts
 through a patched Opentegra DRI3 path. Actual pixels read through Xorg match
 the GPU-rendered window at 256x256, 400x300, 400x301 and native 800x1280.

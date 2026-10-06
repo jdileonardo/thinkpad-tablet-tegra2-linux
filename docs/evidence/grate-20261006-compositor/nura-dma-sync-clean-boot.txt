@@ -1,0 +1,25 @@
+
+
+~ # [6nuname -a; uptime; cat /proc/sys/kernel/tainted; pidof Xorg xfce4-session; ip
+ -4 addr show wlan0; grep -E "Cma|MemAvailable" /proc/meminfo; dmesg | tail -10;
+ sha256sum /opt/indigo-xorg/dri3/lib/xorg/modules/drivers/opentegra_drv.so
+Linux thinkpad-indigo 7.0.1-nura-indigo-ram #3 SMP Tue Oct  6 14:10:41 UTC 2026 armv7l Linux
+ 10:12:42 up 0 min,  0 users,  load average: 0.54, 0.12, 0.04
+12288
+1607
+MemAvailable:     932884 kB
+CmaTotal:          65536 kB
+CmaFree:           60868 kB
+[    9.486994] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[    9.597480] brcmfmac: brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may have limited channels available
+[    9.597502] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)
+[    9.598059] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4329/3 wl0: Sep  2 2011 14:48:19 version 4.220.48
+[    9.613682] ieee80211 phy0: brcmf_setup_wiphybands: rxchain unsupported
+[   10.274650] usbcore: registered new interface driver usbhid
+[   10.274678] usbhid: USB HID core driver
+[   12.516338] zram0: detected capacity change from 0 to 3041280
+[   12.537511] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   15.085238] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+8b2ff35427379cec8e8b87de35235090e197e91c495a22f5f4bfb3a444b5e24d  /opt/indigo-xorg/dri3/lib/xorg/modules/drivers/opentegra_drv.so
+~ # [6n
+Captured 1486 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T141249Z.txt

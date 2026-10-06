@@ -1,0 +1,25 @@
+{
+  "source_commit": "bfffc6d6656e87f3de3aa4c09d852849081ef088",
+  "source_diff_sha256": "c8f1becf54d908bf06abe3df50150a35119be5e9b4e6c58cc7168c2642acc142",
+  "patches": {
+    "0001-panel-simple-add-indigo-panel.patch": "b5b4a8f693fed7f3fed3d412d115ce6ea84c7051ef2df15872d9d47d293cfc4e",
+    "0002-grate-sync-only-streaming-dma-bufs.patch": "3119d039bb78f2d7f57531a50c7402a10081bad82130b99f43350bb3e52ca337"
+  },
+  "dts_sha256": "502968c5fcfb73790eec3ad1774c2cecf22d7fcbada2fabefc7d569bb7a4f678",
+  "config_sha256": "7a9e9f5119960e68d83fee13ba552540dbebc99339e9d166ef63824af6add7f8",
+  "zimage_sha256": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
+  "dtb_sha256": "b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b",
+  "payload_sha256": "cc0ac12d9cc0c0c989d7f75c646b83abbec9fa7296c5e9e5aab84561b8496d08",
+  "build_script_sha256": "bf04c13f5ffad28398b08167f53831568259fa37909266fb6d3ac58f4fa7c69a",
+  "prepare_script_sha256": "a07a24901124a065d76d3880e93ed676bde44650c6b33447423c391a9b875ac3",
+  "compiler": "Alpine Clang 23.1.2, LLD 23.1.2",
+  "build": "#3 SMP Tue Oct 6 14:10:41 UTC 2026",
+  "installed_module_hashes": {
+    "lib/modules/7.0.1-nura-indigo-ram/extra/ntrig_indigo.ko": "d3b5dade596b88b9f668e3ec4305ddc225f91e3cd2c413237209120897e5e0d6",
+    "lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/input/evdev.ko": "19c41181b490b96a86f046e620487b110715b0a8c9db18d5ae6cbd9a6fcb90d3",
+    "lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/hid/hid-generic.ko": "c2c8c5eac58dd941dd75ff1215f6fdccf550092f3d1e76aed03ec85d9899c274",
+    "lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/hid/usbhid/usbhid.ko": "c7de6638beedfa8177fa27bc169acff07080025f7cb59e233ade52d8c4ea8466",
+    "lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/reset/reset-gpio.ko": "c6554ace207a3dc3e027ba96b45280d4ffd5489285d02563676c4205430958f2"
+  },
+  "full_dependency_pinning": false
+}

@@ -1,12 +1,13 @@
 # Indigo Grate GPU build
 
-Current checkpoint (2026-10-06): the candidate Mesa build now passes actual
-hardware X11 window presentation through a private Opentegra DRI3 bridge,
-including native 800x1280 output and normal alpha blending. See
-[gpu-dri3.md](gpu-dri3.md) and [the checkpoint](gpu-dri3-checkpoint.json) for
-current evidence and limitations. A compositor, sustained stability and SD
-image integration remain pending. The sections below preserve earlier bring-up
-results; the ordinary desktop still selects the distribution Xorg driver.
+Current checkpoint (2026-10-06): the candidate Mesa build now passes nested
+Weston hardware compositing, with changing Wayland surfaces and alpha layers
+matching the software reference. Server-pixmap sharing and native 800x1280 X11
+presentation also pass on the patched kernel. See [gpu-compositor.md](gpu-compositor.md)
+and [the checkpoint](gpu-compositor-checkpoint.json) for current evidence and
+limitations. Native Wayland/Plasma, sustained stability and SD image integration
+remain pending. The sections below preserve earlier bring-up results; the
+ordinary desktop still selects the distribution Xorg driver.
 
 The device runs Libre Tegra's experimental kernel driver, selected by
 `CONFIG_DRM_TEGRA=y` and `CONFIG_GRATE_HOST1X=y`. In this kernel tree,

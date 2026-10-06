@@ -1,0 +1,15 @@
+
+~ # [6nsh -c 'su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority time
+out -s KILL 25 /tmp/indigo-dri3/dri3-share-check > /tmp/dma-sync-share.log 2>&1'
+"'"'; tail -2 /tmp/dma-sync-share.log; cat /proc/sys/kernel/tainted; dmesg | tai
+l -5'
+sample=87 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+RESULT PASS samples=87 sizes=3
+12288
+[   20.315503] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.315514] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   20.316254] platform sound-hdmi: deferred probe pending: asoc-simple-card: parse error
+[   20.316274] tegra-mc 7000f000.memory-controller: sync_state() pending due to 6001a000.vde
+[   20.316304] tegra-pmc 7000e400.pmc: sync_state() pending due to 6001a000.vde
+~ # [6n
+Captured 796 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T141610Z.txt

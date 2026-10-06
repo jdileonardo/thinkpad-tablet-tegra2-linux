@@ -1,0 +1,69 @@
+Date: 2026-10-06 EDT
+[10:23:48.138] weston 16.0.0
+               https://wayland.freedesktop.org
+               Bug reports to: https://gitlab.freedesktop.org/wayland/weston/issues/
+               Build: 16.0.0
+[10:23:48.138] Command line: /sbin/weston --backend=x11 --renderer=gl --width=640 --height=480 --socket=weston-final-hw1 --no-config --idle-time=0 --log=/tmp/weston-final-hw1.log
+[10:23:48.138] OS: Linux, 7.0.1-nura-indigo-ram, #3 SMP Tue Oct  6 14:10:41 UTC 2026, armv7l
+[10:23:48.138] Flight recorder: enabled, scopes subscribed: log
+[10:23:48.138] Starting with no config file.
+[10:23:48.139] Output repaint window is 7 ms maximum.
+[10:23:48.139] Loading module '/usr/lib/libweston-16/x11-backend.so'
+[10:23:48.158] Loading module '/usr/lib/libweston-16/gl-renderer.so'
+[10:23:48.325] Using rendering device: /dev/dri/renderD128
+[10:23:48.354] EGL version: 1.4
+[10:23:48.355] EGL vendor: Mesa Project
+[10:23:48.355] EGL client APIs: OpenGL OpenGL_ES 
+[10:23:48.355] EGL features:
+               EGL Wayland extension: no
+               context priority: no
+               buffer age: yes
+               partial update: no
+               swap buffers with damage: yes
+               configless context: yes
+               surfaceless context: yes
+               dmabuf support: modifiers
+               fence sync: yes (wait)
+[10:23:48.365] GL version: OpenGL ES 2.0 Mesa 26.2.3
+[10:23:48.365] GLSL version: OpenGL ES GLSL ES 1.0.16
+[10:23:48.365] GL vendor: Grate
+[10:23:48.365] GL renderer: Tegra
+[10:23:48.440] GL ES 2.0 - renderer features:
+               read-back format: ARGB8888
+               glReadPixels supports y-flip: yes
+               glReadPixels supports PBO: yes
+               wl_shm 10 bpc formats: no
+               wl_shm 16 bpc formats: no
+               wl_shm half-float formats: no
+               internal R and RG formats: no
+               OES_EGL_image_external: yes
+               GPU timeline: no
+               Texture immutability: yes
+               Required precision: yes
+               In-shader blending: no
+[10:23:48.440] Using GL renderer
+[10:23:48.751] Registered plugin API 'weston_windowed_output_api_x11_v2' of size 8
+[10:23:48.752] Color manager: no-op
+                 protocol support: no
+[10:23:48.752] Output 'screen0' attempts EOTF mode SDR and colorimetry mode default.
+[10:23:48.752] Output 'screen0' using color profile: stock sRGB color profile
+[10:23:48.758] Chosen EGL config details: id:  65 rgba: 8 8 8 0 buf: 24 dep:  0 stcl: 0 int: 0-1000 type: win|pix|pbf|swap_preserved val: fix vis_id: 0x21
+[10:23:48.760] x11 output 640x480, window id 58720261
+[10:23:48.760] Output 'screen0' enabled with head(s) screen0
+[10:23:48.760] Compositor capabilities:
+               arbitrary surface rotation: yes
+               screen capture uses y-flip: yes
+               cursor planes: no
+               arbitrary resolutions: no
+               view mask clipping: yes
+               explicit sync: no
+               color operations: no
+               color representation: yes
+               in-shader blending: no
+               presentation clock: CLOCK_MONOTONIC_RAW, id 4
+               presentation clock resolution: 0.000000001 s
+[10:23:48.760] Loading module '/usr/lib/weston/desktop-shell.so'
+[10:23:48.761] launching '/usr/libexec/weston-keyboard'
+[10:23:48.766] launching '/usr/libexec/weston-desktop-shell'
+[10:24:05.541] caught signal 15
+[10:24:05.542] BUG: finalizing a layer with views still on it.

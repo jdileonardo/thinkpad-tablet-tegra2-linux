@@ -1,0 +1,6 @@
+sample=1 frame=0 x=8 y=8 rgb=0,0,255 expected=0000ff PASS
+sample=2 frame=0 x=632 y=472 rgb=0,0,255 expected=0000ff PASS
+sample=3 frame=0 x=40 y=40 rgb=128,0,127 expected=80007f PASS
+sample=4 frame=0 x=200 y=140 rgb=128,0,127 expected=80007f PASS
+sample=5 frame=1 x=8 y=8 rgb=0,0,255 expected=00ff00 FAIL
+compositor output mismatch

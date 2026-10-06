@@ -1,0 +1,31 @@
+{
+  "hardware_runs": 2,
+  "frames_per_run": 12,
+  "pixel_samples_per_run": 48,
+  "software_reference_samples": 48,
+  "sample_logs_identical": true,
+  "captures_byte_identical": true,
+  "capture_size": [
+    640,
+    480
+  ],
+  "capture_colors": [
+    [
+      24576,
+      [
+        255,
+        128,
+        128
+      ]
+    ],
+    [
+      282624,
+      [
+        255,
+        0,
+        0
+      ]
+    ]
+  ],
+  "tolerance": 2
+}

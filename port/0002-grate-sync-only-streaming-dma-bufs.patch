@@ -1,0 +1,27 @@
+diff --git a/drivers/gpu/drm/grate/gem.c b/drivers/gpu/drm/grate/gem.c
+index cb125311b..475dd8cb7 100644
+--- a/drivers/gpu/drm/grate/gem.c
++++ b/drivers/gpu/drm/grate/gem.c
+@@ -614,7 +614,11 @@ static int tegra_gem_prime_begin_cpu_access(struct dma_buf *buf,
+ 	struct tegra_bo *bo = to_tegra_bo(gem);
+ 	struct drm_device *drm = gem->dev;
+ 
+-	if (bo->sgt)
++	/* Only scattered pages have a streaming DMA mapping. The sg_table
++	 * from dma_get_sgtable() describes a coherent allocation and has no
++	 * mapped DMA addresses; syncing it can touch unrelated physical pages.
++	 */
++	if (bo->pages)
+ 		dma_sync_sgtable_for_cpu(drm->dev, bo->sgt, DMA_FROM_DEVICE);
+ 
+ 	return 0;
+@@ -627,7 +631,8 @@ static int tegra_gem_prime_end_cpu_access(struct dma_buf *buf,
+ 	struct tegra_bo *bo = to_tegra_bo(gem);
+ 	struct drm_device *drm = gem->dev;
+ 
+-	if (bo->sgt)
++	/* dma_alloc_attrs() allocations are already coherent. */
++	if (bo->pages)
+ 		dma_sync_sgtable_for_device(drm->dev, bo->sgt, DMA_TO_DEVICE);
+ 
+ 	return 0;

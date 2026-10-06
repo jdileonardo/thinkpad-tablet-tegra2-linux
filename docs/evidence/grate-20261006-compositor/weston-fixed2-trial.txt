@@ -1,0 +1,12 @@
+
+~ # [6nchmod +x /tmp/indigo-dri3/wayland-compositor-check; python3 /tmp/indigo-dri3
+/tablet_dri3_trial.py --module /opt/indigo-xorg/dri3/lib/xorg/modules/drivers/op
+entegra_drv.so --sha256 8b2ff35427379cec8e8b87de35235090e197e91c495a22f5f4bfb3a4
+44b5e24d
+Trial token=16cb59f1ff384a4181c397156513d61b; automatic restore in 180 seconds
+ [1m[32m*[m Stopping Display Manager[K ...
+ [ ok ]
+ [1m[32m*[m Starting Display Manager[K ...
+ [ ok ]
+~ # [6n
+Captured 467 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T141951Z.txt

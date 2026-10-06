@@ -1,0 +1,215 @@
+
+~ # [6nsh -c 'su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority time
+out -s KILL 25 /tmp/indigo-dri3/dri3-share-check > /tmp/dri3-share-rw.log 2>&1'"
+'"'; cat /tmp/dri3-share-rw.log; weston --help; pidof Xorg'
+DRI3=1.0
+size=8x8 stride=32 bytes=4096 depth=24 bpp=32
+sample=1 stage=export-first actual=123456 expected=123456 PASS
+sample=2 stage=export-last actual=123456 expected=123456 PASS
+sample=3 stage=import-read actual=123456 expected=123456 PASS
+sample=4 stage=CPU-write-original actual=abcdef expected=abcdef PASS
+sample=5 stage=CPU-write-alias actual=654321 expected=654321 PASS
+sample=6 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=7 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=8 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=9 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=10 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=11 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+sample=12 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=13 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=14 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=15 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=16 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=17 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+sample=18 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=19 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=20 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=21 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=22 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=23 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+sample=24 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=25 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=26 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=27 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=28 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=29 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+size=63x37 stride=256 bytes=12288 depth=24 bpp=32
+sample=30 stage=export-first actual=123456 expected=123456 PASS
+sample=31 stage=export-last actual=123456 expected=123456 PASS
+sample=32 stage=import-read actual=123456 expected=123456 PASS
+sample=33 stage=CPU-write-original actual=abcdef expected=abcdef PASS
+sample=34 stage=CPU-write-alias actual=654321 expected=654321 PASS
+sample=35 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=36 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=37 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=38 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=39 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=40 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+sample=41 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=42 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=43 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=44 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=45 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=46 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+sample=47 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=48 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=49 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=50 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=51 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=52 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+sample=53 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=54 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=55 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=56 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=57 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=58 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+size=640x480 stride=2560 bytes=1310720 depth=24 bpp=32
+sample=59 stage=export-first actual=123456 expected=123456 PASS
+sample=60 stage=export-last actual=123456 expected=123456 PASS
+sample=61 stage=import-read actual=123456 expected=123456 PASS
+sample=62 stage=CPU-write-original actual=abcdef expected=abcdef PASS
+sample=63 stage=CPU-write-alias actual=654321 expected=654321 PASS
+sample=64 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=65 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=66 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=67 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=68 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=69 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+sample=70 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=71 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=72 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=73 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=74 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=75 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+sample=76 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=77 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=78 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=79 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=80 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=81 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+sample=82 stage=X-update-shared-first actual=bb22ee expected=bb22ee PASS
+sample=83 stage=X-update-shared-last actual=bb22ee expected=bb22ee PASS
+sample=84 stage=X-update-other-pixmap actual=bb22ee expected=bb22ee PASS
+sample=85 stage=X-update-shared-first actual=00dd77 expected=00dd77 PASS
+sample=86 stage=X-update-shared-last actual=00dd77 expected=00dd77 PASS
+sample=87 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+RESULT PASS samples=87 sizes=3
+Usage: weston [OPTIONS] [-- program [arguments]]
+
+This is weston version 16.0.0, the Wayland reference compositor.
+Weston supports multiple backends, and depending on which backend is in use
+different options will be accepted. When '--' is used, Weston executes
+program when it starts. Weston terminates when the program exits.
+
+Core options:
+
+  --version		Print weston version
+  -B, --backend=BACKEND	Backend module, one of
+				drm
+				headless
+				pipewire
+				rdp
+				wayland
+				x11
+  --backends		Load the comma-separated list of backends
+  --renderer=NAME	Renderer to use, one of
+				auto	Automatic selection of one of the below renderers
+				gl	OpenGL ES
+				vulkan	Vulkan
+				noop	No-op renderer for testing only
+				pixman	Pixman software renderer
+  --shell=NAME	Shell to load, defaults to desktop
+  -S, --socket=NAME	Name of socket to listen on
+  -i, --idle-time=SECS	Idle time in seconds
+  --xwayland		Load the xwayland module
+  --no-xwm-decorations	Disable Xwayland window decor
+  --modules		Load the comma-separated list of modules
+  --log=FILE		Log to the given file
+  -c, --config=FILE	Config file to load, defaults to weston.ini
+  --no-config		Do not read weston.ini
+  --wait-for-debugger	Raise SIGSTOP on start-up
+  --debug		Enable debug extension
+  -d, --debug-scopes=SCOPE
+			Specify which scopes to be advertised to clients when using the weston-debug protocol.
+			Can specify multiple scopes, each followed by comma. 
+			By default, --debug would advertise all scopes created by libweston or by other Weston frontends.
+  -l, --logger-scopes=SCOPE
+			Specify log scopes to subscribe to.
+			Can specify multiple scopes, each followed by comma
+  -f, --flight-rec-scopes=SCOPE
+			Specify log scopes to subscribe to.
+			Can specify multiple scopes, each followed by comma
+  -h, --help		This help message
+
+Options for drm:
+
+  --seat=SEAT		The seat that weston should run on, instead of the seat defined in XDG_SEAT
+  --drm-device=CARD	The DRM device to use for rendering and output, e.g. "card0".
+  --additional-devices=CARD	Secondary DRM devices to use for output only, e.g. "card1,card2".
+  --use-pixman		Use the pixman (CPU) renderer (deprecated alias for --renderer=pixman)
+  --current-mode	Prefer current KMS mode over EDID preferred mode
+  --continue-without-input	Allow the compositor to start without input devices
+  --disable-drm-state-reuse	Force-rebuild the DRM state on every frame (only available in combination with --debug)
+
+Options for headless:
+
+  --width=WIDTH		Width of memory surface
+  --height=HEIGHT	Height of memory surface
+  --scale=SCALE		Scale factor of output
+  --transform=TR	The output transformation, TR is one of:
+	normal rotate-90 rotate-180 rotate-270 flipped flipped-rotate-90 flipped-rotate-180
+	flipped-rotate-270
+  --use-pixman		Use the pixman (CPU) renderer (deprecated alias for --renderer=pixman)
+  --use-gl		Use the GL renderer (deprecated alias for --renderer=gl)
+  --use-vulkan		Use the Vulkan renderer (deprecated alias for --renderer=vulkan)
+  --no-outputs		Do not create any virtual outputs
+  --refresh-rate=RATE	The output refresh rate (in mHz)
+  --fake-seat		Use a fake seat for compatibility
+
+Options for pipewire
+
+  --width=WIDTH		Width of desktop
+  --height=HEIGHT	Height of desktop
+
+Options for rdp:
+
+  --width=WIDTH		Width of desktop
+  --height=HEIGHT	Height of desktop
+  --env-socket		Use socket defined in RDP_FD env variable as peer connection
+  --external-listener-fd=FD	Use socket as listener connection
+  --address=ADDR	The address to bind
+  --port=PORT		The port to listen on
+  --no-resizeable	The RDP peers will be forced to the size of the desktop
+  --rdp4-key=FILE	The file containing the key for RDP4 encryption
+  --rdp-tls-cert=FILE	The file containing the certificate for TLS encryption
+  --rdp-tls-key=FILE	The file containing the private key for TLS encryption
+  --vmconnect	When bound on 'vsock://1', to use in a Hyper-V VM with vmconnect.exe
+
+Options for wayland:
+
+  --width=WIDTH		Width of Wayland surface
+  --height=HEIGHT	Height of Wayland surface
+  --scale=SCALE		Scale factor of output
+  --fullscreen		Run in fullscreen mode
+  --use-pixman		Use the pixman (CPU) renderer (deprecated alias for --renderer=pixman)
+  --output-count=COUNT	Create multiple outputs
+  --sprawl		Create one fullscreen output for every parent output
+  --display=DISPLAY	Wayland display to connect to
+
+Options for x11:
+
+  --width=WIDTH		Width of X window
+  --height=HEIGHT	Height of X window
+  --scale=SCALE		Scale factor of output
+  --fullscreen		Run in fullscreen mode
+  --use-pixman		Use the pixman (CPU) renderer (deprecated alias for --renderer=pixman)
+  --output-count=COUNT	Create multiple outputs
+  --no-input		Dont create input devices
+
+Options for lua-shell:
+
+  --lua-script=script		Lua script
+
+27296
+~ # [6n
+Captured 11618 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T140548Z.txt

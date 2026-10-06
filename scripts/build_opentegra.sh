@@ -43,6 +43,18 @@ docker run --rm --network none --user "$(id -u):$(id -g)" -v "$project_root:/wor
     sha256sum src/.libs/opentegra_drv.so
     $CC $CFLAGS -Wall -Wextra -Werror /work/port/opentegra/gpu-present-check.c \
         -lEGL -lGLESv2 -lX11 -o /work/build/opentegra-dri3-gpu-present-check
+    $CC $CFLAGS -Wall -Wextra -Werror /work/port/opentegra/dri3-share-check.c \
+        -lxcb-dri3 -lxcb -o /work/build/opentegra-dri3-share-check
+    $CC $CFLAGS -Wall -Wextra -Werror /work/port/opentegra/x-window-capture.c \
+        -lX11 -o /work/build/opentegra-x-window-capture
+    mkdir -p /work/build/compositor-probes
+    wayland-scanner client-header $PKG_CONFIG_SYSROOT_DIR/usr/share/wayland-protocols/stable/xdg-shell/xdg-shell.xml \
+        /work/build/compositor-probes/xdg-shell-client-protocol.h
+    wayland-scanner private-code $PKG_CONFIG_SYSROOT_DIR/usr/share/wayland-protocols/stable/xdg-shell/xdg-shell.xml \
+        /work/build/compositor-probes/xdg-shell-protocol.c
+    $CC $CFLAGS -Wall -Wextra -Werror -I/work/build/compositor-probes \
+        /work/port/opentegra/wayland-compositor-check.c /work/build/compositor-probes/xdg-shell-protocol.c \
+        -lwayland-client -lX11 -o /work/build/opentegra-wayland-compositor-check
 '
 python3 - <<'PY'
 import hashlib
@@ -61,6 +73,13 @@ metadata = {
     'module_sha256': sha('build/opentegra-dri3/src/.libs/opentegra_drv.so'),
     'probe_sha256': sha('build/opentegra-dri3-gpu-present-check'),
     'probe_source_sha256': sha('port/opentegra/gpu-present-check.c'),
+    'sharing_probe_sha256': sha('build/opentegra-dri3-share-check'),
+    'sharing_probe_source_sha256': sha('port/opentegra/dri3-share-check.c'),
+    'capture_probe_sha256': sha('build/opentegra-x-window-capture'),
+    'capture_probe_source_sha256': sha('port/opentegra/x-window-capture.c'),
+    'compositor_probe_sha256': sha('build/opentegra-wayland-compositor-check'),
+    'compositor_probe_source_sha256': sha('port/opentegra/wayland-compositor-check.c'),
+    'xdg_shell_protocol_sha256': sha('build/mesa-sysroot/usr/share/wayland-protocols/stable/xdg-shell/xdg-shell.xml'),
     'builder_sha256': sha('scripts/build_opentegra.sh'),
     'dockerfile_sha256': sha('tools/Dockerfile.opentegra'),
     'sdk_package_database_sha256': sha('build/mesa-sysroot/lib/apk/db/installed'),

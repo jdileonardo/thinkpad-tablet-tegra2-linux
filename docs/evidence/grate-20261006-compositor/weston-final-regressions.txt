@@ -1,0 +1,44 @@
+
+~ # [6nsh -c 'su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority time
+out -s KILL 25 /tmp/indigo-dri3/dri3-share-check > /tmp/dma-sync-share-repeat.lo
+g 2>&1'"'"'
+> echo SHARE_EXIT=$?
+> su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority INDIGO_MESA_R
+EVISION=ad06de32d309 timeout -s KILL 25 /usr/local/bin/indigo-gpu-run /tmp/indig
+o-dri3/gpu-present-check 800x1280 > /tmp/dma-sync-native-presentation.log 2>&1'"
+'"'
+> echo PRESENT_EXIT=$?
+> tail -2 /tmp/dma-sync-share-repeat.log
+> cat /tmp/dma-sync-native-presentation.log
+> dmesg > /tmp/weston-final-dmesg.log
+> cat /proc/sys/kernel/tainted
+> pidof weston
+> cp /var/log/Xorg.0.log /tmp/weston-final-xorg.log
+> tar -czf /tmp/weston-evidence.tar.gz -C /tmp dma-sync-share.log dma-sync-share
+-repeat.log dma-sync-native-presentation.log weston-fixed-hw1.log weston-fixed-h
+w1.stderr.log weston-fixed-hw1.pixels.log weston-fixed-hw1.ppm weston-fixed-cpu1
+.log weston-fixed-cpu1.pixels.log weston-fixed-cpu2.log weston-fixed-cpu2.pixels
+.log weston-fixed-cpu3.log weston-fixed-cpu3.pixels.log weston-fixed-cpu3.ppm we
+ston-fixed-hw3-trial.log weston-final-hw1.log weston-final-hw1.stderr.log weston
+-final-hw1.pixels.log weston-final-hw1.ppm weston-final-hw1-trial.log weston-fin
+al-hw2.log weston-final-hw2.stderr.log weston-final-hw2.pixels.log weston-final-
+hw2.ppm weston-final-hw2-trial.log weston-final-dmesg.log weston-final-xorg.log
+> sha256sum /tmp/weston-evidence.tar.gz
+> cat /tmp/indigo-dri3-trial.active'
+SHARE_EXIT=0
+PRESENT_EXIT=0
+sample=87 stage=X-update-other-pixmap actual=00dd77 expected=00dd77 PASS
+RESULT PASS samples=87 sizes=3
+renderer=Tegra EGL=1.4 size=800x1280
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+12288
+c575097c2bed6b1a1e0344056e7bd43e328992f2fb48a410f788a8341321aa3a  /tmp/weston-evidence.tar.gz
+9827a81f3d754715bc4aea670f339384
+~ # [6n
+Captured 2215 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T142754Z.txt

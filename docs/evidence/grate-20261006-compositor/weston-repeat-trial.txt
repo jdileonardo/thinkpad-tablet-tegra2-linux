@@ -1,0 +1,17 @@
+
+~ # [6npython3 /opt/indigo-xorg/dri3/trial.py --restore 006f53a4bf654328abc602a9328
+12621; python3 /tmp/indigo-dri3/tablet_dri3_trial.py --module /opt/indigo-xorg/d
+ri3/lib/xorg/modules/drivers/opentegra_drv.so --sha256 8b2ff35427379cec8e8b87de3
+5235090e197e91c495a22f5f4bfb3a444b5e24d
+ [1m[32m*[m Stopping Display Manager[K ...
+ [ ok ]
+ [1m[32m*[m Starting Display Manager[K ...
+ [ ok ]
+Original Xorg module path restored
+Trial token=9827a81f3d754715bc4aea670f339384; automatic restore in 180 seconds
+ [1m[32m*[m Stopping Display Manager[K ...
+ [ ok ]
+ [1m[32m*[m Starting Display Manager[K ...
+ [ ok ]
+~ # [6n
+Captured 648 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T142631Z.txt

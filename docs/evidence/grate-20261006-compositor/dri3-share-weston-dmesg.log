@@ -1,0 +1,2014 @@
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 7.0.1-nura-indigo-ram (@226be552c8dd) (Alpine clang version 23.1.2, LLD 23.1.2) #2 SMP Mon Oct  5 17:20:26 UTC 2026
+[    0.000000] CPU: ARMv7 Processor [411fc090] revision 0 (ARMv7), cr=10c5387d
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: Lenovo ThinkPad Tablet (Indigo)
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 64 MiB at 0x3c000000
+[    0.000000] OF: reserved mem: Reserved memory: No reserved-memory node in the DT
+[    0.000000] tegra_boot_config_table_init: BCT found in IRAM
+[    0.000000] tegra-partition: initialized to logical sector = 1024 sectors_num = 512
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000000000000-0x000000002fffffff]
+[    0.000000]   HighMem  [mem 0x0000000030000000-0x000000003fffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x000000003fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000003fffffff]
+[    0.000000] percpu: Embedded 19 pages/cpu s47692 r8192 d21940 u77824
+[    0.000000] pcpu-alloc: s47692 r8192 d21940 u77824 alloc=19*4096
+[    0.000000] pcpu-alloc: [0] 0 [0] 1 
+[    0.000000] Kernel command line: console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init
+[    0.000000] printk: log buffer data + meta data: 131072 + 409600 = 540672 bytes
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 262144
+[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.000000] ftrace: allocating 46450 entries in 137 pages
+[    0.000000] ftrace: allocated 137 pages with 3 groups
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=4 to nr_cpu_ids=2.
+[    0.000000] 	Rude variant of Tasks RCU enabled.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.000000] RCU Tasks Rude: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] /interrupt-controller@60004000: 128 interrupts forwarded to /interrupt-controller@50041000
+[    0.000000] L2C: platform modifies aux control register: 0x02080000 -> 0x3e480000
+[    0.000000] L2C: DT/platform modifies aux control register: 0x02080000 -> 0x3e480000
+[    0.000000] L2C-310 errata 727915 769419 enabled
+[    0.000000] L2C-310 enabling early BRESP for Cortex-A9
+[    0.000000] L2C-310 full line of zeros enabled for Cortex-A9
+[    0.000000] L2C-310 ID prefetch enabled, offset 1 lines
+[    0.000000] L2C-310 cache controller enabled, 8 ways, 1024 kB
+[    0.000000] L2C-310: CACHE_ID 0x410000c4, AUX_CTRL 0x7e480001
+[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.000004] sched_clock: 32 bits at 1000kHz, resolution 1000ns, wraps every 2147483647500ns
+[    0.000024] clocksource: timer_us: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275 ns
+[    0.000036] Switching to timer-based delay loop, resolution 1000ns
+[    0.000259] clocksource: tegra_suspend_timer: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns
+[    0.000653] Console: colour dummy device 80x30
+[    0.000667] printk: legacy console [tty0] enabled
+[    0.001208] Calibrating delay loop (skipped), value calculated using timer frequency.. 2.00 BogoMIPS (lpj=10000)
+[    0.001241] CPU: Testing write buffer coherency: ok
+[    0.001309] Spectre V2: workarounds disabled by configuration
+[    0.001325] pid_max: default: 32768 minimum: 301
+[    0.001553] Yama: becoming mindful.
+[    0.002025] LSM support for eBPF active
+[    0.002164] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.002195] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.002595] VFS: Finished mounting rootfs on nullfs
+[    0.003644] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.003732] cacheinfo: Unable to detect cache hierarchy for CPU 0
+[    0.004944] Setting up static identity map for 0x100000 - 0x1000b0
+[    0.005156] rcu: Hierarchical SRCU implementation.
+[    0.005177] rcu: 	Max phase no-delay instances is 1000.
+[    0.005499] Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level
+[    0.007435] Tegra Revision: A04 SKU: 8 CPU Process: 1 SoC Process: 2
+[    0.007468] Tegra CPU Speedo ID 0, SoC Speedo ID 1
+[    0.008334] EFI services will not be available.
+[    0.008559] smp: Bringing up secondary CPUs ...
+[    0.009374] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.009668] smp: Brought up 1 node, 2 CPUs
+[    0.009708] SMP: Total of 2 processors activated (4.00 BogoMIPS).
+[    0.009728] CPU: All CPU(s) started in SVC mode.
+[    0.009931] Memory: 942228K/1048576K available (16384K kernel code, 1517K rwdata, 4504K rodata, 1024K init, 331K bss, 37240K reserved, 65536K cma-reserved, 196608K highmem)
+[    0.010738] devtmpfs: initialized
+[    0.021929] VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 1
+[    0.022449] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.022516] posixtimers hash table entries: 1024 (order: 1, 8192 bytes, linear)
+[    0.022606] futex hash table entries: 512 (32768 bytes on 1 NUMA nodes, total 32 KiB, linear).
+[    0.025782] DMI not present or invalid.
+[    0.026498] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.028455] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.029580] thermal_sys: Registered thermal governor 'step_wise'
+[    0.029668] cpuidle: using governor menu
+[    0.033085] /pinmux@70000014: Fixed dependency cycle(s) with /pinmux@70000014/pinmux
+[    0.041218] No ATAGs?
+[    0.041330] hw-breakpoint: found 5 (+1 reserved) breakpoint and 1 watchpoint registers.
+[    0.041358] hw-breakpoint: maximum watchpoint size is 4 bytes.
+[    0.048477] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    0.051611] iommu: Default domain type: Translated
+[    0.051642] iommu: DMA domain TLB invalidation policy: strict mode
+[    0.052313] SCSI subsystem initialized
+[    0.052565] usbcore: registered new interface driver usbfs
+[    0.052650] usbcore: registered new interface driver hub
+[    0.052703] usbcore: registered new device driver usb
+[    0.052931] mc: Linux media interface: v0.10
+[    0.052995] videodev: Linux video capture interface: v2.00
+[    0.053085] pps_core: LinuxPPS API ver. 1 registered
+[    0.053103] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.053137] PTP clock support registered
+[    0.053644] Advanced Linux Sound Architecture Driver Initialized.
+[    0.055420] clocksource: Switched to clocksource timer_us
+[    0.073928] NET: Registered PF_INET protocol family
+[    0.074217] IP idents hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.075995] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)
+[    0.076045] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.076084] TCP established hash table entries: 8192 (order: 3, 32768 bytes, linear)
+[    0.076165] TCP bind hash table entries: 8192 (order: 5, 131072 bytes, linear)
+[    0.076361] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.076502] UDP hash table entries: 512 (order: 3, 28672 bytes, linear)
+[    0.076638] UDP-Lite hash table entries: 512 (order: 3, 28672 bytes, linear)
+[    0.076922] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.079484] Initialise system trusted keyrings
+[    0.079796] workingset: timestamp_bits=14 max_order=18 bucket_order=4
+[    0.159605] Unpacking initramfs...
+[    0.220231] Freeing initrd memory: 1424K
+[    0.228036] Key type asymmetric registered
+[    0.228067] Asymmetric key parser 'x509' registered
+[    0.228284] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 245)
+[    0.228594] io scheduler kyber registered
+[    0.228699] io scheduler bfq registered
+[    0.228767] testing lwq....
+[    0.228782]  lwq: run some threads
+[    0.247772]  lwq: dequeue first 50: 25(800) 58(799) 4(802) 59(799) 26(800) 60(799) 10(801) 61(799) 62(799) 27(800)
+[    0.247861]  lwq: ...  63(799) 0(805) 64(799) 65(799) 66(799) 28(800) 67(799) 29(800) 68(799) 11(801)
+[    0.247930]  lwq: ...  69(799) 30(800) 70(799) 12(801) 71(799) 31(800) 72(799) 5(802) 73(799) 32(800)
+[    0.247997]  lwq: ...  74(799) 13(801) 75(799) 33(800) 76(799) 14(801) 77(799) 78(799) 34(800) 2(803)
+[    0.248063]  lwq: ...  79(799) 80(799) 35(800) 81(799) 15(801) 82(799) 36(800) 83(799) 16(801) 84(799)
+[    0.248131]  lwq: delete the multiples of 3 (test lwq_for_each_safe())
+[    0.248149]  lwq: dequeue remaining: 37 85 86 38 88 17 89 40 91 92 95 94 97 41 98 43 44 19 46 7 47 20 49 50 8 22 52 1 53 23 55 56
+[    0.250101] gpio gpiochip0: Static allocation of GPIO base is deprecated, use dynamic allocation.
+[    0.255980] tegra-apbdma 6000a000.dma-controller: Tegra20 APB DMA driver registered 16 channels
+[    0.258220] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.260852] printk: legacy console [ttyS0] disabled
+[    0.261226] 70006300.serial: ttyS0 at MMIO 0x70006300 (irq = 51, base_baud = 13500000) is a Tegra
+[    0.261302] printk: legacy console [ttyS0] enabled
+[    1.132976] SPI driver panel-samsung-s6e63m0 has no spi_device_id for samsung,s6e63m0
+[    1.148377] loop: module loaded
+[    1.152032] zram: Added device: zram0
+[    1.159530] usbcore: registered new interface driver brcmfmac
+[    1.165529] tegra-phy c5000000.usb-phy: supply vbus not found, using dummy regulator
+[    1.173708] tegra-phy c5004000.usb-phy: supply vbus not found, using dummy regulator
+[    1.181877] usbcore: registered new interface driver cdc_acm
+[    1.187497] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+[    1.195520] usbcore: registered new interface driver cdc_wdm
+[    1.201245] usbcore: registered new device driver onboard-usb-dev
+[    1.210400] tegra_rtc 7000e000.rtc: registered as rtc1
+[    1.215517] tegra_rtc 7000e000.rtc: Tegra internal Real Time Clock
+[    1.221868] i2c_dev: i2c /dev entries driver
+[    1.230315] /i2c@7000d000/tps6586x@34: Fixed dependency cycle(s) with /i2c@7000d000/tps6586x@34/regulators/sm2
+[    1.240310] /i2c@7000d000/tps6586x@34: Fixed dependency cycle(s) with /i2c@7000d000/tps6586x@34/regulators/sys
+[    1.250665] tps6586x 3-0034: Found TPS658621C/D, VERSIONCRC is 2c
+[    1.262977] tps6586x-rtc tps6586x-rtc: registered as rtc0
+[    1.268962] tps6586x-rtc tps6586x-rtc: setting system clock to 2009-01-01T00:00:00 UTC (1230768000)
+[    1.280682] i2c i2c-1: Added multiplexed i2c bus 4
+[    1.285868] i2c i2c-1: Added multiplexed i2c bus 5
+[    1.292357] lm90 3-004c: supply vcc not found, using dummy regulator
+[    1.300226] hwmon hwmon0: temp1_input not attached to any thermal zone
+[    1.314858] device-mapper: uevent: version 1.0.3
+[    1.319829] device-mapper: ioctl: 4.50.0-ioctl (2025-04-28) initialised: dm-devel@lists.linux.dev
+[    1.329245] sdhci: Secure Digital Host Controller Interface driver
+[    1.335360] sdhci: Copyright(c) Pierre Ossman
+[    1.339721] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.346137] hid: raw HID events driver (C) Jiri Kosina
+[    1.352683] vdd_ldo6,avdd_vdac: Bringing 2850000uV into 1800000-1800000uV
+[    1.359665] hw perfevents: enabled with armv7_cortex_a9 PMU driver, 7 (8000003f) counters available
+[    1.371476] wm8903 0-001a: supply AVDD not found, using dummy regulator
+[    1.378200] wm8903 0-001a: supply CPVDD not found, using dummy regulator
+[    1.384899] wm8903 0-001a: supply DBVDD not found, using dummy regulator
+[    1.391600] wm8903 0-001a: supply DCVDD not found, using dummy regulator
+[    1.398719] wm8903 0-001a: WM8903 revision C
+[    1.410027] tegra20-i2s 70002800.i2s: using zero-initialized flat cache, this may cause unexpected behavior
+[    1.607346] input: NVIDIA Tegra Ventana Headphones Jack as /devices/soc0/sound/sound/card0/input0
+[    1.616300] input: NVIDIA Tegra Ventana Mic Jack as /devices/soc0/sound/sound/card0/input1
+[    1.626549] NET: Registered PF_INET6 protocol family
+[    1.632596] Segment Routing with IPv6
+[    1.636277] In-situ OAM (IOAM) with IPv6
+[    1.640228] NET: Registered PF_PACKET protocol family
+[    1.645208] PFKEY is deprecated and scheduled to be removed in 2027, please contact the netdev mailing list
+[    1.654962] NET: Registered PF_KEY protocol family
+[    1.659884] Key type dns_resolver registered
+[    1.664648] Registering SWP/SWPB emulation handler
+[    1.676980] registered taskstats version 1
+[    1.681133] Loading compiled-in X.509 certificates
+[    1.692386] Loaded X.509 cert 'Build time autogenerated kernel key: 798ccf7adde207547400a7f2ab29d7b07165aceb'
+[    1.719841] regulator-1v5 enforce active low on GPIO handle
+[    1.731426] tegra voltage-coupler: core voltage initialized to 1200000uV
+[    1.740768] platform 54140000.gr2d: Adding to iommu group 0
+[    1.747525] platform 54180000.gr3d: Adding to iommu group 1
+[    1.754445] platform 54200000.dc: Adding to iommu group 2
+[    1.760385] platform 54240000.dc: Adding to iommu group 3
+[    1.766772] tegra-hdmi 54280000.hdmi: supply hdmi not found, using dummy regulator
+[    1.776615] tegra-phy c5000000.usb-phy: supply vbus not found, using dummy regulator
+[    1.784890] tegra-phy c5004000.usb-phy: supply vbus not found, using dummy regulator
+[    1.911603] tegra-phy c5000000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x44040400
+[    1.918800] tegra-phy c5000000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x40000545
+[    1.926150] tegra-phy c5000000.usb-phy: debug: suspend ok
+[    1.944655] ci_hdrc ci_hdrc.1: EHCI Host Controller
+[    1.949513] ci_hdrc ci_hdrc.1: new USB bus registered, assigned bus number 1
+[    1.985432] ci_hdrc ci_hdrc.1: USB 2.0 started, EHCI 1.00
+[    1.991057] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 7.00
+[    1.999283] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    2.006460] usb usb1: Product: EHCI Host Controller
+[    2.011294] usb usb1: Manufacturer: Linux 7.0.1-nura-indigo-ram ehci_hcd
+[    2.017984] usb usb1: SerialNumber: ci_hdrc.1
+[    2.022900] hub 1-0:1.0: USB hub found
+[    2.026681] hub 1-0:1.0: 1 port detected
+[    2.038272] ci_hdrc ci_hdrc.2: EHCI Host Controller
+[    2.043101] ci_hdrc ci_hdrc.2: new USB bus registered, assigned bus number 2
+[    2.065440] ci_hdrc ci_hdrc.2: USB 2.0 started, EHCI 1.00
+[    2.070987] usb usb2: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 7.00
+[    2.079231] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    2.086402] usb usb2: Product: EHCI Host Controller
+[    2.091231] usb usb2: Manufacturer: Linux 7.0.1-nura-indigo-ram ehci_hcd
+[    2.097923] usb usb2: SerialNumber: ci_hdrc.2
+[    2.102783] hub 2-0:1.0: USB hub found
+[    2.106530] hub 2-0:1.0: 1 port detected
+[    2.112839] sdhci-tegra c8000400.mmc: Got CD GPIO
+[    2.114296] tegra20-emc 7000f400.memory-controller: 32bit DRAM bus, 2 LPDDR2 devices attached
+[    2.117538] sdhci-tegra c8000400.mmc: Got WP GPIO
+[    2.126011] tegra20-emc 7000f400.memory-controller: SDRAM[dev1]: manufacturer: 0x6 (Hynix) rev1: 0x0 rev2: 0x0 prefetch: S4 density: 2048Mbit iowidth: 16bit
+[    2.144700] tegra20-emc 7000f400.memory-controller: SDRAM[dev0]: manufacturer: 0x6 (Hynix) rev1: 0x0 rev2: 0x0 prefetch: S4 density: 2048Mbit iowidth: 16bit
+[    2.158645] tegra20-emc 7000f400.memory-controller: device-tree doesn't have memory timings
+[    2.167074] mmc1: Invalid maximum block size, assuming 512 bytes
+[    2.173260] mmc0: Invalid maximum block size, assuming 512 bytes
+[    2.185556] panel-simple panel: Specify missing bus_flags
+[    2.205094] mmc1: SDHCI controller on c8000600.mmc [c8000600.mmc] using ADMA
+[    2.208828] mmc0: SDHCI controller on c8000400.mmc [c8000400.mmc] using ADMA
+[    2.221536] [drm] Initialized tegra 99997.0.0 for drm on minor 0
+[    2.256220] fb0: sys_imageblit: framebuffer is not in virtual address space.
+[    2.276939] Console: switching to colour frame buffer device 160x50
+[    2.306687] drm drm: [drm] fb0: tegradrmfb frame buffer device
+[    2.317234] input: gpio-keys as /devices/soc0/gpio-keys/input/input2
+[    2.324567] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    2.334842] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    2.342366] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[    2.355649] clk: Disabling unused clocks
+[    2.359696] PM: genpd: Disabling unused power domains
+[    2.364780] ALSA device list:
+[    2.367828]   #0: NVIDIA Tegra Ventana
+[    2.379317] Freeing unused kernel image (initmem) memory: 1024K
+[    2.386317] Run /init as init process
+[    2.390070]   with arguments:
+[    2.390080]     /init
+[    2.390088]   with environment:
+[    2.390095]     HOME=/
+[    2.390102]     TERM=linux
+[    2.396217] mmc0: new high speed SDXC card at address 5048
+[    2.402892] mmcblk0: mmc0:5048 SDIT1 59.6 GiB
+[    2.410283]  mmcblk0: p1
+[    2.484115] mmc1: new high speed MMC card at address 0001
+[    2.490419] mmcblk1: mmc1:0001 MMC32G 29.8 GiB
+[    2.497427] mmcblk1boot0: mmc1:0001 MMC32G 2.00 MiB
+[    2.504494] mmcblk1boot1: mmc1:0001 MMC32G 2.00 MiB
+[    2.511418] mmcblk1rpmb: mmc1:0001 MMC32G 256 KiB, chardev (241:0)
+[    2.519362] fb0: sys_fillrect: framebuffer is not in virtual address space.
+[    2.925134] EXT4-fs (mmcblk0p1): recovery complete
+[    2.933587] EXT4-fs (mmcblk0p1): mounted filesystem 2a6e5a89-5a50-46c6-95ec-b718e7abd62b r/w with ordered data mode. Quota mode: disabled.
+[    4.613820] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[    4.613851] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[    4.613863] tegra-phy c5008000.usb-phy: debug: suspend ok
+[    4.936283] udevd[486]: starting version 3.2.14
+[    5.515708] EXT4-fs (mmcblk0p1): re-mounted 2a6e5a89-5a50-46c6-95ec-b718e7abd62b.
+[   12.637362] platform wifi-pwrseq: deferred probe pending: pwrseq_simple: reset control not ready
+[   12.637385] platform sound-hdmi: deferred probe pending: asoc-simple-card: parse error
+[   12.637396] platform c8000000.mmc: deferred probe pending: platform: supplier wifi-pwrseq not ready
+[   12.637409] tegra-mc 7000f000.memory-controller: sync_state() pending due to 6001a000.vde
+[   12.637427] tegra-pmc 7000e400.pmc: sync_state() pending due to wifi-pwrseq
+[   12.637444] tegra-pmc 7000e400.pmc: sync_state() pending due to 6001a000.vde
+[   12.637456] tegra-pmc 7000e400.pmc: sync_state() pending due to c8000000.mmc
+[   13.205438] random: crng init done
+[   13.254186] udevd[486]: starting eudev-3.2.14
+[   13.568052] reset_gpio: module verification failed: signature and/or required key missing - tainting kernel
+[   13.571360] sdhci-tegra c8000000.mmc: allocated mmc-pwrseq
+[   13.618024] mmc2: Invalid maximum block size, assuming 512 bytes
+[   13.643936] ntrig_indigo: loading out-of-tree module taints kernel.
+[   13.644963] input: N-Trig Indigo Touchscreen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input3
+[   13.645139] input: N-Trig Indigo Pen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input4
+[   14.009067] mmc2: SDHCI controller on c8000000.mmc [c8000000.mmc] using ADMA
+[   14.049653] mmc2: queuing unknown CIS tuple 0x02 [ff] (1 bytes)
+[   14.053890] mmc2: new SDIO card at address 0001
+[   14.063722] brcmfmac: F1 signature read @0x18000000=0x9934329
+[   14.067139] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4329-sdio for chip BCM4329/3
+[   14.073080] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.lenovo,indigo.bin failed with error -2
+[   14.093842] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.clm_blob failed with error -2
+[   14.238084] brcmfmac: brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may have limited channels available
+[   14.238104] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)
+[   14.238646] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4329/3 wl0: Sep  2 2011 14:48:19 version 4.220.48
+[   14.253301] ieee80211 phy0: brcmf_setup_wiphybands: rxchain unsupported
+[   14.268406] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[   15.048207] usbcore: registered new interface driver usbhid
+[   15.048235] usbhid: USB HID core driver
+[   16.517472] zram0: detected capacity change from 0 to 3041280
+[   16.538939] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   19.037720] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+[   19.675482] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   19.675509] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   19.675521] tegra-phy c5008000.usb-phy: debug: suspend ok
+[  143.698031] input: N-Trig Indigo Touchscreen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input5
+[  143.698490] input: N-Trig Indigo Pen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input6
+[  144.324470] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[  615.900424] kxcjk1013 3-000f: mounting matrix not found: using identity...
+[  615.900507] kxcjk1013 3-000f: supply vdd not found, using dummy regulator
+[  615.900733] kxcjk1013 3-000f: supply vddio not found, using dummy regulator
+[  616.044258] i2c i2c-3: new_device: Instantiated device kxtf9 at 0x0f
+[  841.242608] drm drm: failed to allocate buffer of size 132710400: -12
+[  841.373230] Xorg (1603): drop_caches: 1
+[  841.373400] drm drm: failed to allocate buffer of size 132710400: -12
+[  841.373690] drm drm: failed to allocate buffer of size 132710400: -12
+[  841.567075] drm drm: failed to allocate buffer of size 132710400: -12
+[ 1793.010479] drm drm: failed to allocate buffer of size 132710400: -12
+[ 1793.072059] Xorg (1603): drop_caches: 1
+[ 1793.072200] drm drm: failed to allocate buffer of size 132710400: -12
+[ 1793.072400] drm drm: failed to allocate buffer of size 132710400: -12
+[ 2440.172568] drm drm: failed to allocate buffer of size 132710400: -12
+[ 2440.234099] Xorg (1603): drop_caches: 1
+[ 2440.234259] drm drm: failed to allocate buffer of size 132710400: -12
+[ 2440.234482] drm drm: failed to allocate buffer of size 132710400: -12
+[ 3613.462098] drm drm: failed to allocate buffer of size 132710400: -12
+[ 3613.505583] Xorg (1603): drop_caches: 1
+[ 3613.505747] drm drm: failed to allocate buffer of size 132710400: -12
+[ 3613.505981] drm drm: failed to allocate buffer of size 132710400: -12
+[ 5175.895318] drm drm: failed to allocate buffer of size 132710400: -12
+[ 5175.943711] Xorg (1603): drop_caches: 1
+[ 5175.943874] drm drm: failed to allocate buffer of size 132710400: -12
+[ 5175.944103] drm drm: failed to allocate buffer of size 132710400: -12
+[ 5961.066575] drm drm: failed to allocate buffer of size 132710400: -12
+[ 5961.166935] Xorg (1603): drop_caches: 1
+[ 5961.167095] drm drm: failed to allocate buffer of size 132710400: -12
+[ 5961.167335] drm drm: failed to allocate buffer of size 132710400: -12
+[ 6303.748740] drm drm: failed to allocate buffer of size 132710400: -12
+[ 6303.842423] Xorg (1603): drop_caches: 1
+[ 6303.842587] drm drm: failed to allocate buffer of size 132710400: -12
+[ 6303.842831] drm drm: failed to allocate buffer of size 132710400: -12
+[ 6805.803718] drm drm: failed to allocate buffer of size 132710400: -12
+[ 6805.862446] Xorg (1603): drop_caches: 1
+[ 6805.862606] drm drm: failed to allocate buffer of size 132710400: -12
+[ 6805.862844] drm drm: failed to allocate buffer of size 132710400: -12
+[ 8200.830433] drm drm: failed to allocate buffer of size 132710400: -12
+[ 8200.892049] Xorg (1603): drop_caches: 1
+[ 8200.892217] drm drm: failed to allocate buffer of size 132710400: -12
+[ 8200.892455] drm drm: failed to allocate buffer of size 132710400: -12
+[ 8597.384982] NOTICE: Automounting of tracing to debugfs is deprecated and will be removed in 2030
+[11352.172314] drm drm: failed to allocate buffer of size 132710400: -12
+[11352.241946] Xorg (1603): drop_caches: 1
+[11352.242108] drm drm: failed to allocate buffer of size 132710400: -12
+[11352.242379] drm drm: failed to allocate buffer of size 132710400: -12
+[12118.322361] drm drm: failed to allocate buffer of size 132710400: -12
+[12118.396008] Xorg (1603): drop_caches: 1
+[12118.396164] drm drm: failed to allocate buffer of size 132710400: -12
+[12118.396402] drm drm: failed to allocate buffer of size 132710400: -12
+[19249.302254] drm drm: failed to allocate buffer of size 132710400: -12
+[19249.360205] Xorg (1603): drop_caches: 1
+[19249.360346] drm drm: failed to allocate buffer of size 132710400: -12
+[19249.360539] drm drm: failed to allocate buffer of size 132710400: -12
+[21190.419987] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.420283] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.991801] drm drm: failed to allocate buffer of size 5636096: -12
+[22555.721619] tegra-mc 7000f000.memory-controller: fdcdrd: read @0x666e1050: EMEM address decode error (EMEM decode error)
+[22555.889958] tegra-mc 7000f000.memory-controller: fdcdrd: read @0x666e1070: EMEM address decode error (EMEM decode error)
+[24996.022520] drm drm: failed to allocate buffer of size 132710400: -12
+[24996.100443] Xorg (1603): drop_caches: 1
+[24996.100598] drm drm: failed to allocate buffer of size 132710400: -12
+[24996.100815] drm drm: failed to allocate buffer of size 132710400: -12
+[58316.912911] drm drm: failed to allocate buffer of size 132710400: -12
+[58316.981307] Xorg (1603): drop_caches: 1
+[58316.981454] drm drm: failed to allocate buffer of size 132710400: -12
+[58316.981659] drm drm: failed to allocate buffer of size 132710400: -12
+[59769.274437] [drm:tegra_drm_copy_and_patch_cmdstream] *ERROR* invalid class id 0x0 (process:gpu-present-che pid:891)
+[59769.496227] [drm:tegra_drm_copy_and_patch_cmdstream] *ERROR* invalid class id 0x0 (process:gpu-present-che pid:891)
+[59769.759795] [drm:tegra_drm_copy_and_patch_cmdstream] *ERROR* invalid class id 0x0 (process:gpu-present-che pid:891)
+[61175.332910] drm drm: failed to allocate buffer of size 132710400: -12
+[61175.455374] Xorg (16502): drop_caches: 1
+[61175.455535] drm drm: failed to allocate buffer of size 132710400: -12
+[61175.455815] drm drm: failed to allocate buffer of size 132710400: -12
+[61175.678286] drm drm: failed to allocate buffer of size 132710400: -12
+[61848.154771] BUG: Bad page state in process blueman-applet  pfn:00001
+[61848.154810] page: refcount:0 mapcount:0 mapping:00000000 index:0x7b pfn:0x1
+[61848.154825] flags: 0x1000(arch_1|zone=0)
+[61848.154846] raw: 00001000 00000100 00000122 00000000 0000007b 00000000 ffffffff 00000000
+[61848.154856] raw: 00000000
+[61848.154863] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61848.154871] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61848.154921] CPU: 1 UID: 10000 PID: 27846 Comm: blueman-applet Tainted: G           OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61848.154936] Tainted: [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61848.154940] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61848.154946] Call trace: 
+[61848.154958]  unwind_backtrace from show_stack+0x28/0x30
+[61848.154987]  show_stack from dump_stack_lvl+0x50/0x5c
+[61848.155007]  dump_stack_lvl from bad_page+0x124/0x128
+[61848.155029]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61848.155043]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61848.155056]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61848.155070]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61848.155083]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61848.155107]  handle_mm_fault from do_page_fault+0x26c/0x4a4
+[61848.155134]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61848.155152]  do_DataAbort from __dabt_svc+0x4c/0x80
+[61848.155162] Exception stack(0xf1a29d48 to 0xf1a29d90)
+[61848.155173] 9d40:                   b65fc000 ffeeeee0 000000a0 6f437463 7865746e 6e614d74
+[61848.155182] 9d60: 72656761 00000051 27202c27 74736241 00000000 f1a29da8 74636172 f1a29d98
+[61848.155188] 9d80: 6e797341 c100cd04 20000013 ffffffff
+[61848.155194]  __dabt_svc from __copy_to_user_std+0x74/0x374
+[61848.155216]  __copy_to_user_std from _copy_to_iter+0x90/0x758
+[61848.155240]  _copy_to_iter from copy_page_to_iter+0xc4/0x144
+[61848.155256]  copy_page_to_iter from filemap_read+0x434/0x680
+[61848.155272]  filemap_read from vfs_read+0x228/0x380
+[61848.155288]  vfs_read from ksys_read+0x74/0xe0
+[61848.155302]  ksys_read from ret_fast_syscall+0x0/0x54
+[61848.155314] Exception stack(0xf1a29fa8 to 0xf1a29ff0)
+[61848.155322] 9fa0:                   00000000 00000000 00000003 b65eb140 00021365 00000000
+[61848.155330] 9fc0: 00000000 00000000 0000000b 00000003 00021365 00000003 b65eb140 b6e4c5f4
+[61848.155336] 9fe0: be9c6890 be9c6880 b6f0bf3b b6f0b87e
+[61848.155341] Disabling lock debugging due to kernel taint
+[61848.245049] BUG: Bad page state in process xinput  pfn:00015
+[61848.245087] page: refcount:0 mapcount:0 mapping:00000000 index:0xa3 pfn:0x15
+[61848.245101] flags: 0x1000(arch_1|zone=0)
+[61848.245122] raw: 00001000 00000100 00000122 00000000 000000a3 00000000 ffffffff 00000000
+[61848.245131] raw: 00000000
+[61848.245139] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61848.245147] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61848.245194] CPU: 1 UID: 10000 PID: 28027 Comm: xinput Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61848.245211] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61848.245215] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61848.245220] Call trace: 
+[61848.245230]  unwind_backtrace from show_stack+0x28/0x30
+[61848.245262]  show_stack from dump_stack_lvl+0x50/0x5c
+[61848.245281]  dump_stack_lvl from bad_page+0x124/0x128
+[61848.245303]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61848.245317]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61848.245330]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61848.245344]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61848.245358]  __folio_alloc_noprof from do_wp_page+0x664/0x11b4
+[61848.245378]  do_wp_page from handle_mm_fault+0x42c/0xffc
+[61848.245393]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61848.245418]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61848.245436]  do_DataAbort from __dabt_usr+0x54/0x60
+[61848.245447] Exception stack(0xf1b91fb0 to 0xf1b91ff8)
+[61848.245456] 1fa0:                                     00000014 b6d9121b 0000121b 00000000
+[61848.245465] 1fc0: b6d9070c 000000e0 00000016 b6d90000 00004f78 00000002 b6d99e50 b6d9070c
+[61848.245473] 1fe0: 00000019 beba26f8 b6d90903 b6efadc4 80000030 ffffffff
+[61848.623878] BUG: Bad page state in process blueman-applet  pfn:0000f
+[61848.623914] page: refcount:0 mapcount:0 mapping:00000000 index:0xcf pfn:0xf
+[61848.623928] flags: 0x1000(arch_1|zone=0)
+[61848.623949] raw: 00001000 00000100 00000122 00000000 000000cf 00000000 ffffffff 00000000
+[61848.623959] raw: 00000000
+[61848.623966] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61848.623974] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61848.624024] CPU: 0 UID: 10000 PID: 27846 Comm: blueman-applet Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61848.624040] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61848.624044] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61848.624049] Call trace: 
+[61848.624061]  unwind_backtrace from show_stack+0x28/0x30
+[61848.624095]  show_stack from dump_stack_lvl+0x50/0x5c
+[61848.624118]  dump_stack_lvl from bad_page+0x124/0x128
+[61848.624141]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61848.624155]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61848.624168]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61848.624181]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61848.624194]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61848.624216]  handle_mm_fault from do_page_fault+0x26c/0x4a4
+[61848.624242]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61848.624259]  do_DataAbort from __dabt_svc+0x4c/0x80
+[61848.624270] Exception stack(0xf1a29d48 to 0xf1a29d90)
+[61848.624281] 9d40:                   b6508000 ce376e60 00000120 20202020 636e7566 73203d20
+[61848.624289] 9d60: 2e666c65 00000051 6e75465f 72745063 00000000 f1a29da8 616e2828 f1a29d98
+[61848.624296] 9d80: 6f5f656d c100cd04 20000013 ffffffff
+[61848.624302]  __dabt_svc from __copy_to_user_std+0x74/0x374
+[61848.624326]  __copy_to_user_std from _copy_to_iter+0x90/0x758
+[61848.624350]  _copy_to_iter from copy_page_to_iter+0xc4/0x144
+[61848.624365]  copy_page_to_iter from filemap_read+0x434/0x680
+[61848.624380]  filemap_read from vfs_read+0x228/0x380
+[61848.624396]  vfs_read from ksys_read+0x74/0xe0
+[61848.624409]  ksys_read from ret_fast_syscall+0x0/0x54
+[61848.624421] Exception stack(0xf1a29fa8 to 0xf1a29ff0)
+[61848.624429] 9fa0:                   00000000 00000000 00000003 b65041c0 000056ae 00000000
+[61848.624438] 9fc0: 00000000 00000000 0000000b 00000003 000056ae 00000003 b65041c0 b6e4c5f4
+[61848.624444] 9fe0: be9c6890 be9c6880 b6f0bf3b b6f0b87e
+[61848.901475] BUG: Bad page state in process blueman-applet  pfn:00020
+[61848.901511] page: refcount:0 mapcount:0 mapping:00000000 index:0xb50f4 pfn:0x20
+[61848.901526] flags: 0x1000(arch_1|zone=0)
+[61848.901546] raw: 00001000 00000100 00000122 00000000 000b50f4 00000000 ffffffff 00000000
+[61848.901556] raw: 00000000
+[61848.901563] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61848.901571] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61848.901621] CPU: 0 UID: 10000 PID: 27846 Comm: blueman-applet Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61848.901638] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61848.901643] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61848.901650] Call trace: 
+[61848.901662]  unwind_backtrace from show_stack+0x28/0x30
+[61848.901699]  show_stack from dump_stack_lvl+0x50/0x5c
+[61848.901720]  dump_stack_lvl from bad_page+0x124/0x128
+[61848.901741]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61848.901755]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61848.901767]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61848.901780]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61848.901792]  __folio_alloc_noprof from do_wp_page+0x664/0x11b4
+[61848.901812]  do_wp_page from handle_mm_fault+0x42c/0xffc
+[61848.901827]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61848.901852]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61848.901869]  do_DataAbort from __dabt_usr+0x54/0x60
+[61848.901880] Exception stack(0xf1a29fb0 to 0xf1a29ff8)
+[61848.901888] 9fa0:                                     00000015 00000000 b5a36000 b5b7bcc9
+[61848.901898] 9fc0: 00000000 0000ec60 00000017 b5a36000 00296000 00000002 b5e92200 b66b6cd0
+[61848.901905] 9fe0: 00000019 be9c2fb8 b6ef923f b6ef8e18 60000030 ffffffff
+[61849.088063] BUG: Bad page state in process onboard  pfn:0002d
+[61849.088096] page: refcount:0 mapcount:0 mapping:00000000 index:0x91 pfn:0x2d
+[61849.088111] flags: 0x1000(arch_1|zone=0)
+[61849.088131] raw: 00001000 00000100 00000122 00000000 00000091 00000000 ffffffff 00000000
+[61849.088141] raw: 00000000
+[61849.088148] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61849.088156] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61849.088207] CPU: 1 UID: 10000 PID: 27835 Comm: onboard Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61849.088223] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61849.088227] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61849.088233] Call trace: 
+[61849.088243]  unwind_backtrace from show_stack+0x28/0x30
+[61849.088276]  show_stack from dump_stack_lvl+0x50/0x5c
+[61849.088298]  dump_stack_lvl from bad_page+0x124/0x128
+[61849.088319]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61849.088333]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61849.088347]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61849.088360]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61849.088374]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61849.088393]  handle_mm_fault from do_page_fault+0x26c/0x4a4
+[61849.088418]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61849.088435]  do_DataAbort from __dabt_svc+0x4c/0x80
+[61849.088446] Exception stack(0xf19d9d48 to 0xf19d9d90)
+[61849.088456] 9d40:                   b5de7000 c875a000 ffffff80 00000000 00340000 00000000
+[61849.088465] 9d60: 001f0000 00000051 08500056 00000000 00000000 f19d9da8 00000000 f19d9d98
+[61849.088472] 9d80: 00000000 c100cd04 a0000013 ffffffff
+[61849.088477]  __dabt_svc from __copy_to_user_std+0x74/0x374
+[61849.088499]  __copy_to_user_std from _copy_to_iter+0x90/0x758
+[61849.088523]  _copy_to_iter from copy_page_to_iter+0xc4/0x144
+[61849.088538]  copy_page_to_iter from filemap_read+0x434/0x680
+[61849.088554]  filemap_read from vfs_read+0x228/0x380
+[61849.088570]  vfs_read from ksys_read+0x74/0xe0
+[61849.088583]  ksys_read from ret_fast_syscall+0x0/0x54
+[61849.088595] Exception stack(0xf19d9fa8 to 0xf19d9ff0)
+[61849.088603] 9fa0:                   00000000 00000000 00000003 b5de1020 00008a43 00000000
+[61849.088611] 9fc0: 00000000 00000000 0000000b 00000003 00008a43 00000003 b5de1020 b6e8a5f4
+[61849.088617] 9fe0: bea64928 bea64918 b6f49f3b b6f4987e
+[61850.730768] BUG: Bad page state in process python3  pfn:00016
+[61850.730807] page: refcount:0 mapcount:0 mapping:00000000 index:0x3 pfn:0x16
+[61850.730823] flags: 0x1000(arch_1|zone=0)
+[61850.730846] raw: 00001000 00000100 00000122 00000000 00000003 00000000 ffffffff 00000000
+[61850.730858] raw: 00000000
+[61850.730866] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61850.730874] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61850.730929] CPU: 0 UID: 10000 PID: 27843 Comm: python3 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61850.730945] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61850.730949] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61850.730957] Call trace: 
+[61850.730970]  unwind_backtrace from show_stack+0x28/0x30
+[61850.731002]  show_stack from dump_stack_lvl+0x50/0x5c
+[61850.731024]  dump_stack_lvl from bad_page+0x124/0x128
+[61850.731046]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61850.731062]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61850.731075]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61850.731089]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61850.731102]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61850.731123]  handle_mm_fault from do_page_fault+0x26c/0x4a4
+[61850.731152]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61850.731170]  do_DataAbort from __dabt_svc+0x4c/0x80
+[61850.731180] Exception stack(0xf19f1d48 to 0xf19f1d90)
+[61850.731191] 1d40:                   b67c8000 ffefecc0 000002c0 200a6472 20202020 23202020
+[61850.731199] 1d60: 74736c20 00000051 29287461 65706f2f 00000000 f19f1da8 2f29286e f19f1d98
+[61850.731206] 1d80: 61747366 c100cd04 20000013 ffffffff
+[61850.731212]  __dabt_svc from __copy_to_user_std+0x74/0x374
+[61850.731236]  __copy_to_user_std from _copy_to_iter+0x90/0x758
+[61850.731259]  _copy_to_iter from copy_page_to_iter+0xc4/0x144
+[61850.731276]  copy_page_to_iter from filemap_read+0x434/0x680
+[61850.731291]  filemap_read from vfs_read+0x228/0x380
+[61850.731307]  vfs_read from ksys_read+0x74/0xe0
+[61850.731320]  ksys_read from ret_fast_syscall+0x0/0x54
+[61850.731332] Exception stack(0xf19f1fa8 to 0xf19f1ff0)
+[61850.731340] 1fa0:                   00000000 00000000 00000003 b67c1360 0000eb4c 00000000
+[61850.731349] 1fc0: 00000000 00000000 0000000b 00000003 0000eb4c 00000003 b67c1360 b6efd5f4
+[61850.731356] 1fe0: bed908a8 bed90898 b6fbcf3b b6fbc87e
+[61850.731362] BUG: Bad page state in process python3  pfn:00017
+[61850.731421] page: refcount:0 mapcount:0 mapping:00000000 index:0x2 pfn:0x17
+[61850.731432] flags: 0x1000(arch_1|zone=0)
+[61850.731447] raw: 00001000 00000100 00000122 00000000 00000002 00000000 ffffffff 00000000
+[61850.731456] raw: 00000000
+[61850.731463] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61850.731471] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61850.731512] CPU: 0 UID: 10000 PID: 27843 Comm: python3 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61850.731527] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61850.731531] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61850.731535] Call trace: 
+[61850.731539]  unwind_backtrace from show_stack+0x28/0x30
+[61850.731557]  show_stack from dump_stack_lvl+0x50/0x5c
+[61850.731573]  dump_stack_lvl from bad_page+0x124/0x128
+[61850.731589]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61850.731602]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61850.731615]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61850.731628]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61850.731640]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61850.731655]  handle_mm_fault from do_page_fault+0x26c/0x4a4
+[61850.731673]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61850.731688]  do_DataAbort from __dabt_svc+0x4c/0x80
+[61850.731699] Exception stack(0xf19f1d48 to 0xf19f1d90)
+[61850.731708] 1d40:                   b67c8000 ffefecc0 000002c0 200a6472 20202020 23202020
+[61850.731716] 1d60: 74736c20 00000051 29287461 65706f2f 00000000 f19f1da8 2f29286e f19f1d98
+[61850.731723] 1d80: 61747366 c100cd04 20000013 ffffffff
+[61850.731728]  __dabt_svc from __copy_to_user_std+0x74/0x374
+[61850.731743]  __copy_to_user_std from _copy_to_iter+0x90/0x758
+[61850.731761]  _copy_to_iter from copy_page_to_iter+0xc4/0x144
+[61850.731777]  copy_page_to_iter from filemap_read+0x434/0x680
+[61850.731790]  filemap_read from vfs_read+0x228/0x380
+[61850.731802]  vfs_read from ksys_read+0x74/0xe0
+[61850.731816]  ksys_read from ret_fast_syscall+0x0/0x54
+[61850.731828] Exception stack(0xf19f1fa8 to 0xf19f1ff0)
+[61850.731837] 1fa0:                   00000000 00000000 00000003 b67c1360 0000eb4c 00000000
+[61850.731845] 1fc0: 00000000 00000000 0000000b 00000003 0000eb4c 00000003 b67c1360 b6efd5f4
+[61850.731852] 1fe0: bed908a8 bed90898 b6fbcf3b b6fbc87e
+[61850.831672] BUG: Bad page state in process nm-applet  pfn:00012
+[61850.831706] page: refcount:0 mapcount:0 mapping:00000000 index:0x1d pfn:0x12
+[61850.831721] flags: 0x1000(arch_1|zone=0)
+[61850.831741] raw: 00001000 00000100 00000122 00000000 0000001d 00000000 ffffffff 00000000
+[61850.831751] raw: 00000000
+[61850.831758] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61850.831766] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61850.831816] CPU: 1 UID: 10000 PID: 27836 Comm: nm-applet Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61850.831833] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61850.831836] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61850.831842] Call trace: 
+[61850.831851]  unwind_backtrace from show_stack+0x28/0x30
+[61850.831880]  show_stack from dump_stack_lvl+0x50/0x5c
+[61850.831901]  dump_stack_lvl from bad_page+0x124/0x128
+[61850.831923]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61850.831937]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61850.831950]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61850.831964]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61850.831977]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61850.831997]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61850.832022]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61850.832040]  do_DataAbort from __dabt_usr+0x54/0x60
+[61850.832051] Exception stack(0xf19e5fb0 to 0xf19e5ff8)
+[61850.832060] 5fa0:                                     00000004 0000001f 00000000 b4c37000
+[61850.832069] 5fc0: 00000005 004f0c58 000004a4 00000004 0000001e 0000004e 00000012 00000318
+[61850.832077] 5fe0: b6fde2c0 bed60540 b6f6e085 b6f6e0cc 60000030 ffffffff
+[61850.832083] BUG: Bad page state in process nm-applet  pfn:00013
+[61850.832123] page: refcount:0 mapcount:0 mapping:00000000 index:0xd pfn:0x13
+[61850.832135] flags: 0x1000(arch_1|zone=0)
+[61850.832150] raw: 00001000 00000100 00000122 00000000 0000000d 00000000 ffffffff 00000000
+[61850.832159] raw: 00000000
+[61850.832166] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61850.832173] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61850.832214] CPU: 1 UID: 10000 PID: 27836 Comm: nm-applet Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61850.832227] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61850.832231] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61850.832235] Call trace: 
+[61850.832239]  unwind_backtrace from show_stack+0x28/0x30
+[61850.832256]  show_stack from dump_stack_lvl+0x50/0x5c
+[61850.832272]  dump_stack_lvl from bad_page+0x124/0x128
+[61850.832287]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61850.832300]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61850.832313]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61850.832326]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61850.832338]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61850.832353]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61850.832369]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61850.832384]  do_DataAbort from __dabt_usr+0x54/0x60
+[61850.832394] Exception stack(0xf19e5fb0 to 0xf19e5ff8)
+[61850.832402] 5fa0:                                     00000004 0000001f 00000000 b4c37000
+[61850.832411] 5fc0: 00000005 004f0c58 000004a4 00000004 0000001e 0000004e 00000012 00000318
+[61850.832418] 5fe0: b6fde2c0 bed60540 b6f6e085 b6f6e0cc 60000030 ffffffff
+[61851.074695] BUG: Bad page state in process xfce4-screensav  pfn:0002a
+[61851.074735] page: refcount:0 mapcount:0 mapping:00000000 index:0xd pfn:0x2a
+[61851.074752] flags: 0x1000(arch_1|zone=0)
+[61851.074774] raw: 00001000 00000100 00000122 00000000 0000000d 00000000 ffffffff 00000000
+[61851.074785] raw: 00000000
+[61851.074792] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61851.074799] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61851.074849] CPU: 1 UID: 10000 PID: 27878 Comm: xfce4-screensav Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61851.074867] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61851.074871] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61851.074877] Call trace: 
+[61851.074888]  unwind_backtrace from show_stack+0x28/0x30
+[61851.074920]  show_stack from dump_stack_lvl+0x50/0x5c
+[61851.074941]  dump_stack_lvl from bad_page+0x124/0x128
+[61851.074962]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61851.074977]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61851.074990]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61851.075003]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61851.075016]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61851.075037]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61851.075063]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61851.075081]  do_DataAbort from __dabt_usr+0x54/0x60
+[61851.075092] Exception stack(0xf1a79fb0 to 0xf1a79ff8)
+[61851.075101] 9fa0:                                     b5094000 00000008 0000001e b5093f90
+[61851.075111] 9fc0: 0000001e 004f2010 b509417c 00000010 0000000c 0000003c 00000000 000001ec
+[61851.075118] 9fe0: 00000000 bea40ab8 00000000 b6f673a8 20000030 ffffffff
+[61851.075125] BUG: Bad page state in process xfce4-screensav  pfn:0002b
+[61851.075166] page: refcount:0 mapcount:0 mapping:00000000 index:0xe pfn:0x2b
+[61851.075179] flags: 0x1000(arch_1|zone=0)
+[61851.075194] raw: 00001000 00000100 00000122 00000000 0000000e 00000000 ffffffff 00000000
+[61851.075203] raw: 00000000
+[61851.075210] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61851.075218] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61851.075259] CPU: 1 UID: 10000 PID: 27878 Comm: xfce4-screensav Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61851.075274] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61851.075277] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61851.075282] Call trace: 
+[61851.075287]  unwind_backtrace from show_stack+0x28/0x30
+[61851.075304]  show_stack from dump_stack_lvl+0x50/0x5c
+[61851.075319]  dump_stack_lvl from bad_page+0x124/0x128
+[61851.075334]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61851.075347]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61851.075359]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61851.075371]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61851.075384]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61851.075398]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61851.075415]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61851.075429]  do_DataAbort from __dabt_usr+0x54/0x60
+[61851.075440] Exception stack(0xf1a79fb0 to 0xf1a79ff8)
+[61851.075448] 9fa0:                                     b5094000 00000008 0000001e b5093f90
+[61851.075457] 9fc0: 0000001e 004f2010 b509417c 00000010 0000000c 0000003c 00000000 000001ec
+[61851.075464] 9fe0: 00000000 bea40ab8 00000000 b6f673a8 20000030 ffffffff
+[61851.742997] BUG: Bad page state in process nm-applet  pfn:00026
+[61851.743030] page: refcount:0 mapcount:0 mapping:00000000 index:0x26c pfn:0x26
+[61851.743044] flags: 0x1000(arch_1|zone=0)
+[61851.743064] raw: 00001000 00000100 00000122 00000000 0000026c 00000000 ffffffff 00000000
+[61851.743073] raw: 00000000
+[61851.743081] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61851.743088] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61851.743137] CPU: 1 UID: 10000 PID: 27836 Comm: nm-applet Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61851.743153] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61851.743157] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61851.743163] Call trace: 
+[61851.743171]  unwind_backtrace from show_stack+0x28/0x30
+[61851.743201]  show_stack from dump_stack_lvl+0x50/0x5c
+[61851.743221]  dump_stack_lvl from bad_page+0x124/0x128
+[61851.743242]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61851.743257]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61851.743270]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61851.743283]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61851.743296]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61851.743315]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61851.743340]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61851.743358]  do_DataAbort from __dabt_usr+0x54/0x60
+[61851.743369] Exception stack(0xf19e5fb0 to 0xf19e5ff8)
+[61851.743377] 5fa0:                                     00000007 000000ff ffffff00 b4bcd000
+[61851.743386] 5fc0: 000001a0 004ef1c0 000003ff 0000001f 0000001b 0000004b 0000000f 000001ec
+[61851.743393] 5fe0: b6fde2c0 bed631f0 b6f6e085 b6f6e0cc a0000030 ffffffff
+[61851.743399] BUG: Bad page state in process nm-applet  pfn:00027
+[61851.743440] page: refcount:0 mapcount:0 mapping:00000000 index:0x26d pfn:0x27
+[61851.743452] flags: 0x1000(arch_1|zone=0)
+[61851.743467] raw: 00001000 00000100 00000122 00000000 0000026d 00000000 ffffffff 00000000
+[61851.743475] raw: 00000000
+[61851.743482] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61851.743490] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61851.743530] CPU: 1 UID: 10000 PID: 27836 Comm: nm-applet Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61851.743544] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61851.743548] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61851.743552] Call trace: 
+[61851.743556]  unwind_backtrace from show_stack+0x28/0x30
+[61851.743573]  show_stack from dump_stack_lvl+0x50/0x5c
+[61851.743587]  dump_stack_lvl from bad_page+0x124/0x128
+[61851.743601]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61851.743613]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61851.743625]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61851.743638]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61851.743651]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61851.743665]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61851.743681]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61851.743696]  do_DataAbort from __dabt_usr+0x54/0x60
+[61851.743706] Exception stack(0xf19e5fb0 to 0xf19e5ff8)
+[61851.743714] 5fa0:                                     00000007 000000ff ffffff00 b4bcd000
+[61851.743722] 5fc0: 000001a0 004ef1c0 000003ff 0000001f 0000001b 0000004b 0000000f 000001ec
+[61851.743729] 5fe0: b6fde2c0 bed631f0 b6f6e085 b6f6e0cc a0000030 ffffffff
+[61852.077829] BUG: Bad page state in process CameraManager  pfn:0002e
+[61852.077859] page: refcount:0 mapcount:0 mapping:00000000 index:0xcf pfn:0x2e
+[61852.077873] flags: 0x1000(arch_1|zone=0)
+[61852.077892] raw: 00001000 00000100 00000122 00000000 000000cf 00000000 ffffffff 00000000
+[61852.077902] raw: 00000000
+[61852.077909] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61852.077917] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61852.077964] CPU: 1 UID: 10000 PID: 28178 Comm: CameraManager Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61852.077981] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61852.077985] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61852.077991] Call trace: 
+[61852.078000]  unwind_backtrace from show_stack+0x28/0x30
+[61852.078028]  show_stack from dump_stack_lvl+0x50/0x5c
+[61852.078048]  dump_stack_lvl from bad_page+0x124/0x128
+[61852.078068]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61852.078082]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61852.078095]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61852.078108]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61852.078122]  __folio_alloc_noprof from page_cache_ra_unbounded+0xf4/0x304
+[61852.078147]  page_cache_ra_unbounded from page_cache_ra_order+0x174/0x274
+[61852.078166]  page_cache_ra_order from do_sync_mmap_readahead+0x154/0x158
+[61852.078183]  do_sync_mmap_readahead from filemap_fault+0x220/0x7a4
+[61852.078193]  filemap_fault from __do_fault+0x60/0xd8
+[61852.078212]  __do_fault from handle_mm_fault+0x7e0/0xffc
+[61852.078228]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61852.078253]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61852.078271]  do_DataAbort from __dabt_usr+0x54/0x60
+[61852.078282] Exception stack(0xf1c31fb0 to 0xf1c31ff8)
+[61852.078291] 1fa0:                                     aacb755c 00058584 00058584 0005855c
+[61852.078300] 1fc0: aacb8250 00000024 b6772c90 aacb8250 00058584 aacde7c8 00000000 aac5f000
+[61852.078307] 1fe0: b64aded8 aacde410 b6591d2f b6591d36 a0000030 ffffffff
+[61852.078313] BUG: Bad page state in process CameraManager  pfn:0002f
+[61852.078361] page: refcount:0 mapcount:0 mapping:00000000 index:0xd0 pfn:0x2f
+[61852.078373] flags: 0x1000(arch_1|zone=0)
+[61852.078388] raw: 00001000 00000100 00000122 00000000 000000d0 00000000 ffffffff 00000000
+[61852.078397] raw: 00000000
+[61852.078404] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61852.078411] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61852.078451] CPU: 1 UID: 10000 PID: 28178 Comm: CameraManager Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61852.078466] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61852.078469] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61852.078473] Call trace: 
+[61852.078477]  unwind_backtrace from show_stack+0x28/0x30
+[61852.078494]  show_stack from dump_stack_lvl+0x50/0x5c
+[61852.078509]  dump_stack_lvl from bad_page+0x124/0x128
+[61852.078524]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61852.078536]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61852.078549]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61852.078562]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61852.078575]  __folio_alloc_noprof from page_cache_ra_unbounded+0xf4/0x304
+[61852.078593]  page_cache_ra_unbounded from page_cache_ra_order+0x174/0x274
+[61852.078612]  page_cache_ra_order from do_sync_mmap_readahead+0x154/0x158
+[61852.078627]  do_sync_mmap_readahead from filemap_fault+0x220/0x7a4
+[61852.078637]  filemap_fault from __do_fault+0x60/0xd8
+[61852.078651]  __do_fault from handle_mm_fault+0x7e0/0xffc
+[61852.078667]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61852.078683]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61852.078698]  do_DataAbort from __dabt_usr+0x54/0x60
+[61852.078708] Exception stack(0xf1c31fb0 to 0xf1c31ff8)
+[61852.078716] 1fa0:                                     aacb755c 00058584 00058584 0005855c
+[61852.078725] 1fc0: aacb8250 00000024 b6772c90 aacb8250 00058584 aacde7c8 00000000 aac5f000
+[61852.078732] 1fe0: b64aded8 aacde410 b6591d2f b6591d36 a0000030 ffffffff
+[61852.565017] BUG: Bad page state in process blueman-applet  pfn:00022
+[61852.565053] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4e3d pfn:0x22
+[61852.565068] flags: 0x1000(arch_1|zone=0)
+[61852.565088] raw: 00001000 00000100 00000122 00000000 000b4e3d 00000000 ffffffff 00000000
+[61852.565097] raw: 00000000
+[61852.565104] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61852.565112] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61852.565160] CPU: 1 UID: 10000 PID: 27846 Comm: blueman-applet Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61852.565176] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61852.565180] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61852.565186] Call trace: 
+[61852.565196]  unwind_backtrace from show_stack+0x28/0x30
+[61852.565226]  show_stack from dump_stack_lvl+0x50/0x5c
+[61852.565246]  dump_stack_lvl from bad_page+0x124/0x128
+[61852.565267]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61852.565281]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61852.565294]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61852.565308]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61852.565321]  __folio_alloc_noprof from page_cache_ra_unbounded+0xf4/0x304
+[61852.565346]  page_cache_ra_unbounded from page_cache_ra_order+0x174/0x274
+[61852.565365]  page_cache_ra_order from filemap_get_pages+0x160/0xa6c
+[61852.565381]  filemap_get_pages from filemap_read+0x180/0x680
+[61852.565391]  filemap_read from vfs_read+0x228/0x380
+[61852.565407]  vfs_read from ksys_read+0x74/0xe0
+[61852.565420]  ksys_read from ret_fast_syscall+0x0/0x54
+[61852.565432] Exception stack(0xf1a29fa8 to 0xf1a29ff0)
+[61852.565442] 9fa0:                   00000000 00000000 00000005 b57d6ab0 000000a8 00000000
+[61852.565451] 9fc0: 00000000 00000000 0000000b 00000003 000000a8 00000005 b57d6ab0 b6e4c5f4
+[61852.565457] 9fe0: be9c6890 be9c6880 b6f0bf3b b6f0b87e
+[61852.565464] BUG: Bad page state in process blueman-applet  pfn:00023
+[61852.565508] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4e3e pfn:0x23
+[61852.565520] flags: 0x1000(arch_1|zone=0)
+[61852.565536] raw: 00001000 00000100 00000122 00000000 000b4e3e 00000000 ffffffff 00000000
+[61852.565545] raw: 00000000
+[61852.565552] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61852.565559] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61852.565599] CPU: 1 UID: 10000 PID: 27846 Comm: blueman-applet Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61852.565614] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61852.565617] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61852.565621] Call trace: 
+[61852.565625]  unwind_backtrace from show_stack+0x28/0x30
+[61852.565641]  show_stack from dump_stack_lvl+0x50/0x5c
+[61852.565656]  dump_stack_lvl from bad_page+0x124/0x128
+[61852.565671]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61852.565683]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61852.565696]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61852.565709]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61852.565721]  __folio_alloc_noprof from page_cache_ra_unbounded+0xf4/0x304
+[61852.565738]  page_cache_ra_unbounded from page_cache_ra_order+0x174/0x274
+[61852.565757]  page_cache_ra_order from filemap_get_pages+0x160/0xa6c
+[61852.565772]  filemap_get_pages from filemap_read+0x180/0x680
+[61852.565781]  filemap_read from vfs_read+0x228/0x380
+[61852.565793]  vfs_read from ksys_read+0x74/0xe0
+[61852.565806]  ksys_read from ret_fast_syscall+0x0/0x54
+[61852.565817] Exception stack(0xf1a29fa8 to 0xf1a29ff0)
+[61852.565826] 9fa0:                   00000000 00000000 00000005 b57d6ab0 000000a8 00000000
+[61852.565834] 9fc0: 00000000 00000000 0000000b 00000003 000000a8 00000005 b57d6ab0 b6e4c5f4
+[61852.565841] 9fe0: be9c6890 be9c6880 b6f0bf3b b6f0b87e
+[61855.473313] BUG: Bad page state in process onboard  pfn:00018
+[61855.473347] page: refcount:0 mapcount:0 mapping:00000000 index:0xb354d pfn:0x18
+[61855.473363] flags: 0x1000(arch_1|zone=0)
+[61855.473383] raw: 00001000 00000100 00000122 00000000 000b354d 00000000 ffffffff 00000000
+[61855.473394] raw: 00000000
+[61855.473401] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61855.473409] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61855.473457] CPU: 1 UID: 10000 PID: 27835 Comm: onboard Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61855.473474] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61855.473478] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61855.473484] Call trace: 
+[61855.473493]  unwind_backtrace from show_stack+0x28/0x30
+[61855.473525]  show_stack from dump_stack_lvl+0x50/0x5c
+[61855.473546]  dump_stack_lvl from bad_page+0x124/0x128
+[61855.473567]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61855.473581]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61855.473594]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61855.473608]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61855.473621]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61855.473641]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61855.473667]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61855.473685]  do_DataAbort from __dabt_usr+0x54/0x60
+[61855.473696] Exception stack(0xf19d9fb0 to 0xf19d9ff8)
+[61855.473706] 9fa0:                                     0000002b 0000ffff 00000150 b3018000
+[61855.473715] 9fc0: b62b5c80 b6edbf88 0000000e bea66130 00000002 b6eaa720 00000000 b6e8a5f4
+[61855.473722] 9fe0: 00000001 bea660b0 b6bdd837 b6bdd920 00000030 ffffffff
+[61855.473729] BUG: Bad page state in process onboard  pfn:00019
+[61855.473769] page: refcount:0 mapcount:0 mapping:00000000 index:0x96 pfn:0x19
+[61855.473781] flags: 0x1000(arch_1|zone=0)
+[61855.473797] raw: 00001000 00000100 00000122 00000000 00000096 00000000 ffffffff 00000000
+[61855.473806] raw: 00000000
+[61855.473813] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61855.473820] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61855.473861] CPU: 1 UID: 10000 PID: 27835 Comm: onboard Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61855.473875] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61855.473879] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61855.473883] Call trace: 
+[61855.473888]  unwind_backtrace from show_stack+0x28/0x30
+[61855.473905]  show_stack from dump_stack_lvl+0x50/0x5c
+[61855.473920]  dump_stack_lvl from bad_page+0x124/0x128
+[61855.473935]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61855.473947]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61855.473959]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61855.473972]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61855.473985]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61855.473999]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61855.474014]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61855.474028]  do_DataAbort from __dabt_usr+0x54/0x60
+[61855.474038] Exception stack(0xf19d9fb0 to 0xf19d9ff8)
+[61855.474047] 9fa0:                                     0000002b 0000ffff 00000150 b3018000
+[61855.474055] 9fc0: b62b5c80 b6edbf88 0000000e bea66130 00000002 b6eaa720 00000000 b6e8a5f4
+[61855.474063] 9fe0: 00000001 bea660b0 b6bdd837 b6bdd920 00000030 ffffffff
+[61855.474068] BUG: Bad page state in process onboard  pfn:0001a
+[61855.474107] page: refcount:0 mapcount:0 mapping:00000000 index:0xb45dc pfn:0x1a
+[61855.474118] flags: 0x1000(arch_1|zone=0)
+[61855.474133] raw: 00001000 00000100 00000122 00000000 000b45dc 00000000 ffffffff 00000000
+[61855.474142] raw: 00000000
+[61855.474149] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61855.474156] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61855.474196] CPU: 1 UID: 10000 PID: 27835 Comm: onboard Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61855.474209] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61855.474213] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61855.474217] Call trace: 
+[61855.474221]  unwind_backtrace from show_stack+0x28/0x30
+[61855.474237]  show_stack from dump_stack_lvl+0x50/0x5c
+[61855.474251]  dump_stack_lvl from bad_page+0x124/0x128
+[61855.474265]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61855.474278]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61855.474290]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61855.474303]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61855.474316]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61855.474329]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61855.474345]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61855.474359]  do_DataAbort from __dabt_usr+0x54/0x60
+[61855.474369] Exception stack(0xf19d9fb0 to 0xf19d9ff8)
+[61855.474377] 9fa0:                                     0000002b 0000ffff 00000150 b3018000
+[61855.474386] 9fc0: b62b5c80 b6edbf88 0000000e bea66130 00000002 b6eaa720 00000000 b6e8a5f4
+[61855.474393] 9fe0: 00000001 bea660b0 b6bdd837 b6bdd920 00000030 ffffffff
+[61855.474398] BUG: Bad page state in process onboard  pfn:0001b
+[61855.474437] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4dc2 pfn:0x1b
+[61855.474449] flags: 0x1000(arch_1|zone=0)
+[61855.474463] raw: 00001000 00000100 00000122 00000000 000b4dc2 00000000 ffffffff 00000000
+[61855.474472] raw: 00000000
+[61855.474479] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61855.474486] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61855.474525] CPU: 1 UID: 10000 PID: 27835 Comm: onboard Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61855.474539] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61855.474543] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61855.474547] Call trace: 
+[61855.474550]  unwind_backtrace from show_stack+0x28/0x30
+[61855.474566]  show_stack from dump_stack_lvl+0x50/0x5c
+[61855.474580]  dump_stack_lvl from bad_page+0x124/0x128
+[61855.474595]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61855.474608]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61855.474620]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61855.474633]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61855.474646]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61855.474661]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61855.474677]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61855.474692]  do_DataAbort from __dabt_usr+0x54/0x60
+[61855.474702] Exception stack(0xf19d9fb0 to 0xf19d9ff8)
+[61855.474710] 9fa0:                                     0000002b 0000ffff 00000150 b3018000
+[61855.474719] 9fc0: b62b5c80 b6edbf88 0000000e bea66130 00000002 b6eaa720 00000000 b6e8a5f4
+[61855.474726] 9fe0: 00000001 bea660b0 b6bdd837 b6bdd920 00000030 ffffffff
+[61855.474731] BUG: Bad page state in process onboard  pfn:0001c
+[61855.474769] page: refcount:0 mapcount:0 mapping:00000000 index:0xb55d0 pfn:0x1c
+[61855.474781] flags: 0x1000(arch_1|zone=0)
+[61855.474795] raw: 00001000 00000100 00000122 00000000 000b55d0 00000000 ffffffff 00000000
+[61855.474803] raw: 00000000
+[61855.474810] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61855.474818] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61855.474857] CPU: 1 UID: 10000 PID: 27835 Comm: onboard Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61855.474871] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61855.474875] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61855.474878] Call trace: 
+[61855.474883]  unwind_backtrace from show_stack+0x28/0x30
+[61855.474899]  show_stack from dump_stack_lvl+0x50/0x5c
+[61855.474913]  dump_stack_lvl from bad_page+0x124/0x128
+[61855.474928]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61855.474940]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61855.474952]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61855.474965]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61855.474978]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61855.474992]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61855.475008]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61855.475023]  do_DataAbort from __dabt_usr+0x54/0x60
+[61855.475033] Exception stack(0xf19d9fb0 to 0xf19d9ff8)
+[61855.475041] 9fa0:                                     0000002b 0000ffff 00000150 b3018000
+[61855.475049] 9fc0: b62b5c80 b6edbf88 0000000e bea66130 00000002 b6eaa720 00000000 b6e8a5f4
+[61855.475057] 9fe0: 00000001 bea660b0 b6bdd837 b6bdd920 00000030 ffffffff
+[61855.475062] BUG: Bad page state in process onboard  pfn:0001d
+[61855.475100] page: refcount:0 mapcount:0 mapping:00000000 index:0x36 pfn:0x1d
+[61855.475112] flags: 0x1000(arch_1|zone=0)
+[61855.475126] raw: 00001000 00000100 00000122 00000000 00000036 00000000 ffffffff 00000000
+[61855.475135] raw: 00000000
+[61855.475142] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61855.475149] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61855.475189] CPU: 1 UID: 10000 PID: 27835 Comm: onboard Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61855.475202] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61855.475206] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61855.475210] Call trace: 
+[61855.475213]  unwind_backtrace from show_stack+0x28/0x30
+[61855.475229]  show_stack from dump_stack_lvl+0x50/0x5c
+[61855.475242]  dump_stack_lvl from bad_page+0x124/0x128
+[61855.475256]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61855.475269]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61855.475281]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61855.475293]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61855.475306]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61855.475320]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61855.475335]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61855.475349]  do_DataAbort from __dabt_usr+0x54/0x60
+[61855.475359] Exception stack(0xf19d9fb0 to 0xf19d9ff8)
+[61855.475367] 9fa0:                                     0000002b 0000ffff 00000150 b3018000
+[61855.475375] 9fc0: b62b5c80 b6edbf88 0000000e bea66130 00000002 b6eaa720 00000000 b6e8a5f4
+[61855.475383] 9fe0: 00000001 bea660b0 b6bdd837 b6bdd920 00000030 ffffffff
+[61855.475388] BUG: Bad page state in process onboard  pfn:0001e
+[61855.475427] page: refcount:0 mapcount:0 mapping:00000000 index:0xb3f1a pfn:0x1e
+[61855.475438] flags: 0x1000(arch_1|zone=0)
+[61855.475452] raw: 00001000 00000100 00000122 00000000 000b3f1a 00000000 ffffffff 00000000
+[61855.475461] raw: 00000000
+[61855.475468] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61855.475475] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61855.475515] CPU: 1 UID: 10000 PID: 27835 Comm: onboard Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61855.475529] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61855.475532] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61855.475536] Call trace: 
+[61855.475540]  unwind_backtrace from show_stack+0x28/0x30
+[61855.475556]  show_stack from dump_stack_lvl+0x50/0x5c
+[61855.475571]  dump_stack_lvl from bad_page+0x124/0x128
+[61855.475585]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61855.475597]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61855.475610]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61855.475623]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61855.475635]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61855.475649]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61855.475665]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61855.475679]  do_DataAbort from __dabt_usr+0x54/0x60
+[61855.475689] Exception stack(0xf19d9fb0 to 0xf19d9ff8)
+[61855.475697] 9fa0:                                     0000002b 0000ffff 00000150 b3018000
+[61855.475705] 9fc0: b62b5c80 b6edbf88 0000000e bea66130 00000002 b6eaa720 00000000 b6e8a5f4
+[61855.475712] 9fe0: 00000001 bea660b0 b6bdd837 b6bdd920 00000030 ffffffff
+[61855.475717] BUG: Bad page state in process onboard  pfn:0001f
+[61855.475755] page: refcount:0 mapcount:0 mapping:00000000 index:0xb3455 pfn:0x1f
+[61855.475767] flags: 0x1000(arch_1|zone=0)
+[61855.475781] raw: 00001000 00000100 00000122 00000000 000b3455 00000000 ffffffff 00000000
+[61855.475790] raw: 00000000
+[61855.475797] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61855.475804] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61855.475844] CPU: 1 UID: 10000 PID: 27835 Comm: onboard Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61855.475857] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61855.475861] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61855.475865] Call trace: 
+[61855.475869]  unwind_backtrace from show_stack+0x28/0x30
+[61855.475885]  show_stack from dump_stack_lvl+0x50/0x5c
+[61855.475899]  dump_stack_lvl from bad_page+0x124/0x128
+[61855.475914]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61855.475926]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61855.475939]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61855.475952]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61855.475965]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61855.475980]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61855.475997]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61855.476012]  do_DataAbort from __dabt_usr+0x54/0x60
+[61855.476022] Exception stack(0xf19d9fb0 to 0xf19d9ff8)
+[61855.476030] 9fa0:                                     0000002b 0000ffff 00000150 b3018000
+[61855.476039] 9fc0: b62b5c80 b6edbf88 0000000e bea66130 00000002 b6eaa720 00000000 b6e8a5f4
+[61855.476047] 9fe0: 00000001 bea660b0 b6bdd837 b6bdd920 00000030 ffffffff
+[61857.781010] BUG: Bad page state in process tumblerd  pfn:00030
+[61857.781043] page: refcount:0 mapcount:0 mapping:00000000 index:0xb3344 pfn:0x30
+[61857.781057] flags: 0x1000(arch_1|zone=0)
+[61857.781078] raw: 00001000 00000100 00000122 00000000 000b3344 00000000 ffffffff 00000000
+[61857.781088] raw: 00000000
+[61857.781095] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.781103] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.781152] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.781168] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.781172] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.781178] Call trace: 
+[61857.781187]  unwind_backtrace from show_stack+0x28/0x30
+[61857.781216]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.781236]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.781257]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.781271]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.781284]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.781297]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.781310]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.781330]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.781355]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.781372]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.781383] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.781392] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.781401] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.781408] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.781414] BUG: Bad page state in process tumblerd  pfn:00031
+[61857.781453] page: refcount:0 mapcount:0 mapping:00000000 index:0xb6d7c pfn:0x31
+[61857.781465] flags: 0x1000(arch_1|zone=0)
+[61857.781480] raw: 00001000 00000100 00000122 00000000 000b6d7c 00000000 ffffffff 00000000
+[61857.781489] raw: 00000000
+[61857.781496] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.781503] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.781543] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.781557] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.781560] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.781564] Call trace: 
+[61857.781568]  unwind_backtrace from show_stack+0x28/0x30
+[61857.781585]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.781598]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.781613]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.781625]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.781638]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.781651]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.781663]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.781677]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.781694]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.781708]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.781718] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.781725] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.781734] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.781741] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.781747] BUG: Bad page state in process tumblerd  pfn:00032
+[61857.781785] page: refcount:0 mapcount:0 mapping:00000000 index:0xb3345 pfn:0x32
+[61857.781797] flags: 0x1000(arch_1|zone=0)
+[61857.781811] raw: 00001000 00000100 00000122 00000000 000b3345 00000000 ffffffff 00000000
+[61857.781821] raw: 00000000
+[61857.781828] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.781835] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.781874] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.781887] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.781891] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.781895] Call trace: 
+[61857.781899]  unwind_backtrace from show_stack+0x28/0x30
+[61857.781915]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.781928]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.781943]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.781955]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.781967]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.781979]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.781992]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.782006]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.782022]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.782036]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.782046] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.782054] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.782062] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.782069] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.782075] BUG: Bad page state in process tumblerd  pfn:00033
+[61857.782113] page: refcount:0 mapcount:0 mapping:00000000 index:0xb3346 pfn:0x33
+[61857.782124] flags: 0x1000(arch_1|zone=0)
+[61857.782138] raw: 00001000 00000100 00000122 00000000 000b3346 00000000 ffffffff 00000000
+[61857.782147] raw: 00000000
+[61857.782154] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.782161] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.782201] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.782214] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.782217] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.782221] Call trace: 
+[61857.782225]  unwind_backtrace from show_stack+0x28/0x30
+[61857.782240]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.782255]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.782269]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.782281]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.782293]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.782306]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.782318]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.782332]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.782347]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.782361]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.782372] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.782379] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.782388] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.782395] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.782400] BUG: Bad page state in process tumblerd  pfn:00034
+[61857.782438] page: refcount:0 mapcount:0 mapping:00000000 index:0x44d pfn:0x34
+[61857.782450] flags: 0x1000(arch_1|zone=0)
+[61857.782464] raw: 00001000 00000100 00000122 00000000 0000044d 00000000 ffffffff 00000000
+[61857.782472] raw: 00000000
+[61857.782479] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.782486] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.782525] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.782539] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.782542] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.782546] Call trace: 
+[61857.782550]  unwind_backtrace from show_stack+0x28/0x30
+[61857.782565]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.782580]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.782593]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.782606]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.782618]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.782630]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.782643]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.782656]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.782672]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.782686]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.782696] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.782703] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.782712] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.782719] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.782768] BUG: Bad page state in process tumblerd  pfn:00035
+[61857.782807] page: refcount:0 mapcount:0 mapping:00000000 index:0xb3348 pfn:0x35
+[61857.782819] flags: 0x1000(arch_1|zone=0)
+[61857.782832] raw: 00001000 00000100 00000122 00000000 000b3348 00000000 ffffffff 00000000
+[61857.782841] raw: 00000000
+[61857.782848] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.782855] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.782895] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.782908] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.782911] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.782916] Call trace: 
+[61857.782919]  unwind_backtrace from show_stack+0x28/0x30
+[61857.782936]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.782950]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.782966]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.782979]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.782991]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.783004]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.783016]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.783031]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.783048]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.783062]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.783073] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.783080] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.783089] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.783096] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.783101] BUG: Bad page state in process tumblerd  pfn:00036
+[61857.783140] page: refcount:0 mapcount:0 mapping:00000000 index:0xb32ce pfn:0x36
+[61857.783151] flags: 0x1000(arch_1|zone=0)
+[61857.783165] raw: 00001000 00000100 00000122 00000000 000b32ce 00000000 ffffffff 00000000
+[61857.783174] raw: 00000000
+[61857.783180] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.783187] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.783227] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.783240] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.783244] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.783248] Call trace: 
+[61857.783252]  unwind_backtrace from show_stack+0x28/0x30
+[61857.783268]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.783282]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.783296]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.783308]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.783321]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.783333]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.783346]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.783360]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.783376]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.783391]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.783401] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.783409] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.783418] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.783425] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.783430] BUG: Bad page state in process tumblerd  pfn:00037
+[61857.783468] page: refcount:0 mapcount:0 mapping:00000000 index:0xb3347 pfn:0x37
+[61857.783480] flags: 0x1000(arch_1|zone=0)
+[61857.783494] raw: 00001000 00000100 00000122 00000000 000b3347 00000000 ffffffff 00000000
+[61857.783503] raw: 00000000
+[61857.783510] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.783517] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.783557] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.783570] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.783574] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.783578] Call trace: 
+[61857.783581]  unwind_backtrace from show_stack+0x28/0x30
+[61857.783597]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.783611]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.783626]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.783639]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.783651]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.783664]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.783676]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.783691]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.783707]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.783721]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.783731] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.783739] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.783748] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.783755] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.783760] BUG: Bad page state in process tumblerd  pfn:00038
+[61857.783798] page: refcount:0 mapcount:0 mapping:00000000 index:0xb33e0 pfn:0x38
+[61857.783810] flags: 0x1000(arch_1|zone=0)
+[61857.783823] raw: 00001000 00000100 00000122 00000000 000b33e0 00000000 ffffffff 00000000
+[61857.783832] raw: 00000000
+[61857.783839] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.783846] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.783886] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.783900] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.783903] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.783907] Call trace: 
+[61857.783911]  unwind_backtrace from show_stack+0x28/0x30
+[61857.783927]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.783942]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.783956]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.783968]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.783980]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.783993]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.784006]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.784019]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.784036]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.784050]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.784060] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.784068] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.784076] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.784084] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.784088] BUG: Bad page state in process tumblerd  pfn:00039
+[61857.784126] page: refcount:0 mapcount:0 mapping:00000000 index:0xb33df pfn:0x39
+[61857.784138] flags: 0x1000(arch_1|zone=0)
+[61857.784152] raw: 00001000 00000100 00000122 00000000 000b33df 00000000 ffffffff 00000000
+[61857.784160] raw: 00000000
+[61857.784167] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.784175] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.784214] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.784227] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.784231] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.784235] Call trace: 
+[61857.784239]  unwind_backtrace from show_stack+0x28/0x30
+[61857.784254]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.784269]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.784284]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.784296]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.784309]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.784322]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.784334]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.784348]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.784364]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.784379]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.784389] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.784396] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.784405] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.784412] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.784417] BUG: Bad page state in process tumblerd  pfn:0003a
+[61857.784456] page: refcount:0 mapcount:0 mapping:00000000 index:0xb33e1 pfn:0x3a
+[61857.784467] flags: 0x1000(arch_1|zone=0)
+[61857.784481] raw: 00001000 00000100 00000122 00000000 000b33e1 00000000 ffffffff 00000000
+[61857.784490] raw: 00000000
+[61857.784497] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.784504] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.784544] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.784558] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.784561] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.784565] Call trace: 
+[61857.784569]  unwind_backtrace from show_stack+0x28/0x30
+[61857.784585]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.784599]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.784613]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.784625]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.784637]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.784649]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.784661]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.784675]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.784691]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.784704]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.784715] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.784722] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.784731] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.784738] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.784744] BUG: Bad page state in process tumblerd  pfn:0003b
+[61857.784782] page: refcount:0 mapcount:0 mapping:00000000 index:0xb334a pfn:0x3b
+[61857.784794] flags: 0x1000(arch_1|zone=0)
+[61857.784807] raw: 00001000 00000100 00000122 00000000 000b334a 00000000 ffffffff 00000000
+[61857.784816] raw: 00000000
+[61857.784823] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.784830] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.784869] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.784883] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.784886] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.784890] Call trace: 
+[61857.784894]  unwind_backtrace from show_stack+0x28/0x30
+[61857.784909]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.784924]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.784938]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.784950]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.784962]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.784975]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.784988]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.785001]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.785018]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.785032]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.785042] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.785050] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.785058] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.785065] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.785070] BUG: Bad page state in process tumblerd  pfn:0003c
+[61857.785108] page: refcount:0 mapcount:0 mapping:00000000 index:0xb32bb pfn:0x3c
+[61857.785120] flags: 0x1000(arch_1|zone=0)
+[61857.785133] raw: 00001000 00000100 00000122 00000000 000b32bb 00000000 ffffffff 00000000
+[61857.785142] raw: 00000000
+[61857.785149] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.785156] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.785195] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.785208] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.785211] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.785215] Call trace: 
+[61857.785219]  unwind_backtrace from show_stack+0x28/0x30
+[61857.785235]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.785249]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.785263]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.785276]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.785288]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.785301]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.785314]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.785328]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.785345]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.785359]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.785369] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.785377] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.785386] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.785393] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.785398] BUG: Bad page state in process tumblerd  pfn:0003d
+[61857.785436] page: refcount:0 mapcount:0 mapping:00000000 index:0xb32cd pfn:0x3d
+[61857.785448] flags: 0x1000(arch_1|zone=0)
+[61857.785462] raw: 00001000 00000100 00000122 00000000 000b32cd 00000000 ffffffff 00000000
+[61857.785471] raw: 00000000
+[61857.785478] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.785485] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.785524] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.785537] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.785541] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.785545] Call trace: 
+[61857.785549]  unwind_backtrace from show_stack+0x28/0x30
+[61857.785564]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.785579]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.785594]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.785606]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.785619]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.785632]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.785645]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.785659]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.785675]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.785689]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.785700] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.785708] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.785716] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.785723] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.785729] BUG: Bad page state in process tumblerd  pfn:0003e
+[61857.785767] page: refcount:0 mapcount:0 mapping:00000000 index:0xb32bc pfn:0x3e
+[61857.785778] flags: 0x1000(arch_1|zone=0)
+[61857.785792] raw: 00001000 00000100 00000122 00000000 000b32bc 00000000 ffffffff 00000000
+[61857.785801] raw: 00000000
+[61857.785808] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.785815] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.785854] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.785868] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.785871] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.785875] Call trace: 
+[61857.785879]  unwind_backtrace from show_stack+0x28/0x30
+[61857.785895]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.785909]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.785924]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.785936]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.785948]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.785961]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.785973]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.785988]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.786004]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.786018]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.786028] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.786036] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.786045] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.786052] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61857.786190] BUG: Bad page state in process tumblerd  pfn:0003f
+[61857.786207] page: refcount:0 mapcount:0 mapping:00000000 index:0xb33fc pfn:0x3f
+[61857.786221] flags: 0x1000(arch_1|zone=0)
+[61857.786237] raw: 00001000 00000100 00000122 00000000 000b33fc 00000000 ffffffff 00000000
+[61857.786246] raw: 00000000
+[61857.786254] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61857.786261] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61857.786305] CPU: 1 UID: 10000 PID: 27931 Comm: tumblerd Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61857.786320] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61857.786323] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61857.786328] Call trace: 
+[61857.786335]  unwind_backtrace from show_stack+0x28/0x30
+[61857.786356]  show_stack from dump_stack_lvl+0x50/0x5c
+[61857.786374]  dump_stack_lvl from bad_page+0x124/0x128
+[61857.786390]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61857.786402]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61857.786415]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61857.786428]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61857.786441]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61857.786456]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61857.786475]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61857.786491]  do_DataAbort from __dabt_usr+0x54/0x60
+[61857.786502] Exception stack(0xf1ad5fb0 to 0xf1ad5ff8)
+[61857.786510] 5fa0:                                     9fbe7fd0 80000001 80000001 00000003
+[61857.786520] 5fc0: 9fbe8000 0000e9e5 00000018 9fb760f2 b6f3af08 a2cabf1c 9fb8890c 9f8de320
+[61857.786527] 5fe0: bed9f518 beda0518 9fa2a869 9fa2a85c 20000030 ffffffff
+[61859.674971] BUG: Bad page state in process blocking-1  pfn:00040
+[61859.675018] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4731 pfn:0x40
+[61859.675033] flags: 0x1000(arch_1|zone=0)
+[61859.675057] raw: 00001000 00000100 00000122 00000000 000b4731 00000000 ffffffff 00000000
+[61859.675067] raw: 00000000
+[61859.675074] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.675082] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.675135] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.675152] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.675156] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.675162] Call trace: 
+[61859.675174]  unwind_backtrace from show_stack+0x28/0x30
+[61859.675211]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.675233]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.675256]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.675270]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.675284]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.675297]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.675310]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.675332]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.675360]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.675379]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.675390] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.675400] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.675408] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.675416] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.675423] BUG: Bad page state in process blocking-1  pfn:00041
+[61859.675463] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4732 pfn:0x41
+[61859.675475] flags: 0x1000(arch_1|zone=0)
+[61859.675490] raw: 00001000 00000100 00000122 00000000 000b4732 00000000 ffffffff 00000000
+[61859.675499] raw: 00000000
+[61859.675506] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.675513] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.675553] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.675567] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.675571] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.675575] Call trace: 
+[61859.675579]  unwind_backtrace from show_stack+0x28/0x30
+[61859.675596]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.675610]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.675625]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.675638]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.675650]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.675664]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.675676]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.675691]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.675708]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.675722]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.675733] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.675741] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.675749] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.675756] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.675761] BUG: Bad page state in process blocking-1  pfn:00042
+[61859.675800] page: refcount:0 mapcount:0 mapping:00000000 index:0xb472e pfn:0x42
+[61859.675812] flags: 0x1000(arch_1|zone=0)
+[61859.676017] raw: 00001000 00000100 00000122 00000000 000b472e 00000000 ffffffff 00000000
+[61859.676035] raw: 00000000
+[61859.676043] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.676051] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.676094] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.676111] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.676114] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.676119] Call trace: 
+[61859.676124]  unwind_backtrace from show_stack+0x28/0x30
+[61859.676144]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.676163]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.676178]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.676193]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.676207]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.676221]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.676234]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.676252]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.676270]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.676287]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.676298] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.676309] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.676318] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.676325] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.676333] BUG: Bad page state in process blocking-1  pfn:00043
+[61859.676376] page: refcount:0 mapcount:0 mapping:00000000 index:0xb472f pfn:0x43
+[61859.676392] flags: 0x1000(arch_1|zone=0)
+[61859.676408] raw: 00001000 00000100 00000122 00000000 000b472f 00000000 ffffffff 00000000
+[61859.676417] raw: 00000000
+[61859.676424] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.676432] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.676474] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.676489] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.676494] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.676498] Call trace: 
+[61859.676504]  unwind_backtrace from show_stack+0x28/0x30
+[61859.676521]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.676536]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.676551]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.676563]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.676576]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.676588]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.676601]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.676615]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.676631]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.676645]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.676655] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.676664] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.676672] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.676680] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.676685] BUG: Bad page state in process blocking-1  pfn:00044
+[61859.676725] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4730 pfn:0x44
+[61859.676738] flags: 0x1000(arch_1|zone=0)
+[61859.676752] raw: 00001000 00000100 00000122 00000000 000b4730 00000000 ffffffff 00000000
+[61859.676761] raw: 00000000
+[61859.676768] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.676775] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.676815] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.676829] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.676832] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.676836] Call trace: 
+[61859.676841]  unwind_backtrace from show_stack+0x28/0x30
+[61859.676857]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.676871]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.676886]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.676898]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.676911]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.676923]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.676935]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.676949]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.676965]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.676980]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.676990] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.676998] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.677006] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.677013] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.677018] BUG: Bad page state in process blocking-1  pfn:00045
+[61859.677056] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4a0c pfn:0x45
+[61859.677068] flags: 0x1000(arch_1|zone=0)
+[61859.677083] raw: 00001000 00000100 00000122 00000000 000b4a0c 00000000 ffffffff 00000000
+[61859.677091] raw: 00000000
+[61859.677098] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.677106] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.677144] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.677158] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.677162] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.677166] Call trace: 
+[61859.677170]  unwind_backtrace from show_stack+0x28/0x30
+[61859.677186]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.677201]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.677216]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.677229]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.677241]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.677254]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.677267]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.677283]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.677298]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.677314]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.677325] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.677333] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.677341] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.677349] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.677354] BUG: Bad page state in process blocking-1  pfn:00046
+[61859.677394] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4db0 pfn:0x46
+[61859.677406] flags: 0x1000(arch_1|zone=0)
+[61859.677420] raw: 00001000 00000100 00000122 00000000 000b4db0 00000000 ffffffff 00000000
+[61859.677429] raw: 00000000
+[61859.677435] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.677442] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.677482] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.677495] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.677499] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.677503] Call trace: 
+[61859.677507]  unwind_backtrace from show_stack+0x28/0x30
+[61859.677523]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.677539]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.677553]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.677566]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.677579]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.677592]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.677605]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.677619]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.677635]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.677650]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.677660] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.677668] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.677677] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.677684] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.677689] BUG: Bad page state in process blocking-1  pfn:00047
+[61859.677727] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4a08 pfn:0x47
+[61859.677739] flags: 0x1000(arch_1|zone=0)
+[61859.677752] raw: 00001000 00000100 00000122 00000000 000b4a08 00000000 ffffffff 00000000
+[61859.677761] raw: 00000000
+[61859.677768] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.677775] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.677814] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.677828] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.677832] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.677836] Call trace: 
+[61859.677840]  unwind_backtrace from show_stack+0x28/0x30
+[61859.677857]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.677872]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.677886]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.677899]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.677911]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.677924]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.677937]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.677951]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.677967]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.677981]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.677992] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.678000] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.678008] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.678016] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.678021] BUG: Bad page state in process blocking-1  pfn:00048
+[61859.678059] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4c53 pfn:0x48
+[61859.678071] flags: 0x1000(arch_1|zone=0)
+[61859.678085] raw: 00001000 00000100 00000122 00000000 000b4c53 00000000 ffffffff 00000000
+[61859.678094] raw: 00000000
+[61859.678100] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.678107] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.678146] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.678160] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.678163] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.678167] Call trace: 
+[61859.678171]  unwind_backtrace from show_stack+0x28/0x30
+[61859.678188]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.678201]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.678215]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.678228]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.678240]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.678252]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.678265]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.678279]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.678296]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.678310]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.678320] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.678328] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.678337] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.678344] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.678349] BUG: Bad page state in process blocking-1  pfn:00049
+[61859.678388] page: refcount:0 mapcount:0 mapping:00000000 index:0xb473c pfn:0x49
+[61859.678399] flags: 0x1000(arch_1|zone=0)
+[61859.678413] raw: 00001000 00000100 00000122 00000000 000b473c 00000000 ffffffff 00000000
+[61859.678422] raw: 00000000
+[61859.678429] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.678436] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.678475] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.678489] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.678493] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.678497] Call trace: 
+[61859.678501]  unwind_backtrace from show_stack+0x28/0x30
+[61859.678517]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.678532]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.678547]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.678560]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.678572]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.678585]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.678598]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.678613]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.678629]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.678644]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.678654] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.678662] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.678670] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.678678] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.678683] BUG: Bad page state in process blocking-1  pfn:0004a
+[61859.678721] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4738 pfn:0x4a
+[61859.678733] flags: 0x1000(arch_1|zone=0)
+[61859.678748] raw: 00001000 00000100 00000122 00000000 000b4738 00000000 ffffffff 00000000
+[61859.678756] raw: 00000000
+[61859.678763] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.678770] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.678809] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.678822] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.678826] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.678830] Call trace: 
+[61859.678834]  unwind_backtrace from show_stack+0x28/0x30
+[61859.678849]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.678863]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.678878]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.678891]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.678903]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.678916]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.678929]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.678944]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.678961]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.678975]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.678986] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.678993] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.679001] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.679009] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.679014] BUG: Bad page state in process blocking-1  pfn:0004b
+[61859.679053] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4739 pfn:0x4b
+[61859.679065] flags: 0x1000(arch_1|zone=0)
+[61859.679079] raw: 00001000 00000100 00000122 00000000 000b4739 00000000 ffffffff 00000000
+[61859.679087] raw: 00000000
+[61859.679095] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.679102] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.679141] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.679154] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.679158] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.679162] Call trace: 
+[61859.679166]  unwind_backtrace from show_stack+0x28/0x30
+[61859.679183]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.679198]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.679213]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.679226]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.679238]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.679251]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.679264]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.679279]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.679295]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.679310]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.679320] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.679328] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.679336] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.679343] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.679349] BUG: Bad page state in process blocking-1  pfn:0004c
+[61859.679387] page: refcount:0 mapcount:0 mapping:00000000 index:0xb473a pfn:0x4c
+[61859.679399] flags: 0x1000(arch_1|zone=0)
+[61859.679413] raw: 00001000 00000100 00000122 00000000 000b473a 00000000 ffffffff 00000000
+[61859.679422] raw: 00000000
+[61859.679429] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.679436] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.679474] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.679488] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.679491] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.679495] Call trace: 
+[61859.679499]  unwind_backtrace from show_stack+0x28/0x30
+[61859.679516]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.679531]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.679545]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.679558]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.679570]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.679583]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.679596]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.679611]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.679627]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.679642]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.679652] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.679660] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.679668] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.679675] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.679681] BUG: Bad page state in process blocking-1  pfn:0004d
+[61859.679719] page: refcount:0 mapcount:0 mapping:00000000 index:0xb473b pfn:0x4d
+[61859.679731] flags: 0x1000(arch_1|zone=0)
+[61859.679745] raw: 00001000 00000100 00000122 00000000 000b473b 00000000 ffffffff 00000000
+[61859.679753] raw: 00000000
+[61859.679760] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.679768] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.679806] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.679820] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.679823] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.679827] Call trace: 
+[61859.679831]  unwind_backtrace from show_stack+0x28/0x30
+[61859.679848]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.679862]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.679876]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.679888]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.679900]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.679913]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.679926]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.679940]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.679956]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.679970]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.679981] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.679988] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.679996] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.680004] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.680009] BUG: Bad page state in process blocking-1  pfn:0004e
+[61859.680047] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4cc5 pfn:0x4e
+[61859.680059] flags: 0x1000(arch_1|zone=0)
+[61859.680073] raw: 00001000 00000100 00000122 00000000 000b4cc5 00000000 ffffffff 00000000
+[61859.680081] raw: 00000000
+[61859.680088] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.680096] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.680134] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.680148] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.680151] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.680155] Call trace: 
+[61859.680160]  unwind_backtrace from show_stack+0x28/0x30
+[61859.680176]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.680190]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.680205]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.680218]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.680231]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.680243]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.680256]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.680270]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.680286]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.680301]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.680311] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.680319] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.680327] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.680334] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.680340] BUG: Bad page state in process blocking-1  pfn:0004f
+[61859.680379] page: refcount:0 mapcount:0 mapping:00000000 index:0xb473d pfn:0x4f
+[61859.680390] flags: 0x1000(arch_1|zone=0)
+[61859.680404] raw: 00001000 00000100 00000122 00000000 000b473d 00000000 ffffffff 00000000
+[61859.680412] raw: 00000000
+[61859.680419] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.680426] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.680465] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.680478] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.680482] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.680486] Call trace: 
+[61859.680490]  unwind_backtrace from show_stack+0x28/0x30
+[61859.680507]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.680520]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.680535]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.680546]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.680558]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.680571]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.680584]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.680598]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.680614]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.680628]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.680638] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.680646] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.680654] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.680661] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.680667] BUG: Bad page state in process blocking-1  pfn:00050
+[61859.680705] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4741 pfn:0x50
+[61859.680717] flags: 0x1000(arch_1|zone=0)
+[61859.680731] raw: 00001000 00000100 00000122 00000000 000b4741 00000000 ffffffff 00000000
+[61859.680739] raw: 00000000
+[61859.680746] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.680753] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.680792] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.680805] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.680809] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.680813] Call trace: 
+[61859.680817]  unwind_backtrace from show_stack+0x28/0x30
+[61859.680833]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.680848]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.680862]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.680874]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.680887]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.680899]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.680912]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.680926]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.680941]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.680954]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.680964] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.680972] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.680980] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.680987] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.680992] BUG: Bad page state in process blocking-1  pfn:00051
+[61859.681030] page: refcount:0 mapcount:0 mapping:00000000 index:0xb4742 pfn:0x51
+[61859.681042] flags: 0x1000(arch_1|zone=0)
+[61859.681056] raw: 00001000 00000100 00000122 00000000 000b4742 00000000 ffffffff 00000000
+[61859.681064] raw: 00000000
+[61859.681071] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.681078] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.681118] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.681131] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.681134] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.681138] Call trace: 
+[61859.681143]  unwind_backtrace from show_stack+0x28/0x30
+[61859.681158]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.681173]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.681187]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.681199]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.681211]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.681224]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.681236]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.681250]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.681266]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.681280]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.681290] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.681298] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.681305] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.681313] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff
+[61859.681318] BUG: Bad page state in process blocking-1  pfn:00052
+[61859.681356] page: refcount:0 mapcount:0 mapping:00000000 index:0xb473e pfn:0x52
+[61859.681367] flags: 0x1000(arch_1|zone=0)
+[61859.681381] raw: 00001000 00000100 00000122 00000000 000b473e 00000000 ffffffff 00000000
+[61859.681390] raw: 00000000
+[61859.681397] page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+[61859.681404] Modules linked in: ntrig_indigo(OE) usbhid(E) hid_generic(E) evdev(E) reset_gpio(E) [last unloaded: ntrig_indigo(OE)]
+[61859.681443] CPU: 0 UID: 10000 PID: 28345 Comm: blocking-1 Tainted: G    B      OE       7.0.1-nura-indigo-ram #2 VOLUNTARY 
+[61859.681456] Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[61859.681460] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[61859.681464] Call trace: 
+[61859.681468]  unwind_backtrace from show_stack+0x28/0x30
+[61859.681483]  show_stack from dump_stack_lvl+0x50/0x5c
+[61859.681497]  dump_stack_lvl from bad_page+0x124/0x128
+[61859.681511]  bad_page from __rmqueue_pcplist+0xcd0/0xcfc
+[61859.681524]  __rmqueue_pcplist from get_page_from_freelist+0x388/0x1224
+[61859.681536]  get_page_from_freelist from __alloc_frozen_pages_noprof+0xe0/0x258
+[61859.681548]  __alloc_frozen_pages_noprof from __folio_alloc_noprof+0x2c/0x80
+[61859.681561]  __folio_alloc_noprof from handle_mm_fault+0x678/0xffc
+[61859.681575]  handle_mm_fault from do_page_fault+0x1dc/0x4a4
+[61859.681591]  do_page_fault from do_DataAbort+0x6c/0xe8
+[61859.681606]  do_DataAbort from __dabt_usr+0x54/0x60
+[61859.681616] Exception stack(0xf1d55fb0 to 0xf1d55ff8)
+[61859.681624] 5fa0:                                     b3e9a000 b49b6000 00002294 00000018
+[61859.681632] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[61859.681639] 5fe0: 80000000 b593bd10 b64446bf b6f33d26 20000030 ffffffff

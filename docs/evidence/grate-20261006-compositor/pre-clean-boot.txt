@@ -1,0 +1,18 @@
+
+~ # [6ntest ! -e /tmp/indigo-dri3-trial.active && echo TRIAL_RESTORED; uname -a; da
+te -u; sha256sum /lib/modules/7.0.1-nura-indigo-ram/extra/ntrig_indigo.ko; df -h
+ /; ping -c 1 -W 2 192.168.0.147
+TRIAL_RESTORED
+Linux thinkpad-indigo 7.0.1-nura-indigo-ram #2 SMP Mon Oct  5 17:20:26 UTC 2026 armv7l Linux
+Tue Oct  6 14:11:35 UTC 2026
+d3b5dade596b88b9f668e3ec4305ddc225f91e3cd2c413237209120897e5e0d6  /lib/modules/7.0.1-nura-indigo-ram/extra/ntrig_indigo.ko
+Filesystem                Size      Used Available Use% Mounted on
+/dev/mmcblk0p1           58.6G      1.1G     57.5G   2% /
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=31.964 ms
+
+--- 192.168.0.147 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 31.964/31.964/31.964 ms
+~ # [6n
+Captured 864 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T141141Z.txt

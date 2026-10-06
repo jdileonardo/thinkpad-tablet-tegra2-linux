@@ -1,0 +1,37 @@
+
+~ # [6npython3 /opt/indigo-xorg/dri3/trial.py --restore 9827a81f3d754715bc4aea670f3
+39384; sleep 4; pidof Xorg xfce4-session weston; DISPLAY=:0 XAUTHORITY=/home/jul
+ian/.Xauthority xrandr --current; DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority
+ xinput list; ping -c 1 -W 2 192.168.0.147; cat /proc/sys/kernel/tainted; grep -
+E "MemAvailable|Cma" /proc/meminfo; test ! -e /tmp/indigo-dri3-trial.active && e
+cho TRIAL_RESTORED
+ [1m[32m*[m Stopping Display Manager[K ...
+ [ ok ]
+ [1m[32m*[m Starting Display Manager[K ...
+ [ ok ]
+Original Xorg module path restored
+15531 15553
+Screen 0: minimum 320 x 200, current 1280 x 800, maximum 4096 x 4096
+HDMI-0 disconnected primary (normal left inverted right x axis y axis)
+Unknown-0 connected 1280x800+0+0 (normal left inverted right x axis y axis) 0mm x 0mm
+   1280x800      60.33*+
+⎡ Virtual core pointer                    	id=2	[master pointer  (3)]
+⎜   ↳ Virtual core XTEST pointer              	id=4	[slave  pointer  (2)]
+⎜   ↳ N-Trig Indigo Touchscreen               	id=6	[slave  pointer  (2)]
+⎣ Virtual core keyboard                   	id=3	[master keyboard (2)]
+    ↳ Virtual core XTEST keyboard             	id=5	[slave  keyboard (3)]
+    ↳ N-Trig Indigo Pen                       	id=7	[slave  keyboard (3)]
+    ↳ gpio-keys                               	id=8	[slave  keyboard (3)]
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=76.144 ms
+
+--- 192.168.0.147 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 76.144/76.144/76.144 ms
+12288
+MemAvailable:     860504 kB
+CmaTotal:          65536 kB
+CmaFree:           29468 kB
+TRIAL_RESTORED
+~ # [6n
+Captured 1771 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T142850Z.txt

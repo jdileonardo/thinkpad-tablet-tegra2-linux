@@ -1,0 +1,13 @@
+diff --git a/src/tegradrm/tegra.c b/src/tegradrm/tegra.c
+index 6eba3b2..f8da8a7 100644
+--- a/src/tegradrm/tegra.c
++++ b/src/tegradrm/tegra.c
+@@ -985,7 +985,7 @@ int drm_tegra_bo_to_dmabuf(struct drm_tegra_bo *bo, uint32_t *handle)
+ 	if (!bo || !handle)
+ 		return -EINVAL;
+ 
+-	err = drmPrimeHandleToFD(bo->drm->fd, bo->handle, DRM_CLOEXEC,
++	err = drmPrimeHandleToFD(bo->drm->fd, bo->handle, DRM_CLOEXEC | DRM_RDWR,
+ 				 &prime_fd);
+ 	if (err) {
+ 		VDBG_BO(bo, "faile err %d strerror(%s)\n",

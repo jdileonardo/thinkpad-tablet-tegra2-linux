@@ -1,0 +1,2 @@
+sample=1 frame=0 x=8 y=8 rgb=0,0,0 expected=0000ff FAIL
+compositor output mismatch

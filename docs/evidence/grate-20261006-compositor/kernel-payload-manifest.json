@@ -1,0 +1,35 @@
+{
+  "profile": "nura-sd",
+  "load_address": "0x108000",
+  "components": [
+    {
+      "name": "uboot",
+      "address": "0x108000",
+      "size": 492864,
+      "sha256": "2899c030518a24595637ae3ee5e575805d1e2e749d34e8beae6a237aa2974e71",
+      "path": "build/uboot-nura-sd/u-boot-dtb-tegra.bin"
+    },
+    {
+      "name": "kernel",
+      "address": "0x1000000",
+      "size": 6832640,
+      "sha256": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
+      "path": "build/linux-nura/arch/arm/boot/zImage"
+    },
+    {
+      "name": "initramfs",
+      "address": "0x2400000",
+      "size": 1454366,
+      "sha256": "637942e060dc76659e738a3f6085907a162c9d4c2e79c4503e5bd95610634556",
+      "path": "build/nura-sd-test/initramfs.cpio.gz"
+    },
+    {
+      "name": "dtb",
+      "address": "0x2600000",
+      "size": 52066,
+      "sha256": "b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b",
+      "path": "build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb"
+    }
+  ],
+  "sha256": "cc0ac12d9cc0c0c989d7f75c646b83abbec9fa7296c5e9e5aab84561b8496d08"
+}
