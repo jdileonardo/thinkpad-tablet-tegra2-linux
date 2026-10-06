@@ -1,0 +1,399 @@
+diff --git a/src/gallium/drivers/grate/drm/channel.c b/src/gallium/drivers/grate/drm/channel.c
+index e3f0b4c2..e234bc52 100644
+--- a/src/gallium/drivers/grate/drm/channel.c
++++ b/src/gallium/drivers/grate/drm/channel.c
+@@ -40,11 +40,14 @@ drm_tegra_channel_open(struct grate_device *drm,
+                        enum drm_tegra_class client,
+                        struct drm_tegra_channel **channelp)
+ {
+-    struct drm_tegra_channel_open args;
++    struct drm_tegra_open_channel args;
+     struct drm_tegra_channel *channel;
+     enum host1x_class class;
+     int err;
+ 
++    if (drm->soc_id != DRM_TEGRA_SOC_T20)
++        return -ENOTSUP;
++
+     switch (client) {
+     case DRM_TEGRA_HOST1X:
+         class = HOST1X_CLASS_HOST1X;
+@@ -73,17 +76,17 @@ drm_tegra_channel_open(struct grate_device *drm,
+     channel->drm = drm;
+ 
+     memset(&args, 0, sizeof(args));
+-    args.host1x_class = class;
++    args.client = class;
+ 
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CHANNEL_OPEN, &args);
++    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_OPEN_CHANNEL, &args);
+     if (err < 0) {
+         free(channel);
+         return -errno;
+     }
+ 
+     channel->context = args.context;
+-    channel->version = args.version;
+-    channel->capabilities = args.capabilities;
++    channel->version = 0x20; /* This adapter is validated for Tegra20 only. */
++    channel->capabilities = 0;
+     channel->class = class;
+ 
+     switch (channel->version) {
+@@ -111,7 +114,7 @@ drm_tegra_channel_open(struct grate_device *drm,
+ 
+ int drm_tegra_channel_close(struct drm_tegra_channel *channel)
+ {
+-    struct drm_tegra_channel_close args;
++    struct drm_tegra_close_channel args;
+     struct grate_device *drm;
+     int err;
+ 
+@@ -123,7 +126,7 @@ int drm_tegra_channel_close(struct drm_tegra_channel *channel)
+     memset(&args, 0, sizeof(args));
+     args.context = channel->context;
+ 
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CHANNEL_CLOSE, &args);
++    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CLOSE_CHANNEL, &args);
+     if (err < 0)
+         return -errno;
+ 
+@@ -138,61 +141,29 @@ drm_tegra_channel_get_version(struct drm_tegra_channel *channel)
+     return channel->version;
+ }
+ 
++/* Legacy SUBMIT patches GEM handles; it has no channel mapping ioctl. */
+ int
+ drm_tegra_channel_map(struct drm_tegra_channel *channel,
+                       struct grate_bo *bo, uint32_t flags,
+                       struct drm_tegra_mapping **mapp)
+ {
+-    struct grate_device *drm = channel->drm;
+-    struct drm_tegra_channel_map args;
+-    struct drm_tegra_mapping *map;
+-    int err;
+-
+-    if (!drm || !bo || !mapp)
++    if (!channel || !bo || !mapp)
+         return -EINVAL;
+-
+-    map = calloc(1, sizeof(*map));
++    struct drm_tegra_mapping *map = calloc(1, sizeof(*map));
+     if (!map)
+         return -ENOMEM;
+-
+-    memset(&args, 0, sizeof(args));
+-    args.context = channel->context;
+-    args.handle = bo->handle;
+-    args.flags = flags;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CHANNEL_MAP, &args);
+-    if (err < 0) {
+-        free(map);
+-        return -errno;
+-    }
+-
+     map->channel = channel;
+-    map->id = args.mapping;
++    map->id = bo->handle;
+     map->flags = flags;
+     *mapp = map;
+-
+     return 0;
+ }
+ 
+ int
+ drm_tegra_channel_unmap(struct drm_tegra_mapping *map)
+ {
+-    struct drm_tegra_channel *channel = map->channel;
+-    struct grate_device *drm = channel->drm;
+-    struct drm_tegra_channel_unmap args;
+-    int err;
+-
+-    if (!channel || !map)
++    if (!map)
+         return -EINVAL;
+-
+-    memset(&args, 0, sizeof(args));
+-    args.context = channel->context;
+-    args.mapping = map->id;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CHANNEL_UNMAP, &args);
+-    if (err < 0)
+-        return -errno;
+-
+     free(map);
+     return 0;
+ }
+diff --git a/src/gallium/drivers/grate/drm/job.c b/src/gallium/drivers/grate/drm/job.c
+index bc6b595e..2ee19c9f 100644
+--- a/src/gallium/drivers/grate/drm/job.c
++++ b/src/gallium/drivers/grate/drm/job.c
+@@ -36,6 +36,7 @@
+ #include <poll.h>
+ 
+ #include "grate_device.h"
++#include "grate_bo.h"
+ #include "tegra_private.h"
+ 
+ struct drm_tegra_submit_cmd *
+@@ -94,6 +95,7 @@ int drm_tegra_job_free(struct drm_tegra_job *job)
+     if (job->buffers)
+         free(job->buffers);
+ 
++    grate_bo_unref(job->legacy_bo);
+     free(job);
+ 
+     return 0;
+@@ -129,60 +131,70 @@ drm_tegra_job_get_pushbuf(struct drm_tegra_job *job,
+     return 0;
+ }
+ 
++/* Translate the new userspace job representation to legacy GEM submission.
++ * Structure setup follows the working grate-25.1.9 uapi_v1/job.c path.
++ */
+ int
+ drm_tegra_job_submit(struct drm_tegra_job *job, struct drm_tegra_fence *fence)
+ {
+     struct drm_tegra_channel *channel = job->channel;
+     struct grate_device *drm = channel->drm;
+-    struct drm_tegra_channel_submit args;
+-    int err;
+-
+-    memset(&args, 0, sizeof(args));
+-    args.context = channel->context;
+-    args.num_bufs = job->num_buffers;
+-    args.num_cmds = job->num_commands;
+-    args.gather_data_words = job->pushbuf->ptr - job->pushbuf->start;
+-    args.syncpt.id = job->syncpt.id;
+-    args.syncpt.increments = job->syncpt.increments;
+-
+-    args.bufs_ptr = (uintptr_t)job->buffers;
+-    args.cmds_ptr = (uintptr_t)job->commands;
+-    args.gather_data_ptr = (uintptr_t)job->pushbuf->start;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CHANNEL_SUBMIT, &args);
++    unsigned words = job->pushbuf->ptr - job->pushbuf->start;
++    if (job->num_commands != 1 ||
++        job->commands[0].type != DRM_TEGRA_SUBMIT_CMD_GATHER_UPTR)
++        return -ENOTSUP;
++    job->legacy_bo = grate_bo_alloc(drm, (words + 1) * 4, 0);
++    if (!job->legacy_bo)
++        return -ENOMEM;
++    uint32_t *commands;
++    int err = grate_bo_map(job->legacy_bo, (void **)&commands);
++    if (err < 0)
++        return err;
++    /* Upstream selects the class implicitly; legacy command buffers need it. */
++    commands[0] = channel->class << 6;
++    memcpy(commands + 1, job->pushbuf->start, words * 4);
++    struct drm_tegra_cmdbuf cmdbuf = {
++        .handle = job->legacy_bo->handle, .words = words + 1,
++    };
++    struct drm_tegra_syncpt syncpt = {
++        .id = job->syncpt.id, .incrs = job->syncpt.increments,
++    };
++    struct drm_tegra_reloc *relocs = calloc(job->num_buffers, sizeof(*relocs));
++    if (job->num_buffers && !relocs)
++        return -ENOMEM;
++    for (unsigned i = 0; i < job->num_buffers; ++i) {
++        struct drm_tegra_submit_buf *buffer = &job->buffers[i];
++        relocs[i].cmdbuf.handle = cmdbuf.handle;
++        relocs[i].cmdbuf.offset = (buffer->reloc.gather_offset_words + 1) * 4;
++        relocs[i].target.handle = buffer->mapping;
++        relocs[i].target.offset = buffer->reloc.target_offset;
++        relocs[i].shift = buffer->reloc.shift;
++    }
++    struct drm_tegra_submit args = {
++        .context = channel->context, .num_syncpts = 1, .num_cmdbufs = 1,
++        .num_relocs = job->num_buffers, .timeout = 1000,
++        .syncpts = (uintptr_t)&syncpt, .cmdbufs = (uintptr_t)&cmdbuf,
++        .relocs = (uintptr_t)relocs,
++    };
++    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_SUBMIT, &args);
++    free(relocs);
+     if (err < 0)
+         return -errno;
+-
+-    job->syncpt.fence = args.syncpt.value;
+-
++    job->syncpt.fence = args.fence;
+     if (fence) {
+         fence->drm = drm;
+-        fence->syncpt = job->syncpt.id;
+-        fence->value = job->syncpt.fence;
++        fence->syncpt = syncpt.id;
++        fence->value = args.fence;
+     }
+-
+     return 0;
+ }
+ 
+ int
+ drm_tegra_job_wait(struct drm_tegra_job *job, unsigned long timeout)
+ {
+-    struct drm_tegra_channel *channel = job->channel;
+-    struct grate_device *drm = channel->drm;
+-    struct drm_tegra_syncpoint_wait args;
+-    struct timespec ts;
+-    int err;
+-
+-    clock_gettime(CLOCK_MONOTONIC, &ts);
+-
+-    memset(&args, 0, sizeof(args));
+-    args.timeout_ns = ts.tv_sec * 1000000000 + ts.tv_nsec + timeout;
+-    args.id = job->syncpt.id;
+-    args.threshold = job->syncpt.fence;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_SYNCPOINT_WAIT, &args);
+-    if (err < 0)
+-        return -errno;
+-
+-    return 0;
++    struct drm_tegra_fence fence = {
++        .drm = job->channel->drm, .syncpt = job->syncpt.id,
++        .value = job->syncpt.fence,
++    };
++    return drm_tegra_fence_wait(&fence, timeout);
+ }
+diff --git a/src/gallium/drivers/grate/drm/syncpt.c b/src/gallium/drivers/grate/drm/syncpt.c
+index 4656ac76..36e8a75e 100644
+--- a/src/gallium/drivers/grate/drm/syncpt.c
++++ b/src/gallium/drivers/grate/drm/syncpt.c
+@@ -32,71 +32,42 @@
+ #include "grate_device.h"
+ #include "tegra_private.h"
+ 
++/* Channel-owned syncpoints are used by the legacy ABI. */
+ int
+-drm_tegra_syncpoint_new(struct grate_device *drm,
++drm_tegra_syncpoint_new(struct drm_tegra_channel *channel,
+                         struct drm_tegra_syncpoint **syncptp)
+ {
+-    struct drm_tegra_syncpoint_allocate args;
+-    struct drm_tegra_syncpoint *syncpt;
+-    int err;
+-
+-    syncpt = calloc(1, sizeof(*syncpt));
++    struct drm_tegra_get_syncpt args = { .context = channel->context, .index = 0 };
++    if (ioctl(channel->drm->fd, DRM_IOCTL_TEGRA_GET_SYNCPT, &args) < 0)
++        return -errno;
++    struct drm_tegra_syncpoint *syncpt = calloc(1, sizeof(*syncpt));
+     if (!syncpt)
+         return -ENOMEM;
+-
+-    memset(&args, 0, sizeof(args));
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_SYNCPOINT_ALLOCATE, &args);
+-    if (err < 0) {
+-        free(syncpt);
+-        return -errno;
+-    }
+-
+-    syncpt->drm = drm;
++    syncpt->drm = channel->drm;
+     syncpt->id = args.id;
+-
+     *syncptp = syncpt;
+-
+     return 0;
+ }
+ 
+ int
+ drm_tegra_syncpoint_free(struct drm_tegra_syncpoint *syncpt)
+ {
+-    struct drm_tegra_syncpoint_free args;
+-    struct grate_device *drm = syncpt->drm;
+-    int err;
+-
+     if (!syncpt)
+         return -EINVAL;
+-
+-    memset(&args, 0, sizeof(args));
+-    args.id = syncpt->id;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_SYNCPOINT_FREE, &args);
+-    if (err < 0)
+-        return -errno;
+-
+     free(syncpt);
+-
+     return 0;
+ }
+ 
+ int
+ drm_tegra_fence_wait(struct drm_tegra_fence *fence, unsigned long timeout)
+ {
+-    struct drm_tegra_syncpoint_wait args;
+-    struct grate_device *drm = fence->drm;
+-    int err;
+-
+-    memset(&args, 0, sizeof(args));
+-    args.timeout_ns = 0;
+-    args.id = fence->syncpt;
+-    args.threshold = fence->value;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_SYNCPOINT_WAIT, &args);
+-    if (err < 0)
++    /* Legacy waits take a relative millisecond timeout, new callers use ns. */
++    uint64_t ms = ((uint64_t)timeout + 999999) / 1000000;
++    struct drm_tegra_syncpt_wait args = {
++        .id = fence->syncpt, .thresh = fence->value,
++        .timeout = ms > UINT32_MAX ? UINT32_MAX : (uint32_t)ms,
++    };
++    if (ioctl(fence->drm->fd, DRM_IOCTL_TEGRA_SYNCPT_WAIT, &args) < 0)
+         return -errno;
+-
+     return 0;
+ }
+diff --git a/src/gallium/drivers/grate/drm/tegra.h b/src/gallium/drivers/grate/drm/tegra.h
+index 7d387f52..c1ff444f 100644
+--- a/src/gallium/drivers/grate/drm/tegra.h
++++ b/src/gallium/drivers/grate/drm/tegra.h
+@@ -98,7 +98,7 @@ int drm_tegra_pushbuf_sync_cond(struct drm_tegra_pushbuf *pushbuf,
+                                 struct drm_tegra_syncpoint *syncpt,
+                                 enum drm_tegra_sync_cond cond);
+ 
+-int drm_tegra_syncpoint_new(struct grate_device *drm,
++int drm_tegra_syncpoint_new(struct drm_tegra_channel *channel,
+                             struct drm_tegra_syncpoint **syncptp);
+ int drm_tegra_syncpoint_free(struct drm_tegra_syncpoint *syncpt);
+ int drm_tegra_fence_wait(struct drm_tegra_fence *fence, unsigned long timeout);
+diff --git a/src/gallium/drivers/grate/drm/tegra_private.h b/src/gallium/drivers/grate/drm/tegra_private.h
+index b31b66eb..9d023f6d 100644
+--- a/src/gallium/drivers/grate/drm/tegra_private.h
++++ b/src/gallium/drivers/grate/drm/tegra_private.h
+@@ -70,6 +70,7 @@ struct drm_tegra_job {
+     struct drm_tegra_channel *channel;
+     struct drm_tegra_pushbuf *pushbuf;
+     size_t page_size;
++    struct grate_bo *legacy_bo;
+ 
+     struct drm_tegra_submit_cmd *commands;
+     unsigned int num_commands;
+diff --git a/src/gallium/drivers/grate/grate_state.c b/src/gallium/drivers/grate/grate_state.c
+index 7b2e4d45..97971ce5 100644
+--- a/src/gallium/drivers/grate/grate_state.c
++++ b/src/gallium/drivers/grate/grate_state.c
+@@ -158,7 +158,7 @@ grate_set_viewport_states(struct pipe_context *pcontext,
+                           const struct pipe_viewport_state *viewports)
+ {
+    struct grate_context *context = grate_context(pcontext);
+-   static const float zeps = powf(2.0f, -21);
++   static const float zeps = 0x1p-21f;
+    unsigned int hw_scale;
+ 
+    if (context->drm->soc_id == DRM_TEGRA_SOC_T114)
+diff --git a/src/gallium/drivers/grate/grate_stream.c b/src/gallium/drivers/grate/grate_stream.c
+index 698fe48b..f6c5fcfc 100644
+--- a/src/gallium/drivers/grate/grate_stream.c
++++ b/src/gallium/drivers/grate/grate_stream.c
+@@ -74,7 +74,7 @@ grate_stream_create(struct grate_device *drm,
+    stream->channel   = channel;
+    stream->num_words = words_num;
+    
+-   ret = drm_tegra_syncpoint_new(stream->channel->drm, &stream->syncpt);
++   ret = drm_tegra_syncpoint_new(stream->channel, &stream->syncpt);
+    if (ret < 0) {
+       fprintf(stderr, "%s: drm_tegra_syncpoint_new() failed %d\n", __func__, ret);
+       return ret;

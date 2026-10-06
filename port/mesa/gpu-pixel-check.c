@@ -35,17 +35,26 @@ static GLuint shader(GLenum type, const char *source)
 
 int main(int argc, char **argv)
 {
-    int show_window = 0, benchmark = 0, constants = 0, width = 32, height = 32;
+    int show_window = 0, benchmark = 0, constants = 0, uniforms = 0;
+    int arithmetic = 0, textured = 0, blending = 0, width = 32, height = 32, texture_size = 2;
     for (int i = 1; i < argc; ++i) {
         if (!strcmp(argv[i], "--x11")) show_window = 1;
         else if (!strcmp(argv[i], "--benchmark")) benchmark = 1;
         else if (!strcmp(argv[i], "--constants")) constants = 1;
+        else if (!strcmp(argv[i], "--uniforms")) uniforms = 1;
+        else if (!strcmp(argv[i], "--arithmetic")) arithmetic = 1;
+        else if (!strcmp(argv[i], "--texture")) textured = 1;
+        else if (!strcmp(argv[i], "--blend")) blending = 1;
+        else if (sscanf(argv[i], "--texture-size=%d", &texture_size) == 1) {}
         else if (sscanf(argv[i], "--size=%dx%d", &width, &height) != 2) {
             fprintf(stderr, "Unknown argument: %s\n", argv[i]);
             return 1;
         }
     }
+    if (constants + uniforms + arithmetic + textured + blending > 1 ||
+        (show_window && (textured || arithmetic || blending))) return 1;
     if (width < 8 || height < 8 || width > 2048 || height > 2048) return 1;
+    if (texture_size < 2 || texture_size > 512) return 1;
     int fd = open("/dev/dri/renderD128", O_RDWR | O_CLOEXEC);
     if (fd < 0) { perror("render device"); return 1; }
     struct gbm_device *gbm = gbm_create_device(fd);
@@ -108,11 +117,16 @@ int main(int argc, char **argv)
     glClearColor(0, 0, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     /* Attribute-only shaders isolate primitive drawing from immediate support. */
-    printf("shader_mode=%s\n", constants ? "constants" : "attributes");
-    GLuint vs = shader(GL_VERTEX_SHADER, constants ?
+    printf("shader_mode=%s\n", constants ? "constants" : uniforms ? "uniforms" :
+           arithmetic ? "arithmetic" : textured ? "texture" : blending ? "blend" : "attributes");
+    GLuint vs = shader(GL_VERTEX_SHADER, textured ?
+        "attribute vec4 position; attribute vec4 color; varying vec2 uv; void main() { gl_Position=position; uv=color.xy; }" : constants ?
         "attribute vec2 position; void main() { gl_Position=vec4(position,0.0,1.0); }" :
         "attribute vec4 position; attribute vec4 color; varying vec4 vcolor; void main() { gl_Position=position; vcolor=color; }");
-    GLuint fs = shader(GL_FRAGMENT_SHADER, constants ?
+    GLuint fs = shader(GL_FRAGMENT_SHADER, textured ?
+        "precision mediump float; varying vec2 uv; uniform sampler2D source; void main() { gl_FragColor=texture2D(source,uv); }" : uniforms ?
+        "precision mediump float; uniform vec4 tint; void main() { gl_FragColor=tint; }" : arithmetic ?
+        "precision mediump float; varying vec4 vcolor; uniform vec4 scale,bias; void main() { gl_FragColor=vcolor*scale+bias; }" : constants ?
         "precision mediump float; void main() { gl_FragColor=vec4(1.0,0.0,0.0,1.0); }" :
         "precision mediump float; varying vec4 vcolor; void main() { gl_FragColor=vcolor; }");
     GLuint program = glCreateProgram();
@@ -124,21 +138,60 @@ int main(int argc, char **argv)
     GLint status;
     glGetProgramiv(program, GL_LINK_STATUS, &status);
     if (!status) fail("program link");
-    const GLfloat vertices[] = {
+    GLfloat vertices[] = {
         -0.8f,-0.8f,0,1, 1,0,0,1,
          0.8f,-0.8f,0,1, 1,0,0,1,
          0.0f, 0.8f,0,1, 1,0,0,1
     };
+    if (blending)
+        for (int i = 0; i < 3; ++i) vertices[i * 8 + 7] = 0.5f;
+    const GLfloat quad[] = {
+        -0.8f,-0.8f,0,1, 0,0,0,0,
+         0.8f,-0.8f,0,1, 1,0,0,0,
+        -0.8f, 0.8f,0,1, 0,1,0,0,
+         0.8f, 0.8f,0,1, 1,1,0,0,
+    };
     GLuint buffer;
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, textured ? sizeof(quad) : sizeof(vertices),
+                 textured ? quad : vertices, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), NULL);
     glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void *)(4 * sizeof(GLfloat)));
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
     glUseProgram(program);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    if (uniforms) glUniform4f(glGetUniformLocation(program, "tint"), 1, 0, 0, 1);
+    if (arithmetic) {
+        glUniform4f(glGetUniformLocation(program, "scale"), 0.25f, 0.25f, 0.25f, 0.25f);
+        glUniform4f(glGetUniformLocation(program, "bias"), 0.25f, 0.25f, 0.75f, 0.75f);
+    }
+    if (blending) {
+        glEnable(GL_BLEND);
+        glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    }
+    GLuint sampled_texture = 0;
+    if (textured) {
+        const unsigned char colors[4][4] = {{255,0,0,255}, {0,255,0,255},
+                                          {0,0,255,255}, {255,255,0,255}};
+        unsigned char *pixels = malloc((size_t)texture_size * texture_size * 4);
+        if (!pixels) fail("texture pixels");
+        for (int y = 0; y < texture_size; ++y)
+            for (int x = 0; x < texture_size; ++x)
+                memcpy(pixels + (y * texture_size + x) * 4,
+                       colors[(x >= texture_size / 2) + 2 * (y >= texture_size / 2)], 4);
+        glGenTextures(1, &sampled_texture);
+        glBindTexture(GL_TEXTURE_2D, sampled_texture);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture_size, texture_size, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+        free(pixels);
+        printf("texture_size=%dx%d\n", texture_size, texture_size);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glUniform1i(glGetUniformLocation(program, "source"), 0);
+    }
+    glDrawArrays(textured ? GL_TRIANGLE_STRIP : GL_TRIANGLES, 0, textured ? 4 : 3);
     glFinish();
     if (benchmark) {
         struct timespec started, now;
@@ -147,7 +200,7 @@ int main(int argc, char **argv)
         double elapsed;
         do {
             glClear(GL_COLOR_BUFFER_BIT);
-            glDrawArrays(GL_TRIANGLES, 0, 3);
+            glDrawArrays(textured ? GL_TRIANGLE_STRIP : GL_TRIANGLES, 0, textured ? 4 : 3);
             glFinish();
             ++frames;
             clock_gettime(CLOCK_MONOTONIC, &now);
@@ -164,6 +217,27 @@ int main(int argc, char **argv)
            corner[0], corner[1], corner[2], corner[3]);
     int correct = center[0] > 240 && center[1] < 15 && center[2] < 15 && center[3] > 240 &&
                   corner[0] < 15 && corner[1] < 15 && corner[2] > 240 && corner[3] > 240;
+    if (arithmetic || blending) {
+        const int expected[4] = {128, arithmetic ? 64 : 0, arithmetic ? 191 : 128, 255};
+        correct = corner[0] < 15 && corner[1] < 15 && corner[2] > 240 && corner[3] > 240;
+        for (int channel = 0; channel < 4; ++channel)
+            if (abs((int)center[channel] - expected[channel]) > 14) correct = 0;
+    }
+    if (textured) {
+        const unsigned char expected[4][4] = {{255,0,0,255},{0,255,0,255},
+                                            {0,0,255,255},{255,255,0,255}};
+        correct = corner[0] < 15 && corner[1] < 15 && corner[2] > 240 && corner[3] > 240;
+        for (int i = 0; i < 4; ++i) {
+            unsigned char sampled[4];
+            glReadPixels((i & 1) ? width * 3 / 4 : width / 4,
+                         (i & 2) ? height * 3 / 4 : height / 4,
+                         1, 1, GL_RGBA, GL_UNSIGNED_BYTE, sampled);
+            printf("texture_sample%d=%u,%u,%u,%u\n", i, sampled[0], sampled[1], sampled[2], sampled[3]);
+            for (int channel = 0; channel < 4; ++channel)
+                if (abs((int)sampled[channel] - expected[i][channel]) > 14) correct = 0;
+        }
+        if (glGetError() != GL_NO_ERROR) fail("texture readback");
+    }
     int hardware = renderer && !strcmp(renderer, "Tegra");
     printf("pixel_check=%s hardware_renderer=%s\n", correct ? "PASS" : "FAIL", hardware ? "YES" : "NO");
     fflush(stdout);

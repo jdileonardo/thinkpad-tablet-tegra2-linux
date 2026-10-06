@@ -467,6 +467,11 @@ basic hardware triangle drawing and X11 presentation with patched Grate Mesa
 25.1.9, plus a working private softpipe fallback. Shader arithmetic, constants,
 textures and blending remain incomplete, so it has not been selected globally.
 See `docs/gpu-driver.md` for the compatible ABI, patches and physical evidence.
+An isolated Mesa 26.2.3 NIR candidate now passes shader constants, uniforms,
+arithmetic, texture sampling and a matrix-transform check after adapting its
+kernel interface and fixing tiny RGBA row stride. Blending and special-function
+shader operations still fail measured comparisons. It remains per-process;
+system integration and compositor validation are pending.
 
 During the Plasma trial, replace the Xrandr/xinput rotation helper and XFCE
 shortcuts with compositor-native display/input rotation and Plasma bindings.

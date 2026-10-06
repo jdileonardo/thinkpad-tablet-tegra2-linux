@@ -1,7 +1,12 @@
 #!/bin/sh
 # Process-local selection: the distribution Mesa installation stays available.
 set -eu
-mesa_prefix=/opt/indigo-mesa/647c79415a02
+mesa_revision=${INDIGO_MESA_REVISION:-647c79415a02}
+case "$mesa_revision" in
+    647c79415a02|ad06de32d309) ;;
+    *) echo "Unknown Indigo Mesa revision: $mesa_revision" >&2; exit 1 ;;
+esac
+mesa_prefix=/opt/indigo-mesa/$mesa_revision
 if [ ! -r "$mesa_prefix/lib/libEGL.so.1" ]; then
     echo "Private Indigo Mesa is not installed at $mesa_prefix" >&2
     exit 1

@@ -53,7 +53,8 @@ embedded constants. `grate_program.c` includes vertex immediate upload;
 Its blend-state handler still explicitly leaves rendering opaque, and the
 texture code records unresolved mipmap behavior.
 
-This is a **source-inspected reuse candidate**, not a tablet-tested replacement.
+The branch was initially a **source-inspected reuse candidate**; the subsequent
+physical-device results are recorded below.
 The earlier assessment of substantial missing implementation applies to the
 installed `grate-25.1.9` branch; it does not establish that those implementations
 must be written from scratch. Evaluate the newer branch's build and kernel ABI,
@@ -69,6 +70,69 @@ Downloaded source snapshots are under `diagnostics/gpu-audit-*`.
 
 The current source candidate is at
 https://codeberg.org/libre-tegra/mesa/src/commit/ad06de32d309506c48e4169a15f56e2f95e9712d/src/gallium/drivers/grate.
+
+## Candidate bring-up results
+
+The pinned NIR candidate is now built and installed separately at
+`/opt/indigo-mesa/ad06de32d309`. Both builds remain on the external SD.
+The wrapper still selects the reference unless `INDIGO_MESA_REVISION` explicitly
+selects the candidate. Distribution Mesa and XFCE's default have not changed.
+
+The candidate also expected upstream Tegra's newer channel API. A tracked
+Tegra20-only adapter uses the existing legacy OPEN_CHANNEL, GET_SYNCPT, SUBMIT
+and SYNCPT_WAIT ioctls. It retains the candidate's shader compiler and render
+state, translates buffer relocations to GEM handles, prepends the channel class,
+and converts nanosecond waits to the legacy millisecond unit. The kernel remains
+`7.0.1-nura-indigo-ram`; its age is not the cause of the interface mismatch.
+The Clang viewport constant fix is included with this adapter.
+
+Physical checks pass for attribute colors, literal shader constants, uniforms,
+and multiply/add arithmetic. The strengthened arithmetic check expects
+approximately `128,64,191,255`, different from its input red attribute; hardware
+reads `127,64,191,255`, software `128,64,191,255`.
+
+Four-quadrant nearest-neighbor texture checks pass for 3, 4, 8, 16, 17 and 32
+pixel square textures. Initially, 2x2 RGBA returned correct row-zero colors but
+zeroes for row one. Raising the tiny power-of-two RGBA row stride from 8 to 16
+bytes on Tegra20 fixes all four samples; 4x4 and 17x17 checks still pass. The
+tracked patch also pads corresponding mip storage, but mip sampling is not
+validated and the candidate deliberately restricts sampling to level zero.
+
+The candidate's own `fptest`, `quadtest`, `vstest` and `blendtest` are cross
+compiled from the pinned source and compared on the tablet against its softpipe
+build. All processes exit cleanly, which alone is not a correctness verdict:
+
+- `fptest`: 241 of 331 RGBA samples agree within 10 channel levels. The 90 failures
+  belong to ten special-function cases involving fraction, floor, reciprocal,
+  reciprocal square root, square root and combinations with other operations.
+- `quadtest`: all nine textured-quad samples match software exactly.
+- `vstest`: both renderers place the transformed quad at x=24..55, with no GL error.
+- `blendtest`: hardware writes opaque red; software produces the expected
+  red/blue mix. The independent alpha check also fails on hardware and passes
+  on software. Blending is still a concrete compositor blocker.
+
+Do not promote this candidate to system Mesa yet. Next work is the unsupported
+special functions and blending, followed by X11/Wayland compositor validation,
+stability checks and integration into the reproducible OS image. This is a
+substantial reuse milestone, not completed GPU support or GLES conformance.
+
+```sh
+bash scripts/build_mesa_grate.sh candidate
+# After staging and checking the candidate artifact manifest on the tablet:
+python3 /tmp/indigo-mesa-candidate/install_tablet_mesa.py /tmp/indigo-mesa-candidate --revision ad06de32d309
+su julian -c 'INDIGO_MESA_REVISION=ad06de32d309 /usr/local/bin/indigo-gpu-run /usr/local/bin/gpu-pixel-check --texture'
+```
+
+Add `--constants`, `--uniforms`, `--arithmetic`, `--blend`, or
+`--texture --texture-size=17` to exercise individual paths. Correct hardware
+pixels exit 0, correct software pixels exit 2, and mismatches exit 1.
+
+Evidence: `diagnostics/grate-nir-install-first-pixel.txt`,
+`grate-nir-feature-pixels.txt`, `grate-nir-texture-sweep.txt`,
+`grate-nir-row-fix-verification.txt`, `grate-nir-upstream-tests.txt`,
+`indigo-nir-{hardware,software}-{fptest,quadtest,vstest,blendtest}.log`, and
+`indigo-nir-fptest-comparison.json`. Earlier arithmetic output is superseded by
+the strengthened differently-colored check in the texture sweep.
 
 ## Building
 

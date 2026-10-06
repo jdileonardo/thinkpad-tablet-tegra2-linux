@@ -14,6 +14,11 @@
     "branch": "grate-25.1.9",
     "commit": "647c79415a02cad7a39cb666ca26a17e45bf12df"
   },
+  "mesa-grate-candidate": {
+    "url": "https://codeberg.org/libre-tegra/mesa.git",
+    "branch": "grate-tmp",
+    "commit": "ad06de32d309506c48e4169a15f56e2f95e9712d"
+  },
   "linux-nura": {
     "url": "https://codeberg.org/libre-tegra/linux.git",
     "branch": "stable",

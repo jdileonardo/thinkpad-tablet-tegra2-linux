@@ -1,0 +1,29 @@
+diff --git a/src/gallium/drivers/grate/grate_resource.c b/src/gallium/drivers/grate/grate_resource.c
+index 8f4262fa..6d9eafc4 100644
+--- a/src/gallium/drivers/grate/grate_resource.c
++++ b/src/gallium/drivers/grate/grate_resource.c
+@@ -287,6 +287,14 @@ grate_screen_resource_create(struct pipe_screen *pscreen,
+       if (!pot)
+          resource->pitch = align(resource->pitch, GRATE_TEXTURE_PITCH_ALIGN);
+ 
++      /* Tegra20 RGBA sampling advances tiny POT rows by at least 16 bytes.
++       * A 2x2 upload with pitch 8 reads row zero correctly and zeroes for row
++       * one; pitch 16 fixes the four-quadrant pixel check on Indigo.
++       */
++      if (screen->drm->soc_id == DRM_TEGRA_SOC_T20 && pot &&
++          util_format_get_blocksize(template->format) == 4)
++         resource->pitch = MAX2(resource->pitch, 16u);
++
+       bool scanout = template->bind & (PIPE_BIND_SCANOUT |
+                                        PIPE_BIND_DISPLAY_TARGET);
+ 
+@@ -348,6 +356,9 @@ grate_screen_resource_create(struct pipe_screen *pscreen,
+       else if (!util_is_power_of_two_or_zero(lw))
+          lpitch = align(lpitch, GRATE_TEXTURE_PITCH_ALIGN);
+ 
++      if (screen->drm->soc_id == DRM_TEGRA_SOC_T20 && pot && blocksize == 4)
++         lpitch = MAX2(lpitch, 16u);
++
+       resource->level_offset[l] = size;
+       resource->level_pitch[l] = lpitch;
+       size += lpitch * MAX2(lh, 1u);
