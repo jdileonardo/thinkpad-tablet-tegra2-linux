@@ -1,0 +1,73 @@
+
+~ # [6nuptime; cat /proc/cmdline; awk '$2=="/" {print}' /proc/mounts; df -h /; blki
+d /dev/mmcblk0p1
+ 19:09:59 up 1 min,  0 users,  load average: 4.21, 1.22, 0.42
+console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init
+/dev/mmcblk0p1 / ext4 rw,noatime 0 0
+Filesystem                Size      Used Available Use% Mounted on
+/dev/mmcblk0p1           58.6G      1.1G     57.6G   2% /
+/dev/mmcblk0p1: LABEL="NURA_INDIGO" UUID="2a6e5a89-5a50-46c6-95ec-b718e7abd62b" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="e68acb45-01"
+~ # rc-service lightdm status; pgrep -a Xorg; pgrep -a xfdesktop; id julian; cat
+ /sys/bus/spi/devices/spi0.0/stats
+ [1m[32m*[m status: started[K
+1611 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+2878 xfdesktop
+uid=10000(julian) gid=10000(julian) groups=10000(julian),10(wheel),18(audio),27(video),28(netdev),102(plugdev)
+transfers=136 packets=59 invalid=0 touch=0 pen=0 errors=0 transfer_size=136 ready=0 watchdog_misses=0 resets=0 pen_x=0 pen_y=0 pressure=0 flags=0x00 last=02 08 00 00 10 06 0a 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 rx=ff ff ff ff a5 5a e7 7e 02 08 00 00 10 06 0a 08 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+~ # sha256sum /opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so /l
+ib/modules/$(uname -r)/extra/ntrig_indigo.ko; grep "pixmap CMA" /var/log/Xorg.0.
+log; ip -brief addr show wlan0; ip route; nmcli -f GENERAL.STATE,GENERAL.CONNECT
+ION device show wlan0
+61e6191a7492e63c9d2fe79f9dade2cd71c1b286b1f4dceac4631250a9a3bba7  /opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so
+73c4d277e1c7e5bc1831e5c21bcdeb0a1734ec37567647a14e81046a270aa127  /lib/modules/7.0.1-nura-indigo-ram/extra/ntrig_indigo.ko
+[    25.350] (II) Non-IOMMU pixmap CMA capacity 65536 KiB
+wlan0            UP             192.168.0.191/24 fe80::8c00:72ff:fe48:6f07/64 
+default via 192.168.0.1 dev wlan0 proto dhcp src 192.168.0.191 metric 600 
+192.168.0.0/24 dev wlan0 proto kernel scope link src 192.168.0.191 metric 600 
+[999;999H[6n[0;0H[KGENERAL.STATE:                          100 (connected)
+[KGENERAL.CONNECTION:                     Zone
+[K
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[24;0H[K[7mstandard input lines 1-2 (END)[m[24;0H[K[7mLog file: [m[24;11Hu[24;12H [24;13Hj[24;14Hu[24;15Hl[24;16Hi[24;17Ha[24;18Hn[24;19H [24;20H-[24;21Hc[24;22H [24;23H'[24;24HD[24;25HI[24;26HS[24;27HP[24;28HL[24;29HA[24;30HY[24;31H=[24;32H:[24;33H0[24;34H [24;35HX[24;36HA[24;37HU[24;38HT[24;39HH[24;40HO[24;41HR[24;42HI[24;43HT[24;44HY[24;45H=[24;46H/[24;47Hh[24;48Ho[24;49Hm[24;50He[24;51H/[24;52Hj[24;53Hu[24;54Hl[24;55Hi[24;56Ha[24;57Hn[24;58H/[24;59H.[24;60HX[24;61Ha[24;62Hu[24;63Ht[24;64Hh[24;65Ho[24;66Hr[24;67Hi[24;68Ht[24;69Hy[24;70H [24;71Hx[24;72Hr[24;73Ha[24;74Hn[24;75Hd[24;76Hr[24;77H [24;78H-[24;79H-[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[24;80H[0;0H[KGENERAL.STATE:                          100 (connected)
+[KGENERAL.CONNECTION:                     Zone
+[K
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[K~
+[24;0H[K~ # [6n

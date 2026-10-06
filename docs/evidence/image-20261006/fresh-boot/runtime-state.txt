@@ -1,0 +1,37 @@
+
+~ # [6npython3 /tmp/fresh-image-files.py; echo runtime_file_check_exit=$?
+{
+  "failures": [],
+  "checked_monotonic": 182.997999863,
+  "root_mount": [
+    "/dev/mmcblk0p1 / ext4 rw,noatime 0 0"
+  ],
+  "external_sd_sysfs_path": "/sys/devices/soc0/c8000400.mmc/mmc_host/mmc0/mmc0:5048/block/mmcblk0/mmcblk0p1",
+  "touch_recovery_attribute_present": true,
+  "package_count": 770,
+  "all_expected_files_match": true,
+  "external_sd_root_confirmed": true
+}
+runtime_file_check_exit=0
+~ # cat /tmp/fresh-image-calendar.log; cat /tmp/fresh-image-touch-check.log; fre
+e -m; cat /home/julian/.local/state/indigo-tablet/buttons.log 2>/dev/null; tail 
+-n 8 /home/julian/.local/state/indigo-tablet/rotation.log
+CALENDAR_DRAWN window=39845891
+               total        used        free      shared  buff/cache   available
+Mem:             990         313         455           5         250         676
+Swap:           1484           0        1484
+rotation=left; synchronized 1 touch/pen inputs
+rotation=left; synchronized 1 touch/pen inputs
+~ # env NM_CLI_PAGER=cat PAGER=cat nmcli -f GENERAL.STATE,GENERAL.CONNECTION dev
+ice show wlan0; chronyc tracking | head -n 8
+GENERAL.STATE:                          100 (connected)
+GENERAL.CONNECTION:                     Zone
+Reference ID    : 9B8A86C3 (xlrsecurity.com)
+Stratum         : 3
+Ref time (UTC)  : Tue Oct 06 23:10:43 2026
+System time     : 0.000553565 seconds slow of NTP time
+Last offset     : -0.000778511 seconds
+RMS offset      : 0.000778511 seconds
+Frequency       : 4.433 ppm fast
+Residual freq   : +0.000 ppm
+~ # [6n

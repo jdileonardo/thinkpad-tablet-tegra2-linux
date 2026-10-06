@@ -1,0 +1,43 @@
+
+[1]+  Done                       python3 /tmp/tablet-touch-watchdog-check.py --seconds 120 --output /tmp/fresh-image-touch-check.json 1>/tmp/fresh-image-touch-check.log 2>&1 0</dev/null
+~ # [6ntest -f /tmp/fresh-image-touch-check.json && echo TOUCH_OBSERVER_FINISHED; c
+at /tmp/fresh-image-touch-check.log; cat /tmp/fresh-image-calendar.json; cat /sy
+s/bus/spi/devices/spi0.0/stats
+TOUCH_OBSERVER_FINISHED
+{
+  "started_monotonic": 144.603634144,
+  "draw_callbacks": 1,
+  "date": "2026-10-06",
+  "window_id": 39845891,
+  "gtk_version": [
+    3,
+    24,
+    52
+  ],
+  "pixel_validation": false,
+  "remote_calendar_integration": false,
+  "close_reason": "timer",
+  "elapsed_seconds": 90.401884285,
+  "selected_date": [
+    2026,
+    9,
+    6
+  ],
+  "draw_callback_observed": true
+}
+transfers=532 packets=228 invalid=0 touch=0 pen=0 errors=0 transfer_size=136 ready=0 watchdog_misses=0 resets=0 pen_x=0 pen_y=0 pressure=0 flags=0x00 last=02 08 00 00 10 06 0a 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 rx=ff ff ff ff a5 5a e7 7e 02 08 00 00 10 06 0a 08 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+~ # ping -I wlan0 -c 5 -W 2 192.168.0.147; dmesg | grep -Ei "panic|oops|failed t
+o allocate buffer|drop_caches|watchdog timeout|I/O error|EXT4-fs error"; tail -n
+ 10 /home/julian/.local/state/indigo-tablet/buttons.log 2>/dev/null
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=3.587 ms
+64 bytes from 192.168.0.147: seq=1 ttl=64 time=62.768 ms
+64 bytes from 192.168.0.147: seq=2 ttl=64 time=84.513 ms
+64 bytes from 192.168.0.147: seq=3 ttl=64 time=108.857 ms
+64 bytes from 192.168.0.147: seq=4 ttl=64 time=32.208 ms
+
+--- 192.168.0.147 ping statistics ---
+5 packets transmitted, 5 packets received, 0% packet loss
+round-trip min/avg/max = 3.587/58.386/108.857 ms
+[    0.000000] Kernel command line: console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init
+~ # [6n

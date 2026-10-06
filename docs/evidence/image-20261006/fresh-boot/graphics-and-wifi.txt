@@ -1,0 +1,47 @@
+
+~ # [6npython3 /tmp/tablet-touch-watchdog-check.py --seconds 120 --output /tmp/fres
+h-image-touch-check.json > /tmp/fresh-image-touch-check.log 2>&1 < /dev/null & e
+cho observer_pid=$!; chmod 755 /tmp/oversize-pixmap-check
+observer_pid=4191
+~ # su julian -c 'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority xrandr --curren
+t; DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority xinput list --short; DISPLAY=:
+0 XAUTHORITY=/home/julian/.Xauthority /tmp/oversize-pixmap-check'
+Screen 0: minimum 320 x 200, current 800 x 1280, maximum 4096 x 4096
+HDMI-0 disconnected (normal left inverted right x axis y axis)
+Unknown-0 connected 800x1280+0+0 left (normal left inverted right x axis y axis) 0mm x 0mm
+   1280x800      60.33*+
+⎡ Virtual core pointer                    	id=2	[master pointer  (3)]
+⎜   ↳ Virtual core XTEST pointer              	id=4	[slave  pointer  (2)]
+⎜   ↳ N-Trig Indigo Touchscreen               	id=6	[slave  pointer  (2)]
+⎣ Virtual core keyboard                   	id=3	[master keyboard (2)]
+    ↳ Virtual core XTEST keyboard             	id=5	[slave  keyboard (3)]
+    ↳ N-Trig Indigo Pen                       	id=7	[slave  keyboard (3)]
+    ↳ gpio-keys                               	id=8	[slave  keyboard (3)]
+probe_pid=4195
+pixmap=0x2600001 size=640x640 depth=24 pixels_checked=2048 PASS
+pixmap=0x2600003 size=5760x5760 depth=24 pixels_checked=2048 PASS
+~ # ping -I wlan0 -c 3 -W 2 192.168.0.147; dmesg | tail -n 12
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=1176.249 ms
+64 bytes from 192.168.0.147: seq=1 ttl=64 time=170.457 ms
+64 bytes from 192.168.0.147: seq=2 ttl=64 time=85.213 ms
+
+--- 192.168.0.147 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 85.213/477.306/1176.249 ms
+[   16.315604] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)
+[   16.316148] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4329/3 wl0: Sep  2 2011 14:48:19 version 4.220.48
+[   16.325665] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[   16.338152] ieee80211 phy0: brcmf_setup_wiphybands: rxchain unsupported
+[   17.033160] usbcore: registered new interface driver usbhid
+[   17.033186] usbhid: USB HID core driver
+[   18.627432] zram0: detected capacity change from 0 to 3041280
+[   18.648812] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   20.314126] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.314164] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.314175] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   21.608409] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+~ # su julian -c 'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority python3 /tmp/ta
+blet-gtk-calendar-trial.py --seconds 90 --output /tmp/fresh-image-calendar.json 
+> /tmp/fresh-image-calendar.log 2>&1 < /dev/null &'
+~ # [6n

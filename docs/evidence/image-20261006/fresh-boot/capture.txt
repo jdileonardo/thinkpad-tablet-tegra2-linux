@@ -1,0 +1,12 @@
+
+~ # [6nchmod 755 /tmp/xfce-window-capture /tmp/graphics-stack-check
+~ # su julian -c 'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority xdotool mousemo
+ve 10 10; DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority /tmp/xfce-window-captur
+e 39845891 /tmp/fresh-calendar-window.ppm'
+CAPTURE PASS window=39845891 size=620x680 file=/tmp/fresh-calendar-window.ppm
+~ # /tmp/graphics-stack-check --capture /tmp/fresh-calendar-scanout.ppm; gzip -c
+ /tmp/fresh-calendar-window.ppm > /tmp/fresh-calendar-window.ppm.gz; gzip -c /tm
+p/fresh-calendar-scanout.ppm > /tmp/fresh-calendar-scanout.ppm.gz
+active framebuffer=104 size=1280x800 pitch=5120 format=34325258 modifier=0 handles=1,0
+capture=/tmp/fresh-calendar-scanout.ppm CRTC=66 framebuffer=104 size=1280x800 pitch=5120 format=34325258 modifier=0
+~ # [6n

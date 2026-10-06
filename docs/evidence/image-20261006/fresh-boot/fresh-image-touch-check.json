@@ -1,0 +1,393 @@
+{
+  "event_device": "event3",
+  "samples": [
+    {
+      "seconds": 1.7999999982976078e-05,
+      "counters": {
+        "transfers": 265,
+        "packets": 114,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 5.077847126999984,
+      "counters": {
+        "transfers": 278,
+        "packets": 119,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 10.168766245,
+      "counters": {
+        "transfers": 288,
+        "packets": 123,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 15.261427360999988,
+      "counters": {
+        "transfers": 300,
+        "packets": 128,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 20.361908470999992,
+      "counters": {
+        "transfers": 308,
+        "packets": 132,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 25.447597591999994,
+      "counters": {
+        "transfers": 319,
+        "packets": 137,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 30.544944705000006,
+      "counters": {
+        "transfers": 330,
+        "packets": 142,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 35.636778822,
+      "counters": {
+        "transfers": 341,
+        "packets": 146,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 40.71966094499999,
+      "counters": {
+        "transfers": 353,
+        "packets": 151,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 45.806146066,
+      "counters": {
+        "transfers": 362,
+        "packets": 155,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 50.897877574000006,
+      "counters": {
+        "transfers": 375,
+        "packets": 160,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 55.983040251999995,
+      "counters": {
+        "transfers": 385,
+        "packets": 164,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 61.07097800399998,
+      "counters": {
+        "transfers": 395,
+        "packets": 169,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 66.16836300599999,
+      "counters": {
+        "transfers": 403,
+        "packets": 173,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 71.249183569,
+      "counters": {
+        "transfers": 414,
+        "packets": 178,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 76.329368115,
+      "counters": {
+        "transfers": 427,
+        "packets": 183,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 81.412710745,
+      "counters": {
+        "transfers": 438,
+        "packets": 187,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 86.52554815599999,
+      "counters": {
+        "transfers": 450,
+        "packets": 192,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 91.608509776,
+      "counters": {
+        "transfers": 459,
+        "packets": 196,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 96.700227627,
+      "counters": {
+        "transfers": 470,
+        "packets": 201,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 101.788264381,
+      "counters": {
+        "transfers": 482,
+        "packets": 206,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 106.88330032100001,
+      "counters": {
+        "transfers": 492,
+        "packets": 210,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 111.97582519399998,
+      "counters": {
+        "transfers": 502,
+        "packets": 215,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    },
+    {
+      "seconds": 117.06804159799998,
+      "counters": {
+        "transfers": 512,
+        "packets": 219,
+        "invalid": 0,
+        "touch": 0,
+        "pen": 0,
+        "errors": 0,
+        "watchdog_misses": 0,
+        "resets": 0
+      },
+      "xorg_start_ticks": {
+        "1611": 2176
+      }
+    }
+  ],
+  "event_count": 0,
+  "first_events": [],
+  "duration_requested": 120,
+  "duration_seconds": 120.15380207699997
+}

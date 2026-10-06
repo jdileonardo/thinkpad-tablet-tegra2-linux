@@ -121,7 +121,22 @@ then the root filesystem was expanded to 15,635,456 four-KiB blocks and passed
 `e2fsck -fn`. The [card verification](evidence/image-20261006/card-write-verification.json)
 and [writer log](evidence/image-20261006/card-write.log) record the physical write.
 
-Fresh-image boot, repeated APX boots, physical touch/rotation/buttons and
-longer application operation remain required. APX RAM boot and the external-SD
+The [fresh-boot checkpoint](evidence/image-20261006/fresh-boot/checkpoint.json)
+confirms the physical tablet booted this image from the external SD controller.
+XFCE autologin and Wi-Fi worked automatically, all 34 expected runtime files
+matched their hashes, the installed database contained 770 packages, and both
+the ordinary and oversized pixmap probes passed. The complete 421,600-pixel
+calendar client capture matched actual rotated DRM scanout. Network time
+synchronized; the sampled desktop had 676 MiB available and used no swap.
+
+During the 120-second observation the controller returned 105 additional
+packets with no resets, watchdog misses, SPI errors or invalid packets, and
+Xorg stayed running. No physical touch events or button actions were recorded,
+so user confirmation of touch, rotation and buttons remains pending. This
+physical checkpoint is separate from the image-content verification, whose
+scope remains host readback only.
+
+Repeated APX boots, physical touch/rotation/buttons and longer application
+operation remain required. APX RAM boot and the external-SD
 root UUID/controller requirements are unchanged; this image does not install
 a persistent bootloader or write internal eMMC.

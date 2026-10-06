@@ -1,0 +1,83 @@
+{
+  "image_sha256": "46a71647f042c8441c92461ce95676f7382fbb81643720ffbb9bdb2c2c0ff413",
+  "physical_boot_verified": true,
+  "boot_method": "Tegra APX RAM payload; external SD root",
+  "root_device": "/dev/mmcblk0p1",
+  "root_uuid": "2a6e5a89-5a50-46c6-95ec-b718e7abd62b",
+  "root_controller": "c8000400.mmc",
+  "kernel_release": "7.0.1-nura-indigo-ram",
+  "package_count": 770,
+  "runtime_files_verified": 34,
+  "autologin_desktop": "julian XFCE",
+  "xorg_driver_sha256": "61e6191a7492e63c9d2fe79f9dade2cd71c1b286b1f4dceac4631250a9a3bba7",
+  "touch_module_sha256": "73c4d277e1c7e5bc1831e5c21bcdeb0a1734ec37567647a14e81046a270aa127",
+  "graphics_pixmap_tests": [
+    {
+      "size": [
+        640,
+        640
+      ],
+      "pixels_checked": 2048,
+      "passed": true
+    },
+    {
+      "size": [
+        5760,
+        5760
+      ],
+      "pixels_checked": 2048,
+      "passed": true
+    }
+  ],
+  "calendar_scanout_comparison": {
+    "pixels_checked": 421600,
+    "mismatches": 0
+  },
+  "wifi_ipv4": "192.168.0.191",
+  "wifi_ping_checks": {
+    "packets": 8,
+    "lost": 0,
+    "settled_round_trip_ms": [
+      3.587,
+      58.386,
+      108.857
+    ]
+  },
+  "ntp_synchronized": true,
+  "memory_available_mib": 676,
+  "swap_used_mib": 0,
+  "touch_observation": {
+    "seconds": 120.15380207699997,
+    "samples": 24,
+    "evdev_events": 0,
+    "packet_delta": 105,
+    "resets": 0,
+    "max_watchdog_misses": 0,
+    "spi_errors": 0,
+    "invalid_packets": 0,
+    "xorg_continuous": true
+  },
+  "physical_touch_rotation_buttons_confirmation": "pending; no input events recorded in this observation",
+  "internal_storage_writes_performed": false,
+  "remaining": [
+    "Physical touch, rotation and buttons",
+    "Repeated APX boots",
+    "Longer application stability",
+    "Automatic timeout recovery against an unresponsive controller",
+    "Pen and battery hardware tests deferred"
+  ],
+  "evidence_sha256": {
+    "capture.txt": "ee88476c00a218d75a320daf2dab1466963f6a864321cdd8c2e2869c47e834e7",
+    "desktop-start.txt": "267db4c738ed43b85ff336bc0cb9b35094afb65237ee922184087e414cb66f0a",
+    "final-state.txt": "63dfb82181626dec869c6f6c181f08b0afe1e5c934e6218a8cc0d9e39e2ac1ca",
+    "fresh-calendar-comparison.json": "45b8b9d880bbade7f2572c732aeb316863ed79d19d5cc2cd6191a2a42d2dc494",
+    "fresh-calendar-scanout.png": "6cbb0145b0695faa19c000b550ded8570e9ee27192d87db1997f2241217a5fe0",
+    "fresh-calendar-window.png": "1bbbf9ca8806802ae1a0d6fcc9b565547f8c65350dffd4a7f71d409fd989cfb4",
+    "fresh-image-calendar.json": "38c6f16a2b1ebd336fcab08c3b89773790b9c79004b83c3fb45f95a9dea3df0b",
+    "fresh-image-files.json": "2adb93f791cc5c15edbf98cc4a2783df194aa86f06f7cf8b81ecd3c6905c20dd",
+    "fresh-image-touch-check.json": "b146131f6a3cdc3e15d903acd6deb615696d0f67299d9d01bb5cc09b03533151",
+    "graphics-and-wifi.txt": "7f2b82985e61d7dc49ad6219f4d13b892bf7682ed68869d604e45a2831cc8998",
+    "runtime-file-check.py": "1c201bcc5b08ee4452e3cabe6fbff0c5842838bc047278eda773c98a762cce02",
+    "runtime-state.txt": "aaec10f952ccbd428b624f8bec0a3577c4f29e4a9bdeebb2a4930725eae3669e"
+  }
+}
