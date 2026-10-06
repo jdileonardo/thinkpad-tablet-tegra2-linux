@@ -12,6 +12,7 @@ import select
 import shlex
 import time
 import tty
+import uuid
 from pathlib import Path
 
 parser = argparse.ArgumentParser()
@@ -33,6 +34,14 @@ if usb_parent is None or (usb_parent / 'idVendor').read_text().strip() != '17ef'
         or (usb_parent / 'product').read_text().strip() != 'Diagnostic RAM console':
     raise SystemExit('Selected tty is not the ThinkPad diagnostic RAM console')
 remote = shlex.quote(args.remote)
+# Unique frames ignore replies still buffered from a previous transfer. Use
+# printf with literal escapes so a wrapped terminal echo cannot look like an
+# actual marker line and end the observation before the command executes.
+transfer_id = uuid.uuid4().hex
+begin_marker = 'THINKPAD_DATA_BEGIN_' + transfer_id
+end_marker = 'THINKPAD_DATA_END_' + transfer_id
+done_marker = 'THINKPAD_TRANSFER_DONE_' + transfer_id
+payload_marker = 'THINKPAD_PAYLOAD_END_' + transfer_id
 if args.direction == 'upload':
     parts = Path(args.remote).parts
     if len(parts) < 3 or parts[1] not in ('tmp', 'run') or '..' in parts:
@@ -40,15 +49,15 @@ if args.direction == 'upload':
     source = args.local.read_bytes()
     payload = (
         (f'\nthinkpad_transfer_umask=$(umask); umask 077\n' if args.private else '\n').encode()
-        + f"/bin/busybox base64 -d > {remote} <<'THINKPAD_PAYLOAD_END'\n".encode()
+        + f"/bin/busybox base64 -d > {remote} <<'{payload_marker}'\n".encode()
         + base64.encodebytes(source)
-        + f'THINKPAD_PAYLOAD_END\n/bin/busybox sha256sum {remote}; echo THINKPAD_TRANSFER_DONE\n'.encode()
+        + f"{payload_marker}\n/bin/busybox sha256sum {remote}; printf '\\n{done_marker}\\n'\n".encode()
         + (b'umask "$thinkpad_transfer_umask"\n' if args.private else b'')
     )
 else:
-    payload = (f'\necho THINKPAD_DATA_BEGIN; /bin/busybox base64 {remote}; '
-               f'echo THINKPAD_DATA_END; /bin/busybox sha256sum {remote}; '
-               'echo THINKPAD_TRANSFER_DONE\n').encode()
+    payload = (f"\nprintf '\\n{begin_marker}\\n'; /bin/busybox base64 {remote}; "
+               f"printf '\\n{end_marker}\\n'; /bin/busybox sha256sum {remote}; "
+               f"printf '\\n{done_marker}\\n'\n").encode()
 fd = os.open(node, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
 tty.setraw(fd)
 data = bytearray()
@@ -70,7 +79,7 @@ try:
                 pending = pending[count:]
             except BlockingIOError:
                 pass
-        if not pending and b'\r\nTHINKPAD_TRANSFER_DONE\r\n' in data:
+        if not pending and ('\r\n' + done_marker + '\r\n').encode() in data:
             break
 finally:
     os.close(fd)
@@ -82,7 +91,8 @@ if not hashes:
     raise SystemExit('No device SHA256 received; transfer incomplete')
 if args.direction == 'download':
     try:
-        encoded = transcript.split(b'\nTHINKPAD_DATA_BEGIN\n', 1)[1].split(b'\nTHINKPAD_DATA_END\n', 1)[0]
+        encoded = transcript.split(('\n' + begin_marker + '\n').encode(), 1)[1].split(
+            ('\n' + end_marker + '\n').encode(), 1)[0]
         source = base64.b64decode(b''.join(encoded.split()), validate=True)
     except (IndexError, ValueError) as error:
         raise SystemExit(f'Invalid framed download: {error}')
