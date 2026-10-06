@@ -1,0 +1,32 @@
+
+
+~ # [6ncat /proc/cmdline; uname -a; rc-service lightdm status; pgrep -a Xorg; ip -4
+ addr show wlan0; cat /sys/class/block/mmcblk1/device/cid; cat /sys/class/block/
+mmcblk1boot0/ro /sys/class/block/mmcblk1boot1/ro; cat /proc/mounts | head -n 7; 
+sha256sum /opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so /lib/m
+odules/7.0.1-nura-indigo-ram/extra/ntrig_indigo.ko; dmesg | tail -n 8
+console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init indigo_boot=sd-sha256 indigo_emmc=pass
+Linux thinkpad-indigo 7.0.1-nura-indigo-ram #3 SMP Tue Oct  6 14:10:41 UTC 2026 armv7l Linux
+ [1m[32m*[m status: started[K
+1644 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+1101004d4d4333324703100a18dd6e00
+1
+1
+proc /proc proc rw,relatime 0 0
+sysfs /sys sysfs rw,relatime 0 0
+devtmpfs /dev devtmpfs rw,nosuid,noexec,relatime,size=10240k,nr_inodes=118225,mode=755 0 0
+tmpfs /run tmpfs rw,relatime 0 0
+configfs /sys/kernel/config configfs rw,relatime 0 0
+/dev/mmcblk0p1 / ext4 rw,noatime 0 0
+mqueue /dev/mqueue mqueue rw,nosuid,nodev,noexec,relatime 0 0
+61e6191a7492e63c9d2fe79f9dade2cd71c1b286b1f4dceac4631250a9a3bba7  /opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so
+73c4d277e1c7e5bc1831e5c21bcdeb0a1734ec37567647a14e81046a270aa127  /lib/modules/7.0.1-nura-indigo-ram/extra/ntrig_indigo.ko
+[   17.166038] usbcore: registered new interface driver usbhid
+[   17.166067] usbhid: USB HID core driver
+[   18.956359] zram0: detected capacity change from 0 to 3041280
+[   18.977468] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   20.315467] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.315511] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.315526] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   22.270646] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+~ # [6n

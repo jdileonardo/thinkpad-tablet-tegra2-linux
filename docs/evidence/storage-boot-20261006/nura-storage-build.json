@@ -1,0 +1,49 @@
+{
+  "source_revision": "385640388c84e405f817f8e747d4febaa0be0de5",
+  "config_name": "thinkpad_storage_defconfig",
+  "boot_command": "setenv indigo_emmc fail; if mmc dev 0 && mmc read 0x03000000 0 0x800 && hash -v sha256 0x03000000 0x100000 ae01487c3087ac83c8d38203361539c25b74a9855330ef857b172be3a2269a79; then setenv indigo_emmc pass; fi; setenv indigo_stage sd-select; if mmc dev 1; then setenv indigo_stage kernel; if ext4load mmc 1:1 0x1000000 /boot/vmlinuz-indigo 0x684200 && test ${filesize} = 684200 && hash -v sha256 0x1000000 0x684200 5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff; then setenv indigo_stage initramfs; if ext4load mmc 1:1 0x2400000 /boot/initramfs-indigo 0x16311e && test ${filesize} = 16311e && hash -v sha256 0x2400000 0x16311e 637942e060dc76659e738a3f6085907a162c9d4c2e79c4503e5bd95610634556; then setenv indigo_stage dtb; if ext4load mmc 1:1 0x2600000 /boot/tegra20-lenovo-indigo.dtb 0xcb62 && test ${filesize} = cb62 && hash -v sha256 0x2600000 0xcb62 b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b; then setenv indigo_stage bootz; setenv bootargs console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init indigo_boot=sd-sha256 indigo_emmc=${indigo_emmc}; echo Starting SHA256-verified Linux from SD; bootz 0x1000000 0x2400000:0x16311e 0x2600000; fi; fi; fi; fi; echo SD boot failed at ${indigo_stage}; fastboot usb 0",
+  "ram_fallback": false,
+  "storage_write_commands_enabled": false,
+  "emmc_read": {
+    "uboot_mmc": 0,
+    "start_sector": 0,
+    "sectors": 2048,
+    "expected_sha256": "ae01487c3087ac83c8d38203361539c25b74a9855330ef857b172be3a2269a79"
+  },
+  "sd_boot": {
+    "uboot_mmc": "1:1",
+    "components": [
+      {
+        "name": "kernel",
+        "address": "0x1000000",
+        "size": 6832640,
+        "sha256": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
+        "path": "build/linux-nura/arch/arm/boot/zImage",
+        "storage_path": "/boot/vmlinuz-indigo"
+      },
+      {
+        "name": "initramfs",
+        "address": "0x2400000",
+        "size": 1454366,
+        "sha256": "637942e060dc76659e738a3f6085907a162c9d4c2e79c4503e5bd95610634556",
+        "path": "build/nura-sd-test/initramfs.cpio.gz",
+        "storage_path": "/boot/initramfs-indigo"
+      },
+      {
+        "name": "dtb",
+        "address": "0x2600000",
+        "size": 52066,
+        "sha256": "b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b",
+        "path": "build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb",
+        "storage_path": "/boot/tegra20-lenovo-indigo.dtb"
+      }
+    ]
+  },
+  "builder_id": "sha256:bdeae42b66b5d1d1a70fe3f1505a17ba156eca8efdfa8364e9db3411e06beb2c",
+  "artifact": {
+    "path": "build/uboot-nura-storage/u-boot-dtb-tegra.bin",
+    "bytes": 498484,
+    "sha256": "6b1f990b85a18e12cd970e60c01d270488edc3fa4583b32202cf7c302375fdd2"
+  },
+  "physical_validation": "passed: U-Boot-only APX download, indigo_boot=sd-sha256 indigo_emmc=pass, XFCE running"
+}

@@ -7,10 +7,13 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument('--profile', choices=['historical', 'nura', 'nura-sd'], default='historical')
+parser.add_argument('--profile', choices=['historical', 'nura', 'nura-sd',
+                                       'nura-storage-test'], default='historical')
 args = parser.parse_args()
 out = root / {'historical': 'build/ram-test', 'nura': 'build/nura-ram-test',
-              'nura-sd': 'build/nura-sd-test'}[args.profile]
+              'nura-sd': 'build/nura-sd-test',
+              'nura-storage-test': 'build/nura-storage-test'}[args.profile]
+out.mkdir(parents=True, exist_ok=True)
 load_address = 0x108000
 components = [
     ('uboot', 0x108000, root / 'build/uboot-direct/u-boot-dtb-tegra.bin'),
@@ -19,11 +22,14 @@ components = [
     ('dtb', 0x02200000, root / 'build/linux-historical/arch/arm/boot/dts/tegra20-lenovo-indigo.dtb'),
 ]
 if args.profile != 'historical':
-    uboot_dir = 'uboot-nura-sd' if args.profile == 'nura-sd' else 'uboot-nura'
+    uboot_dir = {'nura-sd': 'uboot-nura-sd', 'nura': 'uboot-nura',
+                 'nura-storage-test': 'uboot-nura-storage-test'}[args.profile]
+    initramfs = (root / 'build/nura-sd-test/initramfs.cpio.gz'
+                 if args.profile == 'nura-storage-test' else out / 'initramfs.cpio.gz')
     components = [
         ('uboot', 0x108000, root / f'build/{uboot_dir}/u-boot-dtb-tegra.bin'),
         ('kernel', 0x01000000, root / 'build/linux-nura/arch/arm/boot/zImage'),
-        ('initramfs', 0x02400000, out / 'initramfs.cpio.gz'),
+        ('initramfs', 0x02400000, initramfs),
         ('dtb', 0x02600000, root / 'build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb'),
     ]
     symbols = {}

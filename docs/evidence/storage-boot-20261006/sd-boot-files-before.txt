@@ -1,0 +1,11 @@
+
+~ # [6nsha256sum /boot/vmlinuz-indigo /boot/initramfs-indigo /boot/tegra20-lenovo-i
+ndigo.dtb; cat /sys/class/block/mmcblk1/device/cid; cat /sys/class/block/mmcblk1
+/size; test -x /usr/local/sbin/reboot-into-apx && echo APX_HELPER_READY
+5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff  /boot/vmlinuz-indigo
+637942e060dc76659e738a3f6085907a162c9d4c2e79c4503e5bd95610634556  /boot/initramfs-indigo
+b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b  /boot/tegra20-lenovo-indigo.dtb
+1101004d4d4333324703100a18dd6e00
+62521344
+APX_HELPER_READY
+~ # [6n

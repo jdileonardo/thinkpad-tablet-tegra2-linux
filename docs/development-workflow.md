@@ -97,10 +97,11 @@ verifies all 13 original backup files and live critical boot regions, records
 the eMMC identity and addressing, and defines the remaining boot work.
 No internal write has occurred.
 
-The SD OS has passed two physical boots. Host-independent boot still needs a
-storage-loading U-Boot profile and a correctly generated persistent boot image;
-an internal root needs a new controller/UUID profile. Test the new U-Boot through
-APX first, then prepare bounded write/readback/recovery steps. A staged first
+The SD OS has passed two physical boots. The [storage-loading U-Boot test](storage-boot.md)
+also passed, including an APX download containing only U-Boot and a verified
+internal eMMC read. Host-independent boot still needs a correctly generated
+persistent boot image; an internal root needs a new controller/UUID profile.
+Prepare bounded write/readback/recovery steps. A staged first
 installation can retain the proven SD root while establishing persistent boot,
 followed by a clean Linux user-area layout and internal root.
 

@@ -1,0 +1,28 @@
+MemAvailable:     934200 kB
+Buffers:            8112 kB
+Cached:            68336 kB
+~ # [6n
+~ # cat /proc/cmdline; sha256sum /boot/vmlinuz-indigo /boot/initramfs-indigo /bo
+ot/tegra20-lenovo-indigo.dtb /usr/local/sbin/reboot-into-apx; ip -4 addr show wl
+an0; cat /sys/kernel/debug/ntrig_indigo/stats 2>/dev/null; dmesg | tail -n 12
+console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init indigo_boot=sd-sha256 indigo_emmc=pass
+5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff  /boot/vmlinuz-indigo
+637942e060dc76659e738a3f6085907a162c9d4c2e79c4503e5bd95610634556  /boot/initramfs-indigo
+b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b  /boot/tegra20-lenovo-indigo.dtb
+9c2b17084b03e3554c86de014bcb58e8470a164c388cb33dd99140f96fa462f6  /usr/local/sbin/reboot-into-apx
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.191/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 7187sec preferred_lft 7187sec
+[   16.398166] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)
+[   16.398710] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4329/3 wl0: Sep  2 2011 14:48:19 version 4.220.48
+[   16.413164] ieee80211 phy0: brcmf_setup_wiphybands: rxchain unsupported
+[   16.487001] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[   17.237206] usbcore: registered new interface driver usbhid
+[   17.237236] usbhid: USB HID core driver
+[   19.559024] zram0: detected capacity change from 0 to 3041280
+[   19.580407] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   20.325443] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.325471] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.325482] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   22.379364] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+~ # [6n

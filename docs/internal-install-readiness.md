@@ -2,13 +2,19 @@
 
 Read-only checkpoint, 2026-10-06. No internal writes were performed.
 
+Follow-up: [storage-loading U-Boot passed physical testing](storage-boot.md),
+including an APX download of U-Boot alone, verified SD boot-file loading and a
+verified internal eMMC read. Persistent boot-image packaging, bounded write
+planning and the internal-root profile remain. The evidence below records the
+initial audit before those storage-boot tests.
+
 The user wants a clean Linux installation and does not need Android, cache or
 userdata preserved. Missing cache/userdata backups are therefore not an
 installation prerequisite. The current XFCE SD image has passed two APX boots,
 physical touch/rotation/button checks, automatic Wi-Fi connection, and graphics
 buffer checks; see [the image checkpoint](xfce-image.md).
 
-The OS is ready for the next installation stage. The current boot artifacts are
+The OS is ready for the next installation stage. At the initial audit the boot artifacts were
 not yet a flashable, host-independent installation: U-Boot assumes the kernel,
 initramfs and DTB are already in RAM, and the bootstrap accepts only the external
 SD controller and UUID. Flashing those artifacts unchanged would not provide
@@ -63,7 +69,8 @@ power-on configuration or an instruction to restore those bytes.
 
 ## Remaining implementation
 
-1. Build a separate storage-loading U-Boot profile. Test it through APX while
+1. Completed in the [storage-boot checkpoint](storage-boot.md): build a separate
+   storage-loading U-Boot profile and test it through APX while
    reading kernel, initramfs and DTB from the working SD card. Check its MMC
    numbering: U-Boot's internal `mmc0` and external `mmc1` differ from Linux's
    current numbering.

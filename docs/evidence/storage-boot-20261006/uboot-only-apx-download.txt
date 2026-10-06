@@ -1,0 +1,27 @@
+bct file: /work/backups/MP0GKR7-20261005T160450Z/active.bct
+bootloader file: /work/build/uboot-nura-storage/u-boot-dtb-tegra.bin
+load addr 0x108000
+entry addr 0x108000
+device id: 0x7820
+uid:  0x0a7c0048445fc057
+RCM version: 2.1
+downloading miniloader to target at address 0x40008000 (132976 bytes)...
+miniloader downloaded successfully
+Chip UID:                0x00000000000000000a7c0048445fc057
+Chip ID:                 0x20
+Chip ID Major Version:   0x1
+Chip ID Minor Version:   0x4
+Chip SKU:                0x8 (t20)
+Boot ROM Version:        0x1
+Boot Device:             0x2 (EMMC)
+Operating Mode:          0x3 (developer mode)
+Device Config Strap:     0x0
+Device Config Fuse:      0x0
+SDRAM Config Strap:      0x1
+sending file: /work/backups/MP0GKR7-20261005T160450Z/active.bct
+
+- 4080/4080 bytes sent
+/work/backups/MP0GKR7-20261005T160450Z/active.bct sent successfully
+sending file: /work/build/uboot-nura-storage/u-boot-dtb-tegra.bin
+
+/work/build/uboot-nura-storage/u-boot-dtb-tegra.bin sent successfully

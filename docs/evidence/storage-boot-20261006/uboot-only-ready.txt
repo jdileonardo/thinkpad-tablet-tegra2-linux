@@ -1,0 +1,27 @@
+
+~ # [6ncat /proc/cmdline; ip -4 addr show wlan0; ping -c 3 -W 2 192.168.0.147; rc-s
+ervice lightdm status; date -u; pgrep -a xfdesktop; cat /sys/class/block/mmcblk1
+boot0/force_ro /sys/class/block/mmcblk1boot1/force_ro; dmesg | tail -n 5
+console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init indigo_boot=sd-sha256 indigo_emmc=pass
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.191/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 7158sec preferred_lft 7158sec
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=86.710 ms
+64 bytes from 192.168.0.147: seq=1 ttl=64 time=18.589 ms
+64 bytes from 192.168.0.147: seq=2 ttl=64 time=4.251 ms
+
+--- 192.168.0.147 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 4.251/36.516/86.710 ms
+ [1m[32m*[m status: started[K
+Tue Oct  6 23:36:10 UTC 2026
+2094 xfdesktop
+1
+1
+[   18.977468] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   20.315467] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.315511] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.315526] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   22.270646] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+~ # [6n

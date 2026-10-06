@@ -1,0 +1,18 @@
+
+
+~ # [6ncat /proc/cmdline; uname -a; cat /proc/mounts | head -n 7; rc-service lightd
+m status; pgrep -a Xorg; cat /sys/class/block/mmcblk1/device/cid; sha256sum /boo
+t/vmlinuz-indigo /boot/initramfs-indigo /boot/tegra20-lenovo-indigo.dtb; cat /pr
+oc/meminfo | head -n 5; ip -4 addr show wlan0
+console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init indigo_boot=sd-sha256 indigo_emmc=pass
+Linux thinkpad-indigo 7.0.1-nura-indigo-ram #3 SMP Tue Oct  6 14:10:41 UTC 2026 armv7l Linux
+proc /proc proc rw,relatime 0 0
+sysfs /sys sysfs rw,relatime 0 0
+devtmpfs /dev devtmpfs rw,nosuid,noexec,relatime,size=10240k,nr_inodes=118225,mode=755 0 0
+tmpfs /run tmpfs rw,relatime 0 0
+configfs /sys/kernel/config configfs rw,relatime 0 0
+/dev/mmcblk0p1 / ext4 rw,noatime 0 0
+mqueue /dev/mqueue mqueue rw,nosuid,nodev,noexec,relatime 0 0
+ [1m[32m*[m status: started[K
+1593 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+1101004d4d4333324703100a18dd6e00
