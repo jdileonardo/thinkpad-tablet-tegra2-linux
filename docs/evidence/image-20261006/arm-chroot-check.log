@@ -1,0 +1,35 @@
+GTK 3 24 52
+
+X.Org X Server 1.21.1.24
+X Protocol Version 11, Revision 0
+Current Operating System: Linux 0e61ed1ecded 7.0.0-34-generic #34-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep  2 14:29:37 UTC 2026 armv7l
+ 
+Current version of pixman: 0.46.4
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+	/lib/ld-musl-armhf.so.1 (0x400000)
+	libX11.so.6 => /lib/libX11.so.6 (0x4080c000)
+	libXi.so.6 => /lib/libXi.so.6 (0x408ed000)
+	libXrandr.so.2 => /lib/libXrandr.so.2 (0x408f9000)
+	libXinerama.so.1 => /lib/libXinerama.so.1 (0x40901000)
+	libc.musl-armv7.so.1 => /lib/ld-musl-armhf.so.1 (0x400000)
+	libxcb.so.1 => /lib/libxcb.so.1 (0x40904000)
+	libXext.so.6 => /lib/libXext.so.6 (0x4091f000)
+	libXrender.so.1 => /lib/libXrender.so.1 (0x4092b000)
+	libXau.so.6 => /lib/libXau.so.6 (0x40933000)
+	libXdmcp.so.6 => /lib/libXdmcp.so.6 (0x40937000)
+	libbsd.so.0 => /lib/libbsd.so.0 (0x4093d000)
+	libmd.so.0 => /lib/libmd.so.0 (0x40949000)
+	/lib/ld-musl-armhf.so.1 (0x400000)
+	libxdo.so.4 => /lib/libxdo.so.4 (0x40810000)
+	libX11.so.6 => /lib/libX11.so.6 (0x4081a000)
+	libc.musl-armv7.so.1 => /lib/ld-musl-armhf.so.1 (0x400000)
+	libXtst.so.6 => /lib/libXtst.so.6 (0x408fb000)
+	libXinerama.so.1 => /lib/libXinerama.so.1 (0x40900000)
+	libxkbcommon.so.0 => /lib/libxkbcommon.so.0 (0x40903000)
+	libxcb.so.1 => /lib/libxcb.so.1 (0x40945000)
+	libXext.so.6 => /lib/libXext.so.6 (0x40960000)
+	libXau.so.6 => /lib/libXau.so.6 (0x4096c000)
+	libXdmcp.so.6 => /lib/libXdmcp.so.6 (0x40970000)
+	libbsd.so.0 => /lib/libbsd.so.0 (0x40976000)
+	libmd.so.0 => /lib/libmd.so.0 (0x40982000)

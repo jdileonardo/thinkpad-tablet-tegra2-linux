@@ -12,11 +12,17 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--device', required=True)
 parser.add_argument('--expected-serial', required=True)
 parser.add_argument('--expected-size', type=int, required=True)
+parser.add_argument('--manifest', default='build/nura-sd/image-manifest.json')
 parser.add_argument('--container', action='store_true', help=argparse.SUPPRESS)
 args = parser.parse_args()
 project = Path(__file__).resolve().parents[1]
-manifest = json.loads((project / 'build/nura-sd/image-manifest.json').read_text())
-image = project / manifest['image']
+manifest_path = (project / args.manifest).resolve()
+if not manifest_path.is_relative_to(project / 'build'):
+    raise SystemExit('Image manifest must be under build/')
+manifest = json.loads(manifest_path.read_text())
+image = (project / manifest['image']).resolve()
+if not image.is_relative_to(project / 'build'):
+    raise SystemExit('Image must be under build/')
 
 if not args.container:
     listing = json.loads(subprocess.check_output([
@@ -44,15 +50,19 @@ if not args.container:
         '--security-opt', 'apparmor=unconfined',
         '--device', f'{args.device}:/dev/card:rwm',
         '--device', f'{partition["path"]}:/dev/cardp1:rwm',
-        '-v', f'{project}:/work', 'thinkpad-pmbootstrap:2026-10-05',
+        '-v', f'{project}:/work', manifest.get('assembler_container', 'thinkpad-pmbootstrap:2026-10-05'),
         'python3', '/work/scripts/write_nura_sd.py', '--container',
         '--device', '/dev/card', '--expected-serial', args.expected_serial,
-        '--expected-size', str(args.expected_size)], check=True)
+        '--expected-size', str(args.expected_size),
+        '--manifest', str(manifest_path.relative_to(project))], check=True)
     raise SystemExit(0)
 
 size = int(subprocess.check_output(['blockdev', '--getsize64', '/dev/card']))
 if size != args.expected_size or image.stat().st_size != manifest['size'] or size < manifest['size']:
     raise SystemExit('Container block size or source image length differs from the verified target.')
+with image.open('rb') as source:
+    if hashlib.file_digest(source, 'sha256').hexdigest() != manifest['sha256']:
+        raise SystemExit('Source image changed before writing; refusing to erase the card.')
 subprocess.run(['wipefs', '--all', '--force', '/dev/card'], check=True)
 started = time.monotonic()
 with image.open('rb') as source, open('/dev/card', 'r+b', buffering=0) as target:
@@ -98,5 +108,5 @@ record.update(card_size=size, reader_serial=args.expected_serial,
               full_image_readback_sha256=digest.hexdigest(),
               final_verification='expanded ext4 filesystem passed e2fsck -fn',
               elapsed_seconds=round(time.monotonic() - started, 1))
-(project / 'build/nura-sd/card-write-verification.json').write_text(json.dumps(record, indent=2) + '\n')
+(manifest_path.parent / 'card-write-verification.json').write_text(json.dumps(record, indent=2) + '\n')
 print('Nura SD card write, full read-back, expansion and filesystem checks complete.', flush=True)

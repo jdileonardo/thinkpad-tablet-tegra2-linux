@@ -1,14 +1,40 @@
 #!/usr/bin/env python3
 """Create and fsck an SD image in Docker, without opening any host block disk."""
+import argparse
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import uuid
 from pathlib import Path
 
 project = Path(__file__).resolve().parents[1]
-out = project / 'build/nura-sd'
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--output', default='build/nura-sd-20261006')
+parser.add_argument('--lock', default='port/image-inputs.lock.json')
+parser.add_argument('--password-file', default='build/image-inputs/login-password')
+parser.add_argument('--network-profile', help='Optional private NetworkManager keyfile')
+args = parser.parse_args()
+out = (project / args.output).resolve()
+if not out.is_relative_to(project / 'build'):
+    raise SystemExit('Image output must be inside the project build directory')
+lock_path = (project / args.lock).resolve()
+lock = json.loads(lock_path.read_text())
+def digest(path):
+    with path.open('rb') as source:
+        return hashlib.file_digest(source, 'sha256').hexdigest()
+for name, expected in lock['files'].items():
+    path = (project / name).resolve()
+    if not path.is_relative_to(project) or digest(path) != expected:
+        raise SystemExit(f'Frozen input missing or changed: {name}')
+password = (project / args.password_file).read_text().strip()
+if not password or '\n' in password or ':' in password:
+    raise SystemExit('Password file must contain one nonempty password without colon')
+network_profile = (project / args.network_profile).resolve() if args.network_profile else None
+if network_profile and (not network_profile.is_relative_to(project / 'build') or
+                        not network_profile.is_file()):
+    raise SystemExit('Private network profile must be a file under build/')
 out.mkdir(parents=True, exist_ok=True)
 root_uuid = str(uuid.UUID((project / 'build/nura-sd-root.uuid').read_text().strip()))
 manifest_path = out / 'image-manifest.json'
@@ -31,15 +57,18 @@ if release != '7.0.1-nura-indigo-ram':
 
 # Run this preparation with container-root so numeric ownership and xattrs survive.
 prepare = r'''set -eu
-source=/work/build/pmbootstrap/chroot_rootfs_nvidia-tegra-armv7
-stage=/work/build/nura-sd/rootfs
-test -x "$source/sbin/init"
+stage="$OUT/rootfs"
 test ! -e "$stage"
-cp -a "$source" "$stage"
+mkdir "$stage"
+tar --numeric-owner --xattrs --acls -xzf /work/build/image-inputs/rootfs.tar.gz -C "$stage"
+test -x "$stage/sbin/init"
 # pmbootstrap bind-mounts trusted keys while building; restore package backups
 # after those mounts disappear so the installed tablet can verify repositories.
 mkdir -p "$stage/etc/apk/keys"
 cp "$stage/usr/share/apk/keys/"*.pub "$stage/etc/apk/keys/"
+# All files were hash checked by the caller. APK also checks trusted signatures,
+# resolves against the installed database, and cannot fetch/upgrade online.
+apk --root "$stage" --arch armv7 --network=no --no-scripts add $OVERLAY_APKS
 rm -f "$stage/usr/bin/qemu-arm-static"
 rm -rf "$stage/tmp"/* "$stage/mnt/pmbootstrap"
 mkdir -p "$stage/proc" "$stage/sys" "$stage/dev" "$stage/run" "$stage/root"
@@ -55,6 +84,13 @@ install -m 755 /work/port/desktop/indigo-rotate.py "$stage/usr/local/bin/indigo-
 install -m 755 /work/port/desktop/indigo-buttons.sh "$stage/usr/local/bin/indigo-buttons"
 install -m 755 /work/port/desktop/indigo-tablet-start.sh "$stage/usr/local/bin/indigo-tablet-start"
 install -m 755 /work/port/desktop/setup-indigo-desktop.sh "$stage/usr/local/bin/setup-indigo-desktop"
+install -m 755 /work/port/mesa/indigo-gpu-run "$stage/usr/local/bin/indigo-gpu-run"
+tar -xzf /work/build/mesa-grate-armv7.tar.gz -C "$stage"
+tar -xzf /work/build/mesa-grate-candidate-armv7.tar.gz -C "$stage"
+private="$stage/opt/indigo-xorg/xfce"
+mkdir -p "$private/lib/xorg/modules/drivers"
+install -m 644 /work/build/opentegra-dri3/src/.libs/opentegra_drv.so "$private/lib/xorg/modules/drivers/opentegra_drv.so"
+printf 'Section "Module"\n    Load "exa"\nEndSection\n' > "$private/indigo-xorg.conf"
 # Require the desktop dependencies in the newly built rootfs before imaging it.
 for tool in python3 xrandr xinput xdotool xfconf-query; do
     test -x "$stage/usr/bin/$tool"
@@ -64,6 +100,10 @@ test -x "$stage/etc/init.d/chronyd"
 mkdir -p "$stage/etc/runlevels/default"
 ln -sf /etc/init.d/chronyd "$stage/etc/runlevels/default/chronyd"
 mkdir -p "$stage/etc/lightdm/lightdm.conf.d"
+cat > "$stage/etc/lightdm/lightdm.conf.d/95-indigo-xorg.conf" <<'EOF'
+[Seat:*]
+xserver-command=/usr/libexec/Xorg -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+EOF
 cat > "$stage/etc/lightdm/lightdm.conf.d/90-indigo.conf" <<'EOF'
 [Seat:*]
 autologin-user=julian
@@ -71,6 +111,10 @@ autologin-user-timeout=0
 autologin-session=xfce
 user-session=xfce
 EOF
+printf 'julian:%s\n' "$LOGIN_PASSWORD" | chpasswd -P "$stage"
+if [ -n "$NETWORK_PROFILE" ]; then
+    install -m 600 "$NETWORK_PROFILE" "$stage/etc/NetworkManager/system-connections/indigo-wifi.nmconnection"
+fi
 cat >> "$stage/etc/inittab" <<'EOF'
 
 # Temporary wired root shell for hardware bring-up; no network autologin.
@@ -119,15 +163,20 @@ LABEL indigo
   FDT /boot/tegra20-lenovo-indigo.dtb
   APPEND console=tty0 console=ttyS0,115200 panic=0 rdinit=/init
 EOF
-truncate -s 4G /work/build/nura-sd/root.ext4
+truncate -s 4G "$OUT/root.ext4"
 mke2fs -t ext4 -F -U "$ROOT_UUID" -L NURA_INDIGO -m 0 \
-    -O ^metadata_csum_seed,^64bit -d "$stage" /work/build/nura-sd/root.ext4
-e2fsck -fn /work/build/nura-sd/root.ext4
+    -O ^metadata_csum_seed,^64bit -d "$stage" "$OUT/root.ext4"
+e2fsck -fn "$OUT/root.ext4"
 '''
 subprocess.run(['docker', 'run', '--rm', '--network', 'none',
                 '-v', f'{project}:/work', '-e', f'ROOT_UUID={root_uuid}',
                 '-e', f'KERNEL_RELEASE={release}',
-                'thinkpad-pmbootstrap:2026-10-05', 'sh', '-c', prepare], check=True)
+                '-e', f'OUT=/work/{out.relative_to(project)}',
+                '-e', 'LOGIN_PASSWORD',
+                '-e', f'NETWORK_PROFILE={"/work/" + str(network_profile.relative_to(project)) if network_profile else ""}',
+                '-e', 'OVERLAY_APKS=' + ' '.join('/work/' + p for p in lock['overlay_packages']),
+                lock['containers']['thinkpad-pmbootstrap:2026-10-05'], 'sh', '-c', prepare],
+               check=True, env=dict(os.environ, LOGIN_PASSWORD=password))
 offset = 1024 * 1024
 root_image = out / 'root.ext4'
 size = offset + root_image.stat().st_size
@@ -139,9 +188,6 @@ with image.open('wb') as target:
 partition_table = (f'label: dos\nunit: sectors\n\n'
                    f'start=2048, size={root_image.stat().st_size // 512}, type=83, bootable\n')
 subprocess.run(['sfdisk', str(image)], input=partition_table, text=True, check=True)
-def digest(path):
-    with path.open('rb') as source:
-        return hashlib.file_digest(source, 'sha256').hexdigest()
 manifest = {'root_uuid': root_uuid, 'kernel_release': release,
             'image': str(image.relative_to(project)), 'size': size,
             'sha256': digest(image),
@@ -155,7 +201,13 @@ manifest = {'root_uuid': root_uuid, 'kernel_release': release,
                     'build/stock/firmware/brcmfmac4329-sdio.txt',
                     'build/linux-firmware/LICENCE.broadcom_bcm43xx')},
             'sources': json.loads((project / 'sources.lock.json').read_text()),
-            'verified': 'e2fsck -fn before disk-image assembly',
+            'input_lock': str(lock_path.relative_to(project)),
+            'input_lock_sha256': digest(lock_path),
+            'assembler_container': lock['containers']['thinkpad-pmbootstrap:2026-10-05'],
+            'graphics': {'xorg': 'private fixed opentegra; stock module retained',
+                         'mesa': 'distribution default; private builds selected per process'},
+            'private_network_profile_included': network_profile is not None,
+            'verified': 'All frozen input hashes, offline signed APK installation, e2fsck -fn before disk-image assembly',
             'installation': 'external SD; tablet bootloader remains on Android'}
 manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')
 (out / 'SHA256SUMS').write_text(f'{manifest["sha256"]}  {image.name}\n')

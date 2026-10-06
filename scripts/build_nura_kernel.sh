@@ -2,6 +2,10 @@
 set -euo pipefail
 project_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 cd "$project_root"
+builder_image=thinkpad-nura-build:2026-10-05
+if [[ -f port/image-inputs.lock.json ]]; then
+  builder_image=$(python3 scripts/pinned_build_container.py "$builder_image")
+fi
 python3 scripts/prepare_nura_kernel.py
 python3 - <<'PY'
 import json, subprocess, shutil
@@ -24,8 +28,8 @@ sources/linux-nura/scripts/config --file build/linux-nura/.config --enable DEBUG
 sources/linux-nura/scripts/config --file build/linux-nura/.config \
   --set-str LOCALVERSION '-nura-indigo-ram'
 run_make() {
-  docker run --rm --user "$(id -u):$(id -g)" -v "$project_root:/work" \
-    thinkpad-nura-build:2026-10-05 make -C /work/sources/linux-nura \
+  docker run --rm --network none --user "$(id -u):$(id -g)" -v "$project_root:/work" \
+    "$builder_image" make -C /work/sources/linux-nura \
     O=/work/build/linux-nura ARCH=arm LLVM=1 "$@"
 }
 run_make olddefconfig

@@ -46,10 +46,10 @@ Before an image is selected as the working baseline:
    records and actual calendar display pixels now pass. The old large
    allocation requests remain a separate unresolved issue unless reproduced
    and explained.
-2. Package the selected DDX/Mesa components and desktop configuration into the
-   image recipe. Pin build dependencies; current edge package installations are
-   not fully pinned. Reproduce the image from recorded sources rather than
-   copying the live development filesystem.
+2. The [new image recipe](xfce-image.md) packages the selected DDX/Mesa
+   components and desktop configuration from frozen build artifacts and the
+   cached distribution rootfs. Container IDs and rootfs/SDK inputs are pinned
+   for offline assembly. A fully source-rebuilt release remains separate work.
 3. Boot a freshly built SD image repeatedly and exercise the intended workload
    for hours, checking memory growth, display, touch/rotation, Wi-Fi and recovery.
 4. Add the chosen calendar service and Spotify-control client and verify them
@@ -61,8 +61,8 @@ path. Do not describe the driver as generally complete or enable it for arbitrar
 applications without checking their required formats/features. Pen and battery
 testing remain deferred under the user's existing constraints.
 
-`scripts/create_nura_sd_image.py` already assembles and checks an external-SD
-image, but that image recipe does not yet contain every live graphics addition.
+`scripts/create_nura_sd_image.py` now assembles and checks an external-SD
+image containing the selected graphics additions and desktop configuration.
 SD image production and internal installation are distinct: the existing image
 uses APX/RAM boot and a bootstrap tied to the external SD controller/UUID.
 An internal root needs a new boot profile; autonomous internal boot also needs

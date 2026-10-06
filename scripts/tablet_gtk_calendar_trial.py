@@ -24,8 +24,8 @@ def main():
     parser.add_argument('--seconds', type=int, default=60)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    if os.geteuid() == 0 or not 10 <= args.seconds <= 120:
-        parser.error('Run as the desktop user for 10..120 seconds')
+    if os.geteuid() == 0 or not 10 <= args.seconds <= 3600:
+        parser.error('Run as the desktop user for 10..3600 seconds')
     output = args.output.resolve()
     if not any(output.is_relative_to(Path(base)) for base in ('/tmp', '/run')):
         parser.error('Output must be under /tmp or /run')

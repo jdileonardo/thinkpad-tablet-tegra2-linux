@@ -20,7 +20,13 @@ fi
 [[ $(git -C "$mesa_source" rev-parse HEAD) == "$mesa_commit" ]]
 python3 scripts/apply_mesa_patches.py "$mesa_source" "$patch_dir"
 mesa_diff_sha256=$(git -C "$mesa_source" diff HEAD | sha256sum | cut -d ' ' -f 1)
-docker build -t thinkpad-mesa-build:2026-10-05 -f tools/Dockerfile.mesa .
+builder_image=thinkpad-mesa-build:2026-10-05
+export INDIGO_BUILD_INPUTS_FROZEN=0
+if [[ -f port/image-inputs.lock.json && ${INDIGO_REFRESH_BUILD_DEPS:-0} != 1 ]]; then
+    builder_image=$(python3 scripts/pinned_build_container.py "$builder_image" --sdk)
+    export INDIGO_BUILD_INPUTS_FROZEN=1
+else
+docker build -t "$builder_image" -f tools/Dockerfile.mesa .
 # A separate ARM musl sysroot keeps build dependencies off the running tablet.
 docker run --rm -v "$project_root:/work" thinkpad-mesa-build:2026-10-05 sh -ec '
     mkdir -p /work/build/mesa-sysroot/etc/apk/keys
@@ -32,11 +38,14 @@ docker run --rm -v "$project_root:/work" thinkpad-mesa-build:2026-10-05 sh -ec '
         libxext-dev libxdamage-dev libxfixes-dev libxxf86vm-dev libxrandr-dev \
         libxcb-dev libxshmfence-dev zlib-dev zstd-dev wayland-dev wayland-protocols
 '
+fi
+export INDIGO_BUILD_CONTAINER="$builder_image"
 docker run --rm --network none --user "$(id -u):$(id -g)" -v "$project_root:/work" \
+    -e INDIGO_BUILD_CONTAINER -e INDIGO_BUILD_INPUTS_FROZEN \
     -e "MESA_SOURCE=/work/$mesa_source" -e "MESA_PREFIX=/opt/indigo-mesa/${mesa_commit:0:12}" \
     -e "MESA_COMMIT=$mesa_commit" -e "MESA_DIFF_SHA256=$mesa_diff_sha256" \
     -e "MESA_BUILD_TAG=$build_tag" -e "MESA_PATCH_DIR=/work/$patch_dir" \
-    thinkpad-mesa-build:2026-10-05 sh -ec '
+    "$builder_image" sh -ec '
     setup_extra=
     build_dir=/work/build/$MESA_BUILD_TAG
     install_dir=/work/build/$MESA_BUILD_TAG-install
@@ -110,6 +119,8 @@ metadata = {
     "pixel_probe_sha256": hashlib.sha256(Path("/work/port/mesa/gpu-pixel-check.c").read_bytes()).hexdigest(),
     "cross_file_sha256": hashlib.sha256(Path("/work/port/mesa/armv7-musl.ini").read_bytes()).hexdigest(),
     "compiler": subprocess.check_output(["clang", "--version"], text=True).splitlines()[0],
+    "builder_container_id": os.environ["INDIGO_BUILD_CONTAINER"],
+    "frozen_dependency_inputs": os.environ["INDIGO_BUILD_INPUTS_FROZEN"] == "1",
     "drivers": ["grate", "softpipe"], "llvm": False,
     "x11_dri2": "with_x11_dri2" in (source / "meson.build").read_text(),
 }

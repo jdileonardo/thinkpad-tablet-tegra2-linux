@@ -1,0 +1,4610 @@
+[
+  {
+    "name": "abseil-cpp-int128",
+    "version": "20260817.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q10qJ+FkanqJpysZk0QSbpqljBmD4="
+  },
+  {
+    "name": "abseil-cpp-raw-logging-internal",
+    "version": "20260817.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fTHi/Ia+P7vMyAQbi2S0mBZobWY="
+  },
+  {
+    "name": "abseil-cpp-strings",
+    "version": "20260817.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1JcJJH/y00c5xyUoTr02Sba2obiA="
+  },
+  {
+    "name": "abseil-cpp-strings-internal",
+    "version": "20260817.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1IdiSb7i+d7Ma4aAe79ldF6atMgM="
+  },
+  {
+    "name": "abseil-cpp-throw-delegate",
+    "version": "20260817.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q12WfVAaUqHhvPPZQarYzVBmjOt8I="
+  },
+  {
+    "name": "accountsservice",
+    "version": "26.27.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1/SZ9pF0WAlQgtYCkLB7Atu4w8WY="
+  },
+  {
+    "name": "accountsservice-lang",
+    "version": "26.27.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1itfDIeZVHIP59KRC2pqwty6vSl8="
+  },
+  {
+    "name": "acl-libs",
+    "version": "2.3.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1bIQ4bYOTAyPsLUCNW5LsW6EQU3U="
+  },
+  {
+    "name": "adwaita-fonts",
+    "version": "51.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1MnUEBbwLZrKRLXSopbdX+vkfcek="
+  },
+  {
+    "name": "adwaita-fonts-mono",
+    "version": "51.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1QJ7nFCT7t1KD4g+UnfLg62ra9ok="
+  },
+  {
+    "name": "adwaita-fonts-sans",
+    "version": "51.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1e7LSPSj5m7eb2wnpcjck2KuO+Mw="
+  },
+  {
+    "name": "adwaita-icon-theme",
+    "version": "51.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1HaBNeV5xsUtQ7TP1OiUs3V6S1Ew="
+  },
+  {
+    "name": "agetty",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1s9XEIJ6MWbD9JdRUbUa6lxHIvV0="
+  },
+  {
+    "name": "agetty-openrc",
+    "version": "0.63.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1u7gwcHWqm689xjThL6irSMOtsE8="
+  },
+  {
+    "name": "alpine-baselayout",
+    "version": "3.7.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1fVN8Nhj6i4EkUxej75HNqYB0vfc="
+  },
+  {
+    "name": "alpine-baselayout-data",
+    "version": "3.7.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1n5LBNVLmN3zmvRhEmYocVCKyloQ="
+  },
+  {
+    "name": "alpine-conf",
+    "version": "3.22.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1P/MgVUX1+4j7PcT63+BZkwH+WfY="
+  },
+  {
+    "name": "alpine-keys",
+    "version": "2.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1f/dPiYsI/jyUk2t2b+MKrXQUGtI="
+  },
+  {
+    "name": "alpine-release",
+    "version": "3.25.0_alpha20260805-r0",
+    "architecture": "armv7",
+    "checksum": "Q1XUOjXJ+MwmfInCuumJS6vRRkizQ="
+  },
+  {
+    "name": "alsa-lib",
+    "version": "1.2.16.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1m/Y755+dfcMekgp67FXNT/fwXTI="
+  },
+  {
+    "name": "alsa-plugins-pulse",
+    "version": "1.2.12-r2",
+    "architecture": "armv7",
+    "checksum": "Q11YtFGyYc/aahEZ5BVB0CTfNApZ4="
+  },
+  {
+    "name": "alsa-ucm-conf",
+    "version": "1.2.16.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1FiilB5bnEKDGAut6qHVMrQPLnIg="
+  },
+  {
+    "name": "alsa-utils",
+    "version": "1.2.16-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ByzXZYiFPPduMiFZ/6Rvfzc+GNs="
+  },
+  {
+    "name": "alsa-utils-openrc",
+    "version": "1.2.16-r0",
+    "architecture": "armv7",
+    "checksum": "Q1VmuXRRlCkiS65rJKQCsdXPcb8cg="
+  },
+  {
+    "name": "alsa-utils-udev",
+    "version": "1.2.16-r0",
+    "architecture": "armv7",
+    "checksum": "Q1UwOKW7b7n4V8XkmGYDIXTNs5XZI="
+  },
+  {
+    "name": "aom-libs",
+    "version": "3.15.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1cM7xesTbM0GiRoci9zCDUWhRA40="
+  },
+  {
+    "name": "apk-tools",
+    "version": "3.0.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1jAl0hpQXCKOBtKnfCOTB0wxIU/k="
+  },
+  {
+    "name": "at-spi2-core",
+    "version": "2.62.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1VGfEtPYg/y5FevZy+7zIfXpmw6A="
+  },
+  {
+    "name": "at-spi2-core-lang",
+    "version": "2.62.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1SCFWeWKV7RwKKfv4mY/cK41gUEw="
+  },
+  {
+    "name": "at-spi2-core-libs",
+    "version": "2.62.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1q1EoD3R5VlZJMfQDc5RfPWdm5sA="
+  },
+  {
+    "name": "audit-libs",
+    "version": "4.1.2-r6",
+    "architecture": "armv7",
+    "checksum": "Q1Ort5z0Dt7/pRL2HCZAArQvxnlSY="
+  },
+  {
+    "name": "avahi",
+    "version": "0.9_rc5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1iYtbYfOI6xyHxPTZfA8+9byl8Kc="
+  },
+  {
+    "name": "avahi-lang",
+    "version": "0.9_rc5-r0",
+    "architecture": "armv7",
+    "checksum": "Q13JclANClgqLX0dTkfh18OMCmGeU="
+  },
+  {
+    "name": "avahi-libs",
+    "version": "0.9_rc5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1H0rc1AEXXLE7RazYMRYjvQ+vtW0="
+  },
+  {
+    "name": "avahi-openrc",
+    "version": "0.9_rc5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1kcDChgenlrSGAL1c03sXRnpJjSY="
+  },
+  {
+    "name": "ayatana-ido",
+    "version": "0.10.4-r1",
+    "architecture": "armv7",
+    "checksum": "Q1zUXtL0IwAGtJAq2JQwSOTKAQjcc="
+  },
+  {
+    "name": "bash",
+    "version": "5.3.9-r2",
+    "architecture": "armv7",
+    "checksum": "Q1T0UktrUIpoVG6ML34U9/71m/rTY="
+  },
+  {
+    "name": "beebzzr",
+    "version": "0_git20251214-r0",
+    "architecture": "armv7",
+    "checksum": "Q1YHGtyZ8k6XBrVTe4H8F5vwC7lkY="
+  },
+  {
+    "name": "blkid",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1tzXUdT02OBcI8wfbc+GgcypLq2o="
+  },
+  {
+    "name": "blueman",
+    "version": "2.4.6-r3",
+    "architecture": "armv7",
+    "checksum": "Q1Blwl7lhnwmb43F90NdhyEAzbZKU="
+  },
+  {
+    "name": "blueman-lang",
+    "version": "2.4.6-r3",
+    "architecture": "armv7",
+    "checksum": "Q1R+1P8ttU/3CvAarfVsMql/FwKLs="
+  },
+  {
+    "name": "blueman-pyc",
+    "version": "2.4.6-r3",
+    "architecture": "armv7",
+    "checksum": "Q1oGezsQC/i5iw/9jVCdXJpf7VrtA="
+  },
+  {
+    "name": "bluez",
+    "version": "5.87-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PzgYFPV4cleupHkBo0FDOdMs3D8="
+  },
+  {
+    "name": "bluez-libs",
+    "version": "5.87-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PXjjpxdI5BV6xEDjB2h7qTK4iDg="
+  },
+  {
+    "name": "bluez-openrc",
+    "version": "5.87-r0",
+    "architecture": "armv7",
+    "checksum": "Q1kYxJAAs5zSRZVgjh+eqCABg8cpQ="
+  },
+  {
+    "name": "boot-deploy",
+    "version": "0.24.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1AKqeNlVE8LlVJ+W8VqEyqd5RQSI="
+  },
+  {
+    "name": "bridge",
+    "version": "1.5-r5",
+    "architecture": "armv7",
+    "checksum": "Q1rUq8xa9FEaRUK8ObN22dINvN3ck="
+  },
+  {
+    "name": "brightnessctl",
+    "version": "0.5.1-r9",
+    "architecture": "armv7",
+    "checksum": "Q1PZno1/y/vOiEguZlvdVzXJpzNbs="
+  },
+  {
+    "name": "brightnessctl-openrc",
+    "version": "0.5.1-r9",
+    "architecture": "armv7",
+    "checksum": "Q15Yjry00s8qtiUduEhdU3BhxO9vM="
+  },
+  {
+    "name": "brightnessctl-udev",
+    "version": "0.5.1-r9",
+    "architecture": "armv7",
+    "checksum": "Q1zDTMVe6JaZ459gAa2m+9QUrqtWU="
+  },
+  {
+    "name": "brotli-libs",
+    "version": "1.2.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1dEjYWio9VRBX13yicZpTDpnx3gE="
+  },
+  {
+    "name": "btrfs-progs",
+    "version": "6.17.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q1NCZIBtWBM1/nMrnCm+X5RC3F9Oc="
+  },
+  {
+    "name": "btrfs-progs-openrc",
+    "version": "6.17.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q17KabbBvJ6J3xCh3kS4yI7HdPwSY="
+  },
+  {
+    "name": "btrfs-progs-udev",
+    "version": "6.17.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q12j1CkSx2aSJpZy1wGjquyru+5V8="
+  },
+  {
+    "name": "bubblewrap",
+    "version": "0.13.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1g/AL4lwf2vlnvDdrck06ZRfa6+Q="
+  },
+  {
+    "name": "buffyboard",
+    "version": "3.5.1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1Q1MRtXGba1VcpqLGv+ElM5tWNsA="
+  },
+  {
+    "name": "busctl",
+    "version": "255.24-r0",
+    "architecture": "armv7",
+    "checksum": "Q16QXsl3W1qCSUNskx0A1kjuNVidM="
+  },
+  {
+    "name": "busybox",
+    "version": "1.38.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1JSLgdUkN3b3fNYUZ1rrQYKmqxzI="
+  },
+  {
+    "name": "busybox-binsh",
+    "version": "1.38.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1EHny7+jI9c4LCjawp9kUkm+u9og="
+  },
+  {
+    "name": "busybox-extras",
+    "version": "1.38.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1a4+hyiUvv4JIzapluM8iQ41+4fc="
+  },
+  {
+    "name": "busybox-mdev-openrc",
+    "version": "1.38.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1gA8xRnQcxphTcsCTIfWVBxai7KU="
+  },
+  {
+    "name": "busybox-openrc",
+    "version": "1.38.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1N8PkBMROHMhGyG/xfZYXENVaYN0="
+  },
+  {
+    "name": "bzip2",
+    "version": "1.0.8-r6",
+    "architecture": "armv7",
+    "checksum": "Q1hs+8pIvhKiuVe/m3FRfzhP+82SI="
+  },
+  {
+    "name": "c-ares",
+    "version": "1.34.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1XYxR2b8t4i2SHak8GrAXHHSWUC8="
+  },
+  {
+    "name": "ca-certificates",
+    "version": "20260909-r0",
+    "architecture": "armv7",
+    "checksum": "Q1MyunmV+AVZWCkIeGOqpCZCr3a3w="
+  },
+  {
+    "name": "ca-certificates-bundle",
+    "version": "20260909-r0",
+    "architecture": "armv7",
+    "checksum": "Q13Zwi2Sd8uaC4hN6gUnkJtls86/U="
+  },
+  {
+    "name": "cairo",
+    "version": "1.18.4-r1",
+    "architecture": "armv7",
+    "checksum": "Q1+0SFJWOsINwK0eHL7DsmWUCx4vs="
+  },
+  {
+    "name": "cairo-gobject",
+    "version": "1.18.4-r1",
+    "architecture": "armv7",
+    "checksum": "Q1XyRXN5UcOMvxr11yFRa2optF1JQ="
+  },
+  {
+    "name": "cairomm",
+    "version": "1.18.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1JlIekO2TmGOIHeepBCdDnz84lps="
+  },
+  {
+    "name": "cdparanoia-libs",
+    "version": "10.2-r14",
+    "architecture": "armv7",
+    "checksum": "Q1YUcuirHh5TAckMelTyMWy8pGPAU="
+  },
+  {
+    "name": "cfdisk",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1FXdPSiKKMeFohMhMCaXpYVuWfas="
+  },
+  {
+    "name": "chrony",
+    "version": "4.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q10So5Qc9J7ej0kC44Ucq+7xkU4/k="
+  },
+  {
+    "name": "chrony-common",
+    "version": "4.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1SFvNyRh0j6vL64BnZyV/WbNjtQE="
+  },
+  {
+    "name": "chrony-openrc",
+    "version": "4.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Es4eyrwhK4GQhNbrDCVKVb3Pnv0="
+  },
+  {
+    "name": "cjson",
+    "version": "1.7.19-r1",
+    "architecture": "armv7",
+    "checksum": "Q1FwdmV6SfDLwBTngZojLh5IFuXl4="
+  },
+  {
+    "name": "cryptsetup",
+    "version": "2.8.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fkAXbG5cPbrVjUFm9PgQXA73k+c="
+  },
+  {
+    "name": "cryptsetup-libs",
+    "version": "2.8.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1CHxJwnY9hXEMqcyF47iiESFf/Is="
+  },
+  {
+    "name": "cryptsetup-openrc",
+    "version": "2.8.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1+O96z7pX0svaooEy0v5rD7SuTxI="
+  },
+  {
+    "name": "cups-libs",
+    "version": "2.4.19-r1",
+    "architecture": "armv7",
+    "checksum": "Q1at4sWPZSEhs5MO1sujZHa4XBlUg="
+  },
+  {
+    "name": "dbus",
+    "version": "1.16.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1huFn1Bv5X0YWpiGNQ4R+ZEsw7JY="
+  },
+  {
+    "name": "dbus-daemon-launch-helper",
+    "version": "1.16.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1QirYYBgcjy9k3J5vJ2Zft/I5dbg="
+  },
+  {
+    "name": "dbus-glib",
+    "version": "0.114-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Fbm9X6kul2PWWVyZi22gotbU6M4="
+  },
+  {
+    "name": "dbus-libs",
+    "version": "1.16.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1WVBPK/NAtxy66Q9CQ5zSQyQV4Kc="
+  },
+  {
+    "name": "dbus-openrc",
+    "version": "1.16.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q19YREhg/WNrhJOg5+4zzQ4u2VtSs="
+  },
+  {
+    "name": "dbus-x11",
+    "version": "1.16.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1tTy1mkL/xxtnvRjXT7pnseV6Q1I="
+  },
+  {
+    "name": "dconf",
+    "version": "51.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q13weebQtqNSA2szGqokarQcqIR2A="
+  },
+  {
+    "name": "desktop-file-utils",
+    "version": "0.28-r0",
+    "architecture": "armv7",
+    "checksum": "Q1C76rqgen5Mr5/x5/NO6KcNM+HjQ="
+  },
+  {
+    "name": "device-mapper",
+    "version": "2.03.35-r8",
+    "architecture": "armv7",
+    "checksum": "Q14/z9qucMcBnzvbJebZwVD4PpMvE="
+  },
+  {
+    "name": "device-mapper-libs",
+    "version": "2.03.35-r8",
+    "architecture": "armv7",
+    "checksum": "Q1Md04Dxzw/O16R4xJpggxm+7k0Bs="
+  },
+  {
+    "name": "device-mapper-udev",
+    "version": "2.03.35-r8",
+    "architecture": "armv7",
+    "checksum": "Q1HqE8uBoZY8NtjxCHFnicTo3auDA="
+  },
+  {
+    "name": "device-nvidia-tegra-armv7",
+    "version": "6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1QL7YkjNC0j6YBe3zazeSJqQ2CXw="
+  },
+  {
+    "name": "device-nvidia-tegra-armv7-x11",
+    "version": "6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1tkQby5jC0Z6s57Oopx5kPJMVmw4="
+  },
+  {
+    "name": "devicepkg-utils",
+    "version": "0.3.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1duwsDuYWVWNfreFXwz/iztoiWeA="
+  },
+  {
+    "name": "dialog",
+    "version": "1.3.20260107-r1",
+    "architecture": "armv7",
+    "checksum": "Q1uOcdBkH6tL29cJZXja0T8MCmiCg="
+  },
+  {
+    "name": "directfb",
+    "version": "1.7.7-r8",
+    "architecture": "armv7",
+    "checksum": "Q1pEmawpmmNnTo6RML4rFyvXF66VA="
+  },
+  {
+    "name": "dmesg",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1PAhwigLCame6wkbD1WlMIAKR8Ts="
+  },
+  {
+    "name": "dnsmasq",
+    "version": "2.93-r0",
+    "architecture": "armv7",
+    "checksum": "Q1W8RN0JnJpZoOF0lzjMeNmhbq6QE="
+  },
+  {
+    "name": "dnsmasq-common",
+    "version": "2.93-r0",
+    "architecture": "armv7",
+    "checksum": "Q1bQW2FRtrrM/LXPyD8POK8ZK+PGU="
+  },
+  {
+    "name": "dnsmasq-openrc",
+    "version": "2.93-r0",
+    "architecture": "armv7",
+    "checksum": "Q1aqf1IW/diJCJxB0PL7q/WjxGL2Y="
+  },
+  {
+    "name": "dosfstools",
+    "version": "4.2-r2",
+    "architecture": "armv7",
+    "checksum": "Q1QDwqf+vCs0izefr37Lcbvt+aO1o="
+  },
+  {
+    "name": "duktape-libs",
+    "version": "2.7.0-r3",
+    "architecture": "armv7",
+    "checksum": "Q1VYIzeWT7lHrCjLH+BfqaEnBRbT0="
+  },
+  {
+    "name": "e2fsprogs",
+    "version": "1.47.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q16rDgnoxROgnc8xR5F4EuzARjBHk="
+  },
+  {
+    "name": "e2fsprogs-extra",
+    "version": "1.47.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1kLHmC9I5sPM/TJ8G4N1E5hc4MHQ="
+  },
+  {
+    "name": "e2fsprogs-libs",
+    "version": "1.47.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q17UYCLayKXo7kLCWkf/r7NwBXYk4="
+  },
+  {
+    "name": "elogind",
+    "version": "255.24-r0",
+    "architecture": "armv7",
+    "checksum": "Q15/q78dF2pqzmQW653JIg0lukq2Y="
+  },
+  {
+    "name": "elogind-common",
+    "version": "255.24-r0",
+    "architecture": "armv7",
+    "checksum": "Q1B3cbRm7jKPGGhEP/S4UrzS8cSCc="
+  },
+  {
+    "name": "elogind-lang",
+    "version": "255.24-r0",
+    "architecture": "armv7",
+    "checksum": "Q1x39PzawsFItHCLHuCDsIBFKSibY="
+  },
+  {
+    "name": "elogind-openrc",
+    "version": "255.24-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ZFuotrKDNQ+ES/cgqZDqxmlKBzc="
+  },
+  {
+    "name": "enchant2-data",
+    "version": "2.8.15-r0",
+    "architecture": "armv7",
+    "checksum": "Q1SHwoJgfmBS6+FTiCgU2Oddazks8="
+  },
+  {
+    "name": "enchant2-hunspell",
+    "version": "2.8.15-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PNnAYiESTWUWwY3m3w6j+w1lAYM="
+  },
+  {
+    "name": "enchant2-libs",
+    "version": "2.8.15-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Hz6FhXAEpf44hnMIN9sju+Uzsv8="
+  },
+  {
+    "name": "encodings",
+    "version": "1.1.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PxTFMUDy30EszcNcr+pD40QmsEk="
+  },
+  {
+    "name": "esystemd",
+    "version": "261.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1z13/MnKGCtwOJr7GjRCXekemZ4k="
+  },
+  {
+    "name": "esystemd-sysusers",
+    "version": "261.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1IR4FvN+nOv+AAOGbmCEfolA60RI="
+  },
+  {
+    "name": "esystemd-sysusers-openrc",
+    "version": "261.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1oRgKqa31UULBobvYYFmXELD0PsA="
+  },
+  {
+    "name": "esystemd-tmpfiles",
+    "version": "261.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1WKDvf1PEN9cqW/fSdmXZgKpWa54="
+  },
+  {
+    "name": "esystemd-tmpfiles-openrc",
+    "version": "261.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1HY0xl6QHS1ogX9Aw6KPbLBXcanM="
+  },
+  {
+    "name": "eudev",
+    "version": "9999.3.2.14-r7",
+    "architecture": "armv7",
+    "checksum": "Q1uBZJp67za6yXc+aD20MsX8lJtU4="
+  },
+  {
+    "name": "eudev-libs",
+    "version": "3.2.14-r8",
+    "architecture": "armv7",
+    "checksum": "Q1xacvo5NVlmj+WeqVwM/EpuGGoGg="
+  },
+  {
+    "name": "eudev-openrc",
+    "version": "9999.3.2.14-r7",
+    "architecture": "armv7",
+    "checksum": "Q1lKs4ihGIrX7IC8QhjSQSD9l6F4M="
+  },
+  {
+    "name": "exo",
+    "version": "4.20.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1XMd/onKP6JlhmHSxLemtXMAIe3k="
+  },
+  {
+    "name": "exo-lang",
+    "version": "4.20.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q19sBpIy5+fS5Y+8/loT+47J6wNak="
+  },
+  {
+    "name": "exo-libs",
+    "version": "4.20.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1G4Jtn89RrytUCzGP9U4Gf89hmAo="
+  },
+  {
+    "name": "f2fs-tools",
+    "version": "1.17.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1spMRolmUWhjGK3M+Oc60X6oqa1w="
+  },
+  {
+    "name": "f2fs-tools-libs",
+    "version": "1.17.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PFdlsTs8BGjupXX0Gr3w4ighFgo="
+  },
+  {
+    "name": "faac",
+    "version": "1.31.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1xVdjCDiTX2lPVnpqLqPK26HM/2A="
+  },
+  {
+    "name": "faad2-libs",
+    "version": "2.11.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1mqyanewwJzwmT9pluDY8KXGwZRM="
+  },
+  {
+    "name": "faenza-icon-theme",
+    "version": "1.3.1-r6",
+    "architecture": "armv7",
+    "checksum": "Q1IRJDl/h+idVv+17J2WZATIKDpwI="
+  },
+  {
+    "name": "faenza-icon-theme-bash",
+    "version": "1.3.1-r6",
+    "architecture": "armv7",
+    "checksum": "Q1A2pYU73GYSQW2siobPOFiFii4TI="
+  },
+  {
+    "name": "faenza-icon-theme-onboard",
+    "version": "1.3.1-r6",
+    "architecture": "armv7",
+    "checksum": "Q1plyX3Gm/8WDMB0jV8fzfwrhfyb8="
+  },
+  {
+    "name": "faenza-icon-theme-thunar",
+    "version": "1.3.1-r6",
+    "architecture": "armv7",
+    "checksum": "Q1L/iJei9Yl8MPy5NVHCpS+p6CQN8="
+  },
+  {
+    "name": "faenza-icon-theme-xfce4-appfinder",
+    "version": "1.3.1-r6",
+    "architecture": "armv7",
+    "checksum": "Q1ZhNe5ssPFFGCMbU2dKsNQW4lX8Q="
+  },
+  {
+    "name": "faenza-icon-theme-xfce4-panel",
+    "version": "1.3.1-r6",
+    "architecture": "armv7",
+    "checksum": "Q13d6X5YylN08Sl3aR9lTcF29OBIs="
+  },
+  {
+    "name": "fdk-aac",
+    "version": "2.0.2-r4",
+    "architecture": "armv7",
+    "checksum": "Q1fnECzslqcY9hLaoDq2TaGToEwZk="
+  },
+  {
+    "name": "ffmpeg-libavcodec",
+    "version": "8.1.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1A0rF5H/YY7T++s2wAoRbDgU8jBk="
+  },
+  {
+    "name": "ffmpeg-libavfilter",
+    "version": "8.1.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1BcPt5hm7TlMQ7A1GwTT73AcHUq0="
+  },
+  {
+    "name": "ffmpeg-libavformat",
+    "version": "8.1.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1gvPZulnipZInfzECh9Q2NauBDVE="
+  },
+  {
+    "name": "ffmpeg-libavutil",
+    "version": "8.1.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1X2+YcbCIL3YpIkqBX2GvL/rOsAQ="
+  },
+  {
+    "name": "ffmpeg-libswresample",
+    "version": "8.1.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1iwreiCpxZGTxA37n36oD0IMOVp8="
+  },
+  {
+    "name": "ffmpeg-libswscale",
+    "version": "8.1.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1QOhZZ6Zq29jJXkckuouHVLVblMM="
+  },
+  {
+    "name": "ffmpegthumbnailer",
+    "version": "2.2.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q176KHkq+Ltxxsbzd1KrXuWYMNev4="
+  },
+  {
+    "name": "fftw-single-libs",
+    "version": "3.3.11-r0",
+    "architecture": "armv7",
+    "checksum": "Q1qb9iGTXf2Cg3E12fLNpij6PqFu4="
+  },
+  {
+    "name": "file",
+    "version": "5.48-r0",
+    "architecture": "armv7",
+    "checksum": "Q1UgVkxFSwWXVWFo+lZjARrrVLmy0="
+  },
+  {
+    "name": "findmnt",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1/BMGNGfZC07YCjyyCzf4VbCI1nU="
+  },
+  {
+    "name": "firmware-nvidia-tegra-armv7",
+    "version": "6-r1",
+    "architecture": "armv7",
+    "checksum": "Q1RXAdGakJvFc7MMDD4CsCNI+Her4="
+  },
+  {
+    "name": "flite",
+    "version": "2.2-r7",
+    "architecture": "armv7",
+    "checksum": "Q1ihvGx5DfmYpwf8kn+VkbQMMv6UE="
+  },
+  {
+    "name": "flock",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1o2liR3whuqHxVpRd+Yt0mcjUdIM="
+  },
+  {
+    "name": "font-alias",
+    "version": "1.0.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Ikkxhz3sn9NA2d/3lqBUqgWYX/A="
+  },
+  {
+    "name": "font-cursor-misc",
+    "version": "1.0.4-r1",
+    "architecture": "armv7",
+    "checksum": "Q1dFmNusBBps1vwMvZfa8zFZZUGRg="
+  },
+  {
+    "name": "font-dejavu",
+    "version": "2.37-r6",
+    "architecture": "armv7",
+    "checksum": "Q1DvM+6EZjOYWVlIUK9BvMYfZcA0I="
+  },
+  {
+    "name": "font-droid",
+    "version": "20200215-r5",
+    "architecture": "armv7",
+    "checksum": "Q1C630vECt+gJSEmt4AIH1RAMTffc="
+  },
+  {
+    "name": "font-droid-nonlatin",
+    "version": "20200215-r5",
+    "architecture": "armv7",
+    "checksum": "Q1SwP5clrzr8WcE8p9Kz2+WEV6HdU="
+  },
+  {
+    "name": "font-misc-misc",
+    "version": "1.1.3-r1",
+    "architecture": "armv7",
+    "checksum": "Q1jaqD6W9gdLDqGKKMjxwRbz6j6Tg="
+  },
+  {
+    "name": "font-terminus",
+    "version": "4.49.1-r4",
+    "architecture": "armv7",
+    "checksum": "Q13BORUT5Qn6tT92y7QmhM3wq0tuw="
+  },
+  {
+    "name": "font-twemoji",
+    "version": "16.0.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q12MjLY5wVB1w+l2jiUT02fYQHffM="
+  },
+  {
+    "name": "fontconfig",
+    "version": "2.18.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1FMZk2U/7yBO9R9PRLPvVhf/AYkY="
+  },
+  {
+    "name": "freetype",
+    "version": "2.14.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1W3/FDbSsD/NXpK9X2TkX8cYfXdE="
+  },
+  {
+    "name": "fribidi",
+    "version": "1.0.16-r3",
+    "architecture": "armv7",
+    "checksum": "Q1lapFU6Z5hu5qMw4RiNDGpzGcvAU="
+  },
+  {
+    "name": "fstrim",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1S5kBbNVLZ+5PYbMqJvVEMLWDdTw="
+  },
+  {
+    "name": "garcon",
+    "version": "4.20.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1SM0uFeq0V4eY6a4NJr4OYekaJrA="
+  },
+  {
+    "name": "garcon-lang",
+    "version": "4.20.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1HwdifCAWE1MJEw2z1XqTPmK/Nco="
+  },
+  {
+    "name": "gcr",
+    "version": "3.41.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1bHkqcdBIvbf3MFy1RA/TcSTMSuc="
+  },
+  {
+    "name": "gcr-base",
+    "version": "3.41.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q14hTh+QaCxEsLlbfGgZYHaHtbyPo="
+  },
+  {
+    "name": "gcr-lang",
+    "version": "3.41.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q12bKUmyilBq73pKzyxsdFvj0j29U="
+  },
+  {
+    "name": "gcr4-base",
+    "version": "4.4.0.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Kt3TLUIBYvWRC3Ub4ZVxKpMxX/I="
+  },
+  {
+    "name": "gdk-pixbuf",
+    "version": "2.44.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1bLa03CKSMgSjtRtN3j5VQgjS8BE="
+  },
+  {
+    "name": "gdk-pixbuf-lang",
+    "version": "2.44.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ucpuSf3PpfWoDAqIjaymsuDLFKY="
+  },
+  {
+    "name": "generate-kernel-cmdline",
+    "version": "1.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PHz5xk74N+0B2xNIdnnTTgY55jA="
+  },
+  {
+    "name": "glib",
+    "version": "2.90.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q14Pv5YRiwkQPWaLvVzrUKmqj9dA0="
+  },
+  {
+    "name": "glib-lang",
+    "version": "2.90.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1eq7qaO2tUSJ4vSbEvIZevgwF244="
+  },
+  {
+    "name": "glib-networking",
+    "version": "2.90.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1d61q1PQINLTksgKMvgX12jV96lc="
+  },
+  {
+    "name": "glib-networking-lang",
+    "version": "2.90.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1E26M0f+REKpn15cEQ733lq8bnw4="
+  },
+  {
+    "name": "glibmm",
+    "version": "2.90.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1utFrDd8e62YARg/jscRTrQ+7Vv0="
+  },
+  {
+    "name": "glslang-libs",
+    "version": "1.4.341.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1d0Rj/irAMcCgr22mPaf+7OLSUws="
+  },
+  {
+    "name": "glycin-image-rs",
+    "version": "2.2.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1uzOe9aZZcIQoGHkoI0p9P9/9wDQ="
+  },
+  {
+    "name": "glycin-svg",
+    "version": "2.2.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fWUgG39L7KZkRvMmblLeuNAATxo="
+  },
+  {
+    "name": "gmp",
+    "version": "6.3.0-r4",
+    "architecture": "armv7",
+    "checksum": "Q1iWdUaNYdexsitKXHd17mxPei/OQ="
+  },
+  {
+    "name": "gnome-keyring",
+    "version": "51.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1pxET41/s6+Lup1zShUUaarGHWH8="
+  },
+  {
+    "name": "gnome-keyring-lang",
+    "version": "51.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1JmT/8pMtYunW4ZAolYRB4LGvJzA="
+  },
+  {
+    "name": "gnome-keyring-openrc",
+    "version": "51.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q10DmozTyOL/wko2fU4GFkdjESL1M="
+  },
+  {
+    "name": "gnome-keyring-pam",
+    "version": "51.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ait6vZXH0v7/ADwG1sKEhz9da3s="
+  },
+  {
+    "name": "gnutls",
+    "version": "3.8.13-r0",
+    "architecture": "armv7",
+    "checksum": "Q1f4JJIszzy7oc3mj41eBlBgp6Cwg="
+  },
+  {
+    "name": "gobject-introspection",
+    "version": "1.86.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1zBIF6abQ4+owjSYQlanJb6QmMNQ="
+  },
+  {
+    "name": "graphene",
+    "version": "1.10.8-r5",
+    "architecture": "armv7",
+    "checksum": "Q1cPnFs4Zpq0DRzOUl1+7zyrq1kWQ="
+  },
+  {
+    "name": "graphite2",
+    "version": "1.3.15-r0",
+    "architecture": "armv7",
+    "checksum": "Q1kGiGa2R296oP0diunL0L9wwVcso="
+  },
+  {
+    "name": "greybird-themes",
+    "version": "3.22.10-r2",
+    "architecture": "armv7",
+    "checksum": "Q17SqsTq1JWIAbLuErO7m3AcVpW4c="
+  },
+  {
+    "name": "greybird-themes-gtk3",
+    "version": "3.22.10-r2",
+    "architecture": "armv7",
+    "checksum": "Q1buZmqWDWvSI+VXoEvKkP/agl3XM="
+  },
+  {
+    "name": "greybird-themes-xfce4-notifyd",
+    "version": "3.22.10-r2",
+    "architecture": "armv7",
+    "checksum": "Q1G4c9jIGu1bt9aMu1JttEztse03U="
+  },
+  {
+    "name": "greybird-themes-xfwm4",
+    "version": "3.22.10-r2",
+    "architecture": "armv7",
+    "checksum": "Q18hrBY4qL2rNWFVO60CmMwgHfydg="
+  },
+  {
+    "name": "gsettings-desktop-schemas",
+    "version": "51.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Ll5mdV8r3On+E9cNDnvcTmHjCSs="
+  },
+  {
+    "name": "gsettings-desktop-schemas-lang",
+    "version": "51.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1IBc1MG/9USSoggVL3NDxtvC48zo="
+  },
+  {
+    "name": "gsm",
+    "version": "1.0.24-r0",
+    "architecture": "armv7",
+    "checksum": "Q1vuXDvM8pEtIxAEGIDuZ6bRhdfGA="
+  },
+  {
+    "name": "gst-plugin-pipewire",
+    "version": "1.6.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1qyIVeGb2a8XWdF/zMkt1RMHGJGw="
+  },
+  {
+    "name": "gst-plugins-bad",
+    "version": "1.28.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1skk4kFR0gM/Q/Sfj9N7ETC4YyoA="
+  },
+  {
+    "name": "gst-plugins-bad-lang",
+    "version": "1.28.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1G7HZ2DNEWYyHImzqectaQKDH+KA="
+  },
+  {
+    "name": "gst-plugins-base",
+    "version": "1.28.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Lk2JTzNp5loCz2a1Xp6rJIhGq94="
+  },
+  {
+    "name": "gst-plugins-base-lang",
+    "version": "1.28.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1c0DszbEjlJ2sTS9SPTj+W5p9Mwg="
+  },
+  {
+    "name": "gstreamer",
+    "version": "1.28.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q16eS6cC95s9kxTh0p5Ju9QtyxLeA="
+  },
+  {
+    "name": "gstreamer-lang",
+    "version": "1.28.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Z9QhB9xMlZ7fSqiX4yY3IQqOue0="
+  },
+  {
+    "name": "gstreamer-ptp-helper",
+    "version": "1.28.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1CutceeV9mEyoxc2YV1ScjXwl5TY="
+  },
+  {
+    "name": "gtk+3.0",
+    "version": "3.24.52-r0",
+    "architecture": "armv7",
+    "checksum": "Q11TVjrkdwY1pL1+weN8Vxjk6ahcQ="
+  },
+  {
+    "name": "gtk+3.0-lang",
+    "version": "3.24.52-r0",
+    "architecture": "armv7",
+    "checksum": "Q1c+M5lHlX+mdsM6q32n2c+i0AXGA="
+  },
+  {
+    "name": "gtk-layer-shell",
+    "version": "0.10.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1XE82AR0oL30iiASh6xIq7GXMvqU="
+  },
+  {
+    "name": "gtk-update-icon-cache",
+    "version": "3.24.52-r0",
+    "architecture": "armv7",
+    "checksum": "Q19tt9zWAu33lJUBUEhNHaV+dR+Ac="
+  },
+  {
+    "name": "gtk4.0",
+    "version": "4.24.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1SBoGIwNqIU/Sjbo7Jr0oPnjW5C0="
+  },
+  {
+    "name": "gtk4.0-lang",
+    "version": "4.24.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q15CKQHjiowTJmoDrQ7X/Xxx8lbJU="
+  },
+  {
+    "name": "gtkmm4",
+    "version": "4.24.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Ok6ww0giPhfGGd+8NtyA8wmn084="
+  },
+  {
+    "name": "harfbuzz",
+    "version": "14.2.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1bIhVjnhjoqT5R1+ZxcW3alo41I0="
+  },
+  {
+    "name": "harfbuzz-icu",
+    "version": "14.2.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1pUdIkJjRfGl8aLly29gJRMBdQPc="
+  },
+  {
+    "name": "harfbuzz-subset",
+    "version": "14.2.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1TSUWB2NQvIVkhhr47o2Q5QXvwco="
+  },
+  {
+    "name": "haveged",
+    "version": "1.9.26-r0",
+    "architecture": "armv7",
+    "checksum": "Q1pbA/aa+DxqwI4t/JPFcPl65d/s8="
+  },
+  {
+    "name": "haveged-openrc",
+    "version": "1.9.26-r0",
+    "architecture": "armv7",
+    "checksum": "Q1r7Ry2ActNn/jHC8DRrQn3JF3JP8="
+  },
+  {
+    "name": "hexdump",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1pqlfxhnp++L8DvKHUVe7Z1jabR0="
+  },
+  {
+    "name": "hicolor-icon-theme",
+    "version": "0.18-r0",
+    "architecture": "armv7",
+    "checksum": "Q1I0EulhHDfdbJIIQbjkkUZMket64="
+  },
+  {
+    "name": "hidapi",
+    "version": "0.15.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q13+G11BfMmFO/9JKwJ/Rk5gR6ris="
+  },
+  {
+    "name": "hunspell",
+    "version": "1.7.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1AAKLcW7FATtWRH07ctOnKyjNXvg="
+  },
+  {
+    "name": "hunspell-lang",
+    "version": "1.7.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1+gCBoSeaq7NN+uuWWilLuPw8LTo="
+  },
+  {
+    "name": "hwdata-pci",
+    "version": "0.412-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PTHh+EmTZ2ouCqzY7MnOMWJiqHk="
+  },
+  {
+    "name": "hyphen",
+    "version": "2.8.8-r3",
+    "architecture": "armv7",
+    "checksum": "Q1cE1zIx58SQB8hsCzlORw7b1rE3E="
+  },
+  {
+    "name": "iceauth",
+    "version": "1.0.11-r0",
+    "architecture": "armv7",
+    "checksum": "Q1lz3xqD+TX0OhbHP3CYLzUB0Sheo="
+  },
+  {
+    "name": "icu-data-en",
+    "version": "78.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1bLYLR7NGSsC+c4wy/Yat7NqUUJU="
+  },
+  {
+    "name": "icu-libs",
+    "version": "78.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1NBdUftFDmdwH+uP4aauNKaJ+F+8="
+  },
+  {
+    "name": "ifupdown-ng",
+    "version": "0.13.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1dIGEYm7GBjT0+Tjnaz5+p5M+y+0="
+  },
+  {
+    "name": "ifupdown-ng-iproute2",
+    "version": "0.13.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1nWd224eL/0kAWbxq6fu4h9HO1tg="
+  },
+  {
+    "name": "ifupdown-ng-wifi",
+    "version": "0.13.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1v8iLroOgqSINlr9nRJGDL2EnMrI="
+  },
+  {
+    "name": "imath",
+    "version": "3.2.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1TuKdUTGIixvkBTQu2M2PSzQXUuc="
+  },
+  {
+    "name": "inih",
+    "version": "62-r0",
+    "architecture": "armv7",
+    "checksum": "Q19A1sGGg8M3brNBaGwzGTGfLKzBk="
+  },
+  {
+    "name": "iproute2",
+    "version": "7.2.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q14qGJKACfu8vNxPLLTYcFMyfwMd4="
+  },
+  {
+    "name": "iproute2-minimal",
+    "version": "7.2.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1unofMmh/BVXWLxJYB+EyTCgo7AE="
+  },
+  {
+    "name": "iproute2-ss",
+    "version": "7.2.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Z+ZQo1jkoGtG/yi8CjB26WnT1Do="
+  },
+  {
+    "name": "iproute2-tc",
+    "version": "7.2.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1NVD9N40Kei6M3hFzt42KjYJHM8c="
+  },
+  {
+    "name": "iskey",
+    "version": "3.5.1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1zWTMJKtt79OqZqB1H4hApoyiCTI="
+  },
+  {
+    "name": "iso-codes",
+    "version": "4.20.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1UdB8OJYuqu04k1HHMkIxcHG2+lM="
+  },
+  {
+    "name": "iso-codes-lang",
+    "version": "4.20.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1W9nBbQlZq0r8yfFGC56+x4cX5d4="
+  },
+  {
+    "name": "iw",
+    "version": "6.17-r0",
+    "architecture": "armv7",
+    "checksum": "Q1BbPQ8mV6OdPgDeVnQpWvEwPRL0Q="
+  },
+  {
+    "name": "jansson",
+    "version": "2.15.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q19OOD8YOn/i5IWAUlWfGnstULpA8="
+  },
+  {
+    "name": "json-c",
+    "version": "0.19-r1",
+    "architecture": "armv7",
+    "checksum": "Q1UbaO4c+oNu0RezBOkhznCF9wZMU="
+  },
+  {
+    "name": "json-glib",
+    "version": "1.10.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1sIEQ0Pxz5gVMpQzw3pv7fyYlNbo="
+  },
+  {
+    "name": "json-glib-lang",
+    "version": "1.10.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1uoLZ8lvbxq9Dl+V+vGBgh3zY26M="
+  },
+  {
+    "name": "kbd",
+    "version": "2.10.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1POzJSalCn5RnEt9ccGKt5Jpmog8="
+  },
+  {
+    "name": "kbd-misc",
+    "version": "2.10.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1cVggEJRkXoZzgSdy/wcwcPiwIJU="
+  },
+  {
+    "name": "kbd-openrc",
+    "version": "2.10.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1dH5HXHBDpa7PG9DHCGWx2fpu0GQ="
+  },
+  {
+    "name": "keybinder3",
+    "version": "0.3.2-r4",
+    "architecture": "armv7",
+    "checksum": "Q1MJV2WKVxrRKnCKqQQSubpKspENY="
+  },
+  {
+    "name": "kmod",
+    "version": "34.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1H8IzJ68ykBQUXTFpM1avHWJD5go="
+  },
+  {
+    "name": "kmod-libs",
+    "version": "34.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1sAIHVjbaeRJpNfmdQI1POTU5mLU="
+  },
+  {
+    "name": "lame-libs",
+    "version": "3.100-r5",
+    "architecture": "armv7",
+    "checksum": "Q1HFFBV2U9ickqk0ctMmWluy+p13Y="
+  },
+  {
+    "name": "lang",
+    "version": "0.1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1uLTcPDMf7CYvSFMdoOMCYVq7g3s="
+  },
+  {
+    "name": "lcms2",
+    "version": "2.19.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q19kMFLME3INhLKw+ebu5SBJXw90c="
+  },
+  {
+    "name": "libaccountsservice",
+    "version": "26.27.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q11GCneFXqDOouoODuyxXataYv/N0="
+  },
+  {
+    "name": "libapk",
+    "version": "3.0.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Usuf+gBgFbzZ/+J5MxIpUT0racI="
+  },
+  {
+    "name": "libarchive",
+    "version": "3.8.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ekUDhWvXGOcLia/nlfeRqE9pC3E="
+  },
+  {
+    "name": "libass",
+    "version": "0.17.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1TKO8YZ1gvmk7AY15v4DGav98dsQ="
+  },
+  {
+    "name": "libasyncns",
+    "version": "0.8-r5",
+    "architecture": "armv7",
+    "checksum": "Q1UpMk3EMfdgwLhGUN87Rh8OkhShE="
+  },
+  {
+    "name": "libatk-1.0",
+    "version": "2.62.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1jjb6MJCDEctQSJGrdeD3xV5psOI="
+  },
+  {
+    "name": "libatk-bridge-2.0",
+    "version": "2.62.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1IMKzSvYVOzF1qVTMlfR0iapbZ28="
+  },
+  {
+    "name": "libavif",
+    "version": "1.4.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1L245z06eKoJc636sblNmdeyQkVE="
+  },
+  {
+    "name": "libayatana-appindicator",
+    "version": "0.6.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1H+n6AHWyV+ko7/C0OjeHBnOuEXw="
+  },
+  {
+    "name": "libayatana-indicator",
+    "version": "0.9.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1BUg18d6Tf/JJBTIAFg+eTL47wtQ="
+  },
+  {
+    "name": "libblkid",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1hOXWtbrsVkMgsB5d3/jBhkohHGE="
+  },
+  {
+    "name": "libbluray",
+    "version": "1.5.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q11zf6vlGNcZtYdssQPDKo7GjhkHU="
+  },
+  {
+    "name": "libbpf",
+    "version": "1.7.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q11clGat0cKzKu7rcYbE/zKeMQteI="
+  },
+  {
+    "name": "libbsd",
+    "version": "0.12.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1c7IjqWPC5YuULW0HzURU6KCw0Ko="
+  },
+  {
+    "name": "libbz2",
+    "version": "1.0.8-r6",
+    "architecture": "armv7",
+    "checksum": "Q1MFVubLzSCp5UVIzknK0LPCYcm8U="
+  },
+  {
+    "name": "libcamera",
+    "version": "99990.7.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q13rr1RL4zDR/BzZWjc4uNiVgxGZ8="
+  },
+  {
+    "name": "libcamera-ipa",
+    "version": "99990.7.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1r+3RJ5hR6BH9oVDW0XIDoj1tSdE="
+  },
+  {
+    "name": "libcanberra",
+    "version": "0.30-r12",
+    "architecture": "armv7",
+    "checksum": "Q19Va4JV8evbd8OwK4DpmTR2rxbhM="
+  },
+  {
+    "name": "libcanberra-gstreamer",
+    "version": "0.30-r12",
+    "architecture": "armv7",
+    "checksum": "Q1yQI6J2yjlZxRPJ47CPsTQFro2hM="
+  },
+  {
+    "name": "libcanberra-pulse",
+    "version": "0.30-r12",
+    "architecture": "armv7",
+    "checksum": "Q1f4mIh5MXfBL0417IOzYzC7jFtaw="
+  },
+  {
+    "name": "libcap-ng",
+    "version": "0.8.5-r2",
+    "architecture": "armv7",
+    "checksum": "Q1DvnnRnbC/Twy3mtSz8pwWphx/IY="
+  },
+  {
+    "name": "libcap2",
+    "version": "2.78-r0",
+    "architecture": "armv7",
+    "checksum": "Q1tH6fkdnfSvGUgTpelxykOADyKyI="
+  },
+  {
+    "name": "libcolord",
+    "version": "1.4.8-r4",
+    "architecture": "armv7",
+    "checksum": "Q1IJ8UcaVzsuz9RycnRZj8//bJCF8="
+  },
+  {
+    "name": "libcom_err",
+    "version": "1.47.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1w0NzOCWaOfxEXNHnFXbm8NKJOrY="
+  },
+  {
+    "name": "libcrypto3",
+    "version": "3.5.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Kuqgp8tZp15H6w5v9azPBBvueZs="
+  },
+  {
+    "name": "libcurl",
+    "version": "8.22.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q11/coxlD10kwyYVhbX1gOjtum4X0="
+  },
+  {
+    "name": "libdaemon",
+    "version": "0.14-r6",
+    "architecture": "armv7",
+    "checksum": "Q1KeQ37XLJu8sJphxk/XLZq75/o9w="
+  },
+  {
+    "name": "libdav1d",
+    "version": "1.5.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1w5bFuULGP3BHUuHauMJBTOafCqU="
+  },
+  {
+    "name": "libdbusmenu-glib",
+    "version": "16.04.0-r6",
+    "architecture": "armv7",
+    "checksum": "Q1VuyS/lpUI1CYmYkURsu4XLQiBSA="
+  },
+  {
+    "name": "libdbusmenu-gtk3",
+    "version": "16.04.0-r6",
+    "architecture": "armv7",
+    "checksum": "Q1fgWCNdu+1jVDkouYBRPmLnPd3vc="
+  },
+  {
+    "name": "libdc1394",
+    "version": "2.2.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Pmkh7JG/PuYxk/eauFsnciZfjy8="
+  },
+  {
+    "name": "libde265",
+    "version": "1.1.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1oEgngBXGBl6LJoInJbMEOdVfgXA="
+  },
+  {
+    "name": "libdeflate",
+    "version": "1.26-r0",
+    "architecture": "armv7",
+    "checksum": "Q1/MlLdAQApOayZ+Oy6KWyjoWQdkY="
+  },
+  {
+    "name": "libdisplay-info",
+    "version": "0.3.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1e7NRyUg5tSIB2GKySA4kBKxZym4="
+  },
+  {
+    "name": "libdovi",
+    "version": "3.3.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1GyeNe8d2jXR9jgJcccfNEB1u52g="
+  },
+  {
+    "name": "libdrm",
+    "version": "2.4.134-r0",
+    "architecture": "armv7",
+    "checksum": "Q1RCIG2JGL9zmvVXVjzckld2y5Apw="
+  },
+  {
+    "name": "libdvdcss",
+    "version": "1.4.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1nF3VTfJ+AegYZJO70i/9sbteTeQ="
+  },
+  {
+    "name": "libdvdnav",
+    "version": "6.1.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q196tMbth7CAhU0dvaXWTdvj5AtDg="
+  },
+  {
+    "name": "libdvdread",
+    "version": "6.1.3-r2",
+    "architecture": "armv7",
+    "checksum": "Q1IcaHkqggrT83HzRJxUEQ2Qh3Qy4="
+  },
+  {
+    "name": "libeconf",
+    "version": "0.8.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1zuFpgPriH6iJr9gcJwSqdxh+HBA="
+  },
+  {
+    "name": "libedit",
+    "version": "20260508.3.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q12jS8ZBXY0ECmKROWtIuEPdHQrK8="
+  },
+  {
+    "name": "libelf",
+    "version": "0.195-r0",
+    "architecture": "armv7",
+    "checksum": "Q1J4hKUFmHSgJvehz+2xMMzs7l/+4="
+  },
+  {
+    "name": "libelogind",
+    "version": "255.24-r0",
+    "architecture": "armv7",
+    "checksum": "Q16pxHig4ieQe0HdGFhM/QiQSPsCU="
+  },
+  {
+    "name": "libepoxy",
+    "version": "1.5.10-r1",
+    "architecture": "armv7",
+    "checksum": "Q1OH7WzWeHS53bhNTJgJBP5P+HNMw="
+  },
+  {
+    "name": "libev",
+    "version": "4.33-r1",
+    "architecture": "armv7",
+    "checksum": "Q1pnaVYnq7zUPE7EKSpDQ6X4Hijv8="
+  },
+  {
+    "name": "libevdev",
+    "version": "1.13.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ZO0KJdbs992oiAjXpXOy3p8esuY="
+  },
+  {
+    "name": "libevent",
+    "version": "2.1.13-r0",
+    "architecture": "armv7",
+    "checksum": "Q1CYiT/5Qt9qPZBredPrRJv5TtEoA="
+  },
+  {
+    "name": "libexif",
+    "version": "0.6.26-r0",
+    "architecture": "armv7",
+    "checksum": "Q1yZYGMTq8s/sGPpWRfIzlxWTVMnY="
+  },
+  {
+    "name": "libexpat",
+    "version": "2.8.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Mv96TDG9XPac8O1N4jI9uDepzT0="
+  },
+  {
+    "name": "libfdisk",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q17iEau2ZsXwEcHrI/mY/JjqKKH0I="
+  },
+  {
+    "name": "libffi",
+    "version": "3.8.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1BVu68hw+FlTJu4MJKGv97OgWF9g="
+  },
+  {
+    "name": "libflac",
+    "version": "1.5.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1JnIRtSV54gYh+lEIhYssHxGPLLw="
+  },
+  {
+    "name": "libfontenc",
+    "version": "1.1.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1x7bdFE5MiLQwQC1vBeCVolWVLOM="
+  },
+  {
+    "name": "libformw",
+    "version": "6.6_p20260822-r0",
+    "architecture": "armv7",
+    "checksum": "Q1CVCG2R65FqHdgntz0dkAOnkdGlM="
+  },
+  {
+    "name": "libfreeaptx",
+    "version": "0.2.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1n+sIUpexwsXceK7JEUBmTDnnixc="
+  },
+  {
+    "name": "libgcc",
+    "version": "15.2.0-r9",
+    "architecture": "armv7",
+    "checksum": "Q1zgBEn0JAG7zvQJhq7MgLTicZ+n8="
+  },
+  {
+    "name": "libgcrypt",
+    "version": "1.12.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1DYGhbD1kGJ8OA3RoVPUdT0VLtrM="
+  },
+  {
+    "name": "libgepub",
+    "version": "0.7.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q1duXI/7m2/eHTkk4NvHiuSIL43nk="
+  },
+  {
+    "name": "libglycin",
+    "version": "2.2.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1QUg5DVJRbCHCBoIeCXmHfm6fPQQ="
+  },
+  {
+    "name": "libgomp",
+    "version": "15.2.0-r9",
+    "architecture": "armv7",
+    "checksum": "Q1X8rEMYPIRciLDKv5PcA4VfnUjX0="
+  },
+  {
+    "name": "libgpg-error",
+    "version": "1.61-r0",
+    "architecture": "armv7",
+    "checksum": "Q1XDOKYF3CAT3dXbTZKWXz/XW31rg="
+  },
+  {
+    "name": "libgsf",
+    "version": "1.14.58-r0",
+    "architecture": "armv7",
+    "checksum": "Q1lQGUXpIHGYJr4rUEm2u0U+N+OEw="
+  },
+  {
+    "name": "libgsf-lang",
+    "version": "1.14.58-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fMy0q2FVsau2gSDvLiLZXQMYkEw="
+  },
+  {
+    "name": "libgtop",
+    "version": "2.41.3-r1",
+    "architecture": "armv7",
+    "checksum": "Q1b0k0tS7QFqEYiFKawkZRQgLC0M8="
+  },
+  {
+    "name": "libgtop-lang",
+    "version": "2.41.3-r1",
+    "architecture": "armv7",
+    "checksum": "Q1St+fuaveMaZQL/72s5anjZ0Wh4o="
+  },
+  {
+    "name": "libgudev",
+    "version": "238-r1",
+    "architecture": "armv7",
+    "checksum": "Q1S/nsqBGX/HaOMMnVkV1cEE9u+hw="
+  },
+  {
+    "name": "libhunspell",
+    "version": "1.7.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q17ozKCOZ2Udh1W5bslPr5xeAeKCA="
+  },
+  {
+    "name": "libice",
+    "version": "1.1.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1QE1221Or8Y0qWMmUUBJAaK3lrLk="
+  },
+  {
+    "name": "libidn2",
+    "version": "2.3.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1/DX/H+9crXTvmCdvcfRF9UlQzi8="
+  },
+  {
+    "name": "libinput",
+    "version": "1.32.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1TpsNAXWuNs1pu5A9GjMnwK5MWio="
+  },
+  {
+    "name": "libinput-libs",
+    "version": "1.32.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1VAia1H2Xtom00/TybTZ28JahfZA="
+  },
+  {
+    "name": "libinput-udev",
+    "version": "1.32.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q12PgRIfwwkt8HNg8ZJ4MMS0HeBlQ="
+  },
+  {
+    "name": "libintl",
+    "version": "1.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q15ab8cuIQ4rfUN7t8F/G9f636u9Y="
+  },
+  {
+    "name": "libjpeg-turbo",
+    "version": "3.1.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1GjLgFy07x/lf5iCL++8i7BsnGL4="
+  },
+  {
+    "name": "libjxl",
+    "version": "0.11.2-r2",
+    "architecture": "armv7",
+    "checksum": "Q1/eMpVEnJkdM2M1jWjC90Da28C0E="
+  },
+  {
+    "name": "liblastlog2",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1scj2tz7WnihKNvKzGAHMfth72KI="
+  },
+  {
+    "name": "libldac",
+    "version": "2.0.2.3-r1",
+    "architecture": "armv7",
+    "checksum": "Q1SygO2YtKkB0I+oLgwOs4VnRb6t0="
+  },
+  {
+    "name": "libltdl",
+    "version": "2.6.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1TVhYENw7CDyCScGNzcfFfU0RuzY="
+  },
+  {
+    "name": "libmagic",
+    "version": "5.48-r0",
+    "architecture": "armv7",
+    "checksum": "Q1pUfLAY+gWGV4Jw72UIk4xEOw+DQ="
+  },
+  {
+    "name": "libmanette",
+    "version": "0.2.13-r0",
+    "architecture": "armv7",
+    "checksum": "Q1SiqYLlY1xMGZ0uMFli1bzdqFXxY="
+  },
+  {
+    "name": "libmd",
+    "version": "1.2.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1oLdF3BqWoZYEhhYCHvI3WwWx9ec="
+  },
+  {
+    "name": "libmenuw",
+    "version": "6.6_p20260822-r0",
+    "architecture": "armv7",
+    "checksum": "Q1GiGNRON03z6g0IuoPnQOxRfKBtk="
+  },
+  {
+    "name": "libmm-glib",
+    "version": "1.25.95_git20260709-r0",
+    "architecture": "armv7",
+    "checksum": "Q1KInNKDsh3mFckOkOhrwYLwZ0w+0="
+  },
+  {
+    "name": "libmnl",
+    "version": "1.0.5-r2",
+    "architecture": "armv7",
+    "checksum": "Q1JMY2aVRaw/ipGYbi4QWG7e1aNx8="
+  },
+  {
+    "name": "libmodplug",
+    "version": "0.8.9.0-r3",
+    "architecture": "armv7",
+    "checksum": "Q1gVN7EXoJhoeTY/MyMAlJFt85KKY="
+  },
+  {
+    "name": "libmount",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1sL9fz3ajYMQrXndPj+9h3K5ZT8g="
+  },
+  {
+    "name": "libncursesw",
+    "version": "6.6_p20260822-r0",
+    "architecture": "armv7",
+    "checksum": "Q1EmtecSl+lJGrYYFl0xxqUovmZrw="
+  },
+  {
+    "name": "libndp",
+    "version": "1.9-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Z6/F/6/KToo10ndKKzh8WM9gEoI="
+  },
+  {
+    "name": "libnftnl",
+    "version": "1.3.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1l4IIY7yivAvlRDHIM/KW67LB+Qw="
+  },
+  {
+    "name": "libnl3",
+    "version": "3.11.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1eobKh3doUUeVaxRS/bvGDOpOChE="
+  },
+  {
+    "name": "libnm",
+    "version": "1.58.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1yKSt0g0tTHDmO6ye4FB4sgR1Bqc="
+  },
+  {
+    "name": "libnma",
+    "version": "1.10.6-r4",
+    "architecture": "armv7",
+    "checksum": "Q1yKDnfGJhYG5zpLt1c92HwAtFcM0="
+  },
+  {
+    "name": "libnma-common",
+    "version": "1.10.6-r4",
+    "architecture": "armv7",
+    "checksum": "Q1lzKUooiGv/7ZjuxDAgEYvCRQph8="
+  },
+  {
+    "name": "libnma-lang",
+    "version": "1.10.6-r4",
+    "architecture": "armv7",
+    "checksum": "Q1/rxDWKd7TYozREEKTlr/uNcoj8Q="
+  },
+  {
+    "name": "libnotify",
+    "version": "0.8.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q17iQabxTb4Zilhj8tRurEvws99lk="
+  },
+  {
+    "name": "libogg",
+    "version": "1.3.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q15+6Kg73t4P2HRtApMLy4tXsQZ8Y="
+  },
+  {
+    "name": "libopenmpt",
+    "version": "0.8.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1NBEfnG32Y1flOr81kNzi5wM8bmI="
+  },
+  {
+    "name": "libopenraw",
+    "version": "0.3.7-r3",
+    "architecture": "armv7",
+    "checksum": "Q161ptBoZD8RTDw8YEpC7qaufv/Zc="
+  },
+  {
+    "name": "libpanelw",
+    "version": "6.6_p20260822-r0",
+    "architecture": "armv7",
+    "checksum": "Q1D2/84Xk6AN9WsaPlaoZKBBF3XaA="
+  },
+  {
+    "name": "libpciaccess",
+    "version": "0.19-r0",
+    "architecture": "armv7",
+    "checksum": "Q1gS/98j2Yn6Ox8UmA4ld+nLqWg+w="
+  },
+  {
+    "name": "libpisp",
+    "version": "1.7.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1OzfK6tUphW4uJCXknvoEgJYwLVM="
+  },
+  {
+    "name": "libplacebo",
+    "version": "7.360.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q18stJj3n26Xm0zQfKoeq3e2JyVNI="
+  },
+  {
+    "name": "libpng",
+    "version": "1.6.59-r0",
+    "architecture": "armv7",
+    "checksum": "Q1+9v+M4kES4LWOO68lKk582/cyjI="
+  },
+  {
+    "name": "libproc2",
+    "version": "4.0.7-r1",
+    "architecture": "armv7",
+    "checksum": "Q11JpRW5vdJnnEHfX6icXlgEkRbIA="
+  },
+  {
+    "name": "libproxy",
+    "version": "0.5.12-r0",
+    "architecture": "armv7",
+    "checksum": "Q12u3VrdRR3ASh1eeY8SMmw/MnBg0="
+  },
+  {
+    "name": "libpsl",
+    "version": "0.21.5-r3",
+    "architecture": "armv7",
+    "checksum": "Q1rIxf1VSzC0R2dCXA44ZQAkcrel4="
+  },
+  {
+    "name": "libpulse",
+    "version": "17.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1s6WUXNaDLZsPva6Q7s372DNclZ8="
+  },
+  {
+    "name": "libpulse-mainloop-glib",
+    "version": "17.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q18HeSYEMNYsFnSBhYX1wKOTWW7XE="
+  },
+  {
+    "name": "libraw1394",
+    "version": "2.1.2-r5",
+    "architecture": "armv7",
+    "checksum": "Q1DTE+8z2aZT1m1Yk/dPocBwA1HkA="
+  },
+  {
+    "name": "librist",
+    "version": "0.2.15-r0",
+    "architecture": "armv7",
+    "checksum": "Q1GV7DkNcOsGawQWZWJcywDH5qv40="
+  },
+  {
+    "name": "librsvg",
+    "version": "2.62.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1YCyh4fUfYlEQYqXODjdsJv5Odng="
+  },
+  {
+    "name": "librtmp",
+    "version": "2.4_git20190330-r5",
+    "architecture": "armv7",
+    "checksum": "Q1KWKe022P1MUzK37wo67CwLGqeaE="
+  },
+  {
+    "name": "libseccomp",
+    "version": "2.6.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Ua0KHyGrDywspMXcAvho58g4/1k="
+  },
+  {
+    "name": "libsecret",
+    "version": "0.21.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1X2mXh102U7cioOPGyUvIOsdVDqQ="
+  },
+  {
+    "name": "libsecret-lang",
+    "version": "0.21.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Qxj3trp/s8MQ84LHwDOsvvBEyng="
+  },
+  {
+    "name": "libselinux",
+    "version": "3.11-r3",
+    "architecture": "armv7",
+    "checksum": "Q1xkDJ4RP1zZe1nbmyjhXDYFnjAM4="
+  },
+  {
+    "name": "libsemanage",
+    "version": "3.11-r0",
+    "architecture": "armv7",
+    "checksum": "Q1TjcSU244Cd4wIClzTT1LN0uOTY0="
+  },
+  {
+    "name": "libsepol",
+    "version": "3.11-r1",
+    "architecture": "armv7",
+    "checksum": "Q1dosWZR80jq6/MUNGV8sXJ7V6EzE="
+  },
+  {
+    "name": "libsharpyuv",
+    "version": "1.6.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fK5GD55IFGW9nzWWVnDOrUkYimc="
+  },
+  {
+    "name": "libsigc++3",
+    "version": "3.8.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1kvSaaLg5SGbWMOu/0fNwkDw8Jl0="
+  },
+  {
+    "name": "libsm",
+    "version": "1.2.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1vnnCM7z4UNz1E1xZnD9bAchcK5E="
+  },
+  {
+    "name": "libsmartcols",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1Yk2bqaZGIBViaSkHHSuwAmrZ5W0="
+  },
+  {
+    "name": "libsndfile",
+    "version": "1.2.2-r3",
+    "architecture": "armv7",
+    "checksum": "Q1Mga4STSPqxGc9MpD4F/854NMv5Q="
+  },
+  {
+    "name": "libsodium",
+    "version": "1.0.22-r0",
+    "architecture": "armv7",
+    "checksum": "Q1tQSr3xXaSAK3XrHH6uqJfrTc1Y8="
+  },
+  {
+    "name": "libsoup3",
+    "version": "3.6.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q110AKitbTM1lp2ctkxAgVlmuw3xc="
+  },
+  {
+    "name": "libsoup3-lang",
+    "version": "3.6.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1F6trUa386cuOZBFL+OS2cp3/c/I="
+  },
+  {
+    "name": "libsrt",
+    "version": "1.5.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1g0NpRLvPeUUvnnFHSJd/nzRbd3k="
+  },
+  {
+    "name": "libsrtp",
+    "version": "2.8.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ML/zSB5+gsWoNbEwToDW37cbXeI="
+  },
+  {
+    "name": "libssh",
+    "version": "0.12.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q19wjMW5ClTfsC5LQtW3qBarBRB4k="
+  },
+  {
+    "name": "libssl3",
+    "version": "3.5.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1en+WQ+bto2okh18gd2n3UxcVdLY="
+  },
+  {
+    "name": "libstdc++",
+    "version": "15.2.0-r9",
+    "architecture": "armv7",
+    "checksum": "Q1qJN2x0Z41+VeL0acWy15l44dWFc="
+  },
+  {
+    "name": "libtasn1",
+    "version": "4.21.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1lyQVKNHY06EK17qBFFWRTLPWTNQ="
+  },
+  {
+    "name": "libtheora",
+    "version": "1.2.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Lc1fbe2J1CI3KTVwcu1jk0zB5co="
+  },
+  {
+    "name": "libturbojpeg",
+    "version": "3.1.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Tu3Smq8AxTpR5Et/tAJB6ksD0FQ="
+  },
+  {
+    "name": "libucontext",
+    "version": "1.5.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1c8fdFyw/Rd4PUPY5GXqdew4b6Fk="
+  },
+  {
+    "name": "libudfread",
+    "version": "1.2.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Aaa8MzKfeWERFQYc7D4Ax7z2yBc="
+  },
+  {
+    "name": "libunibreak",
+    "version": "6.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q18Lp3EPmxo4u8DwFIvgSGl9rQcEs="
+  },
+  {
+    "name": "libunistring",
+    "version": "1.4.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q16iqk2Fy6kqmOP2othinW2k9Vxtw="
+  },
+  {
+    "name": "libunwind",
+    "version": "1.8.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1gNVpKrDy7qRcKqW0QnUpdWXYxFk="
+  },
+  {
+    "name": "libusb",
+    "version": "1.0.30-r0",
+    "architecture": "armv7",
+    "checksum": "Q1JTE4vkQ9QFW48d6JuCEQfkVyqRs="
+  },
+  {
+    "name": "libutempter",
+    "version": "1.2.3-r1",
+    "architecture": "armv7",
+    "checksum": "Q1ot+u7PONIbhq1OfBmcBIWZE2Oro="
+  },
+  {
+    "name": "libuuid",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1YihJ0UHDTeLeiK6nRMjsyO1Dp/Y="
+  },
+  {
+    "name": "libuv",
+    "version": "1.52.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1n9OJY0khWe4aNKEm/wu242aY2GM="
+  },
+  {
+    "name": "libva",
+    "version": "2.24.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1uYovZs7qFGw70nEfnk6LGjZVcnk="
+  },
+  {
+    "name": "libvdpau",
+    "version": "1.5-r4",
+    "architecture": "armv7",
+    "checksum": "Q1dZrU/IeTm654Xt0Bw5T0yLoOnAk="
+  },
+  {
+    "name": "libvdpau-tegra",
+    "version": "0_git20210517-r0",
+    "architecture": "armv7",
+    "checksum": "Q1K4ucoU7nA8xh5+F2tZU+paVNY90="
+  },
+  {
+    "name": "libvdpau-tegra-udev",
+    "version": "0_git20210517-r0",
+    "architecture": "armv7",
+    "checksum": "Q19kFvYfYK/eGqf4gr1QpxS1oGCdQ="
+  },
+  {
+    "name": "libvorbis",
+    "version": "1.3.7-r2",
+    "architecture": "armv7",
+    "checksum": "Q1V6XDncpMY3y1Ju0YL4wUSA+hzU8="
+  },
+  {
+    "name": "libvpx",
+    "version": "1.17.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fnY2g9l/zQhl842hHb57XI5xsA0="
+  },
+  {
+    "name": "libwebp",
+    "version": "1.6.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1v5fenL07F4ROXXzOws8sSfwh4yM="
+  },
+  {
+    "name": "libwebpdemux",
+    "version": "1.6.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1C9kfnBz+kh8MdD9abf9SY472AaI="
+  },
+  {
+    "name": "libwebpmux",
+    "version": "1.6.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1dMlnKKGtcSmpRYhaDzBPoDKbkFA="
+  },
+  {
+    "name": "libwnck3",
+    "version": "43.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q19//0ZpvwETi0cDYZRbQL3ZcdbXc="
+  },
+  {
+    "name": "libwnck3-lang",
+    "version": "43.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1THIP2VtvZ+6UCtuvTHCQjZ4WT9I="
+  },
+  {
+    "name": "libwoff2common",
+    "version": "1.0.2-r4",
+    "architecture": "armv7",
+    "checksum": "Q19VDvKYp6GeuB1hj8lMYAlrghPw0="
+  },
+  {
+    "name": "libwoff2enc",
+    "version": "1.0.2-r4",
+    "architecture": "armv7",
+    "checksum": "Q1PZzHPmgLzApWpIL+CmsIcpZem0E="
+  },
+  {
+    "name": "libx11",
+    "version": "1.8.13-r0",
+    "architecture": "armv7",
+    "checksum": "Q1bDSUJuPRksECoBbwnlO6Q4LtU2I="
+  },
+  {
+    "name": "libxau",
+    "version": "1.0.12-r0",
+    "architecture": "armv7",
+    "checksum": "Q15zSQLsgXeiUbtojZjUYLJvWZ8To="
+  },
+  {
+    "name": "libxcb",
+    "version": "1.17.0-r2",
+    "architecture": "armv7",
+    "checksum": "Q1YnQwc6UTX0IHX8YOjP1IkuQdjNo="
+  },
+  {
+    "name": "libxcomposite",
+    "version": "0.4.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1v7F/LFwGpuFzPOnFsBFFTMp4jSw="
+  },
+  {
+    "name": "libxcursor",
+    "version": "1.2.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1wonYBt2OvrFJHgGnU5xq5pwJSQU="
+  },
+  {
+    "name": "libxcvt",
+    "version": "0.1.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Rrl1kM+Pl+llGhEG32N9rny04oo="
+  },
+  {
+    "name": "libxdamage",
+    "version": "1.1.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1CsdSY46yUHVLDibQCmtisWSCCS4="
+  },
+  {
+    "name": "libxdmcp",
+    "version": "1.1.5-r1",
+    "architecture": "armv7",
+    "checksum": "Q1zbslNw4Eb/jmKdAztdjixRA3h6s="
+  },
+  {
+    "name": "libxext",
+    "version": "1.3.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1cFQHx+qwRVFVe4zIIWL8W6dpjl0="
+  },
+  {
+    "name": "libxfce4panel",
+    "version": "4.20.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1xSb8AuijSP0qxqNIHflX/Ht3h8E="
+  },
+  {
+    "name": "libxfce4ui",
+    "version": "4.20.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q127HUd/3/ivHiULHA3EePmKYwMHU="
+  },
+  {
+    "name": "libxfce4ui-lang",
+    "version": "4.20.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q1+nzOxz/DDEBTfwA1DomUvmoPdu4="
+  },
+  {
+    "name": "libxfce4util",
+    "version": "4.20.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1lYk+xp+SA1ZbTcKaqmqiMshbhOM="
+  },
+  {
+    "name": "libxfce4util-lang",
+    "version": "4.20.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1OjKPnW7ap8ldNgg7WNFV2YeWTlc="
+  },
+  {
+    "name": "libxfce4windowing",
+    "version": "4.20.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1gAPH8/twYFNQDuOy8wwrXjMc3v0="
+  },
+  {
+    "name": "libxfce4windowing-lang",
+    "version": "4.20.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Ni33lbH/c3PZNkX3HDkxrjwkUok="
+  },
+  {
+    "name": "libxfixes",
+    "version": "6.0.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1+CiXsLCvN9gDMvxv/eQBPXUiyrM="
+  },
+  {
+    "name": "libxfont2",
+    "version": "2.0.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1EMsa+ePo3i3wRlCRsECoAyS1uVg="
+  },
+  {
+    "name": "libxft",
+    "version": "2.3.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1QrAArllsQRUwE26shun6W16BDUo="
+  },
+  {
+    "name": "libxi",
+    "version": "1.8.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1leQE1yHo9GE4iKKwSqOMTtN24Us="
+  },
+  {
+    "name": "libxinerama",
+    "version": "1.1.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PDM0QF31DFvH3L1IOKQGFCm2ip8="
+  },
+  {
+    "name": "libxkbcommon",
+    "version": "1.13.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1BlrrQ06dog//OmxYrYqsG6Pio4E="
+  },
+  {
+    "name": "libxkbcommon-x11",
+    "version": "1.13.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1EcCQDw5EpLxBtqFWBZ1usX/nBis="
+  },
+  {
+    "name": "libxkbfile",
+    "version": "1.2.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q14JCDbzCU5WzFPPyYJ8XMWyGs3dM="
+  },
+  {
+    "name": "libxklavier",
+    "version": "5.4-r8",
+    "architecture": "armv7",
+    "checksum": "Q1rQAK8LBsUn9hJZnmu36WZhjqjrw="
+  },
+  {
+    "name": "libxml2",
+    "version": "2.13.9-r2",
+    "architecture": "armv7",
+    "checksum": "Q183OWnfCR2En5ftYFwDPLav8ISeo="
+  },
+  {
+    "name": "libxmu",
+    "version": "1.3.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1T4X9ToYl4EinXAsbun4UieoGoT0="
+  },
+  {
+    "name": "libxpresent",
+    "version": "1.0.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q11RztjqodehOne+B/h7FFQPGPO5s="
+  },
+  {
+    "name": "libxrandr",
+    "version": "1.5.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q17hrBhCoIjIbJjWH1KgOHL/be0jY="
+  },
+  {
+    "name": "libxrender",
+    "version": "0.9.12-r0",
+    "architecture": "armv7",
+    "checksum": "Q1jmC6/aE1OlVL6GaUtuTzXY7kqko="
+  },
+  {
+    "name": "libxres",
+    "version": "1.2.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1yHti3t2csbrrVmRi4Koo4xz7xZY="
+  },
+  {
+    "name": "libxscrnsaver",
+    "version": "1.2.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1LuvdwxYK7b6/8WZ5+yqLajOCMEM="
+  },
+  {
+    "name": "libxshmfence",
+    "version": "1.3.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q19KDyika/gc/qpMbHODbkaJeITkA="
+  },
+  {
+    "name": "libxslt",
+    "version": "1.1.43-r3",
+    "architecture": "armv7",
+    "checksum": "Q1j4qcl6fwvTKZh7y1nAu3utt7J4Q="
+  },
+  {
+    "name": "libxt",
+    "version": "1.3.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1zd45Bn86OkzRTXXKKjtVc8aI75Y="
+  },
+  {
+    "name": "libxtables",
+    "version": "1.8.13-r0",
+    "architecture": "armv7",
+    "checksum": "Q1pbKNH2CohW0iUFtdrc6hg42KJRc="
+  },
+  {
+    "name": "libxtst",
+    "version": "1.2.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1DcoazEJYMbpszJm1pzsA6k1O1pQ="
+  },
+  {
+    "name": "libxv",
+    "version": "1.0.13-r0",
+    "architecture": "armv7",
+    "checksum": "Q1V04/rfF/6NCwbpyKJCkiONL6ZHY="
+  },
+  {
+    "name": "libxxf86vm",
+    "version": "1.1.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1UTL9DDDjr97xENbLaDeMHbzjcn4="
+  },
+  {
+    "name": "libyuv",
+    "version": "0.0.1928-r0",
+    "architecture": "armv7",
+    "checksum": "Q1pTNM5huam5lVvnsd7mLHyVZ+hQg="
+  },
+  {
+    "name": "libzbar",
+    "version": "0.23.93-r2",
+    "architecture": "armv7",
+    "checksum": "Q1BxWQhPC+/LIbK2hI995dpymR4mw="
+  },
+  {
+    "name": "libzmq",
+    "version": "4.3.5-r2",
+    "architecture": "armv7",
+    "checksum": "Q1YFXjnOTIRDxTy08H6vINn1TKMHY="
+  },
+  {
+    "name": "lightdm",
+    "version": "1.33.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1xk/AftMqxk4AZN1Xk1P7asI5V7g="
+  },
+  {
+    "name": "lightdm-lang",
+    "version": "1.33.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1xzF2ZJ+kquMjBUDGKrJ4M5Dv3WE="
+  },
+  {
+    "name": "lightdm-openrc",
+    "version": "1.33.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1o32EUiTmuJomKyQkOxov6hgUGuY="
+  },
+  {
+    "name": "lightdm-settings",
+    "version": "2.1.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1bZPTg23zd6yhpn9+PmdgGLpGLLg="
+  },
+  {
+    "name": "lightdm-settings-lang",
+    "version": "2.1.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fbT06E5U3lKd6Hv2cp2bAzNLXEs="
+  },
+  {
+    "name": "lilv-libs",
+    "version": "0.28.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1t1R5z2dP1MmfgaPkQZdiFPretWM="
+  },
+  {
+    "name": "linux-pam",
+    "version": "1.7.1-r3",
+    "architecture": "armv7",
+    "checksum": "Q1JdzgKzOX7OsGYGMZYUVZYKTtQ1E="
+  },
+  {
+    "name": "linux-postmarketos-grate",
+    "version": "7.0.1-r4",
+    "architecture": "armv7",
+    "checksum": "Q1vWB5UBjbTeov9Dyu931PfJxjcZ8="
+  },
+  {
+    "name": "llvm23-libs",
+    "version": "23.1.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q13WGKZuMoWpxOZCHjBMUhB5k1xek="
+  },
+  {
+    "name": "logbookd",
+    "version": "0.2.4-r4",
+    "architecture": "armv7",
+    "checksum": "Q1uUlYGnyNoF7zyLKODMFyVcxuDSc="
+  },
+  {
+    "name": "logbookd-openrc",
+    "version": "0.2.4-r4",
+    "architecture": "armv7",
+    "checksum": "Q1S1ZtsvYfB9ag0ZwTeZs+zpmwVcY="
+  },
+  {
+    "name": "logger",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1EwhAydWeEk4EQjiQvoh8vdfpioI="
+  },
+  {
+    "name": "losetup",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1Cj4yeB64EnSzTmQjZIT0ZjZKqLg="
+  },
+  {
+    "name": "lsblk",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1mlsF/FUWwp7EQLMcqc7jIXRF8Ok="
+  },
+  {
+    "name": "lscpu",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q12KbDnwXbNhPBZw3jbr7sXBS87AI="
+  },
+  {
+    "name": "lua5.4-libs",
+    "version": "5.4.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q11OE3gtsuw/mpoP/50aFPWFDpn2I="
+  },
+  {
+    "name": "lz4",
+    "version": "1.10.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1D2a4zadOCHqep5XLolY/068x7co="
+  },
+  {
+    "name": "lz4-libs",
+    "version": "1.10.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q13GsTqytt9l2+seqQSWWhBdQvTjw="
+  },
+  {
+    "name": "lzo",
+    "version": "2.10-r5",
+    "architecture": "armv7",
+    "checksum": "Q1i5us8r0ltA0hL6y/J8szLoqrODg="
+  },
+  {
+    "name": "mbedtls3",
+    "version": "3.6.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1meUc0O9yrUITyrERomSf9dtEMho="
+  },
+  {
+    "name": "mcookie",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1kMbl+VVT/ZIReLIwztc8ohaHzNw="
+  },
+  {
+    "name": "mdev-conf",
+    "version": "4.10-r0",
+    "architecture": "armv7",
+    "checksum": "Q1KLmZv7/kWrWBUERvJrmnJvxXnRk="
+  },
+  {
+    "name": "merge-usr",
+    "version": "1.0.3_git20260616-r0",
+    "architecture": "armv7",
+    "checksum": "Q1zUFS+sGXI8AMrPyzmqdyuWES3Sk="
+  },
+  {
+    "name": "mesa",
+    "version": "26.2.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1+tgMlzg6WfpOAIOaIYYmHB9P4Qw="
+  },
+  {
+    "name": "mesa-dri-gallium",
+    "version": "26.2.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ncuff1VZcDnNc9XFvVsYpPGPVu0="
+  },
+  {
+    "name": "mesa-egl",
+    "version": "26.2.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1yH+zfDv2Pk2HA6qQMeV3zMPL9Zo="
+  },
+  {
+    "name": "mesa-gbm",
+    "version": "26.2.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1mVFSKmT//8RVZR9dJ1y/F3dk1D0="
+  },
+  {
+    "name": "mesa-gl",
+    "version": "26.2.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1eOgi0Tbiwb6jFNR7JCksksipxbQ="
+  },
+  {
+    "name": "mesa-gles",
+    "version": "26.2.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1buMLHYv4rhPVFZsp+81w5DwAnFQ="
+  },
+  {
+    "name": "mkfontscale",
+    "version": "1.2.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1MgEC0n+qxG5xxKfw/AZnlpNpSKs="
+  },
+  {
+    "name": "mobile-broadband-provider-info",
+    "version": "20251101-r1",
+    "architecture": "armv7",
+    "checksum": "Q10mFGtJLgPOhyZ4pnErigLY4DuQ8="
+  },
+  {
+    "name": "mount",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1xPmJlNx871njE5CmokWS8XWVJvQ="
+  },
+  {
+    "name": "mpdecimal",
+    "version": "4.0.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1qI2gIJuUGOYI7hGgpT4b+7/M1+g="
+  },
+  {
+    "name": "mpg123-libs",
+    "version": "1.33.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1OSa8khKWAq6y9geRoze79/DRwKU="
+  },
+  {
+    "name": "mtdev",
+    "version": "1.1.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1BzWQ2hBEnaEHPqpczMSscWToaPg="
+  },
+  {
+    "name": "musl",
+    "version": "1.2.6-r4",
+    "architecture": "armv7",
+    "checksum": "Q1OrVlo1qwd1f/wOW9w0iu0uGPzm8="
+  },
+  {
+    "name": "musl-fts",
+    "version": "1.2.7-r7",
+    "architecture": "armv7",
+    "checksum": "Q1HE497H1SW/iIX8c8dE6ToNPiuXM="
+  },
+  {
+    "name": "musl-locales",
+    "version": "0.1.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1cpe9kL55/2WbWUuLRoCaBzOAeBc="
+  },
+  {
+    "name": "musl-locales-lang",
+    "version": "0.1.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1wBdSyd1A3xhswT0kM+2sp+b8dnc="
+  },
+  {
+    "name": "musl-utils",
+    "version": "1.2.6-r4",
+    "architecture": "armv7",
+    "checksum": "Q1+el/Tdfh7a/Gfi1S01zF50xNRtI="
+  },
+  {
+    "name": "nano",
+    "version": "9.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1zLoA2F/bjGzVeHdcddq4ng020nk="
+  },
+  {
+    "name": "ncurses",
+    "version": "6.6_p20260822-r0",
+    "architecture": "armv7",
+    "checksum": "Q1NgLgiK94vO/MnexQMYYP/K/fFuU="
+  },
+  {
+    "name": "ncurses-terminfo-base",
+    "version": "6.6_p20260822-r0",
+    "architecture": "armv7",
+    "checksum": "Q1nR3HuqkU+iZF80OcRKl4FZzOyPc="
+  },
+  {
+    "name": "neon",
+    "version": "0.36.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ohbySV+JA6dnCfeFfz7xCd516iU="
+  },
+  {
+    "name": "nettle",
+    "version": "3.10.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1GK+3GYCq8swlDqWYszt7zvSYypQ="
+  },
+  {
+    "name": "network-manager-applet",
+    "version": "1.36.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1NjnCDoSxzlf0rqgo7oM/hnCzDWI="
+  },
+  {
+    "name": "network-manager-applet-lang",
+    "version": "1.36.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1kujeKYCZ4+uWGeZqA0gIP+/ZdH4="
+  },
+  {
+    "name": "networkmanager",
+    "version": "1.58.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1IXHh1jafxHOp3N8p8xKWgWkytJU="
+  },
+  {
+    "name": "networkmanager-bluetooth",
+    "version": "1.58.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1XUJLc8PkzPlrREyIfsUUTa29VMs="
+  },
+  {
+    "name": "networkmanager-cli",
+    "version": "1.58.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1KRFxGTp0o8eOJD8e5LPaMaYEj/o="
+  },
+  {
+    "name": "networkmanager-lang",
+    "version": "1.58.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1phNVjV1jfOzRzoOoGjhbRRWD3HM="
+  },
+  {
+    "name": "networkmanager-openrc",
+    "version": "1.58.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1KHT7KLTLL4GkI9nmbXpNvDx6Rg4="
+  },
+  {
+    "name": "networkmanager-tui",
+    "version": "1.58.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1YEW33y74N/XDeRyMLuJtkbvLc0s="
+  },
+  {
+    "name": "networkmanager-wifi",
+    "version": "1.58.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q13WCembE8IHHNYz2t9ZEbM2SQdxo="
+  },
+  {
+    "name": "networkmanager-wwan",
+    "version": "1.58.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q10AmtedLQwRuSWgfh7XfHqiq5g7c="
+  },
+  {
+    "name": "newt",
+    "version": "0.52.25-r1",
+    "architecture": "armv7",
+    "checksum": "Q1zTuRXNiqW2A3wHpZBBWMp4a2pEw="
+  },
+  {
+    "name": "newt-lang",
+    "version": "0.52.25-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Yti+YQ/AZYbgaqEHntskh+NcVYg="
+  },
+  {
+    "name": "nftables",
+    "version": "1.1.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1aMGKw98GQmQP+LuqBVmDY5cxeeI="
+  },
+  {
+    "name": "nftables-openrc",
+    "version": "1.1.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1VFE7qQZWJ2Ak8mrT7RgEu2kH7aM="
+  },
+  {
+    "name": "nghttp2-libs",
+    "version": "1.70.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ZxCQMboswK8VYpv++/W+7vGiIyo="
+  },
+  {
+    "name": "nspr",
+    "version": "4.38.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1g6j8+iMsTXoSYcXuJih0vT0Trmw="
+  },
+  {
+    "name": "nss",
+    "version": "3.128-r0",
+    "architecture": "armv7",
+    "checksum": "Q1TsQ8szIkXTNxfs09AjMZyF1WWhY="
+  },
+  {
+    "name": "numactl",
+    "version": "2.0.19-r0",
+    "architecture": "armv7",
+    "checksum": "Q11uxvIVkNC37ZT+/7dXLAhj2I1tU="
+  },
+  {
+    "name": "onboard",
+    "version": "1.4.4.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1cqmmkmHyYbM8dgCfvqZnRJxWF4I="
+  },
+  {
+    "name": "onboard-lang",
+    "version": "1.4.4.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1IKkQ4EA9LraV261wqAtIEYJlFeg="
+  },
+  {
+    "name": "onboard-pyc",
+    "version": "1.4.4.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1DrxyU8is0esimXnHpmaij9fyYaw="
+  },
+  {
+    "name": "openal-soft-libs",
+    "version": "1.25.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q16PPszhS6Ftc2+SIHbliN0bPqgx8="
+  },
+  {
+    "name": "openexr-libiex",
+    "version": "3.4.15-r0",
+    "architecture": "armv7",
+    "checksum": "Q12loqP2HDNcPVd6LPc3tEAEvlV6E="
+  },
+  {
+    "name": "openexr-libilmthread",
+    "version": "3.4.15-r0",
+    "architecture": "armv7",
+    "checksum": "Q1tvkIAkgqS81NBnOaWeVNtWQnDlY="
+  },
+  {
+    "name": "openexr-libopenexr",
+    "version": "3.4.15-r0",
+    "architecture": "armv7",
+    "checksum": "Q1WKi6UzPrbs9LI/iQHkgbxrLcamI="
+  },
+  {
+    "name": "openexr-libopenexrcore",
+    "version": "3.4.15-r0",
+    "architecture": "armv7",
+    "checksum": "Q1SIn87ULfxiLHDL90gyDRgpxNCeg="
+  },
+  {
+    "name": "openh264",
+    "version": "2.6.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1w3ysIavRT/36R08/2iqyE2di4PI="
+  },
+  {
+    "name": "openjpeg",
+    "version": "2.5.4-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Yk9mQdbt48qwE0P09tjSoQiI6iA="
+  },
+  {
+    "name": "openrc",
+    "version": "0.63.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Mh4YKZTPZdarB7B1x4c6OBenEFk="
+  },
+  {
+    "name": "openrc-user-pam",
+    "version": "0.63.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q10nf2vI1TfYzSLyNs8hp/9ay+kKM="
+  },
+  {
+    "name": "openssh-keygen",
+    "version": "10.5_p1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1HpBIRMW5+vdiChxHR5dOUszFNxc="
+  },
+  {
+    "name": "openssh-nftrules",
+    "version": "10.5_p1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1XxFKoBTfcPQ4MOuxIc30W1FFvxI="
+  },
+  {
+    "name": "openssh-server-common",
+    "version": "10.5_p1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1FCkvMm4nSICszDTLXST95v8Thts="
+  },
+  {
+    "name": "openssh-server-common-openrc",
+    "version": "10.5_p1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1LoQER0zyftalcC5CEn/t9uY+1Ak="
+  },
+  {
+    "name": "openssh-server-pam",
+    "version": "10.5_p1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1BlQoTzP4CyOzbtjNjOPW85Un2RI="
+  },
+  {
+    "name": "opus",
+    "version": "1.6.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ZQy19eh9N3GAVHyVY8TBJKvAr4M="
+  },
+  {
+    "name": "orc",
+    "version": "0.4.42-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Y+XhmghJcZYwguWZTdZTtoWuTVM="
+  },
+  {
+    "name": "p11-kit",
+    "version": "0.26.2-r1",
+    "architecture": "armv7",
+    "checksum": "Q1xBI1n+whTkXc/p9NAGyFh5G7Dus="
+  },
+  {
+    "name": "pango",
+    "version": "1.58.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fXXK3GjZYGJhMg6ld01gTcA0tyk="
+  },
+  {
+    "name": "pangomm",
+    "version": "2.56.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1gTYQObxFRgm5qpXv9EfUvT8z+UU="
+  },
+  {
+    "name": "parted",
+    "version": "3.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1mjUZrTx8jXO2IpHKTxOHoCA6pPs="
+  },
+  {
+    "name": "partx",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1wBKgmNA9KBvM6C8RutiG7Z8cn+0="
+  },
+  {
+    "name": "pavucontrol",
+    "version": "6.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1pTV6//Z43uSxKBx5LhTbFCuCJ6U="
+  },
+  {
+    "name": "pavucontrol-lang",
+    "version": "6.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q13Qzz4A5uVBgWuMDmjmtnbp1h+Sg="
+  },
+  {
+    "name": "pcre2",
+    "version": "10.49-r0",
+    "architecture": "armv7",
+    "checksum": "Q1gOLdVwk+v62HyOEaNplw6uln9pc="
+  },
+  {
+    "name": "pcsc-lite-libs",
+    "version": "2.5.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1T5RxgTJbkRq6APlWppsnbB0VLhs="
+  },
+  {
+    "name": "pipewire",
+    "version": "1.6.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1nrm5pB9PvVnKcnkOYpqi3HoPzQA="
+  },
+  {
+    "name": "pipewire-lang",
+    "version": "1.6.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1HloJM+6OAQLNMnaYR9lnkdo5XR8="
+  },
+  {
+    "name": "pipewire-libs",
+    "version": "1.6.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1CnUY0OSJtxtLKmhlVTH3M/J3Juw="
+  },
+  {
+    "name": "pipewire-openrc",
+    "version": "1.6.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1+lq2n8FFpaWloiiP8qpSaU6HjWQ="
+  },
+  {
+    "name": "pipewire-spa-libcamera",
+    "version": "1.6.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1wuhTssj/CMPMqk9kYC1RJSbkbTo="
+  },
+  {
+    "name": "pipewire-udev",
+    "version": "1.6.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1iyyx68OUqhQr14L7plB1RTdaGJ0="
+  },
+  {
+    "name": "pipewire-webrtc",
+    "version": "1.6.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1y4fvmgjTn5t4zONZfcw1ihU6VZI="
+  },
+  {
+    "name": "pixman",
+    "version": "0.46.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1GEVgqzGAnOHot/GAPk/nKx1eF4I="
+  },
+  {
+    "name": "pkgconf",
+    "version": "3.0.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1euBSSaOcOXMjFW3o70uyddmFGAw="
+  },
+  {
+    "name": "plymouth",
+    "version": "26.134.222-r1",
+    "architecture": "armv7",
+    "checksum": "Q1JdeWR8BEONJRm7ENPXZx5ge0VCU="
+  },
+  {
+    "name": "plymouth-drm",
+    "version": "26.134.222-r1",
+    "architecture": "armv7",
+    "checksum": "Q1tTP/5ZodR545hEp26wqvT1h9IKM="
+  },
+  {
+    "name": "plymouth-lang",
+    "version": "26.134.222-r1",
+    "architecture": "armv7",
+    "checksum": "Q1O73DtWsrjP8qj2Ui4MoW2OWu5uQ="
+  },
+  {
+    "name": "plymouth-openrc-plugin",
+    "version": "0.4.0_git20250822-r2",
+    "architecture": "armv7",
+    "checksum": "Q1ui//k5l5eUXG+4D1m1aT8XyO/Cg="
+  },
+  {
+    "name": "pm-utils",
+    "version": "1.4.1-r5",
+    "architecture": "armv7",
+    "checksum": "Q1yGaMP796JRY/c9OQQjSasP1DeNQ="
+  },
+  {
+    "name": "polkit-common",
+    "version": "127-r2",
+    "architecture": "armv7",
+    "checksum": "Q105ZnZdVYjWlW6pd3G7KuYATFHfs="
+  },
+  {
+    "name": "polkit-elogind",
+    "version": "127-r2",
+    "architecture": "armv7",
+    "checksum": "Q1n9YFkr/Kp8pqH0LZATs9N2sW9Vg="
+  },
+  {
+    "name": "polkit-elogind-libs",
+    "version": "127-r2",
+    "architecture": "armv7",
+    "checksum": "Q1t9DIDXKyCosGvrIrSFjp6jc8oQ8="
+  },
+  {
+    "name": "polkit-lang",
+    "version": "127-r2",
+    "architecture": "armv7",
+    "checksum": "Q11kY2gZxhmnlmPq/d7H1NcYHYDqQ="
+  },
+  {
+    "name": "polkit-openrc",
+    "version": "127-r2",
+    "architecture": "armv7",
+    "checksum": "Q1gcs+oppkZ8oB/OEwSo7wiqm7/VE="
+  },
+  {
+    "name": "poppler",
+    "version": "25.12.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1uGEAn5tCLBPKsJ3BPoRVodDMqOg="
+  },
+  {
+    "name": "poppler-glib",
+    "version": "25.12.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q138llC3PdPXnb6DMukRlCOVG0Rnk="
+  },
+  {
+    "name": "popt",
+    "version": "1.19-r4",
+    "architecture": "armv7",
+    "checksum": "Q1X4MW3BWouji4ApXe0jmkYGWhLLs="
+  },
+  {
+    "name": "postmarketos-artwork-icons",
+    "version": "26.06-r2",
+    "architecture": "armv7",
+    "checksum": "Q13gej8AmQQmqSuj2xH+gHVycm5ZM="
+  },
+  {
+    "name": "postmarketos-artwork-wallpapers",
+    "version": "26.06-r2",
+    "architecture": "armv7",
+    "checksum": "Q14P9+TBjKQHJw+59ddW8t0pcIJD8="
+  },
+  {
+    "name": "postmarketos-base",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q15raH+ZkgGPo0M8phiEZjJUWLWqk="
+  },
+  {
+    "name": "postmarketos-base-apk",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q1WVyJVAHL3ktNx37ZtT6iRYU1qE0="
+  },
+  {
+    "name": "postmarketos-base-mesa",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q1cMPFP2u7MfCHJuxPVJkdy6SPK1U="
+  },
+  {
+    "name": "postmarketos-base-nftables",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q1WJuh9QNOBGIZuQoMpN48OTixdvo="
+  },
+  {
+    "name": "postmarketos-base-nftables-openrc",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q12U2cOtXyOZWHqwcu0enMTSkdL1U="
+  },
+  {
+    "name": "postmarketos-base-nofde",
+    "version": "62-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Gdjfyd2GaZYaCpwPJQnHKYoNtFU="
+  },
+  {
+    "name": "postmarketos-base-openrc",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ef9SIub6F37P4YZYGds7qmpKMgs="
+  },
+  {
+    "name": "postmarketos-base-ssh",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q151y1PqgMpEzfDMdK/livkjwl8RQ="
+  },
+  {
+    "name": "postmarketos-base-sudo-rs",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q1DDe9/AJgdyjKrbkQYJrF0uy2yUE="
+  },
+  {
+    "name": "postmarketos-base-udev",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q1jI6wUF4kdgPUE+i4+rUNRBogYDQ="
+  },
+  {
+    "name": "postmarketos-base-ui",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q12eTqkdPphYK5nNyoTobTNzo2YYg="
+  },
+  {
+    "name": "postmarketos-base-ui-alsa-utils",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q13GHoRk0J5KZ+cmhw75Cy8IsHRLo="
+  },
+  {
+    "name": "postmarketos-base-ui-audio",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q1hPLFd5ovNm92n1yAVbhOxNOx4tU="
+  },
+  {
+    "name": "postmarketos-base-ui-audio-backend-pulseaudio",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q1VoOu88Wsm6BTV1TrDP3BUY1Mn9s="
+  },
+  {
+    "name": "postmarketos-base-ui-bluez-openrc",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q16hc0rwDY5dEGORkivvbra0J00tI="
+  },
+  {
+    "name": "postmarketos-base-ui-elogind",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q12GBtQoKc94xx/MryJQgizxrUNXo="
+  },
+  {
+    "name": "postmarketos-base-ui-networkmanager",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q14fZgyb++D2cIzTcEfVVWoXPaIYM="
+  },
+  {
+    "name": "postmarketos-base-ui-openrc",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q1pijYDUFg/+HxTECzGDMO/0QvxLg="
+  },
+  {
+    "name": "postmarketos-base-ui-wifi-wpa_supplicant",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q1EwygCzW3bwU8Obl3vWvIyzHD0oA="
+  },
+  {
+    "name": "postmarketos-base-ui-wifi-wpa_supplicant-openrc",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q1jnnx7PzpJmQDec3ffu+A/aY2CUo="
+  },
+  {
+    "name": "postmarketos-base-ui-x11",
+    "version": "61-r0",
+    "architecture": "armv7",
+    "checksum": "Q1nSVB40EPGUWE6ADdkxLazHEkx+8="
+  },
+  {
+    "name": "postmarketos-baselayout",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fG699Q1NFQp3s39Bm+0o/fJr4cw="
+  },
+  {
+    "name": "postmarketos-bootsplash",
+    "version": "3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PsW5FmWb9Yk9BFR5lXxAkM/0w5s="
+  },
+  {
+    "name": "postmarketos-bootsplash-openrc",
+    "version": "3-r0",
+    "architecture": "armv7",
+    "checksum": "Q14jbcOPfei/rP89Z7L/MbKrlQFXY="
+  },
+  {
+    "name": "postmarketos-buffybox-iskey",
+    "version": "1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1n0QrS1wW1Wj9KQKH/w9YHmC8yp0="
+  },
+  {
+    "name": "postmarketos-config-nftables",
+    "version": "1-r4",
+    "architecture": "armv7",
+    "checksum": "Q1VFuHcdinhB8flDL8BRh1cUSnnTY="
+  },
+  {
+    "name": "postmarketos-config-nftables-networkmanager",
+    "version": "1-r4",
+    "architecture": "armv7",
+    "checksum": "Q1pCX7Rj7mhSwXUmwlC0xx52QDmog="
+  },
+  {
+    "name": "postmarketos-initramfs",
+    "version": "3.12.3-r1",
+    "architecture": "armv7",
+    "checksum": "Q1bHCcjDpIfvUGTf5ZESNAxPEeRno="
+  },
+  {
+    "name": "postmarketos-keys",
+    "version": "1-r1",
+    "architecture": "armv7",
+    "checksum": "Q1d+Vvf0FJgHII0C+V8oca5bqPa7I="
+  },
+  {
+    "name": "postmarketos-mkinitfs",
+    "version": "2.11.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Ihqio2Jz5HQuQsgfo6x/IFUEtLI="
+  },
+  {
+    "name": "postmarketos-plymouth-themes",
+    "version": "1.2.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1G8+/yT7fqEEt+bB8YKYdmz7jiJc="
+  },
+  {
+    "name": "postmarketos-release",
+    "version": "76-r0",
+    "architecture": "armv7",
+    "checksum": "Q1d7potG8mMkBNTe38lt+zYhrlDB8="
+  },
+  {
+    "name": "postmarketos-ui-xfce4",
+    "version": "0.6.0-r6",
+    "architecture": "armv7",
+    "checksum": "Q1OjXuC8H/pH6iq4n3WxiNlAiz8z4="
+  },
+  {
+    "name": "postmarketos-ui-xfce4-openrc",
+    "version": "0.6.0-r6",
+    "architecture": "armv7",
+    "checksum": "Q1qlMJ47oydsv0bJztK/500AP5DFM="
+  },
+  {
+    "name": "postmarketos-zram",
+    "version": "4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1iA0TIxsZn8hkpYMF866VCW3wo2U="
+  },
+  {
+    "name": "postmarketos-zram-openrc",
+    "version": "4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1NWVPXO+kqXnLxCSJEW/ElJ/xILU="
+  },
+  {
+    "name": "procps-ng",
+    "version": "4.0.7-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Jg9U3yKuJyyZPKJLXKbPBGB/s6E="
+  },
+  {
+    "name": "procps-ng-lang",
+    "version": "4.0.7-r1",
+    "architecture": "armv7",
+    "checksum": "Q1lMBsFDX4+3kW6KwN6ZHBoZARqxo="
+  },
+  {
+    "name": "pulseaudio",
+    "version": "17.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1nzvFf+iNyWpEuHhYoqkJsRKPuoE="
+  },
+  {
+    "name": "pulseaudio-alsa",
+    "version": "17.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1Fdlt0t9r4VwCOhaQjTaSv7i5iOg="
+  },
+  {
+    "name": "pulseaudio-bluez",
+    "version": "17.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1aMpXaIWOkbZ3D/yFr7bfl7mZ5/Y="
+  },
+  {
+    "name": "pulseaudio-lang",
+    "version": "17.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q18Z6ZsSPu7HrytbsIi5QID3BeNJw="
+  },
+  {
+    "name": "pulseaudio-openrc",
+    "version": "17.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1WM9KngMdEccjrZHN2L38wwngvec="
+  },
+  {
+    "name": "pulseaudio-utils",
+    "version": "17.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1VievZgYbdZq15aNrUBxP2i4cKrY="
+  },
+  {
+    "name": "pulseaudio-wireplumber",
+    "version": "17.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1W1ZEeHVphIuhHh6WjG3G9JXz/AI="
+  },
+  {
+    "name": "py3-cairo",
+    "version": "1.28.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1kBxJ16vsN5fr1dIJOpHwFu8cLVc="
+  },
+  {
+    "name": "py3-cairo-pyc",
+    "version": "1.28.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1ykyO8nehXo1FDLyIzbJ9sQhcn6A="
+  },
+  {
+    "name": "py3-dbus",
+    "version": "1.4.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1E42Ow+YErz/lTHM16fGdoupTffY="
+  },
+  {
+    "name": "py3-dbus-pyc",
+    "version": "1.4.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1QjXab7vDoqwlutJ/746Ojhs9Dwo="
+  },
+  {
+    "name": "py3-gobject3",
+    "version": "3.58.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PKKiYFgpSOU27YfBT+ZxbU79xA4="
+  },
+  {
+    "name": "py3-gobject3-atspi",
+    "version": "2.62.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1eXBoBfqng/vN/xUSXj8RPFYEIKE="
+  },
+  {
+    "name": "py3-gobject3-atspi-pyc",
+    "version": "2.62.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q14wlQMH7hH7mjhIhwvyRjEicA5Xo="
+  },
+  {
+    "name": "py3-gobject3-pyc",
+    "version": "3.58.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1b+hkFHrng0ptkf9WI1a/PQ7I1ZA="
+  },
+  {
+    "name": "py3-ruamel.yaml",
+    "version": "0.19.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1R3LRhFhI+EKjPE4saSPLxS8aECQ="
+  },
+  {
+    "name": "py3-ruamel.yaml-pyc",
+    "version": "0.19.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fTDKjr9R3WwF93SXdC+ATHKw7eo="
+  },
+  {
+    "name": "py3-ruamel.yaml.clib",
+    "version": "0.2.15-r3",
+    "architecture": "armv7",
+    "checksum": "Q1A7dJ/MPz87HtnNGaDqrLgCnxYOI="
+  },
+  {
+    "name": "py3-setproctitle",
+    "version": "1.3.7-r1",
+    "architecture": "armv7",
+    "checksum": "Q1BJg00KSVoITNxFRXBCWXiUV6Uag="
+  },
+  {
+    "name": "py3-setproctitle-pyc",
+    "version": "1.3.7-r1",
+    "architecture": "armv7",
+    "checksum": "Q15u2XMQVNO7ajpPK1DQ4k9B8QGBI="
+  },
+  {
+    "name": "pyc",
+    "version": "3.14.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1dU4ExoabOrasZ+XOZP+0TydfGBU="
+  },
+  {
+    "name": "python3",
+    "version": "3.14.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1HeeV/klnALmvsJhPUtk3/WuINYI="
+  },
+  {
+    "name": "python3-pyc",
+    "version": "3.14.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1yo3Y9fEZdCcf1yhVno0L9aJ94CU="
+  },
+  {
+    "name": "python3-pycache-pyc0",
+    "version": "3.14.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q19ZrxCY8erPwDHLyWo/Loa3zG4n4="
+  },
+  {
+    "name": "rav1e-libs",
+    "version": "0.8.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1hU7VUlgBke2LlYvRWFESmyu1v7k="
+  },
+  {
+    "name": "readline",
+    "version": "8.3.3-r1",
+    "architecture": "armv7",
+    "checksum": "Q1BAUfREyL+xM430grMgIJfJz8jVc="
+  },
+  {
+    "name": "roc-toolkit-libs",
+    "version": "0.4.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1puEr3lLZDQxWHpBkQ57HG51+7nw="
+  },
+  {
+    "name": "routewrangler",
+    "version": "0.3.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q16e3DbbiHWYRaYtFeSFG7zousnpM="
+  },
+  {
+    "name": "routewrangler-openrc",
+    "version": "0.3.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1hFvy8hzezU7X0TNFMrRSQb+1Kvs="
+  },
+  {
+    "name": "runuser",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1YPOHRE3zjiqei9IIpHASHBVn/UM="
+  },
+  {
+    "name": "sbc",
+    "version": "2.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1vMn6hinQy84mmGwkAnm36JZuGLE="
+  },
+  {
+    "name": "scanelf",
+    "version": "1.3.9-r1",
+    "architecture": "armv7",
+    "checksum": "Q11ViKfyaSD9cpa7jV7dxe9cAr6ec="
+  },
+  {
+    "name": "serd-libs",
+    "version": "0.32.10-r0",
+    "architecture": "armv7",
+    "checksum": "Q1sksVbI9MOrHwFl6TDQDR+V9SdMA="
+  },
+  {
+    "name": "setarch",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1kx17irymAow1qK8wLgQWnHW3ZAs="
+  },
+  {
+    "name": "setpriv",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q16PGAovaeCDvEDpyM2bV2m9ExQcQ="
+  },
+  {
+    "name": "sfdisk",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1Q1XQoQ0ahW78dURpRQiIIRTiKSs="
+  },
+  {
+    "name": "shaderc",
+    "version": "2026.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1vMpDc9Ghcy7iFH9j0RTuQV8hgS0="
+  },
+  {
+    "name": "shadow",
+    "version": "4.20.3-r1",
+    "architecture": "armv7",
+    "checksum": "Q1JX0+UhFmXusbaucTYfXU2yF07ek="
+  },
+  {
+    "name": "shared-mime-info",
+    "version": "2.4-r7",
+    "architecture": "armv7",
+    "checksum": "Q1Q+L5agHo52gagqXJGeJpp1X8sPU="
+  },
+  {
+    "name": "shared-mime-info-lang",
+    "version": "2.4-r7",
+    "architecture": "armv7",
+    "checksum": "Q1mS5EuF2wtM7pjFjyJG810FOhLtE="
+  },
+  {
+    "name": "simdutf",
+    "version": "9.1.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1fZSUkjSt6S7p1cSU09MEEZWDODI="
+  },
+  {
+    "name": "skalibs-libs",
+    "version": "2.15.1.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1plyxzirqDo13DYpCZiKUJPH1RJw="
+  },
+  {
+    "name": "slang",
+    "version": "2.3.3-r3",
+    "architecture": "armv7",
+    "checksum": "Q1tDRby3zuFJPzNBXJL5F7jXBx3Cg="
+  },
+  {
+    "name": "sleep-inhibitor",
+    "version": "1.25-r2",
+    "architecture": "armv7",
+    "checksum": "Q1XXFxDk9McowxJ20otCQpfHah0sU="
+  },
+  {
+    "name": "sleep-inhibitor-openrc",
+    "version": "1.25-r2",
+    "architecture": "armv7",
+    "checksum": "Q1denQTW4XNjAhwYxBWSGUWwCftqw="
+  },
+  {
+    "name": "sleep-inhibitor-pyc",
+    "version": "1.25-r2",
+    "architecture": "armv7",
+    "checksum": "Q1BdBq7QbFvlYziNhT+AZjI91Zr2I="
+  },
+  {
+    "name": "slick-greeter",
+    "version": "2.2.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1qzmFkmjJR0gv50z60VaOCl+/MWM="
+  },
+  {
+    "name": "slick-greeter-lang",
+    "version": "2.2.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1vcosX+QoCNnH1Alz77q+bIcEPac="
+  },
+  {
+    "name": "sndio-libs",
+    "version": "1.10.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1/gdUsYOHgFieSBqrxI5kXDq/AdQ="
+  },
+  {
+    "name": "sord-libs",
+    "version": "0.16.22-r0",
+    "architecture": "armv7",
+    "checksum": "Q1mqgOzQDUuXRo7UlutY6SMt+idhs="
+  },
+  {
+    "name": "sound-theme-freedesktop",
+    "version": "0.8-r2",
+    "architecture": "armv7",
+    "checksum": "Q1WU/N8tbBEWiOPJ4KzB9vEpSfOEI="
+  },
+  {
+    "name": "soundtouch",
+    "version": "2.4.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1B087ltdIyxirGWkqm0Q/XaayzlE="
+  },
+  {
+    "name": "soxr",
+    "version": "0.1.3-r7",
+    "architecture": "armv7",
+    "checksum": "Q14vw5qwalRQfxrgqQpQIS9v8ac1M="
+  },
+  {
+    "name": "spandsp",
+    "version": "0.0.6-r5",
+    "architecture": "armv7",
+    "checksum": "Q1mxtUzNa4sGbjr3/wFrDwUDmps5w="
+  },
+  {
+    "name": "speexdsp",
+    "version": "1.2.1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1wVgDUe2yK6KPoDp7ECipeAJ038s="
+  },
+  {
+    "name": "spirv-tools",
+    "version": "1.4.357.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1tvFvK6O+c/pynwe0Rsn9CSW0tZw="
+  },
+  {
+    "name": "sqlite-libs",
+    "version": "3.53.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q14KKQkQyDwYGIGEQcYXso6CrKnWo="
+  },
+  {
+    "name": "sratom",
+    "version": "0.6.22-r0",
+    "architecture": "armv7",
+    "checksum": "Q1+Mgzxfs9qSWvO2zcmccWIJ+NNEU="
+  },
+  {
+    "name": "ssl_client",
+    "version": "1.38.0-r7",
+    "architecture": "armv7",
+    "checksum": "Q1KKi04VlC10YWxOt3K1oNtwSZlLg="
+  },
+  {
+    "name": "startup-notification",
+    "version": "0.12-r8",
+    "architecture": "armv7",
+    "checksum": "Q1Y6+TQ9C8BNLZrPf7ZAWrLq+E76Q="
+  },
+  {
+    "name": "sudo-rs",
+    "version": "0.2.15-r0",
+    "architecture": "armv7",
+    "checksum": "Q1mt7Z5RRkdP+Ff5jEXgWvsE60CFc="
+  },
+  {
+    "name": "tdb-libs",
+    "version": "1.4.15-r1",
+    "architecture": "armv7",
+    "checksum": "Q10w8DhpcN38MzEdRGQ9zzeHPLMDA="
+  },
+  {
+    "name": "thunar",
+    "version": "4.20.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1NbZRTciXAjMqPPQaR/P6bpKvs+Q="
+  },
+  {
+    "name": "thunar-lang",
+    "version": "4.20.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1jpmG6rcdxW0O88U7E9evfaZfXIY="
+  },
+  {
+    "name": "thunar-volman",
+    "version": "4.20.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1egoo+HDqQj6quU6K9IJiwI1gDKQ="
+  },
+  {
+    "name": "thunar-volman-lang",
+    "version": "4.20.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q16aCDOpxOArY+mX4sJZ+QsYhxfng="
+  },
+  {
+    "name": "tiff",
+    "version": "4.7.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1I5bpDdOU0oFQWNpGU/AF7bng+QU="
+  },
+  {
+    "name": "tslib",
+    "version": "1.24-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Vf4CoST8qVyZMYtWAWDW+U6xsLc="
+  },
+  {
+    "name": "tumbler",
+    "version": "4.20.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1MxwpP/hqCCfsmE/TDSIHwJqy2kE="
+  },
+  {
+    "name": "tumbler-lang",
+    "version": "4.20.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1vRqlbamvEE7lynNbMaQS5qegK1M="
+  },
+  {
+    "name": "tzdata",
+    "version": "2026e-r0",
+    "architecture": "armv7",
+    "checksum": "Q1J39GWXZy5rMGPNPS3pg0rTlH0hw="
+  },
+  {
+    "name": "udev-init-scripts",
+    "version": "35-r1",
+    "architecture": "armv7",
+    "checksum": "Q1AeupbAvcK6+BOFblgt6zrh99ckk="
+  },
+  {
+    "name": "udev-init-scripts-openrc",
+    "version": "35-r1",
+    "architecture": "armv7",
+    "checksum": "Q11jsS5QPfpY7k9sRLtQ2+tbeDnnY="
+  },
+  {
+    "name": "umount",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1lfEnkfLkBYWsU8jzEAXivvTED6E="
+  },
+  {
+    "name": "unclutter-xfixes",
+    "version": "1.6-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Go8jLZnEjqt35QG5ZxzrU5JbhDQ="
+  },
+  {
+    "name": "unudhcpd",
+    "version": "0.5.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q19bvIfUj8EDB0Qi0SDKrWEPoBZbA="
+  },
+  {
+    "name": "unudhcpd-openrc",
+    "version": "0.5.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q192yWHY+BW7VQYS3ZAfAtRWU8lJI="
+  },
+  {
+    "name": "upower",
+    "version": "1.91.0-r2",
+    "architecture": "armv7",
+    "checksum": "Q18L2mtCMLBdUapkEQXN27Ibir31M="
+  },
+  {
+    "name": "upower-lang",
+    "version": "1.91.0-r2",
+    "architecture": "armv7",
+    "checksum": "Q1FZ7VR6MbfTOkGhGWrsw6R5wtc+o="
+  },
+  {
+    "name": "upower-udev",
+    "version": "1.91.0-r2",
+    "architecture": "armv7",
+    "checksum": "Q1soI8f+37B99hCSUD9lfSAVOIEr8="
+  },
+  {
+    "name": "userspace-rcu",
+    "version": "0.15.3-r0",
+    "architecture": "armv7",
+    "checksum": "Q1JY+yhpXmvo0cFXy5KLZo3MDrFq0="
+  },
+  {
+    "name": "util-linux",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1vsi/HAOSTbkoTbdpYOw8iJoqnkI="
+  },
+  {
+    "name": "util-linux-login",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1kQ/iOeudXsNT0xRyy7M7fi/sHqM="
+  },
+  {
+    "name": "util-linux-misc",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1y2L01QUGkJe2BDT3k6pQV2d1NM4="
+  },
+  {
+    "name": "util-linux-openrc",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1/jwezGDqILzzf+e+gpWIEYzx8Eo="
+  },
+  {
+    "name": "util-macros",
+    "version": "1.20.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1m3SJMYKSMYUI1a/stmVzoz/Z6bc="
+  },
+  {
+    "name": "utmps-libs",
+    "version": "0.1.3.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1cQckMnmeCyu5SlYgQuv4KXV3IHo="
+  },
+  {
+    "name": "uuidgen",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1Kfh13W7DF1p4sr7BMm2RVrMOJ8A="
+  },
+  {
+    "name": "vidstab",
+    "version": "1.1.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1NXUR4Jfl6DMaWLsYOE4OrMBpkyc="
+  },
+  {
+    "name": "vo-aacenc",
+    "version": "0.1.3-r3",
+    "architecture": "armv7",
+    "checksum": "Q1V+Y0b6CNAC8vLlZpdeIWNdlnyqc="
+  },
+  {
+    "name": "vo-amrwbenc",
+    "version": "0.1.3-r3",
+    "architecture": "armv7",
+    "checksum": "Q1e8hzFsZ8MsMvw2mqIHWga/maSUc="
+  },
+  {
+    "name": "vte3",
+    "version": "0.84.1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1hR1QXDXIpverRq9DCVsNQ5O2cfA="
+  },
+  {
+    "name": "vte3-lang",
+    "version": "0.84.1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1qhvZtG52RM/9iUj1XbmxMeYDsv0="
+  },
+  {
+    "name": "vte3-profile",
+    "version": "0.84.1-r2",
+    "architecture": "armv7",
+    "checksum": "Q1cIbAJ4YsYv0fbg4qE1Ae8Z7LwAk="
+  },
+  {
+    "name": "vulkan-loader",
+    "version": "1.4.360-r0",
+    "architecture": "armv7",
+    "checksum": "Q18sMmG4qtxbCFUs87vbbwTrgk0eA="
+  },
+  {
+    "name": "wayland-libs-client",
+    "version": "1.26.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q19plNCewSRZsdTv+RIj73fLTpESs="
+  },
+  {
+    "name": "wayland-libs-cursor",
+    "version": "1.26.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Ze6Hw1nVpUaaInsnFQJMjQqoNis="
+  },
+  {
+    "name": "wayland-libs-egl",
+    "version": "1.26.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1ASX5fncC/QXGCUzDkTSLXbHKAjI="
+  },
+  {
+    "name": "wayland-libs-server",
+    "version": "1.26.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1RiZTos3hmTt9WeNrdSeV898jQXo="
+  },
+  {
+    "name": "webkit2gtk-4.1",
+    "version": "2.48.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1wpCl9+EuTIZdSN51yPcrTxbWdTQ="
+  },
+  {
+    "name": "webkit2gtk-4.1-lang",
+    "version": "2.48.7-r0",
+    "architecture": "armv7",
+    "checksum": "Q1NI+HlDH1hvWfvhe2Rws5Y/N4DVU="
+  },
+  {
+    "name": "webrtc-audio-processing-1",
+    "version": "1.3-r5",
+    "architecture": "armv7",
+    "checksum": "Q1q5PcXex9t1KAXrYbf0/f3Pwko78="
+  },
+  {
+    "name": "webrtc-audio-processing-2",
+    "version": "2.1-r3",
+    "architecture": "armv7",
+    "checksum": "Q1Yk4Z/+m7g8QJTp3eKzLyfpI5qJc="
+  },
+  {
+    "name": "wipefs",
+    "version": "2.42.4-r2",
+    "architecture": "armv7",
+    "checksum": "Q1Jbe1//18GVaqmUJ2XCf4l8htIMU="
+  },
+  {
+    "name": "wireless-regdb",
+    "version": "2025.10.07-r0",
+    "architecture": "armv7",
+    "checksum": "Q1CHmJEV6jTlokzgqNy+N5TI7nSX4="
+  },
+  {
+    "name": "wireplumber",
+    "version": "0.5.18-r2",
+    "architecture": "armv7",
+    "checksum": "Q1fISqWslJhm14ToYA3Kg3ie9jvq0="
+  },
+  {
+    "name": "wireplumber-lang",
+    "version": "0.5.18-r2",
+    "architecture": "armv7",
+    "checksum": "Q1qFTSYpLHPCrvqTUve/n+hS3zE6Y="
+  },
+  {
+    "name": "wireplumber-libs",
+    "version": "0.5.18-r2",
+    "architecture": "armv7",
+    "checksum": "Q1VRgCZj9ReS7doK+Rn1TKwtHv8cM="
+  },
+  {
+    "name": "wireplumber-openrc",
+    "version": "0.5.18-r2",
+    "architecture": "armv7",
+    "checksum": "Q1j14dwBYdsZjrqB73JjV7SuwEY/o="
+  },
+  {
+    "name": "wpa_supplicant",
+    "version": "2.11-r4",
+    "architecture": "armv7",
+    "checksum": "Q1SQYorLFk0ztI6LyVsO8Bd2A7Iic="
+  },
+  {
+    "name": "wpa_supplicant-openrc",
+    "version": "2.11-r4",
+    "architecture": "armv7",
+    "checksum": "Q11rvhxnUTZjzki8lcLgDOyEphjk0="
+  },
+  {
+    "name": "x264-libs",
+    "version": "0.164.3108-r1",
+    "architecture": "armv7",
+    "checksum": "Q1au2HWGbX7yhdM++1jgAK4zH6fIs="
+  },
+  {
+    "name": "x265-libs",
+    "version": "4.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1/5xOh5ortI+vksgAcgyhga5Jn7M="
+  },
+  {
+    "name": "xauth",
+    "version": "1.1.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1FFZa+odsbqxb5rPnVZgr1tTvkJ4="
+  },
+  {
+    "name": "xcb-util",
+    "version": "0.4.1-r3",
+    "architecture": "armv7",
+    "checksum": "Q1DY11OSQvOZecI6UmaeOayCBVWPY="
+  },
+  {
+    "name": "xdg-dbus-proxy",
+    "version": "0.1.9-r0",
+    "architecture": "armv7",
+    "checksum": "Q1SiOtb3wFHoCCQ5LoptqP5zx6sp4="
+  },
+  {
+    "name": "xdg-utils",
+    "version": "1.2.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q1+NvE1SiunqM73siFnSLUtBDWxSY="
+  },
+  {
+    "name": "xf86-input-libinput",
+    "version": "1.5.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1a40D79o9Tr5WlN+HjBd3+ZuQfgI="
+  },
+  {
+    "name": "xf86-video-fbdev",
+    "version": "0.5.0-r6",
+    "architecture": "armv7",
+    "checksum": "Q1lu2/MXJGpt/LH2vBTIrFABdj/2Y="
+  },
+  {
+    "name": "xf86-video-opentegra",
+    "version": "0.6.0_git20211025-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Nn4r+i3wH9gzckxJjaL3jYoG7+E="
+  },
+  {
+    "name": "xfce-polkit",
+    "version": "0.3-r2",
+    "architecture": "armv7",
+    "checksum": "Q10m0Z+SmV94kRcALmFNMV5dhqdpo="
+  },
+  {
+    "name": "xfce4",
+    "version": "4.20-r0",
+    "architecture": "armv7",
+    "checksum": "Q1w1wkIx7pT07dhYGYi4ENHWTk9Z8="
+  },
+  {
+    "name": "xfce4-appfinder",
+    "version": "4.20.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1y4OAbvKsvKrC9Pej/mzUgsAGwxM="
+  },
+  {
+    "name": "xfce4-appfinder-lang",
+    "version": "4.20.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Xvoucu56WRZXEHclMsaCFvpbKZs="
+  },
+  {
+    "name": "xfce4-notifyd",
+    "version": "0.9.7-r2",
+    "architecture": "armv7",
+    "checksum": "Q1Qj+H9oOmt7dEjNhBMjaIgKnU5HE="
+  },
+  {
+    "name": "xfce4-notifyd-lang",
+    "version": "0.9.7-r2",
+    "architecture": "armv7",
+    "checksum": "Q1MNO23kd5cUQajUvEVteOQVn6anM="
+  },
+  {
+    "name": "xfce4-panel",
+    "version": "4.20.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1+76eOrAVGpnaM/fpRZJmPuPIGJk="
+  },
+  {
+    "name": "xfce4-panel-lang",
+    "version": "4.20.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q16BCygHK9ntE6puor80okhsu6aZ8="
+  },
+  {
+    "name": "xfce4-power-manager",
+    "version": "4.20.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1t6vCyUPVjlDvEVyaneCTyuUosSM="
+  },
+  {
+    "name": "xfce4-power-manager-lang",
+    "version": "4.20.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q12ROkC/s/DKXqS2fIWrlqodjudgg="
+  },
+  {
+    "name": "xfce4-pulseaudio-plugin",
+    "version": "0.5.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q18phZ8k+j57jBFDOh/aCMEg0EdHE="
+  },
+  {
+    "name": "xfce4-pulseaudio-plugin-lang",
+    "version": "0.5.1-r0",
+    "architecture": "armv7",
+    "checksum": "Q1SoV6I64bWgXZ3VHZV19p8PENKak="
+  },
+  {
+    "name": "xfce4-screensaver",
+    "version": "4.20.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1hJeSkkr34RBBcya/+NRjnTcvWso="
+  },
+  {
+    "name": "xfce4-screensaver-lang",
+    "version": "4.20.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1jo55421uWoqAzHHaV3eoqB5Ml+Q="
+  },
+  {
+    "name": "xfce4-session",
+    "version": "4.20.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1eRrg84jauyQmqqORMQUuPb3HQxE="
+  },
+  {
+    "name": "xfce4-session-lang",
+    "version": "4.20.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1yHFxC6Cnz2sg5WNrVohVmQt2u2o="
+  },
+  {
+    "name": "xfce4-settings",
+    "version": "4.20.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1j9QSpoxomhoA2p+C7tXYGWjJaoA="
+  },
+  {
+    "name": "xfce4-settings-lang",
+    "version": "4.20.5-r0",
+    "architecture": "armv7",
+    "checksum": "Q1pnwHiPn9HA9X6+FfD9AFQcEWd0I="
+  },
+  {
+    "name": "xfce4-terminal",
+    "version": "1.2.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q14JoaSpD1j3IxYTq46a+KvZkkPUM="
+  },
+  {
+    "name": "xfce4-terminal-lang",
+    "version": "1.2.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1jAgrAaJQmxmPzJk25LZ+jkcE90k="
+  },
+  {
+    "name": "xfce4-whiskermenu-plugin",
+    "version": "2.10.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q1mQqNmtFi1qO7VvctHHva1TNdlSc="
+  },
+  {
+    "name": "xfce4-whiskermenu-plugin-lang",
+    "version": "2.10.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q1nV2dm6Xe7Xsx+j5g2fFG36YBzQM="
+  },
+  {
+    "name": "xfconf",
+    "version": "4.20.0-r2",
+    "architecture": "armv7",
+    "checksum": "Q1XREX+oJly9haWcqgc4vaLKj38ik="
+  },
+  {
+    "name": "xfconf-lang",
+    "version": "4.20.0-r2",
+    "architecture": "armv7",
+    "checksum": "Q1DBWiu0iC6vFWGPGnAe8HlXH+KII="
+  },
+  {
+    "name": "xfdesktop",
+    "version": "4.20.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1Kr+eaDSNcljIvjlbJm8zVwM+mgo="
+  },
+  {
+    "name": "xfdesktop-lang",
+    "version": "4.20.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1kEmxKe+mo7y1Ui2Z5UNf3KRExt8="
+  },
+  {
+    "name": "xfsprogs",
+    "version": "7.1.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q137Y4Of6XJRQY/REpA949NoIDj4k="
+  },
+  {
+    "name": "xfsprogs-extra",
+    "version": "7.1.1-r1",
+    "architecture": "armv7",
+    "checksum": "Q1m+NrQvhIPz+Roy2lwvgs8y0NeoY="
+  },
+  {
+    "name": "xfwm4",
+    "version": "4.20.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1WUxaLr6+qr5vesatyJkwkPLETuE="
+  },
+  {
+    "name": "xfwm4-lang",
+    "version": "4.20.0-r1",
+    "architecture": "armv7",
+    "checksum": "Q1a3UE/cm3Waw1UIt2M5nyBSKClhM="
+  },
+  {
+    "name": "xinit",
+    "version": "1.4.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1sEcQLhuE7j5IJuehd21abgjRNO4="
+  },
+  {
+    "name": "xkbcomp",
+    "version": "1.5.0-r0",
+    "architecture": "armv7",
+    "checksum": "Q1PcCsss1KJ7tT8sbgHNBzI6EcUhY="
+  },
+  {
+    "name": "xkeyboard-config",
+    "version": "99992.48-r0",
+    "architecture": "armv7",
+    "checksum": "Q1mHEjKTOBfzaqj8D3YKid9+pi1Ak="
+  },
+  {
+    "name": "xkeyboard-config-lang",
+    "version": "99992.48-r0",
+    "architecture": "armv7",
+    "checksum": "Q1rK5RwLuZDps2xt23gVf3V3sbupk="
+  },
+  {
+    "name": "xmodmap",
+    "version": "1.0.11-r1",
+    "architecture": "armv7",
+    "checksum": "Q1Z1mD7wgCU5e4wwpdKvzMSe2cmSI="
+  },
+  {
+    "name": "xorg-server",
+    "version": "21.1.24-r0",
+    "architecture": "armv7",
+    "checksum": "Q13PWPce7Drd6oE5uAvG3Mfu3mFwE="
+  },
+  {
+    "name": "xorg-server-common",
+    "version": "21.1.24-r0",
+    "architecture": "armv7",
+    "checksum": "Q1N9XGdQ+Oqly6sXZwX1hKFkJvlyo="
+  },
+  {
+    "name": "xprop",
+    "version": "1.2.8-r0",
+    "architecture": "armv7",
+    "checksum": "Q1T7CBNhqILrHMJMyVNYV3sgbzcqk="
+  },
+  {
+    "name": "xrandr",
+    "version": "1.5.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1JxvAYvHosvmli2LDjDg78PkosGI="
+  },
+  {
+    "name": "xrdb",
+    "version": "1.2.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1TxVW/CcpcPxpntncVF6xIcxdQqs="
+  },
+  {
+    "name": "xset",
+    "version": "1.2.5-r1",
+    "architecture": "armv7",
+    "checksum": "Q1EHPho8e9lNoWJJ8LA5lIG8+wJvw="
+  },
+  {
+    "name": "xvidcore",
+    "version": "1.3.7-r2",
+    "architecture": "armv7",
+    "checksum": "Q1JrNZ5+FAGmzapZBDlBpQG/C93Ac="
+  },
+  {
+    "name": "xz",
+    "version": "5.8.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q17RqDV4vMisDEPDlbfM3r3JTO3Rw="
+  },
+  {
+    "name": "xz-libs",
+    "version": "5.8.4-r0",
+    "architecture": "armv7",
+    "checksum": "Q1tues3W6P25HbJyj33Yc2fed/EaE="
+  },
+  {
+    "name": "yaml",
+    "version": "0.2.5-r2",
+    "architecture": "armv7",
+    "checksum": "Q1CsG7k0R3djBBtUVmSiU3De0MzWg="
+  },
+  {
+    "name": "zimg",
+    "version": "3.0.6-r0",
+    "architecture": "armv7",
+    "checksum": "Q1VeVe6VyBWHq7Y/fxMHrZK+/OLnw="
+  },
+  {
+    "name": "zix-libs",
+    "version": "0.8.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1r44UgCBRas4/aNf7qe9w5nVkGjc="
+  },
+  {
+    "name": "zlib",
+    "version": "1.3.2-r0",
+    "architecture": "armv7",
+    "checksum": "Q1rlPh/qxvPNhYfLYxXto5gL5A0JM="
+  },
+  {
+    "name": "zstd-libs",
+    "version": "1.5.7-r2",
+    "architecture": "armv7",
+    "checksum": "Q1ICpraAC9Yxo++j5DYi95GOfs4+k="
+  }
+]

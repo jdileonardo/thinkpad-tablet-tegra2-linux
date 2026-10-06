@@ -9,8 +9,9 @@ Normal RAM headroom is adequate for that small fixture. The follow-up
 cycling but retained rotation buffers and actual CMA shortages with successful
 allocation fallback. The subsequent [scanout reference fix](graphics-rotation-fix.md)
 releases those buffers in two bounded tablet trials and is selected for XFCE.
-Longer operation, fresh-image boot and the actual service integrations remain
-unvalidated.
+The [XFCE SD image checkpoint](xfce-image.md) packages the selected components
+and frozen build inputs. Fresh-image boot and the actual service integrations
+remain unvalidated.
 
 The [native Wayland evaluation](gpu-plasma-evaluation.md) verifies direct display
 and hardware Wayland clients using 32-bit buffers. RGB565 rendering and KWin's
@@ -76,12 +77,12 @@ the working XFCE desktop available between reversible graphics trials.
 5. Recheck touch, rotation and Wi-Fi after kernel or display changes. Input
    enumeration alone does not replace physical confirmation.
 
-Existing builders and trial runners cover much of this, but deployment and
-evidence collection still involve manual steps. The next workflow improvements
-are a command that ties those steps together, complete package/container
-pinning, and a freshly built SD image containing the verified private GPU
-components. The live development card currently contains additions that are
-not yet included in the exported image.
+Deployment and evidence collection still involve manual steps. The new image
+includes the selected private graphics components and desktop configuration,
+and pins its binary inputs and container IDs. Mesa/Xorg rebuilds verify the
+frozen SDK and skip dependency refresh by default. Fresh-card boot and sustained
+use are the next validation steps; reproducibility from entirely rebuilt source
+inputs remains distinct from this offline assembly checkpoint.
 
 ## Eventual internal installation
 
