@@ -66,10 +66,14 @@ failure or crash accompanied the sampled zero. These counts do not distinguish
 movable ordinary pages, live graphics buffers and cached buffers, and do not
 prove a leak or sufficient contiguous allocation headroom.
 
-The next graphics investigation should trace these allocation requests and
-exercise repeated application open/close and redraw cycles. Increasing the
-CMA reservation without establishing its allocation lifetime is not yet a
-validated fix.
+The follow-up [graphics allocation checkpoint](graphics-memory.md) traced
+repeated application open/close and rotation. Calendar cycling retained only
+1 MiB net and had approximately 20 MiB unreserved CMA space despite low
+`CmaFree`. Rotation retained multiple 4 MiB buffers and reduced that space to
+approximately 4 MiB; a repeated circuit produced failed CMA attempts with
+successful enclosing GEM allocations. The historical large requests were not
+reproduced. Rotation buffer ownership/release now needs investigation before
+changing the reservation size.
 
 ## Repeat the bounded checks
 

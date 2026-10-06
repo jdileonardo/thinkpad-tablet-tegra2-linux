@@ -1,0 +1,40 @@
+
+~ # for p in 29643 29667 30095; do echo PROCESS_$p; cat /proc/$p/comm; sed -n "1
+
+,3p" /proc/$p/status; done; rc-service lightdm status; ls /sys/kernel/tracing/in
+
+stances; cat /sys/kernel/tracing/kprobe_events; tail -n 12 /var/log/Xorg.0.log;
+
+grep -E "MemAvailable|Cma" /proc/meminfo
+PROCESS_29643
+Xorg
+Name:	Xorg
+Umask:	0022
+State:	S (sleeping)
+PROCESS_29667
+xfce4-session
+Name:	xfce4-session
+Umask:	0022
+State:	S (sleeping)
+PROCESS_30095
+python3
+Name:	python3
+Umask:	0022
+State:	S (sleeping)
+ * status: started
+[  4648.386] (II) config/udev: Adding input device NVIDIA Tegra Ventana Mic Jack (/dev/input/event1)
+[  4648.386] (II) No input driver specified, ignoring this device.
+[  4648.386] (II) This device may have been added with another device file.
+[  4662.504] (II) opentegra(0): Allocate new frame buffer 800x1280 stride
+[ 16103.453] (II) opentegra(0): Allocate new frame buffer 1280x800 stride
+[ 16106.377] (II) opentegra(0): Allocate new frame buffer 800x1280 stride
+[ 16109.461] (II) opentegra(0): Allocate new frame buffer 1280x800 stride
+[ 16112.823] (II) opentegra(0): Allocate new frame buffer 800x1280 stride
+[ 16775.769] (II) opentegra(0): Allocate new frame buffer 1280x800 stride
+[ 16778.644] (II) opentegra(0): Allocate new frame buffer 800x1280 stride
+[ 16781.622] (II) opentegra(0): Allocate new frame buffer 1280x800 stride
+[ 16784.813] (II) opentegra(0): Allocate new frame buffer 800x1280 stride
+MemAvailable:     709904 kB
+CmaTotal:          65536 kB
+CmaFree:            3308 kB
+~ #

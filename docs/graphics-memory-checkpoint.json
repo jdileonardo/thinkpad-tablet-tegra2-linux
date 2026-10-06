@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-06",
+  "kernel": "7.0.1-nura-indigo-ram",
+  "root": "verified external SD controller c8000400.mmc",
+  "installed_ddx_package": "xf86-video-opentegra-0.6.0_git20211025-r1",
+  "installed_ddx_sha256": "5864c997b380945501b998b6829c071bb804d4df2f479f902f51a991e9682d97",
+  "cma_total_mib": 64,
+  "page_size_bytes": 4096,
+  "exa_pool_mib": 24,
+  "xorg_pid": 29643,
+  "xfce_session_pid": 29667,
+  "rotation_watcher_pid": 30095,
+  "measurements": {
+    "cycles": {
+      "duration_seconds": 144.2504811939998,
+      "runner_sha256": "55b158d875ec4c6801d4bda58e420fab1fdb079ab9435de44ba5d3ded3669550",
+      "runner_identity_source": "verified upload",
+      "unreserved_cma_mib_range": [
+        19.59765625,
+        21.91015625
+      ],
+      "unreserved_cma_mib_at_end": 20.91015625,
+      "net_cma_reservation_change_mib": 1.0,
+      "successful_bo_creates": 20,
+      "failed_bo_creates": 0,
+      "cma_failed_attempts": 0,
+      "bo_request_size_counts": {
+        "65536": 9,
+        "262144": 11
+      },
+      "trace_cleanup_complete": true,
+      "new_kernel_log_messages": false
+    },
+    "rotation": {
+      "duration_seconds": 41.98394720400029,
+      "runner_sha256": "e72e51aa6d0422dd81819967417892b3e4f71eb74c4d47126bc7d2de501a3c6f",
+      "runner_identity_source": "verified upload",
+      "unreserved_cma_mib_range": [
+        1.80859375,
+        21.91015625
+      ],
+      "unreserved_cma_mib_at_end": 3.99609375,
+      "net_cma_reservation_change_mib": 17.9140625,
+      "successful_bo_creates": 43,
+      "failed_bo_creates": 0,
+      "cma_failed_attempts": 0,
+      "bo_request_size_counts": {
+        "57344": 3,
+        "65536": 25,
+        "131072": 3,
+        "262144": 8,
+        "4194304": 4
+      },
+      "trace_cleanup_complete": true,
+      "new_kernel_log_messages": false
+    },
+    "aged": {
+      "duration_seconds": 122.6476503010017,
+      "runner_sha256": "da88e0c578ea16067ebc5682b446a9738bc2d6cb51eac1ca3e245df0404b8e86",
+      "runner_identity_source": "embedded report",
+      "unreserved_cma_mib_range": [
+        3.37109375,
+        5.24609375
+      ],
+      "unreserved_cma_mib_at_end": 4.99609375,
+      "net_cma_reservation_change_mib": 0.25,
+      "successful_bo_creates": 18,
+      "failed_bo_creates": 0,
+      "cma_failed_attempts": 0,
+      "bo_request_size_counts": {
+        "65536": 10,
+        "262144": 8
+      },
+      "trace_cleanup_complete": true,
+      "new_kernel_log_messages": false
+    },
+    "repeat-rotation": {
+      "duration_seconds": 41.34723678199953,
+      "runner_sha256": "da88e0c578ea16067ebc5682b446a9738bc2d6cb51eac1ca3e245df0404b8e86",
+      "runner_identity_source": "embedded report",
+      "unreserved_cma_mib_range": [
+        1.74609375,
+        5.49609375
+      ],
+      "unreserved_cma_mib_at_end": 4.12109375,
+      "net_cma_reservation_change_mib": 1.125,
+      "successful_bo_creates": 33,
+      "failed_bo_creates": 0,
+      "cma_failed_attempts": 4,
+      "bo_request_size_counts": {
+        "65536": 18,
+        "131072": 1,
+        "262144": 10,
+        "4194304": 4
+      },
+      "trace_cleanup_complete": true,
+      "new_kernel_log_messages": false
+    }
+  },
+  "historical_large_failure_reproduced": false,
+  "historical_failed_request_bytes": 132710400,
+  "rotation_retention_cause": "not yet established",
+  "driver_or_cma_configuration_changed": false,
+  "internal_storage_written": false,
+  "final_orientation": "left, 800x1280",
+  "final_mem_available_mib": 693.265625,
+  "physical_touch_rotation_confirmation": "not performed during this checkpoint",
+  "artifacts_sha256": {
+    "docs/evidence/graphics-memory-20261006/aged-report.json": "59c20de7f55a0f0214cfad6e8192a07fbbacff8dd488ab4e9bddef231e4fc942",
+    "docs/evidence/graphics-memory-20261006/aged-summary.json": "7a73a8de6bf8ac76753a442eeab96c0e903c187c7ee74e2cdb3d277e194f6ba3",
+    "docs/evidence/graphics-memory-20261006/aged-trace.txt": "02f235e5f04eccce3e7ed6a6f688f043f95959fff5828558441f4dbf91cfbed0",
+    "docs/evidence/graphics-memory-20261006/cycles-report.json": "b3fbe63c5130f238529f0d53e3ddc7c4bf7183b21390c8bf0ae44a3db60dcc20",
+    "docs/evidence/graphics-memory-20261006/cycles-summary.json": "ff8a893c8cb9b40122d2f62dab4f5d79a8f32b036cac385c1e48c2dcb2f30afe",
+    "docs/evidence/graphics-memory-20261006/cycles-trace.txt": "0a7654da95cdae12340af7053ff902d768164f4aa5ed8aaa2fb4fb6460d84b69",
+    "docs/evidence/graphics-memory-20261006/final-desktop-status.txt": "46482a57e09330f6dc36585a9c01b321649efaf8cc3bd9e8f3d45410a8549ddc",
+    "docs/evidence/graphics-memory-20261006/repeat-rotation-report.json": "5d0068c08679c651ffdba58c5e3e74e94fb0135279308efa0884f841f617dc51",
+    "docs/evidence/graphics-memory-20261006/repeat-rotation-summary.json": "492c9e25f5df8f7c146fd4170bc441ef0297367ff19c9ece6915ca0c404dcac1",
+    "docs/evidence/graphics-memory-20261006/repeat-rotation-trace.txt": "b25e9e0627818992c7619b87a698f096cc6a53d7ef944c71276b4cd6ba57bc67",
+    "docs/evidence/graphics-memory-20261006/rotation-report.json": "6d9c22b1368a76e428afb971177caeb8c26af5936382a8b4e4fda3c77ecc5726",
+    "docs/evidence/graphics-memory-20261006/rotation-summary.json": "fa0d4449c6467ca28783900aa63c77c0a03b5b236a903581bb0b5af6721f9f70",
+    "docs/evidence/graphics-memory-20261006/rotation-trace.txt": "5a8d7348b8bedc7c1a93e0fb642da48d162e6ef10a172b775cc8e3d714e6f17c"
+  }
+}

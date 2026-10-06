@@ -1,0 +1,134 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 122/122   #P:2
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+         python3-31616   [000] ..... 15324.756141: tracing_mark_write: baseline
+         python3-31616   [000] ..... 15328.058015: tracing_mark_write: after_desktop_reload
+         python3-31616   [000] ..... 15328.060042: tracing_mark_write: cycle_1_before
+            Xorg-29643   [001] d.... 15330.384438: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 15330.384490: cma_alloc_start: name=reserved request_count=16 available_count=5609 total_count=16384 align=4
+            Xorg-29643   [001] ..... 15330.385375: cma_alloc_finish: name=reserved pfn=0x3e140 page=78cbe6be count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 15330.385388: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4f34c00
+            Xorg-29643   [001] d.... 15330.410080: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [001] ..... 15330.410174: cma_alloc_start: name=reserved request_count=64 available_count=5593 total_count=16384 align=6
+            Xorg-29643   [000] ..... 15330.416654: cma_alloc_finish: name=reserved pfn=0x3e280 page=f6a71108 count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 15330.416679: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc5b8e800
+            Xorg-29643   [001] d.... 15330.510911: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 15330.510961: cma_alloc_start: name=reserved request_count=16 available_count=5529 total_count=16384 align=4
+            Xorg-29643   [001] ..... 15330.512785: cma_alloc_finish: name=reserved pfn=0x3e150 page=07f8716b count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 15330.512799: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xcd484c00
+            Xorg-29643   [000] d.... 15331.483972: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [000] ..... 15331.484033: cma_alloc_start: name=reserved request_count=16 available_count=5513 total_count=16384 align=4
+            Xorg-29643   [000] ..... 15331.491733: cma_alloc_finish: name=reserved pfn=0x3e170 page=4f7055f4 count=16 align=4 errorno=0
+            Xorg-29643   [000] ..... 15331.491751: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc36aa800
+            Xorg-29643   [000] d.... 15331.536964: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 15331.537019: cma_alloc_start: name=reserved request_count=64 available_count=5497 total_count=16384 align=6
+            Xorg-29643   [000] ..... 15331.538132: cma_alloc_finish: name=reserved pfn=0x3e2c0 page=c5c4a892 count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 15331.538149: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc5967600
+            Xorg-29643   [000] d.... 15331.543763: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 15331.543810: cma_alloc_start: name=reserved request_count=64 available_count=5433 total_count=16384 align=6
+            Xorg-29643   [000] ..... 15331.546552: cma_alloc_finish: name=reserved pfn=0x3e300 page=9d30452e count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 15331.546581: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc8602e00
+            Xorg-29643   [000] d.... 15331.547976: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 15331.548066: cma_alloc_start: name=reserved request_count=64 available_count=5369 total_count=16384 align=6
+            Xorg-29643   [000] ..... 15331.549607: cma_alloc_finish: name=reserved pfn=0x3e340 page=5d36caf5 count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 15331.549623: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc5723a00
+            Xorg-29643   [000] d.... 15331.550354: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 15331.550403: cma_alloc_start: name=reserved request_count=64 available_count=5305 total_count=16384 align=6
+            Xorg-29643   [000] ..... 15331.551998: cma_alloc_finish: name=reserved pfn=0x3e380 page=94910121 count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 15331.552017: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc57ec400
+            Xorg-29643   [000] d.... 15331.558238: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 15331.558302: cma_alloc_start: name=reserved request_count=64 available_count=5241 total_count=16384 align=6
+            Xorg-29643   [000] ..... 15331.560107: cma_alloc_finish: name=reserved pfn=0x3e3c0 page=0af2ac31 count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 15331.560132: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4f35200
+            Xorg-29643   [000] d.... 15331.569281: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 15331.569361: cma_alloc_start: name=reserved request_count=64 available_count=5177 total_count=16384 align=6
+            Xorg-29643   [000] ..... 15331.570768: cma_alloc_finish: name=reserved pfn=0x3ec00 page=a9f728bb count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 15331.570793: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc33b5400
+            Xorg-29643   [000] d.... 15331.571915: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 15331.571980: cma_alloc_start: name=reserved request_count=64 available_count=5113 total_count=16384 align=6
+            Xorg-29643   [000] ..... 15331.572985: cma_alloc_finish: name=reserved pfn=0x3ec40 page=f7b19f53 count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 15331.572999: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4ddba00
+            Xorg-29643   [000] d.... 15331.579157: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [000] ..... 15331.579204: cma_alloc_start: name=reserved request_count=16 available_count=5049 total_count=16384 align=4
+            Xorg-29643   [000] ..... 15331.580326: cma_alloc_finish: name=reserved pfn=0x3e240 page=259e45bd count=16 align=4 errorno=0
+            Xorg-29643   [000] ..... 15331.580345: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4df0a00
+            Xorg-29643   [000] d.... 15331.655880: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [000] ..... 15331.655941: cma_alloc_start: name=reserved request_count=16 available_count=5033 total_count=16384 align=4
+            Xorg-29643   [000] ..... 15331.657137: cma_alloc_finish: name=reserved pfn=0x3e250 page=0ace1695 count=16 align=4 errorno=0
+            Xorg-29643   [000] ..... 15331.657153: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4f35000
+         python3-31616   [001] ..... 15340.929372: tracing_mark_write: cycle_1_closed
+            Xorg-29643   [001] d.... 15342.702358: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4f35000
+            Xorg-29643   [001] ..... 15342.702394: cma_release: name=reserved pfn=0x3e250 page=0ace1695 count=16
+            Xorg-29643   [001] d.... 15342.702479: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc57ec400
+            Xorg-29643   [001] ..... 15342.702584: cma_release: name=reserved pfn=0x3e380 page=94910121 count=64
+            Xorg-29643   [001] d.... 15342.702644: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc5b8e800
+            Xorg-29643   [001] ..... 15342.702677: cma_release: name=reserved pfn=0x3e280 page=f6a71108 count=64
+            Xorg-29643   [001] d.... 15342.702732: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4f35200
+            Xorg-29643   [001] ..... 15342.702837: cma_release: name=reserved pfn=0x3e3c0 page=0af2ac31 count=64
+            Xorg-29643   [001] d.... 15342.702891: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc5967600
+            Xorg-29643   [001] ..... 15342.702922: cma_release: name=reserved pfn=0x3e2c0 page=c5c4a892 count=64
+         python3-31616   [001] ..... 15343.933255: tracing_mark_write: cycle_2_before
+            Xorg-29643   [001] d.... 15345.737555: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc33b5400
+            Xorg-29643   [001] ..... 15345.737647: cma_release: name=reserved pfn=0x3ec00 page=a9f728bb count=64
+         python3-31616   [000] ..... 15356.929063: tracing_mark_write: cycle_2_closed
+         python3-31616   [000] ..... 15359.938953: tracing_mark_write: cycle_3_before
+            Xorg-29643   [001] d.... 15363.311238: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 15363.311298: cma_alloc_start: name=reserved request_count=16 available_count=5353 total_count=16384 align=4
+            Xorg-29643   [001] ..... 15363.312775: cma_alloc_finish: name=reserved pfn=0x3e250 page=0ace1695 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 15363.312793: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4ddb000
+            Xorg-29643   [001] d.... 15363.471925: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [001] ..... 15363.471988: cma_alloc_start: name=reserved request_count=64 available_count=5337 total_count=16384 align=6
+            Xorg-29643   [001] ..... 15363.482133: cma_alloc_finish: name=reserved pfn=0x3e280 page=f6a71108 count=64 align=6 errorno=0
+            Xorg-29643   [001] ..... 15363.482160: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4c95000
+         python3-31616   [000] ..... 15372.948194: tracing_mark_write: cycle_3_closed
+            Xorg-29643   [001] d.... 15373.693728: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4ddb000
+            Xorg-29643   [001] ..... 15373.693750: cma_release: name=reserved pfn=0x3e250 page=0ace1695 count=16
+            Xorg-29643   [001] d.... 15373.693832: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4cae600
+            Xorg-29643   [001] ..... 15373.693920: cma_release: name=reserved pfn=0x3c0c0 page=1efc46af count=64
+         python3-31616   [001] ..... 15375.954937: tracing_mark_write: cycle_4_before
+            Xorg-29643   [001] d.... 15379.144618: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 15379.144693: cma_alloc_start: name=reserved request_count=16 available_count=5353 total_count=16384 align=4
+            Xorg-29643   [001] ..... 15379.146392: cma_alloc_finish: name=reserved pfn=0x3c0c0 page=1efc46af count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 15379.146411: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4f35200
+            Xorg-29643   [001] d.... 15379.239235: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 15379.239328: cma_alloc_start: name=reserved request_count=16 available_count=5337 total_count=16384 align=4
+            Xorg-29643   [001] ..... 15379.240910: cma_alloc_finish: name=reserved pfn=0x3c0d0 page=766564d1 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 15379.240933: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4b1ee00
+         python3-31616   [001] ..... 15388.930118: tracing_mark_write: cycle_4_closed
+            Xorg-29643   [001] d.... 15389.691642: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4b1ee00
+            Xorg-29643   [001] ..... 15389.691667: cma_release: name=reserved pfn=0x3c0d0 page=766564d1 count=16
+            Xorg-29643   [001] d.... 15389.691750: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4f35200
+            Xorg-29643   [001] ..... 15389.691761: cma_release: name=reserved pfn=0x3c0c0 page=1efc46af count=16
+         python3-31616   [001] ..... 15391.932462: tracing_mark_write: cycle_5_before
+            Xorg-29643   [001] d.... 15395.164546: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [001] ..... 15395.165384: cma_alloc_start: name=reserved request_count=64 available_count=5353 total_count=16384 align=6
+            Xorg-29643   [000] ..... 15395.167438: cma_alloc_finish: name=reserved pfn=0x3c0c0 page=1efc46af count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 15395.167460: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc87c4c00
+            Xorg-29643   [001] d.... 15395.200787: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 15395.200863: cma_alloc_start: name=reserved request_count=16 available_count=5289 total_count=16384 align=4
+            Xorg-29643   [001] ..... 15395.214135: cma_alloc_finish: name=reserved pfn=0x3e250 page=0ace1695 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 15395.214167: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4afd800
+         python3-31616   [000] ..... 15404.929536: tracing_mark_write: cycle_5_closed
+            Xorg-29643   [001] d.... 15405.676835: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4df0a00
+            Xorg-29643   [001] ..... 15405.676856: cma_release: name=reserved pfn=0x3e240 page=259e45bd count=16
+            Xorg-29643   [001] d.... 15405.676937: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc8602e00
+            Xorg-29643   [001] ..... 15405.676969: cma_release: name=reserved pfn=0x3e300 page=9d30452e count=64
+         python3-31616   [000] ..... 15407.932134: tracing_mark_write: cycle_6_before
+            Xorg-29643   [000] d.... 15411.177648: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 15411.177727: cma_alloc_start: name=reserved request_count=64 available_count=5353 total_count=16384 align=6
+            Xorg-29643   [000] .n... 15411.179307: cma_alloc_finish: name=reserved pfn=0x3e2c0 page=c5c4a892 count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 15411.179395: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4af3800
+         python3-31616   [001] ..... 15420.925594: tracing_mark_write: cycle_6_closed
+            Xorg-29643   [000] d.... 15421.667740: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4ddba00
+            Xorg-29643   [000] ..... 15421.667786: cma_release: name=reserved pfn=0x3ec40 page=f7b19f53 count=64
+         python3-31616   [001] ..... 15423.928208: tracing_mark_write: settle_start
+         python3-31616   [001] ..... 15468.932033: tracing_mark_write: settled

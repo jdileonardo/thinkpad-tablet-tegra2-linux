@@ -4,8 +4,11 @@
 
 The [XFCE stability and calendar check](xfce-stability.md) records five minutes
 of idle samples and a real GTK3 calendar frame through the active display path.
-Memory headroom is adequate for that small fixture. Longer operation, graphics
-allocation lifetime and the actual service integrations remain unvalidated.
+Normal RAM headroom is adequate for that small fixture. The follow-up
+[graphics allocation check](graphics-memory.md) finds inexpensive calendar
+cycling but retained rotation buffers and actual CMA shortages with successful
+allocation fallback. Buffer ownership/release, longer operation and the actual
+service integrations remain unvalidated.
 
 The [native Wayland evaluation](gpu-plasma-evaluation.md) verifies direct display
 and hardware Wayland clients using 32-bit buffers. RGB565 rendering and KWin's

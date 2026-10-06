@@ -1,0 +1,224 @@
+{
+  "event_count": 184,
+  "page_size_assumption_bytes": 4096,
+  "cma_total_mib": 64.0,
+  "cma_bitmap_available_mib_range": [
+    1.74609375,
+    5.49609375
+  ],
+  "cma_bitmap_available_mib_at_end": 4.12109375,
+  "new_cma_allocation_mib": 3.75,
+  "cma_release_mib_including_preexisting_buffers": 2.625,
+  "net_cma_allocation_change_mib": 1.125,
+  "successful_bo_creates": 33,
+  "failed_bo_creates": 0,
+  "bo_request_size_counts": {
+    "65536": 18,
+    "131072": 1,
+    "262144": 10,
+    "4194304": 4
+  },
+  "traced_new_bos_still_live_or_cached_bytes": 18350080,
+  "traced_new_bos_still_live_or_cached": [
+    {
+      "pointer": "0xc33b4600",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc36aa200",
+      "size": 4194304,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc37c0600",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4af3400",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4af4600",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4afd000",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4b1fc00",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4c94600",
+      "size": 131072,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4dc6400",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4dda000",
+      "size": 4194304,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4df1c00",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc5748c00",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc5b8e800",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc5bbd600",
+      "size": 4194304,
+      "flags": 32
+    },
+    {
+      "pointer": "0xcd4d4800",
+      "size": 4194304,
+      "flags": 32
+    }
+  ],
+  "freed_bo_pointers_including_preexisting": [
+    "0xc4f34a00",
+    "0xc36ab200",
+    "0xc30ccc00",
+    "0xc55ac400",
+    "0xc5584c00",
+    "0xc4af6a00",
+    "0xc55ac800",
+    "0xc8603600",
+    "0xc4f35e00",
+    "0xc5b8e600",
+    "0xc5966a00",
+    "0xc4f34000",
+    "0xc5af5600",
+    "0xc8504000",
+    "0xc30b9400",
+    "0xcd7e9a00",
+    "0xc8510600",
+    "0xcd485c00",
+    "0xcd4d5800",
+    "0xc4af3800",
+    "0xc59b2a00"
+  ],
+  "cma_allocation_errors": [
+    {
+      "task": "Xorg",
+      "pid": 29643,
+      "time": 16778.277019,
+      "event": "cma_alloc_finish",
+      "fields": {
+        "pfn": 0,
+        "page": 0,
+        "count": 1024,
+        "align": 8,
+        "errorno": -16
+      },
+      "body": "name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16"
+    },
+    {
+      "task": "Xorg",
+      "pid": 29643,
+      "time": 16778.283436,
+      "event": "cma_alloc_finish",
+      "fields": {
+        "pfn": 0,
+        "page": 0,
+        "count": 1024,
+        "align": 8,
+        "errorno": -16
+      },
+      "body": "name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16"
+    },
+    {
+      "task": "Xorg",
+      "pid": 29643,
+      "time": 16781.258464,
+      "event": "cma_alloc_finish",
+      "fields": {
+        "pfn": 0,
+        "page": 0,
+        "count": 1024,
+        "align": 8,
+        "errorno": -16
+      },
+      "body": "name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16"
+    },
+    {
+      "task": "Xorg",
+      "pid": 29643,
+      "time": 16784.45163,
+      "event": "cma_alloc_finish",
+      "fields": {
+        "pfn": 0,
+        "page": 0,
+        "count": 1024,
+        "align": 8,
+        "errorno": -16
+      },
+      "body": "name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16"
+    }
+  ],
+  "consistency_errors": [],
+  "marker_headroom": [
+    {
+      "label": "baseline",
+      "available_mib": null
+    },
+    {
+      "label": "rotation_normal",
+      "available_mib": 3.74609375
+    },
+    {
+      "label": "rotation_left",
+      "available_mib": 1.74609375
+    },
+    {
+      "label": "rotation_inverted",
+      "available_mib": 1.74609375
+    },
+    {
+      "label": "rotation_right",
+      "available_mib": 1.74609375
+    },
+    {
+      "label": "rotation_left",
+      "available_mib": 1.74609375
+    },
+    {
+      "label": "cycle_1_before",
+      "available_mib": 1.74609375
+    },
+    {
+      "label": "cycle_1_closed",
+      "available_mib": 1.74609375
+    },
+    {
+      "label": "settle_start",
+      "available_mib": 4.12109375
+    },
+    {
+      "label": "settled",
+      "available_mib": 4.12109375
+    }
+  ],
+  "scope": "Live-or-cached BOs are not classified as leaks. Objects predating the trace are not in the BO ledger. Headroom is CMA bitmap availability, not /proc/meminfo CmaFree or a guarantee of contiguous allocation success."
+}
