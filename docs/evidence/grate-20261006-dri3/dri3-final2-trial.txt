@@ -1,0 +1,148 @@
+
+~ # [6nsh -c 'set -e
+> cd /tmp/indigo-dri3
+> wget -q -O gpu-present-check http://192.168.0.147:8766/gpu-present-check
+> chmod 755 gpu-present-check
+> sha256sum gpu-present-check module.so /opt/indigo-mesa/ad06de32d309/lib/libgal
+lium-26.2.3.so
+> python3 trial.py --module module.so --sha256 72658e1a8731ba14d486bbf1f35570315
+21103ec1113ff6ae7759be8ca7e1d3b
+> sleep 5
+> set +e
+> index=0
+> for geometry in 256x256 400x300 400x300 400x300 800x1280; do
+> su julian -c "DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority GRATE_RES_TRACE=1
+ INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 25 /usr/local/bin/indigo-gpu-
+run /tmp/indigo-dri3/gpu-present-check $geometry > /tmp/dri3-final2-$index.log 2
+>&1"
+> echo GEOMETRY=$geometry INDEX=$index EXIT=$?
+> cat /tmp/dri3-final2-$index.log
+> index=$((index+1))
+> done
+> su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority GRATE_RES_TRA
+CE=1 INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 25 /usr/local/bin/indigo-
+gpu-run /tmp/indigo-dri3/gpu-present-check 400x300 --gpu-readback > /tmp/dri3-fi
+nal2-readback.log 2>&1'"'"'
+> echo READBACK_EXIT=$?
+> cat /tmp/dri3-final2-readback.log
+> su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority INDIGO_MESA_R
+EVISION=ad06de32d309 timeout -s KILL 15 /usr/local/bin/indigo-gpu-run glxinfo -B
+ > /tmp/dri3-final2-glx.log 2>&1'"'"'
+> echo GLX_EXIT=$?
+> cat /tmp/dri3-final2-glx.log
+> su julian -c '"'"'INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 35 /usr/lo
+cal/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/fptest > /tmp/dri3-fina
+l2-fptest-hw.log 2>&1'"'"'
+> echo FP_HW_EXIT=$?
+> su julian -c '"'"'LIBGL_ALWAYS_SOFTWARE=1 GBM_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER
+=softpipe INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 35 /usr/local/bin/in
+digo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/fptest > /tmp/dri3-final2-fptest-
+cpu.log 2>&1'"'"'
+> echo FP_CPU_EXIT=$?
+> cp /var/log/Xorg.0.log /tmp/dri3-final2-xorg.log
+> echo DRI3_FINAL2_DONE
+> '
+f47fdb842a2fac81759dc9eb7c091fe7343a4014c831a9632974cc8129a18277  gpu-present-check
+72658e1a8731ba14d486bbf1f3557031521103ec1113ff6ae7759be8ca7e1d3b  module.so
+4f15e3d2837c312bca89b3c1ece10cf6db1b926b596c5e64ef74487f453283b2  /opt/indigo-mesa/ad06de32d309/lib/libgallium-26.2.3.so
+Trial token=2b5783204d4c4559b7b9a19969a853eb; automatic restore in 180 seconds
+ * Stopping Display Manager ... [ ok ]
+ * Starting Display Manager ... [ ok ]
+GEOMETRY=256x256 INDEX=0 EXIT=0
+grate: RES  256x256  bind=0x18000a pitch=1024   rows=256   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=256x256
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+GEOMETRY=400x300 INDEX=1 EXIT=0
+grate: RES  400x300  bind=0x18000a pitch=1600   rows=300   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=400x300
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+GEOMETRY=400x300 INDEX=2 EXIT=0
+grate: RES  400x300  bind=0x18000a pitch=1600   rows=300   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=400x300
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+GEOMETRY=400x300 INDEX=3 EXIT=0
+grate: RES  400x300  bind=0x18000a pitch=1600   rows=300   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=400x300
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+GEOMETRY=800x1280 INDEX=4 EXIT=0
+grate: RES  800x1280 bind=0x18000a pitch=3200   rows=1280  fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=800x1280
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+READBACK_EXIT=0
+grate: RES  400x300  bind=0x18000a pitch=1600   rows=300   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=400x300
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 GPU_bottom_rgba=255,0,0,255
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 GPU_bottom_rgba=0,255,0,255
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 GPU_bottom_rgba=127,0,127,255
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+GLX_EXIT=0
+name of display: :0
+display: :0  screen: 0
+direct rendering: Yes
+Extended renderer info (GLX_MESA_query_renderer):
+    Vendor: Grate (0x10de)
+    Device: Tegra (0xffffffff)
+    Version: 26.2.3
+    Accelerated: yes
+    Video memory: 0MB
+    Unified memory: yes
+    Preferred profile: compat (0x2)
+    Max core profile version: 0.0
+    Max compat profile version: 2.0
+    Max GLES1 profile version: 1.1
+    Max GLES[23] profile version: 2.0
+OpenGL vendor string: Grate
+OpenGL renderer string: Tegra
+OpenGL version string: 2.0 Mesa 26.2.3
+OpenGL shading language version string: 1.20
+
+OpenGL ES profile version string: OpenGL ES 2.0 Mesa 26.2.3
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 1.0.16
+
+FP_HW_EXIT=0
+FP_CPU_EXIT=0
+DRI3_FINAL2_DONE
+~ # [6n
+Captured 6864 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T134405Z.txt

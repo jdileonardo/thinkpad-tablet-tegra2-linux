@@ -1,0 +1,72 @@
+
+~ # [6nsh -c 'set -e
+> cd /tmp/indigo-dri3
+> wget -q -O gpu-present-check http://192.168.0.147:8766/gpu-present-check
+> chmod 755 gpu-present-check
+> sha256sum gpu-present-check module.so
+> python3 trial.py --module module.so --sha256 72658e1a8731ba14d486bbf1f35570315
+21103ec1113ff6ae7759be8ca7e1d3b
+> sleep 5
+> DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority xrandr --current | head -7
+> set +e
+> for geometry in 256x256 400x300 800x1280; do
+> su julian -c "DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority GRATE_RES_TRACE=1
+ INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 25 /usr/local/bin/indigo-gpu-
+run /tmp/indigo-dri3/gpu-present-check $geometry > /tmp/dri3-final-$geometry.log
+ 2>&1"
+> echo GEOMETRY=$geometry EXIT=$?
+> cat /tmp/dri3-final-$geometry.log
+> done
+> cp /var/log/Xorg.0.log /tmp/dri3-final-xorg.log
+> cat /proc/uptime
+> grep Cma /proc/meminfo
+> echo DRI3_FINAL_TRIAL_DONE
+> '
+26c570bbf82d4c00628551960eb00de32eac339c53c57cfad5076f5eeb2364cf  gpu-present-check
+72658e1a8731ba14d486bbf1f3557031521103ec1113ff6ae7759be8ca7e1d3b  module.so
+Trial token=7e82c81565f546648f94437541b78d9d; automatic restore in 180 seconds
+ * Stopping Display Manager ... [ ok ]
+ * Starting Display Manager ... [ ok ]
+Screen 0: minimum 320 x 200, current 800 x 1280, maximum 4096 x 4096
+HDMI-0 disconnected primary (normal left inverted right x axis y axis)
+Unknown-0 connected 800x1280+0+0 left (normal left inverted right x axis y axis) 0mm x 0mm
+   1280x800      60.33*+
+GEOMETRY=256x256 EXIT=0
+grate: RES  256x256  bind=0x18000a pitch=1024   rows=256   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=256x256
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+GEOMETRY=400x300 EXIT=1
+grate: RES  400x300  bind=0x18000a pitch=1600   rows=300   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=400x300
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=0,255,0 expected=128,0,128 FAIL
+presentation_check=FAIL failures=1
+GEOMETRY=800x1280 EXIT=0
+grate: RES  800x1280 bind=0x18000a pitch=3200   rows=1280  fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=800x1280
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+60220.15 111358.60
+CmaTotal:          65536 kB
+CmaFree:            8528 kB
+DRI3_FINAL_TRIAL_DONE
+~ # [6n
+Captured 3340 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T133847Z.txt

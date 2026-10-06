@@ -6,5 +6,6 @@ tools/*
 !tools/Dockerfile.nura
 !tools/Dockerfile.pmbootstrap
 !tools/Dockerfile.mesa
+!tools/Dockerfile.opentegra
 build/
 __pycache__/

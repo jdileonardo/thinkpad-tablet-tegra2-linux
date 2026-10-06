@@ -1,0 +1,84 @@
+
+~ # [6nsh -c 'set -e
+> cd /tmp/indigo-dri3
+> python3 trial.py --module module.so --sha256 9c3c2e33783762284745432c2678237fe
+29d1701c1cc8f531e38a326557cc713
+> sleep 5
+> xpid=$(pidof Xorg)
+> echo XORG_PID=$xpid
+> gdb --batch -p "$xpid" -ex '"'"'set pagination off'"'"' -ex '"'"'handle SIGPIP
+E nostop noprint pass'"'"' -ex '"'"'handle SIGUSR1 nostop noprint pass'"'"' -ex 
+'"'"'continue'"'"' -ex '"'"'thread apply all bt'"'"' -ex '"'"'info registers'"'"
+' -ex '"'"'x/8i $lr-16'"'"' -ex '"'"'detach'"'"' > /tmp/dri3-gdb.log 2>&1 < /dev
+/null &
+> echo GDB_PID=$!
+> sleep 3
+> set +e
+> su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority GRATE_RES_TRA
+CE=1 INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 20 /usr/local/bin/indigo-
+gpu-run /tmp/indigo-dri3/gpu-present-check > /tmp/dri3-gdb-present.log 2>&1'"'"'
+> echo PRESENT_EXIT=$?
+> cat /tmp/dri3-gdb.log
+> cat /tmp/dri3-gdb-present.log
+> echo GDB_TRIAL_DONE
+> '
+Trial token=c960e84cf2a146aeba0abf64ace9882c; automatic restore in 180 seconds
+ * Stopping Display Manager ... [ ok ]
+ * Starting Display Manager ... [ ok ]
+XORG_PID=30128
+GDB_PID=30359
+PRESENT_EXIT=1
+[New LWP 30131]
+__cp_end () at src/thread/arm/syscall_cp.s:25
+
+warning: 25	src/thread/arm/syscall_cp.s: No such file or directory
+
+Thread 1 "Xorg" received signal SIGSEGV, Segmentation fault.
+0xabbf1dac in drm_tegra_bo_free () from /opt/indigo-xorg/dri3/lib/xorg/modules/drivers/opentegra_drv.so
+
+Thread 2 (LWP 30131 "InputThread"):
+#0  __cp_end () at src/thread/arm/syscall_cp.s:25
+#1  0xb6f63f3a in __syscall_cp_c (nr=8, u=<optimized out>, v=<optimized out>, w=<optimized out>, x=-1423481472, y=0, z=-1) at src/thread/pthread_cancel.c:33
+#2  0x00000008 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 1 (LWP 30128 "Xorg"):
+#0  0xabbf1dac in drm_tegra_bo_free () from /opt/indigo-xorg/dri3/lib/xorg/modules/drivers/opentegra_drv.so
+#1  0xabbf2f60 in drm_tegra_bo_from_dmabuf () from /opt/indigo-xorg/dri3/lib/xorg/modules/drivers/opentegra_drv.so
+#2  0xabbea974 in TegraDRI3PixmapFromFD () from /opt/indigo-xorg/dri3/lib/xorg/modules/drivers/opentegra_drv.so
+#3  0x00544e3a in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+r0             0x0                 0
+r1             0x0                 0
+r2             0x0                 0
+r3             0x0                 0
+r4             0xab515e60          2874236512
+r5             0x0                 0
+r6             0xab515e6c          2874236524
+r7             0x0                 0
+r8             0xbefe2ba8          3204328360
+r9             0xabba8440          2881127488
+r10            0x40000             262144
+r11            0x0                 0
+r12            0xc                 12
+sp             0xbefe2ba8          0xbefe2ba8
+lr             0xabbf2f60          -1413533856
+pc             0xabbf1dac          0xabbf1dac <drm_tegra_bo_free+152>
+cpsr           0x10                16
+fpscr          0x80000010          -2147483632
+   0xabbf2f50:	cmp	r4, #0
+   0xabbf2f54:	beq	0xabbf2ff4 <drm_tegra_bo_from_dmabuf+500>
+   0xabbf2f58:	mov	r0, r8
+   0xabbf2f5c:	bl	0xabbf1d14 <drm_tegra_bo_free>
+   0xabbf2f60:	rsb	r7, r4, #0
+   0xabbf2f64:	mov	r6, #0
+   0xabbf2f68:	b	0xabbf2e90 <drm_tegra_bo_from_dmabuf+144>
+   0xabbf2f6c:	ldr	r6, [sp, #12]
+[Inferior 1 (process 30128) detached]
+grate: RES  256x256  bind=0x18000a pitch=1024   rows=256   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4
+grate: RES 1048576x1    bind=0x70    pitch=1048576 rows=1     fmt=r8_unorm
+X connection to :0 broken (explicit kill or server shutdown).
+GDB_TRIAL_DONE
+~ # [6n
+Captured 3703 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T132914Z.txt

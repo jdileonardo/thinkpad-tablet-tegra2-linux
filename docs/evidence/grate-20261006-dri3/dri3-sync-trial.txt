@@ -1,0 +1,39 @@
+
+~ # [6nsh -c 'set -e
+> cd /tmp/indigo-dri3
+> wget -q -O module.so http://192.168.0.147:8766/opentegra-dri3_drv.so
+> wget -q -O gpu-present-check http://192.168.0.147:8766/gpu-present-check
+> chmod 755 gpu-present-check
+> sha256sum module.so gpu-present-check
+> python3 trial.py --module module.so --sha256 72658e1a8731ba14d486bbf1f35570315
+21103ec1113ff6ae7759be8ca7e1d3b
+> sleep 5
+> set +e
+> su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority GRATE_RES_TRA
+CE=1 INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 20 /usr/local/bin/indigo-
+gpu-run /tmp/indigo-dri3/gpu-present-check > /tmp/dri3-sync-present.log 2>&1'"'"
+'
+> echo PRESENT_EXIT=$?
+> cat /tmp/dri3-sync-present.log
+> cp /var/log/Xorg.0.log /tmp/dri3-sync-xorg.log
+> echo SYNC_TRIAL_DONE
+> '
+72658e1a8731ba14d486bbf1f3557031521103ec1113ff6ae7759be8ca7e1d3b  module.so
+6d7c0896fd327f73e434b1ece75b3db6fbcb75ee6f554257ddacd38e25acb439  gpu-present-check
+Trial token=f1a62c90004b499087585686f0e49888; automatic restore in 180 seconds
+ * Stopping Display Manager ... [ ok ]
+ * Starting Display Manager ... [ ok ]
+PRESENT_EXIT=0
+grate: RES  256x256  bind=0x18000a pitch=1024   rows=256   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+SYNC_TRIAL_DONE
+~ # [6n
+Captured 1693 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T133305Z.txt

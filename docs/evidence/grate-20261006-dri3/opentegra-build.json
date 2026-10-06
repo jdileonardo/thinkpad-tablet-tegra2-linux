@@ -1,0 +1,16 @@
+{
+  "source_commit": "f78958d37c80b22de66f41167ec39339035f43d0",
+  "source_diff_sha256": "e31d3f4dbf28a11d451e3cc650ef22057c794a8b5ee1ae063352916d2eee97aa",
+  "patches": {
+    "0001-add-linear-dri3-and-present-copy-path.patch": "e31d3f4dbf28a11d451e3cc650ef22057c794a8b5ee1ae063352916d2eee97aa"
+  },
+  "module_sha256": "72658e1a8731ba14d486bbf1f3557031521103ec1113ff6ae7759be8ca7e1d3b",
+  "probe_sha256": "f47fdb842a2fac81759dc9eb7c091fe7343a4014c831a9632974cc8129a18277",
+  "probe_source_sha256": "5d98793acc47fa6598fde4ec290c93e350895d2390fb35dba7ac0a99d047a362",
+  "builder_sha256": "26358be0a597b3321424f4b187d9637634cabe50aacbabf17a24881e59ea3f2e",
+  "dockerfile_sha256": "f068f2e700728488f1a547f9f755ad4987b65d2fd68d1127c410951afdd0e62c",
+  "sdk_package_database_sha256": "e7ed6a989d371456f09d85342fef8f0235dd5920a20e00dcc225eeaa91685e73",
+  "compiler_flags": "-O2 -march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=hard",
+  "full_dependency_pinning": false,
+  "presentation": "DRI3 v1 linear buffers and Present copy with fake vblank; no page flips"
+}

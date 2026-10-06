@@ -1,0 +1,21 @@
+
+~ # [6nps -ef | grep -E "Xorg|xfce4-session"; su julian -c "DISPLAY=:0 XAUTHORITY=/
+home/julian/.Xauthority xrandr --current"; grep -E "XINPUT: Adding|EXA initializ
+ed|Loading.*opentegra_drv" /var/log/Xorg.0.log; test ! -e /etc/lightdm/lightdm.c
+onf.d/99-indigo-dri3-trial.conf && echo ORIGINAL_DRIVER_SELECTED
+root     16502 16489  4 09:47 tty7     00:00:03 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+julian   16541 16522  3 09:47 ?        00:00:02 xfce4-session
+julian   16565     1  0 09:47 ?        00:00:00 /usr/sbin/dbus-launch --sh-syntax --exit-with-session xfce4-session
+root     17894  1709  0 09:48 ttyGS0   00:00:00 grep -E Xorg|xfce4-session
+Screen 0: minimum 320 x 200, current 800 x 1280, maximum 4096 x 4096
+HDMI-0 disconnected (normal left inverted right x axis y axis)
+Unknown-0 connected 800x1280+0+0 left (normal left inverted right x axis y axis) 0mm x 0mm
+   1280x800      60.33*+
+[ 60729.921] (II) Loading /usr/lib/xorg/modules/drivers/opentegra_drv.so
+[ 60729.992] (II) opentegra(0): EXA initialized
+[ 60730.510] (II) XINPUT: Adding extended input device "N-Trig Indigo Touchscreen" (type: TOUCHSCREEN, id 6)
+[ 60730.570] (II) XINPUT: Adding extended input device "N-Trig Indigo Pen" (type: TABLET, id 7)
+[ 60730.590] (II) XINPUT: Adding extended input device "gpio-keys" (type: KEYBOARD, id 8)
+ORIGINAL_DRIVER_SELECTED
+~ # [6n
+Captured 1427 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T134826Z.txt

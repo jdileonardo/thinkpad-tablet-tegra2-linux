@@ -1,0 +1,61 @@
+
+~ # [6npython3 /opt/indigo-xorg/dri3/trial.py --restore 0d76457439054e49950c4c77ab9
+8b7bf; test ! -e /etc/lightdm/lightdm.conf.d/99-indigo-dri3-trial.conf && echo O
+RIGINAL_DRIVER_SELECTED; uname -r; cat /proc/uptime; grep Cma /proc/meminfo; df 
+/; ip -4 addr show wlan0; ip route; ping -c 1 -W 2 192.168.0.147; sha256sum /opt
+/indigo-mesa/ad06de32d309/lib/libgallium-26.2.3.so /opt/indigo-mesa/ad06de32d309
+/share/indigo-build.json /opt/indigo-xorg/dri3/lib/xorg/modules/drivers/opentegr
+a_drv.so; DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority xrandr --current | head
+ -7; grep -E "N-Trig|gpio-keys" /proc/bus/input/devices; ps -ef | grep -E "Xorg|
+gdb|gpu-present"; dmesg | tail -15
+ * Stopping Display Manager ... [ ok ]
+ * Starting Display Manager ... [ ok ]
+Original Xorg module path restored
+ORIGINAL_DRIVER_SELECTED
+7.0.1-nura-indigo-ram
+60729.69 112067.02
+CmaTotal:          65536 kB
+CmaFree:           54028 kB
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/mmcblk0p1        61480156   1192968  60270804   2% /
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.174/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 6081sec preferred_lft 6081sec
+default via 192.168.0.1 dev wlan0 proto dhcp src 192.168.0.174 metric 600 
+192.168.0.0/24 dev wlan0 proto kernel scope link src 192.168.0.174 metric 600 
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=43.295 ms
+
+--- 192.168.0.147 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 43.295/43.295/43.295 ms
+4f15e3d2837c312bca89b3c1ece10cf6db1b926b596c5e64ef74487f453283b2  /opt/indigo-mesa/ad06de32d309/lib/libgallium-26.2.3.so
+6bbe831ddb1f7242da647e09b33c977e8f9a8f8076468fa1bf9cf3c87a560d55  /opt/indigo-mesa/ad06de32d309/share/indigo-build.json
+72658e1a8731ba14d486bbf1f3557031521103ec1113ff6ae7759be8ca7e1d3b  /opt/indigo-xorg/dri3/lib/xorg/modules/drivers/opentegra_drv.so
+Authorization required, but no authorization protocol specified
+
+Can't open display :0
+N: Name="gpio-keys"
+P: Phys=gpio-keys/input0
+S: Sysfs=/devices/soc0/gpio-keys/input/input2
+N: Name="N-Trig Indigo Touchscreen"
+N: Name="N-Trig Indigo Pen"
+root     16502 16489 50 09:47 tty7     00:00:00 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+root     16531  1709  0 09:47 ttyGS0   00:00:00 grep -E Xorg|gdb|gpu-present
+[21190.420283] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.991801] drm drm: failed to allocate buffer of size 5636096: -12
+[22555.721619] tegra-mc 7000f000.memory-controller: fdcdrd: read @0x666e1050: EMEM address decode error (EMEM decode error)
+[22555.889958] tegra-mc 7000f000.memory-controller: fdcdrd: read @0x666e1070: EMEM address decode error (EMEM decode error)
+[24996.022520] drm drm: failed to allocate buffer of size 132710400: -12
+[24996.100443] Xorg (1603): drop_caches: 1
+[24996.100598] drm drm: failed to allocate buffer of size 132710400: -12
+[24996.100815] drm drm: failed to allocate buffer of size 132710400: -12
+[58316.912911] drm drm: failed to allocate buffer of size 132710400: -12
+[58316.981307] Xorg (1603): drop_caches: 1
+[58316.981454] drm drm: failed to allocate buffer of size 132710400: -12
+[58316.981659] drm drm: failed to allocate buffer of size 132710400: -12
+[59769.274437] [drm:tegra_drm_copy_and_patch_cmdstream] *ERROR* invalid class id 0x0 (process:gpu-present-che pid:891)
+[59769.496227] [drm:tegra_drm_copy_and_patch_cmdstream] *ERROR* invalid class id 0x0 (process:gpu-present-che pid:891)
+[59769.759795] [drm:tegra_drm_copy_and_patch_cmdstream] *ERROR* invalid class id 0x0 (process:gpu-present-che pid:891)
+~ # [6n
+Captured 3868 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T134715Z.txt

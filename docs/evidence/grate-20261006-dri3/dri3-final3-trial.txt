@@ -1,0 +1,33 @@
+
+~ # [6nsh -c 'set -e
+> cd /tmp/indigo-dri3
+> python3 trial.py --module module.so --sha256 72658e1a8731ba14d486bbf1f35570315
+21103ec1113ff6ae7759be8ca7e1d3b
+> sleep 5
+> set +e
+> su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority GRATE_RES_TRA
+CE=1 INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 25 /usr/local/bin/indigo-
+gpu-run /tmp/indigo-dri3/gpu-present-check 400x301 > /tmp/dri3-final3-unaligned.
+log 2>&1'"'"'
+> echo UNALIGNED_EXIT=$?
+> cat /tmp/dri3-final3-unaligned.log
+> cp /var/log/Xorg.0.log /tmp/dri3-final3-xorg.log
+> echo DRI3_FINAL3_DONE
+> '
+Trial token=0d76457439054e49950c4c77ab98b7bf; automatic restore in 180 seconds
+ * Stopping Display Manager ... [ ok ]
+ * Starting Display Manager ... [ ok ]
+UNALIGNED_EXIT=0
+grate: RES  400x301  bind=0x18000a pitch=1600   rows=304   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=400x301
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0
+DRI3_FINAL3_DONE
+~ # [6n
+Captured 1348 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T134554Z.txt

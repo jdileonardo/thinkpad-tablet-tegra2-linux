@@ -1,0 +1,41 @@
+
+~ # [6nsh -c 'set -e
+> cd /tmp/indigo-dri3
+> wget -q -O module.so http://192.168.0.147:8766/opentegra-dri3_drv.so
+> python3 trial.py --module module.so --sha256 989b1810c78313a249470fb4d26835e9f
+9fdf54c10a8bf1f766c6a83deda4bee
+> sleep 5
+> set +e
+> su julian -c '"'"'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority GRATE_RES_TRA
+CE=1 INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 20 /usr/local/bin/indigo-
+gpu-run /tmp/indigo-dri3/gpu-present-check > /tmp/dri3-fixed-import-present.log 
+2>&1'"'"'
+> echo PRESENT_EXIT=$?
+> cat /tmp/dri3-fixed-import-present.log
+> cp /var/log/Xorg.0.log /tmp/dri3-fixed-import-xorg.log
+> cp /var/log/Xorg.0.log.old /tmp/dri3-fixed-import-xorg-old.log
+> cp /var/log/lightdm/lightdm.log /tmp/dri3-fixed-import-lightdm.log
+> echo FIXED_IMPORT_TRIAL_DONE
+> '
+Trial token=4f99302e251e465389b37be34cf00bdb; automatic restore in 180 seconds
+ * Stopping Display Manager ... [ ok ]
+ * Starting Display Manager ... [ ok ]
+PRESENT_EXIT=1
+grate: RES  256x256  bind=0x18000a pitch=1024   rows=256   fmt=b8g8r8x8_unorm
+MESA: error: dri3_alloc_render_buffer:1659 xcb_dri3_fence_from_fd failed
+MESA: error: X error: 8
+renderer=Tegra EGL=1.4
+grate: RES 1048576x1    bind=0x70    pitch=1048576 rows=1     fmt=r8_unorm
+MESA: error: drm_tegra_job_submit() failed -22
+frame=0 top Xorg_rgb=0,0,0 expected=0,0,255 FAIL
+frame=0 bottom Xorg_rgb=0,0,0 expected=255,0,0 FAIL
+MESA: error: drm_tegra_job_submit() failed -22
+frame=1 top Xorg_rgb=0,0,0 expected=0,0,255 FAIL
+frame=1 bottom Xorg_rgb=0,0,0 expected=0,255,0 FAIL
+MESA: error: drm_tegra_job_submit() failed -22
+frame=2 top Xorg_rgb=0,0,0 expected=0,0,255 FAIL
+frame=2 bottom Xorg_rgb=0,0,0 expected=128,0,128 FAIL
+presentation_check=FAIL failures=6
+FIXED_IMPORT_TRIAL_DONE
+~ # [6n
+Captured 1792 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T133117Z.txt

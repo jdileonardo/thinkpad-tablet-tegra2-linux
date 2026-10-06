@@ -1,0 +1,22 @@
+diff --git a/src/gallium/drivers/grate/grate_resource.c b/src/gallium/drivers/grate/grate_resource.c
+index 25e3510..790266c 100644
+--- a/src/gallium/drivers/grate/grate_resource.c
++++ b/src/gallium/drivers/grate/grate_resource.c
+@@ -322,6 +322,17 @@ grate_screen_resource_create(struct pipe_screen *pscreen,
+          flags = DRM_TEGRA_GEM_CREATE_BOTTOM_UP;
+    }
+ 
++   /* Shared RGB buffers must back the full bottom block used by EXA's
++    * 16-byte block operations. Keep the visible image extent unchanged.
++    */
++   if ((template->bind & PIPE_BIND_SHARED) &&
++       (template->target == PIPE_TEXTURE_2D ||
++        template->target == PIPE_TEXTURE_RECT)) {
++      unsigned bytes = util_format_get_blocksize(template->format);
++      if (bytes == 2 || bytes == 4)
++         height = align(height, 16u / bytes);
++   }
++
+    if (getenv("GRATE_RES_TRACE"))
+       fprintf(stderr, "grate: RES %4ux%-4u bind=0x%-5x pitch=%-6u rows=%-5u fmt=%s\n",
+               template->width0, template->height0, template->bind,

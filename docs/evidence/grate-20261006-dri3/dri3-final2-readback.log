@@ -1,0 +1,13 @@
+grate: RES  400x300  bind=0x18000a pitch=1600   rows=300   fmt=b8g8r8x8_unorm
+renderer=Tegra EGL=1.4 size=400x300
+grate: RES   48x1    bind=0x10    pitch=48     rows=1     fmt=r8_unorm
+frame=0 GPU_bottom_rgba=255,0,0,255
+frame=0 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=0 bottom Xorg_rgb=255,0,0 expected=255,0,0 PASS
+frame=1 GPU_bottom_rgba=0,255,0,255
+frame=1 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=1 bottom Xorg_rgb=0,255,0 expected=0,255,0 PASS
+frame=2 GPU_bottom_rgba=127,0,127,255
+frame=2 top Xorg_rgb=0,0,255 expected=0,0,255 PASS
+frame=2 bottom Xorg_rgb=127,0,127 expected=128,0,128 PASS
+presentation_check=PASS failures=0

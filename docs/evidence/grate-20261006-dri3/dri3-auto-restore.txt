@@ -1,0 +1,11 @@
+
+~ # [6ncat /tmp/indigo-dri3-restore.log; test ! -e /etc/lightdm/lightdm.conf.d/99-i
+ndigo-dri3-trial.conf && echo ORIGINAL_DRIVER_SELECTED; ps -ef | grep Xorg
+ * Stopping Display Manager ... [ ok ]
+ * Starting Display Manager ... [ ok ]
+Original Xorg module path restored
+ORIGINAL_DRIVER_SELECTED
+root      5568  5555  5 09:35 tty7     00:00:02 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+root      6822  1709  0 09:36 ttyGS0   00:00:00 grep Xorg
+~ # [6n
+Captured 517 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T133658Z.txt

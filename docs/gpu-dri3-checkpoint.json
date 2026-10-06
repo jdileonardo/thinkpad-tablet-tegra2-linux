@@ -1,0 +1,125 @@
+{
+  "date_utc": "2026-10-06",
+  "device": "ThinkPad Tablet Indigo Tegra20",
+  "kernel": "7.0.1-nura-indigo-ram",
+  "mesa_build": {
+    "source_commit": "ad06de32d309506c48e4169a15f56e2f95e9712d",
+    "source_diff_sha256": "a06fdba8dc209b172bb1e40435fde61c6ab4c4b02def321a0ae6cdd167852bdd",
+    "patches": {
+      "0001-adapt-nir-grate-to-tegra20-legacy-abi.patch": "8e2db9afcd09f5f8435c939de3f3987b67295b3e4fc047a8bebea7b1da3deae0",
+      "0002-tegra20-pad-small-rgba-texture-rows.patch": "8625ba3de40a0fc29f2b65d83aa4a18dc1e8f0e76195cb42ca6392b719757523",
+      "0003-emit-nir-fragment-special-functions.patch": "2a40953d5c90f2fd3b5a99ea73107a239d8ba8762dda9972447422018b17528b",
+      "0004-limit-pixel-sequencer-output-window.patch": "9af44c5339e8b743a6cb93c55bae1d2153844447ce02bf600c6628ea5f2a7e16",
+      "0005-add-texture-cache-diagnostic-toggle.patch": "5b45126943d8400675f4167e5d155647fe47dc031c259c181163cca951f1c0e8",
+      "0006-add-destination-read-diagnostic.patch": "76bee5e9d62c1661381b8426a9f16d3e358b4b9337a6a9ab217213486a017b89",
+      "0007-add-destination-fetch-control-diagnostic.patch": "056a6c61f8e50ee719c525738e44fcfccf461ec33f623f47c031743a61e523b0",
+      "0008-preserve-full-pixel-sequencer-control.patch": "f458ea6cf52b564742738f7b92453f84fdd0f48f1a15729663b8c5cc0acb33de",
+      "0009-use-tegra20-gart-for-large-offscreen-resources.patch": "6174c8aa13dd6b517d726920de414d67943d1ed8bd2ae037019992da14a39994",
+      "0010-add-color-target-one-diagnostic.patch": "4d2b3af5e2519535f002e13f60d4c8d63241cf0e06ebf208ee6ede58d89020af",
+      "0011-align-destination-read-with-opentegra.patch": "eb575ac92ad8701c33cf87c47024cd308f29f611d8a3a20368fa89106c5ef165",
+      "0012-isolate-destination-read-diagnostic.patch": "13e7f7ec9856a2ceff7d9751622fa4a09e59244bb2b478782e99e649cddcd139",
+      "0013-invalidate-fragment-data-cache-before-draw.patch": "d3f60ea312dbbbfe8bd4f95cc7018ab9339a6490712ba4ea1277591c225629cb",
+      "0014-add-hardware-alpha-over-probe.patch": "1ee606f1e64de9000f410d2811a465bc8f87eac10fdfd124dc2f6093a50e1557",
+      "0015-lower-normal-blend-state-with-cached-nir-variants.patch": "4256280f141cf3d4c1ce78c4998bb2e6fb85814931a65d9f0d972bcbc73ca3dc",
+      "0016-pad-shared-rgb-buffer-bottom-block.patch": "03a4edd31744506786ac3a25a9025d3e50e2dbb79759a722bed71721d75c52a6"
+    },
+    "test_patches": {
+      "sfu-isolation.patch": "e1ec4000313c8830c6b176222e309def64d4950f76d043c693e06bdd0bc1ece0"
+    },
+    "builder_sha256": "15017110578e6d9f9cd46f6d30e960e2f8795289602e2350e9ac622e342e10aa",
+    "patch_applier_sha256": "3c3a9e5d0ba250a6801fd393e74aa1cb1c09e60b4eac0ceb5b2696b461c45c80",
+    "blend_probe_sha256": "d5e30058f2da6dd9992429770703d09bb6f01f1df68aac94b1ccda99df03f8fc",
+    "pixel_probe_sha256": "8ec9a2a4e8b0b878bad7f5388ca69382b0e21935622d22f4cf859988fd03c328",
+    "cross_file_sha256": "436b06b10fdf4b16b38e3327c937e2c6cf1c72f793385bae49a20babe803c4d9",
+    "compiler": "Alpine clang version 23.1.2",
+    "drivers": [
+      "grate",
+      "softpipe"
+    ],
+    "llvm": false,
+    "x11_dri2": false
+  },
+  "opentegra_build": {
+    "source_commit": "f78958d37c80b22de66f41167ec39339035f43d0",
+    "source_diff_sha256": "e31d3f4dbf28a11d451e3cc650ef22057c794a8b5ee1ae063352916d2eee97aa",
+    "patches": {
+      "0001-add-linear-dri3-and-present-copy-path.patch": "e31d3f4dbf28a11d451e3cc650ef22057c794a8b5ee1ae063352916d2eee97aa"
+    },
+    "module_sha256": "72658e1a8731ba14d486bbf1f3557031521103ec1113ff6ae7759be8ca7e1d3b",
+    "probe_sha256": "f47fdb842a2fac81759dc9eb7c091fe7343a4014c831a9632974cc8129a18277",
+    "probe_source_sha256": "5d98793acc47fa6598fde4ec290c93e350895d2390fb35dba7ac0a99d047a362",
+    "builder_sha256": "26358be0a597b3321424f4b187d9637634cabe50aacbabf17a24881e59ea3f2e",
+    "dockerfile_sha256": "f068f2e700728488f1a547f9f755ad4987b65d2fd68d1127c410951afdd0e62c",
+    "sdk_package_database_sha256": "e7ed6a989d371456f09d85342fef8f0235dd5920a20e00dcc225eeaa91685e73",
+    "compiler_flags": "-O2 -march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=hard",
+    "full_dependency_pinning": false,
+    "presentation": "DRI3 v1 linear buffers and Present copy with fake vblank; no page flips"
+  },
+  "mesa_artifact_sha256": "f4b3d5ba640207ef7ed150604fa6d30cf96ef7dfae4742c4c65b6da6dd531768",
+  "gallium_driver_sha256": "4f15e3d2837c312bca89b3c1ece10cf6db1b926b596c5e64ef74487f453283b2",
+  "driver_builder_image_id": "sha256:ea4c1a6efb599a42ce10a5007c5a29ecfcff196913a6551573d809b123d3b59b",
+  "results": {
+    "native_presentation": "PASS: 36 Xorg RGB samples across 6 normal contexts, including 800x1280 and 400x301; 400x300 repeated three times",
+    "instrumented_presentation": "PASS: 6 additional Xorg samples and 3 matching GPU readbacks at 400x300",
+    "glx": "direct rendering Yes; Grate/Tegra; Accelerated yes; OpenGL 2.0 and GLES 2.0",
+    "normal_blend": "1107/1107 against softpipe at tolerance 2",
+    "general_fragment": "331/331 against softpipe at tolerance 10",
+    "sfu_isolation_fragment": "367/367 against softpipe at tolerance 10",
+    "unaligned_shared_buffer": "400x301 visible, 304 rows allocated, presentation PASS",
+    "final_desktop": "original distribution Xorg module path restored; XFCE running; portrait rotation and N-Trig devices enumerated; Wi-Fi ping succeeds"
+  },
+  "earlier_failed_trials": {
+    "import_crash": "fixed DMA-BUF SEEK_CUR errno handling and uninitialized BO lists by reusing drm_tegra_bo_wrap",
+    "shared_fence": "fixed missing miSyncShmScreenInit",
+    "client_vertex_arrays": "valid GLES client arrays produced a 1 MiB staging buffer and kernel invalid class id 0x0 / submit -22; unresolved; final probe uses VBO",
+    "stale_frame": "one earlier 400x300 blended frame retained green; later repeats pass, root cause unproven; padding is not claimed to fix this aligned-height case"
+  },
+  "remaining": [
+    "direct server-pixmap DMA-BUF export round-trip and repeated update validation",
+    "hardware compositor workload and sustained/asynchronous swap testing",
+    "earlier intermittent NPOT texture and stale-frame investigation",
+    "client-array staging/legacy command-stream failure",
+    "native vblank/page flips and larger sharing/memory pressure",
+    "pin complete dependency and container inputs",
+    "integrate private builds into exported SD image and verify fresh boot plus physical touch/rotation/Wi-Fi",
+    "pen with batteries and battery reporting remain follow-up work"
+  ],
+  "scope_limits": {
+    "compositor_verified": false,
+    "physical_touch_retested": false,
+    "sd_reboot_retested": false,
+    "default_system_driver_promoted": false,
+    "full_goal_complete": false
+  },
+  "evidence_sha256": {
+    "dri3-auto-restore.txt": "bcd97e5d3c596aa7f244cdf25252cb309d1295174c00e53d25700e341212baac",
+    "dri3-final-restored-state.txt": "ecfddaa621cc6b3c0f26ad26673f21bc945faa9f100894f89c3f11b28fe9a208",
+    "dri3-final-trial.txt": "6de534056ca439da1387a7c62e5539afc6aa6b3d9858c6f9054648820c1751aa",
+    "dri3-final2-0.log": "fb436fba8e600932975cb642a4f215bd7eb728bbfb4b68298f46ceac30fd5770",
+    "dri3-final2-1.log": "f3e6bcf2f79e698e395d15ae7d69f158a3b51e82fa66cf299a6a5ff6b21aac2c",
+    "dri3-final2-2.log": "f3e6bcf2f79e698e395d15ae7d69f158a3b51e82fa66cf299a6a5ff6b21aac2c",
+    "dri3-final2-3.log": "f3e6bcf2f79e698e395d15ae7d69f158a3b51e82fa66cf299a6a5ff6b21aac2c",
+    "dri3-final2-4.log": "c3d640e7dcf3e29335b9b36f954deecaeb4441c12bda43acc5486160d4e7fba8",
+    "dri3-final2-fptest-comparison.json": "e8b5e3eec5fa35a1146f7bfd9b0ed25608a4fe09f20383dece8e512613b03932",
+    "dri3-final2-fptest-cpu.log": "d7205f31e6bd90e9e2043f1ae5f8036c68cea79515b884dc27c5f0c7c27fee72",
+    "dri3-final2-fptest-hw.log": "b320257c37f33cc739a85dbc94254e38b220fc42c76ab799bf152577cb6988b1",
+    "dri3-final2-glx.log": "61284918a04fb557682a539d35deea48e9e3f15a054de098eb6543c476415510",
+    "dri3-final2-readback.log": "b72c92e4208ceea3fa0877e8d5988b568cd211f6b95fc737dbddfc41e93fb617",
+    "dri3-final2-trial.txt": "bf83c3a9a184bbd624e3e9396c02a22eab96b77973496ad407388cf13edc7c28",
+    "dri3-final3-sfu-comparison.json": "5c19742575bd488b060c4c3e56d53c1105f1069c37c7990fd62f06a7967a1fd9",
+    "dri3-final3-sfu-cpu.log": "5cc5d922f3fd2e88cbbb242f51bb42e8a4ab34a3d695b056f70b4ff3f0ae7370",
+    "dri3-final3-sfu-hw.log": "dc3c1a6f147d63702d1ce9bf7b2e08b164943a58ff6fe0ce8ab7a4659f88ac4a",
+    "dri3-final3-trial.txt": "f98f296b98535a8fc7a1a10bf0cf750bc7f95cc187ad1efd7e6c9a7811e07611",
+    "dri3-final3-unaligned.log": "97dbce358c14e7ab39cea1a43693a9b212b7799012b97e2960c0c49f3c85eeac",
+    "dri3-final3-xorg.log": "a9786c7989657909c6ccb3d63fb1b906e96433cb283006f860861295f5c12d1d",
+    "dri3-fixed-import-trial.txt": "5bce1cfe86fe2f35b2ba30a39af1894f779add39cf18b9809dbe49961dec9af5",
+    "dri3-gdb-trial.txt": "4d5e8ea34db59346bae62f2d9a7db5d4a2c28d7c2f6f1b4a25b8428d6394f664",
+    "dri3-gdb.log": "4230fa9f77263724609d44f246a4aee0c963a393d832422636e05df9bf2b7849",
+    "dri3-rect-blend-comparison.json": "9cbf80f3a37a0b9afaa75313d61177097280cdec631d7c85e18063e671834856",
+    "dri3-rect-install.txt": "ba64b8faec1f5f3f3817485dbe1d7c64300dffc5e89b1a306500355d5b838340",
+    "dri3-restored-desktop-ready.txt": "384c564b3f857f6bdfd0637b1425d1be6502ba4360d63139f7b498ef0564b0ae",
+    "dri3-sync-trial.txt": "d1cb76e5fb2d840a2c6fe22053a81b0779187ce9c810fce88752599bce8a1df6",
+    "mesa-build.json": "6bbe831ddb1f7242da647e09b33c977e8f9a8f8076468fa1bf9cf3c87a560d55",
+    "opentegra-build.json": "ae456f4cb6665162ce4cfee3a20a389035ed7c380936e9d7b5eca9f409ff4988"
+  }
+}
