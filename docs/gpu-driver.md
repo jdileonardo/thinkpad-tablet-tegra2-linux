@@ -42,6 +42,34 @@ reporting, null depth/disabled render-target relocations, the required
 access in constant-only fragment compilation. GDB traced the teardown crash to a
 null callback in `st_destroy_context`; Mesa's standard release helper fixes it.
 
+## Reuse candidates found after bring-up
+
+A follow-up source audit on 2026-10-05 found a substantially more developed
+Libre Tegra branch, `grate-tmp`, at
+`ad06de32d309506c48e4169a15f56e2f95e9712d`. Its `fp/nir.c` and `vp/nir.c`
+implement NIR shader translation, with fragment arithmetic beyond MOV and
+embedded constants. `grate_program.c` includes vertex immediate upload;
+`grate_state.c` includes sampler/view tracking and texture descriptor emission.
+Its blend-state handler still explicitly leaves rendering opaque, and the
+texture code records unresolved mipmap behavior.
+
+This is a **source-inspected reuse candidate**, not a tablet-tested replacement.
+The earlier assessment of substantial missing implementation applies to the
+installed `grate-25.1.9` branch; it does not establish that those implementations
+must be written from scratch. Evaluate the newer branch's build and kernel ABI,
+then repeat exact pixel tests before selecting it or transplanting its code.
+Keep the known working build as a reference during that evaluation.
+
+The original GitHub `grate` and `22.2.4` branches still have MOV-only fragment
+TGSI translation and sampler/blend stubs. Libre Tegra's
+`grate-wip-conversion` and `grate-wip-vertex-nir` also retain MOV-only fragment
+TGSI translation at the inspected heads. This was a targeted source comparison,
+not a complete audit of every historical commit or a stability assessment.
+Downloaded source snapshots are under `diagnostics/gpu-audit-*`.
+
+The current source candidate is at
+https://codeberg.org/libre-tegra/mesa/src/commit/ad06de32d309506c48e4169a15f56e2f95e9712d/src/gallium/drivers/grate.
+
 ## Building
 
 ```sh
