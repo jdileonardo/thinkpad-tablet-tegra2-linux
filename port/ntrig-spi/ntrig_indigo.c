@@ -10,6 +10,7 @@
 #include <linux/input/mt.h>
 #include <linux/input/touchscreen.h>
 #include <linux/interrupt.h>
+#include <linux/jiffies.h>
 #include <linux/module.h>
 #include <linux/mutex.h>
 #include <linux/of.h>
@@ -32,6 +33,9 @@ struct ntrig {
 	bool stopping, irq_masked;
 	unsigned int transfer_len, prefix, have, expected, ticks;
 	u64 transfers, packets, invalid, mt_reports, pen_reports, errors;
+	u64 watchdog_packets, resets;
+	unsigned int watchdog_misses;
+	unsigned long last_reset;
 	u16 last_x, last_y, last_pressure;
 	u8 last_flags, last[32];
 	u8 frame[NTRIG_MAX_MSG];
@@ -199,6 +203,17 @@ static void ntrig_alive(struct ntrig *n)
 	ntrig_transfer(n);
 }
 
+/* Stock watchdog uses this read-only command to distinguish idle from failure. */
+static void ntrig_get_version(struct ntrig *n)
+{
+	static const u8 version[] = {
+		0xff, 0xff, 0xff, 0xff, 0xa5, 0x5a, 0xe7, 0x7e,
+		2, 14, 0, 0, 0, 0x0c, 0xa1, 1, 0x0c, 3, 0, 1, 0, 8,
+	};
+	memcpy(n->tx, version, sizeof(version));
+	ntrig_transfer(n);
+}
+
 static bool ntrig_drain(struct ntrig *n)
 {
 	unsigned int i;
@@ -209,6 +224,50 @@ static bool ntrig_drain(struct ntrig *n)
 			return true;
 	}
 	return false;
+}
+
+/* Called with lock held. IRQ work and the poller share all transport state. */
+static void ntrig_recover(struct ntrig *n, const char *reason)
+{
+	unsigned int slot;
+
+	if (!n->irq_masked) {
+		disable_irq_nosync(n->spi->irq);
+		n->irq_masked = true;
+	}
+	for (slot = 0; slot < NTRIG_CONTACTS; slot++) {
+		input_mt_slot(n->touch, slot);
+		input_mt_report_slot_state(n->touch, MT_TOOL_FINGER, false);
+	}
+	input_mt_sync_frame(n->touch);
+	input_sync(n->touch);
+	input_report_key(n->pen, BTN_TOUCH, 0);
+	input_report_key(n->pen, BTN_TOOL_PEN, 0);
+	input_report_key(n->pen, BTN_TOOL_RUBBER, 0);
+	input_report_key(n->pen, BTN_STYLUS, 0);
+	input_report_abs(n->pen, ABS_PRESSURE, 0);
+	input_sync(n->pen);
+	gpiod_set_value_cansleep(n->enable, 0);
+	gpiod_set_value_cansleep(n->power, 0);
+	msleep(50);
+	n->prefix = n->have = n->expected = 0;
+	n->transfer_len = NTRIG_G3;
+	memset(n->tx, 0xff, sizeof(n->tx));
+	memset(n->rx, 0, sizeof(n->rx));
+	gpiod_set_value_cansleep(n->power, 1);
+	msleep(500);
+	gpiod_set_value_cansleep(n->enable, 1);
+	msleep(50);
+	ntrig_alive(n);
+	if (ntrig_drain(n)) {
+		n->irq_masked = false;
+		enable_irq(n->spi->irq);
+	}
+	n->watchdog_packets = n->packets;
+	n->watchdog_misses = 0;
+	n->last_reset = jiffies;
+	n->resets++;
+	dev_warn(&n->spi->dev, "touch controller reset: %s (%llu resets)\n", reason, n->resets);
 }
 
 static irqreturn_t ntrig_irq(int irq, void *data)
@@ -237,8 +296,19 @@ static void ntrig_poll(struct work_struct *work)
 	mutex_lock(&n->lock);
 	if (!n->stopping) {
 		if (++n->ticks >= 10) {
-			ntrig_alive(n);
 			n->ticks = 0;
+			if (n->packets != n->watchdog_packets)
+				n->watchdog_misses = 0;
+			else if (n->watchdog_misses < 3)
+				n->watchdog_misses++;
+			n->watchdog_packets = n->packets;
+			if (n->watchdog_misses >= 3 &&
+			    time_after_eq(jiffies, n->last_reset + msecs_to_jiffies(10000)))
+				ntrig_recover(n, "watchdog timeout");
+			else if (n->watchdog_misses)
+				ntrig_get_version(n);
+			else
+				ntrig_alive(n);
 		}
 		if ((n->irq_masked || gpiod_get_value_cansleep(n->ready) || n->have)
 		    && ntrig_drain(n) && n->irq_masked) {
@@ -256,14 +326,38 @@ static ssize_t stats_show(struct device *dev, struct device_attribute *attr, cha
 	ssize_t count;
 	mutex_lock(&n->lock);
 	count = sysfs_emit(buf,
-		"transfers=%llu packets=%llu invalid=%llu touch=%llu pen=%llu errors=%llu transfer_size=%u ready=%d pen_x=%u pen_y=%u pressure=%u flags=0x%02x last=%*ph rx=%*ph\n",
+		"transfers=%llu packets=%llu invalid=%llu touch=%llu pen=%llu errors=%llu transfer_size=%u ready=%d watchdog_misses=%u resets=%llu pen_x=%u pen_y=%u pressure=%u flags=0x%02x last=%*ph rx=%*ph\n",
 		n->transfers, n->packets, n->invalid, n->mt_reports, n->pen_reports,
 		n->errors, n->transfer_len, gpiod_get_value_cansleep(n->ready),
+		n->watchdog_misses, n->resets,
 		n->last_x, n->last_y, n->last_pressure, n->last_flags, 32, n->last, 48, n->rx);
 	mutex_unlock(&n->lock);
 	return count;
 }
 static DEVICE_ATTR_RO(stats);
+
+/* Administrative recovery without removing input devices or losing rotation. */
+static ssize_t recover_store(struct device *dev, struct device_attribute *attr,
+			     const char *buf, size_t count)
+{
+	struct ntrig *n = dev_get_drvdata(dev);
+	unsigned int value;
+	int err = kstrtouint(buf, 10, &value);
+
+	if (err)
+		return err;
+	if (value != 1)
+		return -EINVAL;
+	mutex_lock(&n->lock);
+	if (n->stopping) {
+		mutex_unlock(&n->lock);
+		return -ESHUTDOWN;
+	}
+	ntrig_recover(n, "administrator request");
+	mutex_unlock(&n->lock);
+	return count;
+}
+static DEVICE_ATTR_WO(recover);
 
 static struct input_dev *ntrig_input(struct ntrig *n, bool pen)
 {
@@ -325,6 +419,7 @@ static int ntrig_probe(struct spi_device *spi)
 	n->transfer_len = NTRIG_G3;
 	memset(n->tx, 0xff, sizeof(n->tx));
 	mutex_init(&n->lock);
+	n->last_reset = jiffies;
 	INIT_DELAYED_WORK(&n->poll, ntrig_poll);
 	spi_set_drvdata(spi, n);
 	n->power = devm_gpiod_get(dev, "power", GPIOD_OUT_LOW);
@@ -361,6 +456,11 @@ static int ntrig_probe(struct spi_device *spi)
 	err = device_create_file(dev, &dev_attr_stats);
 	if (err)
 		return err;
+	err = device_create_file(dev, &dev_attr_recover);
+	if (err) {
+		device_remove_file(dev, &dev_attr_stats);
+		return err;
+	}
 	mutex_lock(&n->lock);
 	memset(n->tx, 0xff, sizeof(n->tx));
 	ntrig_alive(n);
@@ -379,6 +479,7 @@ static void ntrig_remove(struct spi_device *spi)
 	devm_free_irq(&spi->dev, spi->irq, n);
 	cancel_delayed_work_sync(&n->poll);
 	device_remove_file(&spi->dev, &dev_attr_stats);
+	device_remove_file(&spi->dev, &dev_attr_recover);
 }
 
 static const struct of_device_id ntrig_of_match[] = {

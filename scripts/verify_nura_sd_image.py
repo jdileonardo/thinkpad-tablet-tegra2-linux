@@ -65,7 +65,7 @@ def main():
         '/usr/lib/firmware/brcm/brcmfmac4329-sdio.bin': 'build/linux-firmware/brcmfmac4329-sdio.bin',
         '/usr/lib/firmware/brcm/brcmfmac4329-sdio.txt': 'build/stock/firmware/brcmfmac4329-sdio.txt',
     }
-    modules = {'extra/ntrig_indigo.ko': 'build/ntrig-spi/ntrig_indigo.ko',
+    modules = {'extra/ntrig_indigo.ko': manifest.get('ntrig_module_source', 'build/ntrig-spi/ntrig_indigo.ko'),
                'kernel/drivers/input/evdev.ko': 'build/linux-nura/drivers/input/evdev.ko',
                'kernel/drivers/reset/reset-gpio.ko': 'build/linux-nura/drivers/reset/reset-gpio.ko',
                'kernel/drivers/hid/hid-generic.ko': 'build/linux-nura/drivers/hid/hid-generic.ko',

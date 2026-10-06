@@ -1,0 +1,19 @@
+
+~ # [6nmodprobe -r ntrig_indigo && modprobe ntrig_indigo
+~ # sleep 2; su julian -c 'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority /usr/l
+ocal/bin/indigo-rotate restore; DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority x
+input list --short'
+rotation=left; synchronized 1 touch/pen inputs
+⎡ Virtual core pointer                    	id=2	[master pointer  (3)]
+⎜   ↳ Virtual core XTEST pointer              	id=4	[slave  pointer  (2)]
+⎜   ↳ N-Trig Indigo Touchscreen               	id=7	[slave  pointer  (2)]
+⎣ Virtual core keyboard                   	id=3	[master keyboard (2)]
+    ↳ Virtual core XTEST keyboard             	id=5	[slave  keyboard (3)]
+    ↳ gpio-keys                               	id=8	[slave  keyboard (3)]
+    ↳ N-Trig Indigo Pen                       	id=6	[slave  keyboard (3)]
+~ # cat /sys/bus/spi/devices/spi0.0/stats; dmesg | tail -n 3
+transfers=8 packets=4 invalid=0 touch=0 pen=0 errors=0 transfer_size=136 ready=0 pen_x=0 pen_y=0 pressure=0 flags=0x00 last=02 08 00 00 10 06 0a 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 rx=ff ff ff ff a5 5a e7 7e 02 08 00 00 10 06 0a 08 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+[22970.151450] input: N-Trig Indigo Touchscreen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input5
+[22970.151927] input: N-Trig Indigo Pen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input6
+[22970.790945] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+~ # [6n

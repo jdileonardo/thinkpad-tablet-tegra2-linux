@@ -1,0 +1,27 @@
+
+~ # [6ncp /lib/modules/$(uname -r)/extra/ntrig_indigo.ko /tmp/ntrig-pre-watchdog.ko
+; modprobe -r ntrig_indigo && (insmod /tmp/ntrig-watchdog.ko || insmod /tmp/ntri
+g-pre-watchdog.ko)
+~ # sleep 2; su julian -c 'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority /usr/l
+ocal/bin/indigo-rotate restore; DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority x
+input list --short'
+rotation=left; synchronized 1 touch/pen inputs
+⎡ Virtual core pointer                    	id=2	[master pointer  (3)]
+⎜   ↳ Virtual core XTEST pointer              	id=4	[slave  pointer  (2)]
+⎜   ↳ N-Trig Indigo Touchscreen               	id=7	[slave  pointer  (2)]
+⎣ Virtual core keyboard                   	id=3	[master keyboard (2)]
+    ↳ Virtual core XTEST keyboard             	id=5	[slave  keyboard (3)]
+    ↳ gpio-keys                               	id=8	[slave  keyboard (3)]
+    ↳ N-Trig Indigo Pen                       	id=6	[slave  keyboard (3)]
+~ # cat /sys/bus/spi/devices/spi0.0/stats; echo 1 > /sys/bus/spi/devices/spi0.0/
+recover; sleep 2; cat /sys/bus/spi/devices/spi0.0/stats; pgrep -a Xorg; dmesg | 
+tail -n 5
+transfers=8 packets=4 invalid=0 touch=0 pen=0 errors=0 transfer_size=136 ready=0 watchdog_misses=0 resets=0 pen_x=0 pen_y=0 pressure=0 flags=0x00 last=02 08 00 00 10 06 0a 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 rx=ff ff ff ff a5 5a e7 7e 02 08 00 00 10 06 0a 08 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+transfers=15 packets=7 invalid=0 touch=0 pen=0 errors=0 transfer_size=136 ready=0 watchdog_misses=0 resets=1 pen_x=0 pen_y=0 pressure=0 flags=0x00 last=02 08 00 00 10 06 0a 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 rx=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+9006 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+[22970.790945] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[30926.890804] input: N-Trig Indigo Touchscreen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input7
+[30926.891269] input: N-Trig Indigo Pen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input8
+[30927.526230] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[30930.985814] ntrig-indigo spi0.0: touch controller reset: administrator request (1 resets)
+~ # [6n

@@ -1,5 +1,5 @@
 {
-  "image_sha256": "d762aee01165e5342add77438142931cc4c6451640c0839bcdc76ff18129a075",
+  "image_sha256": "46a71647f042c8441c92461ce95676f7382fbb81643720ffbb9bdb2c2c0ff413",
   "partition_matches_checked_ext4": true,
   "file_sha256": {
     "/boot/vmlinuz-indigo": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
@@ -15,7 +15,7 @@
     "/home/julian/.config/indigo-tablet/rotation.json": "3311fd4a247a0775e2aa28317ed41f36d5d546770e2c1761ddd1f3ca96fe9f98",
     "/usr/lib/firmware/brcm/brcmfmac4329-sdio.bin": "d61983946b1e733e4c75dbe6841ac0f1250ebed2e3ee9058cdfdbbba3ba37c93",
     "/usr/lib/firmware/brcm/brcmfmac4329-sdio.txt": "b82791baa18fa6874f5280604deb020f20a1116156d8990afdd3ead4e0794b39",
-    "/usr/lib/modules/7.0.1-nura-indigo-ram/extra/ntrig_indigo.ko": "d3b5dade596b88b9f668e3ec4305ddc225f91e3cd2c413237209120897e5e0d6",
+    "/usr/lib/modules/7.0.1-nura-indigo-ram/extra/ntrig_indigo.ko": "73c4d277e1c7e5bc1831e5c21bcdeb0a1734ec37567647a14e81046a270aa127",
     "/usr/lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/input/evdev.ko": "19c41181b490b96a86f046e620487b110715b0a8c9db18d5ae6cbd9a6fcb90d3",
     "/usr/lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/reset/reset-gpio.ko": "c6554ace207a3dc3e027ba96b45280d4ffd5489285d02563676c4205430958f2",
     "/usr/lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/hid/hid-generic.ko": "c2c8c5eac58dd941dd75ff1215f6fdccf550092f3d1e76aed03ec85d9899c274",

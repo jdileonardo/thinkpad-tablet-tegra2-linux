@@ -22,6 +22,9 @@ if not out.is_relative_to(project / 'build'):
 lock_path = (project / args.lock).resolve()
 lock = json.loads(lock_path.read_text())
 xorg_module = lock.get('xorg_module', 'build/opentegra-dri3/src/.libs/opentegra_drv.so')
+ntrig_module = lock.get('ntrig_module', 'build/ntrig-spi/ntrig_indigo.ko')
+if ntrig_module not in lock['files']:
+    raise SystemExit('Selected touch module must be a locked input')
 if xorg_module not in lock['files']:
     raise SystemExit('Selected Xorg module must be a locked input')
 def digest(path):
@@ -47,7 +50,7 @@ if image.exists():
 kernel = project / 'build/linux-nura/arch/arm/boot/zImage'
 dtb = project / 'build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb'
 initrd = project / 'build/nura-sd-test/initramfs.cpio.gz'
-for path in (kernel, dtb, initrd, project / 'build/ntrig-spi/ntrig_indigo.ko',
+for path in (kernel, dtb, initrd, project / ntrig_module,
              project / 'build/linux-nura/drivers/reset/reset-gpio.ko',
              project / 'build/input-monitor',
              project / 'build/linux-firmware/brcmfmac4329-sdio.bin',
@@ -150,7 +153,7 @@ cp /work/build/linux-nura/drivers/hid/usbhid/usbhid.ko \
    "$stage/lib/modules/$KERNEL_RELEASE/kernel/drivers/hid/usbhid/"
 cp /work/build/linux-nura/drivers/reset/reset-gpio.ko \
    "$stage/lib/modules/$KERNEL_RELEASE/kernel/drivers/reset/"
-cp /work/build/ntrig-spi/ntrig_indigo.ko "$stage/lib/modules/$KERNEL_RELEASE/extra/"
+cp "$NTRIG_MODULE" "$stage/lib/modules/$KERNEL_RELEASE/extra/ntrig_indigo.ko"
 cp /work/build/linux-nura/modules.builtin /work/build/linux-nura/modules.builtin.modinfo \
    "$stage/lib/modules/$KERNEL_RELEASE/"
 printf 'kernel/drivers/input/evdev.ko\nkernel/drivers/hid/hid-generic.ko\nkernel/drivers/hid/usbhid/usbhid.ko\nkernel/drivers/reset/reset-gpio.ko\nextra/ntrig_indigo.ko\n' \
@@ -177,6 +180,7 @@ subprocess.run(['docker', 'run', '--rm', '--network', 'none',
                 '-e', f'OUT=/work/{out.relative_to(project)}',
                 '-e', 'LOGIN_PASSWORD',
                 '-e', f'XORG_MODULE=/work/{xorg_module}',
+                '-e', f'NTRIG_MODULE=/work/{ntrig_module}',
                 '-e', f'NETWORK_PROFILE={"/work/" + str(network_profile.relative_to(project)) if network_profile else ""}',
                 '-e', 'OVERLAY_APKS=' + ' '.join('/work/' + p for p in lock['overlay_packages']),
                 lock['containers']['thinkpad-pmbootstrap:2026-10-05'], 'sh', '-c', prepare],
@@ -199,7 +203,7 @@ manifest = {'root_uuid': root_uuid, 'kernel_release': release,
                                for p in (kernel, dtb, initrd)},
             'hardware_artifacts': {
                 name: digest(project / name) for name in (
-                    'build/ntrig-spi/ntrig_indigo.ko',
+                    ntrig_module,
                     'build/linux-nura/drivers/reset/reset-gpio.ko',
                     'build/linux-firmware/brcmfmac4329-sdio.bin',
                     'build/stock/firmware/brcmfmac4329-sdio.txt',
@@ -212,6 +216,7 @@ manifest = {'root_uuid': root_uuid, 'kernel_release': release,
                          'xorg_module_source': xorg_module,
                          'mesa': 'distribution default; private builds selected per process'},
             'private_network_profile_included': network_profile is not None,
+            'ntrig_module_source': ntrig_module,
             'verified': 'All frozen input hashes, offline signed APK installation, e2fsck -fn before disk-image assembly',
             'installation': 'external SD; tablet bootloader remains on Android'}
 manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')

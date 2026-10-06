@@ -10,18 +10,20 @@ The selected driver includes both the scanout-reference fix and the
 
 The image includes the kernel, N-Trig/input modules, Wi-Fi firmware, rotation
 and button helpers, and the previously requested autologin/password settings.
+The N-Trig module also includes [controller watchdog recovery](touch-watchdog.md)
+after a real silent-controller incident during desktop validation.
 The rootfs lacked `xinput` and `xdotool`; two signed, versioned APK files are
 installed offline without upgrading its existing libraries. The installed
 package count becomes 770, from a frozen baseline of 768.
 
 ## Artifact and checks
 
-Image: `build/nura-sd-20261006-cmafix/thinkpad-nura-sd.img`, 4,296,015,872 bytes.
+Image: `build/nura-sd-20261006-touch-watchdog/thinkpad-nura-sd.img`, 4,296,015,872 bytes.
 
 SHA256:
 
 ```text
-d762aee01165e5342add77438142931cc4c6451640c0839bcdc76ff18129a075
+46a71647f042c8441c92461ce95676f7382fbb81643720ffbb9bdb2c2c0ff413
 ```
 
 The [image manifest](evidence/image-20261006/image-manifest.json) records boot
@@ -47,7 +49,7 @@ without `--network-profile` and with its intended account configuration.
 
 ## Frozen inputs and rebuild
 
-[The input lock](../port/image-inputs.lock.json) records SHA256 values for 64
+[The input lock](../port/image-inputs.lock.json) records SHA256 values for 66
 files, including the rootfs/SDK snapshots, package inventories, boot artifacts,
 graphics archives and port patches/configuration. It records full immutable
 IDs for the pmbootstrap, kernel, Mesa and Xorg builder containers.
@@ -67,13 +69,13 @@ private NetworkManager keyfile is wanted. The builder verifies every locked
 input, uses the locked container ID with Docker networking disabled, and refuses
 to replace an existing image or rootfs staging directory.
 
-`scripts/export_image_inputs.py` exports `build/image-inputs-cmafix/frozen-inputs.tar`
+`scripts/export_image_inputs.py` exports `build/image-inputs-touch-watchdog/frozen-inputs.tar`
 and `containers.tar.gz`, with SHA256 values in `export-manifest.json`. The first
-contains exactly the dated lock and its 64 named inputs; it excludes the local
+contains exactly the dated lock and its 66 named inputs; it excludes the local
 password input and Wi-Fi profile. Preserve these archives alongside the Git
 repository. Restore at the project root and run `docker load` before rebuilding.
 The locked container IDs work even if restored images have no tag aliases.
-The dated lock is `port/image-inputs-oversize.lock.json`; the main input lock
+The dated lock is `port/image-inputs-touch-watchdog.lock.json`; the main input lock
 contains the same data and is the default for rebuilding. The preceding
 candidate image and its original input archives are preserved separately.
 

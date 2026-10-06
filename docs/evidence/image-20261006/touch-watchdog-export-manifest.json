@@ -1,0 +1,20 @@
+{
+  "input_lock_sha256": "a9cbc40b488e084f9b8b566b0b34e3bba782e5502575130579a44842642d6c63",
+  "containers": {
+    "thinkpad-pmbootstrap:2026-10-05": "sha256:80ae8b4f9b77006af405e60fa89c92c2c0be88f5021a51904549f770bb2af446",
+    "thinkpad-nura-build:2026-10-05": "sha256:4772958326ee9cc8213cae58143a0edf897cf088395362b989cc77da227f602e",
+    "thinkpad-mesa-build:2026-10-05": "sha256:82693e8be6cb540702fd585e7996ae16aca1ba987b9ae2b393fd00b5527508b0",
+    "thinkpad-opentegra-build:2026-10-06": "sha256:0e6b58bbc4681f9a04b7afc68de1337431e0309bac40dee2abde4c86fd91e258"
+  },
+  "files": {
+    "frozen-inputs.tar": "41aac804559e5eeb38fc752d8be074284b87f4e7d9e4e354ccfd52eaf42284dc",
+    "containers.tar.gz": "261d4900952a942c17521ac15da5af80191eeaa406752bb22ae0466a037ce667"
+  },
+  "private_login_password_and_wifi_profile_exported": false,
+  "restore": [
+    "Extract frozen-inputs.tar at the project root",
+    "docker load < containers.tar.gz",
+    "Provide a private login password file and optionally a Wi-Fi keyfile",
+    "Run scripts/create_nura_sd_image.py with a new output directory"
+  ]
+}

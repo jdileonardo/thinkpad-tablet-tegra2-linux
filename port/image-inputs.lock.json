@@ -11,6 +11,7 @@
     "sdk": "build/mesa-sysroot"
   },
   "xorg_module": "build/opentegra-oversize/src/.libs/opentegra_drv.so",
+  "ntrig_module": "build/ntrig-watchdog/ntrig_indigo.ko",
   "package_inventories": {
     "rootfs": "build/image-inputs/rootfs-packages.json",
     "sdk": "build/image-inputs/sdk-packages.json"
@@ -31,7 +32,7 @@
     "build/nura-sd-test/initramfs.cpio.gz": "637942e060dc76659e738a3f6085907a162c9d4c2e79c4503e5bd95610634556",
     "build/nura-sd-test/thinkpad-ram-payload.bin": "cc0ac12d9cc0c0c989d7f75c646b83abbec9fa7296c5e9e5aab84561b8496d08",
     "build/uboot-nura-sd/u-boot-dtb-tegra.bin": "2899c030518a24595637ae3ee5e575805d1e2e749d34e8beae6a237aa2974e71",
-    "build/ntrig-spi/ntrig_indigo.ko": "d3b5dade596b88b9f668e3ec4305ddc225f91e3cd2c413237209120897e5e0d6",
+    "build/ntrig-watchdog/ntrig_indigo.ko": "73c4d277e1c7e5bc1831e5c21bcdeb0a1734ec37567647a14e81046a270aa127",
     "build/linux-nura/drivers/input/evdev.ko": "19c41181b490b96a86f046e620487b110715b0a8c9db18d5ae6cbd9a6fcb90d3",
     "build/linux-nura/drivers/hid/hid-generic.ko": "c2c8c5eac58dd941dd75ff1215f6fdccf550092f3d1e76aed03ec85d9899c274",
     "build/linux-nura/drivers/hid/usbhid/usbhid.ko": "c7de6638beedfa8177fa27bc169acff07080025f7cb59e233ade52d8c4ea8466",
@@ -48,6 +49,8 @@
     "build/mesa-grate-candidate-armv7.tar.gz": "f4b3d5ba640207ef7ed150604fa6d30cf96ef7dfae4742c4c65b6da6dd531768",
     "sources.lock.json": "3b6cff32b26be7c679a7458ca912af9fc1828aaaf54b2c92c3c9d4900ba34a3a",
     "port/mesa/indigo-gpu-run": "4256448a70282e109a97fabf552a3182281d8a9d6ae8b08a96f435202b22a596",
+    "port/ntrig-spi/Makefile": "135284368b3271f9b025dda7eec7e5df615fbb47165c5ce5cfc149332019d71d",
+    "port/ntrig-spi/ntrig_indigo.c": "9cdc604d31d7fa239feee4a149b017a840c3359dcb1fe38f70affecf0d4431fc",
     "port/desktop/indigo-buttons.sh": "a1eb95083d1762032f1830fa9e09add29f18b6fb7a9085ec66eab3d44bf53803",
     "port/desktop/indigo-rotate.py": "2c7dae9b970bc1656044001a6b4ccb29d3f4fa57e1b5b9fb7c6672edacc380fa",
     "port/desktop/indigo-tablet-start.sh": "c1f5344cc25e50c4628f67bccaa3330be0e39d712b5c9860bc32a1ab68710e0f",

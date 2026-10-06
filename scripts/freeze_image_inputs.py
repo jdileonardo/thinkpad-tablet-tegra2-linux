@@ -20,12 +20,17 @@ def digest(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--lock', default='port/image-inputs.lock.json')
-    parser.add_argument('--xorg-module', default='build/opentegra-dri3/src/.libs/opentegra_drv.so')
+    parser.add_argument('--xorg-module', help='Defaults to the currently selected module')
+    parser.add_argument('--ntrig-module', help='Defaults to the currently selected module')
     parser.add_argument('--reuse-snapshots', action='store_true')
     args = parser.parse_args()
     lock_path = (PROJECT / args.lock).resolve()
-    module_path = (PROJECT / args.xorg_module).resolve()
-    if not lock_path.is_relative_to(PROJECT / 'port') or not module_path.is_relative_to(PROJECT / 'build'):
+    current = json.loads(LOCK.read_text()) if LOCK.exists() else {}
+    module_path = (PROJECT / (args.xorg_module or current.get(
+        'xorg_module', 'build/opentegra-dri3/src/.libs/opentegra_drv.so'))).resolve()
+    ntrig_path = (PROJECT / (args.ntrig_module or current.get(
+        'ntrig_module', 'build/ntrig-spi/ntrig_indigo.ko'))).resolve()
+    if not lock_path.is_relative_to(PROJECT / 'port') or not module_path.is_relative_to(PROJECT / 'build') or not ntrig_path.is_relative_to(PROJECT / 'build'):
         raise SystemExit('Lock must be under port/ and the module under build/')
     if lock_path.exists():
         raise SystemExit('Input lock exists; review changes before freezing another snapshot')
@@ -73,7 +78,7 @@ def main():
         'build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb',
         'build/nura-sd-test/initramfs.cpio.gz', 'build/nura-sd-test/thinkpad-ram-payload.bin',
         'build/uboot-nura-sd/u-boot-dtb-tegra.bin',
-        'build/ntrig-spi/ntrig_indigo.ko', 'build/linux-nura/drivers/input/evdev.ko',
+        str(ntrig_path.relative_to(PROJECT)), 'build/linux-nura/drivers/input/evdev.ko',
         'build/linux-nura/drivers/hid/hid-generic.ko',
         'build/linux-nura/drivers/hid/usbhid/usbhid.ko',
         'build/linux-nura/drivers/reset/reset-gpio.ko',
@@ -84,6 +89,7 @@ def main():
         str(module_path.relative_to(PROJECT)),
         'build/mesa-grate-armv7.tar.gz', 'build/mesa-grate-candidate-armv7.tar.gz',
         'sources.lock.json', 'port/mesa/indigo-gpu-run',
+        *[str(p.relative_to(PROJECT)) for p in sorted((PROJECT / 'port/ntrig-spi').glob('*')) if p.is_file()],
         *[str(p.relative_to(PROJECT)) for p in sorted((PROJECT / 'port/desktop').glob('*')) if p.is_file()],
         *[str(p.relative_to(PROJECT)) for p in sorted((PROJECT / 'port').rglob('*.patch'))],
     ]
@@ -97,6 +103,7 @@ def main():
     artifacts += packages
     lock = {'schema': 1, 'containers': container_ids, 'snapshots': snapshots,
             'xorg_module': str(module_path.relative_to(PROJECT)),
+            'ntrig_module': str(ntrig_path.relative_to(PROJECT)),
             'package_inventories': inventories, 'overlay_packages': packages,
             'files': {name: digest(PROJECT / name) for name in artifacts},
             'reproducibility': 'Offline assembly from frozen binary inputs; not a bit-identical or fully source-rebuilt filesystem'}

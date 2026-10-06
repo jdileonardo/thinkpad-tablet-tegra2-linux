@@ -1,16 +1,16 @@
 {
   "root_uuid": "2a6e5a89-5a50-46c6-95ec-b718e7abd62b",
   "kernel_release": "7.0.1-nura-indigo-ram",
-  "image": "build/nura-sd-20261006-cmafix/thinkpad-nura-sd.img",
+  "image": "build/nura-sd-20261006-touch-watchdog/thinkpad-nura-sd.img",
   "size": 4296015872,
-  "sha256": "d762aee01165e5342add77438142931cc4c6451640c0839bcdc76ff18129a075",
+  "sha256": "46a71647f042c8441c92461ce95676f7382fbb81643720ffbb9bdb2c2c0ff413",
   "boot_artifacts": {
     "build/linux-nura/arch/arm/boot/zImage": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
     "build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb": "b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b",
     "build/nura-sd-test/initramfs.cpio.gz": "637942e060dc76659e738a3f6085907a162c9d4c2e79c4503e5bd95610634556"
   },
   "hardware_artifacts": {
-    "build/ntrig-spi/ntrig_indigo.ko": "d3b5dade596b88b9f668e3ec4305ddc225f91e3cd2c413237209120897e5e0d6",
+    "build/ntrig-watchdog/ntrig_indigo.ko": "73c4d277e1c7e5bc1831e5c21bcdeb0a1734ec37567647a14e81046a270aa127",
     "build/linux-nura/drivers/reset/reset-gpio.ko": "c6554ace207a3dc3e027ba96b45280d4ffd5489285d02563676c4205430958f2",
     "build/linux-firmware/brcmfmac4329-sdio.bin": "d61983946b1e733e4c75dbe6841ac0f1250ebed2e3ee9058cdfdbbba3ba37c93",
     "build/stock/firmware/brcmfmac4329-sdio.txt": "b82791baa18fa6874f5280604deb020f20a1116156d8990afdd3ead4e0794b39",
@@ -81,8 +81,8 @@
       "commit": "f78958d37c80b22de66f41167ec39339035f43d0"
     }
   },
-  "input_lock": "port/image-inputs-oversize.lock.json",
-  "input_lock_sha256": "e68c4dd1382619c1f4a436aa26cea2ac331c714e030b02dad0d1e44be231f8f9",
+  "input_lock": "port/image-inputs-touch-watchdog.lock.json",
+  "input_lock_sha256": "a9cbc40b488e084f9b8b566b0b34e3bba782e5502575130579a44842642d6c63",
   "assembler_container": "sha256:80ae8b4f9b77006af405e60fa89c92c2c0be88f5021a51904549f770bb2af446",
   "graphics": {
     "xorg": "private fixed opentegra; stock module retained",
@@ -90,6 +90,7 @@
     "mesa": "distribution default; private builds selected per process"
   },
   "private_network_profile_included": true,
+  "ntrig_module_source": "build/ntrig-watchdog/ntrig_indigo.ko",
   "verified": "All frozen input hashes, offline signed APK installation, e2fsck -fn before disk-image assembly",
   "installation": "external SD; tablet bootloader remains on Android"
 }

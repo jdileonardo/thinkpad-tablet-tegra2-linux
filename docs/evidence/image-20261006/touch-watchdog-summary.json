@@ -1,0 +1,14 @@
+{
+  "duration_seconds": 120.0030413200002,
+  "samples": 24,
+  "evdev_events": 736,
+  "packet_delta": 288,
+  "touch_report_delta": 182,
+  "reset_delta": 0,
+  "watchdog_misses_max": 0,
+  "spi_error_delta": 0,
+  "invalid_delta": 0,
+  "xorg_continuous": true,
+  "automatic_timeout_against_unresponsive_hardware_tested": false,
+  "user_alignment_confirmation": "pending"
+}
