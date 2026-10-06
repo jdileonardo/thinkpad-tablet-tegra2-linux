@@ -1,0 +1,8 @@
+
+~ # [6nrc-service lightdm stop; sync; if test -w /proc/sysrq-trigger; then echo u >
+ /proc/sysrq-trigger; sleep 1; fi; awk '$2=="/" {print}' /proc/mounts; awk '$2==
+"/" && $4 ~ /(^|,)ro(,|$)/ {found=1} END {exit !found}' /proc/mounts && /usr/loc
+al/sbin/reboot-into-apx
+ [1m[32m*[m Stopping Display Manager[K ...
+ [ ok ]
+/dev/mmcblk0p1 / ext4 ro,noatime 0 0

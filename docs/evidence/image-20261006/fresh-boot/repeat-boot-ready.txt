@@ -1,0 +1,35 @@
+
+~ # [6nuptime; pgrep -a Xorg; pgrep -a xfdesktop; pgrep -a xfce4-panel; ip -brief a
+ddr show wlan0; ping -I wlan0 -c 3 -W 2 192.168.0.147
+ 19:17:20 up 1 min,  0 users,  load average: 2.19, 0.72, 0.26
+1588 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+2070 xfdesktop
+2000 xfce4-panel
+wlan0            UP             192.168.0.191/24 fe80::8c00:72ff:fe48:6f07/64 
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=4.824 ms
+64 bytes from 192.168.0.147: seq=1 ttl=64 time=60.064 ms
+64 bytes from 192.168.0.147: seq=2 ttl=64 time=79.271 ms
+
+--- 192.168.0.147 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 4.824/48.053/79.271 ms
+~ # su julian -c 'DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority xrandr --curren
+t'
+Screen 0: minimum 320 x 200, current 800 x 1280, maximum 4096 x 4096
+HDMI-0 disconnected (normal left inverted right x axis y axis)
+Unknown-0 connected 800x1280+0+0 left (normal left inverted right x axis y axis) 0mm x 0mm
+   1280x800      60.33*+
+~ # cat /sys/bus/spi/devices/spi0.0/stats; chronyc tracking | head -n 8; dmesg |
+ grep -E "EXT4-fs.*(error|recovery)|failed to allocate buffer|drop_caches|watchd
+og timeout"
+transfers=128 packets=55 invalid=0 touch=0 pen=0 errors=0 transfer_size=136 ready=0 watchdog_misses=0 resets=0 pen_x=0 pen_y=0 pressure=0 flags=0x00 last=02 08 00 00 10 06 0a 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 rx=ff ff ff ff a5 5a e7 7e 02 08 00 00 10 06 0a 08 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+Reference ID    : A29FC87B (time.cloudflare.com)
+Stratum         : 4
+Ref time (UTC)  : Tue Oct 06 23:17:06 2026
+System time     : 0.000001940 seconds slow of NTP time
+Last offset     : +0.000815002 seconds
+RMS offset      : 0.000815002 seconds
+Frequency       : 0.000 ppm slow
+Residual freq   : +117.757 ppm
+~ # [6n

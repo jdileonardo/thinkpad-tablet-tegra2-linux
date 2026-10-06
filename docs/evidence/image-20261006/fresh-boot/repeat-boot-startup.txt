@@ -1,0 +1,29 @@
+
+
+~ # [6nuptime; awk '$2=="/" {print}' /proc/mounts; pgrep -a Xorg; pgrep -a xfdeskto
+p; ip -brief addr show wlan0; cat /sys/bus/spi/devices/spi0.0/stats
+ 06:02:38 up 0 min,  0 users,  load average: 1.01, 0.23, 0.08
+/dev/mmcblk0p1 / ext4 rw,noatime 0 0
+1588 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+wlan0            DOWN           
+transfers=17 packets=8 invalid=0 touch=0 pen=0 errors=0 transfer_size=136 ready=0 watchdog_misses=0 resets=0 pen_x=0 pen_y=0 pressure=0 flags=0x00 last=02 08 00 00 10 06 0a 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 rx=ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+~ # sha256sum /opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so /l
+ib/modules/$(uname -r)/extra/ntrig_indigo.ko; ping -I wlan0 -c 3 -W 2 192.168.0.
+147; dmesg | tail -n 8
+61e6191a7492e63c9d2fe79f9dade2cd71c1b286b1f4dceac4631250a9a3bba7  /opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so
+73c4d277e1c7e5bc1831e5c21bcdeb0a1734ec37567647a14e81046a270aa127  /lib/modules/7.0.1-nura-indigo-ram/extra/ntrig_indigo.ko
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=2 ttl=64 time=162.542 ms
+
+--- 192.168.0.147 ping statistics ---
+3 packets transmitted, 1 packets received, 66% packet loss
+round-trip min/avg/max = 162.542/162.542/162.542 ms
+[   16.449200] usbcore: registered new interface driver usbhid
+[   16.449228] usbhid: USB HID core driver
+[   18.485586] zram0: detected capacity change from 0 to 3041280
+[   18.506924] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   20.315347] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.315383] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.315396] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   21.139370] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+~ # [6n

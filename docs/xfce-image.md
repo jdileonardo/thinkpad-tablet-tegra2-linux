@@ -131,12 +131,26 @@ synchronized; the sampled desktop had 676 MiB available and used no swap.
 
 During the 120-second observation the controller returned 105 additional
 packets with no resets, watchdog misses, SPI errors or invalid packets, and
-Xorg stayed running. No physical touch events or button actions were recorded,
-so user confirmation of touch, rotation and buttons remains pending. This
+Xorg stayed running. No physical touch events or button actions occurred during
+that initial observation. The user subsequently reported that the tablet
+seemed OK; the [later input state](evidence/image-20261006/fresh-boot/physical-input-state.txt)
+recorded 294 touch reports, two rotation-button actions, and synchronized
+normal-to-left rotation changes. The other three buttons were not separately
+confirmed. This
 physical checkpoint is separate from the image-content verification, whose
 scope remains host readback only.
 
-Repeated APX boots, physical touch/rotation/buttons and longer application
-operation remain required. APX RAM boot and the external-SD
+Two APX boots of the new SD image have now passed. Before the second restart,
+XFCE was stopped and the SD root was verified read-only. The
+[ready-state check](evidence/image-20261006/fresh-boot/repeat-boot-ready.txt)
+confirmed automatic XFCE login, the same fixed driver/module hashes,
+800x1280 left rotation, automatic Wi-Fi reconnection with three of three pings,
+and synchronized network time. An earlier probe caught the desktop/network
+before startup completed; its partial ping loss is retained in the evidence,
+not counted as a ready-state result. No graphics allocation errors, touch
+watchdog resets, or ext4 errors/recovery messages appeared in this check.
+
+The remaining buttons and longer application operation still need checking;
+two successful boots do not establish long-duration reliability. APX RAM boot and the external-SD
 root UUID/controller requirements are unchanged; this image does not install
 a persistent bootloader or write internal eMMC.

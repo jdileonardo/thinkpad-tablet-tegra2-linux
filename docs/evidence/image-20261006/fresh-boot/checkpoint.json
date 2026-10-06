@@ -57,11 +57,10 @@
     "invalid_packets": 0,
     "xorg_continuous": true
   },
-  "physical_touch_rotation_buttons_confirmation": "pending; no input events recorded in this observation",
+  "physical_touch_rotation_buttons_confirmation": "User reports seems ok; 294 touch reports recorded; rotation helper ran normal then left; rotate-button action logged twice. Remaining three buttons were not separately confirmed.",
   "internal_storage_writes_performed": false,
   "remaining": [
-    "Physical touch, rotation and buttons",
-    "Repeated APX boots",
+    "Separate confirmation of remaining three bottom buttons",
     "Longer application stability",
     "Automatic timeout recovery against an unresponsive controller",
     "Pen and battery hardware tests deferred"
@@ -78,6 +77,29 @@
     "fresh-image-touch-check.json": "b146131f6a3cdc3e15d903acd6deb615696d0f67299d9d01bb5cc09b03533151",
     "graphics-and-wifi.txt": "7f2b82985e61d7dc49ad6219f4d13b892bf7682ed68869d604e45a2831cc8998",
     "runtime-file-check.py": "1c201bcc5b08ee4452e3cabe6fbff0c5842838bc047278eda773c98a762cce02",
-    "runtime-state.txt": "aaec10f952ccbd428b624f8bec0a3577c4f29e4a9bdeebb2a4930725eae3669e"
+    "runtime-state.txt": "aaec10f952ccbd428b624f8bec0a3577c4f29e4a9bdeebb2a4930725eae3669e",
+    "physical-input-state.txt": "930e65497c5c66af948e9a462dcb809f27a6b937c7ae5b46145331b4c97387a8",
+    "safe-repeat-reboot.txt": "978424ca6b80caa1921ed0bdb73dc92d811989658ee66ffad563b93812549ee9",
+    "repeat-boot-startup.txt": "532d48dc55cf6eeb9164a0df2b4945c756abbf803317e3095bc4328053ebca02",
+    "repeat-boot-ready.txt": "f6473497ae5a54a4f3e39afd00cd052c7138f43185d5ab72dbc91496a2ad5f6a"
+  },
+  "verified_apx_boot_count": 2,
+  "repeat_boot": {
+    "root_read_only_before_restart": true,
+    "xfce_autologin": true,
+    "xorg_driver_sha256": "61e6191a7492e63c9d2fe79f9dade2cd71c1b286b1f4dceac4631250a9a3bba7",
+    "touch_module_sha256": "73c4d277e1c7e5bc1831e5c21bcdeb0a1734ec37567647a14e81046a270aa127",
+    "display": "800x1280 left",
+    "wifi_automatic": true,
+    "wifi_ipv4": "192.168.0.191",
+    "ready_state_ping_sent": 3,
+    "ready_state_ping_received": 3,
+    "ntp_synchronized": true,
+    "touch_errors": 0,
+    "touch_watchdog_misses": 0,
+    "touch_resets": 0,
+    "new_graphics_allocation_errors": false,
+    "ext4_errors_or_recovery_messages": false,
+    "startup_probe_note": "First probe caught Xorg starting before xfdesktop and WLAN were ready; its ping lost two of three packets. All checks passed after automatic startup completed."
   }
 }
