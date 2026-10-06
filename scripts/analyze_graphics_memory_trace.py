@@ -31,6 +31,12 @@ def main():
     snapshots = []
     allocated_pages = released_pages = successful_bos = failed_bos = 0
     freed_bos = []
+    released_handles = []
+    released_file_handles = []
+    mappings = {}
+    mapping_history = []
+    mapping_returns = defaultdict(list)
+    mapping_errors = []
     allocation_errors = []
     consistency_errors = []
     for event in events:
@@ -53,6 +59,27 @@ def main():
         elif kind == 'bo_free':
             freed_bos.append(fields['bo'])
             live.pop(fields['bo'], None)
+        elif kind == 'handle_put':
+            released_handles.append(fields['bo'])
+        elif kind == 'file_handle_release':
+            released_file_handles.append({'bo': hex(fields['bo']), 'handle': fields['handle']})
+        elif kind == 'gem_mmap':
+            mappings[fields['vma']] = {'bo': hex(fields['bo']),
+                                       'vma': hex(fields['vma']), 'closed': False,
+                                       'time': event['time']}
+            mapping_history.append(mappings[fields['vma']])
+            mapping_returns[pid].append(fields['vma'])
+        elif kind == 'gem_mmap_return':
+            if not mapping_returns[pid]:
+                consistency_errors.append('GEM mmap return without a traced entry')
+            else:
+                vma = mapping_returns[pid].pop()
+                mappings[vma]['result'] = fields['result']
+                if fields['result'] != 0:
+                    mapping_errors.append(mappings[vma].copy())
+        elif kind == 'gem_vm_close':
+            if fields['vma'] in mappings:
+                mappings[fields['vma']]['closed'] = True
         elif kind == 'cma_alloc_start':
             if available is not None and available != fields['available_count']:
                 consistency_errors.append({'expected_available_pages': available,
@@ -78,6 +105,8 @@ def main():
     sizes = Counter(event['fields']['size'] for event in events if event['event'] == 'bo_create')
     if any(pending.values()):
         consistency_errors.append('BO entry without a traced return')
+    if any(mapping_returns.values()):
+        consistency_errors.append('GEM mmap entry without a traced return')
     report = {'event_count': len(events), 'page_size_assumption_bytes': 4096,
               'cma_total_mib': total / 256 if total is not None else None,
               'cma_bitmap_available_mib_range': [min(headroom), max(headroom)] if headroom else None,
@@ -91,6 +120,10 @@ def main():
               'traced_new_bos_still_live_or_cached': [
                   {'pointer': hex(pointer), **create} for pointer, create in sorted(live.items())],
               'freed_bo_pointers_including_preexisting': [hex(pointer) for pointer in freed_bos],
+              'handle_reference_put_bo_pointers_including_preexisting': [hex(pointer) for pointer in released_handles],
+              'released_file_handles_including_preexisting': released_file_handles,
+              'gem_mappings': mapping_history,
+              'gem_mapping_errors': mapping_errors,
               'cma_allocation_errors': allocation_errors, 'consistency_errors': consistency_errors,
               'marker_headroom': snapshots,
               'scope': 'Live-or-cached BOs are not classified as leaks. Objects predating the trace are not in the BO ledger. Headroom is CMA bitmap availability, not /proc/meminfo CmaFree or a guarantee of contiguous allocation success.'}
@@ -98,7 +131,10 @@ def main():
     print(json.dumps({key: value for key, value in report.items()
                       if key not in ('marker_headroom', 'scope',
                                      'traced_new_bos_still_live_or_cached',
-                                     'freed_bo_pointers_including_preexisting')}, indent=2))
+                                     'freed_bo_pointers_including_preexisting',
+                                     'handle_reference_put_bo_pointers_including_preexisting',
+                                     'released_file_handles_including_preexisting',
+                                     'gem_mappings')}, indent=2))
 
 
 if __name__ == '__main__':

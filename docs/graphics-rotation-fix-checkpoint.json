@@ -1,0 +1,254 @@
+{
+  "date": "2026-10-06",
+  "kernel": "7.0.1-nura-indigo-ram",
+  "root": "verified external SD controller c8000400.mmc",
+  "cause": "EXA scanout pixmap rebind overwrote the old BO reference and re-refed identical buffers",
+  "patch": "port/opentegra/0003-release-replaced-scanout-pixmap-reference.patch",
+  "trials": {
+    "stock": {
+      "elapsed_seconds": 106.97233902800144,
+      "runner_sha256": "aeee9bd1a3df325efb0304fb72aeef9a338be0e05f9be0e7018eca12ae0327ad",
+      "rotation_results": [
+        {
+          "rotation": "normal",
+          "exit_code": 0,
+          "output": "rotation=normal; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "left",
+          "exit_code": 0,
+          "output": "rotation=left; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "inverted",
+          "exit_code": 0,
+          "output": "rotation=inverted; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "right",
+          "exit_code": 0,
+          "output": "rotation=right; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "left",
+          "exit_code": 0,
+          "output": "rotation=left; synchronized 1 touch/pen inputs\n"
+        }
+      ],
+      "net_cma_reservation_change_mib": -0.0625,
+      "cma_bitmap_available_mib_at_end": 5.30859375,
+      "cma_bitmap_available_mib_range": [
+        3.12109375,
+        5.55859375
+      ],
+      "large_bo_creates": 4,
+      "new_large_bos_still_live_or_cached": 4,
+      "failed_gem_creates": 0,
+      "failed_cma_attempts": 4,
+      "trace_cleanup_complete": true,
+      "new_kernel_messages": false
+    },
+    "private": {
+      "elapsed_seconds": 128.04701737900177,
+      "runner_sha256": "aeee9bd1a3df325efb0304fb72aeef9a338be0e05f9be0e7018eca12ae0327ad",
+      "rotation_results": [
+        {
+          "rotation": "normal",
+          "exit_code": 0,
+          "output": "rotation=normal; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "left",
+          "exit_code": 0,
+          "output": "rotation=left; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "inverted",
+          "exit_code": 0,
+          "output": "rotation=inverted; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "right",
+          "exit_code": 0,
+          "output": "rotation=right; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "normal",
+          "exit_code": 0,
+          "output": "rotation=normal; synchronized 1 touch/pen inputs\n"
+        }
+      ],
+      "net_cma_reservation_change_mib": 17.375,
+      "cma_bitmap_available_mib_at_end": 11.78515625,
+      "cma_bitmap_available_mib_range": [
+        3.09765625,
+        29.16015625
+      ],
+      "large_bo_creates": 6,
+      "new_large_bos_still_live_or_cached": 4,
+      "failed_gem_creates": 0,
+      "failed_cma_attempts": 1,
+      "trace_cleanup_complete": true,
+      "new_kernel_messages": false
+    },
+    "fixed": {
+      "elapsed_seconds": 126.41627836399857,
+      "runner_sha256": "3d372e53ee6de9a5d3de72b4bea7cd247e61e497ee3034233b2e76c8b5a7f772",
+      "rotation_results": [
+        {
+          "rotation": "normal",
+          "exit_code": 0,
+          "output": "rotation=normal; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "left",
+          "exit_code": 0,
+          "output": "rotation=left; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "inverted",
+          "exit_code": 0,
+          "output": "rotation=inverted; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "right",
+          "exit_code": 0,
+          "output": "rotation=right; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "normal",
+          "exit_code": 0,
+          "output": "rotation=normal; synchronized 1 touch/pen inputs\n"
+        }
+      ],
+      "net_cma_reservation_change_mib": -0.25,
+      "cma_bitmap_available_mib_at_end": 29.28515625,
+      "cma_bitmap_available_mib_range": [
+        12.84765625,
+        29.28515625
+      ],
+      "large_bo_creates": 3,
+      "new_large_bos_still_live_or_cached": 0,
+      "failed_gem_creates": 0,
+      "failed_cma_attempts": 0,
+      "trace_cleanup_complete": true,
+      "new_kernel_messages": false
+    },
+    "fixed-repeat": {
+      "elapsed_seconds": 124.95579021400044,
+      "runner_sha256": "3d372e53ee6de9a5d3de72b4bea7cd247e61e497ee3034233b2e76c8b5a7f772",
+      "rotation_results": [
+        {
+          "rotation": "normal",
+          "exit_code": 0,
+          "output": "rotation=normal; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "left",
+          "exit_code": 0,
+          "output": "rotation=left; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "inverted",
+          "exit_code": 0,
+          "output": "rotation=inverted; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "right",
+          "exit_code": 0,
+          "output": "rotation=right; synchronized 1 touch/pen inputs\n"
+        },
+        {
+          "rotation": "normal",
+          "exit_code": 0,
+          "output": "rotation=normal; synchronized 1 touch/pen inputs\n"
+        }
+      ],
+      "net_cma_reservation_change_mib": 1.10546875,
+      "cma_bitmap_available_mib_at_end": 28.1796875,
+      "cma_bitmap_available_mib_range": [
+        12.91015625,
+        29.28515625
+      ],
+      "large_bo_creates": 2,
+      "new_large_bos_still_live_or_cached": 0,
+      "failed_gem_creates": 0,
+      "failed_cma_attempts": 0,
+      "trace_cleanup_complete": true,
+      "new_kernel_messages": false
+    }
+  },
+  "installed_module": "/opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so",
+  "installed_module_sha256": "7f5350d475af38789b38bea7a816ea75547a5e1728e40c5a6face84909770735",
+  "persistent_selection": "/etc/lightdm/lightdm.conf.d/95-indigo-xorg.conf",
+  "distribution_module_preserved_sha256": "5864c997b380945501b998b6829c071bb804d4df2f479f902f51a991e9682d97",
+  "selected_mesa_globally_changed": false,
+  "capture_comparison": {
+    "comparison": "Complete Xorg client readback against the active DRM framebuffer, aligned for display rotation",
+    "alignment_method": "Locate a least frequent RGB value from the client image, then compare every RGB pixel in each candidate rectangle",
+    "matches": [
+      {
+        "scanout_quarter_turns_ccw_for_comparison": 1,
+        "client_left": 121,
+        "client_top": 597,
+        "client_width": 620,
+        "client_height": 680,
+        "pixels_compared": 421600,
+        "mismatched_pixels": 354118,
+        "exact_match": false
+      },
+      {
+        "scanout_quarter_turns_ccw_for_comparison": 3,
+        "client_left": 102,
+        "client_top": 382,
+        "client_width": 620,
+        "client_height": 680,
+        "pixels_compared": 421600,
+        "mismatched_pixels": 0,
+        "exact_match": true
+      }
+    ],
+    "exact_client_match_found": true
+  },
+  "physical_touch_confirmation": "requested; pending",
+  "post_install_wifi_pings": {
+    "success": 3,
+    "failed": 0
+  },
+  "historical_132710400_byte_failure_fixed": false,
+  "cma_size_changed": false,
+  "internal_storage_written": false,
+  "sd_image_contains_latest_selected_driver": false,
+  "full_build_dependency_pinning": false,
+  "source_branch_tip": "08700f84bcabef1cf4af9145239daede67a9ade6",
+  "source_sha256": {
+    "port/opentegra/0003-release-replaced-scanout-pixmap-reference.patch": "2c4ebdac8c63dbc36d3d4cab6c68b2c8424fd3d452a248493fc89301e35325d8",
+    "scripts/install_indigo_xorg.py": "1d7b56d7b3cdb078d91b013a40d83dfc1b9a4242a247289af7aa106302ccaeca",
+    "scripts/tablet_dri3_trial.py": "8093ab459b54e30fb597056f2047815a61b1ebe9845d123651629bf931037e53",
+    "scripts/tablet_graphics_memory_trial.py": "3d372e53ee6de9a5d3de72b4bea7cd247e61e497ee3034233b2e76c8b5a7f772",
+    "scripts/analyze_graphics_memory_trace.py": "77bb5a5ad62faf5afcd77baac7a27956483889930145cba740ebc6b88a2c9c64",
+    "scripts/export_source_branches.py": "a3f34ca6d48b996d77186e376615399727bd14222eed2bb803b700e0d807d16b"
+  },
+  "evidence_sha256": {
+    "docs/evidence/graphics-lifetime-20261006/capture-runner.py": "41cdcb87fb2c22018ef5b8e3339d3f1c05feacebd85bdd85fc3549b99c4d3617",
+    "docs/evidence/graphics-lifetime-20261006/final-session-status.txt": "f84b92d0f277fa071a0ac30b2fa2bf3e3459d037b3ec51bd35aa97c97e4cc459",
+    "docs/evidence/graphics-lifetime-20261006/fixed-build.json": "fdaa9abc1022f4784fc5009537f0fdf461190cd1b273a1b2f87e18d7690283ba",
+    "docs/evidence/graphics-lifetime-20261006/fixed-calendar-comparison.json": "45b8b9d880bbade7f2572c732aeb316863ed79d19d5cc2cd6191a2a42d2dc494",
+    "docs/evidence/graphics-lifetime-20261006/fixed-calendar-scanout.png": "974fc208deba46a47b79240de06d43c83c22270d706f66fcf5647d0376b263d8",
+    "docs/evidence/graphics-lifetime-20261006/fixed-calendar-widget.json": "a5807298b0be1bc88f0182c828c3939760a1dfe3b0aefe2de037415944ba4291",
+    "docs/evidence/graphics-lifetime-20261006/fixed-calendar-window.png": "1bbbf9ca8806802ae1a0d6fcc9b565547f8c65350dffd4a7f71d409fd989cfb4",
+    "docs/evidence/graphics-lifetime-20261006/fixed-repeat-report.json": "ea88ae60858ecaed77a6efb5d71ffaa2baf7b2230806e7091076c96c028bafd8",
+    "docs/evidence/graphics-lifetime-20261006/fixed-repeat-summary.json": "2cadab1990f266c10d7d870b82aab665e9c20d9bcbfb5059255b0ab55299b9c2",
+    "docs/evidence/graphics-lifetime-20261006/fixed-repeat-trace.txt": "f8b34e397e1dd12021ff50749cc537eab9e0b95da15a3512d677cbd4fb9e0327",
+    "docs/evidence/graphics-lifetime-20261006/fixed-report.json": "e9f6bb81d124f69b66a21e2a2ec54bb84d27effa197944ffbf1f8044756de3ae",
+    "docs/evidence/graphics-lifetime-20261006/fixed-summary.json": "fcc85c4140498a5ccd47d3e3a00607a28dc7723420a6604d9983683b0a77e3b5",
+    "docs/evidence/graphics-lifetime-20261006/fixed-trace.txt": "cb7d9c65b11d481e024f928ecf43d8f7dc699fe97ad0c4e337ae93329264d69f",
+    "docs/evidence/graphics-lifetime-20261006/installed-module-status.txt": "36a31eceeb9ac3b1140abe6ffe7783a08739b4aff20c4d440510d18e3e6ad68c",
+    "docs/evidence/graphics-lifetime-20261006/private-report.json": "ae890a87185a03dc24ffd368241525599770f018320a32f5a915151dfb2943de",
+    "docs/evidence/graphics-lifetime-20261006/private-summary.json": "690a03c992999a180fe4336394b3832b691fcb65c43273f7d2d6c515ce726254",
+    "docs/evidence/graphics-lifetime-20261006/private-trace.txt": "d02b4fbe4c380911da24fbf939b406020554f593684e9314ea21bbf3763b7db4",
+    "docs/evidence/graphics-lifetime-20261006/stock-report.json": "26b4cc87f3398a5d9a4d8f3f70fabaa69acccad7c06c7e43ca71687ed54ff19a",
+    "docs/evidence/graphics-lifetime-20261006/stock-summary.json": "4fae7214c7119f1cffb59cea0a80ea5d2a1f696aad605a2f1523191aaf5730bf",
+    "docs/evidence/graphics-lifetime-20261006/stock-trace.txt": "09d646e26887c6070a02ae88f3001b4f49eb1b7feed42bf75b253297eb4717d3"
+  }
+}

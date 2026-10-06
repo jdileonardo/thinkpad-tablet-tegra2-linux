@@ -1,0 +1,525 @@
+{
+  "event_count": 565,
+  "page_size_assumption_bytes": 4096,
+  "cma_total_mib": 64.0,
+  "cma_bitmap_available_mib_range": [
+    12.84765625,
+    29.28515625
+  ],
+  "cma_bitmap_available_mib_at_end": 29.28515625,
+  "new_cma_allocation_mib": 16.3125,
+  "cma_release_mib_including_preexisting_buffers": 16.5625,
+  "net_cma_allocation_change_mib": -0.25,
+  "successful_bo_creates": 30,
+  "failed_bo_creates": 0,
+  "bo_request_size_counts": {
+    "65536": 11,
+    "131072": 3,
+    "262144": 13,
+    "4194304": 3
+  },
+  "traced_new_bos_still_live_or_cached_bytes": 1310720,
+  "traced_new_bos_still_live_or_cached": [
+    {
+      "pointer": "0xc35cc200",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc35da400",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4b19600",
+      "size": 131072,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4c95800",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc5af5c00",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc859e600",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc87a7400",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xcd485000",
+      "size": 131072,
+      "flags": 32
+    },
+    {
+      "pointer": "0xcd4c4600",
+      "size": 262144,
+      "flags": 32
+    }
+  ],
+  "freed_bo_pointers_including_preexisting": [
+    "0xc4c94c00",
+    "0xc4b1fc00",
+    "0xc57ed800",
+    "0xc5b8e800",
+    "0xc55ac600",
+    "0xc30b8800",
+    "0xc482c400",
+    "0xcd484200",
+    "0xc4caf600",
+    "0xcf6a7600",
+    "0xc859f600",
+    "0xc37c0400",
+    "0xc5584c00",
+    "0xc4b16600",
+    "0xc4af2400",
+    "0xc4df2a00",
+    "0xc5724e00",
+    "0xc30b9800",
+    "0xc87c5200",
+    "0xc4b17800",
+    "0xc8505400",
+    "0xc482c000",
+    "0xc87a7800",
+    "0xc4df3e00",
+    "0xc36ab600",
+    "0xc30a1800",
+    "0xc4c95400"
+  ],
+  "handle_reference_put_bo_pointers_including_preexisting": [
+    "0xc482c600",
+    "0xc482c600",
+    "0xc30a1800",
+    "0xc30a1800",
+    "0xc482c600",
+    "0xc482c600",
+    "0xc30a1800",
+    "0xc4c94c00",
+    "0xc4b1fc00",
+    "0xc57ed800",
+    "0xc5b8e800",
+    "0xc55ac600",
+    "0xc30b8800",
+    "0xc482c400",
+    "0xcd484200",
+    "0xc4caf600",
+    "0xcf6a7600",
+    "0xc859f600",
+    "0xc37c0400",
+    "0xc5584c00",
+    "0xc4b16600",
+    "0xc4af2400",
+    "0xc4df2a00",
+    "0xc5724e00",
+    "0xc30b9800",
+    "0xc87c5200",
+    "0xc4b17800",
+    "0xc8505400",
+    "0xc482c000",
+    "0xc87a7800",
+    "0xc4df3e00",
+    "0xc36ab600",
+    "0xc30a1800",
+    "0xc4c95400"
+  ],
+  "released_file_handles_including_preexisting": [
+    {
+      "bo": "0xc4c94c00",
+      "handle": 49
+    },
+    {
+      "bo": "0xc4b1fc00",
+      "handle": 39
+    },
+    {
+      "bo": "0xc57ed800",
+      "handle": 46
+    },
+    {
+      "bo": "0xc5b8e800",
+      "handle": 20
+    },
+    {
+      "bo": "0xc55ac600",
+      "handle": 28
+    },
+    {
+      "bo": "0xc30b8800",
+      "handle": 19
+    },
+    {
+      "bo": "0xc482c400",
+      "handle": 35
+    },
+    {
+      "bo": "0xcd484200",
+      "handle": 18
+    },
+    {
+      "bo": "0xc4caf600",
+      "handle": 30
+    },
+    {
+      "bo": "0xcf6a7600",
+      "handle": 40
+    },
+    {
+      "bo": "0xc859f600",
+      "handle": 41
+    },
+    {
+      "bo": "0xc37c0400",
+      "handle": 42
+    },
+    {
+      "bo": "0xc5584c00",
+      "handle": 50
+    },
+    {
+      "bo": "0xc4b16600",
+      "handle": 43
+    },
+    {
+      "bo": "0xc4af2400",
+      "handle": 44
+    },
+    {
+      "bo": "0xc4df2a00",
+      "handle": 32
+    },
+    {
+      "bo": "0xc5724e00",
+      "handle": 9
+    },
+    {
+      "bo": "0xc30b9800",
+      "handle": 22
+    },
+    {
+      "bo": "0xc87c5200",
+      "handle": 8
+    },
+    {
+      "bo": "0xc4b17800",
+      "handle": 47
+    },
+    {
+      "bo": "0xc8505400",
+      "handle": 39
+    },
+    {
+      "bo": "0xc482c000",
+      "handle": 36
+    },
+    {
+      "bo": "0xc87a7800",
+      "handle": 26
+    },
+    {
+      "bo": "0xc4df3e00",
+      "handle": 45
+    },
+    {
+      "bo": "0xc36ab600",
+      "handle": 38
+    },
+    {
+      "bo": "0xc30a1800",
+      "handle": 25
+    },
+    {
+      "bo": "0xc4c95400",
+      "handle": 48
+    }
+  ],
+  "gem_mappings": [
+    {
+      "bo": "0xc4b19600",
+      "vma": "0xc4e24380",
+      "closed": true,
+      "time": 17674.595709,
+      "result": 0
+    },
+    {
+      "bo": "0xc859e600",
+      "vma": "0xc84bad00",
+      "closed": true,
+      "time": 17676.618269,
+      "result": 0
+    },
+    {
+      "bo": "0xc30a1800",
+      "vma": "0xc583dc80",
+      "closed": true,
+      "time": 17679.274479,
+      "result": 0
+    },
+    {
+      "bo": "0xc87a7800",
+      "vma": "0xc374f180",
+      "closed": true,
+      "time": 17680.373225,
+      "result": 0
+    },
+    {
+      "bo": "0xc55ac600",
+      "vma": "0xc554fb00",
+      "closed": true,
+      "time": 17682.458002,
+      "result": 0
+    },
+    {
+      "bo": "0xcd485000",
+      "vma": "0xc5a31180",
+      "closed": false,
+      "time": 17683.249063,
+      "result": 0
+    },
+    {
+      "bo": "0xc4caf600",
+      "vma": "0xc4e3cb80",
+      "closed": true,
+      "time": 17683.885111,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df2a00",
+      "vma": "0xc469b200",
+      "closed": true,
+      "time": 17686.208639,
+      "result": 0
+    },
+    {
+      "bo": "0xc87a7400",
+      "vma": "0xc5511780",
+      "closed": false,
+      "time": 17687.205748,
+      "result": 0
+    },
+    {
+      "bo": "0xc35cc200",
+      "vma": "0xc4bd9f00",
+      "closed": true,
+      "time": 17687.222834,
+      "result": 0
+    },
+    {
+      "bo": "0xc35da400",
+      "vma": "0xc857ae80",
+      "closed": true,
+      "time": 17687.267402,
+      "result": 0
+    },
+    {
+      "bo": "0xc5af5c00",
+      "vma": "0xc5a31380",
+      "closed": false,
+      "time": 17689.322654,
+      "result": 0
+    },
+    {
+      "bo": "0xc482c400",
+      "vma": "0xc563b900",
+      "closed": true,
+      "time": 17689.370801,
+      "result": 0
+    },
+    {
+      "bo": "0xc482c000",
+      "vma": "0xcd40a880",
+      "closed": true,
+      "time": 17691.12444,
+      "result": 0
+    },
+    {
+      "bo": "0xc4c95800",
+      "vma": "0xc584dd00",
+      "closed": false,
+      "time": 17694.433018,
+      "result": 0
+    },
+    {
+      "bo": "0xc36ab600",
+      "vma": "0xc4843f80",
+      "closed": true,
+      "time": 17695.128312,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b1fc00",
+      "vma": "0xc339d000",
+      "closed": true,
+      "time": 17695.139072,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6a7600",
+      "vma": "0xc593f200",
+      "closed": true,
+      "time": 17695.352406,
+      "result": 0
+    },
+    {
+      "bo": "0xc859f600",
+      "vma": "0xcd409c80",
+      "closed": true,
+      "time": 17695.353733,
+      "result": 0
+    },
+    {
+      "bo": "0xc37c0400",
+      "vma": "0xc4cf9680",
+      "closed": true,
+      "time": 17695.356507,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b16600",
+      "vma": "0xc46c9380",
+      "closed": true,
+      "time": 17695.35873,
+      "result": 0
+    },
+    {
+      "bo": "0xc4af2400",
+      "vma": "0xc4d8e180",
+      "closed": true,
+      "time": 17695.360588,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df3e00",
+      "vma": "0xc584dc00",
+      "closed": true,
+      "time": 17695.368942,
+      "result": 0
+    },
+    {
+      "bo": "0xc57ed800",
+      "vma": "0xc47e1080",
+      "closed": true,
+      "time": 17695.690419,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b17800",
+      "vma": "0xc447c580",
+      "closed": true,
+      "time": 17695.884069,
+      "result": 0
+    },
+    {
+      "bo": "0xc4c95400",
+      "vma": "0xc36af900",
+      "closed": true,
+      "time": 17695.925752,
+      "result": 0
+    },
+    {
+      "bo": "0xc4c94c00",
+      "vma": "0xc4e18f00",
+      "closed": true,
+      "time": 17696.263594,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4c4600",
+      "vma": "0xc85eb080",
+      "closed": false,
+      "time": 17711.251781,
+      "result": 0
+    },
+    {
+      "bo": "0xc5584c00",
+      "vma": "0xc85eb000",
+      "closed": true,
+      "time": 17711.280629,
+      "result": 0
+    },
+    {
+      "bo": "0xc36ab600",
+      "vma": "0xc8790300",
+      "closed": true,
+      "time": 17727.056906,
+      "result": 0
+    },
+    {
+      "bo": "0xc8505400",
+      "vma": "0xc5adbf80",
+      "closed": true,
+      "time": 17727.821187,
+      "result": 0
+    }
+  ],
+  "gem_mapping_errors": [],
+  "cma_allocation_errors": [],
+  "consistency_errors": [],
+  "marker_headroom": [
+    {
+      "label": "baseline",
+      "available_mib": null
+    },
+    {
+      "label": "rotation_normal",
+      "available_mib": 28.84765625
+    },
+    {
+      "label": "rotation_left",
+      "available_mib": 24.66015625
+    },
+    {
+      "label": "rotation_inverted",
+      "available_mib": 23.97265625
+    },
+    {
+      "label": "rotation_right",
+      "available_mib": 23.66015625
+    },
+    {
+      "label": "rotation_normal",
+      "available_mib": 23.09765625
+    },
+    {
+      "label": "cycle_1_before",
+      "available_mib": 23.09765625
+    },
+    {
+      "label": "cycle_1_closed",
+      "available_mib": 13.28515625
+    },
+    {
+      "label": "cycle_2_before",
+      "available_mib": 13.34765625
+    },
+    {
+      "label": "cycle_2_closed",
+      "available_mib": 12.84765625
+    },
+    {
+      "label": "cycle_3_before",
+      "available_mib": 12.97265625
+    },
+    {
+      "label": "cycle_3_closed",
+      "available_mib": 12.91015625
+    },
+    {
+      "label": "settle_start",
+      "available_mib": 12.91015625
+    },
+    {
+      "label": "settled",
+      "available_mib": 29.28515625
+    }
+  ],
+  "scope": "Live-or-cached BOs are not classified as leaks. Objects predating the trace are not in the BO ledger. Headroom is CMA bitmap availability, not /proc/meminfo CmaFree or a guarantee of contiguous allocation success."
+}

@@ -1,0 +1,30 @@
+
+~ # rc-service lightdm status; grep -E "ModulePath|Loading.*opentegra" /var/log/
+
+Xorg.0.log; test ! -e /tmp/indigo-dri3-trial.active && echo NO_ACTIVE_DRIVER_TRI
+
+AL; ls /sys/kernel/tracing/instances; cat /sys/kernel/tracing/kprobe_events; pin
+
+g -c 3 -W 1 192.168.0.147; su julian -c "DISPLAY=:0 XAUTHORITY=/home/julian/.Xau
+
+thority xinput list --short"
+ * status: started
+[ 18052.304] (++) ModulePath set to "/opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules"
+[ 18052.544] (II) Loading /opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so
+NO_ACTIVE_DRIVER_TRIAL
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=117.965 ms
+64 bytes from 192.168.0.147: seq=1 ttl=64 time=138.133 ms
+64 bytes from 192.168.0.147: seq=2 ttl=64 time=56.234 ms
+
+--- 192.168.0.147 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 56.234/104.110/138.133 ms
+⎡ Virtual core pointer                    	id=2	[master pointer  (3)]
+⎜   ↳ Virtual core XTEST pointer              	id=4	[slave  pointer  (2)]
+⎜   ↳ N-Trig Indigo Touchscreen               	id=6	[slave  pointer  (2)]
+⎣ Virtual core keyboard                   	id=3	[master keyboard (2)]
+    ↳ Virtual core XTEST keyboard             	id=5	[slave  keyboard (3)]
+    ↳ N-Trig Indigo Pen                       	id=7	[slave  keyboard (3)]
+    ↳ gpio-keys                               	id=8	[slave  keyboard (3)]
+~ #

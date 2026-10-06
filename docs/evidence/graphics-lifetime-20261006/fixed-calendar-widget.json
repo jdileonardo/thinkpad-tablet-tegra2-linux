@@ -1,0 +1,21 @@
+{
+  "started_monotonic": 17953.57653231,
+  "draw_callbacks": 4,
+  "date": "2026-10-06",
+  "window_id": 37748739,
+  "gtk_version": [
+    3,
+    24,
+    52
+  ],
+  "pixel_validation": false,
+  "remote_calendar_integration": false,
+  "close_reason": "timer",
+  "elapsed_seconds": 40.43156170500151,
+  "selected_date": [
+    2026,
+    9,
+    6
+  ],
+  "draw_callback_observed": true
+}

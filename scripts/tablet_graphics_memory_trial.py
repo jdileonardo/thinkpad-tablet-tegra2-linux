@@ -18,7 +18,8 @@ import time
 import uuid
 
 TRACE = Path('/sys/kernel/tracing')
-EVENTS = ('bo_create', 'bo_return', 'bo_free')
+EVENTS = ('bo_create', 'bo_return', 'bo_free', 'handle_put', 'gem_mmap',
+          'gem_mmap_return', 'gem_vm_open', 'gem_vm_close', 'file_handle_release')
 
 
 def write(path, value):
@@ -77,7 +78,16 @@ def snapshot(label, instance):
         key, value = line.split(':', 1)
         if key in ('MemAvailable', 'CmaTotal', 'CmaFree', 'SwapTotal', 'SwapFree'):
             memory[key] = int(value.split()[0])
+    mappings = {}
+    for directory in Path('/proc').glob('[0-9]*'):
+        try:
+            if (directory / 'comm').read_text().strip() == 'Xorg':
+                mappings[directory.name] = [line for line in
+                    (directory / 'maps').read_text().splitlines() if '/dev/dri/' in line]
+        except OSError:
+            continue
     return {'label': label, 'monotonic': time.monotonic(), 'memory_kib': memory,
+            'xorg_drm_mappings': mappings,
             'drm_clients': (Path('/sys/kernel/debug/dri/0/clients')).read_text(),
             'framebuffers': (Path('/sys/kernel/debug/dri/0/framebuffers')).read_text()}
 
@@ -125,6 +135,8 @@ def main():
     parser.add_argument('--settle', type=int, default=45)
     parser.add_argument('--reload-desktop', action='store_true')
     parser.add_argument('--rotation-check', action='store_true')
+    parser.add_argument('--lifetime', action='store_true',
+                        help='Also trace GEM handle release and VMA mapping lifetime')
     args = parser.parse_args()
     if args.cleanup:
         if not re.fullmatch(r'indigo_gfx_[0-9a-f]{12}', args.cleanup):
@@ -164,12 +176,22 @@ def main():
         for event in ('cma_alloc_start', 'cma_alloc_finish', 'cma_release'):
             write(instance / 'events/cma' / event / 'enable', '1')
         # ARM32 tracefs lacks generic $argN fetches; AAPCS passes these in r1/r2.
-        for line in (f'p:{name}/bo_create tegra_bo_create size=%r1:u32 flags=%r2:x32',
+        probes = [f'p:{name}/bo_create tegra_bo_create size=%r1:u32 flags=%r2:x32',
                      f'r:{name}/bo_return tegra_bo_create result=$retval:x32',
-                     f'p:{name}/bo_free tegra_bo_free bo=%r1:x32'):
+                     f'p:{name}/bo_free tegra_bo_free bo=%r1:x32']
+        if args.lifetime:
+            probes += [f'p:{name}/handle_put drm_gem_object_handle_put_unlocked bo=%r0:x32',
+                       f'p:{name}/file_handle_release drm_gem_object_release_handle handle=%r0:u32 bo=%r1:x32',
+                       f'p:{name}/gem_mmap __tegra_gem_mmap bo=%r0:x32 vma=%r1:x32',
+                       f'r:{name}/gem_mmap_return __tegra_gem_mmap result=$retval:s32',
+                       f'p:{name}/gem_vm_open drm_gem_vm_open vma=%r0:x32',
+                       f'p:{name}/gem_vm_close drm_gem_vm_close vma=%r0:x32']
+        for line in probes:
             probe_command(line)
         for event in EVENTS:
-            write(instance / 'events' / name / event / 'enable', '1')
+            control = instance / 'events' / name / event / 'enable'
+            if control.exists():
+                write(control, '1')
         with (output / 'watchdog.log').open('w') as log:
             subprocess.Popen(['sh', '-c', 'sleep 360; exec python3 "$1" --cleanup "$2"',
                               'graphics-trace-cleanup', str(Path(__file__).resolve()), name],

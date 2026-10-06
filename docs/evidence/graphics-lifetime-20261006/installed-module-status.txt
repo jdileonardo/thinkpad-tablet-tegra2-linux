@@ -1,0 +1,33 @@
+
+~ # rc-service lightdm status; cat /etc/lightdm/lightdm.conf.d/95-indigo-xorg.co
+
+nf; sha256sum /opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so /u
+
+sr/lib/xorg/modules/drivers/opentegra_drv.so; grep -E "ModulePath|Loading.*opent
+
+egra|\(EE\)|\(WW\)" /var/log/Xorg.0.log | tail -n 10; su julian -c "DISPLAY=:0 X
+
+AUTHORITY=/home/julian/.Xauthority xrandr --current" | head -n 4; grep -E "MemAv
+
+ailable|Cma" /proc/meminfo; ls /sys/kernel/tracing/instances; cat /sys/kernel/tr
+
+acing/kprobe_events
+ * status: started
+[Seat:*]
+xserver-command=/usr/libexec/Xorg -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+7f5350d475af38789b38bea7a816ea75547a5e1728e40c5a6face84909770735  /opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so
+5864c997b380945501b998b6829c071bb804d4df2f479f902f51a991e9682d97  /usr/lib/xorg/modules/drivers/opentegra_drv.so
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[ 18052.303] (WW) The directory "/usr/share/fonts/TTF" does not exist.
+[ 18052.304] (WW) The directory "/usr/share/fonts/Type1" does not exist.
+[ 18052.304] (++) ModulePath set to "/opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules"
+[ 18052.544] (II) Loading /opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so
+[ 18052.554] (WW) VGA arbiter: cannot open kernel arbiter, no multi-card support
+Screen 0: minimum 320 x 200, current 800 x 1280, maximum 4096 x 4096
+HDMI-0 disconnected (normal left inverted right x axis y axis)
+Unknown-0 connected 800x1280+0+0 left (normal left inverted right x axis y axis) 0mm x 0mm
+   1280x800      60.33*+
+MemAvailable:     704432 kB
+CmaTotal:          65536 kB
+CmaFree:             232 kB
+~ #

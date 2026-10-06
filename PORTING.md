@@ -2,8 +2,9 @@
 
 The current target is an XFCE tablet that displays a calendar and controls
 Spotify playback. See the [desktop priorities](docs/development-workflow.md#desktop-target-and-priorities).
-The latest desktop result is the [graphics allocation checkpoint](docs/graphics-memory.md),
-following the [XFCE stability and calendar check](docs/xfce-stability.md).
+The latest desktop result is the [rotation buffer reference fix](docs/graphics-rotation-fix.md),
+following the [graphics allocation checkpoint](docs/graphics-memory.md) and
+the [XFCE stability and calendar check](docs/xfce-stability.md).
 The latest GPU result is the [native Wayland and Plasma evaluation](docs/gpu-plasma-evaluation.md).
 See [development workflow and internal installation](docs/development-workflow.md)
 for the current RAM/SD arrangement and the path toward a standalone installation.

@@ -1,0 +1,938 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 926/926   #P:2
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+         python3-7803    [000] ..... 17163.939245: tracing_mark_write: baseline
+     kworker/0:2-6331    [000] d.... 17165.082742: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc5bbd600
+            Xorg-29643   [000] d.... 17165.088679: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xcd4d4800
+            Xorg-29643   [000] d.... 17165.170414: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 17165.170488: cma_alloc_start: name=reserved request_count=64 available_count=1343 total_count=16384 align=6
+            Xorg-29643   [000] ..... 17165.172740: cma_alloc_finish: name=reserved pfn=0x3e280 page=f6a71108 count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 17165.172757: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4b1e400
+            Xorg-29643   [000] d.... 17165.172850: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4b1e400 vma=0xc32ea300
+            Xorg-29643   [000] ..... 17165.172865: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17165.209252: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc8602800 vma=0xc5a70880
+            Xorg-29643   [000] ..... 17165.209720: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17165.232028: bo_create: (tegra_bo_create+0x0/0x384) size=131072 flags=0x20
+            Xorg-29643   [000] ..... 17165.232101: cma_alloc_start: name=reserved request_count=32 available_count=1279 total_count=16384 align=5
+            Xorg-29643   [000] ..... 17165.233615: cma_alloc_finish: name=reserved pfn=0x3e140 page=78cbe6be count=32 align=5 errorno=0
+            Xorg-29643   [000] ..... 17165.233635: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xcd4d6e00
+            Xorg-29643   [000] d.... 17165.234136: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcd4d6e00 vma=0xc56f4680
+            Xorg-29643   [000] ..... 17165.234155: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17165.235890: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 17165.235947: cma_alloc_start: name=reserved request_count=64 available_count=1247 total_count=16384 align=6
+            Xorg-29643   [000] ..... 17165.238128: cma_alloc_finish: name=reserved pfn=0x3e2c0 page=c5c4a892 count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 17165.238142: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4dc6000
+            Xorg-29643   [000] d.... 17165.238216: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4dc6000 vma=0xc5a70700
+            Xorg-29643   [000] ..... 17165.238228: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.378175: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc35b4200 vma=0xc873c800
+            Xorg-29643   [001] ..... 17165.378205: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.450587: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc30b8800 vma=0xc84d9100
+            Xorg-29643   [001] ..... 17165.450614: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.465518: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc59b3000 vma=0xc4593580
+            Xorg-29643   [001] ..... 17165.465549: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.474042: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4ddaa00 vma=0xc4593d00
+            Xorg-29643   [001] ..... 17165.474074: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.490121: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcd484200 vma=0xcd4efd80
+            Xorg-29643   [001] ..... 17165.490148: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.529581: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4f34e00 vma=0xcd4ef680
+            Xorg-29643   [001] ..... 17165.529600: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.538279: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcf553a00 vma=0xcd4ef580
+            Xorg-29643   [001] ..... 17165.538302: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.546803: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc59b3600 vma=0xcd4ef500
+            Xorg-29643   [001] ..... 17165.546821: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.549779: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4afd000 vma=0xcd4ef600
+            Xorg-29643   [001] ..... 17165.549793: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.713294: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.713349: cma_alloc_start: name=reserved request_count=16 available_count=1183 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.714434: cma_alloc_finish: name=reserved pfn=0x3e220 page=4075803c count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.714448: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4af4600
+            Xorg-29643   [001] d.... 17165.714619: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4af4600 vma=0xc5558980
+            Xorg-29643   [001] ..... 17165.714630: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.725096: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.725154: cma_alloc_start: name=reserved request_count=16 available_count=1167 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.726013: cma_alloc_finish: name=reserved pfn=0x3e230 page=702d52ff count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.726025: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xcd4d5c00
+            Xorg-29643   [001] d.... 17165.726189: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcd4d5c00 vma=0xc47a4780
+            Xorg-29643   [001] ..... 17165.726198: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.736561: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.736615: cma_alloc_start: name=reserved request_count=16 available_count=1151 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.737393: cma_alloc_finish: name=reserved pfn=0x3e270 page=230bf9ab count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.737406: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xcd4d7a00
+            Xorg-29643   [001] d.... 17165.737566: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcd4d7a00 vma=0xc37af180
+            Xorg-29643   [001] ..... 17165.737576: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.747876: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.747926: cma_alloc_start: name=reserved request_count=16 available_count=1135 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.748805: cma_alloc_finish: name=reserved pfn=0x3e300 page=9d30452e count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.748818: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xcd484400
+            Xorg-29643   [001] d.... 17165.748977: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcd484400 vma=0xc5558b80
+            Xorg-29643   [001] ..... 17165.748987: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.759345: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.759397: cma_alloc_start: name=reserved request_count=16 available_count=1119 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.760182: cma_alloc_finish: name=reserved pfn=0x3e310 page=052d7c68 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.760194: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xcd7e8200
+            Xorg-29643   [001] d.... 17165.760359: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcd7e8200 vma=0xc5558a00
+            Xorg-29643   [001] ..... 17165.760368: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.810669: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.810728: cma_alloc_start: name=reserved request_count=16 available_count=1103 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.811553: cma_alloc_finish: name=reserved pfn=0x3e320 page=f36d7412 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.811566: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc35db400
+            Xorg-29643   [001] d.... 17165.811727: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc35db400 vma=0xc5558b00
+            Xorg-29643   [001] ..... 17165.811737: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.822809: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.822861: cma_alloc_start: name=reserved request_count=16 available_count=1087 total_count=16384 align=4
+            Xorg-29643   [001] .n... 17165.823834: cma_alloc_finish: name=reserved pfn=0x3e330 page=a6c65eb8 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.823976: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc1db3200
+            Xorg-29643   [001] d.... 17165.824274: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc1db3200 vma=0xc84d9500
+            Xorg-29643   [001] .n... 17165.824288: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.835269: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.835321: cma_alloc_start: name=reserved request_count=16 available_count=1071 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.836144: cma_alloc_finish: name=reserved pfn=0x3e340 page=5d36caf5 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.836155: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xcf555c00
+            Xorg-29643   [001] d.... 17165.836312: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcf555c00 vma=0xc4f38000
+            Xorg-29643   [001] ..... 17165.836322: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.846596: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.846646: cma_alloc_start: name=reserved request_count=16 available_count=1055 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.847525: cma_alloc_finish: name=reserved pfn=0x3e350 page=e98f9cc9 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.847537: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xcf6a7600
+            Xorg-29643   [001] d.... 17165.847693: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcf6a7600 vma=0xc57b5680
+            Xorg-29643   [001] ..... 17165.847703: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.858435: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.858490: cma_alloc_start: name=reserved request_count=16 available_count=1039 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.859354: cma_alloc_finish: name=reserved pfn=0x3e360 page=a1ce37f3 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.859368: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xcf553c00
+            Xorg-29643   [001] d.... 17165.859529: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcf553c00 vma=0xc5408180
+            Xorg-29643   [001] ..... 17165.859538: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.870723: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.870775: cma_alloc_start: name=reserved request_count=16 available_count=1023 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.871597: cma_alloc_finish: name=reserved pfn=0x3e370 page=90023a40 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.871609: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc5bba400
+            Xorg-29643   [001] d.... 17165.871780: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc5bba400 vma=0xc37af900
+            Xorg-29643   [001] ..... 17165.871790: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.883915: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.883975: cma_alloc_start: name=reserved request_count=16 available_count=1007 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.884748: cma_alloc_finish: name=reserved pfn=0x3e390 page=16ed017f count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.884760: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc5748400
+            Xorg-29643   [001] d.... 17165.884923: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc5748400 vma=0xc5558900
+            Xorg-29643   [001] ..... 17165.884934: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.895877: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.895929: cma_alloc_start: name=reserved request_count=16 available_count=991 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.896804: cma_alloc_finish: name=reserved pfn=0x3e3d0 page=5972c4a8 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.896815: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc35da400
+            Xorg-29643   [001] d.... 17165.896999: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc35da400 vma=0xc37aff80
+            Xorg-29643   [001] ..... 17165.897009: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.923470: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.923527: cma_alloc_start: name=reserved request_count=16 available_count=975 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.924478: cma_alloc_finish: name=reserved pfn=0x3e3e0 page=fd9461d6 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.924492: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4df2a00
+            Xorg-29643   [001] d.... 17165.924662: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4df2a00 vma=0xc4e0d580
+            Xorg-29643   [001] ..... 17165.924672: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17165.970611: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17165.970671: cma_alloc_start: name=reserved request_count=16 available_count=959 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17165.971527: cma_alloc_finish: name=reserved pfn=0x3f440 page=9dc41b10 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17165.971541: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc5585a00
+            Xorg-29643   [001] d.... 17165.971707: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc5585a00 vma=0xc37af080
+            Xorg-29643   [001] ..... 17165.971717: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17166.110565: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [001] ..... 17166.110622: cma_alloc_start: name=reserved request_count=16 available_count=943 total_count=16384 align=4
+            Xorg-29643   [001] ..... 17166.111446: cma_alloc_finish: name=reserved pfn=0x3f450 page=2a2807f7 count=16 align=4 errorno=0
+            Xorg-29643   [001] ..... 17166.111458: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4afd400
+            Xorg-29643   [001] d.... 17166.111626: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4afd400 vma=0xc56fd580
+            Xorg-29643   [001] ..... 17166.111636: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17166.174293: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5558d80
+            Xorg-29643   [000] d.... 17166.174889: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fd880
+            Xorg-29643   [000] d.... 17166.174995: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fd800
+            Xorg-29643   [000] d.... 17166.175101: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc554fe00
+            Xorg-29643   [000] d.... 17166.175205: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5558700
+            Xorg-29643   [000] d.... 17166.175412: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3280
+            Xorg-29643   [000] d.... 17166.175518: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4f1cf00
+            Xorg-29643   [000] d.... 17166.175776: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd9500
+            Xorg-29643   [000] d.... 17166.175883: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc85e2600
+            Xorg-29643   [000] d.... 17166.175986: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc870f800
+            Xorg-29643   [000] d.... 17166.175997: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fdc00
+            Xorg-29643   [000] d.... 17166.176005: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd5dd780
+            Xorg-29643   [000] d.... 17166.176011: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc85e9580
+            Xorg-29643   [000] d.... 17166.176017: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc593c400
+            Xorg-29643   [000] d.... 17166.176023: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc57b5280
+            Xorg-29643   [000] d.... 17166.176125: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc84d8f80
+            Xorg-29643   [000] d.... 17166.176227: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc442e780
+            Xorg-29643   [000] d.... 17166.176234: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5861080
+            Xorg-29643   [000] d.... 17166.176240: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47d8b00
+            Xorg-29643   [000] d.... 17166.176246: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5a70680
+            Xorg-29643   [000] d.... 17166.176253: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd60d180
+            Xorg-29643   [000] d.... 17166.176259: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e29600
+            Xorg-29643   [000] d.... 17166.176265: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc1c20d80
+            Xorg-29643   [000] d.... 17166.176271: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc8614e80
+            Xorg-29643   [000] d.... 17166.176277: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4ece900
+            Xorg-29643   [000] d.... 17166.176284: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5adbe80
+            Xorg-29643   [000] d.... 17166.176292: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc554f980
+            Xorg-29643   [000] d.... 17166.176298: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd60dd80
+            Xorg-29643   [000] d.... 17166.176304: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc57e9700
+            Xorg-29643   [000] d.... 17166.176310: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc31b0e00
+            Xorg-29643   [000] d.... 17166.176317: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc556b500
+            Xorg-29643   [000] d.... 17166.176328: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc3420b80
+            Xorg-29643   [000] d.... 17166.176475: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd6380
+            Xorg-29643   [000] d.... 17166.176503: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc84d8800
+            Xorg-29643   [000] d.... 17166.176524: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc486bd80
+            Xorg-29643   [000] d.... 17166.176540: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd60d600
+            Xorg-29643   [000] d.... 17166.176577: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc554fa00
+            Xorg-29643   [000] d.... 17166.176598: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5a70b80
+            Xorg-29643   [000] d.... 17166.176618: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc3421200
+            Xorg-29643   [000] d.... 17166.176654: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc8525700
+            Xorg-29643   [000] d.... 17166.176661: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd9580
+            Xorg-29643   [000] d.... 17166.176727: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3a80
+            Xorg-29643   [000] d.... 17166.177415: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47faf80
+            Xorg-29643   [000] d.... 17166.177540: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc33c9980
+            Xorg-29643   [000] d.... 17166.177564: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4872500
+            Xorg-29643   [000] d.... 17166.177571: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4872400
+              sh-7881    [001] d.... 17166.188611: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558d80
+              sh-7881    [001] d.... 17166.188621: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fd880
+              sh-7881    [001] d.... 17166.188624: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fd800
+              sh-7881    [001] d.... 17166.188626: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc554fe00
+              sh-7881    [001] d.... 17166.188629: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558700
+              sh-7881    [001] d.... 17166.188649: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3280
+              sh-7881    [001] d.... 17166.188652: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4f1cf00
+              sh-7881    [001] d.... 17166.188670: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd9500
+              sh-7881    [001] d.... 17166.188673: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc85e2600
+              sh-7881    [001] d.... 17166.188676: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc870f800
+              sh-7881    [001] d.... 17166.188679: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fdc00
+              sh-7881    [001] d.... 17166.188681: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd5dd780
+              sh-7881    [001] d.... 17166.188685: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc85e9580
+              sh-7881    [001] d.... 17166.188688: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc593c400
+              sh-7881    [001] d.... 17166.188691: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57b5280
+              sh-7881    [001] d.... 17166.188693: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc84d8f80
+              sh-7881    [001] d.... 17166.188696: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc442e780
+              sh-7881    [001] d.... 17166.188699: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5861080
+              sh-7881    [001] d.... 17166.188701: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47d8b00
+              sh-7881    [001] d.... 17166.188704: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a70680
+              sh-7881    [001] d.... 17166.188707: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd60d180
+              sh-7881    [001] d.... 17166.188710: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e29600
+              sh-7881    [001] d.... 17166.188713: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc1c20d80
+              sh-7881    [001] d.... 17166.188715: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc8614e80
+              sh-7881    [001] d.... 17166.188718: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4ece900
+              sh-7881    [001] d.... 17166.188721: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5adbe80
+              sh-7881    [001] d.... 17166.188723: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc554f980
+              sh-7881    [001] d.... 17166.188726: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd60dd80
+              sh-7881    [001] d.... 17166.188728: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57e9700
+              sh-7881    [001] d.... 17166.188731: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc31b0e00
+              sh-7881    [001] d.... 17166.188734: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc556b500
+              sh-7881    [001] d.... 17166.188741: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc3420b80
+              sh-7881    [001] d.... 17166.188747: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd6380
+              sh-7881    [001] d.... 17166.188752: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc84d8800
+              sh-7881    [001] d.... 17166.188756: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc486bd80
+              sh-7881    [001] d.... 17166.188759: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd60d600
+              sh-7881    [001] d.... 17166.188767: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc554fa00
+              sh-7881    [001] d.... 17166.188771: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a70b80
+              sh-7881    [001] d.... 17166.188775: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc3421200
+              sh-7881    [001] d.... 17166.188780: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc8525700
+              sh-7881    [001] d.... 17166.188783: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd9580
+              sh-7881    [001] d.... 17166.188788: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3a80
+              sh-7881    [001] d.... 17166.188821: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47faf80
+              sh-7881    [001] d.... 17166.188826: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc33c9980
+              sh-7881    [001] d.... 17166.188830: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4872500
+              sh-7881    [001] d.... 17166.188833: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4872400
+            Xorg-29643   [000] d.... 17167.317865: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [000] ..... 17167.317943: cma_alloc_start: name=reserved request_count=16 available_count=927 total_count=16384 align=4
+            Xorg-29643   [000] ..... 17167.318980: cma_alloc_finish: name=reserved pfn=0x3f460 page=7adc035a count=16 align=4 errorno=0
+            Xorg-29643   [000] ..... 17167.318994: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xcf6a6e00
+            Xorg-29643   [000] d.... 17167.319277: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcf6a6e00 vma=0xc57e9300
+            Xorg-29643   [000] ..... 17167.319287: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17167.319670: bo_create: (tegra_bo_create+0x0/0x384) size=65536 flags=0x20
+            Xorg-29643   [000] ..... 17167.319717: cma_alloc_start: name=reserved request_count=16 available_count=911 total_count=16384 align=4
+            Xorg-29643   [000] ..... 17167.320502: cma_alloc_finish: name=reserved pfn=0x3f470 page=b183b519 count=16 align=4 errorno=0
+            Xorg-29643   [000] ..... 17167.320512: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4b1e000
+            Xorg-29643   [000] d.... 17167.320637: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4b1e000 vma=0xc5693000
+            Xorg-29643   [000] ..... 17167.320644: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+         python3-7803    [000] ..... 17167.451755: tracing_mark_write: rotation_normal
+            Xorg-29643   [001] d.... 17168.025848: bo_create: (tegra_bo_create+0x0/0x384) size=4194304 flags=0x20
+            Xorg-29643   [001] ..... 17168.025907: cma_alloc_start: name=reserved request_count=1024 available_count=895 total_count=16384 align=8
+            Xorg-29643   [001] ..... 17168.025911: cma_alloc_finish: name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16
+            Xorg-29643   [001] ..... 17168.026041: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc5bbae00
+            Xorg-29643   [001] d.... 17168.026119: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc5bbae00 vma=0xc5702c00
+            Xorg-29643   [001] ..... 17168.026209: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+     kworker/1:0-4740    [001] d.... 17168.030231: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc5bbd600
+            Xorg-29643   [000] d.... 17168.031901: bo_create: (tegra_bo_create+0x0/0x384) size=4194304 flags=0x20
+            Xorg-29643   [000] ..... 17168.031946: cma_alloc_start: name=reserved request_count=1024 available_count=895 total_count=16384 align=8
+            Xorg-29643   [000] ..... 17168.031949: cma_alloc_finish: name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16
+            Xorg-29643   [000] ..... 17168.032059: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc59b2200
+            Xorg-29643   [000] d.... 17168.032122: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc59b2200 vma=0xc497b880
+            Xorg-29643   [000] ..... 17168.032218: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17168.416690: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [000] ..... 17168.416803: cma_alloc_start: name=reserved request_count=64 available_count=895 total_count=16384 align=6
+            Xorg-29643   [000] ..... 17168.419379: cma_alloc_finish: name=reserved pfn=0x3f4c0 page=c703d643 count=64 align=6 errorno=0
+            Xorg-29643   [000] ..... 17168.419404: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc37c1400
+            Xorg-29643   [000] d.... 17168.419535: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc37c1400 vma=0xc5861380
+            Xorg-29643   [000] ..... 17168.419552: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17168.671967: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc30cca00 vma=0xc3375b80
+            Xorg-29643   [000] ..... 17168.671984: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17168.676247: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcf6a6400 vma=0xc5a70a00
+            Xorg-29643   [000] ..... 17168.676260: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17168.689871: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc5bbdc00 vma=0xc85e2100
+            Xorg-29643   [000] ..... 17168.689885: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17168.694857: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4c95800 vma=0xc5adb980
+            Xorg-29643   [000] ..... 17168.694870: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17168.709426: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc57ec600 vma=0xc5591a80
+            Xorg-29643   [000] ..... 17168.709442: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17168.713801: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcd4afe00 vma=0xc85e2180
+            Xorg-29643   [000] ..... 17168.713813: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17168.881927: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4afbc00 vma=0xc4dd2380
+            Xorg-29643   [000] ..... 17168.881944: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17168.931947: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5adb800
+            Xorg-29643   [001] d.... 17168.932063: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc55f1800
+            Xorg-29643   [001] d.... 17168.932645: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc57e9400
+            Xorg-29643   [001] d.... 17168.932749: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5a6e480
+            Xorg-29643   [001] d.... 17168.932855: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dab280
+            Xorg-29643   [001] d.... 17168.932957: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4b4bf80
+            Xorg-29643   [001] d.... 17168.933161: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd6a00
+            Xorg-29643   [001] d.... 17168.933266: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4ea2280
+            Xorg-29643   [001] d.... 17168.933505: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc497a180
+            Xorg-29643   [001] d.... 17168.933608: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc85bb400
+            Xorg-29643   [001] d.... 17168.933851: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc85bbd00
+            Xorg-29643   [001] d.... 17168.933958: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc857fa00
+            Xorg-29643   [001] d.... 17168.933966: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4eb1880
+            Xorg-29643   [001] d.... 17168.933973: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd4bda00
+            Xorg-29643   [001] d.... 17168.933980: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc57e9600
+            Xorg-29643   [001] d.... 17168.933986: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5ba5580
+            Xorg-29643   [001] d.... 17168.933993: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4465b80
+            Xorg-29643   [001] d.... 17168.934007: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc493f880
+            Xorg-29643   [001] d.... 17168.934013: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4d6eb00
+            Xorg-29643   [001] d.... 17168.934025: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4872280
+            Xorg-29643   [001] d.... 17168.934031: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc8607880
+            Xorg-29643   [001] d.... 17168.934037: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc856be00
+            Xorg-29643   [001] d.... 17168.934043: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5a70d00
+            Xorg-29643   [001] d.... 17168.934049: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc469ba00
+            Xorg-29643   [001] d.... 17168.934055: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc3138980
+            Xorg-29643   [001] d.... 17168.934061: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4478b00
+            Xorg-29643   [001] d.... 17168.934067: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc497ba00
+            Xorg-29643   [001] d.... 17168.934173: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5adb600
+            Xorg-29643   [001] d.... 17168.934275: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5861980
+            Xorg-29643   [001] d.... 17168.934282: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e24000
+            Xorg-29643   [001] d.... 17168.934289: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e1cb00
+            Xorg-29643   [001] d.... 17168.934295: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5a89b80
+            Xorg-29643   [001] d.... 17168.934301: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3800
+            Xorg-29643   [001] d.... 17168.934307: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc46ef480
+            Xorg-29643   [001] d.... 17168.934313: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc31b0480
+            Xorg-29643   [001] d.... 17168.934320: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc33cea80
+            Xorg-29643   [001] d.... 17168.934325: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3a00
+            Xorg-29643   [001] d.... 17168.934331: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e21c80
+            Xorg-29643   [001] d.... 17168.934337: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd60d080
+            Xorg-29643   [001] d.... 17168.934343: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd60dd00
+            Xorg-29643   [001] d.... 17168.934349: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fd180
+            Xorg-29643   [001] d.... 17168.934355: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e24a00
+            Xorg-29643   [001] d.... 17168.934362: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47d5200
+            Xorg-29643   [001] d.... 17168.934372: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3480
+            Xorg-29643   [001] d.... 17168.934523: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5558280
+            Xorg-29643   [001] d.... 17168.934551: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fdf00
+            Xorg-29643   [001] d.... 17168.934571: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc57e9700
+            Xorg-29643   [001] d.... 17168.934589: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fd900
+            Xorg-29643   [001] d.... 17168.934628: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5558180
+            Xorg-29643   [001] d.... 17168.934647: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5558a80
+            Xorg-29643   [001] d.... 17168.934667: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5558f80
+            Xorg-29643   [001] d.... 17168.934704: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fd480
+            Xorg-29643   [001] d.... 17168.934711: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd4fe680
+            Xorg-29643   [001] d.... 17168.934778: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fde00
+            Xorg-29643   [001] d.... 17168.935462: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca380
+            Xorg-29643   [001] d.... 17168.935589: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc358cb00
+            Xorg-29643   [001] d.... 17168.935614: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47caa80
+            Xorg-29643   [001] d.... 17168.935621: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc84d9180
+         xkbcomp-7938    [001] d.... 17168.948603: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5adb800
+         xkbcomp-7938    [001] d.... 17168.948615: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc55f1800
+         xkbcomp-7938    [001] d.... 17168.948618: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57e9400
+         xkbcomp-7938    [001] d.... 17168.948621: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a6e480
+         xkbcomp-7938    [001] d.... 17168.948623: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dab280
+         xkbcomp-7938    [001] d.... 17168.948626: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4b4bf80
+         xkbcomp-7938    [001] d.... 17168.948647: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd6a00
+         xkbcomp-7938    [001] d.... 17168.948650: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4ea2280
+         xkbcomp-7938    [001] d.... 17168.948669: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc497a180
+         xkbcomp-7938    [001] d.... 17168.948672: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc85bb400
+         xkbcomp-7938    [001] d.... 17168.948675: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc85bbd00
+         xkbcomp-7938    [001] d.... 17168.948678: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc857fa00
+         xkbcomp-7938    [001] d.... 17168.948681: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4eb1880
+         xkbcomp-7938    [001] d.... 17168.948683: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4bda00
+         xkbcomp-7938    [001] d.... 17168.948687: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57e9600
+         xkbcomp-7938    [001] d.... 17168.948689: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5ba5580
+         xkbcomp-7938    [001] d.... 17168.948691: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4465b80
+         xkbcomp-7938    [001] d.... 17168.948695: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc493f880
+         xkbcomp-7938    [001] d.... 17168.948697: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4d6eb00
+         xkbcomp-7938    [001] d.... 17168.948700: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4872280
+         xkbcomp-7938    [001] d.... 17168.948703: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc8607880
+         xkbcomp-7938    [001] d.... 17168.948706: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc856be00
+         xkbcomp-7938    [001] d.... 17168.948708: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a70d00
+         xkbcomp-7938    [001] d.... 17168.948711: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc469ba00
+         xkbcomp-7938    [001] d.... 17168.948714: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc3138980
+         xkbcomp-7938    [001] d.... 17168.948716: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4478b00
+         xkbcomp-7938    [001] d.... 17168.948719: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc497ba00
+         xkbcomp-7938    [001] d.... 17168.948721: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5adb600
+         xkbcomp-7938    [001] d.... 17168.948724: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5861980
+         xkbcomp-7938    [001] d.... 17168.948726: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e24000
+         xkbcomp-7938    [001] d.... 17168.948729: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e1cb00
+         xkbcomp-7938    [001] d.... 17168.948732: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a89b80
+         xkbcomp-7938    [001] d.... 17168.948734: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3800
+         xkbcomp-7938    [001] d.... 17168.948737: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc46ef480
+         xkbcomp-7938    [001] d.... 17168.948740: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc31b0480
+         xkbcomp-7938    [001] d.... 17168.948742: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc33cea80
+         xkbcomp-7938    [001] d.... 17168.948745: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3a00
+         xkbcomp-7938    [001] d.... 17168.948747: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e21c80
+         xkbcomp-7938    [001] d.... 17168.948750: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd60d080
+         xkbcomp-7938    [001] d.... 17168.948753: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd60dd00
+         xkbcomp-7938    [001] d.... 17168.948755: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fd180
+         xkbcomp-7938    [001] d.... 17168.948759: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e24a00
+         xkbcomp-7938    [001] d.... 17168.948761: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47d5200
+         xkbcomp-7938    [001] d.... 17168.948764: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3480
+         xkbcomp-7938    [001] d.... 17168.948769: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558280
+         xkbcomp-7938    [001] d.... 17168.948774: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fdf00
+         xkbcomp-7938    [001] d.... 17168.948779: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57e9700
+         xkbcomp-7938    [001] d.... 17168.948782: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fd900
+         xkbcomp-7938    [001] d.... 17168.948788: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558180
+         xkbcomp-7938    [001] d.... 17168.948791: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558a80
+         xkbcomp-7938    [001] d.... 17168.948795: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558f80
+         xkbcomp-7938    [001] d.... 17168.948799: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fd480
+         xkbcomp-7938    [001] d.... 17168.948802: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4fe680
+         xkbcomp-7938    [001] d.... 17168.948807: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fde00
+         xkbcomp-7938    [001] d.... 17168.948844: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca380
+         xkbcomp-7938    [001] d.... 17168.948850: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc358cb00
+         xkbcomp-7938    [001] d.... 17168.948854: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47caa80
+         xkbcomp-7938    [001] d.... 17168.948856: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc84d9180
+         python3-7803    [000] ..... 17170.444223: tracing_mark_write: rotation_left
+     kworker/1:0-4740    [001] d.... 17171.043693: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc59b2200
+            Xorg-29643   [001] d.... 17171.047840: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc5bbae00
+            Xorg-29643   [001] d.... 17171.049266: bo_create: (tegra_bo_create+0x0/0x384) size=4194304 flags=0x20
+            Xorg-29643   [001] ..... 17171.049314: cma_alloc_start: name=reserved request_count=1024 available_count=831 total_count=16384 align=8
+            Xorg-29643   [001] ..... 17171.049317: cma_alloc_finish: name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16
+            Xorg-29643   [001] ..... 17171.049431: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4c95200
+            Xorg-29643   [001] d.... 17171.049503: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4c95200 vma=0xc550fe00
+            Xorg-29643   [001] ..... 17171.049591: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17172.247487: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3600
+            Xorg-29643   [001] d.... 17172.247604: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc46cb300
+            Xorg-29643   [001] d.... 17172.247709: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd9e00
+            Xorg-29643   [001] d.... 17172.248288: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd9580
+            Xorg-29643   [001] d.... 17172.248395: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fd500
+            Xorg-29643   [001] d.... 17172.248503: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3480
+            Xorg-29643   [001] d.... 17172.248607: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc358c400
+            Xorg-29643   [001] d.... 17172.248819: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3800
+            Xorg-29643   [001] d.... 17172.248924: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc46ef480
+            Xorg-29643   [001] d.... 17172.249165: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4465b80
+            Xorg-29643   [001] d.... 17172.249270: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e1cb00
+            Xorg-29643   [001] d.... 17172.249372: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4478b00
+            Xorg-29643   [001] d.... 17172.249474: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc57e9600
+            Xorg-29643   [001] d.... 17172.249482: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc856be00
+            Xorg-29643   [001] d.... 17172.249489: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5a70d00
+            Xorg-29643   [001] d.... 17172.249496: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4d6eb00
+            Xorg-29643   [001] d.... 17172.249502: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd4bda00
+            Xorg-29643   [001] d.... 17172.249508: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc3138980
+            Xorg-29643   [001] d.... 17172.249521: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc8607880
+            Xorg-29643   [001] d.... 17172.249527: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd60d500
+            Xorg-29643   [001] d.... 17172.249537: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5ba5780
+            Xorg-29643   [001] d.... 17172.249543: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc85bb400
+            Xorg-29643   [001] d.... 17172.249550: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc857fa00
+            Xorg-29643   [001] d.... 17172.249556: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4872280
+            Xorg-29643   [001] d.... 17172.249562: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc497a180
+            Xorg-29643   [001] d.... 17172.249568: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e24000
+            Xorg-29643   [001] d.... 17172.249573: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5861980
+            Xorg-29643   [001] d.... 17172.249579: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4eb1880
+            Xorg-29643   [001] d.... 17172.249681: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd60d080
+            Xorg-29643   [001] d.... 17172.249783: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e21c80
+            Xorg-29643   [001] d.... 17172.249790: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5b18480
+            Xorg-29643   [001] d.... 17172.249796: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc85bbd00
+            Xorg-29643   [001] d.... 17172.249804: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47d8e80
+            Xorg-29643   [001] d.... 17172.249810: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc57b5180
+            Xorg-29643   [001] d.... 17172.249816: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4642600
+            Xorg-29643   [001] d.... 17172.249822: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd60d200
+            Xorg-29643   [001] d.... 17172.249828: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc566c980
+            Xorg-29643   [001] d.... 17172.249834: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc497b900
+            Xorg-29643   [001] d.... 17172.249840: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4ea2280
+            Xorg-29643   [001] d.... 17172.249846: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd6a00
+            Xorg-29643   [001] d.... 17172.249852: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4478b80
+            Xorg-29643   [001] d.... 17172.249858: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc32a9600
+            Xorg-29643   [001] d.... 17172.249864: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc593cf80
+            Xorg-29643   [001] d.... 17172.249871: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd2600
+            Xorg-29643   [001] d.... 17172.249882: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4ecfa80
+            Xorg-29643   [001] d.... 17172.250025: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc361af80
+            Xorg-29643   [001] d.... 17172.250053: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5a6e480
+            Xorg-29643   [001] d.... 17172.250075: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5adb800
+            Xorg-29643   [001] d.... 17172.250090: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4ece480
+            Xorg-29643   [001] d.... 17172.250134: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc493ee00
+            Xorg-29643   [001] d.... 17172.250155: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc556b480
+            Xorg-29643   [001] d.... 17172.250175: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd6b00
+            Xorg-29643   [001] d.... 17172.250212: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4b9a280
+            Xorg-29643   [001] d.... 17172.250219: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc8525d80
+            Xorg-29643   [001] d.... 17172.250283: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd4bdf00
+            Xorg-29643   [001] d.... 17172.250972: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc36c0080
+            Xorg-29643   [001] d.... 17172.251100: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc469bb00
+            Xorg-29643   [001] d.... 17172.251126: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e0d900
+            Xorg-29643   [001] d.... 17172.251132: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5558380
+         xkbcomp-7991    [000] d.... 17172.258653: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3600
+         xkbcomp-7991    [000] d.... 17172.258665: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc46cb300
+         xkbcomp-7991    [000] d.... 17172.258668: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd9e00
+         xkbcomp-7991    [000] d.... 17172.258671: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd9580
+         xkbcomp-7991    [000] d.... 17172.258673: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fd500
+         xkbcomp-7991    [000] d.... 17172.258676: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3480
+         xkbcomp-7991    [000] d.... 17172.258679: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc358c400
+         xkbcomp-7991    [000] d.... 17172.258701: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3800
+         xkbcomp-7991    [000] d.... 17172.258704: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc46ef480
+         xkbcomp-7991    [000] d.... 17172.258722: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4465b80
+         xkbcomp-7991    [000] d.... 17172.258725: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e1cb00
+         xkbcomp-7991    [000] d.... 17172.258727: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4478b00
+         xkbcomp-7991    [000] d.... 17172.258730: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57e9600
+         xkbcomp-7991    [000] d.... 17172.258732: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc856be00
+         xkbcomp-7991    [000] d.... 17172.258735: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a70d00
+         xkbcomp-7991    [000] d.... 17172.258738: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4d6eb00
+         xkbcomp-7991    [000] d.... 17172.258741: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4bda00
+         xkbcomp-7991    [000] d.... 17172.258744: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc3138980
+         xkbcomp-7991    [000] d.... 17172.258747: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc8607880
+         xkbcomp-7991    [000] d.... 17172.258749: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd60d500
+         xkbcomp-7991    [000] d.... 17172.258754: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5ba5780
+         xkbcomp-7991    [000] d.... 17172.258757: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc85bb400
+         xkbcomp-7991    [000] d.... 17172.258759: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc857fa00
+         xkbcomp-7991    [000] d.... 17172.258762: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4872280
+         xkbcomp-7991    [000] d.... 17172.258765: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc497a180
+         xkbcomp-7991    [000] d.... 17172.258767: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e24000
+         xkbcomp-7991    [000] d.... 17172.258770: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5861980
+         xkbcomp-7991    [000] d.... 17172.258772: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4eb1880
+         xkbcomp-7991    [000] d.... 17172.258775: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd60d080
+         xkbcomp-7991    [000] d.... 17172.258778: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e21c80
+         xkbcomp-7991    [000] d.... 17172.258780: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5b18480
+         xkbcomp-7991    [000] d.... 17172.258783: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc85bbd00
+         xkbcomp-7991    [000] d.... 17172.258785: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47d8e80
+         xkbcomp-7991    [000] d.... 17172.258788: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57b5180
+         xkbcomp-7991    [000] d.... 17172.258791: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4642600
+         xkbcomp-7991    [000] d.... 17172.258794: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd60d200
+         xkbcomp-7991    [000] d.... 17172.258796: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc566c980
+         xkbcomp-7991    [000] d.... 17172.258799: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc497b900
+         xkbcomp-7991    [000] d.... 17172.258801: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4ea2280
+         xkbcomp-7991    [000] d.... 17172.258804: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd6a00
+         xkbcomp-7991    [000] d.... 17172.258806: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4478b80
+         xkbcomp-7991    [000] d.... 17172.258809: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc32a9600
+         xkbcomp-7991    [000] d.... 17172.258811: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc593cf80
+         xkbcomp-7991    [000] d.... 17172.258814: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd2600
+         xkbcomp-7991    [000] d.... 17172.258816: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4ecfa80
+         xkbcomp-7991    [000] d.... 17172.258822: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc361af80
+         xkbcomp-7991    [000] d.... 17172.258826: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a6e480
+         xkbcomp-7991    [000] d.... 17172.258832: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5adb800
+         xkbcomp-7991    [000] d.... 17172.258836: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4ece480
+         xkbcomp-7991    [000] d.... 17172.258843: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc493ee00
+         xkbcomp-7991    [000] d.... 17172.258847: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc556b480
+         xkbcomp-7991    [000] d.... 17172.258851: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd6b00
+         xkbcomp-7991    [000] d.... 17172.258856: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4b9a280
+         xkbcomp-7991    [000] d.... 17172.258859: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc8525d80
+         xkbcomp-7991    [000] d.... 17172.258864: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4bdf00
+         xkbcomp-7991    [000] d.... 17172.258902: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc36c0080
+         xkbcomp-7991    [000] d.... 17172.258907: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc469bb00
+         xkbcomp-7991    [000] d.... 17172.258912: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e0d900
+         xkbcomp-7991    [000] d.... 17172.258915: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558380
+            Xorg-29643   [000] d.... 17172.760202: bo_create: (tegra_bo_create+0x0/0x384) size=4194304 flags=0x20
+            Xorg-29643   [000] ..... 17172.760306: cma_alloc_start: name=reserved request_count=1024 available_count=831 total_count=16384 align=8
+            Xorg-29643   [000] ..... 17172.760315: cma_alloc_finish: name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16
+            Xorg-29643   [000] ..... 17172.760521: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4ddba00
+            Xorg-29643   [000] d.... 17172.760625: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4ddba00 vma=0xc5408200
+            Xorg-29643   [000] ..... 17172.760721: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+         python3-7803    [001] ..... 17173.497310: tracing_mark_write: rotation_inverted
+     kworker/0:2-6331    [000] d.... 17174.299686: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc4c95200
+            Xorg-29643   [000] d.... 17174.305797: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc59b2200
+            Xorg-29643   [001] d.... 17174.497038: bo_create: (tegra_bo_create+0x0/0x384) size=131072 flags=0x20
+            Xorg-29643   [001] ..... 17174.497125: cma_alloc_start: name=reserved request_count=32 available_count=831 total_count=16384 align=5
+            Xorg-29643   [001] ..... 17174.501146: cma_alloc_finish: name=reserved pfn=0x3f4a0 page=47801b84 count=32 align=5 errorno=0
+            Xorg-29643   [001] ..... 17174.501169: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4df0600
+            Xorg-29643   [001] d.... 17174.501483: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4df0600 vma=0xc3421200
+            Xorg-29643   [001] ..... 17174.501498: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17175.209839: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc85e2600
+            Xorg-29643   [000] d.... 17175.209954: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd9500
+            Xorg-29643   [000] d.... 17175.210056: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4872780
+            Xorg-29643   [000] d.... 17175.210181: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc55c6580
+            Xorg-29643   [000] d.... 17175.210784: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5bfa200
+            Xorg-29643   [000] d.... 17175.210892: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5adbe80
+            Xorg-29643   [000] d.... 17175.210999: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc46bc400
+            Xorg-29643   [000] d.... 17175.211102: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc46bc300
+            Xorg-29643   [000] d.... 17175.211311: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc550e700
+            Xorg-29643   [000] d.... 17175.211418: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56f4a80
+            Xorg-29643   [000] d.... 17175.211655: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc570be80
+            Xorg-29643   [000] d.... 17175.211760: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca480
+            Xorg-29643   [000] d.... 17175.211863: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47cac80
+            Xorg-29643   [000] d.... 17175.211964: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc570bf00
+            Xorg-29643   [000] d.... 17175.211974: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca080
+            Xorg-29643   [000] d.... 17175.211981: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca500
+            Xorg-29643   [000] d.... 17175.211986: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc570bf80
+            Xorg-29643   [000] d.... 17175.211992: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca900
+            Xorg-29643   [000] d.... 17175.211998: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47cab80
+            Xorg-29643   [000] d.... 17175.212004: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47cae80
+            Xorg-29643   [000] d.... 17175.212017: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca400
+            Xorg-29643   [000] d.... 17175.212023: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47cac00
+            Xorg-29643   [000] d.... 17175.212033: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5861e80
+            Xorg-29643   [000] d.... 17175.212039: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca580
+            Xorg-29643   [000] d.... 17175.212045: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47cad00
+            Xorg-29643   [000] d.... 17175.212051: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc84d9180
+            Xorg-29643   [000] d.... 17175.212056: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47caa80
+            Xorg-29643   [000] d.... 17175.212062: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca000
+            Xorg-29643   [000] d.... 17175.212068: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca800
+            Xorg-29643   [000] d.... 17175.212074: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc358cb00
+            Xorg-29643   [000] d.... 17175.212175: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc358ca00
+            Xorg-29643   [000] d.... 17175.212277: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc358c200
+            Xorg-29643   [000] d.... 17175.212284: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc358cf00
+            Xorg-29643   [000] d.... 17175.212290: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca380
+            Xorg-29643   [000] d.... 17175.212296: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc570b980
+            Xorg-29643   [000] d.... 17175.212302: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca980
+            Xorg-29643   [000] d.... 17175.212308: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc358c980
+            Xorg-29643   [000] d.... 17175.212314: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47ca600
+            Xorg-29643   [000] d.... 17175.212320: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc358c100
+            Xorg-29643   [000] d.... 17175.212326: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc358c900
+            Xorg-29643   [000] d.... 17175.212332: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc358ca80
+            Xorg-29643   [000] d.... 17175.212338: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc36c0600
+            Xorg-29643   [000] d.... 17175.212344: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd4bdb00
+            Xorg-29643   [000] d.... 17175.212350: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc8614200
+            Xorg-29643   [000] d.... 17175.212356: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc3420b80
+            Xorg-29643   [000] d.... 17175.212364: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fd200
+            Xorg-29643   [000] d.... 17175.212374: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc442e780
+            Xorg-29643   [000] d.... 17175.212517: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5861080
+            Xorg-29643   [000] d.... 17175.212545: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd6580
+            Xorg-29643   [000] d.... 17175.212565: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fd800
+            Xorg-29643   [000] d.... 17175.212582: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4478900
+            Xorg-29643   [000] d.... 17175.212622: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5558100
+            Xorg-29643   [000] d.... 17175.212641: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc31b0e00
+            Xorg-29643   [000] d.... 17175.212662: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5408f00
+            Xorg-29643   [000] d.... 17175.212693: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47d8f00
+            Xorg-29643   [000] d.... 17175.212700: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56fde00
+            Xorg-29643   [000] d.... 17175.212766: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd4fe680
+            Xorg-29643   [000] d.... 17175.213454: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd4fe080
+            Xorg-29643   [000] d.... 17175.213781: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc46bc880
+            Xorg-29643   [000] d.... 17175.213808: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc8563200
+            Xorg-29643   [000] d.... 17175.213815: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc47fa080
+         xkbcomp-8051    [000] d.... 17175.227325: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc85e2600
+         xkbcomp-8051    [000] d.... 17175.227336: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd9500
+         xkbcomp-8051    [000] d.... 17175.227339: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4872780
+         xkbcomp-8051    [000] d.... 17175.227341: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc55c6580
+         xkbcomp-8051    [000] d.... 17175.227344: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5bfa200
+         xkbcomp-8051    [000] d.... 17175.227347: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5adbe80
+         xkbcomp-8051    [000] d.... 17175.227350: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc46bc400
+         xkbcomp-8051    [000] d.... 17175.227352: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc46bc300
+         xkbcomp-8051    [000] d.... 17175.227373: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc550e700
+         xkbcomp-8051    [000] d.... 17175.227376: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56f4a80
+         xkbcomp-8051    [000] d.... 17175.227394: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc570be80
+         xkbcomp-8051    [000] d.... 17175.227396: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca480
+         xkbcomp-8051    [000] d.... 17175.227399: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47cac80
+         xkbcomp-8051    [000] d.... 17175.227402: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc570bf00
+         xkbcomp-8051    [000] d.... 17175.227404: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca080
+         xkbcomp-8051    [000] d.... 17175.227406: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca500
+         xkbcomp-8051    [000] d.... 17175.227409: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc570bf80
+         xkbcomp-8051    [000] d.... 17175.227411: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca900
+         xkbcomp-8051    [000] d.... 17175.227413: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47cab80
+         xkbcomp-8051    [000] d.... 17175.227416: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47cae80
+         xkbcomp-8051    [000] d.... 17175.227418: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca400
+         xkbcomp-8051    [000] d.... 17175.227421: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47cac00
+         xkbcomp-8051    [000] d.... 17175.227423: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5861e80
+         xkbcomp-8051    [000] d.... 17175.227426: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca580
+         xkbcomp-8051    [000] d.... 17175.227428: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47cad00
+         xkbcomp-8051    [000] d.... 17175.227431: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc84d9180
+         xkbcomp-8051    [000] d.... 17175.227434: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47caa80
+         xkbcomp-8051    [000] d.... 17175.227436: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca000
+         xkbcomp-8051    [000] d.... 17175.227438: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca800
+         xkbcomp-8051    [000] d.... 17175.227441: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc358cb00
+         xkbcomp-8051    [000] d.... 17175.227443: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc358ca00
+         xkbcomp-8051    [000] d.... 17175.227445: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc358c200
+         xkbcomp-8051    [000] d.... 17175.227448: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc358cf00
+         xkbcomp-8051    [000] d.... 17175.227450: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca380
+         xkbcomp-8051    [000] d.... 17175.227453: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc570b980
+         xkbcomp-8051    [000] d.... 17175.227455: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca980
+         xkbcomp-8051    [000] d.... 17175.227458: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc358c980
+         xkbcomp-8051    [000] d.... 17175.227461: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47ca600
+         xkbcomp-8051    [000] d.... 17175.227463: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc358c100
+         xkbcomp-8051    [000] d.... 17175.227466: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc358c900
+         xkbcomp-8051    [000] d.... 17175.227468: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc358ca80
+         xkbcomp-8051    [000] d.... 17175.227471: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc36c0600
+         xkbcomp-8051    [000] d.... 17175.227474: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4bdb00
+         xkbcomp-8051    [000] d.... 17175.227476: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc8614200
+         xkbcomp-8051    [000] d.... 17175.227479: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc3420b80
+         xkbcomp-8051    [000] d.... 17175.227481: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fd200
+         xkbcomp-8051    [000] d.... 17175.227484: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc442e780
+         xkbcomp-8051    [000] d.... 17175.227489: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5861080
+         xkbcomp-8051    [000] d.... 17175.227493: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd6580
+         xkbcomp-8051    [000] d.... 17175.227498: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fd800
+         xkbcomp-8051    [000] d.... 17175.227502: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4478900
+         xkbcomp-8051    [000] d.... 17175.227509: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558100
+         xkbcomp-8051    [000] d.... 17175.227513: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc31b0e00
+         xkbcomp-8051    [000] d.... 17175.227516: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5408f00
+         xkbcomp-8051    [000] d.... 17175.227522: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47d8f00
+         xkbcomp-8051    [000] d.... 17175.227525: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fde00
+         xkbcomp-8051    [000] d.... 17175.227529: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4fe680
+         xkbcomp-8051    [000] d.... 17175.227565: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4fe080
+         xkbcomp-8051    [000] d.... 17175.227571: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc46bc880
+         xkbcomp-8051    [000] d.... 17175.227575: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc8563200
+         xkbcomp-8051    [000] d.... 17175.227578: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47fa080
+         python3-7803    [000] ..... 17176.501759: tracing_mark_write: rotation_right
+            Xorg-29643   [001] d.... 17177.729436: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dab980
+            Xorg-29643   [001] d.... 17177.729553: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc32a9e80
+            Xorg-29643   [001] d.... 17177.729655: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc570be80
+            Xorg-29643   [001] d.... 17177.729756: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc58f5c00
+            Xorg-29643   [001] d.... 17177.730337: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4f37d80
+            Xorg-29643   [001] d.... 17177.730439: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5702180
+            Xorg-29643   [001] d.... 17177.730548: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3280
+            Xorg-29643   [001] d.... 17177.730651: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc84d8800
+            Xorg-29643   [001] d.... 17177.730858: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc32a9680
+            Xorg-29643   [001] d.... 17177.730967: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3e00
+            Xorg-29643   [001] d.... 17177.731230: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc32a9d80
+            Xorg-29643   [001] d.... 17177.731336: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc554fe00
+            Xorg-29643   [001] d.... 17177.731439: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc57b5400
+            Xorg-29643   [001] d.... 17177.731541: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5558700
+            Xorg-29643   [001] d.... 17177.731549: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc870f800
+            Xorg-29643   [001] d.... 17177.731557: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc1c20d80
+            Xorg-29643   [001] d.... 17177.731562: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5702400
+            Xorg-29643   [001] d.... 17177.731568: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5a16800
+            Xorg-29643   [001] d.... 17177.731574: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4ec6780
+            Xorg-29643   [001] d.... 17177.731581: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc32a9180
+            Xorg-29643   [001] d.... 17177.731593: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5558380
+            Xorg-29643   [001] d.... 17177.731599: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e0d900
+            Xorg-29643   [001] d.... 17177.731610: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5706680
+            Xorg-29643   [001] d.... 17177.731616: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56f8100
+            Xorg-29643   [001] d.... 17177.731622: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc469bb00
+            Xorg-29643   [001] d.... 17177.731628: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc455e000
+            Xorg-29643   [001] d.... 17177.731634: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc455e200
+            Xorg-29643   [001] d.... 17177.731640: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc36c0880
+            Xorg-29643   [001] d.... 17177.731646: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc36c0080
+            Xorg-29643   [001] d.... 17177.731652: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc36c0e00
+            Xorg-29643   [001] d.... 17177.731753: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd410f80
+            Xorg-29643   [001] d.... 17177.731855: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc3421880
+            Xorg-29643   [001] d.... 17177.731863: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc57b5a00
+            Xorg-29643   [001] d.... 17177.731868: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5408000
+            Xorg-29643   [001] d.... 17177.731874: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc58f5100
+            Xorg-29643   [001] d.... 17177.731881: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc469bc80
+            Xorg-29643   [001] d.... 17177.731887: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4642880
+            Xorg-29643   [001] d.... 17177.731893: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5408b00
+            Xorg-29643   [001] d.... 17177.731899: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd9a80
+            Xorg-29643   [001] d.... 17177.731905: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc497bf80
+            Xorg-29643   [001] d.... 17177.731911: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc568d900
+            Xorg-29643   [001] d.... 17177.731917: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4dd3b80
+            Xorg-29643   [001] d.... 17177.731924: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5ba5d80
+            Xorg-29643   [001] d.... 17177.731929: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5702f00
+            Xorg-29643   [001] d.... 17177.731935: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5702100
+            Xorg-29643   [001] d.... 17177.731942: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4e2e200
+            Xorg-29643   [001] d.... 17177.731952: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4717900
+            Xorg-29643   [001] d.... 17177.732098: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56f4b00
+            Xorg-29643   [001] d.... 17177.732126: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc486b800
+            Xorg-29643   [001] d.... 17177.732146: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc857f200
+            Xorg-29643   [001] d.... 17177.732164: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc8607f00
+            Xorg-29643   [001] d.... 17177.732204: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc56f8c80
+            Xorg-29643   [001] d.... 17177.732224: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc46be080
+            Xorg-29643   [001] d.... 17177.732245: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc497b500
+            Xorg-29643   [001] d.... 17177.732274: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc8525d80
+            Xorg-29643   [001] d.... 17177.732281: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4b9a280
+            Xorg-29643   [001] d.... 17177.732347: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4bd6b00
+            Xorg-29643   [001] d.... 17177.733035: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4eb1880
+            Xorg-29643   [001] d.... 17177.733162: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc4872280
+            Xorg-29643   [001] d.... 17177.733188: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xc5ba5780
+            Xorg-29643   [001] d.... 17177.733194: gem_vm_open: (drm_gem_vm_open+0x0/0x64) vma=0xcd60d500
+         xkbcomp-8065    [000] d.... 17177.748488: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dab980
+         xkbcomp-8065    [000] d.... 17177.748500: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc32a9e80
+         xkbcomp-8065    [000] d.... 17177.748504: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc570be80
+         xkbcomp-8065    [000] d.... 17177.748506: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc58f5c00
+         xkbcomp-8065    [000] d.... 17177.748509: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4f37d80
+         xkbcomp-8065    [000] d.... 17177.748512: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5702180
+         xkbcomp-8065    [000] d.... 17177.748515: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3280
+         xkbcomp-8065    [000] d.... 17177.748518: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc84d8800
+         xkbcomp-8065    [000] d.... 17177.748540: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc32a9680
+         xkbcomp-8065    [000] d.... 17177.748545: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3e00
+         xkbcomp-8065    [000] d.... 17177.748562: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc32a9d80
+         xkbcomp-8065    [000] d.... 17177.748565: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc554fe00
+         xkbcomp-8065    [000] d.... 17177.748568: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57b5400
+         xkbcomp-8065    [000] d.... 17177.748571: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558700
+         xkbcomp-8065    [000] d.... 17177.748573: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc870f800
+         xkbcomp-8065    [000] d.... 17177.748576: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc1c20d80
+         xkbcomp-8065    [000] d.... 17177.748579: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5702400
+         xkbcomp-8065    [000] d.... 17177.748581: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a16800
+         xkbcomp-8065    [000] d.... 17177.748584: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4ec6780
+         xkbcomp-8065    [000] d.... 17177.748586: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc32a9180
+         xkbcomp-8065    [000] d.... 17177.748589: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558380
+         xkbcomp-8065    [000] d.... 17177.748592: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e0d900
+         xkbcomp-8065    [000] d.... 17177.748594: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5706680
+         xkbcomp-8065    [000] d.... 17177.748599: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56f8100
+         xkbcomp-8065    [000] d.... 17177.748602: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc469bb00
+         xkbcomp-8065    [000] d.... 17177.748605: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc455e000
+         xkbcomp-8065    [000] d.... 17177.748608: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc455e200
+         xkbcomp-8065    [000] d.... 17177.748610: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc36c0880
+         xkbcomp-8065    [000] d.... 17177.748612: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc36c0080
+         xkbcomp-8065    [000] d.... 17177.748615: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc36c0e00
+         xkbcomp-8065    [000] d.... 17177.748617: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd410f80
+         xkbcomp-8065    [000] d.... 17177.748620: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc3421880
+         xkbcomp-8065    [000] d.... 17177.748622: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57b5a00
+         xkbcomp-8065    [000] d.... 17177.748625: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5408000
+         xkbcomp-8065    [000] d.... 17177.748627: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc58f5100
+         xkbcomp-8065    [000] d.... 17177.748630: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc469bc80
+         xkbcomp-8065    [000] d.... 17177.748632: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4642880
+         xkbcomp-8065    [000] d.... 17177.748635: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5408b00
+         xkbcomp-8065    [000] d.... 17177.748638: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd9a80
+         xkbcomp-8065    [000] d.... 17177.748640: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc497bf80
+         xkbcomp-8065    [000] d.... 17177.748643: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc568d900
+         xkbcomp-8065    [000] d.... 17177.748645: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd3b80
+         xkbcomp-8065    [000] d.... 17177.748648: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5ba5d80
+         xkbcomp-8065    [000] d.... 17177.748650: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5702f00
+         xkbcomp-8065    [000] d.... 17177.748653: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5702100
+         xkbcomp-8065    [000] d.... 17177.748655: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e2e200
+         xkbcomp-8065    [000] d.... 17177.748658: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4717900
+         xkbcomp-8065    [000] d.... 17177.748663: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56f4b00
+         xkbcomp-8065    [000] d.... 17177.748668: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc486b800
+         xkbcomp-8065    [000] d.... 17177.748673: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc857f200
+         xkbcomp-8065    [000] d.... 17177.748677: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc8607f00
+         xkbcomp-8065    [000] d.... 17177.748683: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56f8c80
+         xkbcomp-8065    [000] d.... 17177.748687: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc46be080
+         xkbcomp-8065    [000] d.... 17177.748691: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc497b500
+         xkbcomp-8065    [000] d.... 17177.748695: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc8525d80
+         xkbcomp-8065    [000] d.... 17177.748697: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4b9a280
+         xkbcomp-8065    [000] d.... 17177.748702: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4bd6b00
+         xkbcomp-8065    [000] d.... 17177.748740: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4eb1880
+         xkbcomp-8065    [000] d.... 17177.748746: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4872280
+         xkbcomp-8065    [000] d.... 17177.748751: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5ba5780
+         xkbcomp-8065    [000] d.... 17177.748754: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd60d500
+         python3-7803    [000] ..... 17179.437025: tracing_mark_write: rotation_left
+         python3-7803    [001] ..... 17180.122646: tracing_mark_write: cycle_1_before
+            Xorg-29643   [000] d.... 17182.296226: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc5723200 vma=0xc4dab100
+            Xorg-29643   [000] ..... 17182.296243: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17182.296357: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcf553600 vma=0xc84d9080
+            Xorg-29643   [000] ..... 17182.296364: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17182.296453: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc8602600 vma=0xc5a89b00
+            Xorg-29643   [000] ..... 17182.296460: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17182.296550: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc57ed800 vma=0xc33ce900
+            Xorg-29643   [000] ..... 17182.296557: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17182.449751: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xcf6a6a00 vma=0xc4642580
+            Xorg-29643   [000] ..... 17182.449774: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [000] d.... 17182.449947: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4f34200 vma=0xc5702500
+            Xorg-29643   [000] ..... 17182.449981: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+         python3-7803    [000] ..... 17192.518838: tracing_mark_write: cycle_1_closed
+            Xorg-29643   [000] d.... 17193.664059: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56fd580
+            Xorg-29643   [000] d.... 17193.664111: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc4afd400
+            Xorg-29643   [000] d.... 17193.664116: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4afd400
+            Xorg-29643   [000] ..... 17193.664132: cma_release: name=reserved pfn=0x3f450 page=2a2807f7 count=16
+            Xorg-29643   [000] d.... 17193.664204: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5693000
+            Xorg-29643   [000] d.... 17193.664217: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc4b1e000
+            Xorg-29643   [000] d.... 17193.664220: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4b1e000
+            Xorg-29643   [000] ..... 17193.664230: cma_release: name=reserved pfn=0x3f470 page=b183b519 count=16
+            Xorg-29643   [000] d.... 17193.664274: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc37af180
+            Xorg-29643   [000] d.... 17193.664286: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xcd4d7a00
+            Xorg-29643   [000] d.... 17193.664288: bo_free: (tegra_bo_free+0x0/0x110) bo=0xcd4d7a00
+            Xorg-29643   [000] ..... 17193.664299: cma_release: name=reserved pfn=0x3e270 page=230bf9ab count=16
+            Xorg-29643   [000] d.... 17193.664343: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc47a4780
+            Xorg-29643   [000] d.... 17193.664354: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xcd4d5c00
+            Xorg-29643   [000] d.... 17193.664356: bo_free: (tegra_bo_free+0x0/0x110) bo=0xcd4d5c00
+            Xorg-29643   [000] ..... 17193.664367: cma_release: name=reserved pfn=0x3e230 page=702d52ff count=16
+            Xorg-29643   [000] d.... 17193.664404: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4ef600
+            Xorg-29643   [000] d.... 17193.664417: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc4afd000
+            Xorg-29643   [000] d.... 17193.664420: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4afd000
+            Xorg-29643   [000] ..... 17193.664460: cma_release: name=reserved pfn=0x3e250 page=0ace1695 count=16
+            Xorg-29643   [000] d.... 17194.670970: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57b5680
+            Xorg-29643   [000] d.... 17194.671003: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xcf6a7600
+            Xorg-29643   [000] d.... 17194.671008: bo_free: (tegra_bo_free+0x0/0x110) bo=0xcf6a7600
+            Xorg-29643   [000] ..... 17194.671025: cma_release: name=reserved pfn=0x3e350 page=e98f9cc9 count=16
+            Xorg-29643   [000] d.... 17194.671099: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558b80
+            Xorg-29643   [000] d.... 17194.671112: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xcd484400
+            Xorg-29643   [000] d.... 17194.671115: bo_free: (tegra_bo_free+0x0/0x110) bo=0xcd484400
+            Xorg-29643   [000] ..... 17194.671125: cma_release: name=reserved pfn=0x3e300 page=9d30452e count=16
+            Xorg-29643   [000] d.... 17194.671170: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558900
+            Xorg-29643   [000] d.... 17194.671181: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc5748400
+            Xorg-29643   [000] d.... 17194.671184: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc5748400
+            Xorg-29643   [000] ..... 17194.671219: cma_release: name=reserved pfn=0x3e390 page=16ed017f count=16
+            Xorg-29643   [000] d.... 17194.671260: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc37aff80
+            Xorg-29643   [000] d.... 17194.671271: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc35da400
+            Xorg-29643   [000] d.... 17194.671274: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc35da400
+            Xorg-29643   [000] ..... 17194.671284: cma_release: name=reserved pfn=0x3e3d0 page=5972c4a8 count=16
+            Xorg-29643   [000] d.... 17194.671325: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc37af900
+            Xorg-29643   [000] d.... 17194.671335: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc5bba400
+            Xorg-29643   [000] d.... 17194.671337: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc5bba400
+            Xorg-29643   [000] ..... 17194.671348: cma_release: name=reserved pfn=0x3e370 page=90023a40 count=16
+            Xorg-29643   [000] d.... 17194.671388: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4e0d580
+            Xorg-29643   [000] d.... 17194.671398: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc4df2a00
+            Xorg-29643   [000] d.... 17194.671401: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4df2a00
+            Xorg-29643   [000] ..... 17194.671438: cma_release: name=reserved pfn=0x3e3e0 page=fd9461d6 count=16
+            Xorg-29643   [000] d.... 17194.671479: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc37af080
+            Xorg-29643   [000] d.... 17194.671491: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc5585a00
+            Xorg-29643   [000] d.... 17194.671494: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc5585a00
+            Xorg-29643   [000] ..... 17194.671504: cma_release: name=reserved pfn=0x3f440 page=9dc41b10 count=16
+         python3-7803    [000] ..... 17195.653717: tracing_mark_write: settle_start
+            Xorg-29643   [001] d.... 17202.641112: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558a00
+            Xorg-29643   [001] d.... 17202.641159: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xcd7e8200
+            Xorg-29643   [001] d.... 17202.641166: bo_free: (tegra_bo_free+0x0/0x110) bo=0xcd7e8200
+            Xorg-29643   [001] ..... 17202.641188: cma_release: name=reserved pfn=0x3e310 page=052d7c68 count=16
+            Xorg-29643   [001] d.... 17202.641330: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4f38000
+            Xorg-29643   [001] d.... 17202.641347: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xcf555c00
+            Xorg-29643   [001] d.... 17202.641350: bo_free: (tegra_bo_free+0x0/0x110) bo=0xcf555c00
+            Xorg-29643   [001] ..... 17202.641377: cma_release: name=reserved pfn=0x3e340 page=5d36caf5 count=16
+            Xorg-29643   [001] d.... 17202.641431: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5408180
+            Xorg-29643   [001] d.... 17202.641444: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xcf553c00
+            Xorg-29643   [001] d.... 17202.641446: bo_free: (tegra_bo_free+0x0/0x110) bo=0xcf553c00
+            Xorg-29643   [001] ..... 17202.641478: cma_release: name=reserved pfn=0x3e360 page=a1ce37f3 count=16
+            Xorg-29643   [001] d.... 17234.675139: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc56f4680
+            Xorg-29643   [001] d.... 17234.675187: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xcd4d6e00
+            Xorg-29643   [001] d.... 17234.675193: bo_free: (tegra_bo_free+0x0/0x110) bo=0xcd4d6e00
+            Xorg-29643   [001] ..... 17234.675233: cma_release: name=reserved pfn=0x3e140 page=78cbe6be count=32
+            Xorg-29643   [000] d.... 17236.632892: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc873c800
+            Xorg-29643   [000] d.... 17236.632930: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc35b4200
+            Xorg-29643   [000] d.... 17236.632936: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc35b4200
+            Xorg-29643   [000] ..... 17236.632983: cma_release: name=reserved pfn=0x3e200 page=c9d69498 count=32
+            Xorg-29643   [000] d.... 17251.644193: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558b00
+            Xorg-29643   [000] d.... 17251.644229: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc35db400
+            Xorg-29643   [000] d.... 17251.644234: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc35db400
+            Xorg-29643   [000] ..... 17251.644251: cma_release: name=reserved pfn=0x3e320 page=f36d7412 count=16
+            Xorg-29643   [000] d.... 17251.644348: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc84d9500
+            Xorg-29643   [000] d.... 17251.644361: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc1db3200
+            Xorg-29643   [000] d.... 17251.644364: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc1db3200
+            Xorg-29643   [000] ..... 17251.644389: cma_release: name=reserved pfn=0x3e330 page=a6c65eb8 count=16
+            Xorg-29643   [000] d.... 17251.644439: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5558980
+            Xorg-29643   [000] d.... 17251.644451: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc4af4600
+            Xorg-29643   [000] d.... 17251.644453: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4af4600
+            Xorg-29643   [000] ..... 17251.644464: cma_release: name=reserved pfn=0x3e220 page=4075803c count=16
+            Xorg-29643   [000] d.... 17252.650204: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc57e9300
+            Xorg-29643   [000] d.... 17252.650242: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xcf6a6e00
+            Xorg-29643   [000] d.... 17252.650248: bo_free: (tegra_bo_free+0x0/0x110) bo=0xcf6a6e00
+            Xorg-29643   [000] ..... 17252.650264: cma_release: name=reserved pfn=0x3f460 page=7adc035a count=16
+            Xorg-29643   [000] d.... 17252.650342: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc550e480
+            Xorg-29643   [000] d.... 17252.650356: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc4b1e600
+            Xorg-29643   [000] d.... 17252.650358: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4b1e600
+            Xorg-29643   [000] ..... 17252.650422: cma_release: name=reserved pfn=0x3c0c0 page=1efc46af count=64
+            Xorg-29643   [000] d.... 17252.650471: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5861380
+            Xorg-29643   [000] d.... 17252.650483: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc37c1400
+            Xorg-29643   [000] d.... 17252.650486: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc37c1400
+            Xorg-29643   [000] ..... 17252.650567: cma_release: name=reserved pfn=0x3f4c0 page=c703d643 count=64
+            Xorg-29643   [000] d.... 17254.668956: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc32ea300
+            Xorg-29643   [000] d.... 17254.668997: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc4b1e400
+            Xorg-29643   [000] d.... 17254.669003: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4b1e400
+            Xorg-29643   [000] ..... 17254.669070: cma_release: name=reserved pfn=0x3e280 page=f6a71108 count=64
+            Xorg-29643   [000] d.... 17254.669150: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a70700
+            Xorg-29643   [000] d.... 17254.669164: handle_put: (drm_gem_object_handle_put_unlocked+0x0/0x1ac) bo=0xc4dc6000
+            Xorg-29643   [000] d.... 17254.669166: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4dc6000
+            Xorg-29643   [000] ..... 17254.669248: cma_release: name=reserved pfn=0x3e2c0 page=c5c4a892 count=64
+            Xorg-29643   [001] d.... 17254.731804: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-29643   [001] ..... 17254.731868: cma_alloc_start: name=reserved request_count=64 available_count=1423 total_count=16384 align=6
+            Xorg-29643   [001] ..... 17254.732368: cma_alloc_finish: name=reserved pfn=0x3c0c0 page=1efc46af count=64 align=6 errorno=0
+            Xorg-29643   [001] ..... 17254.732381: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4dc6c00
+            Xorg-29643   [001] d.... 17254.732447: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc4dc6c00 vma=0xc56fdc00
+            Xorg-29643   [001] ..... 17254.732461: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+            Xorg-29643   [001] d.... 17254.732585: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc3421200
+            Xorg-29643   [001] d.... 17254.732610: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4efd80
+            Xorg-29643   [001] d.... 17254.732626: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4ef680
+            Xorg-29643   [001] d.... 17254.732640: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4ef580
+            Xorg-29643   [001] d.... 17254.732656: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4593580
+            Xorg-29643   [001] d.... 17254.732671: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc84d9100
+            Xorg-29643   [001] d.... 17254.732686: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4593d00
+            Xorg-29643   [001] d.... 17254.732699: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5591a80
+            Xorg-29643   [001] d.... 17254.732712: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5adb980
+            Xorg-29643   [001] d.... 17254.732726: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc85e2180
+            Xorg-29643   [001] d.... 17254.732767: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc3421580
+            Xorg-29643   [001] d.... 17254.732784: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dd2380
+            Xorg-29643   [001] d.... 17254.732798: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a70a00
+            Xorg-29643   [001] d.... 17254.732812: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc85e2100
+            Xorg-29643   [001] d.... 17254.732823: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4642580
+            Xorg-29643   [001] d.... 17254.732847: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5702500
+            Xorg-29643   [001] d.... 17254.732863: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc4dab100
+            Xorg-29643   [001] d.... 17254.732879: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc84d9080
+            Xorg-29643   [001] d.... 17254.732892: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a89b00
+            Xorg-29643   [001] d.... 17254.732906: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc33ce900
+            Xorg-29643   [001] d.... 17254.732921: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc493e080
+            Xorg-29643   [001] d.... 17254.733782: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xc5a70880
+            Xorg-29643   [001] d.... 17254.733803: gem_vm_close: (drm_gem_vm_close+0x0/0xb8) vma=0xcd4ef500
+            Xorg-29643   [001] d.... 17254.764745: gem_mmap: (__tegra_gem_mmap+0x0/0x1fc) bo=0xc59b3600 vma=0xc8614200
+            Xorg-29643   [001] ..... 17254.764762: gem_mmap_return: (mmap_region+0x8b0/0xccc <- __tegra_gem_mmap) result=0
+         python3-7803    [001] ..... 17270.726672: tracing_mark_write: settled

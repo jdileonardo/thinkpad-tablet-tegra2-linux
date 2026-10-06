@@ -1,0 +1,54 @@
+{
+  "linux-nura": {
+    "upstream_url": "https://codeberg.org/libre-tegra/linux.git",
+    "base_commit": "bfffc6d6656e87f3de3aa4c09d852849081ef088",
+    "branch": "indigo/xfce-bringup",
+    "tip_commit": "ca976039b53764783af407e87d5978c9a0183859",
+    "tree": "abc9a0c5c6c2c44cecb10aa1457cc89201c4ef56",
+    "build_checkout_head_unchanged": true,
+    "patches_sha256": {
+      "build/source-exports/linux-nura/0001-0001-panel-simple-add-indigo-panel.patch": "55cfd5c7839dabcdf1183c8ac9d1affcfe4f2d44316984706d4eb83e2760aea4",
+      "build/source-exports/linux-nura/0002-0002-grate-sync-only-streaming-dma-bufs.patch": "f3c6e718c58b12175085e84af06ee9612e25b7bbb66dabdab0bbf45774a76d28",
+      "build/source-exports/linux-nura/0003-Add-Lenovo-Indigo-board-device-tree.patch": "50700ffc08314ec14a4eb841952405e0cde5a82452197cf9f78ed3c7f589f989"
+    }
+  },
+  "xf86-video-opentegra": {
+    "upstream_url": "https://codeberg.org/libre-tegra/xf86-video-opentegra.git",
+    "base_commit": "f78958d37c80b22de66f41167ec39339035f43d0",
+    "branch": "indigo/xfce-bringup",
+    "tip_commit": "08700f84bcabef1cf4af9145239daede67a9ade6",
+    "tree": "f6153e244325d82857a8a0ffa300e33828a39075",
+    "build_checkout_head_unchanged": true,
+    "patches_sha256": {
+      "build/source-exports/xf86-video-opentegra/0001-0001-add-linear-dri3-and-present-copy-path.patch": "f588691fb70b834dfda4f5db1855be8fe09a41758332cc86f916a40a57faa704",
+      "build/source-exports/xf86-video-opentegra/0002-0002-export-read-write-dma-buf.patch": "cef604359e85f0f830b48d981576d0d606cf32246f51d667e20cf119c52b4b96",
+      "build/source-exports/xf86-video-opentegra/0003-0003-release-replaced-scanout-pixmap-reference.patch": "ff369d980ccc97fc587ad0d968b84fed764db9cdf793071712ee2dc1cfaf861e"
+    }
+  },
+  "mesa-grate-candidate": {
+    "upstream_url": "https://codeberg.org/libre-tegra/mesa.git",
+    "base_commit": "ad06de32d309506c48e4169a15f56e2f95e9712d",
+    "branch": "indigo/xfce-bringup",
+    "tip_commit": "5041e234f777ece8c7ff0873c34f1a38852a352d",
+    "tree": "63c4b230cb3fc53d54dbef2b1c3049363ec87db4",
+    "build_checkout_head_unchanged": true,
+    "patches_sha256": {
+      "build/source-exports/mesa-grate-candidate/0001-0001-adapt-nir-grate-to-tegra20-legacy-abi.patch": "32c6b799c4770732f9a6fb5140704b7cf394fe05b428f5223fab9299d2264358",
+      "build/source-exports/mesa-grate-candidate/0002-0002-tegra20-pad-small-rgba-texture-rows.patch": "6b21bb7fafae67cbd33a610617f84241daa0077a96c7cba1287f2ae37670eff7",
+      "build/source-exports/mesa-grate-candidate/0003-0003-emit-nir-fragment-special-functions.patch": "c91cfe65d02280b831f7eadc1289b7522913ee6100043847bf8c11a3232371a0",
+      "build/source-exports/mesa-grate-candidate/0004-0004-limit-pixel-sequencer-output-window.patch": "48a656003e40328e64c119b17ff879efdac2e427c4d6429a619e9fed3e0a6edd",
+      "build/source-exports/mesa-grate-candidate/0005-0005-add-texture-cache-diagnostic-toggle.patch": "5dde6117472e9706948c6c1546674a2e9833d44bdd90736cb82eb845daa7c1b1",
+      "build/source-exports/mesa-grate-candidate/0006-0006-add-destination-read-diagnostic.patch": "e7120661e2547fee3b3bc131a33204f2ad7937b8fa03a1565cf00506b36ac9a9",
+      "build/source-exports/mesa-grate-candidate/0007-0007-add-destination-fetch-control-diagnostic.patch": "bde74aebdc8e4cb4aa64aa8d6099755e11729d919821de86cdca4714508d64c0",
+      "build/source-exports/mesa-grate-candidate/0008-0008-preserve-full-pixel-sequencer-control.patch": "929d71a863f68718d60abd14150ac6689112a8954498cae1bb7cac33d15a4a3f",
+      "build/source-exports/mesa-grate-candidate/0009-0009-use-tegra20-gart-for-large-offscreen-resources.patch": "0dfcada85e28cea64255e867365d4373d58bcfa599f77f9c9adb28bc57713586",
+      "build/source-exports/mesa-grate-candidate/0010-0010-add-color-target-one-diagnostic.patch": "6832c1e025decf2caf770b3e93759d135f36ac597661234d36a81c76499b4c0a",
+      "build/source-exports/mesa-grate-candidate/0011-0011-align-destination-read-with-opentegra.patch": "3cae2421d92b87a45871df33e726f087f069aea68c22516d7347740212f983d2",
+      "build/source-exports/mesa-grate-candidate/0012-0012-isolate-destination-read-diagnostic.patch": "84a1221af34fb417d28bda2cde232ed3a06eef48236ab22fb7f80c2caf1ac17c",
+      "build/source-exports/mesa-grate-candidate/0013-0013-invalidate-fragment-data-cache-before-draw.patch": "d46cb89eb2f3e3275e075fd582ad19c581dafcca36700025460d759dd038a925",
+      "build/source-exports/mesa-grate-candidate/0014-0014-add-hardware-alpha-over-probe.patch": "5316b1eb7bf9f1e8e4e1b0bbddd66bc9f9f93abc9cfbfcd73372c56b061eceb9",
+      "build/source-exports/mesa-grate-candidate/0015-0015-lower-normal-blend-state-with-cached-nir-varian.patch": "ef2efb9002e18892a951650e3fe85fd10a93f61d8642fb879d6bcfa4d76ad184",
+      "build/source-exports/mesa-grate-candidate/0016-0016-pad-shared-rgb-buffer-bottom-block.patch": "b1d2ee4b3676036af52ca6c3499ed5981961deefa8598ae36d7e47189459b197"
+    }
+  }
+}

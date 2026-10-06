@@ -1,0 +1,71 @@
+# Upstream source branches and image readiness
+
+The port has local branches in the original kernel, Xorg DDX and candidate
+Mesa Git repositories. They retain the pinned upstream commit as their base.
+The existing build checkouts remain on those bases with the recorded patches
+applied; their HEADs and real Git indexes were not changed by the export.
+
+| Repository | Local branch | Port commits |
+| --- | --- | --- |
+| `sources/linux-nura` | `indigo/xfce-bringup` | 3: panel, DMA-BUF synchronization, board DTS/Makefile |
+| `sources/xf86-video-opentegra` | `indigo/xfce-bringup` | 3: DRI3/build compatibility, DMA-BUF export access, scanout reference fix |
+| `sources/mesa-grate-ad06de32d309` | `indigo/xfce-bringup` | 16: the recorded candidate patch series |
+
+[The branch manifest](source-branches-checkpoint.json) records base/tip commits,
+tree identities and exported patch hashes. These are local commits; no upstream
+submission or remote push has been performed. Packaging a change as a commit
+does not certify every affected rendering path or establish upstream acceptance.
+The Mesa series includes diagnostic changes; curate those separately from
+production fixes before submitting it upstream.
+
+Recreate/advance the exports with:
+
+```sh
+python3 scripts/export_source_branches.py
+```
+
+The exporter uses disposable Git indexes, checks that each final tree exactly
+matches the build checkout, then creates commits and writes `git format-patch`
+series under `build/source-exports/`. An existing branch may advance only from
+a matching recorded patch prefix; unrelated branch changes cause refusal.
+The kernel board files are exported as the third commit. Keep using the main
+repo's patch files as the input to the current builders. A separate worktree
+on an exported branch can be used for reviewing or preparing submissions.
+
+## Readiness for the selected XFCE workload
+
+The target is a docked calendar and Spotify controller. Physical touch,
+user-confirmed rotation and Wi-Fi work; small GTK calendar rendering and several
+hardware 3D/compositor paths have measured device evidence. This is a useful
+development system, not yet a validated daily-use image.
+
+Before an image is selected as the working baseline:
+
+1. Extend the [validated rotation-buffer reference fix](graphics-rotation-fix.md)
+   to longer operation and fresh-image boot. Two circuits, allocation/free
+   records and actual calendar display pixels now pass. The old large
+   allocation requests remain a separate unresolved issue unless reproduced
+   and explained.
+2. Package the selected DDX/Mesa components and desktop configuration into the
+   image recipe. Pin build dependencies; current edge package installations are
+   not fully pinned. Reproduce the image from recorded sources rather than
+   copying the live development filesystem.
+3. Boot a freshly built SD image repeatedly and exercise the intended workload
+   for hours, checking memory growth, display, touch/rotation, Wi-Fi and recovery.
+4. Add the chosen calendar service and Spotify-control client and verify them
+   with their actual accounts/playback device.
+
+RGB565 rendering and KWin's missing 3D-texture capability remain defects or
+unsupported capabilities; they are not prerequisites for the verified GTK/XFCE
+path. Do not describe the driver as generally complete or enable it for arbitrary
+applications without checking their required formats/features. Pen and battery
+testing remain deferred under the user's existing constraints.
+
+`scripts/create_nura_sd_image.py` already assembles and checks an external-SD
+image, but that image recipe does not yet contain every live graphics addition.
+SD image production and internal installation are distinct: the existing image
+uses APX/RAM boot and a bootstrap tied to the external SD controller/UUID.
+An internal root needs a new boot profile; autonomous internal boot also needs
+a device-specific persistent bootloader/kernel installation and verified recovery.
+The SD whole-disk image must not be written directly over the Tegra eMMC layout.
+See [development workflow](development-workflow.md#eventual-internal-installation).

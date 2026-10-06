@@ -1,0 +1,1353 @@
+{
+  "event_count": 1465,
+  "page_size_assumption_bytes": 4096,
+  "cma_total_mib": 64.0,
+  "cma_bitmap_available_mib_range": [
+    12.91015625,
+    29.28515625
+  ],
+  "cma_bitmap_available_mib_at_end": 28.1796875,
+  "new_cma_allocation_mib": 16.625,
+  "cma_release_mib_including_preexisting_buffers": 15.51953125,
+  "net_cma_allocation_change_mib": 1.10546875,
+  "successful_bo_creates": 85,
+  "failed_bo_creates": 0,
+  "bo_request_size_counts": {
+    "8192": 1,
+    "12288": 1,
+    "16384": 1,
+    "24576": 1,
+    "28672": 1,
+    "32768": 3,
+    "40960": 1,
+    "49152": 1,
+    "57344": 18,
+    "65536": 32,
+    "131072": 3,
+    "262144": 20,
+    "4194304": 2
+  },
+  "traced_new_bos_still_live_or_cached_bytes": 2535424,
+  "traced_new_bos_still_live_or_cached": [
+    {
+      "pointer": "0xc30b9400",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc35cc200",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc36ab200",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc36ab400",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc37c1c00",
+      "size": 32768,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc482de00",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4b19c00",
+      "size": 131072,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4dc6800",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4ddb200",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4df0400",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4df0e00",
+      "size": 24576,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4df2800",
+      "size": 12288,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4f74200",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc5584600",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc55ac400",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc55ace00",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc5966000",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc5967200",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc59b5200",
+      "size": 8192,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc8511200",
+      "size": 131072,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc859c400",
+      "size": 40960,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc859c800",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc859ec00",
+      "size": 32768,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc8602800",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc8602e00",
+      "size": 32768,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc87a6800",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc87a7000",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc87a7200",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc87c4c00",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xcd485c00",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xcd485e00",
+      "size": 65536,
+      "flags": 32
+    },
+    {
+      "pointer": "0xcd4c7c00",
+      "size": 49152,
+      "flags": 32
+    },
+    {
+      "pointer": "0xcd4d4800",
+      "size": 16384,
+      "flags": 32
+    },
+    {
+      "pointer": "0xcf6a6800",
+      "size": 57344,
+      "flags": 32
+    },
+    {
+      "pointer": "0xcf6b1800",
+      "size": 57344,
+      "flags": 32
+    }
+  ],
+  "freed_bo_pointers_including_preexisting": [
+    "0xc37c0400",
+    "0xc1db2400",
+    "0xc37c0c00",
+    "0xc5af5e00",
+    "0xc87a7400",
+    "0xc35da400",
+    "0xc5af5600",
+    "0xc35cc200",
+    "0xc30ccc00",
+    "0xc33b5e00",
+    "0xc482c000",
+    "0xc30cca00",
+    "0xc4caea00",
+    "0xc55ac200",
+    "0xc339b400",
+    "0xc4f35400",
+    "0xc55aca00",
+    "0xc4b1ea00",
+    "0xc44b4e00",
+    "0xc33b5000",
+    "0xc5748400",
+    "0xcf555c00",
+    "0xc4dc6c00",
+    "0xcd485200",
+    "0xc4f34c00",
+    "0xc4b18200",
+    "0xc37c1200",
+    "0xcf6b0a00",
+    "0xc36aa800",
+    "0xc4dc7a00",
+    "0xc339aa00",
+    "0xc33b4400",
+    "0xc4df2200",
+    "0xcf6a6e00",
+    "0xc4af3800",
+    "0xc5af5c00",
+    "0xc4af6a00",
+    "0xc30aaa00",
+    "0xc4df2000",
+    "0xc8505400",
+    "0xc4df3200",
+    "0xc5bbdc00",
+    "0xc4c95800",
+    "0xc30b8e00",
+    "0xc8602000",
+    "0xcd7e9a00",
+    "0xcd4d5800",
+    "0xc4b1e600",
+    "0xc5723a00",
+    "0xc4b1fc00",
+    "0xcf553e00",
+    "0xc482d200",
+    "0xc4df1800",
+    "0xc5724600",
+    "0xc4ddb800",
+    "0xcd4c7800",
+    "0xc4cae800",
+    "0xc4df3400",
+    "0xcd4c4600"
+  ],
+  "handle_reference_put_bo_pointers_including_preexisting": [
+    "0xc482c600",
+    "0xc482c600",
+    "0xc482d200",
+    "0xc482d200",
+    "0xc482c600",
+    "0xc482d200",
+    "0xc4df1800",
+    "0xc37c0400",
+    "0xc1db2400",
+    "0xc37c0c00",
+    "0xc5af5e00",
+    "0xc87a7400",
+    "0xc35da400",
+    "0xc5af5600",
+    "0xc35cc200",
+    "0xc30ccc00",
+    "0xc33b5e00",
+    "0xc482c000",
+    "0xc30cca00",
+    "0xc4caea00",
+    "0xc55ac200",
+    "0xc339b400",
+    "0xc4f35400",
+    "0xc55aca00",
+    "0xc4b1ea00",
+    "0xc44b4e00",
+    "0xc33b5000",
+    "0xc5748400",
+    "0xcf555c00",
+    "0xc4dc6c00",
+    "0xcd485200",
+    "0xc4f34c00",
+    "0xc4b18200",
+    "0xc37c1200",
+    "0xcf6b0a00",
+    "0xc36aa800",
+    "0xc4dc7a00",
+    "0xc339aa00",
+    "0xc33b4400",
+    "0xc4df2200",
+    "0xcf6a6e00",
+    "0xc4af3800",
+    "0xc5af5c00",
+    "0xc4af6a00",
+    "0xc30aaa00",
+    "0xc4df2000",
+    "0xc8505400",
+    "0xc4df3200",
+    "0xc5bbdc00",
+    "0xc4c95800",
+    "0xc30b8e00",
+    "0xc8602000",
+    "0xcd7e9a00",
+    "0xcd4d5800",
+    "0xc4b1e600",
+    "0xc5723a00",
+    "0xc4b1fc00",
+    "0xcf553e00",
+    "0xc482d200",
+    "0xc4df1800",
+    "0xc5724600",
+    "0xc4ddb800",
+    "0xcd4c7800",
+    "0xc4cae800",
+    "0xc4df3400",
+    "0xcd4c4600"
+  ],
+  "released_file_handles_including_preexisting": [
+    {
+      "bo": "0xc37c0400",
+      "handle": 43
+    },
+    {
+      "bo": "0xc1db2400",
+      "handle": 30
+    },
+    {
+      "bo": "0xc37c0c00",
+      "handle": 40
+    },
+    {
+      "bo": "0xc5af5e00",
+      "handle": 32
+    },
+    {
+      "bo": "0xc87a7400",
+      "handle": 31
+    },
+    {
+      "bo": "0xc35da400",
+      "handle": 33
+    },
+    {
+      "bo": "0xc5af5600",
+      "handle": 21
+    },
+    {
+      "bo": "0xc35cc200",
+      "handle": 27
+    },
+    {
+      "bo": "0xc30ccc00",
+      "handle": 6
+    },
+    {
+      "bo": "0xc33b5e00",
+      "handle": 41
+    },
+    {
+      "bo": "0xc482c000",
+      "handle": 39
+    },
+    {
+      "bo": "0xc30cca00",
+      "handle": 38
+    },
+    {
+      "bo": "0xc4caea00",
+      "handle": 66
+    },
+    {
+      "bo": "0xc55ac200",
+      "handle": 35
+    },
+    {
+      "bo": "0xc339b400",
+      "handle": 64
+    },
+    {
+      "bo": "0xc4f35400",
+      "handle": 65
+    },
+    {
+      "bo": "0xc55aca00",
+      "handle": 59
+    },
+    {
+      "bo": "0xc4b1ea00",
+      "handle": 63
+    },
+    {
+      "bo": "0xc44b4e00",
+      "handle": 57
+    },
+    {
+      "bo": "0xc33b5000",
+      "handle": 56
+    },
+    {
+      "bo": "0xc5748400",
+      "handle": 58
+    },
+    {
+      "bo": "0xcf555c00",
+      "handle": 52
+    },
+    {
+      "bo": "0xc4dc6c00",
+      "handle": 51
+    },
+    {
+      "bo": "0xcd485200",
+      "handle": 50
+    },
+    {
+      "bo": "0xc4f34c00",
+      "handle": 48
+    },
+    {
+      "bo": "0xc4b18200",
+      "handle": 47
+    },
+    {
+      "bo": "0xc37c1200",
+      "handle": 46
+    },
+    {
+      "bo": "0xcf6b0a00",
+      "handle": 68
+    },
+    {
+      "bo": "0xc36aa800",
+      "handle": 69
+    },
+    {
+      "bo": "0xc4dc7a00",
+      "handle": 54
+    },
+    {
+      "bo": "0xc339aa00",
+      "handle": 55
+    },
+    {
+      "bo": "0xc33b4400",
+      "handle": 108
+    },
+    {
+      "bo": "0xc4df2200",
+      "handle": 18
+    },
+    {
+      "bo": "0xcf6a6e00",
+      "handle": 107
+    },
+    {
+      "bo": "0xc4af3800",
+      "handle": 19
+    },
+    {
+      "bo": "0xc5af5c00",
+      "handle": 34
+    },
+    {
+      "bo": "0xc4af6a00",
+      "handle": 22
+    },
+    {
+      "bo": "0xc30aaa00",
+      "handle": 25
+    },
+    {
+      "bo": "0xc4df2000",
+      "handle": 26
+    },
+    {
+      "bo": "0xc8505400",
+      "handle": 28
+    },
+    {
+      "bo": "0xc4df3200",
+      "handle": 7
+    },
+    {
+      "bo": "0xc5bbdc00",
+      "handle": 45
+    },
+    {
+      "bo": "0xc4c95800",
+      "handle": 37
+    },
+    {
+      "bo": "0xc30b8e00",
+      "handle": 97
+    },
+    {
+      "bo": "0xc8602000",
+      "handle": 98
+    },
+    {
+      "bo": "0xcd7e9a00",
+      "handle": 99
+    },
+    {
+      "bo": "0xcd4d5800",
+      "handle": 100
+    },
+    {
+      "bo": "0xc4b1e600",
+      "handle": 101
+    },
+    {
+      "bo": "0xc5723a00",
+      "handle": 102
+    },
+    {
+      "bo": "0xc4b1fc00",
+      "handle": 103
+    },
+    {
+      "bo": "0xcf553e00",
+      "handle": 104
+    },
+    {
+      "bo": "0xc482d200",
+      "handle": 8
+    },
+    {
+      "bo": "0xc4df1800",
+      "handle": 9
+    },
+    {
+      "bo": "0xc5724600",
+      "handle": 36
+    },
+    {
+      "bo": "0xc4ddb800",
+      "handle": 44
+    },
+    {
+      "bo": "0xcd4c7800",
+      "handle": 42
+    },
+    {
+      "bo": "0xc4cae800",
+      "handle": 53
+    },
+    {
+      "bo": "0xc4df3400",
+      "handle": 109
+    },
+    {
+      "bo": "0xcd4c4600",
+      "handle": 49
+    }
+  ],
+  "gem_mappings": [
+    {
+      "bo": "0xc482d200",
+      "vma": "0xc32edc00",
+      "closed": true,
+      "time": 17826.81706,
+      "result": 0
+    },
+    {
+      "bo": "0xc5967e00",
+      "vma": "0xc32eaa80",
+      "closed": false,
+      "time": 17826.904143,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df2200",
+      "vma": "0xc5511780",
+      "closed": true,
+      "time": 17827.067598,
+      "result": 0
+    },
+    {
+      "bo": "0xc4af3800",
+      "vma": "0xc4b91780",
+      "closed": true,
+      "time": 17827.082313,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b19c00",
+      "vma": "0xc5a66a80",
+      "closed": false,
+      "time": 17827.240507,
+      "result": 0
+    },
+    {
+      "bo": "0xc4af6a00",
+      "vma": "0xcd412f80",
+      "closed": true,
+      "time": 17827.242438,
+      "result": 0
+    },
+    {
+      "bo": "0xc30aaa00",
+      "vma": "0xc4593b00",
+      "closed": true,
+      "time": 17827.244331,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df2000",
+      "vma": "0xc47ec900",
+      "closed": true,
+      "time": 17827.245522,
+      "result": 0
+    },
+    {
+      "bo": "0xc8505400",
+      "vma": "0xc4b79700",
+      "closed": true,
+      "time": 17827.248598,
+      "result": 0
+    },
+    {
+      "bo": "0xc87a7400",
+      "vma": "0xc4e18e00",
+      "closed": true,
+      "time": 17828.835631,
+      "result": 0
+    },
+    {
+      "bo": "0xc35cc200",
+      "vma": "0xc4ec3c80",
+      "closed": true,
+      "time": 17828.855237,
+      "result": 0
+    },
+    {
+      "bo": "0xc5af5600",
+      "vma": "0xc5906700",
+      "closed": true,
+      "time": 17828.875506,
+      "result": 0
+    },
+    {
+      "bo": "0xc35da400",
+      "vma": "0xc5706b00",
+      "closed": true,
+      "time": 17828.881337,
+      "result": 0
+    },
+    {
+      "bo": "0xc1db2400",
+      "vma": "0xc36baa80",
+      "closed": true,
+      "time": 17829.021156,
+      "result": 0
+    },
+    {
+      "bo": "0xc5af5e00",
+      "vma": "0xc32a9100",
+      "closed": true,
+      "time": 17829.059889,
+      "result": 0
+    },
+    {
+      "bo": "0xc55ac200",
+      "vma": "0xc8607300",
+      "closed": true,
+      "time": 17829.098508,
+      "result": 0
+    },
+    {
+      "bo": "0xc5724600",
+      "vma": "0xc47c6500",
+      "closed": true,
+      "time": 17829.180151,
+      "result": 0
+    },
+    {
+      "bo": "0xc30cca00",
+      "vma": "0xc4d8ef00",
+      "closed": true,
+      "time": 17829.234871,
+      "result": 0
+    },
+    {
+      "bo": "0xc482c000",
+      "vma": "0xc46f1b00",
+      "closed": true,
+      "time": 17829.289732,
+      "result": 0
+    },
+    {
+      "bo": "0xc37c0c00",
+      "vma": "0xc857a680",
+      "closed": true,
+      "time": 17829.398468,
+      "result": 0
+    },
+    {
+      "bo": "0xc33b5e00",
+      "vma": "0xc447ce80",
+      "closed": true,
+      "time": 17829.439197,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4c7800",
+      "vma": "0xcd412f00",
+      "closed": true,
+      "time": 17829.48204,
+      "result": 0
+    },
+    {
+      "bo": "0xc37c0400",
+      "vma": "0xc5be7680",
+      "closed": true,
+      "time": 17829.574818,
+      "result": 0
+    },
+    {
+      "bo": "0xc4ddb800",
+      "vma": "0xc32f4a80",
+      "closed": true,
+      "time": 17829.928072,
+      "result": 0
+    },
+    {
+      "bo": "0xc5bbdc00",
+      "vma": "0xc4d8eb80",
+      "closed": true,
+      "time": 17830.130582,
+      "result": 0
+    },
+    {
+      "bo": "0xc37c1200",
+      "vma": "0xc4ec3c00",
+      "closed": true,
+      "time": 17830.544975,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b18200",
+      "vma": "0xc8734800",
+      "closed": true,
+      "time": 17830.572729,
+      "result": 0
+    },
+    {
+      "bo": "0xc4f34c00",
+      "vma": "0xc4d8ea80",
+      "closed": true,
+      "time": 17830.653106,
+      "result": 0
+    },
+    {
+      "bo": "0xcd485200",
+      "vma": "0xc574a180",
+      "closed": true,
+      "time": 17830.673417,
+      "result": 0
+    },
+    {
+      "bo": "0xc4dc6c00",
+      "vma": "0xc361a180",
+      "closed": true,
+      "time": 17830.702945,
+      "result": 0
+    },
+    {
+      "bo": "0xcf555c00",
+      "vma": "0xc59ecc80",
+      "closed": true,
+      "time": 17830.723167,
+      "result": 0
+    },
+    {
+      "bo": "0xc4cae800",
+      "vma": "0xc56fde80",
+      "closed": true,
+      "time": 17830.75588,
+      "result": 0
+    },
+    {
+      "bo": "0xc4dc7a00",
+      "vma": "0xc8734a80",
+      "closed": true,
+      "time": 17830.77945,
+      "result": 0
+    },
+    {
+      "bo": "0xc339aa00",
+      "vma": "0xc4d6ab00",
+      "closed": true,
+      "time": 17830.899588,
+      "result": 0
+    },
+    {
+      "bo": "0xc33b5000",
+      "vma": "0xc332de80",
+      "closed": true,
+      "time": 17830.908073,
+      "result": 0
+    },
+    {
+      "bo": "0xc44b4e00",
+      "vma": "0xc497a380",
+      "closed": true,
+      "time": 17830.929095,
+      "result": 0
+    },
+    {
+      "bo": "0xc5748400",
+      "vma": "0xc47e1080",
+      "closed": true,
+      "time": 17830.942673,
+      "result": 0
+    },
+    {
+      "bo": "0xc55aca00",
+      "vma": "0xc4bb9f80",
+      "closed": true,
+      "time": 17830.959058,
+      "result": 0
+    },
+    {
+      "bo": "0xc36ab400",
+      "vma": "0xc8562080",
+      "closed": true,
+      "time": 17830.97979,
+      "result": 0
+    },
+    {
+      "bo": "0xcd485c00",
+      "vma": "0xc5acb280",
+      "closed": true,
+      "time": 17831.123603,
+      "result": 0
+    },
+    {
+      "bo": "0xcd485e00",
+      "vma": "0xc84a7400",
+      "closed": true,
+      "time": 17831.160171,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b1ea00",
+      "vma": "0xc54e3f80",
+      "closed": true,
+      "time": 17831.309003,
+      "result": 0
+    },
+    {
+      "bo": "0xc339b400",
+      "vma": "0xc4f89500",
+      "closed": true,
+      "time": 17831.354936,
+      "result": 0
+    },
+    {
+      "bo": "0xc4f35400",
+      "vma": "0xc59ece00",
+      "closed": true,
+      "time": 17831.447385,
+      "result": 0
+    },
+    {
+      "bo": "0xc4caea00",
+      "vma": "0xc4cf9780",
+      "closed": true,
+      "time": 17831.549918,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df1800",
+      "vma": "0xc37af900",
+      "closed": true,
+      "time": 17833.138818,
+      "result": 0
+    },
+    {
+      "bo": "0xc859ce00",
+      "vma": "0xc37c3280",
+      "closed": true,
+      "time": 17833.470272,
+      "result": 0
+    },
+    {
+      "bo": "0xc859cc00",
+      "vma": "0xc5688c80",
+      "closed": true,
+      "time": 17833.470548,
+      "result": 0
+    },
+    {
+      "bo": "0xc859ca00",
+      "vma": "0xc47e2300",
+      "closed": true,
+      "time": 17833.470655,
+      "result": 0
+    },
+    {
+      "bo": "0xc859e600",
+      "vma": "0xcd7e4180",
+      "closed": true,
+      "time": 17833.470759,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b19600",
+      "vma": "0xc4843c80",
+      "closed": true,
+      "time": 17833.532555,
+      "result": 0
+    },
+    {
+      "bo": "0xc339bc00",
+      "vma": "0xc5b69980",
+      "closed": true,
+      "time": 17833.541601,
+      "result": 0
+    },
+    {
+      "bo": "0xc859d200",
+      "vma": "0xc4479a80",
+      "closed": true,
+      "time": 17833.544093,
+      "result": 0
+    },
+    {
+      "bo": "0xc30cb800",
+      "vma": "0xc8741000",
+      "closed": true,
+      "time": 17833.54418,
+      "result": 0
+    },
+    {
+      "bo": "0xc859c600",
+      "vma": "0xc4d6aa80",
+      "closed": true,
+      "time": 17833.544222,
+      "result": 0
+    },
+    {
+      "bo": "0xc30ccc00",
+      "vma": "0xc47ade00",
+      "closed": true,
+      "time": 17833.544277,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6b0a00",
+      "vma": "0xcd5b3300",
+      "closed": true,
+      "time": 17833.551389,
+      "result": 0
+    },
+    {
+      "bo": "0xc36aa800",
+      "vma": "0xc4d6a400",
+      "closed": true,
+      "time": 17833.552372,
+      "result": 0
+    },
+    {
+      "bo": "0xc30b9400",
+      "vma": "0xc4df5b80",
+      "closed": true,
+      "time": 17833.553964,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df0400",
+      "vma": "0xc4941200",
+      "closed": true,
+      "time": 17833.55569,
+      "result": 0
+    },
+    {
+      "bo": "0xc8511200",
+      "vma": "0xc4d6a300",
+      "closed": false,
+      "time": 17833.558848,
+      "result": 0
+    },
+    {
+      "bo": "0xc8602800",
+      "vma": "0xc47aeb00",
+      "closed": true,
+      "time": 17833.56083,
+      "result": 0
+    },
+    {
+      "bo": "0xc4ddb200",
+      "vma": "0xc85fd600",
+      "closed": true,
+      "time": 17833.562882,
+      "result": 0
+    },
+    {
+      "bo": "0xc4f74200",
+      "vma": "0xc47aef00",
+      "closed": true,
+      "time": 17833.564924,
+      "result": 0
+    },
+    {
+      "bo": "0xc55ac400",
+      "vma": "0xc8561080",
+      "closed": true,
+      "time": 17833.56638,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4c7c00",
+      "vma": "0xc8614900",
+      "closed": true,
+      "time": 17833.567751,
+      "result": 0
+    },
+    {
+      "bo": "0xc5967200",
+      "vma": "0xc59a5900",
+      "closed": true,
+      "time": 17833.569461,
+      "result": 0
+    },
+    {
+      "bo": "0xc55ace00",
+      "vma": "0xc4589500",
+      "closed": true,
+      "time": 17833.571023,
+      "result": 0
+    },
+    {
+      "bo": "0xc5966000",
+      "vma": "0xc5a6e380",
+      "closed": true,
+      "time": 17833.57254,
+      "result": 0
+    },
+    {
+      "bo": "0xc36ab200",
+      "vma": "0xc59a5380",
+      "closed": true,
+      "time": 17833.57405,
+      "result": 0
+    },
+    {
+      "bo": "0xc87a6800",
+      "vma": "0xc580d300",
+      "closed": true,
+      "time": 17833.575666,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6b1800",
+      "vma": "0xc4941680",
+      "closed": true,
+      "time": 17833.577657,
+      "result": 0
+    },
+    {
+      "bo": "0xc859c800",
+      "vma": "0xcd517780",
+      "closed": true,
+      "time": 17833.579731,
+      "result": 0
+    },
+    {
+      "bo": "0xc482de00",
+      "vma": "0xc85fd780",
+      "closed": false,
+      "time": 17833.581388,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6a6800",
+      "vma": "0xc85fd480",
+      "closed": false,
+      "time": 17833.583032,
+      "result": 0
+    },
+    {
+      "bo": "0xc4dc6800",
+      "vma": "0xc4d4f400",
+      "closed": false,
+      "time": 17833.584831,
+      "result": 0
+    },
+    {
+      "bo": "0xc859ec00",
+      "vma": "0xc59a5500",
+      "closed": false,
+      "time": 17833.587352,
+      "result": 0
+    },
+    {
+      "bo": "0xc37c1c00",
+      "vma": "0xc47ae100",
+      "closed": false,
+      "time": 17833.589249,
+      "result": 0
+    },
+    {
+      "bo": "0xc8602e00",
+      "vma": "0xc59a5580",
+      "closed": false,
+      "time": 17833.591003,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df2800",
+      "vma": "0xc4df5480",
+      "closed": false,
+      "time": 17833.592874,
+      "result": 0
+    },
+    {
+      "bo": "0xc59b5200",
+      "vma": "0xc493e300",
+      "closed": false,
+      "time": 17833.595354,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4d4800",
+      "vma": "0xc59a5280",
+      "closed": false,
+      "time": 17833.600283,
+      "result": 0
+    },
+    {
+      "bo": "0xc859c400",
+      "vma": "0xc330b300",
+      "closed": true,
+      "time": 17833.611899,
+      "result": 0
+    },
+    {
+      "bo": "0xc5584600",
+      "vma": "0xc59a5680",
+      "closed": true,
+      "time": 17833.612851,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df0e00",
+      "vma": "0xc4489e00",
+      "closed": true,
+      "time": 17833.620044,
+      "result": 0
+    },
+    {
+      "bo": "0xc87a7000",
+      "vma": "0xc8701680",
+      "closed": true,
+      "time": 17833.641919,
+      "result": 0
+    },
+    {
+      "bo": "0xc30b8e00",
+      "vma": "0xc59a5600",
+      "closed": true,
+      "time": 17833.654758,
+      "result": 0
+    },
+    {
+      "bo": "0xc8602000",
+      "vma": "0xc4df5100",
+      "closed": true,
+      "time": 17833.655457,
+      "result": 0
+    },
+    {
+      "bo": "0xcd7e9a00",
+      "vma": "0xc46c0a00",
+      "closed": true,
+      "time": 17833.655995,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4d5800",
+      "vma": "0xc59a5100",
+      "closed": true,
+      "time": 17833.656592,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b1e600",
+      "vma": "0xc8614a00",
+      "closed": true,
+      "time": 17833.657333,
+      "result": 0
+    },
+    {
+      "bo": "0xc5723a00",
+      "vma": "0xc4df5200",
+      "closed": true,
+      "time": 17833.658189,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b1fc00",
+      "vma": "0xc46c0000",
+      "closed": true,
+      "time": 17833.658799,
+      "result": 0
+    },
+    {
+      "bo": "0xcf553e00",
+      "vma": "0xc47ae500",
+      "closed": true,
+      "time": 17833.660842,
+      "result": 0
+    },
+    {
+      "bo": "0xc87c4c00",
+      "vma": "0xc47aee00",
+      "closed": false,
+      "time": 17833.662819,
+      "result": 0
+    },
+    {
+      "bo": "0xc87a7200",
+      "vma": "0xc330b800",
+      "closed": false,
+      "time": 17833.666534,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6a6e00",
+      "vma": "0xc5ba5880",
+      "closed": true,
+      "time": 17842.046761,
+      "result": 0
+    },
+    {
+      "bo": "0xc33b4400",
+      "vma": "0xc593fb80",
+      "closed": true,
+      "time": 17842.1465,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df3400",
+      "vma": "0xc581e080",
+      "closed": true,
+      "time": 17842.491521,
+      "result": 0
+    },
+    {
+      "bo": "0xc35cc200",
+      "vma": "0xc4e2a600",
+      "closed": false,
+      "time": 17858.076667,
+      "result": 0
+    },
+    {
+      "bo": "0xc5966000",
+      "vma": "0xc3740180",
+      "closed": false,
+      "time": 17874.080494,
+      "result": 0
+    },
+    {
+      "bo": "0xc55ace00",
+      "vma": "0xc45fc500",
+      "closed": true,
+      "time": 17874.08494,
+      "result": 0
+    }
+  ],
+  "gem_mapping_errors": [],
+  "cma_allocation_errors": [],
+  "consistency_errors": [],
+  "marker_headroom": [
+    {
+      "label": "baseline",
+      "available_mib": null
+    },
+    {
+      "label": "rotation_normal",
+      "available_mib": null
+    },
+    {
+      "label": "rotation_left",
+      "available_mib": 19.47265625
+    },
+    {
+      "label": "rotation_inverted",
+      "available_mib": 17.41015625
+    },
+    {
+      "label": "rotation_right",
+      "available_mib": 13.53515625
+    },
+    {
+      "label": "rotation_normal",
+      "available_mib": 13.53515625
+    },
+    {
+      "label": "cycle_1_before",
+      "available_mib": 13.53515625
+    },
+    {
+      "label": "cycle_1_closed",
+      "available_mib": 14.03515625
+    },
+    {
+      "label": "cycle_2_before",
+      "available_mib": 14.59765625
+    },
+    {
+      "label": "cycle_2_closed",
+      "available_mib": 14.34765625
+    },
+    {
+      "label": "cycle_3_before",
+      "available_mib": 14.34765625
+    },
+    {
+      "label": "cycle_3_closed",
+      "available_mib": 14.34765625
+    },
+    {
+      "label": "settle_start",
+      "available_mib": 14.34765625
+    },
+    {
+      "label": "settled",
+      "available_mib": 28.1796875
+    }
+  ],
+  "scope": "Live-or-cached BOs are not classified as leaks. Objects predating the trace are not in the BO ledger. Headroom is CMA bitmap availability, not /proc/meminfo CmaFree or a guarantee of contiguous allocation success."
+}

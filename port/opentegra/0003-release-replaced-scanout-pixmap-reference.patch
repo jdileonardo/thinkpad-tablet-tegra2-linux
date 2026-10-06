@@ -1,0 +1,70 @@
+diff --git a/src/exa/pixmap.c b/src/exa/pixmap.c
+index 3cde95b..94281f3 100644
+--- a/src/exa/pixmap.c
++++ b/src/exa/pixmap.c
+@@ -364,6 +364,21 @@ static void tegra_exa_destroy_pixmap(void *driverPriv)
+         free(pixmap);
+ }
+ 
++static void tegra_exa_replace_scanout_bo(struct tegra_pixmap *priv,
++                                        struct drm_tegra_bo *scanout)
++{
++    struct drm_tegra_bo *old = priv->type == TEGRA_EXA_PIXMAP_TYPE_BO ?
++                              priv->bo : NULL;
++
++    /* RandR rebinds the existing screen pixmap on every front-buffer resize. */
++    if (old != scanout) {
++        priv->bo = drm_tegra_bo_ref(scanout);
++        if (old)
++            drm_tegra_bo_unref(old);
++    }
++    priv->type = TEGRA_EXA_PIXMAP_TYPE_BO;
++}
++
+ static bool tegra_exa_modify_pixmap_header(PixmapPtr pixmap, int width,
+                                            int height, int depth, int bpp,
+                                            int devKind, pointer pix_data)
+@@ -374,6 +389,12 @@ static bool tegra_exa_modify_pixmap_header(PixmapPtr pixmap, int width,
+     struct drm_tegra_bo *scanout;
+     bool ret;
+ 
++    /* Finish work using the old dimensions/buffer before changing the header. */
++    if (pix_data && priv->type == TEGRA_EXA_PIXMAP_TYPE_BO && priv->scanout) {
++        tegra_exa_flush_deferred_operations(pixmap, false, true, true);
++        TEGRA_PIXMAP_WAIT_ALL_FENCES(priv);
++    }
++
+     ret = miModifyPixmapHeader(pixmap, width, height, depth, bpp,
+                                devKind, pix_data);
+     if (!ret)
+@@ -384,8 +405,8 @@ static bool tegra_exa_modify_pixmap_header(PixmapPtr pixmap, int width,
+     if (pix_data) {
+         if (pix_data == drmmode_map_front_bo(&tegra->drmmode)) {
+             scanout = drmmode_get_front_bo(&tegra->drmmode);
+-            priv->type = TEGRA_EXA_PIXMAP_TYPE_BO;
+-            priv->bo = drm_tegra_bo_ref(scanout);
++            tegra_exa_replace_scanout_bo(priv, scanout);
++            priv->scanout_rotated = false;
+             priv->tegra_data = true;
+             priv->offscreen = true;
+             priv->scanout = true;
+@@ -395,8 +416,7 @@ static bool tegra_exa_modify_pixmap_header(PixmapPtr pixmap, int width,
+ 
+         if (pix_data == drmmode_crtc_map_rotate_bo(pScrn, 0)) {
+             scanout = drmmode_crtc_get_rotate_bo(pScrn, 0);
+-            priv->type = TEGRA_EXA_PIXMAP_TYPE_BO;
+-            priv->bo = drm_tegra_bo_ref(scanout);
++            tegra_exa_replace_scanout_bo(priv, scanout);
+             priv->scanout_rotated = true;
+             priv->tegra_data = true;
+             priv->offscreen = true;
+@@ -408,8 +428,7 @@ static bool tegra_exa_modify_pixmap_header(PixmapPtr pixmap, int width,
+ 
+         if (pix_data == drmmode_crtc_map_rotate_bo(pScrn, 1)) {
+             scanout = drmmode_crtc_get_rotate_bo(pScrn, 1);
+-            priv->type = TEGRA_EXA_PIXMAP_TYPE_BO;
+-            priv->bo = drm_tegra_bo_ref(scanout);
++            tegra_exa_replace_scanout_bo(priv, scanout);
+             priv->scanout_rotated = true;
+             priv->tegra_data = true;
+             priv->offscreen = true;

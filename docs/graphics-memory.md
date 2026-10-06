@@ -1,5 +1,10 @@
 # XFCE graphics allocation checkpoint
 
+The follow-up [rotation reference fix](graphics-rotation-fix.md) identifies and
+fixes the DDX scanout reference handoff, verifies release in two tablet trials,
+and selects the fixed module for XFCE. The observations below describe the
+earlier unpatched configuration.
+
 Measured on the physical Indigo tablet on 2026-10-06, with kernel
 `7.0.1-nura-indigo-ram`, the external SD root, and the installed distribution
 `xf86-video-opentegra-0.6.0_git20211025-r1`. Xorg PID 29643 and XFCE session

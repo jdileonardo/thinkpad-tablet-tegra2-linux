@@ -18,7 +18,11 @@ def main():
     parser.add_argument('--module', type=Path)
     parser.add_argument('--sha256')
     parser.add_argument('--restore')
+    parser.add_argument('--restore-after', type=int, default=180,
+                        help='Automatic restoration delay, 180..600 seconds')
     args = parser.parse_args()
+    if not 180 <= args.restore_after <= 600:
+        parser.error('--restore-after must be between 180 and 600 seconds')
     if os.geteuid() != 0:
         raise SystemExit('Run from the tablet root diagnostic console')
     if args.restore:
@@ -54,11 +58,11 @@ def main():
                       '/opt/indigo-xorg/dri3/lib/xorg/modules,/usr/lib/xorg/modules '
                       '-config /opt/indigo-xorg/dri3/trial-xorg.conf\n')
     with Path('/tmp/indigo-dri3-restore.log').open('w') as log:
-        subprocess.Popen(['sh', '-c', 'sleep 180; exec python3 "$1" --restore "$2"',
-                          'dri3-restore', str(trial_script), token],
+        subprocess.Popen(['sh', '-c', 'sleep "$1"; exec python3 "$2" --restore "$3"',
+                          'dri3-restore', str(args.restore_after), str(trial_script), token],
                          stdin=subprocess.DEVNULL, stdout=log, stderr=log,
                          start_new_session=True)
-    print(f'Trial token={token}; automatic restore in 180 seconds', flush=True)
+    print(f'Trial token={token}; automatic restore in {args.restore_after} seconds', flush=True)
     subprocess.run(['rc-service', 'lightdm', 'restart'], check=True)
 
 

@@ -1,0 +1,585 @@
+{
+  "event_count": 926,
+  "page_size_assumption_bytes": 4096,
+  "cma_total_mib": 64.0,
+  "cma_bitmap_available_mib_range": [
+    3.12109375,
+    5.55859375
+  ],
+  "cma_bitmap_available_mib_at_end": 5.30859375,
+  "new_cma_allocation_mib": 2.375,
+  "cma_release_mib_including_preexisting_buffers": 2.4375,
+  "net_cma_allocation_change_mib": -0.0625,
+  "successful_bo_creates": 28,
+  "failed_bo_creates": 0,
+  "bo_request_size_counts": {
+    "65536": 18,
+    "131072": 2,
+    "262144": 4,
+    "4194304": 4
+  },
+  "traced_new_bos_still_live_or_cached_bytes": 17170432,
+  "traced_new_bos_still_live_or_cached": [
+    {
+      "pointer": "0xc4c95200",
+      "size": 4194304,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4dc6c00",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4ddba00",
+      "size": 4194304,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc4df0600",
+      "size": 131072,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc59b2200",
+      "size": 4194304,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc5bbae00",
+      "size": 4194304,
+      "flags": 32
+    }
+  ],
+  "freed_bo_pointers_including_preexisting": [
+    "0xc4afd400",
+    "0xc4b1e000",
+    "0xcd4d7a00",
+    "0xcd4d5c00",
+    "0xc4afd000",
+    "0xcf6a7600",
+    "0xcd484400",
+    "0xc5748400",
+    "0xc35da400",
+    "0xc5bba400",
+    "0xc4df2a00",
+    "0xc5585a00",
+    "0xcd7e8200",
+    "0xcf555c00",
+    "0xcf553c00",
+    "0xcd4d6e00",
+    "0xc35b4200",
+    "0xc35db400",
+    "0xc1db3200",
+    "0xc4af4600",
+    "0xcf6a6e00",
+    "0xc4b1e600",
+    "0xc37c1400",
+    "0xc4b1e400",
+    "0xc4dc6000"
+  ],
+  "handle_reference_put_bo_pointers_including_preexisting": [
+    "0xc5bbd600",
+    "0xcd4d4800",
+    "0xc5bbd600",
+    "0xc59b2200",
+    "0xc5bbae00",
+    "0xc4c95200",
+    "0xc59b2200",
+    "0xc4afd400",
+    "0xc4b1e000",
+    "0xcd4d7a00",
+    "0xcd4d5c00",
+    "0xc4afd000",
+    "0xcf6a7600",
+    "0xcd484400",
+    "0xc5748400",
+    "0xc35da400",
+    "0xc5bba400",
+    "0xc4df2a00",
+    "0xc5585a00",
+    "0xcd7e8200",
+    "0xcf555c00",
+    "0xcf553c00",
+    "0xcd4d6e00",
+    "0xc35b4200",
+    "0xc35db400",
+    "0xc1db3200",
+    "0xc4af4600",
+    "0xcf6a6e00",
+    "0xc4b1e600",
+    "0xc37c1400",
+    "0xc4b1e400",
+    "0xc4dc6000"
+  ],
+  "released_file_handles_including_preexisting": [],
+  "gem_mappings": [
+    {
+      "bo": "0xc4b1e400",
+      "vma": "0xc32ea300",
+      "closed": true,
+      "time": 17165.17285,
+      "result": 0
+    },
+    {
+      "bo": "0xc8602800",
+      "vma": "0xc5a70880",
+      "closed": true,
+      "time": 17165.209252,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4d6e00",
+      "vma": "0xc56f4680",
+      "closed": true,
+      "time": 17165.234136,
+      "result": 0
+    },
+    {
+      "bo": "0xc4dc6000",
+      "vma": "0xc5a70700",
+      "closed": true,
+      "time": 17165.238216,
+      "result": 0
+    },
+    {
+      "bo": "0xc35b4200",
+      "vma": "0xc873c800",
+      "closed": true,
+      "time": 17165.378175,
+      "result": 0
+    },
+    {
+      "bo": "0xc30b8800",
+      "vma": "0xc84d9100",
+      "closed": true,
+      "time": 17165.450587,
+      "result": 0
+    },
+    {
+      "bo": "0xc59b3000",
+      "vma": "0xc4593580",
+      "closed": true,
+      "time": 17165.465518,
+      "result": 0
+    },
+    {
+      "bo": "0xc4ddaa00",
+      "vma": "0xc4593d00",
+      "closed": true,
+      "time": 17165.474042,
+      "result": 0
+    },
+    {
+      "bo": "0xcd484200",
+      "vma": "0xcd4efd80",
+      "closed": true,
+      "time": 17165.490121,
+      "result": 0
+    },
+    {
+      "bo": "0xc4f34e00",
+      "vma": "0xcd4ef680",
+      "closed": true,
+      "time": 17165.529581,
+      "result": 0
+    },
+    {
+      "bo": "0xcf553a00",
+      "vma": "0xcd4ef580",
+      "closed": true,
+      "time": 17165.538279,
+      "result": 0
+    },
+    {
+      "bo": "0xc59b3600",
+      "vma": "0xcd4ef500",
+      "closed": true,
+      "time": 17165.546803,
+      "result": 0
+    },
+    {
+      "bo": "0xc4afd000",
+      "vma": "0xcd4ef600",
+      "closed": true,
+      "time": 17165.549779,
+      "result": 0
+    },
+    {
+      "bo": "0xc4af4600",
+      "vma": "0xc5558980",
+      "closed": true,
+      "time": 17165.714619,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4d5c00",
+      "vma": "0xc47a4780",
+      "closed": true,
+      "time": 17165.726189,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4d7a00",
+      "vma": "0xc37af180",
+      "closed": true,
+      "time": 17165.737566,
+      "result": 0
+    },
+    {
+      "bo": "0xcd484400",
+      "vma": "0xc5558b80",
+      "closed": true,
+      "time": 17165.748977,
+      "result": 0
+    },
+    {
+      "bo": "0xcd7e8200",
+      "vma": "0xc5558a00",
+      "closed": true,
+      "time": 17165.760359,
+      "result": 0
+    },
+    {
+      "bo": "0xc35db400",
+      "vma": "0xc5558b00",
+      "closed": true,
+      "time": 17165.811727,
+      "result": 0
+    },
+    {
+      "bo": "0xc1db3200",
+      "vma": "0xc84d9500",
+      "closed": true,
+      "time": 17165.824274,
+      "result": 0
+    },
+    {
+      "bo": "0xcf555c00",
+      "vma": "0xc4f38000",
+      "closed": true,
+      "time": 17165.836312,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6a7600",
+      "vma": "0xc57b5680",
+      "closed": true,
+      "time": 17165.847693,
+      "result": 0
+    },
+    {
+      "bo": "0xcf553c00",
+      "vma": "0xc5408180",
+      "closed": true,
+      "time": 17165.859529,
+      "result": 0
+    },
+    {
+      "bo": "0xc5bba400",
+      "vma": "0xc37af900",
+      "closed": true,
+      "time": 17165.87178,
+      "result": 0
+    },
+    {
+      "bo": "0xc5748400",
+      "vma": "0xc5558900",
+      "closed": true,
+      "time": 17165.884923,
+      "result": 0
+    },
+    {
+      "bo": "0xc35da400",
+      "vma": "0xc37aff80",
+      "closed": true,
+      "time": 17165.896999,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df2a00",
+      "vma": "0xc4e0d580",
+      "closed": true,
+      "time": 17165.924662,
+      "result": 0
+    },
+    {
+      "bo": "0xc5585a00",
+      "vma": "0xc37af080",
+      "closed": true,
+      "time": 17165.971707,
+      "result": 0
+    },
+    {
+      "bo": "0xc4afd400",
+      "vma": "0xc56fd580",
+      "closed": true,
+      "time": 17166.111626,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6a6e00",
+      "vma": "0xc57e9300",
+      "closed": true,
+      "time": 17167.319277,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b1e000",
+      "vma": "0xc5693000",
+      "closed": true,
+      "time": 17167.320637,
+      "result": 0
+    },
+    {
+      "bo": "0xc5bbae00",
+      "vma": "0xc5702c00",
+      "closed": false,
+      "time": 17168.026119,
+      "result": 0
+    },
+    {
+      "bo": "0xc59b2200",
+      "vma": "0xc497b880",
+      "closed": false,
+      "time": 17168.032122,
+      "result": 0
+    },
+    {
+      "bo": "0xc37c1400",
+      "vma": "0xc5861380",
+      "closed": true,
+      "time": 17168.419535,
+      "result": 0
+    },
+    {
+      "bo": "0xc30cca00",
+      "vma": "0xc3375b80",
+      "closed": false,
+      "time": 17168.671967,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6a6400",
+      "vma": "0xc5a70a00",
+      "closed": true,
+      "time": 17168.676247,
+      "result": 0
+    },
+    {
+      "bo": "0xc5bbdc00",
+      "vma": "0xc85e2100",
+      "closed": true,
+      "time": 17168.689871,
+      "result": 0
+    },
+    {
+      "bo": "0xc4c95800",
+      "vma": "0xc5adb980",
+      "closed": true,
+      "time": 17168.694857,
+      "result": 0
+    },
+    {
+      "bo": "0xc57ec600",
+      "vma": "0xc5591a80",
+      "closed": true,
+      "time": 17168.709426,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4afe00",
+      "vma": "0xc85e2180",
+      "closed": true,
+      "time": 17168.713801,
+      "result": 0
+    },
+    {
+      "bo": "0xc4afbc00",
+      "vma": "0xc4dd2380",
+      "closed": true,
+      "time": 17168.881927,
+      "result": 0
+    },
+    {
+      "bo": "0xc4c95200",
+      "vma": "0xc550fe00",
+      "closed": false,
+      "time": 17171.049503,
+      "result": 0
+    },
+    {
+      "bo": "0xc4ddba00",
+      "vma": "0xc5408200",
+      "closed": false,
+      "time": 17172.760625,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df0600",
+      "vma": "0xc3421200",
+      "closed": true,
+      "time": 17174.501483,
+      "result": 0
+    },
+    {
+      "bo": "0xc5723200",
+      "vma": "0xc4dab100",
+      "closed": true,
+      "time": 17182.296226,
+      "result": 0
+    },
+    {
+      "bo": "0xcf553600",
+      "vma": "0xc84d9080",
+      "closed": true,
+      "time": 17182.296357,
+      "result": 0
+    },
+    {
+      "bo": "0xc8602600",
+      "vma": "0xc5a89b00",
+      "closed": true,
+      "time": 17182.296453,
+      "result": 0
+    },
+    {
+      "bo": "0xc57ed800",
+      "vma": "0xc33ce900",
+      "closed": true,
+      "time": 17182.29655,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6a6a00",
+      "vma": "0xc4642580",
+      "closed": true,
+      "time": 17182.449751,
+      "result": 0
+    },
+    {
+      "bo": "0xc4f34200",
+      "vma": "0xc5702500",
+      "closed": true,
+      "time": 17182.449947,
+      "result": 0
+    },
+    {
+      "bo": "0xc4dc6c00",
+      "vma": "0xc56fdc00",
+      "closed": false,
+      "time": 17254.732447,
+      "result": 0
+    },
+    {
+      "bo": "0xc59b3600",
+      "vma": "0xc8614200",
+      "closed": false,
+      "time": 17254.764745,
+      "result": 0
+    }
+  ],
+  "gem_mapping_errors": [],
+  "cma_allocation_errors": [
+    {
+      "task": "Xorg",
+      "pid": 29643,
+      "time": 17168.025911,
+      "event": "cma_alloc_finish",
+      "fields": {
+        "pfn": 0,
+        "page": 0,
+        "count": 1024,
+        "align": 8,
+        "errorno": -16
+      },
+      "body": "name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16"
+    },
+    {
+      "task": "Xorg",
+      "pid": 29643,
+      "time": 17168.031949,
+      "event": "cma_alloc_finish",
+      "fields": {
+        "pfn": 0,
+        "page": 0,
+        "count": 1024,
+        "align": 8,
+        "errorno": -16
+      },
+      "body": "name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16"
+    },
+    {
+      "task": "Xorg",
+      "pid": 29643,
+      "time": 17171.049317,
+      "event": "cma_alloc_finish",
+      "fields": {
+        "pfn": 0,
+        "page": 0,
+        "count": 1024,
+        "align": 8,
+        "errorno": -16
+      },
+      "body": "name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16"
+    },
+    {
+      "task": "Xorg",
+      "pid": 29643,
+      "time": 17172.760315,
+      "event": "cma_alloc_finish",
+      "fields": {
+        "pfn": 0,
+        "page": 0,
+        "count": 1024,
+        "align": 8,
+        "errorno": -16
+      },
+      "body": "name=reserved pfn=0x0 page=00000000 count=1024 align=8 errorno=-16"
+    }
+  ],
+  "consistency_errors": [],
+  "marker_headroom": [
+    {
+      "label": "baseline",
+      "available_mib": null
+    },
+    {
+      "label": "rotation_normal",
+      "available_mib": 3.49609375
+    },
+    {
+      "label": "rotation_left",
+      "available_mib": 3.24609375
+    },
+    {
+      "label": "rotation_inverted",
+      "available_mib": 3.24609375
+    },
+    {
+      "label": "rotation_right",
+      "available_mib": 3.12109375
+    },
+    {
+      "label": "rotation_left",
+      "available_mib": 3.12109375
+    },
+    {
+      "label": "cycle_1_before",
+      "available_mib": 3.12109375
+    },
+    {
+      "label": "cycle_1_closed",
+      "available_mib": 3.12109375
+    },
+    {
+      "label": "settle_start",
+      "available_mib": 3.87109375
+    },
+    {
+      "label": "settled",
+      "available_mib": 5.30859375
+    }
+  ],
+  "scope": "Live-or-cached BOs are not classified as leaks. Objects predating the trace are not in the BO ledger. Headroom is CMA bitmap availability, not /proc/meminfo CmaFree or a guarantee of contiguous allocation success."
+}

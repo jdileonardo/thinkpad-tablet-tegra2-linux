@@ -7,8 +7,10 @@ of idle samples and a real GTK3 calendar frame through the active display path.
 Normal RAM headroom is adequate for that small fixture. The follow-up
 [graphics allocation check](graphics-memory.md) finds inexpensive calendar
 cycling but retained rotation buffers and actual CMA shortages with successful
-allocation fallback. Buffer ownership/release, longer operation and the actual
-service integrations remain unvalidated.
+allocation fallback. The subsequent [scanout reference fix](graphics-rotation-fix.md)
+releases those buffers in two bounded tablet trials and is selected for XFCE.
+Longer operation, fresh-image boot and the actual service integrations remain
+unvalidated.
 
 The [native Wayland evaluation](gpu-plasma-evaluation.md) verifies direct display
 and hardware Wayland clients using 32-bit buffers. RGB565 rendering and KWin's
@@ -54,6 +56,10 @@ kernel or graphics test. Normal userspace development changes persist there;
 kernel changes require rebuilding the RAM payload and booting it again.
 
 ## Workflow for the next bring-up work
+
+The [source branch checkpoint](source-branches.md) exports the recorded patches
+as local commits in the kernel, Xorg DDX and candidate Mesa repositories without
+switching their build checkouts. It also lists the remaining image release checks.
 
 Keep RAM boot and the SD root while validating XFCE and its applications. This
 allows kernel rollback without changing the internal bootloader and keeps
