@@ -57,11 +57,9 @@
     "invalid_packets": 0,
     "xorg_continuous": true
   },
-  "physical_touch_rotation_buttons_confirmation": "User reports seems ok; 294 touch reports recorded; rotation helper ran normal then left; rotate-button action logged twice. Remaining three buttons were not separately confirmed.",
+  "physical_touch_rotation_buttons_confirmation": "User confirms buttons seem OK. Logged home, back, browser and rotate actions on second boot, with 267 touch reports and no controller errors or resets.",
   "internal_storage_writes_performed": false,
   "remaining": [
-    "Separate confirmation of remaining three bottom buttons",
-    "Longer application stability",
     "Automatic timeout recovery against an unresponsive controller",
     "Pen and battery hardware tests deferred"
   ],
@@ -81,7 +79,8 @@
     "physical-input-state.txt": "930e65497c5c66af948e9a462dcb809f27a6b937c7ae5b46145331b4c97387a8",
     "safe-repeat-reboot.txt": "978424ca6b80caa1921ed0bdb73dc92d811989658ee66ffad563b93812549ee9",
     "repeat-boot-startup.txt": "532d48dc55cf6eeb9164a0df2b4945c756abbf803317e3095bc4328053ebca02",
-    "repeat-boot-ready.txt": "f6473497ae5a54a4f3e39afd00cd052c7138f43185d5ab72dbc91496a2ad5f6a"
+    "repeat-boot-ready.txt": "f6473497ae5a54a4f3e39afd00cd052c7138f43185d5ab72dbc91496a2ad5f6a",
+    "all-buttons-confirmed.txt": "3c775f3d7e6eb6c226b3b70ad09401c7108d25c81c6526774cdc351602b91959"
   },
   "verified_apx_boot_count": 2,
   "repeat_boot": {
@@ -101,5 +100,9 @@
     "new_graphics_allocation_errors": false,
     "ext4_errors_or_recovery_messages": false,
     "startup_probe_note": "First probe caught Xorg starting before xfdesktop and WLAN were ready; its ping lost two of three packets. All checks passed after automatic startup completed."
-  }
+  },
+  "validation_limits": [
+    "Thirty-minute observation skipped at user request; it was never started. Long-duration reliability remains unmeasured.",
+    "Automatic timeout recovery against a physically unresponsive controller has not been directly exercised."
+  ]
 }

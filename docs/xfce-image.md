@@ -135,8 +135,10 @@ Xorg stayed running. No physical touch events or button actions occurred during
 that initial observation. The user subsequently reported that the tablet
 seemed OK; the [later input state](evidence/image-20261006/fresh-boot/physical-input-state.txt)
 recorded 294 touch reports, two rotation-button actions, and synchronized
-normal-to-left rotation changes. The other three buttons were not separately
-confirmed. This
+normal-to-left rotation changes. After the second boot, the user confirmed the
+other buttons seemed OK; the [complete button check](evidence/image-20261006/fresh-boot/all-buttons-confirmed.txt)
+logged home, back, browser and rotate actions, plus 267 fresh touch reports
+with no controller errors or resets. This
 physical checkpoint is separate from the image-content verification, whose
 scope remains host readback only.
 
@@ -150,7 +152,9 @@ before startup completed; its partial ping loss is retained in the evidence,
 not counted as a ready-state result. No graphics allocation errors, touch
 watchdog resets, or ext4 errors/recovery messages appeared in this check.
 
-The remaining buttons and longer application operation still need checking;
-two successful boots do not establish long-duration reliability. APX RAM boot and the external-SD
+The proposed 30-minute observation was cancelled at the user's request before
+it started. All four buttons are now confirmed; long-duration reliability
+remains unmeasured and is not a requested gate for this checkpoint.
+APX RAM boot and the external-SD
 root UUID/controller requirements are unchanged; this image does not install
 a persistent bootloader or write internal eMMC.

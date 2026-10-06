@@ -1,0 +1,21 @@
+
+~ # [6nuptime; cat /sys/bus/spi/devices/spi0.0/stats; tail -n 16 /home/julian/.loca
+l/state/indigo-tablet/buttons.log; tail -n 8 /home/julian/.local/state/indigo-ta
+blet/rotation.log; pgrep -a Xorg; ip -brief addr show wlan0
+ 19:18:58 up 2 min,  0 users,  load average: 0.49, 0.55, 0.24
+transfers=605 packets=408 invalid=0 touch=267 pen=0 errors=0 transfer_size=136 ready=0 watchdog_misses=0 resets=0 pen_x=0 pen_y=0 pressure=0 flags=0x00 last=02 08 00 00 10 06 0a 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 rx=ff ff ff ff a5 5a e7 7e 02 08 00 00 10 06 0a 08 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+2026-10-06T23:14:06Z rotate
+2026-10-06T23:14:08Z rotate
+2026-10-06T23:18:16Z home
+2026-10-06T23:18:17Z back
+2026-10-06T23:18:19Z browser
+2026-10-06T23:18:21Z rotate
+rotation=left; synchronized 1 touch/pen inputs
+rotation=left; synchronized 1 touch/pen inputs
+rotation=normal; synchronized 1 touch/pen inputs
+rotation=left; synchronized 1 touch/pen inputs
+rotation=left; synchronized 1 touch/pen inputs
+rotation=left; synchronized 1 touch/pen inputs
+1588 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+wlan0            UP             192.168.0.191/24 fe80::8c00:72ff:fe48:6f07/64 
+~ # [6n
