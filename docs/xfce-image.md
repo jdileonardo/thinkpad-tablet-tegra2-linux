@@ -5,6 +5,8 @@ verified build artifacts, rather than from the live tablet filesystem.
 It uses the fixed private opentegra Xorg driver for XFCE, retains the distribution
 driver for rollback, and includes both private Mesa prefixes with the existing
 per-process wrapper. Distribution Mesa remains the default for applications.
+The selected driver includes both the scanout-reference fix and the
+[large-pixmap allocation fallback](graphics-oversize-fix.md).
 
 The image includes the kernel, N-Trig/input modules, Wi-Fi firmware, rotation
 and button helpers, and the previously requested autologin/password settings.
@@ -14,12 +16,12 @@ package count becomes 770, from a frozen baseline of 768.
 
 ## Artifact and checks
 
-Image: `build/nura-sd-20261006/thinkpad-nura-sd.img`, 4,296,015,872 bytes.
+Image: `build/nura-sd-20261006-cmafix/thinkpad-nura-sd.img`, 4,296,015,872 bytes.
 
 SHA256:
 
 ```text
-01ab64ad1b6c57d22e1881589ca658fa5d1606ed24256a01ceac973cd4b80736
+d762aee01165e5342add77438142931cc4c6451640c0839bcdc76ff18129a075
 ```
 
 The [image manifest](evidence/image-20261006/image-manifest.json) records boot
@@ -34,7 +36,9 @@ The [ARM runtime check](evidence/image-20261006/arm-chroot-check.log) runs GTK
 imports, Xorg version reporting and input-tool dependency resolution with
 static QEMU inside the staged root. It verifies userspace loading, not GPU
 operation or tablet boot. The reported host kernel in that log is QEMU's host
-system and is not the tablet kernel.
+system and is not the tablet kernel. It used the preceding image's identical
+distribution rootfs and input packages; the corrected private DDX was then
+tested directly on the tablet.
 
 This local image includes the active Wi-Fi profile. That profile and the
 password input are ignored files under `build/image-inputs/`, absent from Git
@@ -43,7 +47,7 @@ without `--network-profile` and with its intended account configuration.
 
 ## Frozen inputs and rebuild
 
-[The input lock](../port/image-inputs.lock.json) records SHA256 values for 63
+[The input lock](../port/image-inputs.lock.json) records SHA256 values for 64
 files, including the rootfs/SDK snapshots, package inventories, boot artifacts,
 graphics archives and port patches/configuration. It records full immutable
 IDs for the pmbootstrap, kernel, Mesa and Xorg builder containers.
@@ -63,12 +67,15 @@ private NetworkManager keyfile is wanted. The builder verifies every locked
 input, uses the locked container ID with Docker networking disabled, and refuses
 to replace an existing image or rootfs staging directory.
 
-`scripts/export_image_inputs.py` exports `build/image-inputs/frozen-inputs.tar`
+`scripts/export_image_inputs.py` exports `build/image-inputs-cmafix/frozen-inputs.tar`
 and `containers.tar.gz`, with SHA256 values in `export-manifest.json`. The first
-contains exactly the lock and its 63 named inputs; it excludes the local
+contains exactly the dated lock and its 64 named inputs; it excludes the local
 password input and Wi-Fi profile. Preserve these archives alongside the Git
 repository. Restore at the project root and run `docker load` before rebuilding.
 The locked container IDs work even if restored images have no tag aliases.
+The dated lock is `port/image-inputs-oversize.lock.json`; the main input lock
+contains the same data and is the default for rebuilding. The preceding
+candidate image and its original input archives are preserved separately.
 
 This freezes binary inputs for offline image assembly. It does not claim
 bit-identical ext4 images: filesystem creation timestamps, MBR identifier,
@@ -77,7 +84,7 @@ component from source is separate from restoring these binary inputs.
 
 The [clean DDX source rebuild comparison](evidence/image-20261006/source-rebuild-comparison.json)
 records a successful build in `build/opentegra-frozen-check` with the frozen
-SDK/container. All ELF sections match the selected binary except the build ID
+SDK/container. All ELF sections match the preceding scanout-only driver except the build ID
 and 216 bytes of embedded Tegra114 shader data. Tegra20 shader data is unchanged.
 The reason for the Tegra114 differences has not been established; the rebuilt
 binary was not deployed. The release image retains the hardware-tested binary.
@@ -95,7 +102,7 @@ freeze a new release before adopting changed inputs.
 The writer now accepts the candidate manifest:
 
 ```sh
-python3 scripts/write_nura_sd.py --manifest build/nura-sd-20261006/image-manifest.json \
+python3 scripts/write_nura_sd.py --manifest build/nura-sd-20261006-cmafix/image-manifest.json \
   --device DEVICE --expected-serial SERIAL --expected-size BYTES
 ```
 

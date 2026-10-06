@@ -10,6 +10,7 @@
     "rootfs": "build/pmbootstrap/chroot_rootfs_nvidia-tegra-armv7",
     "sdk": "build/mesa-sysroot"
   },
+  "xorg_module": "build/opentegra-oversize/src/.libs/opentegra_drv.so",
   "package_inventories": {
     "rootfs": "build/image-inputs/rootfs-packages.json",
     "sdk": "build/image-inputs/sdk-packages.json"
@@ -42,7 +43,7 @@
     "build/linux-firmware/LICENCE.broadcom_bcm43xx": "b16056fc91b82a0e3e8de8f86c2dac98201aa9dc3cbd33e8d38f1b087fcec30d",
     "build/stock/firmware/brcmfmac4329-sdio.txt": "b82791baa18fa6874f5280604deb020f20a1116156d8990afdd3ead4e0794b39",
     "build/ram-test/reboot-into-apx": "9c2b17084b03e3554c86de014bcb58e8470a164c388cb33dd99140f96fa462f6",
-    "build/opentegra-dri3/src/.libs/opentegra_drv.so": "7f5350d475af38789b38bea7a816ea75547a5e1728e40c5a6face84909770735",
+    "build/opentegra-oversize/src/.libs/opentegra_drv.so": "61e6191a7492e63c9d2fe79f9dade2cd71c1b286b1f4dceac4631250a9a3bba7",
     "build/mesa-grate-armv7.tar.gz": "f29be226b18117a9d0b5a84b6b1dfd1291f247cdd5944eb52eb0ac9d3e63ddb0",
     "build/mesa-grate-candidate-armv7.tar.gz": "f4b3d5ba640207ef7ed150604fa6d30cf96ef7dfae4742c4c65b6da6dd531768",
     "sources.lock.json": "3b6cff32b26be7c679a7458ca912af9fc1828aaaf54b2c92c3c9d4900ba34a3a",
@@ -80,6 +81,7 @@
     "port/opentegra/0001-add-linear-dri3-and-present-copy-path.patch": "e31d3f4dbf28a11d451e3cc650ef22057c794a8b5ee1ae063352916d2eee97aa",
     "port/opentegra/0002-export-read-write-dma-buf.patch": "158a2d635fb58c504a25420e9668eee9dd18fb3f1c89e6c2b14b6ee46a2cebdc",
     "port/opentegra/0003-release-replaced-scanout-pixmap-reference.patch": "2c4ebdac8c63dbc36d3d4cab6c68b2c8424fd3d452a248493fc89301e35325d8",
+    "port/opentegra/0004-use-sysmem-for-pixmaps-larger-than-cma.patch": "d8c53621c10bf7a38e5ba8afe5bf09de6aee8b71e36fd9e316587f963ae45c68",
     "build/image-inputs/apk-overlays/xinput-1.6.4-r2.apk": "e65179c000b182758485dd31954bae29ce1d7044d796c9265a97663e17849b8f",
     "build/image-inputs/apk-overlays/xdotool-4.20260303.1-r0.apk": "76e6da8006c828bde198b6a681ea7bcfb07f48671b0ccf1f3938bcf58778fa08"
   },

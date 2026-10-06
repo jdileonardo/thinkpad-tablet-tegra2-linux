@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Export locked binary inputs and Docker images, excluding local credentials."""
+import argparse
 import gzip
 import hashlib
 import json
@@ -15,10 +16,17 @@ def digest(path):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--lock', default='port/image-inputs.lock.json')
+    parser.add_argument('--output', default='build/image-inputs')
+    args = parser.parse_args()
     project = Path(__file__).resolve().parents[1]
-    lock_path = project / 'port/image-inputs.lock.json'
+    lock_path = (project / args.lock).resolve()
+    output = (project / args.output).resolve()
+    if not lock_path.is_relative_to(project / 'port') or not output.is_relative_to(project / 'build'):
+        raise SystemExit('Expected a lock under port/ and export directory under build/')
     lock = json.loads(lock_path.read_text())
-    output = project / 'build/image-inputs'
+    output.mkdir(parents=True, exist_ok=True)
     inputs = output / 'frozen-inputs.tar'
     containers = output / 'containers.tar.gz'
     if inputs.exists() or containers.exists():
@@ -30,7 +38,7 @@ def main():
     # Archives are numeric-owner snapshots. The local login password and active
     # Wi-Fi profile are deliberately absent from the lock and this export.
     with tarfile.open(inputs, 'w') as archive:
-        for name in ['port/image-inputs.lock.json', *lock['files']]:
+        for name in [str(lock_path.relative_to(project)), *lock['files']]:
             archive.add(project / name, arcname=name, recursive=False)
     print('Locked input archive exported', flush=True)
     with containers.open('xb') as raw:

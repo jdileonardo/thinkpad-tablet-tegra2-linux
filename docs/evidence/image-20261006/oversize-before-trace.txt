@@ -1,0 +1,28 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 16/16   #P:2
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+            Xorg-16442   [001] ..... 21054.434797: pixmap: (0xabc26bd8) width=640 height=640 depth=24 bpp=32 usage=0
+            Xorg-16442   [001] ..... 21054.437899: pixmap: (0xabc26bd8) width=5760 height=5760 depth=24 bpp=32 usage=0
+            Xorg-16442   [001] d.... 21054.437960: bo_create: (tegra_bo_create+0x0/0x384) size=132710400 flags=0x20
+            Xorg-16442   [001] ..... 21054.438049: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xfffffff4
+            Xorg-16442   [000] d.... 21054.513007: bo_create: (tegra_bo_create+0x0/0x384) size=132710400 flags=0x20
+            Xorg-16442   [000] ..... 21054.513103: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xfffffff4
+            Xorg-16442   [000] d.... 21054.513305: bo_create: (tegra_bo_create+0x0/0x384) size=132710400 flags=0x20
+            Xorg-16442   [000] ..... 21054.513351: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xfffffff4
+            Xorg-16442   [000] d.... 21093.599623: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc30cd600
+            Xorg-16442   [000] ..... 21094.204787: pixmap: (0xabc26bd8) width=36 height=17 depth=32 bpp=32 usage=0
+            Xorg-16442   [000] d.... 21094.206476: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-16442   [000] ..... 21094.207024: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc859de00
+            Xorg-16442   [000] d.... 21153.636914: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc859de00
+            Xorg-16442   [001] ..... 21154.212407: pixmap: (0xabc26bd8) width=36 height=17 depth=32 bpp=32 usage=0
+            Xorg-16442   [001] d.... 21154.214096: bo_create: (tegra_bo_create+0x0/0x384) size=262144 flags=0x20
+            Xorg-16442   [001] ..... 21154.214796: bo_return: (tegra_bo_create_with_handle+0x34/0xdc <- tegra_bo_create) result=0xc4df1400

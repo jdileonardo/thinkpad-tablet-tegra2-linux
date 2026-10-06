@@ -1,0 +1,19 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 7/7   #P:2
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+            Xorg-31054   [000] ..... 21393.283990: pixmap: (0xabbb8d40) width=640 height=640 depth=24 bpp=32 usage=0
+            Xorg-31054   [000] ..... 21393.286905: pixmap: (0xabbb8d40) width=5760 height=5760 depth=24 bpp=32 usage=0
+            Xorg-31054   [001] ..... 21394.001850: pixmap: (0xabbb8d40) width=36 height=17 depth=32 bpp=32 usage=0
+            Xorg-31054   [001] ..... 21394.003814: pixmap: (0xabbb8d40) width=8 height=11 depth=8 bpp=8 usage=3
+            Xorg-31054   [001] d.... 21418.765195: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc4df1000
+            Xorg-31054   [001] d.... 21418.765301: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc33b4400
+            Xorg-31054   [001] d.... 21422.533325: bo_free: (tegra_bo_free+0x0/0x110) bo=0xc859e600

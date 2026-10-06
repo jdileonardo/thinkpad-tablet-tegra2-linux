@@ -1,0 +1,94 @@
+{
+  "root_uuid": "2a6e5a89-5a50-46c6-95ec-b718e7abd62b",
+  "kernel_release": "7.0.1-nura-indigo-ram",
+  "image": "build/nura-sd-20261006/thinkpad-nura-sd.img",
+  "size": 4296015872,
+  "sha256": "01ab64ad1b6c57d22e1881589ca658fa5d1606ed24256a01ceac973cd4b80736",
+  "boot_artifacts": {
+    "build/linux-nura/arch/arm/boot/zImage": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
+    "build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb": "b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b",
+    "build/nura-sd-test/initramfs.cpio.gz": "637942e060dc76659e738a3f6085907a162c9d4c2e79c4503e5bd95610634556"
+  },
+  "hardware_artifacts": {
+    "build/ntrig-spi/ntrig_indigo.ko": "d3b5dade596b88b9f668e3ec4305ddc225f91e3cd2c413237209120897e5e0d6",
+    "build/linux-nura/drivers/reset/reset-gpio.ko": "c6554ace207a3dc3e027ba96b45280d4ffd5489285d02563676c4205430958f2",
+    "build/linux-firmware/brcmfmac4329-sdio.bin": "d61983946b1e733e4c75dbe6841ac0f1250ebed2e3ee9058cdfdbbba3ba37c93",
+    "build/stock/firmware/brcmfmac4329-sdio.txt": "b82791baa18fa6874f5280604deb020f20a1116156d8990afdd3ead4e0794b39",
+    "build/linux-firmware/LICENCE.broadcom_bcm43xx": "b16056fc91b82a0e3e8de8f86c2dac98201aa9dc3cbd33e8d38f1b087fcec30d"
+  },
+  "sources": {
+    "u-boot-historical": {
+      "url": "https://github.com/dpavlin/u-boot.git",
+      "branch": "phj00-thinkpad-tablet",
+      "commit": "385640388c84e405f817f8e747d4febaa0be0de5"
+    },
+    "linux-historical": {
+      "url": "https://github.com/dpavlin/linux.git",
+      "branch": "thinkpad-tablet-phj00",
+      "commit": "8b626d0a4f6f39a6c12bf6ea4ed61744e4f7a54e"
+    },
+    "mesa-grate": {
+      "url": "https://codeberg.org/libre-tegra/mesa.git",
+      "branch": "grate-25.1.9",
+      "commit": "647c79415a02cad7a39cb666ca26a17e45bf12df"
+    },
+    "mesa-grate-candidate": {
+      "url": "https://codeberg.org/libre-tegra/mesa.git",
+      "branch": "grate-tmp",
+      "commit": "ad06de32d309506c48e4169a15f56e2f95e9712d"
+    },
+    "linux-nura": {
+      "url": "https://codeberg.org/libre-tegra/linux.git",
+      "branch": "stable",
+      "commit": "bfffc6d6656e87f3de3aa4c09d852849081ef088"
+    },
+    "tegrarcm": {
+      "url": "https://github.com/NVIDIA/tegrarcm.git",
+      "commit": "f6a46f1b342fe5ff531281e605b52b2a604a8aac"
+    },
+    "cbootimage": {
+      "url": "https://github.com/NVIDIA/cbootimage.git",
+      "commit": "80c499ebbe8a64aa2ee4222e6a8f342f465f6680"
+    },
+    "pmaports": {
+      "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports.git",
+      "branch": "main",
+      "commit": "7cf3996f2221482efff559ff986473aba5ca8296"
+    },
+    "pmbootstrap": {
+      "url": "https://gitlab.postmarketos.org/postmarketOS/pmbootstrap.git",
+      "commit": "4ed5555f34c6bbb3b6899003336fd233bd402218"
+    },
+    "linux-stock": {
+      "url": "https://github.com/Koshu/thinkpad_tablet_jb_kernel.git",
+      "commit": "271082d9581abcedf2ccbb0981ab8f375c457376"
+    },
+    "linux-firmware": {
+      "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/iwlwifi/linux-firmware",
+      "commit": "04e6d3f371ab3ad6970603be194023bd4c700126",
+      "tag": "iwlwifi-fw-2025-01-15",
+      "files": {
+        "brcm/brcmfmac4329-sdio.bin": "d61983946b1e733e4c75dbe6841ac0f1250ebed2e3ee9058cdfdbbba3ba37c93",
+        "LICENCE.broadcom_bcm43xx": "b16056fc91b82a0e3e8de8f86c2dac98201aa9dc3cbd33e8d38f1b087fcec30d"
+      }
+    },
+    "grate-tools": {
+      "url": "https://github.com/grate-driver/grate.git",
+      "commit": "ce8c4d2c62880ee5ffab90fd5f4c0554d4dbcc6d"
+    },
+    "xf86-video-opentegra": {
+      "url": "https://codeberg.org/libre-tegra/xf86-video-opentegra.git",
+      "commit": "f78958d37c80b22de66f41167ec39339035f43d0"
+    }
+  },
+  "input_lock": "port/image-inputs-pre-cmafix.lock.json",
+  "input_lock_sha256": "ec739d0dd953e6d82c828009e3655144ff97f68c89e2e27efa4d73949bb1c4e4",
+  "assembler_container": "sha256:80ae8b4f9b77006af405e60fa89c92c2c0be88f5021a51904549f770bb2af446",
+  "graphics": {
+    "xorg": "private fixed opentegra; stock module retained",
+    "mesa": "distribution default; private builds selected per process"
+  },
+  "private_network_profile_included": true,
+  "verified": "All frozen input hashes, offline signed APK installation, e2fsck -fn before disk-image assembly",
+  "installation": "external SD; tablet bootloader remains on Android"
+}

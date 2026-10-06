@@ -1,0 +1,63 @@
+{
+  "summary": {
+    "observed_seconds": 1800.0022067439968,
+    "sample_count": 120,
+    "cpu_busy_percent_of_both_cores": 4.2444432644231975,
+    "available_mib_range": [
+      684.4453125,
+      732.65625
+    ],
+    "cma_free_mib_range": [
+      0.0,
+      13.234375
+    ],
+    "max_swap_used_mib": 0.34765625,
+    "max_temperature_c": 34.75,
+    "xorg_identities": [
+      [
+        16442,
+        1805226
+      ]
+    ],
+    "all_samples_have_xorg_and_xfce_session": true,
+    "wifi_ping_checks": 120,
+    "wifi_ping_failures": 0,
+    "kernel_log_prefix_preserved": true,
+    "new_kernel_messages": [
+      "[20496.773340] drm drm: failed to allocate buffer of size 132710400: -12",
+      "[20496.912008] Xorg (16442): drop_caches: 1",
+      "[20496.912170] drm drm: failed to allocate buffer of size 132710400: -12",
+      "[20496.912376] drm drm: failed to allocate buffer of size 132710400: -12"
+    ],
+    "kernel_error_candidates": [
+      "[20496.773340] drm drm: failed to allocate buffer of size 132710400: -12",
+      "[20496.912170] drm drm: failed to allocate buffer of size 132710400: -12",
+      "[20496.912376] drm drm: failed to allocate buffer of size 132710400: -12"
+    ]
+  },
+  "calendar": {
+    "started_monotonic": 19280.196334092,
+    "draw_callbacks": 5,
+    "date": "2026-10-06",
+    "window_id": 37748739,
+    "gtk_version": [
+      3,
+      24,
+      52
+    ],
+    "pixel_validation": false,
+    "remote_calendar_integration": false,
+    "close_reason": "timer",
+    "elapsed_seconds": 900.80750807,
+    "selected_date": [
+      2026,
+      9,
+      6
+    ],
+    "draw_callback_observed": true
+  },
+  "report_sha256": "7757d7efd04867043ea41fee8c643e5f374266285f1565b0dd44185e47cd299b",
+  "scope": "Installed fixed DDX on existing SD; not fresh image boot",
+  "clean_graphics_run": false,
+  "fresh_image_promoted": false
+}

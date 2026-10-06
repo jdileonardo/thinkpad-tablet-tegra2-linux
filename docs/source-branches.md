@@ -8,7 +8,7 @@ applied; their HEADs and real Git indexes were not changed by the export.
 | Repository | Local branch | Port commits |
 | --- | --- | --- |
 | `sources/linux-nura` | `indigo/xfce-bringup` | 3: panel, DMA-BUF synchronization, board DTS/Makefile |
-| `sources/xf86-video-opentegra` | `indigo/xfce-bringup` | 3: DRI3/build compatibility, DMA-BUF export access, scanout reference fix |
+| `sources/xf86-video-opentegra` | `indigo/xfce-bringup` | 4: DRI3/build compatibility, DMA-BUF export access, scanout reference fix, oversized-pixmap fallback |
 | `sources/mesa-grate-ad06de32d309` | `indigo/xfce-bringup` | 16: the recorded candidate patch series |
 
 [The branch manifest](source-branches-checkpoint.json) records base/tip commits,
@@ -45,7 +45,9 @@ Before an image is selected as the working baseline:
    to longer operation and fresh-image boot. Two circuits, allocation/free
    records and actual calendar display pixels now pass. The old large
    allocation requests remain a separate unresolved issue unless reproduced
-   and explained.
+   and explained. The [oversized-pixmap follow-up](graphics-oversize-fix.md)
+   now reproduces the same request size through ordinary X pixmaps and avoids
+   the failed GEM/cache-drop path. The original background client is unidentified.
 2. The [new image recipe](xfce-image.md) packages the selected DDX/Mesa
    components and desktop configuration from frozen build artifacts and the
    cached distribution rootfs. Container IDs and rootfs/SDK inputs are pinned

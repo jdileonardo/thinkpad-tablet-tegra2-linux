@@ -1,0 +1,604 @@
+{
+  "event_count": 827,
+  "page_size_assumption_bytes": 4096,
+  "cma_total_mib": 64.0,
+  "cma_bitmap_available_mib_range": [
+    5.22265625,
+    25.03515625
+  ],
+  "cma_bitmap_available_mib_at_end": 25.03515625,
+  "new_cma_allocation_mib": 19.25,
+  "cma_release_mib_including_preexisting_buffers": 19.8125,
+  "net_cma_allocation_change_mib": -0.5625,
+  "successful_bo_creates": 27,
+  "failed_bo_creates": 0,
+  "bo_request_size_counts": {
+    "65536": 12,
+    "131072": 2,
+    "262144": 9,
+    "4194304": 4
+  },
+  "traced_new_bos_still_live_or_cached_bytes": 4456448,
+  "traced_new_bos_still_live_or_cached": [
+    {
+      "pointer": "0xc59b4c00",
+      "size": 262144,
+      "flags": 32
+    },
+    {
+      "pointer": "0xc859ee00",
+      "size": 4194304,
+      "flags": 32
+    }
+  ],
+  "freed_bo_pointers_including_preexisting": [
+    "0xc5bba600",
+    "0xc859f600",
+    "0xc339a800",
+    "0xc8603800",
+    "0xc36aa200",
+    "0xcd484000",
+    "0xcd484200",
+    "0xc4af2400",
+    "0xc859d600",
+    "0xcf6a6400",
+    "0xc859cc00",
+    "0xcd4ae400",
+    "0xcf6a6c00",
+    "0xc36ab200",
+    "0xc4f75200",
+    "0xc30caa00",
+    "0xc5585800",
+    "0xc4b17800",
+    "0xc37c1400",
+    "0xc4caf200",
+    "0xc37c1200",
+    "0xc57ec800",
+    "0xc4df0400",
+    "0xc4b1e400",
+    "0xc57ec600",
+    "0xcd4afe00",
+    "0xcd4af400",
+    "0xc30cb400",
+    "0xc57eca00",
+    "0xc859c800"
+  ],
+  "handle_reference_put_bo_pointers_including_preexisting": [
+    "0xc57ec600",
+    "0xc5bba400",
+    "0xc57ec600",
+    "0xc57ec600",
+    "0xc5bba400",
+    "0xc5bba400",
+    "0xc57ec600",
+    "0xc5bba600",
+    "0xc859f600",
+    "0xc339a800",
+    "0xc8603800",
+    "0xc36aa200",
+    "0xcd484000",
+    "0xcd484200",
+    "0xc4af2400",
+    "0xc859d600",
+    "0xcf6a6400",
+    "0xc859cc00",
+    "0xcd4ae400",
+    "0xcf6a6c00",
+    "0xc36ab200",
+    "0xc4f75200",
+    "0xc30caa00",
+    "0xc5585800",
+    "0xc4b17800",
+    "0xc37c1400",
+    "0xc4caf200",
+    "0xc37c1200",
+    "0xc57ec800",
+    "0xc4df0400",
+    "0xc4b1e400",
+    "0xc57ec600",
+    "0xcd4afe00",
+    "0xcd4af400",
+    "0xc30cb400",
+    "0xc57eca00",
+    "0xc859c800"
+  ],
+  "released_file_handles_including_preexisting": [
+    {
+      "bo": "0xc5bba600",
+      "handle": 28
+    },
+    {
+      "bo": "0xc859f600",
+      "handle": 30
+    },
+    {
+      "bo": "0xc339a800",
+      "handle": 38
+    },
+    {
+      "bo": "0xc8603800",
+      "handle": 37
+    },
+    {
+      "bo": "0xc36aa200",
+      "handle": 43
+    },
+    {
+      "bo": "0xcd484000",
+      "handle": 44
+    },
+    {
+      "bo": "0xcd484200",
+      "handle": 47
+    },
+    {
+      "bo": "0xc4af2400",
+      "handle": 50
+    },
+    {
+      "bo": "0xc859d600",
+      "handle": 52
+    },
+    {
+      "bo": "0xcf6a6400",
+      "handle": 55
+    },
+    {
+      "bo": "0xc859cc00",
+      "handle": 18
+    },
+    {
+      "bo": "0xcd4ae400",
+      "handle": 27
+    },
+    {
+      "bo": "0xcf6a6c00",
+      "handle": 62
+    },
+    {
+      "bo": "0xc36ab200",
+      "handle": 20
+    },
+    {
+      "bo": "0xc4f75200",
+      "handle": 23
+    },
+    {
+      "bo": "0xc30caa00",
+      "handle": 61
+    },
+    {
+      "bo": "0xc5585800",
+      "handle": 58
+    },
+    {
+      "bo": "0xc4b17800",
+      "handle": 59
+    },
+    {
+      "bo": "0xc37c1400",
+      "handle": 54
+    },
+    {
+      "bo": "0xc4caf200",
+      "handle": 19
+    },
+    {
+      "bo": "0xc37c1200",
+      "handle": 53
+    },
+    {
+      "bo": "0xc57ec800",
+      "handle": 64
+    },
+    {
+      "bo": "0xc4df0400",
+      "handle": 63
+    },
+    {
+      "bo": "0xc4b1e400",
+      "handle": 65
+    },
+    {
+      "bo": "0xc57ec600",
+      "handle": 2
+    },
+    {
+      "bo": "0xcd4afe00",
+      "handle": 33
+    },
+    {
+      "bo": "0xcd4af400",
+      "handle": 36
+    },
+    {
+      "bo": "0xc30cb400",
+      "handle": 31
+    },
+    {
+      "bo": "0xc57eca00",
+      "handle": 8
+    },
+    {
+      "bo": "0xc859c800",
+      "handle": 17
+    }
+  ],
+  "gem_mappings": [
+    {
+      "bo": "0xc36ab200",
+      "vma": "0xc57b2900",
+      "closed": true,
+      "time": 21654.218014,
+      "result": 0
+    },
+    {
+      "bo": "0xc4caf200",
+      "vma": "0xc4eb2b80",
+      "closed": true,
+      "time": 21654.218368,
+      "result": 0
+    },
+    {
+      "bo": "0xc4f75200",
+      "vma": "0xc57b2c80",
+      "closed": true,
+      "time": 21654.220384,
+      "result": 0
+    },
+    {
+      "bo": "0xc859c400",
+      "vma": "0xc57b2480",
+      "closed": false,
+      "time": 21654.2397,
+      "result": 0
+    },
+    {
+      "bo": "0xcd402c00",
+      "vma": "0xc4478700",
+      "closed": false,
+      "time": 21654.416675,
+      "result": 0
+    },
+    {
+      "bo": "0xc36ab800",
+      "vma": "0xc4f38500",
+      "closed": false,
+      "time": 21654.424413,
+      "result": 0
+    },
+    {
+      "bo": "0xc44b4000",
+      "vma": "0xc44aa380",
+      "closed": false,
+      "time": 21654.432551,
+      "result": 0
+    },
+    {
+      "bo": "0xc859d400",
+      "vma": "0xc4df5180",
+      "closed": false,
+      "time": 21654.460964,
+      "result": 0
+    },
+    {
+      "bo": "0xc4f35800",
+      "vma": "0xc4cc8400",
+      "closed": false,
+      "time": 21654.475536,
+      "result": 0
+    },
+    {
+      "bo": "0xc339b000",
+      "vma": "0xc5acbd80",
+      "closed": false,
+      "time": 21654.498534,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4ae400",
+      "vma": "0xc4ac4380",
+      "closed": true,
+      "time": 21654.576777,
+      "result": 0
+    },
+    {
+      "bo": "0xc30b9a00",
+      "vma": "0xc4d7b500",
+      "closed": false,
+      "time": 21654.795217,
+      "result": 0
+    },
+    {
+      "bo": "0xc5967e00",
+      "vma": "0xc4f89100",
+      "closed": false,
+      "time": 21654.80153,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6a6e00",
+      "vma": "0xc4488780",
+      "closed": false,
+      "time": 21654.815319,
+      "result": 0
+    },
+    {
+      "bo": "0xc339a800",
+      "vma": "0xc4d7b080",
+      "closed": true,
+      "time": 21654.821248,
+      "result": 0
+    },
+    {
+      "bo": "0xc87a7c00",
+      "vma": "0xc4dbf100",
+      "closed": false,
+      "time": 21654.84135,
+      "result": 0
+    },
+    {
+      "bo": "0xc5bba600",
+      "vma": "0xc4d5e300",
+      "closed": true,
+      "time": 21654.861169,
+      "result": 0
+    },
+    {
+      "bo": "0xc859f600",
+      "vma": "0xc36bf200",
+      "closed": true,
+      "time": 21654.929296,
+      "result": 0
+    },
+    {
+      "bo": "0xc30cb400",
+      "vma": "0xc4d5a100",
+      "closed": true,
+      "time": 21654.951218,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4afe00",
+      "vma": "0xc85e7b80",
+      "closed": true,
+      "time": 21654.971149,
+      "result": 0
+    },
+    {
+      "bo": "0xcd4af400",
+      "vma": "0xc85b3080",
+      "closed": true,
+      "time": 21654.984738,
+      "result": 0
+    },
+    {
+      "bo": "0xc8603800",
+      "vma": "0xc4cfdf80",
+      "closed": true,
+      "time": 21654.997567,
+      "result": 0
+    },
+    {
+      "bo": "0xc36aa200",
+      "vma": "0xc597e100",
+      "closed": true,
+      "time": 21655.015361,
+      "result": 0
+    },
+    {
+      "bo": "0xcd484000",
+      "vma": "0xc4dab780",
+      "closed": true,
+      "time": 21655.029569,
+      "result": 0
+    },
+    {
+      "bo": "0xcd484200",
+      "vma": "0xc4cfda00",
+      "closed": true,
+      "time": 21655.044032,
+      "result": 0
+    },
+    {
+      "bo": "0xc4af2400",
+      "vma": "0xc4f1c800",
+      "closed": true,
+      "time": 21655.073564,
+      "result": 0
+    },
+    {
+      "bo": "0xc859d600",
+      "vma": "0xc3357880",
+      "closed": true,
+      "time": 21655.130982,
+      "result": 0
+    },
+    {
+      "bo": "0xc37c1200",
+      "vma": "0xc4d5eb00",
+      "closed": true,
+      "time": 21655.210435,
+      "result": 0
+    },
+    {
+      "bo": "0xc5af5e00",
+      "vma": "0xc48e1a00",
+      "closed": false,
+      "time": 21656.558363,
+      "result": 0
+    },
+    {
+      "bo": "0xc37c1400",
+      "vma": "0xc84ba280",
+      "closed": true,
+      "time": 21657.277568,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6a6400",
+      "vma": "0xc47ec780",
+      "closed": true,
+      "time": 21657.280925,
+      "result": 0
+    },
+    {
+      "bo": "0xc59b4c00",
+      "vma": "0xc597e400",
+      "closed": false,
+      "time": 21657.491818,
+      "result": 0
+    },
+    {
+      "bo": "0xc5584c00",
+      "vma": "0xc471f580",
+      "closed": false,
+      "time": 21657.895609,
+      "result": 0
+    },
+    {
+      "bo": "0xc30b8800",
+      "vma": "0xc55c6880",
+      "closed": false,
+      "time": 21657.988759,
+      "result": 0
+    },
+    {
+      "bo": "0xc5585800",
+      "vma": "0xcd765f00",
+      "closed": true,
+      "time": 21660.445633,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b17800",
+      "vma": "0xc5864780",
+      "closed": true,
+      "time": 21660.481618,
+      "result": 0
+    },
+    {
+      "bo": "0xc859ee00",
+      "vma": "0xcd7e6500",
+      "closed": false,
+      "time": 21662.003911,
+      "result": 0
+    },
+    {
+      "bo": "0xc30caa00",
+      "vma": "0xc4cc9800",
+      "closed": true,
+      "time": 21663.862143,
+      "result": 0
+    },
+    {
+      "bo": "0xc8602c00",
+      "vma": "0xc5704b00",
+      "closed": false,
+      "time": 21671.751671,
+      "result": 0
+    },
+    {
+      "bo": "0xc1db3000",
+      "vma": "0xc57e3a80",
+      "closed": false,
+      "time": 21671.762172,
+      "result": 0
+    },
+    {
+      "bo": "0xc339a200",
+      "vma": "0xc5704f80",
+      "closed": false,
+      "time": 21671.76229,
+      "result": 0
+    },
+    {
+      "bo": "0xc37c0600",
+      "vma": "0xc4d5e080",
+      "closed": false,
+      "time": 21671.762451,
+      "result": 0
+    },
+    {
+      "bo": "0xc859f000",
+      "vma": "0xcd765c80",
+      "closed": false,
+      "time": 21671.916549,
+      "result": 0
+    },
+    {
+      "bo": "0xcf6a6c00",
+      "vma": "0xc5839600",
+      "closed": true,
+      "time": 21672.148203,
+      "result": 0
+    },
+    {
+      "bo": "0xc4df0400",
+      "vma": "0xc3747a00",
+      "closed": true,
+      "time": 21672.21773,
+      "result": 0
+    },
+    {
+      "bo": "0xc57ec800",
+      "vma": "0xc4ff0100",
+      "closed": true,
+      "time": 21672.254466,
+      "result": 0
+    },
+    {
+      "bo": "0xc4b1e400",
+      "vma": "0xc873ca80",
+      "closed": true,
+      "time": 21672.36875,
+      "result": 0
+    }
+  ],
+  "gem_mapping_errors": [],
+  "cma_allocation_errors": [],
+  "consistency_errors": [],
+  "marker_headroom": [
+    {
+      "label": "baseline",
+      "available_mib": null
+    },
+    {
+      "label": "rotation_normal",
+      "available_mib": 22.84765625
+    },
+    {
+      "label": "rotation_left",
+      "available_mib": 22.22265625
+    },
+    {
+      "label": "rotation_inverted",
+      "available_mib": 17.72265625
+    },
+    {
+      "label": "rotation_right",
+      "available_mib": 17.47265625
+    },
+    {
+      "label": "rotation_left",
+      "available_mib": 17.47265625
+    },
+    {
+      "label": "cycle_1_before",
+      "available_mib": 17.47265625
+    },
+    {
+      "label": "cycle_1_closed",
+      "available_mib": 5.22265625
+    },
+    {
+      "label": "settle_start",
+      "available_mib": 5.78515625
+    },
+    {
+      "label": "settled",
+      "available_mib": 25.03515625
+    }
+  ],
+  "scope": "Live-or-cached BOs are not classified as leaks. Objects predating the trace are not in the BO ledger. Headroom is CMA bitmap availability, not /proc/meminfo CmaFree or a guarantee of contiguous allocation success."
+}

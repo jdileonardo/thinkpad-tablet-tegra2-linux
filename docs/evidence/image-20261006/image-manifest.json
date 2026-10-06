@@ -1,9 +1,9 @@
 {
   "root_uuid": "2a6e5a89-5a50-46c6-95ec-b718e7abd62b",
   "kernel_release": "7.0.1-nura-indigo-ram",
-  "image": "build/nura-sd-20261006/thinkpad-nura-sd.img",
+  "image": "build/nura-sd-20261006-cmafix/thinkpad-nura-sd.img",
   "size": 4296015872,
-  "sha256": "01ab64ad1b6c57d22e1881589ca658fa5d1606ed24256a01ceac973cd4b80736",
+  "sha256": "d762aee01165e5342add77438142931cc4c6451640c0839bcdc76ff18129a075",
   "boot_artifacts": {
     "build/linux-nura/arch/arm/boot/zImage": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
     "build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb": "b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b",
@@ -81,11 +81,12 @@
       "commit": "f78958d37c80b22de66f41167ec39339035f43d0"
     }
   },
-  "input_lock": "port/image-inputs.lock.json",
-  "input_lock_sha256": "ec739d0dd953e6d82c828009e3655144ff97f68c89e2e27efa4d73949bb1c4e4",
+  "input_lock": "port/image-inputs-oversize.lock.json",
+  "input_lock_sha256": "e68c4dd1382619c1f4a436aa26cea2ac331c714e030b02dad0d1e44be231f8f9",
   "assembler_container": "sha256:80ae8b4f9b77006af405e60fa89c92c2c0be88f5021a51904549f770bb2af446",
   "graphics": {
     "xorg": "private fixed opentegra; stock module retained",
+    "xorg_module_source": "build/opentegra-oversize/src/.libs/opentegra_drv.so",
     "mesa": "distribution default; private builds selected per process"
   },
   "private_network_profile_included": true,

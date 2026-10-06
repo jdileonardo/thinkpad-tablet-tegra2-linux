@@ -9,6 +9,9 @@ Normal RAM headroom is adequate for that small fixture. The follow-up
 cycling but retained rotation buffers and actual CMA shortages with successful
 allocation fallback. The subsequent [scanout reference fix](graphics-rotation-fix.md)
 releases those buffers in two bounded tablet trials and is selected for XFCE.
+The [large-pixmap fix](graphics-oversize-fix.md) follows a recurrence during
+the half-hour observation: ordinary oversized pixmaps now use system memory
+directly, avoiding failed contiguous requests and their cache-drop retry.
 The [XFCE SD image checkpoint](xfce-image.md) packages the selected components
 and frozen build inputs. Fresh-image boot and the actual service integrations
 remain unvalidated.

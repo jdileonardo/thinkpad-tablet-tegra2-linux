@@ -16,13 +16,14 @@
     "upstream_url": "https://codeberg.org/libre-tegra/xf86-video-opentegra.git",
     "base_commit": "f78958d37c80b22de66f41167ec39339035f43d0",
     "branch": "indigo/xfce-bringup",
-    "tip_commit": "08700f84bcabef1cf4af9145239daede67a9ade6",
-    "tree": "f6153e244325d82857a8a0ffa300e33828a39075",
+    "tip_commit": "e06e0a6a3761eb9c7c0b70fbfdfcaab2d538b1b0",
+    "tree": "621b1c20e9ba345faf7c6871b4b2cfa58c3f89b0",
     "build_checkout_head_unchanged": true,
     "patches_sha256": {
-      "build/source-exports/xf86-video-opentegra/0001-0001-add-linear-dri3-and-present-copy-path.patch": "f588691fb70b834dfda4f5db1855be8fe09a41758332cc86f916a40a57faa704",
-      "build/source-exports/xf86-video-opentegra/0002-0002-export-read-write-dma-buf.patch": "cef604359e85f0f830b48d981576d0d606cf32246f51d667e20cf119c52b4b96",
-      "build/source-exports/xf86-video-opentegra/0003-0003-release-replaced-scanout-pixmap-reference.patch": "ff369d980ccc97fc587ad0d968b84fed764db9cdf793071712ee2dc1cfaf861e"
+      "build/source-exports/xf86-video-opentegra/0001-0001-add-linear-dri3-and-present-copy-path.patch": "f615a7ade00c946108d82ab94f3a95a162eb4fbfe9fe4e0d54f8fd935e6934b2",
+      "build/source-exports/xf86-video-opentegra/0002-0002-export-read-write-dma-buf.patch": "4ac8a3cca2103489b28ea922019f021f621a17ccfaa5d1c1355f90dd04223c33",
+      "build/source-exports/xf86-video-opentegra/0003-0003-release-replaced-scanout-pixmap-reference.patch": "885112fe5041d23fef30ae503b934b12172ff3279081b338f30cd63a3e7dfd74",
+      "build/source-exports/xf86-video-opentegra/0004-0004-use-sysmem-for-pixmaps-larger-than-cma.patch": "98c3e5913d89287bb7a2ca32092acdb48f0fe6a4dee2c1efd90f4802ed15a255"
     }
   },
   "mesa-grate-candidate": {

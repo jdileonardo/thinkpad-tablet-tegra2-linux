@@ -1,0 +1,29 @@
+{
+  "source_commit": "f78958d37c80b22de66f41167ec39339035f43d0",
+  "source_diff_sha256": "e7a74c672e6a482c3a348bb3260857005b538857a6ba668eef66685ec86741b3",
+  "patches": {
+    "0001-add-linear-dri3-and-present-copy-path.patch": "e31d3f4dbf28a11d451e3cc650ef22057c794a8b5ee1ae063352916d2eee97aa",
+    "0002-export-read-write-dma-buf.patch": "158a2d635fb58c504a25420e9668eee9dd18fb3f1c89e6c2b14b6ee46a2cebdc",
+    "0003-release-replaced-scanout-pixmap-reference.patch": "2c4ebdac8c63dbc36d3d4cab6c68b2c8424fd3d452a248493fc89301e35325d8",
+    "0004-use-sysmem-for-pixmaps-larger-than-cma.patch": "d8c53621c10bf7a38e5ba8afe5bf09de6aee8b71e36fd9e316587f963ae45c68"
+  },
+  "module_sha256": "61e6191a7492e63c9d2fe79f9dade2cd71c1b286b1f4dceac4631250a9a3bba7",
+  "probe_sha256": "f47fdb842a2fac81759dc9eb7c091fe7343a4014c831a9632974cc8129a18277",
+  "probe_source_sha256": "5d98793acc47fa6598fde4ec290c93e350895d2390fb35dba7ac0a99d047a362",
+  "sharing_probe_sha256": "e0aef1daebcf8ba95cb00ae9bb06d79e2f7092aa832bc6e5a621f632c4b0c2ee",
+  "sharing_probe_source_sha256": "7c1f793ca83baa656acb71dc7d9e804ada4637da0fb6ad69471382af4429f8e4",
+  "capture_probe_sha256": "6be585fd76f51c5e820911f0dcf00392063e6b32cf4e54c847184c921ba4a1a3",
+  "capture_probe_source_sha256": "46a22a1e546e2c2b8e5fb41a6b4a2f43c47a8c542bc44840823675ef42335a7a",
+  "compositor_probe_sha256": "66f96809ba53ae94e6b397b900a55965a8b8dcd4acc9052c553d295ff327f3d9",
+  "compositor_probe_source_sha256": "fbc692376e6454ad8ffa9cc1e06b8a2142de8db869640194208b750acbeefc9b",
+  "xdg_shell_protocol_sha256": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+  "builder_sha256": "dba79c864d03c3b8f0c778c7589df9cd87902fed645731e2d88eca2295339ac3",
+  "dockerfile_sha256": "f068f2e700728488f1a547f9f755ad4987b65d2fd68d1127c410951afdd0e62c",
+  "sdk_package_database_sha256": "e7ed6a989d371456f09d85342fef8f0235dd5920a20e00dcc225eeaa91685e73",
+  "compiler_flags": "-O2 -march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=hard",
+  "dependency_input_lock_sha256": "ec739d0dd953e6d82c828009e3655144ff97f68c89e2e27efa4d73949bb1c4e4",
+  "builder_container_id": "sha256:0e6b58bbc4681f9a04b7afc68de1337431e0309bac40dee2abde4c86fd91e258",
+  "full_dependency_pinning": true,
+  "dependency_pinning_kind": "Immutable container and complete SDK binary snapshot",
+  "presentation": "DRI3 v1 linear buffers and Present copy with fake vblank; no page flips"
+}

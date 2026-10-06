@@ -21,6 +21,9 @@ if not out.is_relative_to(project / 'build'):
     raise SystemExit('Image output must be inside the project build directory')
 lock_path = (project / args.lock).resolve()
 lock = json.loads(lock_path.read_text())
+xorg_module = lock.get('xorg_module', 'build/opentegra-dri3/src/.libs/opentegra_drv.so')
+if xorg_module not in lock['files']:
+    raise SystemExit('Selected Xorg module must be a locked input')
 def digest(path):
     with path.open('rb') as source:
         return hashlib.file_digest(source, 'sha256').hexdigest()
@@ -89,7 +92,7 @@ tar -xzf /work/build/mesa-grate-armv7.tar.gz -C "$stage"
 tar -xzf /work/build/mesa-grate-candidate-armv7.tar.gz -C "$stage"
 private="$stage/opt/indigo-xorg/xfce"
 mkdir -p "$private/lib/xorg/modules/drivers"
-install -m 644 /work/build/opentegra-dri3/src/.libs/opentegra_drv.so "$private/lib/xorg/modules/drivers/opentegra_drv.so"
+install -m 644 "$XORG_MODULE" "$private/lib/xorg/modules/drivers/opentegra_drv.so"
 printf 'Section "Module"\n    Load "exa"\nEndSection\n' > "$private/indigo-xorg.conf"
 # Require the desktop dependencies in the newly built rootfs before imaging it.
 for tool in python3 xrandr xinput xdotool xfconf-query; do
@@ -173,6 +176,7 @@ subprocess.run(['docker', 'run', '--rm', '--network', 'none',
                 '-e', f'KERNEL_RELEASE={release}',
                 '-e', f'OUT=/work/{out.relative_to(project)}',
                 '-e', 'LOGIN_PASSWORD',
+                '-e', f'XORG_MODULE=/work/{xorg_module}',
                 '-e', f'NETWORK_PROFILE={"/work/" + str(network_profile.relative_to(project)) if network_profile else ""}',
                 '-e', 'OVERLAY_APKS=' + ' '.join('/work/' + p for p in lock['overlay_packages']),
                 lock['containers']['thinkpad-pmbootstrap:2026-10-05'], 'sh', '-c', prepare],
@@ -205,6 +209,7 @@ manifest = {'root_uuid': root_uuid, 'kernel_release': release,
             'input_lock_sha256': digest(lock_path),
             'assembler_container': lock['containers']['thinkpad-pmbootstrap:2026-10-05'],
             'graphics': {'xorg': 'private fixed opentegra; stock module retained',
+                         'xorg_module_source': xorg_module,
                          'mesa': 'distribution default; private builds selected per process'},
             'private_network_profile_included': network_profile is not None,
             'verified': 'All frozen input hashes, offline signed APK installation, e2fsck -fn before disk-image assembly',

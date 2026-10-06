@@ -53,7 +53,8 @@ def main():
         '/boot/vmlinuz-indigo': 'build/linux-nura/arch/arm/boot/zImage',
         '/boot/initramfs-indigo': 'build/nura-sd-test/initramfs.cpio.gz',
         '/boot/tegra20-lenovo-indigo.dtb': 'build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb',
-        '/opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so': 'build/opentegra-dri3/src/.libs/opentegra_drv.so',
+        '/opt/indigo-xorg/xfce/lib/xorg/modules/drivers/opentegra_drv.so': manifest['graphics'].get(
+            'xorg_module_source', 'build/opentegra-dri3/src/.libs/opentegra_drv.so'),
         '/usr/local/bin/indigo-gpu-run': 'port/mesa/indigo-gpu-run',
         '/usr/local/bin/indigo-rotate': 'port/desktop/indigo-rotate.py',
         '/usr/local/bin/indigo-buttons': 'port/desktop/indigo-buttons.sh',

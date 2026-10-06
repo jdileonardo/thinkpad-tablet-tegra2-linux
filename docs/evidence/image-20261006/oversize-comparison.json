@@ -1,0 +1,24 @@
+{
+  "before": {
+    "module_sha256": "7f5350d475af38789b38bea7a816ea75547a5e1728e40c5a6face84909770735",
+    "new_kernel_messages": [
+      "[21054.438015] drm drm: failed to allocate buffer of size 132710400: -12",
+      "[21054.512891] Xorg (16442): drop_caches: 1",
+      "[21054.513076] drm drm: failed to allocate buffer of size 132710400: -12",
+      "[21054.513331] drm drm: failed to allocate buffer of size 132710400: -12"
+    ],
+    "trace_stats": {
+      "cpu1": "entries: 7\noverrun: 0\ncommit overrun: 0\nbytes: 212\noldest event ts: 21054.434797\nnow ts: 21157.800421\ndropped events: 0\nread events: 0\n",
+      "cpu0": "entries: 9\noverrun: 0\ncommit overrun: 0\nbytes: 244\noldest event ts: 21054.513007\nnow ts: 21157.801016\ndropped events: 0\nread events: 0\n"
+    }
+  },
+  "after": {
+    "module_sha256": "61e6191a7492e63c9d2fe79f9dade2cd71c1b286b1f4dceac4631250a9a3bba7",
+    "new_kernel_messages": [],
+    "trace_stats": {
+      "cpu1": "entries: 5\noverrun: 0\ncommit overrun: 0\nbytes: 148\noldest event ts: 21394.001850\nnow ts: 21427.594086\ndropped events: 0\nread events: 0\n",
+      "cpu0": "entries: 2\noverrun: 0\ncommit overrun: 0\nbytes: 72\noldest event ts: 21393.283990\nnow ts: 21427.594684\ndropped events: 0\nread events: 0\n"
+    }
+  },
+  "scope": "Controlled ordinary 5760x5760 pixmap; original background requester remains unidentified"
+}
