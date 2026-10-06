@@ -79,8 +79,11 @@ docker run --rm --network none --user "$(id -u):$(id -g)" -v "$project_root:/wor
         isolation_source=$build_dir/fptest-sfu-isolation.c
         cp "$MESA_SOURCE/src/gallium/drivers/grate/tests/fptest.c" "$isolation_source"
         patch "$isolation_source" < /work/port/mesa/tests/sfu-isolation.patch
-        for probe in fptest vstest quadtest blendtest fptest-sfu-isolation; do
+        for probe in fptest vstest quadtest blendtest fptest-sfu-isolation gpu-blend-check; do
             probe_source=$MESA_SOURCE/src/gallium/drivers/grate/tests/$probe.c
+            if [ "$probe" = gpu-blend-check ]; then
+                probe_source=/work/port/mesa/gpu-blend-check.c
+            fi
             if [ "$probe" = fptest-sfu-isolation ]; then
                 probe_source=$isolation_source
             fi
@@ -103,6 +106,7 @@ metadata = {
     "test_patches": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path("/work/port/mesa/tests").glob("*.patch"))} if os.environ["MESA_BUILD_TAG"] == "mesa-grate-candidate" else {},
     "builder_sha256": hashlib.sha256(Path("/work/scripts/build_mesa_grate.sh").read_bytes()).hexdigest(),
     "patch_applier_sha256": hashlib.sha256(Path("/work/scripts/apply_mesa_patches.py").read_bytes()).hexdigest(),
+    "blend_probe_sha256": hashlib.sha256(Path("/work/port/mesa/gpu-blend-check.c").read_bytes()).hexdigest(),
     "pixel_probe_sha256": hashlib.sha256(Path("/work/port/mesa/gpu-pixel-check.c").read_bytes()).hexdigest(),
     "cross_file_sha256": hashlib.sha256(Path("/work/port/mesa/armv7-musl.ini").read_bytes()).hexdigest(),
     "compiler": subprocess.check_output(["clang", "--version"], text=True).splitlines()[0],

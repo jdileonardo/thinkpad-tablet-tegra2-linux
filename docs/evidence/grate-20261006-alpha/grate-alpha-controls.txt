@@ -1,0 +1,37 @@
+
+~ # [6nsh -c 'set +e
+> su julian -c "INDIGO_MESA_REVISION=ad06de32d309 /usr/local/bin/indigo-gpu-run 
+/opt/indigo-mesa/ad06de32d309/bin/gpu-pixel-check --blend"
+> echo NORMAL_BLEND_EXIT=$?
+> su julian -c "GRATE_DEBUG_ALPHA_OVER=1 INDIGO_MESA_REVISION=ad06de32d309 timeo
+ut -s KILL 15 /usr/local/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/gp
+u-blend-check" > /tmp/indigo-alpha-over-rt0.log 2>&1
+> echo DEFAULT_TARGET_BLEND_EXIT=$?
+> su julian -c "INDIGO_MESA_REVISION=ad06de32d309 /usr/local/bin/indigo-gpu-run 
+/opt/indigo-mesa/ad06de32d309/bin/vstest"
+> su julian -c "INDIGO_MESA_REVISION=ad06de32d309 /usr/local/bin/indigo-gpu-run 
+/opt/indigo-mesa/ad06de32d309/bin/quadtest"
+> echo BLEND_CONTROL_DONE
+> '
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=255,0,0,127 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+NORMAL_BLEND_EXIT=1
+DEFAULT_TARGET_BLEND_EXIT=0
+# renderer: Tegra
+mvp scale=0.50 tx=0.25 -> red spans x 24..55
+# glerr 0x0
+p0 32,32,64,255
+p1 128,32,64,255
+p2 224,32,64,255
+p3 32,128,64,255
+p4 128,128,64,255
+p5 224,128,64,255
+p6 32,224,64,255
+p7 128,224,64,255
+p8 224,224,64,255
+err 0x0
+BLEND_CONTROL_DONE
+~ # [6n
+Captured 1239 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T032433Z.txt

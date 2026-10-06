@@ -1,0 +1,242 @@
+{
+  "date_utc": "2026-10-06",
+  "device": "ThinkPad Tablet Indigo Tegra20",
+  "kernel": "7.0.1-nura-indigo-ram",
+  "build": {
+    "source_commit": "ad06de32d309506c48e4169a15f56e2f95e9712d",
+    "source_diff_sha256": "381db7ee29796cab4c9c0b27b655fe2105455b16d4d5ed83115ed0454d7f57d1",
+    "patches": {
+      "0001-adapt-nir-grate-to-tegra20-legacy-abi.patch": "8e2db9afcd09f5f8435c939de3f3987b67295b3e4fc047a8bebea7b1da3deae0",
+      "0002-tegra20-pad-small-rgba-texture-rows.patch": "8625ba3de40a0fc29f2b65d83aa4a18dc1e8f0e76195cb42ca6392b719757523",
+      "0003-emit-nir-fragment-special-functions.patch": "2a40953d5c90f2fd3b5a99ea73107a239d8ba8762dda9972447422018b17528b",
+      "0004-limit-pixel-sequencer-output-window.patch": "9af44c5339e8b743a6cb93c55bae1d2153844447ce02bf600c6628ea5f2a7e16",
+      "0005-add-texture-cache-diagnostic-toggle.patch": "5b45126943d8400675f4167e5d155647fe47dc031c259c181163cca951f1c0e8",
+      "0006-add-destination-read-diagnostic.patch": "76bee5e9d62c1661381b8426a9f16d3e358b4b9337a6a9ab217213486a017b89",
+      "0007-add-destination-fetch-control-diagnostic.patch": "056a6c61f8e50ee719c525738e44fcfccf461ec33f623f47c031743a61e523b0",
+      "0008-preserve-full-pixel-sequencer-control.patch": "f458ea6cf52b564742738f7b92453f84fdd0f48f1a15729663b8c5cc0acb33de",
+      "0009-use-tegra20-gart-for-large-offscreen-resources.patch": "6174c8aa13dd6b517d726920de414d67943d1ed8bd2ae037019992da14a39994",
+      "0010-add-color-target-one-diagnostic.patch": "4d2b3af5e2519535f002e13f60d4c8d63241cf0e06ebf208ee6ede58d89020af",
+      "0011-align-destination-read-with-opentegra.patch": "eb575ac92ad8701c33cf87c47024cd308f29f611d8a3a20368fa89106c5ef165",
+      "0012-isolate-destination-read-diagnostic.patch": "13e7f7ec9856a2ceff7d9751622fa4a09e59244bb2b478782e99e649cddcd139",
+      "0013-invalidate-fragment-data-cache-before-draw.patch": "d3f60ea312dbbbfe8bd4f95cc7018ab9339a6490712ba4ea1277591c225629cb",
+      "0014-add-hardware-alpha-over-probe.patch": "1ee606f1e64de9000f410d2811a465bc8f87eac10fdfd124dc2f6093a50e1557"
+    },
+    "test_patches": {
+      "sfu-isolation.patch": "e1ec4000313c8830c6b176222e309def64d4950f76d043c693e06bdd0bc1ece0"
+    },
+    "builder_sha256": "15017110578e6d9f9cd46f6d30e960e2f8795289602e2350e9ac622e342e10aa",
+    "patch_applier_sha256": "3c3a9e5d0ba250a6801fd393e74aa1cb1c09e60b4eac0ceb5b2696b461c45c80",
+    "blend_probe_sha256": "bfa8b39a9a79d7ae02a56c37392b2f510fea164553bd62d0bac520d8b6f5c779",
+    "pixel_probe_sha256": "8ec9a2a4e8b0b878bad7f5388ca69382b0e21935622d22f4cf859988fd03c328",
+    "cross_file_sha256": "436b06b10fdf4b16b38e3327c937e2c6cf1c72f793385bae49a20babe803c4d9",
+    "compiler": "Alpine clang version 23.1.2",
+    "drivers": [
+      "grate",
+      "softpipe"
+    ],
+    "llvm": false,
+    "x11_dri2": false
+  },
+  "artifact_sha256": "c7db5bc6e56579ae8ccc31964dea0728924ace29ff1901978e4690d8e3ef7eb0",
+  "gallium_driver_path": "lib/libgallium-26.2.3.so",
+  "gallium_driver_sha256": "5472314f70ac547e5662deaeb655f065d6c668c1424671c29d473b3910b495c4",
+  "dri_loader_stub_path": "lib/dri/tegra_dri.so",
+  "dri_loader_stub_sha256": "ed987517c9192cecb307b0c517869ccb2a438db464c552226d6e68e7f75b7fff",
+  "primary_source": {
+    "url": "https://codeberg.org/libre-tegra/xf86-video-opentegra.git",
+    "commit": "f78958d37c80b22de66f41167ec39339035f43d0"
+  },
+  "evidence_files": {
+    "docs/evidence/grate-20261006-alpha/grate-alpha-controls.txt": "bc6d73f7ccc4dd1395ce1be7e8dcd382483cff973e2f58dcdfd8f59a05a864ec",
+    "docs/evidence/grate-20261006-alpha/grate-alpha-over-coverage.txt": "e89e310b779fc1903af3c8b84d59f78c6efcfd2156c02504063b9a660a4149aa",
+    "docs/evidence/grate-20261006-alpha/grate-alpha-over-trial.txt": "fb24488078395dcc82f4a8fed2c49d9ddde9bb98d2b01e20f103320b6385dd39",
+    "docs/evidence/grate-20261006-alpha/grate-alpha-post-state.txt": "3bed98d4a7b40adfca848b975014c3ae46ea8acb4c1c97e676ca66bed24abc13",
+    "docs/evidence/grate-20261006-alpha/grate-fdc-fetch-study.txt": "4e39501dbe4f8c27ee35157841100e642db2facfc7de55ade053b8d8f5697c6d",
+    "docs/evidence/grate-20261006-alpha/grate-pseq-only-dest-control.txt": "9fbb4e43ed2489c4dbcbb697875f123f5082a7540d2225a3e00c04a56e7e3b08",
+    "docs/evidence/grate-20261006-alpha/grate-rt1-fetch-study.txt": "bb6f8e1fad06a9f46ccdcc70ffe2d48d209da77154b1bb5916ca2ea45a1549be",
+    "docs/evidence/grate-20261006-alpha/grate-rt1-flush-variants.txt": "610fc08dd5dcbea1706b72f8c1cd01bebfeb77c95db5956d234abc8630242dd3",
+    "docs/evidence/grate-20261006-alpha/grate-rt1-pseq-only.txt": "0690663a78f5a9284fee6430db3b34c7e5a3eeb367747e02850d85a0bc753782",
+    "docs/evidence/grate-20261006-alpha/indigo-alpha-over-1.log": "5533fb1f0c7a7ca1baf262c8297640029849d030682648455d2953b84b473baa",
+    "docs/evidence/grate-20261006-alpha/indigo-alpha-over-2.log": "5533fb1f0c7a7ca1baf262c8297640029849d030682648455d2953b84b473baa",
+    "docs/evidence/grate-20261006-alpha/indigo-alpha-over-3.log": "5533fb1f0c7a7ca1baf262c8297640029849d030682648455d2953b84b473baa",
+    "docs/evidence/grate-20261006-alpha/indigo-alpha-over-cpu.log": "657f4ae18ad9fff2fab1e86f072df6f422478dc4897fe29f1442f9ddcc5e7599",
+    "docs/evidence/grate-20261006-alpha/indigo-alpha-over-rt0.log": "5533fb1f0c7a7ca1baf262c8297640029849d030682648455d2953b84b473baa",
+    "docs/evidence/grate-20261006-alpha/indigo-fdc-regression-1.log": "dc3c1a6f147d63702d1ce9bf7b2e08b164943a58ff6fe0ce8ab7a4659f88ac4a",
+    "docs/evidence/grate-20261006-alpha/indigo-fdc-regression-2.log": "dc3c1a6f147d63702d1ce9bf7b2e08b164943a58ff6fe0ce8ab7a4659f88ac4a",
+    "docs/evidence/grate-20261006-alpha/indigo-fdc-regression-3.log": "e266028e262285699683ab9e48d58b40c7ab4befc1e379d7be262c617206e142"
+  },
+  "destination_fetch": {
+    "word": "0x0081000a",
+    "pure_fetch_samples": "10 repeated 32x32 runs returned blue with FDC invalidation",
+    "implementation": "Reuse opentegra PSEQ fetch and FDC invalidation; colors at surface 0 and 1 both verified"
+  },
+  "cache_control": {
+    "invalidation_disabled": {
+      "runs": 5,
+      "passing": 2,
+      "failing": 3,
+      "failed_centers": [
+        [
+          191,
+          0,
+          64,
+          255
+        ],
+        [
+          223,
+          0,
+          32,
+          255
+        ],
+        [
+          239,
+          0,
+          16,
+          255
+        ]
+      ]
+    },
+    "invalidation_enabled": {
+      "runs": 5,
+      "passing": 5,
+      "center": [
+        127,
+        0,
+        127,
+        255
+      ]
+    },
+    "interpretation": "Without invalidation, successive processes can read prior destination contents despite a GR2D clear"
+  },
+  "alpha_over": {
+    "opt_in_environment": "GRATE_DEBUG_ALPHA_OVER=1",
+    "source_rgb_factor": "SRC_ALPHA",
+    "source_alpha_factor": "ONE",
+    "destination_factor": "ONE_MINUS_SRC_ALPHA",
+    "equation": "ADD",
+    "color_target_one_runs": [
+      {
+        "log": "docs/evidence/grate-20261006-alpha/indigo-alpha-over-1.log",
+        "samples": 99,
+        "passing": 99,
+        "failing": 0,
+        "max_channel_difference": 1
+      },
+      {
+        "log": "docs/evidence/grate-20261006-alpha/indigo-alpha-over-2.log",
+        "samples": 99,
+        "passing": 99,
+        "failing": 0,
+        "max_channel_difference": 1
+      },
+      {
+        "log": "docs/evidence/grate-20261006-alpha/indigo-alpha-over-3.log",
+        "samples": 99,
+        "passing": 99,
+        "failing": 0,
+        "max_channel_difference": 1
+      }
+    ],
+    "color_target_zero": {
+      "hardware_renderer": "Tegra",
+      "software_renderer": "softpipe",
+      "tolerance": 10,
+      "expected_samples": 99,
+      "hardware_samples": 99,
+      "software_samples": 99,
+      "coverage_complete": true,
+      "logs_valid": true,
+      "passing": 99,
+      "failing": 0,
+      "failed": {},
+      "hardware_diagnostics": [],
+      "software_diagnostics": [],
+      "pass": true
+    },
+    "coverage": [
+      "Overlapping triangles in one draw and separate draws",
+      "Six overlapping primitives in one draw",
+      "Alpha 0, 0.25, 0.5, 0.75, 1 over a transparent destination",
+      "Quad shared edge",
+      "Interpolated varying color and alpha",
+      "Texture colors and alpha"
+    ],
+    "normal_gl_blend_state_integrated": false
+  },
+  "general_regression": [
+    {
+      "log": "docs/evidence/grate-20261006-alpha/indigo-fdc-regression-1.log",
+      "samples": 367,
+      "passing": 367,
+      "failing": 0,
+      "failed": {}
+    },
+    {
+      "log": "docs/evidence/grate-20261006-alpha/indigo-fdc-regression-2.log",
+      "samples": 367,
+      "passing": 367,
+      "failing": 0,
+      "failed": {}
+    },
+    {
+      "log": "docs/evidence/grate-20261006-alpha/indigo-fdc-regression-3.log",
+      "samples": 367,
+      "passing": 366,
+      "failing": 1,
+      "failed": {
+        "tex_500@0": {
+          "hardware": {
+            "rgba": [
+              64,
+              67,
+              64,
+              255
+            ],
+            "error": 0
+          },
+          "software": {
+            "rgba": [
+              33,
+              33,
+              64,
+              255
+            ],
+            "error": 0
+          }
+        }
+      }
+    }
+  ],
+  "normal_blend_control": {
+    "pass": false,
+    "center": [
+      255,
+      0,
+      0,
+      127
+    ],
+    "expected": [
+      128,
+      0,
+      128,
+      255
+    ]
+  },
+  "matrix_and_quad": "Pass, GL errors zero",
+  "remaining": [
+    "Integrate blend state through cached fragment variants and preserve disabled blending",
+    "Implement other blend factors, equations, color masks and blending constants",
+    "Fix intermittent NPOT corruption and validate broader stability",
+    "Add native presentation compatibility and verify a hardware compositor",
+    "Pin complete build inputs, integrate final packages into the Nura image, validate SD boot, touch and Wi-Fi"
+  ],
+  "device_state": {
+    "xfce_running": true,
+    "wifi": "192.168.0.174",
+    "root": "external SD verified by installer",
+    "cma_free_kib": 9904,
+    "system_mesa_replaced": false,
+    "kernel_changed": false,
+    "physical_touch_retested": false
+  }
+}

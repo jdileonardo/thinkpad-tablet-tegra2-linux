@@ -1,0 +1,74 @@
+
+~ # [6nsh -c 'set -e
+> cd /tmp/mesa-sfu
+> wget -q -O mesa-grate-armv7.tar.gz http://192.168.0.147:8766/mesa-grate-armv7.
+tar.gz
+> wget -q -O SHA256SUMS http://192.168.0.147:8766/SHA256SUMS
+> sha256sum -c SHA256SUMS
+> python3 install_tablet_mesa.py /tmp/mesa-sfu --revision ad06de32d309
+> set +e
+> for n in 1 2 3 4 5; do
+>  echo ALPHA_OVER_RUN=$n
+>  su julian -c "GRATE_DEBUG_ALPHA_OVER=1 GRATE_DEBUG_COLOR_RT1=1 INDIGO_MESA_RE
+VISION=ad06de32d309 timeout -s KILL 6 /usr/local/bin/indigo-gpu-run /opt/indigo-
+mesa/ad06de32d309/bin/gpu-pixel-check --blend"
+>  echo EXIT=$?
+> done
+> su julian -c "GRATE_FS_TRACE=1 GRATE_DEBUG_ALPHA_OVER=1 GRATE_DEBUG_COLOR_RT1=
+1 INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 6 /usr/local/bin/indigo-gpu-
+run /opt/indigo-mesa/ad06de32d309/bin/gpu-pixel-check --blend"
+> echo ALPHA_OVER_TRIAL_DONE
+> '
+mesa-grate-armv7.tar.gz: OK
+gpu-pixel-check: OK
+indigo-gpu-run: OK
+Installed private Mesa on /dev/mmcblk0p1; run indigo-gpu-run gpu-pixel-check
+ALPHA_OVER_RUN=1
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+ALPHA_OVER_RUN=2
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+ALPHA_OVER_RUN=3
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+ALPHA_OVER_RUN=4
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+ALPHA_OVER_RUN=5
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+GRATE FP PROGRAM:
+  fp[0] mfu{a=0 n=1} alu{a=0 n=2} tex=0 dw=0
+  fp[1] mfu{a=0 n=0} alu{a=2 n=1} tex=0 dw=0
+  fp[2] mfu{a=0 n=0} alu{a=3 n=1} tex=0 dw=0
+  fp[3] mfu{a=0 n=0} alu{a=4 n=1} tex=0 dw=1
+  mfu[0] var{op 1/0 1/0 1/0 1/0}
+  alu[0] {op0 c0 d3(10) s0,31,31} {op0 c0 d2(01) s1,31,31} {op0 c0 d2(10) s2,31,31} {op0 c0 d3(01) s3,31,31} const=0
+  alu[1] {op0 c0 d16(11) s0,31,31} {op0 c0 d17(11) s1,31,31} {op0 c0 d18(11) s2,31,31} {op0 c0 d19(11) s3,31,31} const=0
+  alu[2] {op0 c0 d16(11) s2,31,31} {op0 c0 d17(11) s2,31,31} {op0 c0 d18(11) s3,31,31} {op0 c0 d19(11) s3,31,31} const=0
+  alu[3] {op0 c0 d16(11) s16,19,31} {op0 c0 d17(11) s17,19,31} {op0 c0 d18(11) s18,19,31} {op0 c0 d20(11) s19,31,31} const=0
+  alu[4] {op0 c0 d0(10) s2,20,16} {op0 c0 d0(01) s2,20,17} {op0 c0 d1(10) s3,20,18} {op0 c0 d1(01) s3,20,19} const=0
+  max_tram_row=1 num_inputs=1
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+ALPHA_OVER_TRIAL_DONE
+~ # [6n
+Captured 3073 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T031842Z.txt

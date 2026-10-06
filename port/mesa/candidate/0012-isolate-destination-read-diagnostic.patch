@@ -1,0 +1,21 @@
+--- a/src/gallium/drivers/grate/grate_program.c
++++ b/src/gallium/drivers/grate/grate_program.c
+@@ -136,6 +136,18 @@
+    inst->alu_sched.num_instructions = 1;
+    inst->dw = last->dw;
+    last->dw.enable = false;
++   if (getenv("GRATE_DEBUG_PSEQ_ONLY")) {
++      list_for_each_entry_safe(struct fp_instr, i, &fp->fp_instructions, link)
++         FREE(i);
++      list_for_each_entry_safe(struct fp_alu_instr_packet, a, &fp->alu_instructions, link)
++         FREE(a);
++      list_for_each_entry_safe(struct fp_mfu_instr, m, &fp->mfu_instructions, link)
++         FREE(m);
++      list_inithead(&fp->fp_instructions);
++      list_inithead(&fp->alu_instructions);
++      list_inithead(&fp->mfu_instructions);
++      inst->alu_sched.address = 0;
++   }
+    inst->dw.src_regs = FP_DW_REGS_R0_R1;
+    unsigned source = (word & 2) ? 2 : 0;
+    for (unsigned i = 0; i < 4; ++i) {

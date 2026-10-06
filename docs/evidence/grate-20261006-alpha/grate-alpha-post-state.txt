@@ -1,0 +1,17 @@
+
+~ # [6nsha256sum /opt/indigo-mesa/ad06de32d309/lib/libgallium-26.2.3.so; ps -ef | g
+rep -E "Xorg|xfce4-session"; ip -4 addr show wlan0; grep Cma /proc/meminfo; echo
+ POST_BLEND_STATE_DONE
+5472314f70ac547e5662deaeb655f065d6c668c1424671c29d473b3910b495c4  /opt/indigo-mesa/ad06de32d309/lib/libgallium-26.2.3.so
+root       514  1709  0 23:23 ttyGS0   00:00:00 grep -E Xorg|xfce4-session
+root      1603  1485  1 16:55 tty7     00:06:06 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+julian    1820  1745  0 16:55 ?        00:00:05 xfce4-session
+julian    1846     1  0 16:55 ?        00:00:00 /usr/sbin/dbus-launch --sh-syntax --exit-with-session xfce4-session
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.174/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 4077sec preferred_lft 4077sec
+CmaTotal:          65536 kB
+CmaFree:            9904 kB
+POST_BLEND_STATE_DONE
+~ # [6n
+Captured 1044 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T032351Z.txt

@@ -1,0 +1,149 @@
+
+~ # [6nsh -c 'set -e
+> cd /tmp/mesa-sfu
+> wget -q -O mesa-grate-armv7.tar.gz http://192.168.0.147:8766/mesa-grate-armv7.
+tar.gz
+> wget -q -O SHA256SUMS http://192.168.0.147:8766/SHA256SUMS
+> sha256sum -c SHA256SUMS
+> python3 install_tablet_mesa.py /tmp/mesa-sfu --revision ad06de32d309
+> set +e
+> for skip in 1 0; do
+>  for n in 1 2 3 4 5; do
+>   echo SKIP_FDC_INVALIDATE=$skip RUN=$n
+>   if [ "$skip" = 1 ]; then e="GRATE_DEBUG_SKIP_FDC_INVALIDATE=1"; else e=""; f
+i
+>   su julian -c "$e GRATE_DEBUG_ALPHA_OVER=1 GRATE_DEBUG_COLOR_RT1=1 INDIGO_MES
+A_REVISION=ad06de32d309 timeout -s KILL 6 /usr/local/bin/indigo-gpu-run /opt/ind
+igo-mesa/ad06de32d309/bin/gpu-pixel-check --blend"
+>   echo EXIT=$?
+>  done
+> done
+> for n in 1 2 3; do
+>  su julian -c "GRATE_DEBUG_ALPHA_OVER=1 GRATE_DEBUG_COLOR_RT1=1 INDIGO_MESA_RE
+VISION=ad06de32d309 timeout -s KILL 15 /usr/local/bin/indigo-gpu-run /opt/indigo
+-mesa/ad06de32d309/bin/gpu-blend-check" > /tmp/indigo-alpha-over-$n.log 2>&1
+>  echo COVERAGE_RUN=$n EXIT=$?
+>  su julian -c "INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 20 /usr/local
+/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/fptest-sfu-isolation" > /t
+mp/indigo-fdc-regression-$n.log 2>&1
+>  echo REGRESSION_RUN=$n EXIT=$?
+> done
+> su julian -c "LIBGL_ALWAYS_SOFTWARE=1 GBM_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=sof
+tpipe INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 20 /usr/local/bin/indigo
+-gpu-run /opt/indigo-mesa/ad06de32d309/bin/gpu-blend-check" > /tmp/indigo-alpha-
+over-cpu.log 2>&1
+> echo CPU_COVERAGE_EXIT=$?
+> cat /opt/indigo-mesa/ad06de32d309/share/indigo-build.json
+> sha256sum /opt/indigo-mesa/ad06de32d309/lib/dri/tegra_dri.so
+> echo ALPHA_OVER_COVERAGE_DONE
+> '
+mesa-grate-armv7.tar.gz: OK
+gpu-pixel-check: OK
+indigo-gpu-run: OK
+Installed private Mesa on /dev/mmcblk0p1; run indigo-gpu-run gpu-pixel-check
+SKIP_FDC_INVALIDATE=1 RUN=1
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+SKIP_FDC_INVALIDATE=1 RUN=2
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+SKIP_FDC_INVALIDATE=1 RUN=3
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=191,0,64,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+SKIP_FDC_INVALIDATE=1 RUN=4
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=223,0,32,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+SKIP_FDC_INVALIDATE=1 RUN=5
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=239,0,16,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+SKIP_FDC_INVALIDATE=0 RUN=1
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+SKIP_FDC_INVALIDATE=0 RUN=2
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+SKIP_FDC_INVALIDATE=0 RUN=3
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+SKIP_FDC_INVALIDATE=0 RUN=4
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+SKIP_FDC_INVALIDATE=0 RUN=5
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=127,0,127,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+EXIT=0
+COVERAGE_RUN=1 EXIT=0
+REGRESSION_RUN=1 EXIT=0
+COVERAGE_RUN=2 EXIT=0
+REGRESSION_RUN=2 EXIT=0
+COVERAGE_RUN=3 EXIT=0
+REGRESSION_RUN=3 EXIT=0
+CPU_COVERAGE_EXIT=0
+{
+  "source_commit": "ad06de32d309506c48e4169a15f56e2f95e9712d",
+  "source_diff_sha256": "381db7ee29796cab4c9c0b27b655fe2105455b16d4d5ed83115ed0454d7f57d1",
+  "patches": {
+    "0001-adapt-nir-grate-to-tegra20-legacy-abi.patch": "8e2db9afcd09f5f8435c939de3f3987b67295b3e4fc047a8bebea7b1da3deae0",
+    "0002-tegra20-pad-small-rgba-texture-rows.patch": "8625ba3de40a0fc29f2b65d83aa4a18dc1e8f0e76195cb42ca6392b719757523",
+    "0003-emit-nir-fragment-special-functions.patch": "2a40953d5c90f2fd3b5a99ea73107a239d8ba8762dda9972447422018b17528b",
+    "0004-limit-pixel-sequencer-output-window.patch": "9af44c5339e8b743a6cb93c55bae1d2153844447ce02bf600c6628ea5f2a7e16",
+    "0005-add-texture-cache-diagnostic-toggle.patch": "5b45126943d8400675f4167e5d155647fe47dc031c259c181163cca951f1c0e8",
+    "0006-add-destination-read-diagnostic.patch": "76bee5e9d62c1661381b8426a9f16d3e358b4b9337a6a9ab217213486a017b89",
+    "0007-add-destination-fetch-control-diagnostic.patch": "056a6c61f8e50ee719c525738e44fcfccf461ec33f623f47c031743a61e523b0",
+    "0008-preserve-full-pixel-sequencer-control.patch": "f458ea6cf52b564742738f7b92453f84fdd0f48f1a15729663b8c5cc0acb33de",
+    "0009-use-tegra20-gart-for-large-offscreen-resources.patch": "6174c8aa13dd6b517d726920de414d67943d1ed8bd2ae037019992da14a39994",
+    "0010-add-color-target-one-diagnostic.patch": "4d2b3af5e2519535f002e13f60d4c8d63241cf0e06ebf208ee6ede58d89020af",
+    "0011-align-destination-read-with-opentegra.patch": "eb575ac92ad8701c33cf87c47024cd308f29f611d8a3a20368fa89106c5ef165",
+    "0012-isolate-destination-read-diagnostic.patch": "13e7f7ec9856a2ceff7d9751622fa4a09e59244bb2b478782e99e649cddcd139",
+    "0013-invalidate-fragment-data-cache-before-draw.patch": "d3f60ea312dbbbfe8bd4f95cc7018ab9339a6490712ba4ea1277591c225629cb",
+    "0014-add-hardware-alpha-over-probe.patch": "1ee606f1e64de9000f410d2811a465bc8f87eac10fdfd124dc2f6093a50e1557"
+  },
+  "test_patches": {
+    "sfu-isolation.patch": "e1ec4000313c8830c6b176222e309def64d4950f76d043c693e06bdd0bc1ece0"
+  },
+  "builder_sha256": "15017110578e6d9f9cd46f6d30e960e2f8795289602e2350e9ac622e342e10aa",
+  "patch_applier_sha256": "3c3a9e5d0ba250a6801fd393e74aa1cb1c09e60b4eac0ceb5b2696b461c45c80",
+  "blend_probe_sha256": "bfa8b39a9a79d7ae02a56c37392b2f510fea164553bd62d0bac520d8b6f5c779",
+  "pixel_probe_sha256": "8ec9a2a4e8b0b878bad7f5388ca69382b0e21935622d22f4cf859988fd03c328",
+  "cross_file_sha256": "436b06b10fdf4b16b38e3327c937e2c6cf1c72f793385bae49a20babe803c4d9",
+  "compiler": "Alpine clang version 23.1.2",
+  "drivers": [
+    "grate",
+    "softpipe"
+  ],
+  "llvm": false,
+  "x11_dri2": false
+}
+ed987517c9192cecb307b0c517869ccb2a438db464c552226d6e68e7f75b7fff  /opt/indigo-mesa/ad06de32d309/lib/dri/tegra_dri.so
+ALPHA_OVER_COVERAGE_DONE
+~ # [6n
+Captured 6929 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T032309Z.txt

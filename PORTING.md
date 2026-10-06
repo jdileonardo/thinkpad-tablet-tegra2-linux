@@ -483,6 +483,12 @@ support to avoid CMA allocation failures. The final expanded checks pass
 native EGL/GLX currently fall back to softpipe. Blending is still incomplete.
 See `docs/gpu-integration-checkpoint.json` and `docs/gpu-driver.md`.
 
+The follow-up reuses opentegra's destination-fetch and FDC invalidation code.
+An opt-in hardware alpha-over probe now matches all 99 software-reference
+samples in three runs, including overlapping primitives and textured alpha.
+Normal blend-state integration remains pending; the general shader regression
+still reproduces one intermittent NPOT failure. See `docs/gpu-blend-checkpoint.json`.
+
 During the Plasma trial, replace the Xrandr/xinput rotation helper and XFCE
 shortcuts with compositor-native display/input rotation and Plasma bindings.
 The existing sensor's mounting matrix and physical orientation must be verified

@@ -1,0 +1,105 @@
+--- a/src/gallium/drivers/grate/grate_program.c
++++ b/src/gallium/drivers/grate/grate_program.c
+@@ -169,6 +169,81 @@
+    list_addtail(&inst->link, &fp->fp_instructions);
+ }
+ 
++/* First blend probe: preserve the compiled color, then use opentegra's
++ * destination-fetch instruction and alpha-over equation. Opt-in until
++ * shader variants and the full Gallium blend state are implemented.
++ */
++static bool
++grate_debug_alpha_over(struct grate_fp_shader *fp, unsigned target)
++{
++   if (list_is_empty(&fp->fp_instructions))
++      return false;
++   struct fp_instr *last = list_last_entry(&fp->fp_instructions, struct fp_instr, link);
++   struct fp_instr *save = CALLOC_STRUCT(fp_instr);
++   struct fp_instr *compute = CALLOC_STRUCT(fp_instr);
++   struct fp_instr *blend = CALLOC_STRUCT(fp_instr);
++   struct fp_alu_instr_packet *copy = CALLOC_STRUCT(fp_alu_instr_packet);
++   struct fp_alu_instr_packet *scale = CALLOC_STRUCT(fp_alu_instr_packet);
++   struct fp_alu_instr_packet *mix = CALLOC_STRUCT(fp_alu_instr_packet);
++   if (!save || !compute || !blend || !copy || !scale || !mix) {
++      FREE(save); FREE(compute); FREE(blend); FREE(copy); FREE(scale); FREE(mix);
++      return false;
++   }
++   struct fp_alu_src_operand zero = { .index = 31, .datatype = FP_DATATYPE_FIXED10 };
++   struct fp_alu_src_operand one = zero;
++   one.sub_reg_select_high = true;
++   struct fp_alu_src_operand alpha = { .index = 19, .datatype = FP_DATATYPE_FP20 };
++   unsigned source = last->dw.src_regs == FP_DW_REGS_R2_R3 ? 2 : 0;
++   for (unsigned i = 0; i < 4; ++i) {
++      copy->slots[i] = (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++         .dst = { .index = 16 + i, .write_low_sub_reg = true, .write_high_sub_reg = true },
++         .src = { { .index = source + i / 2, .datatype = FP_DATATYPE_FIXED10,
++                    .sub_reg_select_high = i & 1 }, one, zero, zero },
++      };
++      scale->slots[i] = (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++         .dst = { .index = 16 + i, .write_low_sub_reg = true, .write_high_sub_reg = true },
++         .src = { { .index = 16 + i, .datatype = FP_DATATYPE_FP20 }, alpha, zero, zero },
++      };
++      mix->slots[i] = (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++         .dst = { .index = i / 2, .write_low_sub_reg = !(i & 1),
++                  .write_high_sub_reg = i & 1, .saturate = true },
++         .src = { { .index = 2 + i / 2, .datatype = FP_DATATYPE_FIXED10,
++                    .sub_reg_select_high = i & 1 },
++                  { .index = 20, .datatype = FP_DATATYPE_FP20 },
++                  { .index = 16 + i, .datatype = FP_DATATYPE_FP20 }, zero },
++      };
++   }
++   /* RGB source factor is alpha, alpha source factor is one. Reuse the
++    * fourth scalar slot to retain 1-alpha in a separate global register.
++    */
++   alpha.negate = true;
++   scale->slots[3].dst.index = 20;
++   scale->slots[3].src[0] = alpha;
++   scale->slots[3].src[1] = one;
++   scale->slots[3].src[2] = one;
++
++   save->alu_sched.address = list_length(&fp->alu_instructions);
++   save->alu_sched.num_instructions = 1;
++   compute->alu_sched.address = save->alu_sched.address + 1;
++   compute->alu_sched.num_instructions = 1;
++   blend->alu_sched.address = save->alu_sched.address + 2;
++   blend->alu_sched.num_instructions = 1;
++   blend->pseq = 0x0080000a | (target << 16);
++   blend->dw = last->dw;
++   blend->dw.src_regs = FP_DW_REGS_R0_R1;
++   last->dw.enable = false;
++   list_addtail(&copy->link, &fp->alu_instructions);
++   list_addtail(&scale->link, &fp->alu_instructions);
++   list_addtail(&mix->link, &fp->alu_instructions);
++   list_addtail(&save->link, &fp->fp_instructions);
++   list_addtail(&compute->link, &fp->fp_instructions);
++   list_addtail(&blend->link, &fp->fp_instructions);
++   return true;
++}
++
+ static void *
+ grate_create_fs_state(struct pipe_context *pcontext,
+                       const struct pipe_shader_state *template)
+@@ -187,6 +262,11 @@
+ 
+    grate_nir_lower_fs(template->ir.nir);
+    grate_nir_to_fp(&fp, template->ir.nir);
++   bool alpha_over = getenv("GRATE_DEBUG_ALPHA_OVER") != NULL;
++   if (alpha_over && !grate_debug_alpha_over(&fp, getenv("GRATE_DEBUG_COLOR_RT1") ? 1 : 0)) {
++      FREE(so);
++      return NULL;
++   }
+    const char *pseq_read = getenv("GRATE_DEBUG_PSEQ_READ");
+    if (pseq_read)
+       grate_debug_pseq_read(&fp, strtoul(pseq_read, NULL, 0));
+@@ -303,7 +383,7 @@
+    PUSH(host1x_opcode_incr(REG_TGR3D_PSEQ_DWR_IF_STATE, 1));
+    /* START=0, COUNT=1. Feeding num_dw_instrs in here instead was measured to
+     * change nothing, so the hardware evidently does not want the store count. */
+-   PUSH(TGR3D_PSEQ_DWR_IF_STATE_START(0) | TGR3D_PSEQ_DWR_IF_STATE_COUNT(pseq_read ? num_fp_instrs : 1));
++   PUSH(TGR3D_PSEQ_DWR_IF_STATE_START(0) | TGR3D_PSEQ_DWR_IF_STATE_COUNT((pseq_read || alpha_over) ? num_fp_instrs : 1));
+ 
+    if (soc_id == DRM_TEGRA_SOC_T114) {
+       // TODO: document/convert these values

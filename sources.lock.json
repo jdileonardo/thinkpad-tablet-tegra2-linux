@@ -57,5 +57,9 @@
   "grate-tools": {
     "url": "https://github.com/grate-driver/grate.git",
     "commit": "ce8c4d2c62880ee5ffab90fd5f4c0554d4dbcc6d"
+  },
+  "xf86-video-opentegra": {
+    "url": "https://codeberg.org/libre-tegra/xf86-video-opentegra.git",
+    "commit": "f78958d37c80b22de66f41167ec39339035f43d0"
   }
 }

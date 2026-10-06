@@ -1,0 +1,17 @@
+--- a/src/gallium/drivers/grate/grate_draw.c
++++ b/src/gallium/drivers/grate/grate_draw.c
+@@ -289,7 +289,13 @@
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_DW_ST_ENABLE, 0));
+ 
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_incr(REG_TGR3D_FDC_CONTROL, 13));
+-   GRATE_PUSHBUF_WORD(ptr, 0x00000e00); // REG_TGR3D_FDC_CONTROL
++   /* The target can have been cleared by GR2D or written by another
++    * context. Match opentegra's FDC invalidation before reading its pixels.
++    */
++   uint32_t fdc_control = 0x00000e00;
++   if (!getenv("GRATE_DEBUG_SKIP_FDC_INVALIDATE"))
++      fdc_control |= TGR3D_FDC_CONTROL_INVALIDATE;
++   GRATE_PUSHBUF_WORD(ptr, fdc_control);
+    GRATE_PUSHBUF_WORD(ptr, 0x00000000); // REG_TGR3D_FDC_STATUS
+    GRATE_PUSHBUF_WORD(ptr, 0x000001ff); // REG_TGR3D_FDC_MAX_QZ_LINES
+    GRATE_PUSHBUF_WORD(ptr, 0x000001ff); // REG_TGR3D_FDC_MAX_QV_LINES

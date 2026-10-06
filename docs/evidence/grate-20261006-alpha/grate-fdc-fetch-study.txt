@@ -1,0 +1,88 @@
+
+~ # [6nsh -c 'set -e
+> cd /tmp/mesa-sfu
+> wget -q -O mesa-grate-armv7.tar.gz http://192.168.0.147:8766/mesa-grate-armv7.
+tar.gz
+> wget -q -O SHA256SUMS http://192.168.0.147:8766/SHA256SUMS
+> sha256sum -c SHA256SUMS
+> python3 install_tablet_mesa.py /tmp/mesa-sfu --revision ad06de32d309
+> set +e
+> for only in 1 0; do
+>  for n in 1 2 3 4 5; do
+>   echo ONLY=$only RUN=$n
+>   if [ "$only" = 1 ]; then e="GRATE_DEBUG_PSEQ_ONLY=1"; else e=""; fi
+>   su julian -c "$e GRATE_DEBUG_COLOR_RT1=1 GRATE_DEBUG_PSEQ_READ=0x81000a INDI
+GO_MESA_REVISION=ad06de32d309 timeout -s KILL 6 /usr/local/bin/indigo-gpu-run /o
+pt/indigo-mesa/ad06de32d309/bin/gpu-pixel-check --blend"
+>   echo EXIT=$?
+>  done
+> done
+> echo FDC_INVALIDATE_FETCH_DONE
+> '
+mesa-grate-armv7.tar.gz: OK
+gpu-pixel-check: OK
+indigo-gpu-run: OK
+Installed private Mesa on /dev/mmcblk0p1; run indigo-gpu-run gpu-pixel-check
+ONLY=1 RUN=1
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+ONLY=1 RUN=2
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+ONLY=1 RUN=3
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+ONLY=1 RUN=4
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+ONLY=1 RUN=5
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+ONLY=0 RUN=1
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+ONLY=0 RUN=2
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+ONLY=0 RUN=3
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+ONLY=0 RUN=4
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+ONLY=0 RUN=5
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+FDC_INVALIDATE_FETCH_DONE
+~ # [6n
+Captured 2849 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T031633Z.txt

@@ -248,6 +248,62 @@ have not been replaced by these process-local trials. The goal remains open:
 blending, native presentation, compositor/stability validation and exported
 image integration are still required.
 
+## Destination fetch and alpha-over proof
+
+The next investigation pinned existing opentegra code at
+`f78958d37c80b22de66f41167ec39339035f43d0` in `sources.lock.json`.
+Its `src/exa/shaders/blend_over/` programs already implement blending through
+PSEQ destination fetch; `src/gpu/gr3d.c` invalidates FDC before drawing. These
+are reused hardware instructions and equations, rather than a new software
+blend path. Source:
+https://codeberg.org/libre-tegra/xf86-video-opentegra/src/commit/f78958d37c80b22de66f41167ec39339035f43d0/src.
+
+Patches 0010–0012 allow testing color surface 1, copying fetched packed channels
+to R0/R1 like opentegra, and isolating a pure fetch shader. Patch 0011 also
+matches opentegra's PSEQ upload/flush order. Moving the surface alone did not
+resolve destination reads. Pure reads initially returned stale contents, and
+adding trace output sometimes made them return the correct cleared color.
+Patch 0013 reuses opentegra's FDC invalidation before each draw. With that
+invalidation, ten fetch trials return the cleared blue destination consistently.
+The normal path includes the invalidation; `GRATE_DEBUG_SKIP_FDC_INVALIDATE`
+exists only for comparison.
+
+A controlled comparison makes the cache problem reproducible. Five alpha-over
+runs with invalidation disabled pass twice, then return red/blue values
+191/64, 223/32 and 239/16 instead of 127/127. Five with invalidation enabled
+all return 127/127. Each process clears its target first: without invalidation,
+the fragment stage can see previous destination contents despite the GR2D clear.
+
+Patch 0014 appends an opt-in alpha-over epilogue. It preserves the compiled
+source color, computes source RGB times alpha and one-minus-alpha, fetches the
+destination, then adds both contributions on the GPU. Alpha uses source factor
+ONE and destination factor ONE_MINUS_SRC_ALPHA. This follows the existing
+opentegra equation with separate pipeline instructions for temporary feedback.
+`GRATE_DEBUG_ALPHA_OVER=1` enables the probe; it does not yet follow dynamic
+Gallium blend state, other equations/factors or color masks. Ordinary
+`glEnable(GL_BLEND)` still fails its control check. Do not promote this to
+normal desktop blending before implementing and checking shader variants.
+
+`gpu-blend-check` contains 99 sampled results covering overlapping primitives
+in one draw, separate draws, six layers, transparent destinations, five alpha
+values, quad seams, varying color/alpha and textures. Three runs using surface 1
+and one using the default surface 0 match the identical softpipe program in
+every sample; the maximum difference is one channel unit. Matrix and textured
+quad checks still pass. The 367-sample general regression passes twice and
+fails one NPOT sample in its third run: `tex_500@0` returns 64,67,64,255 instead
+of 33,33,64,255 with no GL error. The earlier intermittent texture issue remains.
+
+`docs/gpu-blend-checkpoint.json` records build hashes and complete evidence in
+`docs/evidence/grate-20261006-alpha/`. The Grate implementation lives in
+`libgallium-26.2.3.so`; `tegra_dri.so` is its loader stub. The new checkpoint
+hashes both and checks the actual Gallium ELF against the live tablet.
+
+The next work is cached shader variants driven by blend state, additional blend
+factors/equations/masks, and native presentation. The inspected opentegra source
+still lacks DRI3. Desktop integration, stability and the final OS image remain
+unverified. XFCE and Wi-Fi remain running; touch configuration and boot setup
+have not changed, and physical touch was not retested in this GPU investigation.
+
 ## Building
 
 ```sh

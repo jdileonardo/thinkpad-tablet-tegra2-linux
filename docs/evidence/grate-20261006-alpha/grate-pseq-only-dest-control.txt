@@ -1,0 +1,59 @@
+
+~ # [6nsh -c 'set +e
+> for rd in 0 1; do
+>  for rt in 0 1; do
+>   echo READ_DEST=$rd RT1=$rt
+>   if [ "$rd" = 1 ]; then e="GRATE_DEBUG_READ_DEST=1"; else e=""; fi
+>   if [ "$rt" = 1 ]; then t="GRATE_DEBUG_COLOR_RT1=1"; w=0x81000a; else t=""; w
+=0x80000a; fi
+>   su julian -c "GRATE_FS_TRACE=1 GRATE_DEBUG_PSEQ_ONLY=1 $t GRATE_DEBUG_PSEQ_R
+EAD=$w $e INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 6 /usr/local/bin/ind
+igo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/gpu-pixel-check --blend"
+>   echo EXIT=$?
+>  done
+> done
+> echo PSEQ_ONLY_DEST_CONTROL_DONE
+> '
+READ_DEST=0 RT1=0
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+GRATE FP PROGRAM:
+  fp[0] mfu{a=0 n=0} alu{a=0 n=1} tex=0 dw=1
+  alu[0] {op0 c0 d0(10) s2,31,31} {op0 c0 d0(01) s2,31,31} {op0 c0 d1(10) s3,31,31} {op0 c0 d1(01) s3,31,31} const=0
+  max_tram_row=1 num_inputs=1
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+READ_DEST=0 RT1=1
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+GRATE FP PROGRAM:
+  fp[0] mfu{a=0 n=0} alu{a=0 n=1} tex=0 dw=1
+  alu[0] {op0 c0 d0(10) s2,31,31} {op0 c0 d0(01) s2,31,31} {op0 c0 d1(10) s3,31,31} {op0 c0 d1(01) s3,31,31} const=0
+  max_tram_row=1 num_inputs=1
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+READ_DEST=1 RT1=0
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+GRATE FP PROGRAM:
+  fp[0] mfu{a=0 n=0} alu{a=0 n=1} tex=0 dw=1
+  alu[0] {op0 c0 d0(10) s2,31,31} {op0 c0 d0(01) s2,31,31} {op0 c0 d1(10) s3,31,31} {op0 c0 d1(01) s3,31,31} const=0
+  max_tram_row=1 num_inputs=1
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+READ_DEST=1 RT1=1
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+GRATE FP PROGRAM:
+  fp[0] mfu{a=0 n=0} alu{a=0 n=1} tex=0 dw=1
+  alu[0] {op0 c0 d0(10) s2,31,31} {op0 c0 d0(01) s2,31,31} {op0 c0 d1(10) s3,31,31} {op0 c0 d1(01) s3,31,31} const=0
+  max_tram_row=1 num_inputs=1
+center=0,0,255,255 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+EXIT=1
+PSEQ_ONLY_DEST_CONTROL_DONE
+~ # [6n
+Captured 2260 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T031444Z.txt

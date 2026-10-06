@@ -149,5 +149,11 @@
     "kernel_changed": false,
     "touch_configuration_changed": false,
     "physical_touch_retested": false
+  },
+  "metadata_corrections": {
+    "driver_elf_sha256": {
+      "path": "lib/dri/tegra_dri.so",
+      "role": "DRI loader stub; actual Grate code is in lib/libgallium-26.2.3.so. New checkpoints hash both."
+    }
   }
 }

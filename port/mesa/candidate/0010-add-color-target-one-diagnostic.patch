@@ -1,0 +1,40 @@
+--- a/src/gallium/drivers/grate/grate_state.c
++++ b/src/gallium/drivers/grate/grate_state.c
+@@ -705,7 +705,8 @@
+    struct grate_stream *stream = &context->gr3d->stream;
+    const struct grate_framebuffer_state *fb = &context->framebuffer;
+ 
+-   *(*ptrp)++ = host1x_opcode_incr(REG_TGR3D_GLOBAL_SURFDESC(0), fb->num_rts);
++   unsigned base = getenv("GRATE_DEBUG_COLOR_RT1") ? 1 : 0;
++   *(*ptrp)++ = host1x_opcode_incr(REG_TGR3D_GLOBAL_SURFDESC(base), fb->num_rts);
+    for (i = 0; i < fb->num_rts; ++i) {
+       uint32_t rt_params = fb->rt_params[i];
+       /* TODO: setup dither */
+@@ -713,14 +714,14 @@
+       *(*ptrp)++ = rt_params;
+    }
+ 
+-   GRATE_PUSHBUF_WORD(*ptrp, host1x_opcode_incr(REG_TGR3D_GLOBAL_SURFADDR(0), fb->num_rts));
++   GRATE_PUSHBUF_WORD(*ptrp, host1x_opcode_incr(REG_TGR3D_GLOBAL_SURFADDR(base), fb->num_rts));
+    for (i = 0; i < fb->num_rts; ++i) {
+       grate_stream_push_reloc(stream, ptrp, fb->rt_bos[i], fb->rt_offset[i]);
+    }
+ 
+ 
+    GRATE_PUSHBUF_WORD(*ptrp, host1x_opcode_incr(REG_TGR3D_DW_ST_ENABLE, 1));
+-   GRATE_PUSHBUF_WORD(*ptrp, fb->rt_mask);
++   GRATE_PUSHBUF_WORD(*ptrp, fb->rt_mask << base);
+ }
+ 
+ /*
+--- a/src/gallium/drivers/grate/grate_program.c
++++ b/src/gallium/drivers/grate/grate_program.c
+@@ -362,6 +362,8 @@
+        * however many surfaces come before the colour targets */
+       struct fp_dw_instr dw = instr->dw;
+       dw.index += context->framebuffer.rt_base;
++      if (getenv("GRATE_DEBUG_COLOR_RT1"))
++         dw.index++;
+       PUSH(grate_fp_pack_dw(&dw));
+    }
+ 

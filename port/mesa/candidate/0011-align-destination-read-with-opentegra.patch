@@ -1,0 +1,24 @@
+--- a/src/gallium/drivers/grate/grate_program.c
++++ b/src/gallium/drivers/grate/grate_program.c
+@@ -136,11 +136,12 @@
+    inst->alu_sched.num_instructions = 1;
+    inst->dw = last->dw;
+    last->dw.enable = false;
++   inst->dw.src_regs = FP_DW_REGS_R0_R1;
+    unsigned source = (word & 2) ? 2 : 0;
+    for (unsigned i = 0; i < 4; ++i) {
+       pkt->slots[i] = (struct fp_alu_instr){
+          .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
+-         .dst = { .index = 2 + i / 2, .write_low_sub_reg = !(i & 1),
++         .dst = { .index = i / 2, .write_low_sub_reg = !(i & 1),
+                   .write_high_sub_reg = i & 1 },
+          .src = {
+             { .index = source + i / 2, .datatype = FP_DATATYPE_FIXED10,
+@@ -305,6 +306,7 @@
+    PUSH(host1x_opcode_nonincr(REG_TGR3D_PSEQ_INST_DATA, num_fp_instrs));
+    list_for_each_entry(struct fp_instr, instr, &fp.fp_instructions, link)
+       PUSH(instr->pseq);
++   PUSH(host1x_opcode_imm(REG_TGR3D_PSEQ_FLUSH, 0));
+ 
+    PUSH(host1x_opcode_nonincr(REG_TGR3D_AT_REMAP_DATA, num_fp_instrs));
+    list_for_each_entry(struct fp_instr, instr, &fp.fp_instructions, link)
