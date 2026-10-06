@@ -1,0 +1,21 @@
+
+~ # cat /tmp/gtk-calendar-20261006.log; tail -n 3 /tmp/xfce-calendar-20261006.lo
+
+g; calendar_window_id=$(sed -n 's/^CALENDAR_DRAWN window=\([0-9]*\)$/\1/p' /tmp/
+
+gtk-calendar-20261006.log | head -n 1); case "$calendar_window_id" in ''|*[!0-9]
+
+*) echo NO_CALENDAR_WINDOW;; *) su julian -c "DISPLAY=:0 XAUTHORITY=/home/julian
+
+/.Xauthority /tmp/xfce-window-capture $calendar_window_id /tmp/calendar-window-2
+
+0261006.ppm";; esac; ls -l /tmp/graphics-stack-check; /tmp/graphics-stack-check
+
+--capture /tmp/calendar-scanout-20261006.ppm
+CALENDAR_DRAWN window=37748739
+elapsed=0s available=726.5MiB CMA_free=4.1MiB
+CAPTURE PASS window=37748739 size=620x680 file=/tmp/calendar-window-20261006.ppm
+-rwxr-xr-x    1 root     root         16304 Oct  6 11:14 /tmp/graphics-stack-check
+active framebuffer=104 size=1280x800 pitch=5120 format=34325258 modifier=0 handles=1,0
+capture=/tmp/calendar-scanout-20261006.ppm CRTC=66 framebuffer=104 size=1280x800 pitch=5120 format=34325258 modifier=0
+~ #

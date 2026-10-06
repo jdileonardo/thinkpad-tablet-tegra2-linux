@@ -1,0 +1,17 @@
+{
+  "comparison": "Complete Xorg client readback against the active DRM framebuffer, aligned for display rotation",
+  "alignment_method": "Locate a least frequent RGB value from the client image, then compare every RGB pixel in each candidate rectangle",
+  "matches": [
+    {
+      "scanout_quarter_turns_ccw_for_comparison": 3,
+      "client_left": 102,
+      "client_top": 382,
+      "client_width": 620,
+      "client_height": 680,
+      "pixels_compared": 421600,
+      "mismatched_pixels": 0,
+      "exact_match": true
+    }
+  ],
+  "exact_client_match_found": true
+}

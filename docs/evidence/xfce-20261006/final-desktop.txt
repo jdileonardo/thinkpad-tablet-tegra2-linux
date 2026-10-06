@@ -1,0 +1,34 @@
+
+[1]+  Done                       nohup python3 /tmp/monitor-xfce-stability.py --seconds 120 --interval 5 --peer 192.168.0.147 --output /tmp/xfce-calendar-20261006.json 1>/tmp/xfce-calendar-20261006.log 2>&1 0</dev/null
+~ # tail -n 6 /tmp/xfce-calendar-20261006.log; test -f /tmp/xfce-calendar-202610
+
+06.json && echo CALENDAR_MEMORY_REPORT_READY; cat /sys/kernel/debug/dri/0/client
+
+s; cat /sys/kernel/debug/dri/0/framebuffers; grep -E "MemAvailable|Cma|Swap" /pr
+
+oc/meminfo; cat /sys/block/zram0/mm_stat; rc-service lightdm status; ps -e -o pi
+
+d,comm | grep -E "Xorg|xfce4-session|python3"
+elapsed=0s available=726.5MiB CMA_free=4.1MiB
+elapsed=62s available=712.5MiB CMA_free=0.1MiB
+elapsed=120s available=725.4MiB CMA_free=3.8MiB
+{"observed_seconds": 119.99919484800012, "sample_count": 25, "cpu_busy_percent_of_both_cores": 7.134164253640522, "available_mib_range": [704.140625, 726.48828125], "cma_free_mib_range": [0.0, 4.0859375], "max_swap_used_mib": 0.34765625, "max_temperature_c": 32.75, "xorg_identities": [[29643, 464733]], "all_samples_have_xorg_and_xfce_session": true, "wifi_ping_checks": 25, "wifi_ping_failures": 0, "kernel_log_prefix_preserved": true, "new_kernel_messages": [], "kernel_error_candidates": []}
+Report: /tmp/xfce-calendar-20261006.json
+CALENDAR_MEMORY_REPORT_READY
+             command  tgid dev master a   uid      magic                                                             name                   id
+                Xorg 29643   0   y    y     0          0                                                          <unset>                  152
+104: user size: 1280 x 800, depth 24, 32 bpp, refcount 2
+103: user size: 800 x 1280, depth 24, 32 bpp, refcount 1
+101: user size: 1280 x 800, depth 24, 32 bpp, refcount 1
+MemAvailable:     749248 kB
+SwapCached:            0 kB
+SwapTotal:       1520636 kB
+SwapFree:        1520280 kB
+CmaTotal:          65536 kB
+CmaFree:            6404 kB
+  368640    14401   270336        0   757760        0        0        0        0
+ * status: started
+29643 Xorg
+29667 xfce4-session
+30095 python3
+~ #

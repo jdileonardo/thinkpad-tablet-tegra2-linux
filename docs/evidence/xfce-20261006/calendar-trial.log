@@ -1,0 +1,2 @@
+CALENDAR_DRAWN window=37748739
+{"started_monotonic": 14449.592874853, "draw_callbacks": 2, "date": "2026-10-06", "window_id": 37748739, "gtk_version": [3, 24, 52], "pixel_validation": false, "remote_calendar_integration": false, "close_reason": "timer", "elapsed_seconds": 60.4273844420004, "selected_date": [2026, 9, 6], "draw_callback_observed": true}

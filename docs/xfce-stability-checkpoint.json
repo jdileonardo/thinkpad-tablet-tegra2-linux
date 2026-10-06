@@ -1,0 +1,138 @@
+{
+  "created_utc": "2026-10-06T18:19:41.937542+00:00",
+  "base_project_commit": "7bb7e34cfe564266cbc66a2376f85ea0524b704d",
+  "kernel": "7.0.1-nura-indigo-ram",
+  "root_device": "/dev/mmcblk0p1",
+  "idle_summary": {
+    "observed_seconds": 300.00218815599874,
+    "sample_count": 31,
+    "cpu_busy_percent_of_both_cores": 5.528902606770222,
+    "available_mib_range": [
+      716.53515625,
+      726.81640625
+    ],
+    "cma_free_mib_range": [
+      4.11328125,
+      16.62890625
+    ],
+    "max_swap_used_mib": 0.34765625,
+    "max_temperature_c": 33.0,
+    "xorg_identities": [
+      [
+        29643,
+        464733
+      ]
+    ],
+    "all_samples_have_xorg_and_xfce_session": true,
+    "wifi_ping_checks": 31,
+    "wifi_ping_failures": 0,
+    "kernel_log_prefix_preserved": true,
+    "new_kernel_messages": [],
+    "kernel_error_candidates": []
+  },
+  "calendar_summary": {
+    "observed_seconds": 119.99919484800012,
+    "sample_count": 25,
+    "cpu_busy_percent_of_both_cores": 7.134164253640522,
+    "available_mib_range": [
+      704.140625,
+      726.48828125
+    ],
+    "cma_free_mib_range": [
+      0.0,
+      4.0859375
+    ],
+    "max_swap_used_mib": 0.34765625,
+    "max_temperature_c": 32.75,
+    "xorg_identities": [
+      [
+        29643,
+        464733
+      ]
+    ],
+    "all_samples_have_xorg_and_xfce_session": true,
+    "wifi_ping_checks": 25,
+    "wifi_ping_failures": 0,
+    "kernel_log_prefix_preserved": true,
+    "new_kernel_messages": [],
+    "kernel_error_candidates": []
+  },
+  "widget_report": {
+    "started_monotonic": 14449.592874853,
+    "draw_callbacks": 2,
+    "date": "2026-10-06",
+    "window_id": 37748739,
+    "gtk_version": [
+      3,
+      24,
+      52
+    ],
+    "pixel_validation": false,
+    "remote_calendar_integration": false,
+    "close_reason": "timer",
+    "elapsed_seconds": 60.4273844420004,
+    "selected_date": [
+      2026,
+      9,
+      6
+    ],
+    "draw_callback_observed": true
+  },
+  "capture_comparison": {
+    "comparison": "Complete Xorg client readback against the active DRM framebuffer, aligned for display rotation",
+    "alignment_method": "Locate a least frequent RGB value from the client image, then compare every RGB pixel in each candidate rectangle",
+    "matches": [
+      {
+        "scanout_quarter_turns_ccw_for_comparison": 3,
+        "client_left": 102,
+        "client_top": 382,
+        "client_width": 620,
+        "client_height": 680,
+        "pixels_compared": 421600,
+        "mismatched_pixels": 0,
+        "exact_match": true
+      }
+    ],
+    "exact_client_match_found": true
+  },
+  "source_sha256": {
+    "scripts/monitor_xfce_stability.py": "c555c68e84dc6749cc85e66b0ec3388a450178aa0c2c378901275fd4bd727ead",
+    "scripts/tablet_gtk_calendar_trial.py": "0f477d05d60d00300769d242aeaeada6d2e9d3c03ed1e7ce00a4449cb7f5f79d",
+    "scripts/compare_xfce_calendar_capture.py": "5a9f7fc55097f9257652d3e26a1b8de947118167dfc8035d1d2701252cb13e3f",
+    "port/opentegra/x-window-capture.c": "46a22a1e546e2c2b8e5fb41a6b4a2f43c47a8c542bc44840823675ef42335a7a",
+    "port/opentegra/graphics-stack-check.c": "251ce83277bbe0432d1b6c25c5fdd5c526339e2888f9be81b7026c73875f6fa7"
+  },
+  "capture_probe_sha256": {
+    "x-window-capture": "6be585fd76f51c5e820911f0dcf00392063e6b32cf4e54c847184c921ba4a1a3",
+    "graphics-stack-check": "b29fe647f3651963a9ebf48eba3b624bb0fbb357aa1b11fbb75a04b980f8190c"
+  },
+  "evidence_sha256": {
+    "docs/evidence/xfce-20261006/calendar-capture-comparison.json": "54e34c55886cd0d867be2a54f8fc33e15698730e131a459d15326ccb88f1ce5c",
+    "docs/evidence/xfce-20261006/calendar-capture.txt": "d7a0032f6bc04102e263f3d9757034c769c17e24f584a085413e4a4207bbb9e4",
+    "docs/evidence/xfce-20261006/calendar-scanout.png": "fb302807a4c0bd71f5c06a366af46183e6c96bbd54265d62473e6195cf2b79aa",
+    "docs/evidence/xfce-20261006/calendar-session.json": "fbea60a7f9c3a28931bda0f47bb6a3e85afeb59b4eb9069f49ca79888b243713",
+    "docs/evidence/xfce-20261006/calendar-trial.log": "4aaa83a19cce7ee1dce91637e8c67007e066a3b99b0491d03438dc544dd5b20d",
+    "docs/evidence/xfce-20261006/calendar-widget.json": "2e12a7f07f44e7929bf9abda9ac03b6d546c813ef01e11339e6a03eb1bc70639",
+    "docs/evidence/xfce-20261006/calendar-window.png": "3542612be9b7814ad1aaa7652b159bca62fe5e4d375bd60ca7bba182cd775ddd",
+    "docs/evidence/xfce-20261006/final-desktop.txt": "57ee1300bbb060a34989115f9ee5a7ee4af88c66680e4c9c99d1b6fecba95b9d",
+    "docs/evidence/xfce-20261006/idle.json": "51800a5846b96d46260ad62aeb95dd80274528370e3e71b88cb1b65bef06c4c4",
+    "docs/evidence/xfce-20261006/initial-desktop.txt": "f15464a0dcbe53ecf28eb573a7e2939fa509be5d72aeb0dfee14bcaf384cbf21"
+  },
+  "scope": {
+    "idle_observation_seconds": 300,
+    "calendar_and_recovery_observation_seconds": 120,
+    "actual_calendar_region_matches_scanout": true,
+    "remote_calendar_events_tested": false,
+    "spotify_control_tested": false,
+    "fresh_physical_touch_and_rotation_confirmation": false,
+    "long_term_stability_verified": false,
+    "graphics_allocation_lifetime_verified": false,
+    "desktop_configuration_changed": false,
+    "internal_storage_written": false
+  },
+  "allocation_audit_source_sha256": {
+    "sources/xf86-video-opentegra/src/tegradrm/tegra.c": "f454acec99066b1ea1d01e4df13d4dd17c9ecefe820f90ccca70b87e5b97f1b9",
+    "sources/xf86-video-opentegra/src/exa/mm.c": "3e35ced4d309362825f95823f02d9ea2e43d63b9228ae8d48f0963a35f5a3f67",
+    "sources/linux-nura/drivers/gpu/drm/grate/gem.c": "c9dcdac123c125d3f770b03845224842e97293a0f2d3c4122d0ea55bd8df8462"
+  }
+}

@@ -1,0 +1,86 @@
+
+~ # date -u; cat /proc/uptime; uname -r; head -n 22 /proc/meminfo; cat /proc/swa
+
+ps; rc-service lightdm status; ps -o pid,ppid,user,comm,rss,vsz; ip -4 -o addr s
+
+how wlan0; cat /sys/kernel/debug/dri/0/clients; dmesg | tail -n 45
+Tue Oct  6 18:05:10 UTC 2026
+13965.02 24569.13
+7.0.1-nura-indigo-ram
+MemTotal:        1013784 kB
+MemFree:          610040 kB
+MemAvailable:     750300 kB
+Buffers:            2192 kB
+Cached:            99964 kB
+SwapCached:            0 kB
+Active:            72784 kB
+Inactive:         168200 kB
+Active(anon):        360 kB
+Inactive(anon):   143604 kB
+Active(file):      72424 kB
+Inactive(file):    24596 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+HighTotal:        262144 kB
+HighFree:          42520 kB
+LowTotal:         751640 kB
+LowFree:          567520 kB
+SwapTotal:       1520636 kB
+SwapFree:        1520280 kB
+Dirty:                 4 kB
+Writeback:             0 kB
+Filename				Type		Size		Used		Priority
+/dev/zram0                              partition	1520636		356		300
+ * status: started
+  PID  PPID USER     COMMAND           RSS    VSZ
+ 1709     1 root     sh               1212   1688
+24925  1709 root     ps               1644   2608
+2: wlan0    inet 192.168.0.174/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0\       valid_lft 6741sec preferred_lft 6741sec
+             command  tgid dev master a   uid      magic                                                             name                   id
+                Xorg 29643   0   y    y     0          0                                                          <unset>                  152
+[    9.414391] mmc2: queuing unknown CIS tuple 0x02 [ff] (1 bytes)
+[    9.418175] mmc2: new SDIO card at address 0001
+[    9.421404] brcmfmac: F1 signature read @0x18000000=0x9934329
+[    9.423295] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4329-sdio for chip BCM4329/3
+[    9.426246] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.lenovo,indigo.bin failed with error -2
+[    9.448587] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.clm_blob failed with error -2
+[    9.486994] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[    9.597480] brcmfmac: brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may have limited channels available
+[    9.597502] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)
+[    9.598059] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4329/3 wl0: Sep  2 2011 14:48:19 version 4.220.48
+[    9.613682] ieee80211 phy0: brcmf_setup_wiphybands: rxchain unsupported
+[   10.274650] usbcore: registered new interface driver usbhid
+[   10.274678] usbhid: USB HID core driver
+[   12.516338] zram0: detected capacity change from 0 to 3041280
+[   12.537511] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   15.085238] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+[   20.315464] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.315503] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.315514] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   20.316254] platform sound-hdmi: deferred probe pending: asoc-simple-card: parse error
+[   20.316274] tegra-mc 7000f000.memory-controller: sync_state() pending due to 6001a000.vde
+[   20.316304] tegra-pmc 7000e400.pmc: sync_state() pending due to 6001a000.vde
+[ 1293.512437] drm drm: failed to allocate buffer of size 132710400: -12
+[ 1293.623749] Xorg (15531): drop_caches: 1
+[ 1293.624042] drm drm: failed to allocate buffer of size 132710400: -12
+[ 1293.624444] drm drm: failed to allocate buffer of size 132710400: -12
+[ 1293.845705] drm drm: failed to allocate buffer of size 132710400: -12
+[ 4612.085047] drm drm: failed to allocate buffer of size 132710400: -12
+[ 4612.301101] Xorg (26405): drop_caches: 1
+[ 4612.301277] drm drm: failed to allocate buffer of size 132710400: -12
+[ 4612.301554] drm drm: failed to allocate buffer of size 132710400: -12
+[ 4612.511481] drm drm: failed to allocate buffer of size 132710400: -12
+[ 4963.572909] drm drm: failed to allocate buffer of size 132710400: -12
+[ 4963.740992] Xorg (29643): drop_caches: 1
+[ 4963.741160] drm drm: failed to allocate buffer of size 132710400: -12
+[ 4963.741448] drm drm: failed to allocate buffer of size 132710400: -12
+[ 4963.965192] drm drm: failed to allocate buffer of size 132710400: -12
+[ 8020.168298] drm drm: failed to allocate buffer of size 132710400: -12
+[ 8020.263920] Xorg (29643): drop_caches: 1
+[ 8020.264074] drm drm: failed to allocate buffer of size 132710400: -12
+[ 8020.264306] drm drm: failed to allocate buffer of size 132710400: -12
+[10330.290201] drm drm: failed to allocate buffer of size 132710400: -12
+[10330.383298] Xorg (29643): drop_caches: 1
+[10330.383459] drm drm: failed to allocate buffer of size 132710400: -12
+[10330.383689] drm drm: failed to allocate buffer of size 132710400: -12
+~ #

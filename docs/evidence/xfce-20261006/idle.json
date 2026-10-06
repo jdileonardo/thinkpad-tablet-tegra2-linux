@@ -1,0 +1,6143 @@
+{
+  "created_utc": "2026-10-06T18:12:33.061625+00:00",
+  "kernel": "7.0.1-nura-indigo-ram",
+  "root_device": "/dev/mmcblk0p1",
+  "requested_seconds": 300,
+  "interval_seconds": 10,
+  "observer_pid": 25529,
+  "summary": {
+    "observed_seconds": 300.00218815599874,
+    "sample_count": 31,
+    "cpu_busy_percent_of_both_cores": 5.528902606770222,
+    "available_mib_range": [
+      716.53515625,
+      726.81640625
+    ],
+    "cma_free_mib_range": [
+      4.11328125,
+      16.62890625
+    ],
+    "max_swap_used_mib": 0.34765625,
+    "max_temperature_c": 33.0,
+    "xorg_identities": [
+      [
+        29643,
+        464733
+      ]
+    ],
+    "all_samples_have_xorg_and_xfce_session": true,
+    "wifi_ping_checks": 31,
+    "wifi_ping_failures": 0,
+    "kernel_log_prefix_preserved": true,
+    "new_kernel_messages": [],
+    "kernel_error_candidates": []
+  },
+  "kernel_log_before": [
+    "[    0.000000] Booting Linux on physical CPU 0x0",
+    "[    0.000000] Linux version 7.0.1-nura-indigo-ram (@40a632f1419a) (Alpine clang version 23.1.2, LLD 23.1.2) #3 SMP Tue Oct  6 14:10:41 UTC 2026",
+    "[    0.000000] CPU: ARMv7 Processor [411fc090] revision 0 (ARMv7), cr=10c5387d",
+    "[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache",
+    "[    0.000000] OF: fdt: Machine model: Lenovo ThinkPad Tablet (Indigo)",
+    "[    0.000000] Memory policy: Data cache writealloc",
+    "[    0.000000] efi: UEFI not found.",
+    "[    0.000000] cma: Reserved 64 MiB at 0x3c000000",
+    "[    0.000000] OF: reserved mem: Reserved memory: No reserved-memory node in the DT",
+    "[    0.000000] tegra_boot_config_table_init: BCT found in IRAM",
+    "[    0.000000] tegra-partition: initialized to logical sector = 1024 sectors_num = 512",
+    "[    0.000000] Zone ranges:",
+    "[    0.000000]   Normal   [mem 0x0000000000000000-0x000000002fffffff]",
+    "[    0.000000]   HighMem  [mem 0x0000000030000000-0x000000003fffffff]",
+    "[    0.000000] Movable zone start for each node",
+    "[    0.000000] Early memory node ranges",
+    "[    0.000000]   node   0: [mem 0x0000000000000000-0x000000003fffffff]",
+    "[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000003fffffff]",
+    "[    0.000000] percpu: Embedded 19 pages/cpu s47692 r8192 d21940 u77824",
+    "[    0.000000] pcpu-alloc: s47692 r8192 d21940 u77824 alloc=19*4096",
+    "[    0.000000] pcpu-alloc: [0] 0 [0] 1 ",
+    "[    0.000000] Kernel command line: console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init",
+    "[    0.000000] printk: log buffer data + meta data: 131072 + 409600 = 540672 bytes",
+    "[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes, linear)",
+    "[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes, linear)",
+    "[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 262144",
+    "[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off",
+    "[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=2, Nodes=1",
+    "[    0.000000] ftrace: allocating 46450 entries in 137 pages",
+    "[    0.000000] ftrace: allocated 137 pages with 3 groups",
+    "[    0.000000] rcu: Hierarchical RCU implementation.",
+    "[    0.000000] rcu: \tRCU restricting CPUs from NR_CPUS=4 to nr_cpu_ids=2.",
+    "[    0.000000] \tRude variant of Tasks RCU enabled.",
+    "[    0.000000] \tTracing variant of Tasks RCU enabled.",
+    "[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.",
+    "[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2",
+    "[    0.000000] RCU Tasks Rude: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.",
+    "[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16",
+    "[    0.000000] /interrupt-controller@60004000: 128 interrupts forwarded to /interrupt-controller@50041000",
+    "[    0.000000] L2C: platform modifies aux control register: 0x02080000 -> 0x3e480000",
+    "[    0.000000] L2C: DT/platform modifies aux control register: 0x02080000 -> 0x3e480000",
+    "[    0.000000] L2C-310 errata 727915 769419 enabled",
+    "[    0.000000] L2C-310 enabling early BRESP for Cortex-A9",
+    "[    0.000000] L2C-310 full line of zeros enabled for Cortex-A9",
+    "[    0.000000] L2C-310 ID prefetch enabled, offset 1 lines",
+    "[    0.000000] L2C-310 cache controller enabled, 8 ways, 1024 kB",
+    "[    0.000000] L2C-310: CACHE_ID 0x410000c4, AUX_CTRL 0x7e480001",
+    "[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.",
+    "[    0.000003] sched_clock: 32 bits at 1000kHz, resolution 1000ns, wraps every 2147483647500ns",
+    "[    0.000023] clocksource: timer_us: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275 ns",
+    "[    0.000035] Switching to timer-based delay loop, resolution 1000ns",
+    "[    0.000261] clocksource: tegra_suspend_timer: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns",
+    "[    0.000656] Console: colour dummy device 80x30",
+    "[    0.000670] printk: legacy console [tty0] enabled",
+    "[    0.001212] Calibrating delay loop (skipped), value calculated using timer frequency.. 2.00 BogoMIPS (lpj=10000)",
+    "[    0.001245] CPU: Testing write buffer coherency: ok",
+    "[    0.001312] Spectre V2: workarounds disabled by configuration",
+    "[    0.001329] pid_max: default: 32768 minimum: 301",
+    "[    0.001555] Yama: becoming mindful.",
+    "[    0.002027] LSM support for eBPF active",
+    "[    0.002165] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)",
+    "[    0.002196] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)",
+    "[    0.002598] VFS: Finished mounting rootfs on nullfs",
+    "[    0.003644] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000",
+    "[    0.003733] cacheinfo: Unable to detect cache hierarchy for CPU 0",
+    "[    0.004951] Setting up static identity map for 0x100000 - 0x1000b0",
+    "[    0.005163] rcu: Hierarchical SRCU implementation.",
+    "[    0.005184] rcu: \tMax phase no-delay instances is 1000.",
+    "[    0.005508] Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level",
+    "[    0.007470] Tegra Revision: A04 SKU: 8 CPU Process: 1 SoC Process: 2",
+    "[    0.007502] Tegra CPU Speedo ID 0, SoC Speedo ID 1",
+    "[    0.008377] EFI services will not be available.",
+    "[    0.008605] smp: Bringing up secondary CPUs ...",
+    "[    0.009417] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001",
+    "[    0.009703] smp: Brought up 1 node, 2 CPUs",
+    "[    0.009740] SMP: Total of 2 processors activated (4.00 BogoMIPS).",
+    "[    0.009759] CPU: All CPU(s) started in SVC mode.",
+    "[    0.009965] Memory: 942228K/1048576K available (16384K kernel code, 1517K rwdata, 4504K rodata, 1024K init, 331K bss, 37240K reserved, 65536K cma-reserved, 196608K highmem)",
+    "[    0.010766] devtmpfs: initialized",
+    "[    0.021886] VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 1",
+    "[    0.022397] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns",
+    "[    0.022465] posixtimers hash table entries: 1024 (order: 1, 8192 bytes, linear)",
+    "[    0.022558] futex hash table entries: 512 (32768 bytes on 1 NUMA nodes, total 32 KiB, linear).",
+    "[    0.025722] DMI not present or invalid.",
+    "[    0.026435] NET: Registered PF_NETLINK/PF_ROUTE protocol family",
+    "[    0.028482] DMA: preallocated 256 KiB pool for atomic coherent allocations",
+    "[    0.029598] thermal_sys: Registered thermal governor 'step_wise'",
+    "[    0.029703] cpuidle: using governor menu",
+    "[    0.033068] /pinmux@70000014: Fixed dependency cycle(s) with /pinmux@70000014/pinmux",
+    "[    0.041131] No ATAGs?",
+    "[    0.041241] hw-breakpoint: found 5 (+1 reserved) breakpoint and 1 watchpoint registers.",
+    "[    0.041268] hw-breakpoint: maximum watchpoint size is 4 bytes.",
+    "[    0.048404] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.",
+    "[    0.051552] iommu: Default domain type: Translated",
+    "[    0.051584] iommu: DMA domain TLB invalidation policy: strict mode",
+    "[    0.052247] SCSI subsystem initialized",
+    "[    0.052501] usbcore: registered new interface driver usbfs",
+    "[    0.052588] usbcore: registered new interface driver hub",
+    "[    0.052641] usbcore: registered new device driver usb",
+    "[    0.052873] mc: Linux media interface: v0.10",
+    "[    0.052935] videodev: Linux video capture interface: v2.00",
+    "[    0.053024] pps_core: LinuxPPS API ver. 1 registered",
+    "[    0.053043] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>",
+    "[    0.053078] PTP clock support registered",
+    "[    0.053581] Advanced Linux Sound Architecture Driver Initialized.",
+    "[    0.055339] clocksource: Switched to clocksource timer_us",
+    "[    0.073716] NET: Registered PF_INET protocol family",
+    "[    0.074008] IP idents hash table entries: 16384 (order: 5, 131072 bytes, linear)",
+    "[    0.075798] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)",
+    "[    0.075850] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)",
+    "[    0.075889] TCP established hash table entries: 8192 (order: 3, 32768 bytes, linear)",
+    "[    0.075971] TCP bind hash table entries: 8192 (order: 5, 131072 bytes, linear)",
+    "[    0.076169] TCP: Hash tables configured (established 8192 bind 8192)",
+    "[    0.076307] UDP hash table entries: 512 (order: 3, 28672 bytes, linear)",
+    "[    0.076448] UDP-Lite hash table entries: 512 (order: 3, 28672 bytes, linear)",
+    "[    0.076725] NET: Registered PF_UNIX/PF_LOCAL protocol family",
+    "[    0.086972] Initialise system trusted keyrings",
+    "[    0.087263] workingset: timestamp_bits=14 max_order=18 bucket_order=4",
+    "[    0.159742] Unpacking initramfs...",
+    "[    0.220496] Freeing initrd memory: 1424K",
+    "[    0.235280] Key type asymmetric registered",
+    "[    0.235310] Asymmetric key parser 'x509' registered",
+    "[    0.235564] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 245)",
+    "[    0.235907] io scheduler kyber registered",
+    "[    0.236014] io scheduler bfq registered",
+    "[    0.236083] testing lwq....",
+    "[    0.236098]  lwq: run some threads",
+    "[    0.255279]  lwq: dequeue first 50: 57(799) 23(800) 58(799) 59(799) 24(800) 60(799) 61(799) 11(801) 62(799) 63(799)",
+    "[    0.255390]  lwq: ...  64(799) 65(799) 25(800) 5(802) 66(799) 26(800) 67(799) 12(801) 68(799) 69(799)",
+    "[    0.255459]  lwq: ...  27(800) 70(799) 2(803) 71(799) 28(800) 72(799) 13(801) 73(799) 29(800) 74(799)",
+    "[    0.255525]  lwq: ...  6(802) 75(799) 76(799) 30(800) 77(799) 78(799) 14(801) 79(799) 0(806) 31(800)",
+    "[    0.255592]  lwq: ...  80(799) 81(799) 32(800) 15(801) 82(799) 33(800) 83(799) 7(802) 84(799) 34(800)",
+    "[    0.255660]  lwq: delete the multiples of 3 (test lwq_for_each_safe())",
+    "[    0.255678]  lwq: dequeue remaining: 85 16 86 35 88 89 37 91 92 17 38 94 8 95 97 40 98 41 1 43 19 44 46 47 20 49 4 50 10 52 22 53 55 56",
+    "[    0.257664] gpio gpiochip0: Static allocation of GPIO base is deprecated, use dynamic allocation.",
+    "[    0.263473] tegra-apbdma 6000a000.dma-controller: Tegra20 APB DMA driver registered 16 channels",
+    "[    0.265777] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled",
+    "[    0.268417] printk: legacy console [ttyS0] disabled",
+    "[    0.268789] 70006300.serial: ttyS0 at MMIO 0x70006300 (irq = 51, base_baud = 13500000) is a Tegra",
+    "[    0.268866] printk: legacy console [ttyS0] enabled",
+    "[    1.141068] SPI driver panel-samsung-s6e63m0 has no spi_device_id for samsung,s6e63m0",
+    "[    1.156434] loop: module loaded",
+    "[    1.160070] zram: Added device: zram0",
+    "[    1.167581] usbcore: registered new interface driver brcmfmac",
+    "[    1.173522] tegra-phy c5000000.usb-phy: supply vbus not found, using dummy regulator",
+    "[    1.181743] tegra-phy c5004000.usb-phy: supply vbus not found, using dummy regulator",
+    "[    1.189918] usbcore: registered new interface driver cdc_acm",
+    "[    1.195539] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters",
+    "[    1.203555] usbcore: registered new interface driver cdc_wdm",
+    "[    1.209320] usbcore: registered new device driver onboard-usb-dev",
+    "[    1.218473] tegra_rtc 7000e000.rtc: registered as rtc1",
+    "[    1.223550] tegra_rtc 7000e000.rtc: Tegra internal Real Time Clock",
+    "[    1.229984] i2c_dev: i2c /dev entries driver",
+    "[    1.238418] /i2c@7000d000/tps6586x@34: Fixed dependency cycle(s) with /i2c@7000d000/tps6586x@34/regulators/sm2",
+    "[    1.248405] /i2c@7000d000/tps6586x@34: Fixed dependency cycle(s) with /i2c@7000d000/tps6586x@34/regulators/sys",
+    "[    1.258752] tps6586x 3-0034: Found TPS658621C/D, VERSIONCRC is 2c",
+    "[    1.270920] tps6586x-rtc tps6586x-rtc: registered as rtc0",
+    "[    1.276911] tps6586x-rtc tps6586x-rtc: setting system clock to 2026-10-06T14:12:27 UTC (1791295947)",
+    "[    1.288823] i2c i2c-1: Added multiplexed i2c bus 4",
+    "[    1.293991] i2c i2c-1: Added multiplexed i2c bus 5",
+    "[    1.300625] lm90 3-004c: supply vcc not found, using dummy regulator",
+    "[    1.308465] hwmon hwmon0: temp1_input not attached to any thermal zone",
+    "[    1.323447] device-mapper: uevent: version 1.0.3",
+    "[    1.328528] device-mapper: ioctl: 4.50.0-ioctl (2025-04-28) initialised: dm-devel@lists.linux.dev",
+    "[    1.337936] sdhci: Secure Digital Host Controller Interface driver",
+    "[    1.344051] sdhci: Copyright(c) Pierre Ossman",
+    "[    1.348401] sdhci-pltfm: SDHCI platform and OF driver helper",
+    "[    1.354812] hid: raw HID events driver (C) Jiri Kosina",
+    "[    1.360190] vdd_ldo6,avdd_vdac: Bringing 2850000uV into 1800000-1800000uV",
+    "[    1.361429] kxcjk1013 3-000f: supply vdd not found, using dummy regulator",
+    "[    1.373862] kxcjk1013 3-000f: supply vddio not found, using dummy regulator",
+    "[    1.516812] hw perfevents: enabled with armv7_cortex_a9 PMU driver, 7 (8000003f) counters available",
+    "[    1.528460] wm8903 0-001a: supply AVDD not found, using dummy regulator",
+    "[    1.535133] wm8903 0-001a: supply CPVDD not found, using dummy regulator",
+    "[    1.541844] wm8903 0-001a: supply DBVDD not found, using dummy regulator",
+    "[    1.548555] wm8903 0-001a: supply DCVDD not found, using dummy regulator",
+    "[    1.555687] wm8903 0-001a: WM8903 revision C",
+    "[    1.566952] tegra20-i2s 70002800.i2s: using zero-initialized flat cache, this may cause unexpected behavior",
+    "[    1.767282] input: NVIDIA Tegra Ventana Headphones Jack as /devices/soc0/sound/sound/card0/input0",
+    "[    1.776245] input: NVIDIA Tegra Ventana Mic Jack as /devices/soc0/sound/sound/card0/input1",
+    "[    1.786510] NET: Registered PF_INET6 protocol family",
+    "[    1.792556] Segment Routing with IPv6",
+    "[    1.796240] In-situ OAM (IOAM) with IPv6",
+    "[    1.800165] NET: Registered PF_PACKET protocol family",
+    "[    1.805144] PFKEY is deprecated and scheduled to be removed in 2027, please contact the netdev mailing list",
+    "[    1.814896] NET: Registered PF_KEY protocol family",
+    "[    1.819841] Key type dns_resolver registered",
+    "[    1.824601] Registering SWP/SWPB emulation handler",
+    "[    1.836995] registered taskstats version 1",
+    "[    1.841149] Loading compiled-in X.509 certificates",
+    "[    1.852358] Loaded X.509 cert 'Build time autogenerated kernel key: 798ccf7adde207547400a7f2ab29d7b07165aceb'",
+    "[    1.879894] regulator-1v5 enforce active low on GPIO handle",
+    "[    1.889481] tegra voltage-coupler: core voltage initialized to 1200000uV",
+    "[    1.898793] platform 54140000.gr2d: Adding to iommu group 0",
+    "[    1.905488] platform 54180000.gr3d: Adding to iommu group 1",
+    "[    1.912439] platform 54200000.dc: Adding to iommu group 2",
+    "[    1.918396] platform 54240000.dc: Adding to iommu group 3",
+    "[    1.924737] tegra-hdmi 54280000.hdmi: supply hdmi not found, using dummy regulator",
+    "[    1.934189] tegra-phy c5000000.usb-phy: supply vbus not found, using dummy regulator",
+    "[    1.943247] tegra-phy c5004000.usb-phy: supply vbus not found, using dummy regulator",
+    "[    2.071526] tegra-phy c5000000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x44040400",
+    "[    2.078733] tegra-phy c5000000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x40000545",
+    "[    2.086073] tegra-phy c5000000.usb-phy: debug: suspend ok",
+    "[    2.104638] ci_hdrc ci_hdrc.1: EHCI Host Controller",
+    "[    2.109499] ci_hdrc ci_hdrc.1: new USB bus registered, assigned bus number 1",
+    "[    2.135359] ci_hdrc ci_hdrc.1: USB 2.0 started, EHCI 1.00",
+    "[    2.140950] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 7.00",
+    "[    2.149173] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1",
+    "[    2.156358] usb usb1: Product: EHCI Host Controller",
+    "[    2.161187] usb usb1: Manufacturer: Linux 7.0.1-nura-indigo-ram ehci_hcd",
+    "[    2.167877] usb usb1: SerialNumber: ci_hdrc.1",
+    "[    2.172786] hub 1-0:1.0: USB hub found",
+    "[    2.176543] hub 1-0:1.0: 1 port detected",
+    "[    2.188164] ci_hdrc ci_hdrc.2: EHCI Host Controller",
+    "[    2.192996] ci_hdrc ci_hdrc.2: new USB bus registered, assigned bus number 2",
+    "[    2.225355] ci_hdrc ci_hdrc.2: USB 2.0 started, EHCI 1.00",
+    "[    2.230931] usb usb2: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 7.00",
+    "[    2.239154] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1",
+    "[    2.246332] usb usb2: Product: EHCI Host Controller",
+    "[    2.251167] usb usb2: Manufacturer: Linux 7.0.1-nura-indigo-ram ehci_hcd",
+    "[    2.257858] usb usb2: SerialNumber: ci_hdrc.2",
+    "[    2.262687] hub 2-0:1.0: USB hub found",
+    "[    2.266427] hub 2-0:1.0: 1 port detected",
+    "[    2.273278] sdhci-tegra c8000400.mmc: Got CD GPIO",
+    "[    2.273450] tegra20-emc 7000f400.memory-controller: 32bit DRAM bus, 2 LPDDR2 devices attached",
+    "[    2.278939] sdhci-tegra c8000400.mmc: Got WP GPIO",
+    "[    2.286434] tegra20-emc 7000f400.memory-controller: SDRAM[dev1]: manufacturer: 0x6 (Hynix) rev1: 0x0 rev2: 0x0 prefetch: S4 density: 2048Mbit iowidth: 16bit",
+    "[    2.305135] tegra20-emc 7000f400.memory-controller: SDRAM[dev0]: manufacturer: 0x6 (Hynix) rev1: 0x0 rev2: 0x0 prefetch: S4 density: 2048Mbit iowidth: 16bit",
+    "[    2.319089] tegra20-emc 7000f400.memory-controller: device-tree doesn't have memory timings",
+    "[    2.327517] mmc1: Invalid maximum block size, assuming 512 bytes",
+    "[    2.333862] mmc0: Invalid maximum block size, assuming 512 bytes",
+    "[    2.345389] panel-simple panel: Specify missing bus_flags",
+    "[    2.365386] mmc1: SDHCI controller on c8000600.mmc [c8000600.mmc] using ADMA",
+    "[    2.365726] mmc0: SDHCI controller on c8000400.mmc [c8000400.mmc] using ADMA",
+    "[    2.386179] [drm] Initialized tegra 99997.0.0 for drm on minor 0",
+    "[    2.420874] fb0: sys_imageblit: framebuffer is not in virtual address space.",
+    "[    2.441552] Console: switching to colour frame buffer device 160x50",
+    "[    2.471540] drm drm: [drm] fb0: tegradrmfb frame buffer device",
+    "[    2.481214] mmc0: new high speed SDXC card at address 5048",
+    "[    2.487132] input: gpio-keys as /devices/soc0/gpio-keys/input/input2",
+    "[    2.494188] mmcblk0: mmc0:5048 SDIT1 59.6 GiB",
+    "[    2.494538] cfg80211: Loading compiled-in X.509 certificates for regulatory database",
+    "[    2.508929] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'",
+    "[    2.516449] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'",
+    "[    2.523707]  mmcblk0: p1",
+    "[    2.525462] clk: Disabling unused clocks",
+    "[    2.530262] PM: genpd: Disabling unused power domains",
+    "[    2.535311] ALSA device list:",
+    "[    2.538290]   #0: NVIDIA Tegra Ventana",
+    "[    2.549796] Freeing unused kernel image (initmem) memory: 1024K",
+    "[    2.556634] Run /init as init process",
+    "[    2.560336]   with arguments:",
+    "[    2.560346]     /init",
+    "[    2.560354]   with environment:",
+    "[    2.560361]     HOME=/",
+    "[    2.560369]     TERM=linux",
+    "[    2.734197] mmc1: new high speed MMC card at address 0001",
+    "[    2.740461] mmcblk1: mmc1:0001 MMC32G 29.8 GiB",
+    "[    2.747405] mmcblk1boot0: mmc1:0001 MMC32G 2.00 MiB",
+    "[    2.754312] mmcblk1boot1: mmc1:0001 MMC32G 2.00 MiB",
+    "[    2.761098] mmcblk1rpmb: mmc1:0001 MMC32G 256 KiB, chardev (241:0)",
+    "[    2.769035] fb0: sys_fillrect: framebuffer is not in virtual address space.",
+    "[    3.953781] EXT4-fs (mmcblk0p1): recovery complete",
+    "[    3.962265] EXT4-fs (mmcblk0p1): mounted filesystem 2a6e5a89-5a50-46c6-95ec-b718e7abd62b r/w with ordered data mode. Quota mode: disabled.",
+    "[    4.773642] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006",
+    "[    4.782766] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6",
+    "[    4.792274] tegra-phy c5008000.usb-phy: debug: suspend ok",
+    "[    5.948870] udevd[486]: starting version 3.2.14",
+    "[    6.525449] EXT4-fs (mmcblk0p1): re-mounted 2a6e5a89-5a50-46c6-95ec-b718e7abd62b.",
+    "[    8.485365] random: crng init done",
+    "[    8.534609] udevd[486]: starting eudev-3.2.14",
+    "[    8.863531] ntrig_indigo: loading out-of-tree module taints kernel.",
+    "[    8.863561] ntrig_indigo: module verification failed: signature and/or required key missing - tainting kernel",
+    "[    8.864707] input: N-Trig Indigo Touchscreen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input3",
+    "[    8.864916] input: N-Trig Indigo Pen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input4",
+    "[    8.875638] sdhci-tegra c8000000.mmc: allocated mmc-pwrseq",
+    "[    8.967981] mmc2: Invalid maximum block size, assuming 512 bytes",
+    "[    9.377938] mmc2: SDHCI controller on c8000000.mmc [c8000000.mmc] using ADMA",
+    "[    9.414391] mmc2: queuing unknown CIS tuple 0x02 [ff] (1 bytes)",
+    "[    9.418175] mmc2: new SDIO card at address 0001",
+    "[    9.421404] brcmfmac: F1 signature read @0x18000000=0x9934329",
+    "[    9.423295] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4329-sdio for chip BCM4329/3",
+    "[    9.426246] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.lenovo,indigo.bin failed with error -2",
+    "[    9.448587] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.clm_blob failed with error -2",
+    "[    9.486994] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz",
+    "[    9.597480] brcmfmac: brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may have limited channels available",
+    "[    9.597502] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)",
+    "[    9.598059] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4329/3 wl0: Sep  2 2011 14:48:19 version 4.220.48",
+    "[    9.613682] ieee80211 phy0: brcmf_setup_wiphybands: rxchain unsupported",
+    "[   10.274650] usbcore: registered new interface driver usbhid",
+    "[   10.274678] usbhid: USB HID core driver",
+    "[   12.516338] zram0: detected capacity change from 0 to 3041280",
+    "[   12.537511] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS",
+    "[   15.085238] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported",
+    "[   20.315464] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006",
+    "[   20.315503] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6",
+    "[   20.315514] tegra-phy c5008000.usb-phy: debug: suspend ok",
+    "[   20.316254] platform sound-hdmi: deferred probe pending: asoc-simple-card: parse error",
+    "[   20.316274] tegra-mc 7000f000.memory-controller: sync_state() pending due to 6001a000.vde",
+    "[   20.316304] tegra-pmc 7000e400.pmc: sync_state() pending due to 6001a000.vde",
+    "[ 1293.512437] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 1293.623749] Xorg (15531): drop_caches: 1",
+    "[ 1293.624042] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 1293.624444] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 1293.845705] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4612.085047] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4612.301101] Xorg (26405): drop_caches: 1",
+    "[ 4612.301277] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4612.301554] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4612.511481] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4963.572909] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4963.740992] Xorg (29643): drop_caches: 1",
+    "[ 4963.741160] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4963.741448] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4963.965192] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 8020.168298] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 8020.263920] Xorg (29643): drop_caches: 1",
+    "[ 8020.264074] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 8020.264306] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[10330.290201] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[10330.383298] Xorg (29643): drop_caches: 1",
+    "[10330.383459] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[10330.383689] drm drm: failed to allocate buffer of size 132710400: -12"
+  ],
+  "kernel_log_after": [
+    "[    0.000000] Booting Linux on physical CPU 0x0",
+    "[    0.000000] Linux version 7.0.1-nura-indigo-ram (@40a632f1419a) (Alpine clang version 23.1.2, LLD 23.1.2) #3 SMP Tue Oct  6 14:10:41 UTC 2026",
+    "[    0.000000] CPU: ARMv7 Processor [411fc090] revision 0 (ARMv7), cr=10c5387d",
+    "[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache",
+    "[    0.000000] OF: fdt: Machine model: Lenovo ThinkPad Tablet (Indigo)",
+    "[    0.000000] Memory policy: Data cache writealloc",
+    "[    0.000000] efi: UEFI not found.",
+    "[    0.000000] cma: Reserved 64 MiB at 0x3c000000",
+    "[    0.000000] OF: reserved mem: Reserved memory: No reserved-memory node in the DT",
+    "[    0.000000] tegra_boot_config_table_init: BCT found in IRAM",
+    "[    0.000000] tegra-partition: initialized to logical sector = 1024 sectors_num = 512",
+    "[    0.000000] Zone ranges:",
+    "[    0.000000]   Normal   [mem 0x0000000000000000-0x000000002fffffff]",
+    "[    0.000000]   HighMem  [mem 0x0000000030000000-0x000000003fffffff]",
+    "[    0.000000] Movable zone start for each node",
+    "[    0.000000] Early memory node ranges",
+    "[    0.000000]   node   0: [mem 0x0000000000000000-0x000000003fffffff]",
+    "[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000003fffffff]",
+    "[    0.000000] percpu: Embedded 19 pages/cpu s47692 r8192 d21940 u77824",
+    "[    0.000000] pcpu-alloc: s47692 r8192 d21940 u77824 alloc=19*4096",
+    "[    0.000000] pcpu-alloc: [0] 0 [0] 1 ",
+    "[    0.000000] Kernel command line: console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init",
+    "[    0.000000] printk: log buffer data + meta data: 131072 + 409600 = 540672 bytes",
+    "[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes, linear)",
+    "[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes, linear)",
+    "[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 262144",
+    "[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off",
+    "[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=2, Nodes=1",
+    "[    0.000000] ftrace: allocating 46450 entries in 137 pages",
+    "[    0.000000] ftrace: allocated 137 pages with 3 groups",
+    "[    0.000000] rcu: Hierarchical RCU implementation.",
+    "[    0.000000] rcu: \tRCU restricting CPUs from NR_CPUS=4 to nr_cpu_ids=2.",
+    "[    0.000000] \tRude variant of Tasks RCU enabled.",
+    "[    0.000000] \tTracing variant of Tasks RCU enabled.",
+    "[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.",
+    "[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2",
+    "[    0.000000] RCU Tasks Rude: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.",
+    "[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16",
+    "[    0.000000] /interrupt-controller@60004000: 128 interrupts forwarded to /interrupt-controller@50041000",
+    "[    0.000000] L2C: platform modifies aux control register: 0x02080000 -> 0x3e480000",
+    "[    0.000000] L2C: DT/platform modifies aux control register: 0x02080000 -> 0x3e480000",
+    "[    0.000000] L2C-310 errata 727915 769419 enabled",
+    "[    0.000000] L2C-310 enabling early BRESP for Cortex-A9",
+    "[    0.000000] L2C-310 full line of zeros enabled for Cortex-A9",
+    "[    0.000000] L2C-310 ID prefetch enabled, offset 1 lines",
+    "[    0.000000] L2C-310 cache controller enabled, 8 ways, 1024 kB",
+    "[    0.000000] L2C-310: CACHE_ID 0x410000c4, AUX_CTRL 0x7e480001",
+    "[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.",
+    "[    0.000003] sched_clock: 32 bits at 1000kHz, resolution 1000ns, wraps every 2147483647500ns",
+    "[    0.000023] clocksource: timer_us: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275 ns",
+    "[    0.000035] Switching to timer-based delay loop, resolution 1000ns",
+    "[    0.000261] clocksource: tegra_suspend_timer: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns",
+    "[    0.000656] Console: colour dummy device 80x30",
+    "[    0.000670] printk: legacy console [tty0] enabled",
+    "[    0.001212] Calibrating delay loop (skipped), value calculated using timer frequency.. 2.00 BogoMIPS (lpj=10000)",
+    "[    0.001245] CPU: Testing write buffer coherency: ok",
+    "[    0.001312] Spectre V2: workarounds disabled by configuration",
+    "[    0.001329] pid_max: default: 32768 minimum: 301",
+    "[    0.001555] Yama: becoming mindful.",
+    "[    0.002027] LSM support for eBPF active",
+    "[    0.002165] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)",
+    "[    0.002196] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)",
+    "[    0.002598] VFS: Finished mounting rootfs on nullfs",
+    "[    0.003644] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000",
+    "[    0.003733] cacheinfo: Unable to detect cache hierarchy for CPU 0",
+    "[    0.004951] Setting up static identity map for 0x100000 - 0x1000b0",
+    "[    0.005163] rcu: Hierarchical SRCU implementation.",
+    "[    0.005184] rcu: \tMax phase no-delay instances is 1000.",
+    "[    0.005508] Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level",
+    "[    0.007470] Tegra Revision: A04 SKU: 8 CPU Process: 1 SoC Process: 2",
+    "[    0.007502] Tegra CPU Speedo ID 0, SoC Speedo ID 1",
+    "[    0.008377] EFI services will not be available.",
+    "[    0.008605] smp: Bringing up secondary CPUs ...",
+    "[    0.009417] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001",
+    "[    0.009703] smp: Brought up 1 node, 2 CPUs",
+    "[    0.009740] SMP: Total of 2 processors activated (4.00 BogoMIPS).",
+    "[    0.009759] CPU: All CPU(s) started in SVC mode.",
+    "[    0.009965] Memory: 942228K/1048576K available (16384K kernel code, 1517K rwdata, 4504K rodata, 1024K init, 331K bss, 37240K reserved, 65536K cma-reserved, 196608K highmem)",
+    "[    0.010766] devtmpfs: initialized",
+    "[    0.021886] VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 1",
+    "[    0.022397] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns",
+    "[    0.022465] posixtimers hash table entries: 1024 (order: 1, 8192 bytes, linear)",
+    "[    0.022558] futex hash table entries: 512 (32768 bytes on 1 NUMA nodes, total 32 KiB, linear).",
+    "[    0.025722] DMI not present or invalid.",
+    "[    0.026435] NET: Registered PF_NETLINK/PF_ROUTE protocol family",
+    "[    0.028482] DMA: preallocated 256 KiB pool for atomic coherent allocations",
+    "[    0.029598] thermal_sys: Registered thermal governor 'step_wise'",
+    "[    0.029703] cpuidle: using governor menu",
+    "[    0.033068] /pinmux@70000014: Fixed dependency cycle(s) with /pinmux@70000014/pinmux",
+    "[    0.041131] No ATAGs?",
+    "[    0.041241] hw-breakpoint: found 5 (+1 reserved) breakpoint and 1 watchpoint registers.",
+    "[    0.041268] hw-breakpoint: maximum watchpoint size is 4 bytes.",
+    "[    0.048404] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.",
+    "[    0.051552] iommu: Default domain type: Translated",
+    "[    0.051584] iommu: DMA domain TLB invalidation policy: strict mode",
+    "[    0.052247] SCSI subsystem initialized",
+    "[    0.052501] usbcore: registered new interface driver usbfs",
+    "[    0.052588] usbcore: registered new interface driver hub",
+    "[    0.052641] usbcore: registered new device driver usb",
+    "[    0.052873] mc: Linux media interface: v0.10",
+    "[    0.052935] videodev: Linux video capture interface: v2.00",
+    "[    0.053024] pps_core: LinuxPPS API ver. 1 registered",
+    "[    0.053043] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>",
+    "[    0.053078] PTP clock support registered",
+    "[    0.053581] Advanced Linux Sound Architecture Driver Initialized.",
+    "[    0.055339] clocksource: Switched to clocksource timer_us",
+    "[    0.073716] NET: Registered PF_INET protocol family",
+    "[    0.074008] IP idents hash table entries: 16384 (order: 5, 131072 bytes, linear)",
+    "[    0.075798] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)",
+    "[    0.075850] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)",
+    "[    0.075889] TCP established hash table entries: 8192 (order: 3, 32768 bytes, linear)",
+    "[    0.075971] TCP bind hash table entries: 8192 (order: 5, 131072 bytes, linear)",
+    "[    0.076169] TCP: Hash tables configured (established 8192 bind 8192)",
+    "[    0.076307] UDP hash table entries: 512 (order: 3, 28672 bytes, linear)",
+    "[    0.076448] UDP-Lite hash table entries: 512 (order: 3, 28672 bytes, linear)",
+    "[    0.076725] NET: Registered PF_UNIX/PF_LOCAL protocol family",
+    "[    0.086972] Initialise system trusted keyrings",
+    "[    0.087263] workingset: timestamp_bits=14 max_order=18 bucket_order=4",
+    "[    0.159742] Unpacking initramfs...",
+    "[    0.220496] Freeing initrd memory: 1424K",
+    "[    0.235280] Key type asymmetric registered",
+    "[    0.235310] Asymmetric key parser 'x509' registered",
+    "[    0.235564] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 245)",
+    "[    0.235907] io scheduler kyber registered",
+    "[    0.236014] io scheduler bfq registered",
+    "[    0.236083] testing lwq....",
+    "[    0.236098]  lwq: run some threads",
+    "[    0.255279]  lwq: dequeue first 50: 57(799) 23(800) 58(799) 59(799) 24(800) 60(799) 61(799) 11(801) 62(799) 63(799)",
+    "[    0.255390]  lwq: ...  64(799) 65(799) 25(800) 5(802) 66(799) 26(800) 67(799) 12(801) 68(799) 69(799)",
+    "[    0.255459]  lwq: ...  27(800) 70(799) 2(803) 71(799) 28(800) 72(799) 13(801) 73(799) 29(800) 74(799)",
+    "[    0.255525]  lwq: ...  6(802) 75(799) 76(799) 30(800) 77(799) 78(799) 14(801) 79(799) 0(806) 31(800)",
+    "[    0.255592]  lwq: ...  80(799) 81(799) 32(800) 15(801) 82(799) 33(800) 83(799) 7(802) 84(799) 34(800)",
+    "[    0.255660]  lwq: delete the multiples of 3 (test lwq_for_each_safe())",
+    "[    0.255678]  lwq: dequeue remaining: 85 16 86 35 88 89 37 91 92 17 38 94 8 95 97 40 98 41 1 43 19 44 46 47 20 49 4 50 10 52 22 53 55 56",
+    "[    0.257664] gpio gpiochip0: Static allocation of GPIO base is deprecated, use dynamic allocation.",
+    "[    0.263473] tegra-apbdma 6000a000.dma-controller: Tegra20 APB DMA driver registered 16 channels",
+    "[    0.265777] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled",
+    "[    0.268417] printk: legacy console [ttyS0] disabled",
+    "[    0.268789] 70006300.serial: ttyS0 at MMIO 0x70006300 (irq = 51, base_baud = 13500000) is a Tegra",
+    "[    0.268866] printk: legacy console [ttyS0] enabled",
+    "[    1.141068] SPI driver panel-samsung-s6e63m0 has no spi_device_id for samsung,s6e63m0",
+    "[    1.156434] loop: module loaded",
+    "[    1.160070] zram: Added device: zram0",
+    "[    1.167581] usbcore: registered new interface driver brcmfmac",
+    "[    1.173522] tegra-phy c5000000.usb-phy: supply vbus not found, using dummy regulator",
+    "[    1.181743] tegra-phy c5004000.usb-phy: supply vbus not found, using dummy regulator",
+    "[    1.189918] usbcore: registered new interface driver cdc_acm",
+    "[    1.195539] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters",
+    "[    1.203555] usbcore: registered new interface driver cdc_wdm",
+    "[    1.209320] usbcore: registered new device driver onboard-usb-dev",
+    "[    1.218473] tegra_rtc 7000e000.rtc: registered as rtc1",
+    "[    1.223550] tegra_rtc 7000e000.rtc: Tegra internal Real Time Clock",
+    "[    1.229984] i2c_dev: i2c /dev entries driver",
+    "[    1.238418] /i2c@7000d000/tps6586x@34: Fixed dependency cycle(s) with /i2c@7000d000/tps6586x@34/regulators/sm2",
+    "[    1.248405] /i2c@7000d000/tps6586x@34: Fixed dependency cycle(s) with /i2c@7000d000/tps6586x@34/regulators/sys",
+    "[    1.258752] tps6586x 3-0034: Found TPS658621C/D, VERSIONCRC is 2c",
+    "[    1.270920] tps6586x-rtc tps6586x-rtc: registered as rtc0",
+    "[    1.276911] tps6586x-rtc tps6586x-rtc: setting system clock to 2026-10-06T14:12:27 UTC (1791295947)",
+    "[    1.288823] i2c i2c-1: Added multiplexed i2c bus 4",
+    "[    1.293991] i2c i2c-1: Added multiplexed i2c bus 5",
+    "[    1.300625] lm90 3-004c: supply vcc not found, using dummy regulator",
+    "[    1.308465] hwmon hwmon0: temp1_input not attached to any thermal zone",
+    "[    1.323447] device-mapper: uevent: version 1.0.3",
+    "[    1.328528] device-mapper: ioctl: 4.50.0-ioctl (2025-04-28) initialised: dm-devel@lists.linux.dev",
+    "[    1.337936] sdhci: Secure Digital Host Controller Interface driver",
+    "[    1.344051] sdhci: Copyright(c) Pierre Ossman",
+    "[    1.348401] sdhci-pltfm: SDHCI platform and OF driver helper",
+    "[    1.354812] hid: raw HID events driver (C) Jiri Kosina",
+    "[    1.360190] vdd_ldo6,avdd_vdac: Bringing 2850000uV into 1800000-1800000uV",
+    "[    1.361429] kxcjk1013 3-000f: supply vdd not found, using dummy regulator",
+    "[    1.373862] kxcjk1013 3-000f: supply vddio not found, using dummy regulator",
+    "[    1.516812] hw perfevents: enabled with armv7_cortex_a9 PMU driver, 7 (8000003f) counters available",
+    "[    1.528460] wm8903 0-001a: supply AVDD not found, using dummy regulator",
+    "[    1.535133] wm8903 0-001a: supply CPVDD not found, using dummy regulator",
+    "[    1.541844] wm8903 0-001a: supply DBVDD not found, using dummy regulator",
+    "[    1.548555] wm8903 0-001a: supply DCVDD not found, using dummy regulator",
+    "[    1.555687] wm8903 0-001a: WM8903 revision C",
+    "[    1.566952] tegra20-i2s 70002800.i2s: using zero-initialized flat cache, this may cause unexpected behavior",
+    "[    1.767282] input: NVIDIA Tegra Ventana Headphones Jack as /devices/soc0/sound/sound/card0/input0",
+    "[    1.776245] input: NVIDIA Tegra Ventana Mic Jack as /devices/soc0/sound/sound/card0/input1",
+    "[    1.786510] NET: Registered PF_INET6 protocol family",
+    "[    1.792556] Segment Routing with IPv6",
+    "[    1.796240] In-situ OAM (IOAM) with IPv6",
+    "[    1.800165] NET: Registered PF_PACKET protocol family",
+    "[    1.805144] PFKEY is deprecated and scheduled to be removed in 2027, please contact the netdev mailing list",
+    "[    1.814896] NET: Registered PF_KEY protocol family",
+    "[    1.819841] Key type dns_resolver registered",
+    "[    1.824601] Registering SWP/SWPB emulation handler",
+    "[    1.836995] registered taskstats version 1",
+    "[    1.841149] Loading compiled-in X.509 certificates",
+    "[    1.852358] Loaded X.509 cert 'Build time autogenerated kernel key: 798ccf7adde207547400a7f2ab29d7b07165aceb'",
+    "[    1.879894] regulator-1v5 enforce active low on GPIO handle",
+    "[    1.889481] tegra voltage-coupler: core voltage initialized to 1200000uV",
+    "[    1.898793] platform 54140000.gr2d: Adding to iommu group 0",
+    "[    1.905488] platform 54180000.gr3d: Adding to iommu group 1",
+    "[    1.912439] platform 54200000.dc: Adding to iommu group 2",
+    "[    1.918396] platform 54240000.dc: Adding to iommu group 3",
+    "[    1.924737] tegra-hdmi 54280000.hdmi: supply hdmi not found, using dummy regulator",
+    "[    1.934189] tegra-phy c5000000.usb-phy: supply vbus not found, using dummy regulator",
+    "[    1.943247] tegra-phy c5004000.usb-phy: supply vbus not found, using dummy regulator",
+    "[    2.071526] tegra-phy c5000000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x44040400",
+    "[    2.078733] tegra-phy c5000000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x40000545",
+    "[    2.086073] tegra-phy c5000000.usb-phy: debug: suspend ok",
+    "[    2.104638] ci_hdrc ci_hdrc.1: EHCI Host Controller",
+    "[    2.109499] ci_hdrc ci_hdrc.1: new USB bus registered, assigned bus number 1",
+    "[    2.135359] ci_hdrc ci_hdrc.1: USB 2.0 started, EHCI 1.00",
+    "[    2.140950] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 7.00",
+    "[    2.149173] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1",
+    "[    2.156358] usb usb1: Product: EHCI Host Controller",
+    "[    2.161187] usb usb1: Manufacturer: Linux 7.0.1-nura-indigo-ram ehci_hcd",
+    "[    2.167877] usb usb1: SerialNumber: ci_hdrc.1",
+    "[    2.172786] hub 1-0:1.0: USB hub found",
+    "[    2.176543] hub 1-0:1.0: 1 port detected",
+    "[    2.188164] ci_hdrc ci_hdrc.2: EHCI Host Controller",
+    "[    2.192996] ci_hdrc ci_hdrc.2: new USB bus registered, assigned bus number 2",
+    "[    2.225355] ci_hdrc ci_hdrc.2: USB 2.0 started, EHCI 1.00",
+    "[    2.230931] usb usb2: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 7.00",
+    "[    2.239154] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1",
+    "[    2.246332] usb usb2: Product: EHCI Host Controller",
+    "[    2.251167] usb usb2: Manufacturer: Linux 7.0.1-nura-indigo-ram ehci_hcd",
+    "[    2.257858] usb usb2: SerialNumber: ci_hdrc.2",
+    "[    2.262687] hub 2-0:1.0: USB hub found",
+    "[    2.266427] hub 2-0:1.0: 1 port detected",
+    "[    2.273278] sdhci-tegra c8000400.mmc: Got CD GPIO",
+    "[    2.273450] tegra20-emc 7000f400.memory-controller: 32bit DRAM bus, 2 LPDDR2 devices attached",
+    "[    2.278939] sdhci-tegra c8000400.mmc: Got WP GPIO",
+    "[    2.286434] tegra20-emc 7000f400.memory-controller: SDRAM[dev1]: manufacturer: 0x6 (Hynix) rev1: 0x0 rev2: 0x0 prefetch: S4 density: 2048Mbit iowidth: 16bit",
+    "[    2.305135] tegra20-emc 7000f400.memory-controller: SDRAM[dev0]: manufacturer: 0x6 (Hynix) rev1: 0x0 rev2: 0x0 prefetch: S4 density: 2048Mbit iowidth: 16bit",
+    "[    2.319089] tegra20-emc 7000f400.memory-controller: device-tree doesn't have memory timings",
+    "[    2.327517] mmc1: Invalid maximum block size, assuming 512 bytes",
+    "[    2.333862] mmc0: Invalid maximum block size, assuming 512 bytes",
+    "[    2.345389] panel-simple panel: Specify missing bus_flags",
+    "[    2.365386] mmc1: SDHCI controller on c8000600.mmc [c8000600.mmc] using ADMA",
+    "[    2.365726] mmc0: SDHCI controller on c8000400.mmc [c8000400.mmc] using ADMA",
+    "[    2.386179] [drm] Initialized tegra 99997.0.0 for drm on minor 0",
+    "[    2.420874] fb0: sys_imageblit: framebuffer is not in virtual address space.",
+    "[    2.441552] Console: switching to colour frame buffer device 160x50",
+    "[    2.471540] drm drm: [drm] fb0: tegradrmfb frame buffer device",
+    "[    2.481214] mmc0: new high speed SDXC card at address 5048",
+    "[    2.487132] input: gpio-keys as /devices/soc0/gpio-keys/input/input2",
+    "[    2.494188] mmcblk0: mmc0:5048 SDIT1 59.6 GiB",
+    "[    2.494538] cfg80211: Loading compiled-in X.509 certificates for regulatory database",
+    "[    2.508929] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'",
+    "[    2.516449] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'",
+    "[    2.523707]  mmcblk0: p1",
+    "[    2.525462] clk: Disabling unused clocks",
+    "[    2.530262] PM: genpd: Disabling unused power domains",
+    "[    2.535311] ALSA device list:",
+    "[    2.538290]   #0: NVIDIA Tegra Ventana",
+    "[    2.549796] Freeing unused kernel image (initmem) memory: 1024K",
+    "[    2.556634] Run /init as init process",
+    "[    2.560336]   with arguments:",
+    "[    2.560346]     /init",
+    "[    2.560354]   with environment:",
+    "[    2.560361]     HOME=/",
+    "[    2.560369]     TERM=linux",
+    "[    2.734197] mmc1: new high speed MMC card at address 0001",
+    "[    2.740461] mmcblk1: mmc1:0001 MMC32G 29.8 GiB",
+    "[    2.747405] mmcblk1boot0: mmc1:0001 MMC32G 2.00 MiB",
+    "[    2.754312] mmcblk1boot1: mmc1:0001 MMC32G 2.00 MiB",
+    "[    2.761098] mmcblk1rpmb: mmc1:0001 MMC32G 256 KiB, chardev (241:0)",
+    "[    2.769035] fb0: sys_fillrect: framebuffer is not in virtual address space.",
+    "[    3.953781] EXT4-fs (mmcblk0p1): recovery complete",
+    "[    3.962265] EXT4-fs (mmcblk0p1): mounted filesystem 2a6e5a89-5a50-46c6-95ec-b718e7abd62b r/w with ordered data mode. Quota mode: disabled.",
+    "[    4.773642] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006",
+    "[    4.782766] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6",
+    "[    4.792274] tegra-phy c5008000.usb-phy: debug: suspend ok",
+    "[    5.948870] udevd[486]: starting version 3.2.14",
+    "[    6.525449] EXT4-fs (mmcblk0p1): re-mounted 2a6e5a89-5a50-46c6-95ec-b718e7abd62b.",
+    "[    8.485365] random: crng init done",
+    "[    8.534609] udevd[486]: starting eudev-3.2.14",
+    "[    8.863531] ntrig_indigo: loading out-of-tree module taints kernel.",
+    "[    8.863561] ntrig_indigo: module verification failed: signature and/or required key missing - tainting kernel",
+    "[    8.864707] input: N-Trig Indigo Touchscreen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input3",
+    "[    8.864916] input: N-Trig Indigo Pen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input4",
+    "[    8.875638] sdhci-tegra c8000000.mmc: allocated mmc-pwrseq",
+    "[    8.967981] mmc2: Invalid maximum block size, assuming 512 bytes",
+    "[    9.377938] mmc2: SDHCI controller on c8000000.mmc [c8000000.mmc] using ADMA",
+    "[    9.414391] mmc2: queuing unknown CIS tuple 0x02 [ff] (1 bytes)",
+    "[    9.418175] mmc2: new SDIO card at address 0001",
+    "[    9.421404] brcmfmac: F1 signature read @0x18000000=0x9934329",
+    "[    9.423295] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4329-sdio for chip BCM4329/3",
+    "[    9.426246] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.lenovo,indigo.bin failed with error -2",
+    "[    9.448587] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.clm_blob failed with error -2",
+    "[    9.486994] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz",
+    "[    9.597480] brcmfmac: brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may have limited channels available",
+    "[    9.597502] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)",
+    "[    9.598059] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4329/3 wl0: Sep  2 2011 14:48:19 version 4.220.48",
+    "[    9.613682] ieee80211 phy0: brcmf_setup_wiphybands: rxchain unsupported",
+    "[   10.274650] usbcore: registered new interface driver usbhid",
+    "[   10.274678] usbhid: USB HID core driver",
+    "[   12.516338] zram0: detected capacity change from 0 to 3041280",
+    "[   12.537511] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS",
+    "[   15.085238] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported",
+    "[   20.315464] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006",
+    "[   20.315503] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6",
+    "[   20.315514] tegra-phy c5008000.usb-phy: debug: suspend ok",
+    "[   20.316254] platform sound-hdmi: deferred probe pending: asoc-simple-card: parse error",
+    "[   20.316274] tegra-mc 7000f000.memory-controller: sync_state() pending due to 6001a000.vde",
+    "[   20.316304] tegra-pmc 7000e400.pmc: sync_state() pending due to 6001a000.vde",
+    "[ 1293.512437] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 1293.623749] Xorg (15531): drop_caches: 1",
+    "[ 1293.624042] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 1293.624444] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 1293.845705] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4612.085047] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4612.301101] Xorg (26405): drop_caches: 1",
+    "[ 4612.301277] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4612.301554] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4612.511481] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4963.572909] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4963.740992] Xorg (29643): drop_caches: 1",
+    "[ 4963.741160] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4963.741448] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 4963.965192] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 8020.168298] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 8020.263920] Xorg (29643): drop_caches: 1",
+    "[ 8020.264074] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[ 8020.264306] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[10330.290201] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[10330.383298] Xorg (29643): drop_caches: 1",
+    "[10330.383459] drm drm: failed to allocate buffer of size 132710400: -12",
+    "[10330.383689] drm drm: failed to allocate buffer of size 132710400: -12"
+  ],
+  "samples": [
+    {
+      "monotonic": 14107.167590831,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 744236,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 17028
+      },
+      "cpu_ticks": [
+        170928,
+        3878,
+        132378,
+        2483918,
+        4368,
+        0,
+        250,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 365,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 63,
+          "rss_kib": 9836
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13718,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 233,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 320,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 21917,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 497,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.24 avg60=0.07 avg300=0.02 total=520218266\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163468\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594634",
+        "io": "some avg10=0.00 avg60=0.00 avg300=0.00 total=49205466\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=24181272"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 122973479,
+          "tx_bytes": 1209534,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14126,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 74.916
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14117.349758345,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743724,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 16712
+      },
+      "cpu_ticks": [
+        170969,
+        3878,
+        132420,
+        2485858,
+        4368,
+        0,
+        250,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 365,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 73,
+          "rss_kib": 9844
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13727,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 233,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 320,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 21927,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 499,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.25
+      },
+      "pressure": {
+        "cpu": "some avg10=0.09 avg60=0.06 avg300=0.01 total=520260044\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163468\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594634",
+        "io": "some avg10=0.16 avg60=0.05 avg300=0.01 total=49209588\nfull avg10=0.16 avg60=0.05 avg300=0.01 total=24185061"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 122979472,
+          "tx_bytes": 1209794,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14136,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 38.203
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14127.48676484,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743680,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5080,
+        "CmaTotal": 65536,
+        "CmaFree": 16728
+      },
+      "cpu_ticks": [
+        171002,
+        3878,
+        132472,
+        2487780,
+        4369,
+        0,
+        250,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 365,
+          "rss_kib": 10308
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 83,
+          "rss_kib": 9864
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13737,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 233,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 320,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 21938,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 501,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.25
+      },
+      "pressure": {
+        "cpu": "some avg10=0.03 avg60=0.05 avg300=0.01 total=520316040\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163468\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594634",
+        "io": "some avg10=0.05 avg60=0.04 avg300=0.00 total=49213701\nfull avg10=0.05 avg60=0.04 avg300=0.00 total=24189008"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 122985967,
+          "tx_bytes": 1210615,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14147,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 34.907
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14137.623099876,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743656,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5064,
+        "CmaTotal": 65536,
+        "CmaFree": 16844
+      },
+      "cpu_ticks": [
+        171036,
+        3878,
+        132523,
+        2489705,
+        4370,
+        0,
+        250,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 365,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 92,
+          "rss_kib": 9868
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13745,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 233,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 21949,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 503,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.25
+      },
+      "pressure": {
+        "cpu": "some avg10=0.01 avg60=0.04 avg300=0.01 total=520368011\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163468\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594634",
+        "io": "some avg10=0.02 avg60=0.03 avg300=0.00 total=49216523\nfull avg10=0.02 avg60=0.03 avg300=0.00 total=24191620"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 122992724,
+          "tx_bytes": 1210923,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14157,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 8.641
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14147.729294727,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743148,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 14068
+      },
+      "cpu_ticks": [
+        171075,
+        3878,
+        132577,
+        2491618,
+        4374,
+        0,
+        250,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 365,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 102,
+          "rss_kib": 9872
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13754,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 233,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 21960,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 505,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.00 avg60=0.03 avg300=0.01 total=520411381\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163468\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594634",
+        "io": "some avg10=0.08 avg60=0.06 avg300=0.01 total=49248226\nfull avg10=0.08 avg60=0.06 avg300=0.01 total=24220161"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 122998501,
+          "tx_bytes": 1211183,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14167,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 72.885
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14157.900335021,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743896,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 14440
+      },
+      "cpu_ticks": [
+        171109,
+        3878,
+        132635,
+        2493548,
+        4374,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 365,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 111,
+          "rss_kib": 9884
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13763,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 233,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 21970,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 507,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.00 avg60=0.02 avg300=0.00 total=520479446\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163468\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594634",
+        "io": "some avg10=0.03 avg60=0.05 avg300=0.00 total=49249061\nfull avg10=0.03 avg60=0.05 avg300=0.00 total=24220950"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123004496,
+          "tx_bytes": 1211443,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14177,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 31.518
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14168.03649654,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743912,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 14572
+      },
+      "cpu_ticks": [
+        171137,
+        3878,
+        132683,
+        2495476,
+        4374,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 365,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 121,
+          "rss_kib": 9884
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13772,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 234,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 21981,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 509,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.25
+      },
+      "pressure": {
+        "cpu": "some avg10=0.00 avg60=0.02 avg300=0.00 total=520527771\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163468\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594634",
+        "io": "some avg10=0.01 avg60=0.04 avg300=0.00 total=49250222\nfull avg10=0.01 avg60=0.04 avg300=0.00 total=24222055"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123010008,
+          "tx_bytes": 1211661,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14187,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 2.461
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14178.137023265,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 733732,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9232
+      },
+      "cpu_ticks": [
+        171524,
+        3878,
+        132778,
+        2496998,
+        4383,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 365,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 131,
+          "rss_kib": 9892
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13781,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 234,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 21993,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 512,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.75
+      },
+      "pressure": {
+        "cpu": "some avg10=0.51 avg60=0.14 avg300=0.03 total=520656152\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.36 avg60=0.12 avg300=0.02 total=49330421\nfull avg10=0.36 avg60=0.12 avg300=0.02 total=24298427"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123015757,
+          "tx_bytes": 1211879,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14197,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 77.729
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14188.31211965,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 742456,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9368
+      },
+      "cpu_ticks": [
+        171567,
+        3878,
+        132827,
+        2498928,
+        4384,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 365,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 141,
+          "rss_kib": 9904
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13790,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 234,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22003,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 514,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.75
+      },
+      "pressure": {
+        "cpu": "some avg10=0.18 avg60=0.12 avg300=0.02 total=520720534\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.13 avg60=0.10 avg300=0.02 total=49331255\nfull avg10=0.13 avg60=0.10 avg300=0.02 total=24299167"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123021734,
+          "tx_bytes": 1212139,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14207,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 44.107
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14198.453545285,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743392,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9400
+      },
+      "cpu_ticks": [
+        171607,
+        3878,
+        132877,
+        2500857,
+        4384,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 365,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 151,
+          "rss_kib": 9908
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13799,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 235,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22014,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 516,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.29 avg60=0.16 avg300=0.04 total=520785585\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.04 avg60=0.08 avg300=0.02 total=49332960\nfull avg10=0.04 avg60=0.08 avg300=0.02 total=24299733"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123027571,
+          "tx_bytes": 1212399,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14218,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 34.132
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14208.587457753,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743460,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9348
+      },
+      "cpu_ticks": [
+        171641,
+        3878,
+        132926,
+        2502786,
+        4384,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 366,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 160,
+          "rss_kib": 9916
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13808,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 235,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22025,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 518,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.10 avg60=0.13 avg300=0.03 total=520828194\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.01 avg60=0.07 avg300=0.01 total=49334822\nfull avg10=0.01 avg60=0.07 avg300=0.01 total=24301511"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123033320,
+          "tx_bytes": 1212617,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14228,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 39.55
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14218.725228307,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743552,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5092,
+        "CmaTotal": 65536,
+        "CmaFree": 9392
+      },
+      "cpu_ticks": [
+        171683,
+        3878,
+        132977,
+        2504711,
+        4384,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 366,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 170,
+          "rss_kib": 9920
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13818,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 235,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22036,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 521,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 33.0
+      },
+      "pressure": {
+        "cpu": "some avg10=0.03 avg60=0.11 avg300=0.03 total=520888035\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.06 avg300=0.01 total=49336048\nfull avg10=0.00 avg60=0.06 avg300=0.01 total=24302694"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123039287,
+          "tx_bytes": 1212835,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14238,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 141.847
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14228.965546143,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743256,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5044,
+        "CmaTotal": 65536,
+        "CmaFree": 9228
+      },
+      "cpu_ticks": [
+        171725,
+        3878,
+        133037,
+        2506643,
+        4386,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 366,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 179,
+          "rss_kib": 9932
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13826,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 235,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22046,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 523,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 33.0
+      },
+      "pressure": {
+        "cpu": "some avg10=0.01 avg60=0.09 avg300=0.03 total=520946519\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.05 avg300=0.01 total=49346680\nfull avg10=0.00 avg60=0.05 avg300=0.01 total=24312285"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123045064,
+          "tx_bytes": 1213095,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14248,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 44.06
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14239.108026802,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 744260,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9540
+      },
+      "cpu_ticks": [
+        171764,
+        3878,
+        133081,
+        2508575,
+        4387,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 366,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 190,
+          "rss_kib": 9936
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13836,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 235,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 539,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22058,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 525,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.75
+      },
+      "pressure": {
+        "cpu": "some avg10=0.07 avg60=0.10 avg300=0.03 total=520989272\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.04 avg300=0.01 total=49348777\nfull avg10=0.00 avg60=0.04 avg300=0.01 total=24314292"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123050841,
+          "tx_bytes": 1213355,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14258,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 3.532
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14249.209745553,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 742020,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 8428
+      },
+      "cpu_ticks": [
+        171830,
+        3878,
+        133144,
+        2510459,
+        4387,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 366,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 198,
+          "rss_kib": 9940
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13844,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 235,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 321,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22068,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 527,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 33.0
+      },
+      "pressure": {
+        "cpu": "some avg10=0.02 avg60=0.08 avg300=0.03 total=521054268\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.03 avg300=0.00 total=49350443\nfull avg10=0.00 avg60=0.03 avg300=0.00 total=24314731"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123056590,
+          "tx_bytes": 1213573,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14268,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 71.377
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14259.379295815,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743960,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9416
+      },
+      "cpu_ticks": [
+        171873,
+        3878,
+        133183,
+        2512391,
+        4388,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 366,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 208,
+          "rss_kib": 9944
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13853,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 236,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 322,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22079,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 529,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.75
+      },
+      "pressure": {
+        "cpu": "some avg10=0.12 avg60=0.10 avg300=0.04 total=521126826\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.02 avg300=0.00 total=49355824\nfull avg10=0.00 avg60=0.02 avg300=0.00 total=24320075"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123062445,
+          "tx_bytes": 1213791,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14279,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 40.268
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14269.519084413,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743660,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9264
+      },
+      "cpu_ticks": [
+        171918,
+        3878,
+        133225,
+        2514318,
+        4389,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 366,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 218,
+          "rss_kib": 9948
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13862,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 236,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 322,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22090,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 531,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.75
+      },
+      "pressure": {
+        "cpu": "some avg10=0.04 avg60=0.08 avg300=0.03 total=521158816\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.02 avg300=0.00 total=49358965\nfull avg10=0.00 avg60=0.02 avg300=0.00 total=24323069"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123068222,
+          "tx_bytes": 1214051,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14289,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 37.471
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14279.654546916,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743820,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9320
+      },
+      "cpu_ticks": [
+        171954,
+        3878,
+        133271,
+        2516242,
+        4389,
+        0,
+        252,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 367,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 227,
+          "rss_kib": 9956
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13870,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 236,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 322,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22100,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 532,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.75
+      },
+      "pressure": {
+        "cpu": "some avg10=0.01 avg60=0.07 avg300=0.03 total=521211832\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.01 avg300=0.00 total=49361002\nfull avg10=0.00 avg60=0.01 avg300=0.00 total=24325023"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123074001,
+          "tx_bytes": 1214311,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14299,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 38.924
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14289.791790458,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743884,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9408
+      },
+      "cpu_ticks": [
+        171982,
+        3878,
+        133328,
+        2518174,
+        4389,
+        0,
+        253,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 367,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 237,
+          "rss_kib": 9964
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13878,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 236,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 322,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22111,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 534,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.75
+      },
+      "pressure": {
+        "cpu": "some avg10=0.08 avg60=0.08 avg300=0.04 total=521260703\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.01 avg300=0.00 total=49362879\nfull avg10=0.00 avg60=0.01 avg300=0.00 total=24326819"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123079750,
+          "tx_bytes": 1214529,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14309,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 65.283
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14299.955399587,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 738284,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5080,
+        "CmaTotal": 65536,
+        "CmaFree": 6408
+      },
+      "cpu_ticks": [
+        172054,
+        3878,
+        133388,
+        2520057,
+        4390,
+        0,
+        253,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 367,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 246,
+          "rss_kib": 9968
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13887,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 274,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 236,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 322,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22121,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 537,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.75
+      },
+      "pressure": {
+        "cpu": "some avg10=0.15 avg60=0.10 avg300=0.04 total=521324782\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.01 avg300=0.00 total=49364409\nfull avg10=0.00 avg60=0.01 avg300=0.00 total=24327464"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123085500,
+          "tx_bytes": 1214747,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14319,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 14.666
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14310.070729642,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 742268,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 8468
+      },
+      "cpu_ticks": [
+        172092,
+        3878,
+        133443,
+        2521976,
+        4390,
+        0,
+        253,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 367,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 256,
+          "rss_kib": 9972
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13895,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 237,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 412,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 322,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22131,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 539,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.75
+      },
+      "pressure": {
+        "cpu": "some avg10=0.13 avg60=0.11 avg300=0.05 total=521382883\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.00 avg300=0.00 total=49366196\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=24329208"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123091278,
+          "tx_bytes": 1215007,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14329,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 58.876
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14320.227497619,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743860,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9256
+      },
+      "cpu_ticks": [
+        172124,
+        3878,
+        133493,
+        2523911,
+        4390,
+        0,
+        253,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 367,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 266,
+          "rss_kib": 9980
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13904,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 237,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 413,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 323,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22142,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 541,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.13 avg60=0.12 avg300=0.05 total=521438462\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.00 avg300=0.00 total=49368012\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=24330910"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123096839,
+          "tx_bytes": 1215267,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14339,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 13.56
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14330.342320662,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743852,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9248
+      },
+      "cpu_ticks": [
+        172174,
+        3878,
+        133525,
+        2525839,
+        4391,
+        0,
+        253,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 367,
+          "rss_kib": 10308
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 276,
+          "rss_kib": 9992
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13912,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 237,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 413,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 323,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22152,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 169,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 543,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.12 avg60=0.13 avg300=0.06 total=521505107\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.00 avg300=0.00 total=49369393\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=24332218"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123102823,
+          "tx_bytes": 1215663,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14349,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 41.842
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14340.483511292,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 744072,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9336
+      },
+      "cpu_ticks": [
+        172209,
+        3878,
+        133588,
+        2527763,
+        4391,
+        0,
+        253,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 367,
+          "rss_kib": 10308
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 285,
+          "rss_kib": 9996
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13920,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 237,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 413,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 323,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22162,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 170,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 545,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.12 avg60=0.14 avg300=0.06 total=521569557\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.00 avg300=0.00 total=49373548\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=24336273"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123108708,
+          "tx_bytes": 1215965,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14360,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 3.035
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14350.588300113,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743816,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9336
+      },
+      "cpu_ticks": [
+        172243,
+        3878,
+        133639,
+        2529690,
+        4392,
+        0,
+        255,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 367,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 295,
+          "rss_kib": 10000
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13929,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 237,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 413,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 323,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22172,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 170,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 547,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.25
+      },
+      "pressure": {
+        "cpu": "some avg10=0.04 avg60=0.11 avg300=0.06 total=521617449\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.00 avg300=0.00 total=49376929\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=24339429"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123114485,
+          "tx_bytes": 1216225,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14370,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 2.526
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14360.693483942,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 744028,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9424
+      },
+      "cpu_ticks": [
+        172282,
+        3878,
+        133683,
+        2531615,
+        4392,
+        0,
+        255,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 367,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 305,
+          "rss_kib": 10008
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13936,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 237,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 413,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 323,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 540,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22183,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 170,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 58,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 549,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.25
+      },
+      "pressure": {
+        "cpu": "some avg10=0.01 avg60=0.10 avg300=0.06 total=521673330\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.00 avg300=0.00 total=49377801\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=24340264"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123119557,
+          "tx_bytes": 1216505,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14380,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 2.593
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14370.795294696,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743336,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 9072
+      },
+      "cpu_ticks": [
+        172324,
+        3878,
+        133743,
+        2533513,
+        4392,
+        0,
+        255,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 368,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 315,
+          "rss_kib": 10012
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13945,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 238,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 413,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 323,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 543,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22193,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 170,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 59,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 551,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.00 avg60=0.08 avg300=0.05 total=521726367\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46163684\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13594850",
+        "io": "some avg10=0.00 avg60=0.00 avg300=0.00 total=49379722\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=24342122"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123125334,
+          "tx_bytes": 1216765,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14390,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 2.595
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14380.896961446,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 742584,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 4212
+      },
+      "cpu_ticks": [
+        172541,
+        3878,
+        133830,
+        2535148,
+        4462,
+        0,
+        255,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 368,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 325,
+          "rss_kib": 10020
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13954,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 238,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 413,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 323,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 543,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22204,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 170,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 59,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 553,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.66 avg60=0.25 avg300=0.09 total=521878610\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46170549\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13601480",
+        "io": "some avg10=2.16 avg60=0.60 avg300=0.13 total=49802903\nfull avg10=2.04 avg60=0.56 avg300=0.12 total=24745210"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123130480,
+          "tx_bytes": 1217025,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14400,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 73.401
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14391.069961784,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743416,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 4520
+      },
+      "cpu_ticks": [
+        172577,
+        3878,
+        133876,
+        2537087,
+        4462,
+        0,
+        255,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 368,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 334,
+          "rss_kib": 10024
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13962,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 238,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 413,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 323,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 543,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22214,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 36,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 170,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 59,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 555,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.25
+      },
+      "pressure": {
+        "cpu": "some avg10=0.24 avg60=0.21 avg300=0.09 total=521920081\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46170549\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13601480",
+        "io": "some avg10=0.79 avg60=0.50 avg300=0.12 total=49805031\nfull avg10=0.75 avg60=0.48 avg300=0.12 total=24747253"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123136229,
+          "tx_bytes": 1217243,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14410,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 34.49
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14401.206518311,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743348,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 4540
+      },
+      "cpu_ticks": [
+        172617,
+        3878,
+        133925,
+        2539010,
+        4463,
+        0,
+        255,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 368,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 344,
+          "rss_kib": 10028
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13971,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 238,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 413,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 323,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 543,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22224,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 37,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 170,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 59,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 557,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.25
+      },
+      "pressure": {
+        "cpu": "some avg10=0.08 avg60=0.17 avg300=0.08 total=521971238\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46170549\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13601480",
+        "io": "some avg10=0.29 avg60=0.42 avg300=0.12 total=49807355\nfull avg10=0.27 avg60=0.40 avg300=0.11 total=24749487"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123142008,
+          "tx_bytes": 1217503,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14420,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 30.587
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    },
+    {
+      "monotonic": 14407.169778987,
+      "memory_kib": {
+        "MemTotal": 1013784,
+        "MemAvailable": 743072,
+        "SwapTotal": 1520636,
+        "SwapFree": 1520280,
+        "Slab": 94228,
+        "PageTables": 5048,
+        "CmaTotal": 65536,
+        "CmaFree": 4436
+      },
+      "cpu_ticks": [
+        172639,
+        3878,
+        133958,
+        2540141,
+        4463,
+        0,
+        255,
+        0
+      ],
+      "processes": [
+        {
+          "pid": 1140,
+          "name": "dbus-daemon",
+          "start_ticks": 1265,
+          "cpu_ticks": 1229,
+          "rss_kib": 1680
+        },
+        {
+          "pid": 1368,
+          "name": "NetworkManager",
+          "start_ticks": 1396,
+          "cpu_ticks": 368,
+          "rss_kib": 10288
+        },
+        {
+          "pid": 25529,
+          "name": "python3",
+          "start_ticks": 1410650,
+          "cpu_ticks": 355,
+          "rss_kib": 10036
+        },
+        {
+          "pid": 29630,
+          "name": "lightdm",
+          "start_ticks": 464718,
+          "cpu_ticks": 7,
+          "rss_kib": 4056
+        },
+        {
+          "pid": 29643,
+          "name": "Xorg",
+          "start_ticks": 464733,
+          "cpu_ticks": 13976,
+          "rss_kib": 36604
+        },
+        {
+          "pid": 29652,
+          "name": "lightdm",
+          "start_ticks": 464841,
+          "cpu_ticks": 5,
+          "rss_kib": 4424
+        },
+        {
+          "pid": 29667,
+          "name": "xfce4-session",
+          "start_ticks": 464868,
+          "cpu_ticks": 275,
+          "rss_kib": 39552
+        },
+        {
+          "pid": 29681,
+          "name": "dbus-daemon",
+          "start_ticks": 464877,
+          "cpu_ticks": 1,
+          "rss_kib": 864
+        },
+        {
+          "pid": 29686,
+          "name": "dbus-daemon",
+          "start_ticks": 464895,
+          "cpu_ticks": 60,
+          "rss_kib": 1260
+        },
+        {
+          "pid": 29695,
+          "name": "dbus-daemon",
+          "start_ticks": 464971,
+          "cpu_ticks": 238,
+          "rss_kib": 1372
+        },
+        {
+          "pid": 29712,
+          "name": "xfwm4",
+          "start_ticks": 464991,
+          "cpu_ticks": 413,
+          "rss_kib": 20628
+        },
+        {
+          "pid": 29841,
+          "name": "xfce4-panel",
+          "start_ticks": 465284,
+          "cpu_ticks": 323,
+          "rss_kib": 22256
+        },
+        {
+          "pid": 29910,
+          "name": "xfdesktop",
+          "start_ticks": 465462,
+          "cpu_ticks": 543,
+          "rss_kib": 23996
+        },
+        {
+          "pid": 30095,
+          "name": "python3",
+          "start_ticks": 465823,
+          "cpu_ticks": 22231,
+          "rss_kib": 9588
+        },
+        {
+          "pid": 30112,
+          "name": "xfce-polkit",
+          "start_ticks": 465843,
+          "cpu_ticks": 37,
+          "rss_kib": 11744
+        },
+        {
+          "pid": 30114,
+          "name": "xfce4-notifyd",
+          "start_ticks": 465856,
+          "cpu_ticks": 170,
+          "rss_kib": 21872
+        },
+        {
+          "pid": 30127,
+          "name": "xfce4-power-man",
+          "start_ticks": 465882,
+          "cpu_ticks": 59,
+          "rss_kib": 11912
+        },
+        {
+          "pid": 30130,
+          "name": "xfce4-screensav",
+          "start_ticks": 465894,
+          "cpu_ticks": 558,
+          "rss_kib": 17720
+        }
+      ],
+      "temperatures_c": {
+        "cpu-thermal": 32.5
+      },
+      "pressure": {
+        "cpu": "some avg10=0.04 avg60=0.16 avg300=0.08 total=522012025\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0",
+        "memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=46170549\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=13601480",
+        "io": "some avg10=0.16 avg60=0.38 avg300=0.12 total=49807355\nfull avg10=0.15 avg60=0.36 avg300=0.11 total=24749487"
+      },
+      "wifi": {
+        "operstate": "up",
+        "statistics": {
+          "rx_bytes": 123144637,
+          "tx_bytes": 1217643,
+          "rx_errors": 0,
+          "tx_errors": 0,
+          "rx_dropped": 14426,
+          "tx_dropped": 0
+        },
+        "ping": {
+          "peer": "192.168.0.147",
+          "exit_code": 0,
+          "latency_ms": 9.482
+        }
+      },
+      "zram_mm_stat": "368640    14401   270336        0   757760        0        0        0        0"
+    }
+  ]
+}

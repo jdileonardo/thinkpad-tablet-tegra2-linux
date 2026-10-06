@@ -2,6 +2,11 @@
 
 ## Current checkpoint
 
+The [XFCE stability and calendar check](xfce-stability.md) records five minutes
+of idle samples and a real GTK3 calendar frame through the active display path.
+Memory headroom is adequate for that small fixture. Longer operation, graphics
+allocation lifetime and the actual service integrations remain unvalidated.
+
 The [native Wayland evaluation](gpu-plasma-evaluation.md) verifies direct display
 and hardware Wayland clients using 32-bit buffers. RGB565 rendering and KWin's
 3D-texture requirement are current blockers; Plasma/KWin remain unvalidated.
