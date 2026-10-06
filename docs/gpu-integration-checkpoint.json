@@ -1,0 +1,153 @@
+{
+  "date_utc": "2026-10-06",
+  "device": "ThinkPad Tablet Indigo Tegra20",
+  "kernel": "7.0.1-nura-indigo-ram",
+  "build": {
+    "source_commit": "ad06de32d309506c48e4169a15f56e2f95e9712d",
+    "source_diff_sha256": "1db6dd411e6286ac080b982cbd2db64110ad6e2fc310cb7d5fba577d57ac184a",
+    "patches": {
+      "0001-adapt-nir-grate-to-tegra20-legacy-abi.patch": "8e2db9afcd09f5f8435c939de3f3987b67295b3e4fc047a8bebea7b1da3deae0",
+      "0002-tegra20-pad-small-rgba-texture-rows.patch": "8625ba3de40a0fc29f2b65d83aa4a18dc1e8f0e76195cb42ca6392b719757523",
+      "0003-emit-nir-fragment-special-functions.patch": "2a40953d5c90f2fd3b5a99ea73107a239d8ba8762dda9972447422018b17528b",
+      "0004-limit-pixel-sequencer-output-window.patch": "9af44c5339e8b743a6cb93c55bae1d2153844447ce02bf600c6628ea5f2a7e16",
+      "0005-add-texture-cache-diagnostic-toggle.patch": "5b45126943d8400675f4167e5d155647fe47dc031c259c181163cca951f1c0e8",
+      "0006-add-destination-read-diagnostic.patch": "76bee5e9d62c1661381b8426a9f16d3e358b4b9337a6a9ab217213486a017b89",
+      "0007-add-destination-fetch-control-diagnostic.patch": "056a6c61f8e50ee719c525738e44fcfccf461ec33f623f47c031743a61e523b0",
+      "0008-preserve-full-pixel-sequencer-control.patch": "f458ea6cf52b564742738f7b92453f84fdd0f48f1a15729663b8c5cc0acb33de",
+      "0009-use-tegra20-gart-for-large-offscreen-resources.patch": "6174c8aa13dd6b517d726920de414d67943d1ed8bd2ae037019992da14a39994"
+    },
+    "test_patches": {
+      "sfu-isolation.patch": "e1ec4000313c8830c6b176222e309def64d4950f76d043c693e06bdd0bc1ece0"
+    },
+    "builder_sha256": "e22ee33c7a5987048bb69167783168e11aa6945434e2709850be5d16ab46788c",
+    "patch_applier_sha256": "3c3a9e5d0ba250a6801fd393e74aa1cb1c09e60b4eac0ceb5b2696b461c45c80",
+    "pixel_probe_sha256": "8ec9a2a4e8b0b878bad7f5388ca69382b0e21935622d22f4cf859988fd03c328",
+    "cross_file_sha256": "436b06b10fdf4b16b38e3327c937e2c6cf1c72f793385bae49a20babe803c4d9",
+    "compiler": "Alpine clang version 23.1.2",
+    "drivers": [
+      "grate",
+      "softpipe"
+    ],
+    "llvm": false,
+    "x11_dri2": false
+  },
+  "artifact_sha256": "9af9f703e8c07be3c4e29a8ad083a3216b38cecfd73ef468bb76d09c409253b7",
+  "driver_elf_sha256": "ed987517c9192cecb307b0c517869ccb2a438db464c552226d6e68e7f75b7fff",
+  "evidence_files": {
+    "docs/evidence/grate-20261006/gart-default-hardware.log": "dc3c1a6f147d63702d1ce9bf7b2e08b164943a58ff6fe0ce8ab7a4659f88ac4a",
+    "docs/evidence/grate-20261006/grate-cma-state.txt": "180cf2d8be3277df32b8ab3b144da1a1545e81e04711df65f936982b69adb4d9",
+    "docs/evidence/grate-20261006/grate-gart-default-final.txt": "9431cb0b4423c462c818a00e9b5ee9025d4861a64d67006e1068c28ed8c89f3b",
+    "docs/evidence/grate-20261006/grate-gart-study.txt": "fa5d289288fa0e8389ccc94100b97b980a9fe4a0ab45879e2a8932f8c4687eae",
+    "docs/evidence/grate-20261006/grate-gpu-metadata-final.txt": "d435289b0066effa475a28ab1d0a084a4e26c38d405996a06726e01787b7c44e",
+    "docs/evidence/grate-20261006/grate-pseq-read-count-study.txt": "fbc29407229d422a8a1ff5d29b7a491dc182b46ba7e99512604e104f8fa5c552",
+    "docs/evidence/grate-20261006/grate-register-final.txt": "4857e147070adf69b23d27eb3be2950f2bf8d527a163771c10770051177b06bc",
+    "docs/evidence/grate-20261006/pseq-width-study.tar.gz": "7c0e55d5f391a33f07c191f4e55d19591bb19bed977e6093d4b42ff8289b18f6",
+    "docs/evidence/grate-20261006/software-reference.log": "5cc5d922f3fd2e88cbbb242f51bb42e8a4ab34a3d695b056f70b4ff3f0ae7370",
+    "docs/evidence/grate-20261006/texture-cache-study.tar.gz": "eb57b7836edc757f9d601e12c2f5a7ad5aa15f978416a2d3a6f41a5cd0803803",
+    "docs/evidence/grate-20261006/texture-full-study.tar.gz": "45b4635e6d9c2636782908ce53b62802abafa20a16055d7948de3c4cd83d5729"
+  },
+  "final_hardware_runs": [
+    {
+      "log_sha256": "dc3c1a6f147d63702d1ce9bf7b2e08b164943a58ff6fe0ce8ab7a4659f88ac4a",
+      "samples": 367,
+      "passing": 367,
+      "failing": 0,
+      "pass": true
+    },
+    {
+      "log_sha256": "dc3c1a6f147d63702d1ce9bf7b2e08b164943a58ff6fe0ce8ab7a4659f88ac4a",
+      "samples": 367,
+      "passing": 367,
+      "failing": 0,
+      "pass": true
+    },
+    {
+      "log_sha256": "dc3c1a6f147d63702d1ce9bf7b2e08b164943a58ff6fe0ce8ab7a4659f88ac4a",
+      "samples": 367,
+      "passing": 367,
+      "failing": 0,
+      "pass": true
+    }
+  ],
+  "software_renderer": "softpipe",
+  "hardware_renderer": "Tegra",
+  "channel_tolerance": 10,
+  "studies": {
+    "isolated_texture_cache": {
+      "cached_samples": 270,
+      "uncached_samples": 270,
+      "failed_samples": 0,
+      "interpretation": "Earlier intermittent texture corruption not reproduced; no cache fix established"
+    },
+    "full_texture_cache": {
+      "cached_samples": 7340,
+      "uncached_samples": 7340,
+      "failed_samples": 0
+    },
+    "corrected_sequencer_control": {
+      "conservative_samples": 3670,
+      "conservative_failures": 0,
+      "full_concurrency_samples": 3670,
+      "full_concurrency_failures": 890,
+      "interpretation": "Full-width write fixes MIN_OUT encoding, but single-quad workaround remains required"
+    }
+  },
+  "allocation": {
+    "cma_total_kib": 65536,
+    "cma_free_before_gart_trial_kib": 7392,
+    "failed_allocation_bytes_before_change": 5636096,
+    "policy": "Tegra20 non-SCANOUT/non-DISPLAY_TARGET/non-SHARED resources >= 1 MiB use experimental SPARSE bit 4 and existing legacy-submit GART mapping",
+    "trial_samples": 1101,
+    "trial_failures": 0
+  },
+  "native_triangle": {
+    "width": 800,
+    "height": 1280,
+    "frames": 567,
+    "seconds": 3.002851,
+    "fps": 188.82,
+    "correct_pixels": true
+  },
+  "matrix_and_quad": "Pass; transformed span x=24..55 and nine exact gradient texture samples",
+  "desktop": {
+    "egl_x11_renderer": "softpipe",
+    "egl_x11_exit": 2,
+    "glx_renderer": "softpipe",
+    "glx_accelerated": false,
+    "cause": "Candidate Mesa 26 EGL/GLX hardware paths removed DRI2; current opentegra server uses DRI2",
+    "hardware_compositor_verified": false
+  },
+  "blend": {
+    "normal_hardware_center": [
+      255,
+      0,
+      0,
+      127
+    ],
+    "expected_center": [
+      128,
+      0,
+      128,
+      255
+    ],
+    "pass": false,
+    "destination_read_diagnostic": "PSEQ/READ_DEST variants did not reproduce cleared destination color; no usable framebuffer fetch established"
+  },
+  "remaining": [
+    "Implement correct alpha blending and verify overlapping primitives",
+    "Resolve native presentation compatibility; verify a hardware desktop compositor",
+    "Investigate earlier intermittent NPOT corruption and broaden stability testing",
+    "Validate shared/display memory allocation and imported buffers",
+    "Improve multi-instruction scheduling throughput and broaden shader/mipmap coverage",
+    "Integrate final packages into the reproducible Nura image and validate boot, touch and Wi-Fi"
+  ],
+  "device_state": {
+    "root": "external SD",
+    "wifi": "connected 192.168.0.174",
+    "xfce_running": true,
+    "system_mesa_replaced": false,
+    "kernel_changed": false,
+    "touch_configuration_changed": false,
+    "physical_touch_retested": false
+  }
+}

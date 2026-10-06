@@ -1,0 +1,12 @@
+--- a/src/gallium/drivers/grate/grate_draw.c
++++ b/src/gallium/drivers/grate/grate_draw.c
+@@ -143,7 +143,8 @@
+     * result. So the destination is readable by the hardware and not by the
+     * shader, which is what blending would need. Left off.
+     */
+-   GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_GLOBAL_MEMORY_OUTPUT_READS, 0));
++   GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_GLOBAL_MEMORY_OUTPUT_READS,
++                                      getenv("GRATE_DEBUG_READ_DEST") ? 1 : 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_GLOBAL_HORIZONTAL_SWATH_RENDERING, 0));
+ 
+    /* Common stuff */

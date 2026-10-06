@@ -1,0 +1,18 @@
+--- a/src/gallium/drivers/grate/grate_resource.c
++++ b/src/gallium/drivers/grate/grate_resource.c
+@@ -367,6 +367,15 @@
+       lh = MAX2(lh >> 1, 1u);
+    }
+ 
++   /* The experimental Tegra20 ABI supports scattered pages via GART.
++    * Use that existing path for large off-screen resources, avoiding the
++    * small CMA pool. Display/export buffers keep their established allocation.
++    */
++   if (screen->drm->soc_id == DRM_TEGRA_SOC_T20 && size >= 1024 * 1024 &&
++       !(template->bind & (PIPE_BIND_SCANOUT | PIPE_BIND_DISPLAY_TARGET |
++                           PIPE_BIND_SHARED)))
++      flags |= 1u << 4; /* DRM_TEGRA_GEM_CREATE_SPARSE in grate_drm.h */
++
+    resource->bo = grate_bo_alloc(screen->drm, size, flags);
+    if (!resource->bo) {
+       fprintf(stderr, "grate_bo_alloc() failed\n");

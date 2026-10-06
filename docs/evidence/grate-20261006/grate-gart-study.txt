@@ -1,0 +1,32 @@
+
+~ # [6nsh -c 'set -e; cd /tmp/mesa-sfu; wget -q -O mesa-grate-armv7.tar.gz http://1
+92.168.0.147:8766/mesa-grate-armv7.tar.gz; wget -q -O SHA256SUMS http://192.168.
+0.147:8766/SHA256SUMS; sha256sum -c SHA256SUMS; python3 install_tablet_mesa.py /
+tmp/mesa-sfu --revision ad06de32d309; grep Cma /proc/meminfo; for n in 1 2 3; do
+ su julian -c "INDIGO_MESA_REVISION=ad06de32d309 GRATE_DEBUG_SPARSE_RESOURCES=1 
+GRATE_RES_TRACE=1 timeout -s KILL 20 /usr/local/bin/indigo-gpu-run /opt/indigo-m
+esa/ad06de32d309/bin/fptest-sfu-isolation" > /tmp/indigo-nir-gart-$n.log 2>&1; e
+cho GART_RUN_DONE=$n; done; grep Cma /proc/meminfo; dmesg | tail -n 8; echo GART
+_STUDY_DONE'
+mesa-grate-armv7.tar.gz: OK
+gpu-pixel-check: OK
+indigo-gpu-run: OK
+Installed private Mesa on /dev/mmcblk0p1; run indigo-gpu-run gpu-pixel-check
+CmaTotal:          65536 kB
+CmaFree:            7392 kB
+GART_RUN_DONE=1
+GART_RUN_DONE=2
+GART_RUN_DONE=3
+CmaTotal:          65536 kB
+CmaFree:           10868 kB
+[12118.396402] drm drm: failed to allocate buffer of size 132710400: -12
+[19249.302254] drm drm: failed to allocate buffer of size 132710400: -12
+[19249.360205] Xorg (1603): drop_caches: 1
+[19249.360346] drm drm: failed to allocate buffer of size 132710400: -12
+[19249.360539] drm drm: failed to allocate buffer of size 132710400: -12
+[21190.419987] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.420283] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.991801] drm drm: failed to allocate buffer of size 5636096: -12
+GART_STUDY_DONE
+~ # [6n
+Captured 1580 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T025429Z.txt

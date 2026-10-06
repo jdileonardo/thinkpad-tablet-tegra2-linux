@@ -1,0 +1,22 @@
+
+~ # [6ngrep -E "MemFree|MemAvailable|Cma|Slab|SReclaimable" /proc/meminfo; cat /pro
+c/cmdline; cat /sys/kernel/debug/dma_buf/bufinfo 2>/dev/null | tail -n 5; ps | h
+ead -n 8
+MemFree:          644652 kB
+MemAvailable:     742168 kB
+Slab:              35088 kB
+SReclaimable:      13964 kB
+CmaTotal:          65536 kB
+CmaFree:           11732 kB
+console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init
+	Attached Devices:
+Total 0 devices attached
+
+
+Total 1 objects, 4096 bytes
+  PID TTY          TIME CMD
+ 1709 ttyGS0   00:00:10 sh
+18541 ttyGS0   00:00:00 ps
+18542 ttyGS0   00:00:00 head
+~ # [6n
+Captured 625 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T025001Z.txt

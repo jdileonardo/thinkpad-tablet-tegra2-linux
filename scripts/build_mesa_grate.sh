@@ -18,15 +18,8 @@ if [[ ! -e "$mesa_source/.git" ]]; then
     git -C "$mesa_source" checkout --detach FETCH_HEAD
 fi
 [[ $(git -C "$mesa_source" rev-parse HEAD) == "$mesa_commit" ]]
-shopt -s nullglob
-for patch in "$project_root"/"$patch_dir"/*.patch; do
-    if git -C "$mesa_source" apply --check "$patch" 2>/dev/null; then
-        git -C "$mesa_source" apply "$patch"
-    else
-        git -C "$mesa_source" apply --reverse --check "$patch"
-    fi
-done
-mesa_diff_sha256=$(git -C "$mesa_source" diff | sha256sum | cut -d ' ' -f 1)
+python3 scripts/apply_mesa_patches.py "$mesa_source" "$patch_dir"
+mesa_diff_sha256=$(git -C "$mesa_source" diff HEAD | sha256sum | cut -d ' ' -f 1)
 docker build -t thinkpad-mesa-build:2026-10-05 -f tools/Dockerfile.mesa .
 # A separate ARM musl sysroot keeps build dependencies off the running tablet.
 docker run --rm -v "$project_root:/work" thinkpad-mesa-build:2026-10-05 sh -ec '
@@ -51,6 +44,9 @@ docker run --rm --network none --user "$(id -u):$(id -g)" -v "$project_root:/wor
     if grep -q "gallium-vdpau" "$MESA_SOURCE/meson.options"; then
         legacy_options=-Dgallium-vdpau=disabled
     fi
+    if grep -q "with_x11_dri2" "$MESA_SOURCE/meson.build"; then
+        legacy_options="$legacy_options -Dlegacy-x11=dri2"
+    fi
     cross_hash=$({ sha256sum /work/port/mesa/armv7-musl.ini; printf "%s\n" "$MESA_SOURCE" "$MESA_PREFIX"; } | sha256sum | cut -d " " -f 1)
     if [ -f "$build_dir/meson-private/coredata.dat" ]; then
         setup_extra=--reconfigure
@@ -64,7 +60,7 @@ docker run --rm --network none --user "$(id -u):$(id -g)" -v "$project_root:/wor
         --wrap-mode nofallback -Dgallium-drivers=grate,softpipe -Dvulkan-drivers= \
         -Dllvm=disabled -Ddraw-use-llvm=false -Dplatforms=x11,wayland -Dglx=dri \
         -Degl=enabled -Dgbm=enabled -Dglvnd=disabled -Dgallium-va=disabled \
-        -Dvalgrind=disabled -Dbuild-tests=false $legacy_options -Dlegacy-x11=dri2
+        -Dvalgrind=disabled -Dbuild-tests=false $legacy_options
     printf "%s\n" "$cross_hash" > "$build_dir-cross.sha256"
     meson compile -C "$build_dir" -j 8
     DESTDIR="$install_dir" meson install -C "$build_dir" --no-rebuild --strip
@@ -106,10 +102,12 @@ metadata = {
     "patches": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path(os.environ["MESA_PATCH_DIR"]).glob("*.patch"))},
     "test_patches": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path("/work/port/mesa/tests").glob("*.patch"))} if os.environ["MESA_BUILD_TAG"] == "mesa-grate-candidate" else {},
     "builder_sha256": hashlib.sha256(Path("/work/scripts/build_mesa_grate.sh").read_bytes()).hexdigest(),
+    "patch_applier_sha256": hashlib.sha256(Path("/work/scripts/apply_mesa_patches.py").read_bytes()).hexdigest(),
     "pixel_probe_sha256": hashlib.sha256(Path("/work/port/mesa/gpu-pixel-check.c").read_bytes()).hexdigest(),
     "cross_file_sha256": hashlib.sha256(Path("/work/port/mesa/armv7-musl.ini").read_bytes()).hexdigest(),
     "compiler": subprocess.check_output(["clang", "--version"], text=True).splitlines()[0],
-    "drivers": ["grate", "softpipe"], "llvm": False, "x11_dri2": True,
+    "drivers": ["grate", "softpipe"], "llvm": False,
+    "x11_dri2": "with_x11_dri2" in (source / "meson.build").read_text(),
 }
 (prefix / "share").mkdir(exist_ok=True)
 (prefix / "share/indigo-build.json").write_text(json.dumps(metadata, indent=2) + "\n")

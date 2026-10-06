@@ -1,0 +1,44 @@
+
+~ # [6nsh -c 'set -e; cd /tmp/mesa-sfu; wget -q -O mesa-grate-armv7.tar.gz http://1
+92.168.0.147:8766/mesa-grate-armv7.tar.gz; wget -q -O SHA256SUMS http://192.168.
+0.147:8766/SHA256SUMS; sha256sum -c SHA256SUMS; python3 install_tablet_mesa.py /
+tmp/mesa-sfu --revision ad06de32d309; cat /opt/indigo-mesa/ad06de32d309/share/in
+digo-build.json; sha256sum /opt/indigo-mesa/ad06de32d309/lib/dri/tegra_dri.so; e
+cho GPU_METADATA_FINAL_DONE'
+mesa-grate-armv7.tar.gz: OK
+gpu-pixel-check: OK
+indigo-gpu-run: OK
+Installed private Mesa on /dev/mmcblk0p1; run indigo-gpu-run gpu-pixel-check
+{
+  "source_commit": "ad06de32d309506c48e4169a15f56e2f95e9712d",
+  "source_diff_sha256": "1db6dd411e6286ac080b982cbd2db64110ad6e2fc310cb7d5fba577d57ac184a",
+  "patches": {
+    "0001-adapt-nir-grate-to-tegra20-legacy-abi.patch": "8e2db9afcd09f5f8435c939de3f3987b67295b3e4fc047a8bebea7b1da3deae0",
+    "0002-tegra20-pad-small-rgba-texture-rows.patch": "8625ba3de40a0fc29f2b65d83aa4a18dc1e8f0e76195cb42ca6392b719757523",
+    "0003-emit-nir-fragment-special-functions.patch": "2a40953d5c90f2fd3b5a99ea73107a239d8ba8762dda9972447422018b17528b",
+    "0004-limit-pixel-sequencer-output-window.patch": "9af44c5339e8b743a6cb93c55bae1d2153844447ce02bf600c6628ea5f2a7e16",
+    "0005-add-texture-cache-diagnostic-toggle.patch": "5b45126943d8400675f4167e5d155647fe47dc031c259c181163cca951f1c0e8",
+    "0006-add-destination-read-diagnostic.patch": "76bee5e9d62c1661381b8426a9f16d3e358b4b9337a6a9ab217213486a017b89",
+    "0007-add-destination-fetch-control-diagnostic.patch": "056a6c61f8e50ee719c525738e44fcfccf461ec33f623f47c031743a61e523b0",
+    "0008-preserve-full-pixel-sequencer-control.patch": "f458ea6cf52b564742738f7b92453f84fdd0f48f1a15729663b8c5cc0acb33de",
+    "0009-use-tegra20-gart-for-large-offscreen-resources.patch": "6174c8aa13dd6b517d726920de414d67943d1ed8bd2ae037019992da14a39994"
+  },
+  "test_patches": {
+    "sfu-isolation.patch": "e1ec4000313c8830c6b176222e309def64d4950f76d043c693e06bdd0bc1ece0"
+  },
+  "builder_sha256": "e22ee33c7a5987048bb69167783168e11aa6945434e2709850be5d16ab46788c",
+  "patch_applier_sha256": "3c3a9e5d0ba250a6801fd393e74aa1cb1c09e60b4eac0ceb5b2696b461c45c80",
+  "pixel_probe_sha256": "8ec9a2a4e8b0b878bad7f5388ca69382b0e21935622d22f4cf859988fd03c328",
+  "cross_file_sha256": "436b06b10fdf4b16b38e3327c937e2c6cf1c72f793385bae49a20babe803c4d9",
+  "compiler": "Alpine clang version 23.1.2",
+  "drivers": [
+    "grate",
+    "softpipe"
+  ],
+  "llvm": false,
+  "x11_dri2": false
+}
+ed987517c9192cecb307b0c517869ccb2a438db464c552226d6e68e7f75b7fff  /opt/indigo-mesa/ad06de32d309/lib/dri/tegra_dri.so
+GPU_METADATA_FINAL_DONE
+~ # [6n
+Captured 2685 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T030157Z.txt

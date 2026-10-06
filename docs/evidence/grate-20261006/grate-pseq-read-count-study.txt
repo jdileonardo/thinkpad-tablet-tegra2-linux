@@ -1,0 +1,46 @@
+
+~ # [6nsh -c 'set -e; cd /tmp/mesa-sfu; wget -q -O mesa-grate-armv7.tar.gz http://1
+92.168.0.147:8766/mesa-grate-armv7.tar.gz; wget -q -O SHA256SUMS http://192.168.
+0.147:8766/SHA256SUMS; sha256sum -c SHA256SUMS; python3 install_tablet_mesa.py /
+tmp/mesa-sfu --revision ad06de32d309; set +e; for word in 0 0x800008 0x80000a 0x
+1000008 0x1800008; do echo PSEQ_READ_WORD=$word; su julian -c "INDIGO_MESA_REVIS
+ION=ad06de32d309 GRATE_DEBUG_READ_DEST=1 GRATE_DEBUG_PSEQ_READ=$word timeout -s 
+KILL 12 /usr/local/bin/indigo-gpu-run /usr/local/bin/gpu-pixel-check --blend"; e
+cho PSEQ_PROBE_EXIT=$?; done; echo PSEQ_READ_COUNT_STUDY_DONE'
+mesa-grate-armv7.tar.gz: OK
+gpu-pixel-check: OK
+indigo-gpu-run: OK
+Installed private Mesa on /dev/mmcblk0p1; run indigo-gpu-run gpu-pixel-check
+PSEQ_READ_WORD=0
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,247,0,0 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+PSEQ_PROBE_EXIT=1
+PSEQ_READ_WORD=0x800008
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,247,0,0 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+PSEQ_PROBE_EXIT=1
+PSEQ_READ_WORD=0x80000a
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,247,0,0 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+PSEQ_PROBE_EXIT=1
+PSEQ_READ_WORD=0x1000008
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,0,0,0 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+PSEQ_PROBE_EXIT=1
+PSEQ_READ_WORD=0x1800008
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=0,247,0,0 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+PSEQ_PROBE_EXIT=1
+PSEQ_READ_COUNT_STUDY_DONE
+~ # [6n
+Captured 1883 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T024624Z.txt

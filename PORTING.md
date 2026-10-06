@@ -476,7 +476,12 @@ all shader cases in the expanded 367-sample harness. Two runs pass 367/367; one
 passes 366/367 with intermittent NPOT texture corruption. Blending and texture
 stability remain open. Source, artifact and sample evidence are in
 `docs/gpu-sfu-checkpoint.json`. It remains per-process;
-system integration and compositor validation are pending.
+system integration and compositor validation are pending. The sequencer write
+now preserves MIN_OUT, and large off-screen allocations use existing GART
+support to avoid CMA allocation failures. The final expanded checks pass
+367/367 in three runs. Mesa 26 lacks the X server's DRI2 presentation path;
+native EGL/GLX currently fall back to softpipe. Blending is still incomplete.
+See `docs/gpu-integration-checkpoint.json` and `docs/gpu-driver.md`.
 
 During the Plasma trial, replace the Xrandr/xinput rotation helper and XFCE
 shortcuts with compositor-native display/input rotation and Plasma bindings.

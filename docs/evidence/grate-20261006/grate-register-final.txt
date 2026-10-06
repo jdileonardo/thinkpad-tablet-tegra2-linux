@@ -1,0 +1,45 @@
+
+~ # [6nsh -c 'su julian -c "DISPLAY=:0 XAUTHORITY=/home/julian/.Xauthority INDIGO_M
+ESA_REVISION=ad06de32d309 timeout -s KILL 30 /usr/local/bin/indigo-gpu-run /usr/
+local/bin/gpu-pixel-check --x11"; echo CANDIDATE_X11_EXIT=$?; su julian -c "INDI
+GO_MESA_REVISION=ad06de32d309 timeout -s KILL 20 /usr/local/bin/indigo-gpu-run /
+opt/indigo-mesa/ad06de32d309/bin/fptest-sfu-isolation" > /tmp/indigo-nir-registe
+r-final.log 2>&1; su julian -c "INDIGO_MESA_REVISION=ad06de32d309 timeout -s KIL
+L 15 /usr/local/bin/indigo-gpu-run /usr/local/bin/gpu-pixel-check --blend"; echo
+ BLEND_EXIT=$?; uname -r; uptime; ip -4 addr show wlan0; df -h /; pgrep -a Xorg;
+ pgrep -a xfce4-session; cat /sys/class/thermal/thermal_zone0/temp; dmesg | tail
+ -n 8; echo REGISTER_CHECKPOINT_DONE'
+MESA-EGL: warning: DRI3 error: Could not get DRI3 device
+MESA-EGL: warning: Ensure your X server supports DRI3 to get accelerated rendering
+EGL=1.5 vendor=Mesa renderer=softpipe version=OpenGL ES 3.1 Mesa 26.2.3
+shader_mode=attributes
+center=255,0,0,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=NO
+window_center=255,0,0,255
+CANDIDATE_X11_EXIT=2
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=blend
+center=255,0,0,127 corner=0,0,255,255
+pixel_check=FAIL hardware_renderer=YES
+BLEND_EXIT=1
+7.0.1-nura-indigo-ram
+ 22:48:11 up  5:53,  0 users,  load average: 0.25, 0.24, 0.19
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.174/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 6212sec preferred_lft 6212sec
+Filesystem                Size      Used Available Use% Mounted on
+/dev/mmcblk0p1           58.6G      1.1G     57.5G   2% /
+1603 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+1820 xfce4-session
+32500
+[12118.396402] drm drm: failed to allocate buffer of size 132710400: -12
+[19249.302254] drm drm: failed to allocate buffer of size 132710400: -12
+[19249.360205] Xorg (1603): drop_caches: 1
+[19249.360346] drm drm: failed to allocate buffer of size 132710400: -12
+[19249.360539] drm drm: failed to allocate buffer of size 132710400: -12
+[21190.419987] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.420283] drm drm: failed to allocate buffer of size 5636096: -12
+[21190.991801] drm drm: failed to allocate buffer of size 5636096: -12
+REGISTER_CHECKPOINT_DONE
+~ # [6n
+Captured 2509 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T024822Z.txt

@@ -1,0 +1,87 @@
+--- a/src/gallium/drivers/grate/fp/fpir.h
++++ b/src/gallium/drivers/grate/fp/fpir.h
+@@ -169,7 +169,7 @@
+ 
+ struct fp_instr {
+    struct list_head link;
+-   // TODO: PSEQ
++   uint32_t pseq;
+    struct fp_sched mfu_sched;
+    struct fp_tex_instr tex;
+    struct fp_sched alu_sched;
+--- a/src/gallium/drivers/grate/grate_program.c
++++ b/src/gallium/drivers/grate/grate_program.c
+@@ -119,6 +119,43 @@
+    FREE(so);
+ }
+ 
++/* Diagnostic epilogue: read a render target through PSEQ, then copy its
++ * packed FX10 channels to the color output. Keep this opt-in until the
++ * destination-read instruction has been validated on Tegra20.
++ */
++static void
++grate_debug_pseq_read(struct grate_fp_shader *fp, uint32_t word)
++{
++   struct fp_instr *last = list_last_entry(&fp->fp_instructions, struct fp_instr, link);
++   struct fp_instr *inst = CALLOC_STRUCT(fp_instr);
++   struct fp_alu_instr_packet *pkt = CALLOC_STRUCT(fp_alu_instr_packet);
++   list_inithead(&inst->link);
++   list_inithead(&pkt->link);
++   inst->pseq = word;
++   inst->alu_sched.address = list_length(&fp->alu_instructions);
++   inst->alu_sched.num_instructions = 1;
++   inst->dw = last->dw;
++   last->dw.enable = false;
++   unsigned source = (word & 2) ? 2 : 0;
++   for (unsigned i = 0; i < 4; ++i) {
++      pkt->slots[i] = (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++         .dst = { .index = 2 + i / 2, .write_low_sub_reg = !(i & 1),
++                  .write_high_sub_reg = i & 1 },
++         .src = {
++            { .index = source + i / 2, .datatype = FP_DATATYPE_FIXED10,
++              .sub_reg_select_high = i & 1 },
++            { .index = 31, .datatype = FP_DATATYPE_FIXED10,
++              .sub_reg_select_high = true },
++            { .index = 31, .datatype = FP_DATATYPE_FIXED10 },
++            { .index = 31, .datatype = FP_DATATYPE_FIXED10 },
++         },
++      };
++   }
++   list_addtail(&pkt->link, &fp->alu_instructions);
++   list_addtail(&inst->link, &fp->fp_instructions);
++}
++
+ static void *
+ grate_create_fs_state(struct pipe_context *pcontext,
+                       const struct pipe_shader_state *template)
+@@ -137,6 +174,9 @@
+ 
+    grate_nir_lower_fs(template->ir.nir);
+    grate_nir_to_fp(&fp, template->ir.nir);
++   const char *pseq_read = getenv("GRATE_DEBUG_PSEQ_READ");
++   if (pseq_read)
++      grate_debug_pseq_read(&fp, strtoul(pseq_read, NULL, 0));
+ 
+    so->pseq_max_out = GRATE_PSEQ_MAX_OUT;
+    so->pseq_min_out = GRATE_PSEQ_MIN_OUT;
+@@ -255,7 +295,7 @@
+ 
+    PUSH(host1x_opcode_nonincr(REG_TGR3D_PSEQ_INST_DATA, num_fp_instrs));
+    list_for_each_entry(struct fp_instr, instr, &fp.fp_instructions, link)
+-      PUSH(0x00000000);
++      PUSH(instr->pseq);
+ 
+    PUSH(host1x_opcode_nonincr(REG_TGR3D_AT_REMAP_DATA, num_fp_instrs));
+    list_for_each_entry(struct fp_instr, instr, &fp.fp_instructions, link)
+--- a/src/gallium/drivers/grate/grate_program.c
++++ b/src/gallium/drivers/grate/grate_program.c
+@@ -290,7 +290,7 @@
+    PUSH(host1x_opcode_incr(REG_TGR3D_PSEQ_DWR_IF_STATE, 1));
+    /* START=0, COUNT=1. Feeding num_dw_instrs in here instead was measured to
+     * change nothing, so the hardware evidently does not want the store count. */
+-   PUSH(TGR3D_PSEQ_DWR_IF_STATE_START(0) | TGR3D_PSEQ_DWR_IF_STATE_COUNT(1));
++   PUSH(TGR3D_PSEQ_DWR_IF_STATE_START(0) | TGR3D_PSEQ_DWR_IF_STATE_COUNT(pseq_read ? num_fp_instrs : 1));
+ 
+    if (soc_id == DRM_TEGRA_SOC_T114) {
+       // TODO: document/convert these values

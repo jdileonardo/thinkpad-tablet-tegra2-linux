@@ -112,5 +112,12 @@
     "touch_configuration_changed": false,
     "physical_touch_retested": false,
     "state_log": "diagnostics/grate-nir-sfu-checkpoint.txt"
+  },
+  "metadata_corrections": {
+    "build.x11_dri2": {
+      "recorded": true,
+      "verified": false,
+      "reason": "Mesa 26 legacy-x11 is deprecated and ineffective; EGL/GLX hardware paths use DRI3. The earlier field represented a requested build option, not verified support."
+    }
   }
 }

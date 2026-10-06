@@ -1,0 +1,91 @@
+
+~ # [6nsh -c 'set -e; cd /tmp/mesa-sfu; wget -q -O mesa-grate-armv7.tar.gz http://1
+92.168.0.147:8766/mesa-grate-armv7.tar.gz; wget -q -O SHA256SUMS http://192.168.
+0.147:8766/SHA256SUMS; sha256sum -c SHA256SUMS; python3 install_tablet_mesa.py /
+tmp/mesa-sfu --revision ad06de32d309; for n in 1 2 3; do su julian -c "INDIGO_ME
+SA_REVISION=ad06de32d309 timeout -s KILL 20 /usr/local/bin/indigo-gpu-run /opt/i
+ndigo-mesa/ad06de32d309/bin/fptest-sfu-isolation" > /tmp/indigo-nir-gart-default
+-$n.log 2>&1; done; set +e; su julian -c "DISPLAY=:0 XAUTHORITY=/home/julian/.Xa
+uthority INDIGO_MESA_REVISION=ad06de32d309 timeout -s KILL 12 /usr/local/bin/ind
+igo-gpu-run glxinfo -B"; echo GLX_EXIT=$?; su julian -c "INDIGO_MESA_REVISION=ad
+06de32d309 /usr/local/bin/indigo-gpu-run /opt/indigo-mesa/ad06de32d309/bin/vstes
+t"; su julian -c "INDIGO_MESA_REVISION=ad06de32d309 /usr/local/bin/indigo-gpu-ru
+n /opt/indigo-mesa/ad06de32d309/bin/quadtest"; su julian -c "INDIGO_MESA_REVISIO
+N=ad06de32d309 /usr/local/bin/indigo-gpu-run /usr/local/bin/gpu-pixel-check --be
+nchmark --size=800x1280"; grep -E "MemAvailable|Cma" /proc/meminfo; uname -r; ip
+ -4 addr show wlan0; pgrep -a xfce4-session; echo GART_DEFAULT_DONE'
+mesa-grate-armv7.tar.gz: OK
+gpu-pixel-check: OK
+indigo-gpu-run: OK
+Installed private Mesa on /dev/mmcblk0p1; run indigo-gpu-run gpu-pixel-check
+name of display: :0
+display: :0  screen: 0
+direct rendering: Yes
+Extended renderer info (GLX_MESA_query_renderer):
+    Vendor: Mesa (0xffffffff)
+    Device: softpipe (0xffffffff)
+    Version: 26.2.3
+    Accelerated: no
+    Video memory: 990MB
+    Unified memory: no
+    Preferred profile: core (0x1)
+    Max core profile version: 3.3
+    Max compat profile version: 3.3
+    Max GLES1 profile version: 1.1
+    Max GLES[23] profile version: 3.1
+Memory info (GL_ATI_meminfo):
+    VBO free memory - total: 0 MB, largest block: 0 MB
+    VBO free aux. memory - total: 654 MB, largest block: 654 MB
+    Texture free memory - total: 0 MB, largest block: 0 MB
+    Texture free aux. memory - total: 654 MB, largest block: 654 MB
+    Renderbuffer free memory - total: 0 MB, largest block: 0 MB
+    Renderbuffer free aux. memory - total: 654 MB, largest block: 654 MB
+Memory info (GL_NVX_gpu_memory_info):
+    Dedicated video memory: 5216 MB
+    Total available memory: 6206 MB
+    Currently available dedicated video memory: 0 MB
+OpenGL vendor string: Mesa
+OpenGL renderer string: softpipe
+OpenGL core profile version string: 3.3 (Core Profile) Mesa 26.2.3
+OpenGL core profile shading language version string: 3.30
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+
+OpenGL version string: 3.3 (Compatibility Profile) Mesa 26.2.3
+OpenGL shading language version string: 3.30
+OpenGL context flags: (none)
+OpenGL profile mask: compatibility profile
+
+OpenGL ES profile version string: OpenGL ES 3.1 Mesa 26.2.3
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.10
+
+GLX_EXIT=0
+# renderer: Tegra
+mvp scale=0.50 tx=0.25 -> red spans x 24..55
+# glerr 0x0
+p0 32,32,64,255
+p1 128,32,64,255
+p2 224,32,64,255
+p3 32,128,64,255
+p4 128,128,64,255
+p5 224,128,64,255
+p6 32,224,64,255
+p7 128,224,64,255
+p8 224,224,64,255
+err 0x0
+EGL=1.4 vendor=Grate renderer=Tegra version=OpenGL ES 2.0 Mesa 26.2.3
+shader_mode=attributes
+simple_triangle_size=800x1280 frames=567 seconds=3.002851 fps=188.82
+center=255,0,0,255 corner=0,0,255,255
+pixel_check=PASS hardware_renderer=YES
+MemAvailable:     693200 kB
+CmaTotal:          65536 kB
+CmaFree:           10604 kB
+7.0.1-nura-indigo-ram
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.174/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 5679sec preferred_lft 5679sec
+1820 xfce4-session
+GART_DEFAULT_DONE
+~ # [6n
+Captured 3940 bytes in /home/julian/Dev/thinkpad/diagnostics/linux-console-20261006T025712Z.txt

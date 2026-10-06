@@ -148,9 +148,11 @@ With the original output window (MAX_OUT=300, MIN_OUT=200), the new compiler
 passes 265/331 samples, with 66 incorrect special-function samples. Routing the
 SFU result through its multiplier, changing the DW instruction count and
 turning off ALLOW_QID_COLLISIONS all produced byte-identical test output.
-A window of 32/16 passed 283/331; a single-quad window of 4/4 passed 331/331.
-These observations support a sequencing/feedback problem with work in flight;
-they do not establish the underlying hardware requirement.
+The intended window of 32/16 passed 283/331; the intended single-quad window
+of 4/4 passed 331/331. The later command-width audit below found that the IMM
+write truncated MIN_OUT, so these earlier experiments actually used minimum
+zero. They support a sequencing/feedback problem with work in flight, but do
+not establish the underlying hardware requirement.
 
 Patch 0004 applies 4/4 to Tegra20 shaders with multiple pipeline instructions
 or SFU work beyond the ordinary RCP R4 interpolation setup. An offset-only
@@ -189,6 +191,63 @@ passed every run. The intermittent NPOT texture problem remains open. Native
 sample counts and failed pixels in Git. Raw logs remain under `diagnostics/`.
 Blending, compositor validation and OS-image integration remain unfinished.
 
+## Sequencer command width, allocation and desktop follow-up
+
+Patch 0008 fixes an actual command-encoding error: `host1x_opcode_imm` takes a
+16-bit value while PSEQ_CTL.MIN_OUT starts at bit 14. MIN_OUT=200 and even
+MIN_OUT=4 were truncated to zero. The control is now written with an INCR
+command and a full 32-bit payload. With the corrected write, ten conservative
+367-sample runs pass completely. Ten runs with the original 300/200 concurrency
+fail 89 samples each; the single-quad workaround is still required.
+
+Two cache investigations retain complete output in `docs/evidence/grate-20261006`:
+30 isolated texture runs per cache setting (270 samples each), and 20 full
+runs per setting (7,340 samples each). All passed with the cache enabled and
+disabled. This does not explain or resolve the previously observed intermittent
+NPOT corruption; do not claim a cache fix from the absence of a new failure.
+Patch 0005 adds an opt-in cache-disable control for further investigation.
+
+A native-window trial revealed contiguous-memory pressure: allocation of a
+5,636,096-byte texture failed with GL_OUT_OF_MEMORY while hundreds of MB of
+ordinary RAM remained available. The kernel reserves only 64 MiB of CMA;
+11,732 KiB was free at one observation and 7,392 KiB before the GART trial.
+The running kernel already supports Tegra20 GART and sparse GEM objects in
+its legacy job interface. Patch 0009 reuses that support for off-screen
+resources of at least 1 MiB, using the experimental ABI's SPARSE flag (bit 4).
+SCANOUT, DISPLAY_TARGET and SHARED resources retain their allocation path.
+Three opt-in trials and three final default runs pass all 367 samples under
+that pressure, with no GL errors. Large shared/display allocations still need
+separate validation. The final native triangle check passes at 188.82 FPS
+(567 frames in 3.002851 seconds); this remains a short synthetic workload.
+The matrix and nine textured-quad checks still match their software references.
+
+Candidate X11/EGL presentation displays and reads back correct pixels, but
+reports `softpipe` and exit 2. Candidate GLX also reports softpipe and
+`Accelerated: no`. These are software results. Source inspection confirms that
+Mesa 26's EGL/GLX paths only implement DRI3 hardware presentation, whereas the
+current opentegra X server supplies DRI2. Restore a compatible legacy path or
+add DRI3 support to the X driver; modern DRM/GBM Wayland presentation is another
+path that needs physical validation. No hardware compositor has been verified.
+
+Patches 0006/0007 provide process-local destination-read diagnostics: raw PSEQ
+instruction upload with a copy epilogue and READ_DEST control. Tested LD,
+LD_R20 and LD_R80 words, with the sequencer count adjusted for the epilogue,
+did not reproduce the cleared destination color. One LD_R20 trial changed the
+result to zero, but that does not establish a usable framebuffer fetch.
+The normal alpha test still writes red instead of the expected red/blue mix.
+Blending remains unimplemented. These diagnostics are off by default.
+
+The patch applier now validates the whole stack through a disposable Git index
+and accepts only a known stack prefix. It preserves unrecorded source edits by
+refusing to build them. Checking each earlier patch individually in reverse
+failed when later patches modified its context, despite the complete stack
+being correct. Both the five-patch reference and nine-patch candidate validate.
+`docs/gpu-integration-checkpoint.json` records the final source/build/artifact
+hashes and results. System Mesa, XFCE, touch configuration, Wi-Fi and SD boot
+have not been replaced by these process-local trials. The goal remains open:
+blending, native presentation, compositor/stability validation and exported
+image integration are still required.
+
 ## Building
 
 ```sh
@@ -204,8 +263,11 @@ retain the package/build logs and artifact hashes when comparing builds.
 The cross file explicitly selects ARMv7-A, hard-float **VFPv3-D16**, and disables
 NEON format optimizations with `NO_FORMAT_ASM`. The Cortex-A9 in this tablet has
 no NEON. LLVM and LLVM drawing are disabled; the drivers are Grate and softpipe.
-`legacy-x11=dri2` is explicitly enabled for opentegra Xorg. Its default disables
-the hardware path on this DRI2-only X server and selects software instead.
+For the Mesa 25 reference, `legacy-x11=dri2` enables its DRI2 path on
+opentegra Xorg. The Mesa 26 candidate removed EGL/GLX DRI2 implementations;
+its `legacy-x11` option is deprecated with no supported choices and no effect.
+The builder now applies that option only when the source implements DRI2 and
+records `x11_dri2: false` for the candidate. See the native-window results below.
 The viewport patch replaces `powf(2.0f, -21)` with the identical constant
 `0x1p-21f`, accepted by Clang in a static initializer.
 

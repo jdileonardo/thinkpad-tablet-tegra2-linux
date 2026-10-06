@@ -1,0 +1,38 @@
+--- a/src/gallium/drivers/grate/grate_draw.c
++++ b/src/gallium/drivers/grate/grate_draw.c
+@@ -255,10 +255,14 @@
+                        TGR3D_PSEQ_CTL_MAX_OUT(context->fshader->pseq_max_out) |
+                        TGR3D_PSEQ_CTL_MIN_OUT(context->fshader->pseq_min_out);
+ 
++   /* MIN_OUT starts at bit 14. An IMM command only carries 16 data bits,
++    * silently discarding almost all of that field (even MIN_OUT=4).
++    */
++   unsigned pseq_reg = REG_TGR3D_PSEQ_CTL;
+    if (soc_id == DRM_TEGRA_SOC_T114)
+-      GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_PSEQ_CTL | 0x2200, pseq_ctl));
+-   else
+-      GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_PSEQ_CTL, pseq_ctl));
++      pseq_reg |= 0x2200;
++   GRATE_PUSHBUF_WORD(ptr, host1x_opcode_incr(pseq_reg, 1));
++   GRATE_PUSHBUF_WORD(ptr, pseq_ctl);
+ 
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_PSEQ_TIMEOUT, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_PSEQ_PC, 0));
+--- a/src/gallium/drivers/grate/grate_program.c
++++ b/src/gallium/drivers/grate/grate_program.c
+@@ -200,6 +200,15 @@
+             break;
+          }
+       }
++   }
++
++   /* Diagnostic control for testing the original concurrency after fixing
++    * the truncated sequencer register write. Keep the safe default until
++    * all the expanded samples have been compared on the tablet.
++    */
++   if (getenv("GRATE_DEBUG_FULL_PSEQ_WINDOW")) {
++      so->pseq_max_out = GRATE_PSEQ_MAX_OUT;
++      so->pseq_min_out = GRATE_PSEQ_MIN_OUT;
+    }
+ 
+    if (getenv("GRATE_FS_TRACE")) {

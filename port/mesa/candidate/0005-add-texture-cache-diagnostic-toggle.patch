@@ -1,0 +1,13 @@
+--- a/src/gallium/drivers/grate/grate_draw.c
++++ b/src/gallium/drivers/grate/grate_draw.c
+@@ -275,7 +275,9 @@
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_AT_CLKEN_OVERRIDE, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_TEX_COLORKEY, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_TEX_TEXCTL,
+-                                               TGR3D_TEX_TEXCTL_TEXTURE_CACHE_EN(TGR3D_STATE_ENABLED)));
++                                               TGR3D_TEX_TEXCTL_TEXTURE_CACHE_EN(
++                                                  getenv("GRATE_DISABLE_TEXTURE_CACHE") ?
++                                                  TGR3D_STATE_DISABLED : TGR3D_STATE_ENABLED)));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_TEX_CLKEN_OVERRIDE, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_TEX_NV_MCCIF_FIFOCTRL_RO, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_DW_LOGIC_OP, 0));
