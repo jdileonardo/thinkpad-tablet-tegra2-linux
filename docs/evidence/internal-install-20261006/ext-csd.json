@@ -1,0 +1,17 @@
+{
+  "source": "diagnostics/linux-console-20261006T232414Z.txt",
+  "printed_byte_order": "ascending; sources/linux-nura/drivers/mmc/core/block.c mmc_ext_csd_open",
+  "sha256": "09a8579636963c93329fba67a3c0f477c2c9ac960a05d00af8735992aff4937d",
+  "sector_count": 62521344,
+  "sector_size": 512,
+  "main_area_bytes": 32010928128,
+  "boot_area_bytes_each": 2097152,
+  "partition_config_raw": 0,
+  "boot_partition_enable": 0,
+  "boot_bus_width_raw": 0,
+  "ext_csd_revision": 5,
+  "notes": [
+    "Snapshot after Linux initialized the card; not verified as the original power-on configuration.",
+    "This is a read-only capture, not a write/restore recipe."
+  ]
+}

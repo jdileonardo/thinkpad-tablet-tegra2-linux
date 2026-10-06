@@ -1,0 +1,101 @@
+{
+  "files": [
+    {
+      "name": "boot-prefix.img",
+      "size": 10485760,
+      "expected_size": 10485760,
+      "sha256": "e7363f61c81b70d54f4bfeb7fea9ee98e3d9f8b138f5cbcdcea670c8aba3c50e",
+      "matches": true
+    },
+    {
+      "name": "recovery-SS.img",
+      "size": 6291456,
+      "expected_size": 6291456,
+      "sha256": "619e4490f5cfdacd8ed134affd2ce522081c9d08b70f2721096a698964aca6e0",
+      "matches": true
+    },
+    {
+      "name": "boot-LX.img",
+      "size": 8388608,
+      "expected_size": 8388608,
+      "sha256": "710fd6f3959ab8141c778d3247352cfc0ccebb6935dd5f4e74c8ca442fa5c3ac",
+      "matches": true
+    },
+    {
+      "name": "misc-MC.img",
+      "size": 2097152,
+      "expected_size": 2097152,
+      "sha256": "3248026c3418d426ba5a7b105b10832695872a5801e8b3b343c0ab655db463d8",
+      "matches": true
+    },
+    {
+      "name": "SC.img",
+      "size": 20971520,
+      "expected_size": 20971520,
+      "sha256": "5c0ab1395eedd2ea126e78d3f13ecee16ad4f6e6fdb5e76c4494099e002ba95e",
+      "matches": true
+    },
+    {
+      "name": "persdata.img",
+      "size": 20971520,
+      "expected_size": 20971520,
+      "sha256": "813f46d60b6a560a09d5b06a6ef7dc930d1cedbb7f40a23d8c6fdd574c5779ca",
+      "matches": true
+    },
+    {
+      "name": "disk-tail.img",
+      "size": 1048576,
+      "expected_size": 1048576,
+      "sha256": "a55894e6ece8579ee25cd789c0e595fb641d38af90652b51b535363341c69e41",
+      "matches": true
+    },
+    {
+      "name": "system-AP.img",
+      "size": 805306368,
+      "expected_size": 805306368,
+      "sha256": "d978444895688f31c3f39d6793cded0699b451edeebb543feea691b8cfa235d0",
+      "matches": true
+    },
+    {
+      "name": "preinstall-PA.img",
+      "size": 536870912,
+      "expected_size": 536870912,
+      "sha256": "a7d242dcd91fcd9e4e5a05f24bb37fb72ec1e314766228451bd8df0f5b4c4842",
+      "matches": true
+    },
+    {
+      "name": "update-UP.img",
+      "size": 146800640,
+      "expected_size": 146800640,
+      "sha256": "65c95e07d6ad7e2656182a94bbbd72ad9380d19eb792ead3cf499d9c43582e7a",
+      "matches": true
+    },
+    {
+      "name": "active.bct",
+      "size": 4080,
+      "expected_size": 4080,
+      "sha256": "3d089f88af9ffaf2dec929c2b27e02d63da70b186548bdcffb95e1477beb9421",
+      "matches": true
+    },
+    {
+      "name": "emmc-boot0.img",
+      "size": 2097152,
+      "expected_size": 2097152,
+      "sha256": "8b5ba2a6e48071b990498a22720e0c3173e601789b35fec6c3520aadcd943c3b",
+      "matches": true
+    },
+    {
+      "name": "emmc-boot1.img",
+      "size": 2097152,
+      "expected_size": 2097152,
+      "sha256": "92132a5db6f10c1eafd2e2437c32d3d966865ba534052bf284bf61b072ce6132",
+      "matches": true
+    }
+  ],
+  "file_count": 13,
+  "all_hashes_and_lengths_match": true,
+  "backup_directory": "backups/MP0GKR7-20261005T160450Z",
+  "original_sector_count": 62513152,
+  "user_requires_cache_or_userdata_preservation": false,
+  "restore_tested": false
+}

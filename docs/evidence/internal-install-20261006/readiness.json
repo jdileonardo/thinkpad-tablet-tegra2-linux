@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-06",
+  "purpose": "Clean Linux internal installation readiness",
+  "internal_flash_ready": false,
+  "internal_writes_performed": false,
+  "user_requires_android_restore": false,
+  "user_requires_cache_or_userdata_preservation": false,
+  "serial": "MP0GKR7",
+  "emmc_cid": "1101004d4d4333324703100a18dd6e00",
+  "emmc_linux_device_at_audit": "/dev/mmcblk1",
+  "user_area_sectors": 62521344,
+  "android_reported_sectors": 62513152,
+  "capacity_difference_sectors": 8192,
+  "capacity_difference_explanation": "Matches the combined boot-area size; the exact reason for the Android report has not been established.",
+  "boot_area_bytes_each": 2097152,
+  "live_boot0_boot1_and_10mib_prefix_match_saved_backups": true,
+  "original_backup_file_count": 13,
+  "all_original_backup_file_lengths_and_hashes_match": true,
+  "restore_tested": false,
+  "legacy_tail_same_address_match": false,
+  "legacy_tail_same_address_live_sha256": "985db44b22ffc5cf4f54a4b8b278cea2e020a59ebc4a7bc194da8f4e5aae252f",
+  "legacy_tail_backup_sha256": "a55894e6ece8579ee25cd789c0e595fb641d38af90652b51b535363341c69e41",
+  "physical_end_tail_backup": {
+    "name": "emmc-physical-tail-20261006.img",
+    "bytes": 1048576,
+    "sha256": "f5fb04aa5b882706b9309e885f19477261336ef76a150c3b4d3489dfac3953ec"
+  },
+  "bootloader_current_role": "RAM boot only; does not load kernel, initramfs or DTB from storage",
+  "root_profile_current_role": "External SD controller c8000400.mmc and UUID only",
+  "outstanding": [
+    "Build storage-loading U-Boot and validate its SD/eMMC reads while loaded through APX.",
+    "Generate and inspect a boot image using the saved board BCT parameters and updated bootloader descriptor/hash.",
+    "Define bounded boot-region and clean user-area write/rollback plans, including any MMC boot configuration changes.",
+    "Build an internal-root bootstrap profile and image, and validate the profile before internal deployment.",
+    "After installation, verify cold power-on boot without the host and the desktop/input/network checks."
+  ],
+  "long_duration_observation_required": false
+}

@@ -1,0 +1,29 @@
+
+~ # [6ncat /sys/class/block/mmcblk1/device/name /sys/class/block/mmcblk1/device/cid
+; cat /sys/class/block/mmcblk1/size; readlink -f /sys/class/block/mmcblk1/device
+; cat /sys/class/block/mmcblk1boot0/force_ro /sys/class/block/mmcblk1boot1/force
+_ro
+MMC32G
+1101004d4d4333324703100a18dd6e00
+62521344
+/sys/devices/soc0/c8000600.mmc/mmc_host/mmc1/mmc1:0001
+1
+1
+~ # for p in /sys/class/block/mmcblk1p*; do echo partition=${p##*/}; cat "$p/sta
+rt" "$p/size"; done
+partition=mmcblk1p*
+cat: can't open '/sys/class/block/mmcblk1p*/start': No such file or directory
+cat: can't open '/sys/class/block/mmcblk1p*/size': No such file or directory
+~ # sha256sum /dev/mmcblk1boot0 /dev/mmcblk1boot1; dd if=/dev/mmcblk1 bs=1048576
+ count=10 2>/dev/null | sha256sum; dd if=/dev/mmcblk1 bs=512 skip=62511104 count
+=2048 2>/dev/null | sha256sum
+8b5ba2a6e48071b990498a22720e0c3173e601789b35fec6c3520aadcd943c3b  /dev/mmcblk1boot0
+92132a5db6f10c1eafd2e2437c32d3d966865ba534052bf284bf61b072ce6132  /dev/mmcblk1boot1
+e7363f61c81b70d54f4bfeb7fea9ee98e3d9f8b138f5cbcdcea670c8aba3c50e  -
+985db44b22ffc5cf4f54a4b8b278cea2e020a59ebc4a7bc194da8f4e5aae252f  -
+~ # grep mmcblk /proc/mounts; ls -l /sys/class/block/mmcblk1boot0/size /sys/clas
+s/block/mmcblk1boot1/size
+/dev/mmcblk0p1 / ext4 rw,noatime 0 0
+-r--r--r--    1 root     root          4096 Feb  1  2009 [0;0m/sys/class/block/mmcblk1boot0/size[m
+-r--r--r--    1 root     root          4096 Feb  1  2009 [0;0m/sys/class/block/mmcblk1boot1/size[m
+~ # [6n

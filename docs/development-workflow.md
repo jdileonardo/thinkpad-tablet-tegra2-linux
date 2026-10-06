@@ -13,7 +13,8 @@ The [large-pixmap fix](graphics-oversize-fix.md) follows a recurrence during
 the half-hour observation: ordinary oversized pixmaps now use system memory
 directly, avoiding failed contiguous requests and their cache-drop retry.
 The [XFCE SD image checkpoint](xfce-image.md) packages the selected components
-and frozen build inputs. Fresh-image boot and the actual service integrations
+and frozen build inputs. Two physical boots of the new SD image and its input,
+network and graphics checks have passed; the actual service integrations
 remain unvalidated.
 
 The [native Wayland evaluation](gpu-plasma-evaluation.md) verifies direct display
@@ -83,33 +84,26 @@ the working XFCE desktop available between reversible graphics trials.
 Deployment and evidence collection still involve manual steps. The new image
 includes the selected private graphics components and desktop configuration,
 and pins its binary inputs and container IDs. Mesa/Xorg rebuilds verify the
-frozen SDK and skip dependency refresh by default. Fresh-card boot and sustained
-use are the next validation steps; reproducibility from entirely rebuilt source
+frozen SDK and skip dependency refresh by default. Fresh-card boot has passed;
+long-duration reliability remains unmeasured, and the user cancelled the
+additional 30-minute observation. Reproducibility from entirely rebuilt source
 inputs remains distinct from this offline assembly checkpoint.
 
 ## Eventual internal installation
 
-On 2026-10-06 the user said they are willing to flash internal storage
-eventually. No internal flash is part of this checkpoint. Internal installation
-does not resolve outstanding graphics defects or validate application behavior.
+On 2026-10-06 the user confirmed cache, userdata and returning to Android are
+not requirements. The [internal installation readiness audit](internal-install-readiness.md)
+verifies all 13 original backup files and live critical boot regions, records
+the eMMC identity and addressing, and defines the remaining boot work.
+No internal write has occurred.
 
-First make the candidate reproducible on a fresh SD image and verify the
-intended desktop, recovery path and repeated boots. Then inspect the tablet's
-actual internal partition and boot layout and choose an installation method
-based on that evidence. Do not apply the SD whole-disk image to internal eMMC:
-the existing Tegra boot layout needs separate handling.
+The SD OS has passed two physical boots. Host-independent boot still needs a
+storage-loading U-Boot profile and a correctly generated persistent boot image;
+an internal root needs a new controller/UUID profile. Test the new U-Boot through
+APX first, then prepare bounded write/readback/recovery steps. A staged first
+installation can retain the proven SD root while establishing persistent boot,
+followed by a clean Linux user-area layout and internal root.
 
-Moving the root filesystem to eMMC and making the tablet boot without a host
-are separate changes. A possible intermediate step is an internal root
-filesystem with the existing APX RAM boot. Whether to do that first or retain
-SD while establishing persistent boot depends on the supported boot method;
-that method has not been selected or verified yet. The current bootstrap
-deliberately accepts only the external SD controller and UUID, so an internal
-root requires an explicit new boot profile.
-
-[PORTING.md](../PORTING.md#storage-preservation) records verified stock partition,
-BCT and eMMC boot-region backups. They are not a full disk backup and restore
-has not been tested. Before an internal write, confirm the eMMC identity,
-target ranges, backup hashes and the APX recovery procedure, and use stable
-dock power given the unverified battery. Preserve a known working SD/RAM
-recovery setup through the transition.
+Keep the known-good APX/SD recovery setup and board BCT. Use dock power given
+the unverified battery. The backups are useful recovery material, but a full
+stock restore has not been tested and is not the user's target.
