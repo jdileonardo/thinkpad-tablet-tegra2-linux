@@ -1,0 +1,116 @@
+{
+  "date_utc": "2026-10-06",
+  "device": "ThinkPad Tablet Indigo Tegra20",
+  "kernel": "7.0.1-nura-indigo-ram",
+  "root": "external SD /dev/mmcblk0p1",
+  "mesa_prefix": "/opt/indigo-mesa/ad06de32d309",
+  "build": {
+    "source_commit": "ad06de32d309506c48e4169a15f56e2f95e9712d",
+    "source_diff_sha256": "89b64230c8ae9bb2bf619a7c1fe9cf6d7ee4bc67453fc2659b99b8db3f88d6fb",
+    "patches": {
+      "0001-adapt-nir-grate-to-tegra20-legacy-abi.patch": "8e2db9afcd09f5f8435c939de3f3987b67295b3e4fc047a8bebea7b1da3deae0",
+      "0002-tegra20-pad-small-rgba-texture-rows.patch": "8625ba3de40a0fc29f2b65d83aa4a18dc1e8f0e76195cb42ca6392b719757523",
+      "0003-emit-nir-fragment-special-functions.patch": "2a40953d5c90f2fd3b5a99ea73107a239d8ba8762dda9972447422018b17528b",
+      "0004-limit-pixel-sequencer-output-window.patch": "9af44c5339e8b743a6cb93c55bae1d2153844447ce02bf600c6628ea5f2a7e16"
+    },
+    "test_patches": {
+      "sfu-isolation.patch": "e1ec4000313c8830c6b176222e309def64d4950f76d043c693e06bdd0bc1ece0"
+    },
+    "builder_sha256": "5990aa39b7d76f9200c796a8a9c498927bd4f5a8efd776a9e81b22ecbd60fa15",
+    "pixel_probe_sha256": "8ec9a2a4e8b0b878bad7f5388ca69382b0e21935622d22f4cf859988fd03c328",
+    "cross_file_sha256": "436b06b10fdf4b16b38e3327c937e2c6cf1c72f793385bae49a20babe803c4d9",
+    "compiler": "Alpine clang version 23.1.2",
+    "drivers": [
+      "grate",
+      "softpipe"
+    ],
+    "llvm": false,
+    "x11_dri2": true
+  },
+  "artifact_sha256": "a26f157c88589371d1f1f9fc0e0e18fec1fdde8ba833b74755b632b39831a3b3",
+  "software_reference": {
+    "log": "diagnostics/indigo-nir-sfu-checkpoint-software.log",
+    "sha256": "5cc5d922f3fd2e88cbbb242f51bb42e8a4ab34a3d695b056f70b4ff3f0ae7370"
+  },
+  "tolerance_channel_levels": 10,
+  "runs": [
+    {
+      "log": "diagnostics/indigo-nir-multipass-final-1.log",
+      "sha256": "dc3c1a6f147d63702d1ce9bf7b2e08b164943a58ff6fe0ce8ab7a4659f88ac4a",
+      "hardware_samples": 367,
+      "software_samples": 367,
+      "passing": 367,
+      "failing": 0,
+      "logs_valid": true,
+      "failed": {}
+    },
+    {
+      "log": "diagnostics/indigo-nir-multipass-final-2.log",
+      "sha256": "dc3c1a6f147d63702d1ce9bf7b2e08b164943a58ff6fe0ce8ab7a4659f88ac4a",
+      "hardware_samples": 367,
+      "software_samples": 367,
+      "passing": 367,
+      "failing": 0,
+      "logs_valid": true,
+      "failed": {}
+    },
+    {
+      "log": "diagnostics/indigo-nir-multipass-final-3.log",
+      "sha256": "b66fce9167bca02394e5415f99a91bd394660425230fbf7067df27a403eafbc3",
+      "hardware_samples": 367,
+      "software_samples": 367,
+      "passing": 366,
+      "failing": 1,
+      "logs_valid": true,
+      "failed": {
+        "tex_500@1": {
+          "hardware": {
+            "rgba": [
+              64,
+              196,
+              96,
+              255
+            ],
+            "error": 0
+          },
+          "software": {
+            "rgba": [
+              129,
+              33,
+              64,
+              255
+            ],
+            "error": 0
+          }
+        }
+      }
+    }
+  ],
+  "triangle_workload": {
+    "width": 800,
+    "height": 1280,
+    "frames": 549,
+    "seconds": 3.002751,
+    "fps": 182.83,
+    "correct_pixels": true,
+    "source": "diagnostics/grate-nir-multipass-final.txt",
+    "affected_shader_throughput_measured": false
+  },
+  "remaining": [
+    "Intermittent NPOT tex_500 sample corruption; stability not established",
+    "Alpha blending fails independent pixel check",
+    "Larger-window multi-instruction scheduling remains unexplained",
+    "Broader shader and GLES conformance remain unverified",
+    "Candidate X11/Wayland compositor validation pending",
+    "System Mesa promotion and exported image integration pending"
+  ],
+  "device_state": {
+    "wifi": "connected 192.168.0.174",
+    "xfce_running": true,
+    "xorg_running": true,
+    "reboot_required": false,
+    "touch_configuration_changed": false,
+    "physical_touch_retested": false,
+    "state_log": "diagnostics/grate-nir-sfu-checkpoint.txt"
+  }
+}

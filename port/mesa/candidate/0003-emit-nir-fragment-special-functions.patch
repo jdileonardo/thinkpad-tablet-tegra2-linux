@@ -1,0 +1,80 @@
+diff --git a/src/gallium/drivers/grate/fp/nir.c b/src/gallium/drivers/grate/fp/nir.c
+index df17221e..ba1d40ee 100644
+--- a/src/gallium/drivers/grate/fp/nir.c
++++ b/src/gallium/drivers/grate/fp/nir.c
+@@ -714,10 +714,75 @@ fp_emit_csel(struct fp_nir_ctx *ctx, nir_alu_instr *alu, enum fp_condition cond)
+       ctx->dying[ctx->num_dying++] = diff;
+ }
+ 
++/* SFU operations update one row register in place before this instruction's
++ * ALU stage (Grate assembler-syntax.md, MFU example). R0 is scratch here:
++ * interpolated inputs and TEX results have already been kept by fp_flush.
++ * Keep the input move in a separate pipeline instruction so MFU reads it
++ * after the preceding ALU has written it.
++ */
++static void
++fp_emit_sfu(struct fp_nir_ctx *ctx, nir_alu_instr *alu, enum fp_sfu_op op,
++            bool floor)
++{
++   fp_flush(ctx);
++   struct fp_alu_src_operand input = fp_nir_alu_src(ctx, alu, 0);
++   struct fp_alu_dst_operand row = {
++      .index = 0, .write_low_sub_reg = true, .write_high_sub_reg = true,
++   };
++   fp_gather(ctx, (struct fp_alu_instr){
++      .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS, .dst = row,
++      .src = { input, fp_src_one(), fp_src_zero(), fp_src_zero() },
++   });
++
++   /* floor(x) = x - fract(x); preserve x before the in-place SFU. */
++   unsigned original = 0;
++   if (floor) {
++      original = fp_alloc_slot(ctx);
++      row.index = fp_reg_for_slot(ctx, original);
++      fp_gather(ctx, (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS, .dst = row,
++         .src = { input, fp_src_one(), fp_src_zero(), fp_src_zero() },
++      });
++   }
++   fp_flush(ctx);
++
++   ctx->mfu = CALLOC_STRUCT(fp_mfu_instr);
++   list_inithead(&ctx->mfu->link);
++   ctx->mfu->sfu.op = op;
++   ctx->mfu->sfu.reg = 0;
++   ctx->mfu->mul[0].dst = FP_MFU_MUL_DST_ROW_REG_0;
++   ctx->mfu->mul[0].src[0] = FP_MFU_MUL_SRC_SFU_RESULT;
++   ctx->mfu->mul[0].src[1] = FP_MFU_MUL_SRC_CONST_1;
++
++   struct fp_alu_src_operand result = { .index = 0 };
++   struct fp_alu_src_operand add = fp_src_zero();
++   if (floor) {
++      result.negate = true;
++      add.index = fp_reg_for_slot(ctx, original);
++      add.datatype = FP_DATATYPE_FP20;
++      add.sub_reg_select_high = false;
++   }
++   ctx->cur_def = &alu->def;
++   fp_gather(ctx, (struct fp_alu_instr){
++      .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++      .dst = fp_dst_for_def(ctx, &alu->def, false),
++      .src = { result, fp_src_one(), add, add },
++   });
++   /* R0 must be read before another SFU, TEX or interpolation can overwrite it. */
++   if (floor)
++      ctx->dying[ctx->num_dying++] = original;
++   fp_flush(ctx);
++}
++
+ static void
+ fp_emit_alu(struct fp_nir_ctx *ctx, nir_alu_instr *alu)
+ {
+    switch (alu->op) {
++   case nir_op_ffract: fp_emit_sfu(ctx, alu, FP_SFU_OP_FRC, false); break;
++   case nir_op_ffloor: fp_emit_sfu(ctx, alu, FP_SFU_OP_FRC, true); break;
++   case nir_op_frcp:   fp_emit_sfu(ctx, alu, FP_SFU_OP_RCP, false); break;
++   case nir_op_frsq:   fp_emit_sfu(ctx, alu, FP_SFU_OP_RSQ, false); break;
++   case nir_op_fsqrt:  fp_emit_sfu(ctx, alu, FP_SFU_OP_SQRT, false); break;
+    case nir_op_mov:  fp_emit_form(ctx, alu, FP_ALU_OP_MAD, FP_FORM_MOV,
+                                   FP_CONDITION_ALWAYS); break;
+    case nir_op_fmul: fp_emit_form(ctx, alu, FP_ALU_OP_MAD, FP_FORM_MUL,

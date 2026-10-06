@@ -1,0 +1,72 @@
+diff --git a/src/gallium/drivers/grate/grate_draw.c b/src/gallium/drivers/grate/grate_draw.c
+index 5a61b92d..eaddf225 100644
+--- a/src/gallium/drivers/grate/grate_draw.c
++++ b/src/gallium/drivers/grate/grate_draw.c
+@@ -251,8 +251,8 @@ grate_init_state(struct grate_context *context, uint32_t **ptrp)
+                        TGR3D_PSEQ_CTL_MERGE_REGISTERS |
+                        TGR3D_PSEQ_CTL_REMOVE_KILLED_PIXELS |
+                        TGR3D_PSEQ_CTL_ALLOW_QID_COLLISIONS |
+-                       TGR3D_PSEQ_CTL_MAX_OUT(GRATE_PSEQ_MAX_OUT) |
+-                       TGR3D_PSEQ_CTL_MIN_OUT(GRATE_PSEQ_MIN_OUT);
++                       TGR3D_PSEQ_CTL_MAX_OUT(context->fshader->pseq_max_out) |
++                       TGR3D_PSEQ_CTL_MIN_OUT(context->fshader->pseq_min_out);
+ 
+    if (soc_id == DRM_TEGRA_SOC_T114)
+       GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_PSEQ_CTL | 0x2200, pseq_ctl));
+diff --git a/src/gallium/drivers/grate/grate_program.c b/src/gallium/drivers/grate/grate_program.c
+index 01858f8f..0b8c02f3 100644
+--- a/src/gallium/drivers/grate/grate_program.c
++++ b/src/gallium/drivers/grate/grate_program.c
+@@ -138,6 +138,30 @@ grate_create_fs_state(struct pipe_context *pcontext,
+    grate_nir_lower_fs(template->ir.nir);
+    grate_nir_to_fp(&fp, template->ir.nir);
+ 
++   so->pseq_max_out = GRATE_PSEQ_MAX_OUT;
++   so->pseq_min_out = GRATE_PSEQ_MIN_OUT;
++   /* On Indigo, ALU-to-SFU row feedback produces wrong pixels with multiple
++    * quads in flight. A single-quad output window passes all 331 fptest
++    * samples. This is a conservative Tegra20 workaround; the underlying
++    * scheduling requirement and SFU throughput remain to be investigated.
++    * RCP R4 belongs to the ordinary interpolation setup, not NIR SFU work.
++    */
++   if (soc_id == DRM_TEGRA_SOC_T20) {
++      /* Multi-instruction row feedback also needs the workaround, as shown
++       * by the uniform/SFU isolation harness's offset-only shader. */
++      if (list_length(&fp.fp_instructions) > 1) {
++         so->pseq_max_out = 4;
++         so->pseq_min_out = 4;
++      }
++      list_for_each_entry(struct fp_mfu_instr, m, &fp.mfu_instructions, link) {
++         if (m->sfu.op != FP_SFU_OP_NOP && m->sfu.reg != 4) {
++            so->pseq_max_out = 4;
++            so->pseq_min_out = 4;
++            break;
++         }
++      }
++   }
++
+    if (getenv("GRATE_FS_TRACE")) {
+       int idx = 0;
+       fprintf(stderr, "GRATE FP PROGRAM:\n");
+@@ -177,7 +201,7 @@ grate_create_fs_state(struct pipe_context *pcontext,
+     */
+    PUSH(host1x_opcode_incr(REG_TGR3D_GLOBAL_PIX_ATTR, 1));
+    PUSH(TGR3D_GLOBAL_PIX_ATTR_NUM_ROWS(GRATE_ALU_BUFFER_SIZE - 1) |
+-        TGR3D_GLOBAL_PIX_ATTR_MAX_QID((GRATE_PSEQ_MAX_OUT - 1) /
++        TGR3D_GLOBAL_PIX_ATTR_MAX_QID((so->pseq_max_out - 1) /
+                                       (GRATE_ALU_BUFFER_SIZE * 4)));
+ 
+    PUSH(host1x_opcode_imm(REG_TGR3D_PSEQ_QUAD_ID, 0));
+diff --git a/src/gallium/drivers/grate/grate_program.h b/src/gallium/drivers/grate/grate_program.h
+index 716443f7..1f79e2ab 100644
+--- a/src/gallium/drivers/grate/grate_program.h
++++ b/src/gallium/drivers/grate/grate_program.h
+@@ -21,6 +21,8 @@ struct grate_fragment_shader_state {
+    struct pipe_shader_state base;
+    struct grate_shader_blob blob;
+    struct grate_fp_info info;
++   unsigned pseq_max_out;
++   unsigned pseq_min_out;
+ };
+ 
+ void

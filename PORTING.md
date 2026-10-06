@@ -470,7 +470,12 @@ See `docs/gpu-driver.md` for the compatible ABI, patches and physical evidence.
 An isolated Mesa 26.2.3 NIR candidate now passes shader constants, uniforms,
 arithmetic, texture sampling and a matrix-transform check after adapting its
 kernel interface and fixing tiny RGBA row stride. Blending and special-function
-shader operations still fail measured comparisons. It remains per-process;
+shader operations initially failed measured comparisons. A subsequent SFU
+compiler extension and Tegra20 multi-instruction sequencing workaround now pass
+all shader cases in the expanded 367-sample harness. Two runs pass 367/367; one
+passes 366/367 with intermittent NPOT texture corruption. Blending and texture
+stability remain open. Source, artifact and sample evidence are in
+`docs/gpu-sfu-checkpoint.json`. It remains per-process;
 system integration and compositor validation are pending.
 
 During the Plasma trial, replace the Xrandr/xinput rotation helper and XFCE

@@ -80,11 +80,18 @@ docker run --rm --network none --user "$(id -u):$(id -g)" -v "$project_root:/wor
     fi
     if [ "$MESA_BUILD_TAG" = mesa-grate-candidate ]; then
         mkdir -p "$prefix/bin"
-        for probe in fptest vstest quadtest blendtest; do
+        isolation_source=$build_dir/fptest-sfu-isolation.c
+        cp "$MESA_SOURCE/src/gallium/drivers/grate/tests/fptest.c" "$isolation_source"
+        patch "$isolation_source" < /work/port/mesa/tests/sfu-isolation.patch
+        for probe in fptest vstest quadtest blendtest fptest-sfu-isolation; do
+            probe_source=$MESA_SOURCE/src/gallium/drivers/grate/tests/$probe.c
+            if [ "$probe" = fptest-sfu-isolation ]; then
+                probe_source=$isolation_source
+            fi
             clang --target=armv7-alpine-linux-musleabihf --sysroot=/work/build/mesa-sysroot \
                 --gcc-toolchain=/work/build/mesa-sysroot/usr -fuse-ld=lld \
                 -march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=hard -O2 -Wall -Wextra \
-                -I"$prefix/include" "$MESA_SOURCE/src/gallium/drivers/grate/tests/$probe.c" \
+                -I"$prefix/include" "$probe_source" \
                 -L"$prefix/lib" -Wl,-rpath-link,"$prefix/lib" -lEGL -lGLESv2 \
                 -o "$prefix/bin/$probe"
         done
@@ -97,6 +104,9 @@ metadata = {
     "source_commit": os.environ["MESA_COMMIT"],
     "source_diff_sha256": os.environ["MESA_DIFF_SHA256"],
     "patches": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path(os.environ["MESA_PATCH_DIR"]).glob("*.patch"))},
+    "test_patches": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path("/work/port/mesa/tests").glob("*.patch"))} if os.environ["MESA_BUILD_TAG"] == "mesa-grate-candidate" else {},
+    "builder_sha256": hashlib.sha256(Path("/work/scripts/build_mesa_grate.sh").read_bytes()).hexdigest(),
+    "pixel_probe_sha256": hashlib.sha256(Path("/work/port/mesa/gpu-pixel-check.c").read_bytes()).hexdigest(),
     "cross_file_sha256": hashlib.sha256(Path("/work/port/mesa/armv7-musl.ini").read_bytes()).hexdigest(),
     "compiler": subprocess.check_output(["clang", "--version"], text=True).splitlines()[0],
     "drivers": ["grate", "softpipe"], "llvm": False, "x11_dri2": True,

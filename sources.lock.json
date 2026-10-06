@@ -53,5 +53,9 @@
       "brcm/brcmfmac4329-sdio.bin": "d61983946b1e733e4c75dbe6841ac0f1250ebed2e3ee9058cdfdbbba3ba37c93",
       "LICENCE.broadcom_bcm43xx": "b16056fc91b82a0e3e8de8f86c2dac98201aa9dc3cbd33e8d38f1b087fcec30d"
     }
+  },
+  "grate-tools": {
+    "url": "https://github.com/grate-driver/grate.git",
+    "commit": "ce8c4d2c62880ee5ffab90fd5f4c0554d4dbcc6d"
   }
 }

@@ -102,9 +102,9 @@ The candidate's own `fptest`, `quadtest`, `vstest` and `blendtest` are cross
 compiled from the pinned source and compared on the tablet against its softpipe
 build. All processes exit cleanly, which alone is not a correctness verdict:
 
-- `fptest`: 241 of 331 RGBA samples agree within 10 channel levels. The 90 failures
-  belong to ten special-function cases involving fraction, floor, reciprocal,
-  reciprocal square root, square root and combinations with other operations.
+- Initial `fptest`: 241 of 331 RGBA samples agreed within 10 channel levels.
+  The 90 failures belonged to ten special-function cases. The SFU extension
+  and its conservative sequencing workaround are recorded below.
 - `quadtest`: all nine textured-quad samples match software exactly.
 - `vstest`: both renderers place the transformed quad at x=24..55, with no GL error.
 - `blendtest`: hardware writes opaque red; software produces the expected
@@ -112,7 +112,7 @@ build. All processes exit cleanly, which alone is not a correctness verdict:
   on software. Blending is still a concrete compositor blocker.
 
 Do not promote this candidate to system Mesa yet. Next work is the unsupported
-special functions and blending, followed by X11/Wayland compositor validation,
+remaining shader coverage and blending, followed by X11/Wayland compositor validation,
 stability checks and integration into the reproducible OS image. This is a
 substantial reuse milestone, not completed GPU support or GLES conformance.
 
@@ -133,6 +133,61 @@ Evidence: `diagnostics/grate-nir-install-first-pixel.txt`,
 `indigo-nir-{hardware,software}-{fptest,quadtest,vstest,blendtest}.log`, and
 `indigo-nir-fptest-comparison.json`. Earlier arithmetic output is superseded by
 the strengthened differently-colored check in the texture sweep.
+
+## Fragment special-function checkpoint
+
+Two further candidate patches implement NIR fraction, floor, reciprocal,
+reciprocal square root and square root using the existing Grate MFU encoding.
+Floor uses `x - fract(x)` and preserves its input in a temporary. An ALU move
+feeds a scratch row in one instruction, then MFU applies the operation and the
+ALU retains the result. This reuses the ISA and assembler examples from
+`grate-driver/grate`, pinned in `sources.lock.json` at
+`ce8c4d2c62880ee5ffab90fd5f4c0554d4dbcc6d`.
+
+With the original output window (MAX_OUT=300, MIN_OUT=200), the new compiler
+passes 265/331 samples, with 66 incorrect special-function samples. Routing the
+SFU result through its multiplier, changing the DW instruction count and
+turning off ALLOW_QID_COLLISIONS all produced byte-identical test output.
+A window of 32/16 passed 283/331; a single-quad window of 4/4 passed 331/331.
+These observations support a sequencing/feedback problem with work in flight;
+they do not establish the underlying hardware requirement.
+
+Patch 0004 applies 4/4 to Tegra20 shaders with multiple pipeline instructions
+or SFU work beyond the ordinary RCP R4 interpolation setup. An offset-only
+shader in the isolation harness exposed the same feedback problem without an
+SFU, so limiting only special-function shaders was insufficient. Each draw
+programs its shader's window;
+MAX_QID uses the same window when the fragment program is compiled. Other
+shaders retain 300/200. This is a conservative correctness workaround.
+Its throughput for affected shaders has not been measured, and larger-window scheduling still
+needs investigation. Passing this harness is not complete GLES conformance.
+
+The reusable comparison checks renderer identity, all 331 expected samples,
+missing/duplicate samples, GL errors and unsupported/compiler diagnostics:
+
+```sh
+python3 scripts/compare_grate_fptest.py diagnostics/indigo-nir-multipass-final-1.log diagnostics/indigo-nir-sfu-checkpoint-software.log --expected-samples 367 --output diagnostics/indigo-nir-multipass-final-1-comparison.json
+```
+
+Scheduling evidence and SHA256 hashes are retained in
+`diagnostics/grate-sfu-scheduling-experiments.json`, with the corresponding
+`indigo-nir-sfu-*.log` and comparison JSON files. The builder also produces
+`bin/fptest-sfu-isolation` by applying the tracked
+`port/mesa/tests/sfu-isolation.patch` to the pinned upstream harness. It adds
+offset and uniform-fed SFU cases (367 total samples). Its patch hash is recorded
+in the installed build metadata. An early run using a globally serialized window
+passed 366/367: one `tex_500@0` sample had an incorrect texture color. Retain
+this as a possible texture/cache stability issue when broadening validation.
+The same texture sample failed in one of three later 331-sample runs; the other
+two runs passed 331/331. All 90 special-function samples passed those runs.
+The final scoped workaround passed 367/367 twice and 366/367 once across
+three expanded runs. The remaining mismatch was `tex_500@1`; shader cases
+passed every run. The intermittent NPOT texture problem remains open. Native
+800x1280 attribute-triangle drawing passed at 182.83 FPS (549 frames in
+3.002751 seconds); this is not an affected-shader or compositor benchmark.
+`docs/gpu-sfu-checkpoint.json` retains the source/patch/artifact/log hashes,
+sample counts and failed pixels in Git. Raw logs remain under `diagnostics/`.
+Blending, compositor validation and OS-image integration remain unfinished.
 
 ## Building
 
