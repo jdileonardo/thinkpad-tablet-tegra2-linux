@@ -1,0 +1,10 @@
+{
+  "kernel/drivers/cpufreq/tegra20-cpufreq.ko": {
+    "source": "build/linux-nura/drivers/cpufreq/tegra20-cpufreq.ko",
+    "autoload": "tegra20-cpufreq",
+    "modalias": "platform:tegra20-cpufreq",
+    "tested_module_sha256": "6d6031809a52eb6a6841e8a0bb87ceede59460200fb8a5d7017e8d0733cfc106",
+    "tested_kernel_sha256": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
+    "evidence": "docs/evidence/power-bringup-20261007/results.json"
+  }
+}

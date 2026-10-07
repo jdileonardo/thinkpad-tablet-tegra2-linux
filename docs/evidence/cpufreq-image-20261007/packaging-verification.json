@@ -1,0 +1,26 @@
+{
+  "scope": "Actual assembler module-packaging block, locked container, 16 MiB ext4 fixture; no full desktop image assembly or device write",
+  "input_lock_sha256": "90fac11623c7d82bd091d1e92fb80b67ff4c63e0fcbe9dc9990da4026664299c",
+  "container": "sha256:80ae8b4f9b77006af405e60fa89c92c2c0be88f5021a51904549f770bb2af446",
+  "ext4_fsck_passed": true,
+  "modprobe_resolves_module": true,
+  "module_checks": {
+    "/usr/lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/cpufreq/tegra20-cpufreq.ko": "6d6031809a52eb6a6841e8a0bb87ceede59460200fb8a5d7017e8d0733cfc106"
+  },
+  "missing_startup_components_rejected": {
+    "autoload": "Module startup configuration missing: kernel/drivers/cpufreq/tegra20-cpufreq.ko",
+    "module_order": "Module startup configuration missing: kernel/drivers/cpufreq/tegra20-cpufreq.ko",
+    "dependencies": "Module dependency index missing: kernel/drivers/cpufreq/tegra20-cpufreq.ko",
+    "device_alias": "Module device alias missing: kernel/drivers/cpufreq/tegra20-cpufreq.ko"
+  },
+  "legacy_lock_selects_no_extra_modules": true,
+  "internal_fixture_adaptation": {
+    "explicit_source_manifest": "build/module-packaging-check/image-manifest.json",
+    "filesystem_check_passed": true,
+    "module_checks": {
+      "/usr/lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/cpufreq/tegra20-cpufreq.ko": "6d6031809a52eb6a6841e8a0bb87ceede59460200fb8a5d7017e8d0733cfc106"
+    },
+    "physical_boot_tested": false
+  },
+  "historical_full_sd_image_verification_passed": true
+}

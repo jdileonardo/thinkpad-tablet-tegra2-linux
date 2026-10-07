@@ -8,6 +8,7 @@ import struct
 import subprocess
 import uuid
 from pathlib import Path
+from image_kernel_modules import verify as verify_extra_modules
 
 
 def digest(path):
@@ -19,6 +20,8 @@ def main():
     root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', default='build/nura-internal-20261006')
+    parser.add_argument('--source-manifest', required=True,
+                        help='Checked SD image to adapt, including its packaged modules')
     args = parser.parse_args()
     out = (root / args.output).resolve()
     if not out.is_relative_to(root / 'build'):
@@ -28,8 +31,17 @@ def main():
     filesystem = out / 'root.ext4'
     if image.exists() or filesystem.exists():
         raise SystemExit('Keep existing images; use a new output directory')
-    source_dir = root / 'build/nura-sd-20261006-touch-watchdog'
-    original_manifest = json.loads((source_dir / 'image-manifest.json').read_text())
+    source_manifest = (root / args.source_manifest).resolve()
+    if not source_manifest.is_relative_to(root / 'build'):
+        raise SystemExit('Source manifest must be under build/')
+    source_dir = source_manifest.parent
+    original_manifest = json.loads(source_manifest.read_text())
+    input_lock = root / original_manifest['input_lock']
+    if digest(input_lock) != original_manifest['input_lock_sha256']:
+        raise SystemExit('Source input lock differs from the image checkpoint')
+    lock = json.loads(input_lock.read_text())
+    if original_manifest.get('extra_kernel_modules', {}) != lock.get('extra_kernel_modules', {}):
+        raise SystemExit('Source module selection differs from its input lock')
     source_image = root / original_manifest['image']
     if digest(source_image) != original_manifest['sha256']:
         raise SystemExit('Validated SD image hash differs')
@@ -41,6 +53,10 @@ def main():
     if root_uuid not in init or '*c8000600.mmc*' not in init or '*c8000400.mmc*' in init:
         raise SystemExit('Internal bootstrap does not select the intended controller/UUID')
     source_fs = source_dir / 'root.ext4'
+    with source_image.open('rb') as stream:
+        stream.seek(1024 * 1024)
+        if hashlib.file_digest(stream, 'sha256').hexdigest() != digest(source_fs):
+            raise SystemExit('Source filesystem differs from the checked image partition')
     if shutil.disk_usage(out).free < source_fs.stat().st_blocks * 512 + 64 * 1024 * 1024:
         raise SystemExit('Insufficient space for filesystem adaptation')
     subprocess.run(['cp', '--reflink=auto', '--sparse=always', str(source_fs), str(filesystem)], check=True)
@@ -69,8 +85,15 @@ def main():
         extracted = out / ('verify-' + source.name)
         subprocess.run(['debugfs', '-R', f'dump {target} {extracted}', str(filesystem)],
                        check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        if digest(extracted) != digest(source):
+        if not extracted.is_file() or digest(extracted) != digest(source):
             raise SystemExit(f'Filesystem content verification failed: {target}')
+    def read(name):
+        result = subprocess.run(['debugfs', '-R', f'cat {name}', str(filesystem)],
+                                capture_output=True, check=True)
+        if b'File not found' in result.stderr:
+            raise RuntimeError(f'Missing internal image file: {name}')
+        return result.stdout
+    module_checks = verify_extra_modules(read, lock, original_manifest['kernel_release'])
     with (out / 'fsck.log').open('w') as log:
         subprocess.run(['e2fsck', '-fn', str(filesystem)], check=True,
                        stdout=log, stderr=subprocess.STDOUT)
@@ -90,12 +113,15 @@ def main():
     if len(table['partitions']) != 1 or table['partitions'][0]['start'] != 2048:
         raise SystemExit('Unexpected internal image partition table')
     manifest = {'source_image': str(source_image.relative_to(root)),
+                'source_manifest': str(source_manifest.relative_to(root)),
                 'source_image_sha256': original_manifest['sha256'],
                 'root_uuid': root_uuid, 'root_controller': 'c8000600.mmc',
                 'image_bytes': image.stat().st_size, 'image_sha256': digest(image),
                 'filesystem_bytes': filesystem.stat().st_size,
                 'filesystem_sha256': digest(filesystem), 'partition_table': table,
                 'changed_files': {target: digest(source) for source, target in entries},
+                'extra_kernel_modules': lock.get('extra_kernel_modules', {}),
+                'extra_kernel_module_checks': module_checks,
                 'filesystem_check_passed': True, 'internal_writes_performed': False,
                 'physical_internal_boot_tested': False,
                 'notes': ['Cloned validated SD contents; this is a clean internal user-area candidate.',

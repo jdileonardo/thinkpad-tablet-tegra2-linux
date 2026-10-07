@@ -12,6 +12,16 @@
   },
   "xorg_module": "build/opentegra-oversize/src/.libs/opentegra_drv.so",
   "ntrig_module": "build/ntrig-watchdog/ntrig_indigo.ko",
+  "extra_kernel_modules": {
+    "kernel/drivers/cpufreq/tegra20-cpufreq.ko": {
+      "source": "build/linux-nura/drivers/cpufreq/tegra20-cpufreq.ko",
+      "autoload": "tegra20-cpufreq",
+      "modalias": "platform:tegra20-cpufreq",
+      "tested_module_sha256": "6d6031809a52eb6a6841e8a0bb87ceede59460200fb8a5d7017e8d0733cfc106",
+      "tested_kernel_sha256": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
+      "evidence": "docs/evidence/power-bringup-20261007/results.json"
+    }
+  },
   "package_inventories": {
     "rootfs": "build/image-inputs/rootfs-packages.json",
     "sdk": "build/image-inputs/sdk-packages.json"
@@ -86,7 +96,9 @@
     "port/opentegra/0003-release-replaced-scanout-pixmap-reference.patch": "2c4ebdac8c63dbc36d3d4cab6c68b2c8424fd3d452a248493fc89301e35325d8",
     "port/opentegra/0004-use-sysmem-for-pixmaps-larger-than-cma.patch": "d8c53621c10bf7a38e5ba8afe5bf09de6aee8b71e36fd9e316587f963ae45c68",
     "build/image-inputs/apk-overlays/xinput-1.6.4-r2.apk": "e65179c000b182758485dd31954bae29ce1d7044d796c9265a97663e17849b8f",
-    "build/image-inputs/apk-overlays/xdotool-4.20260303.1-r0.apk": "76e6da8006c828bde198b6a681ea7bcfb07f48671b0ccf1f3938bcf58778fa08"
+    "build/image-inputs/apk-overlays/xdotool-4.20260303.1-r0.apk": "76e6da8006c828bde198b6a681ea7bcfb07f48671b0ccf1f3938bcf58778fa08",
+    "port/verified-kernel-modules.json": "3ebf964203c32517a58703d8fb87d70cbcbea47027fa44d823950c48d699f1f1",
+    "build/linux-nura/drivers/cpufreq/tegra20-cpufreq.ko": "6d6031809a52eb6a6841e8a0bb87ceede59460200fb8a5d7017e8d0733cfc106"
   },
   "reproducibility": "Offline assembly from frozen binary inputs; not a bit-identical or fully source-rebuilt filesystem"
 }

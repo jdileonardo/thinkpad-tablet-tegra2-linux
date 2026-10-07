@@ -33,7 +33,9 @@ Linux and configured to load automatically. Live requests verified 216 MHz,
 608 MHz and 1 GHz, with CPU voltage changes; the ondemand governor responds to
 load. CPU thermal cooling support still requires a kernel configuration change
 and its own hardware trial. The previously frozen image does not include this
-incremental module installation.
+incremental module installation. The current default input lock and assembler
+now include it for the next build, with module/startup verification in both SD
+and internal image paths; no new full image has been flashed.
 
 ## Bluetooth: a promising next port
 
@@ -106,7 +108,7 @@ Effort descriptions are relative assessments, not implementation-time estimates.
 | Area | Current evidence and gap | Next useful validation or implementation |
 | --- | --- | --- |
 | Brightness and remaining buttons | Commands for brightness 2/4/7 change driver PWM requests; blanking disables PWM and settings were restored. Visual confirmation, side volume and power-button behavior remain unverified. | Confirm visible brightness and blank/unblank; capture side/power key events and verify desktop actions. A 60-second side-key capture had no events and establishes no physical-button result. |
-| CPU power management and thermals | Matching cpufreq module is installed and autoloads. Eight speeds span 216 MHz–1 GHz; clock/voltage changes and ondemand load response passed. Temperature sensor and 50°C passive/60°C critical trips exist, but `CONFIG_CPU_THERMAL` is disabled and no CPU cooling device registers. | Enable CPU thermal/frequency cooling in a candidate kernel, verify cooling-device registration and frequency limiting without heating to the critical trip; package the cpufreq module in the next image. Short-trial peak was 38.75°C, not a sustained thermal qualification. |
+| CPU power management and thermals | Matching cpufreq module is installed and autoloads; current image recipes/lock include it. Eight speeds span 216 MHz–1 GHz; clock/voltage changes and ondemand load response passed. Temperature sensor and 50°C passive/60°C critical trips exist, but `CONFIG_CPU_THERMAL` is disabled and no CPU cooling device registers. | Enable CPU thermal/frequency cooling in a candidate kernel, verify cooling-device registration and frequency limiting without heating to the critical trip. Short-trial peak was 38.75°C, not a sustained thermal qualification. |
 | Audio | WM8903 and an ALSA card register. Speaker/headphone playback, microphone and jack detection are untested. Inherited Ventana microphone-enable settings differ from stock Indigo. | Verify board routing and supplies, then test playback, volume, jack detection and recording. Likely testing plus board-specific fixes. |
 | USB host and dock | Host controllers enumerate. Attached peripherals and dock functions lack functional validation. | Test keyboard, mouse, storage and Ethernet, including disconnect/reconnect and VBUS behavior. Test dock functions individually. |
 | Battery and AC reporting | Read-only EC telemetry works at I2C address `0x58`, but there is no Indigo Linux power-supply integration. Saved readings indicate a possible battery/charger hardware issue. | Port read-only battery/AC reporting first. Charging control and usable battery capacity require separate hardware validation. A driver will not resolve a failed pack. |

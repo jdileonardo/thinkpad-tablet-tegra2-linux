@@ -49,7 +49,7 @@ without `--network-profile` and with its intended account configuration.
 
 ## Frozen inputs and rebuild
 
-[The input lock](../port/image-inputs.lock.json) records SHA256 values for 66
+[The historical input lock](../port/image-inputs-touch-watchdog.lock.json) records SHA256 values for 66
 files, including the rootfs/SDK snapshots, package inventories, boot artifacts,
 graphics archives and port patches/configuration. It records full immutable
 IDs for the pmbootstrap, kernel, Mesa and Xorg builder containers.
@@ -75,8 +75,12 @@ contains exactly the dated lock and its 66 named inputs; it excludes the local
 password input and Wi-Fi profile. Preserve these archives alongside the Git
 repository. Restore at the project root and run `docker load` before rebuilding.
 The locked container IDs work even if restored images have no tag aliases.
-The dated lock is `port/image-inputs-touch-watchdog.lock.json`; the main input lock
-contains the same data and is the default for rebuilding. The preceding
+The dated lock is `port/image-inputs-touch-watchdog.lock.json`. The main input
+lock is now the 68-input cpufreq checkpoint, including the verified module and
+its integration manifest; the default commands above include CPU scaling.
+To reproduce this historical image, explicitly pass the dated 66-input lock.
+The earlier portable export contains those 66 inputs; retain or separately
+export the cpufreq artifact and new lock for the newer checkpoint. The preceding
 candidate image and its original input archives are preserved separately.
 
 This freezes binary inputs for offline image assembly. It does not claim

@@ -1,0 +1,53 @@
+{
+  "source_image": "build/module-packaging-check/module-fixture.img",
+  "source_manifest": "build/module-packaging-check/image-manifest.json",
+  "source_image_sha256": "5dc24c6077e12022c4fd87b38a83a9284a84288c90b148c494db51f6ae1d1923",
+  "root_uuid": "a1b59fdc-49f7-46bb-b099-4c6012334c07",
+  "root_controller": "c8000600.mmc",
+  "image_bytes": 17825792,
+  "image_sha256": "7f45225e15e10467afc4a6e5f26620204f617b36fc54f9f2d78af5ae9e1fd234",
+  "filesystem_bytes": 16777216,
+  "filesystem_sha256": "154e95b2b2ee7ae4ef42a99c9f39e4f33993fd8a24c557ffb0ac3164e8679831",
+  "partition_table": {
+    "label": "dos",
+    "id": "0x12334c07",
+    "device": "/home/julian/Dev/thinkpad/build/internal-module-packaging-check-v2/internal-user-area.img",
+    "unit": "sectors",
+    "sectorsize": 512,
+    "partitions": [
+      {
+        "node": "/home/julian/Dev/thinkpad/build/internal-module-packaging-check-v2/internal-user-area.img1",
+        "start": 2048,
+        "size": 32768,
+        "type": "83",
+        "bootable": true
+      }
+    ]
+  },
+  "changed_files": {
+    "/etc/fstab": "b9362e9a34ab2dc24e5bff06e61653881fed73e50540b0663be467a7d5ce6a1b",
+    "/boot/extlinux/extlinux.conf": "75fb3a407a8f0c571e442d16c98f78dda1dbbf147feb2e2c265650b0e1dcc55f",
+    "/boot/initramfs-indigo": "095877922ca4aec038af2e5fd52db12d0642a0fa8b03cf8844613c4e547d9fc2"
+  },
+  "extra_kernel_modules": {
+    "kernel/drivers/cpufreq/tegra20-cpufreq.ko": {
+      "source": "build/linux-nura/drivers/cpufreq/tegra20-cpufreq.ko",
+      "autoload": "tegra20-cpufreq",
+      "modalias": "platform:tegra20-cpufreq",
+      "tested_module_sha256": "6d6031809a52eb6a6841e8a0bb87ceede59460200fb8a5d7017e8d0733cfc106",
+      "tested_kernel_sha256": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
+      "evidence": "docs/evidence/power-bringup-20261007/results.json"
+    }
+  },
+  "extra_kernel_module_checks": {
+    "/usr/lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/cpufreq/tegra20-cpufreq.ko": "6d6031809a52eb6a6841e8a0bb87ceede59460200fb8a5d7017e8d0733cfc106"
+  },
+  "filesystem_check_passed": true,
+  "internal_writes_performed": false,
+  "physical_internal_boot_tested": false,
+  "notes": [
+    "Cloned validated SD contents; this is a clean internal user-area candidate.",
+    "Keep the private image out of Git: it includes the existing login and Wi-Fi configuration.",
+    "The initial 4 GiB filesystem can be expanded after device write/readback verification."
+  ]
+}

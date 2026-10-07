@@ -57,8 +57,9 @@ files rather than requiring a new bootloader flash.
 
 The subsequent [CPU/backlight bring-up](power-bringup.md) adds an incremental
 custom-kernel cpufreq module to the live internal installation. Automatic
-scaling and module autoload pass ordinary reboot. This module is not yet in
-the frozen image; keep its build/install recipe with the next image work.
+scaling and module autoload pass ordinary reboot. The current image lock and
+assembler now include that verified module and its startup configuration;
+the previously built images remain historical checkpoints.
 Use standard `/sbin/reboot` so init runs the OpenRC shutdown path. Its latest
 restart mounted internal ext4 without journal recovery, unlike the older
 forced restart procedure.
@@ -97,6 +98,30 @@ The existing SD recovery payload is the hardware-tested recovery path.
    identity, visible output and kernel logs before promoting a candidate.
 5. Recheck touch, rotation and Wi-Fi after kernel or display changes. Input
    enumeration alone does not replace physical confirmation.
+
+## Promoting verified device changes
+
+A successful live change is complete when the working tree can reproduce it:
+update its component builder, image packaging, startup configuration and image
+verification, retain hardware evidence, then freeze and promote the input lock.
+Do not depend on files manually installed on the running tablet for the next
+image. Keep dated input locks and image manifests for recovery and comparison.
+
+Verified additional kernel modules are listed in
+[`port/verified-kernel-modules.json`](../port/verified-kernel-modules.json),
+including tested module/kernel hashes, autoload name, device alias and evidence.
+The freezer includes this manifest and the selected binaries. The assembler
+installs them before `depmod`; SD and internal content checks require the binary,
+autoload entry, module order, dependency index and device alias. A different
+module or kernel hash requires a new reviewed hardware checkpoint.
+
+For the next promotion, update the recipe and evidence, then freeze a fresh
+dated lock with `scripts/freeze_image_inputs.py --reuse-snapshots --lock
+port/image-inputs-NEW-CHECKPOINT.lock.json`. Recheck it before copying it to
+`port/image-inputs.lock.json` and committing the promotion. Assembly uses the
+current lock by default. Internal adaptation requires `--source-manifest`
+pointing to the newly assembled SD image, so an old dated source cannot be
+selected implicitly.
 
 Deployment and evidence collection still involve manual steps. The new image
 includes the selected private graphics components and desktop configuration,

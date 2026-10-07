@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import uuid
 from pathlib import Path
+from image_kernel_modules import selected_modules
 
 project = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
@@ -21,6 +22,7 @@ if not out.is_relative_to(project / 'build'):
     raise SystemExit('Image output must be inside the project build directory')
 lock_path = (project / args.lock).resolve()
 lock = json.loads(lock_path.read_text())
+extra_modules = selected_modules(lock)
 xorg_module = lock.get('xorg_module', 'build/opentegra-dri3/src/.libs/opentegra_drv.so')
 ntrig_module = lock.get('ntrig_module', 'build/ntrig-spi/ntrig_indigo.ko')
 if ntrig_module not in lock['files']:
@@ -158,6 +160,8 @@ cp /work/build/linux-nura/modules.builtin /work/build/linux-nura/modules.builtin
    "$stage/lib/modules/$KERNEL_RELEASE/"
 printf 'kernel/drivers/input/evdev.ko\nkernel/drivers/hid/hid-generic.ko\nkernel/drivers/hid/usbhid/usbhid.ko\nkernel/drivers/reset/reset-gpio.ko\nextra/ntrig_indigo.ko\n' \
     > "$stage/lib/modules/$KERNEL_RELEASE/modules.order"
+python3 /work/scripts/image_kernel_modules.py --root "$stage" --project /work \
+    --lock "$INPUT_LOCK" --release "$KERNEL_RELEASE"
 depmod -b "$stage" "$KERNEL_RELEASE"
 mkdir -p "$stage/boot/extlinux"
 cat > "$stage/boot/extlinux/extlinux.conf" <<'EOF'
@@ -181,6 +185,7 @@ subprocess.run(['docker', 'run', '--rm', '--network', 'none',
                 '-e', 'LOGIN_PASSWORD',
                 '-e', f'XORG_MODULE=/work/{xorg_module}',
                 '-e', f'NTRIG_MODULE=/work/{ntrig_module}',
+                '-e', f'INPUT_LOCK=/work/{lock_path.relative_to(project)}',
                 '-e', f'NETWORK_PROFILE={"/work/" + str(network_profile.relative_to(project)) if network_profile else ""}',
                 '-e', 'OVERLAY_APKS=' + ' '.join('/work/' + p for p in lock['overlay_packages']),
                 lock['containers']['thinkpad-pmbootstrap:2026-10-05'], 'sh', '-c', prepare],
@@ -217,8 +222,11 @@ manifest = {'root_uuid': root_uuid, 'kernel_release': release,
                          'mesa': 'distribution default; private builds selected per process'},
             'private_network_profile_included': network_profile is not None,
             'ntrig_module_source': ntrig_module,
+            'extra_kernel_modules': extra_modules,
             'verified': 'All frozen input hashes, offline signed APK installation, e2fsck -fn before disk-image assembly',
-            'installation': 'external SD; tablet bootloader remains on Android'}
+            'installation': 'SD-root image; internal installation adapts an explicitly selected source manifest'}
+manifest['hardware_artifacts'].update({entry['source']: digest(project / entry['source'])
+                                       for entry in extra_modules.values()})
 manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')
 (out / 'SHA256SUMS').write_text(f'{manifest["sha256"]}  {image.name}\n')
 print(f'Created and checked {image}: {size} bytes, SHA256 {manifest["sha256"]}')

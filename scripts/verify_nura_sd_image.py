@@ -10,6 +10,7 @@ import struct
 import subprocess
 import tarfile
 from pathlib import Path
+from image_kernel_modules import verify as verify_extra_modules
 
 
 def digest(path):
@@ -76,6 +77,9 @@ def main():
         actual = hashlib.sha256(read(target)).hexdigest()
         assert actual == lock['files'][source], target
         checked[target] = actual
+    if manifest.get('extra_kernel_modules', {}) != lock.get('extra_kernel_modules', {}):
+        raise ValueError('Image module selection differs from its input lock')
+    checked.update(verify_extra_modules(read, lock, manifest['kernel_release']))
     for archive in ('build/mesa-grate-armv7.tar.gz', 'build/mesa-grate-candidate-armv7.tar.gz'):
         with tarfile.open(project / archive) as source:
             members = [member for member in source if member.isfile() and

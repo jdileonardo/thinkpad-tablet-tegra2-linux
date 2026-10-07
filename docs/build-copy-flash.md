@@ -1,6 +1,7 @@
 # Build, copy, flash and upstream the Indigo port
 
-This guide describes the working checkpoint installed in commit `e5efcbb`.
+This guide follows the internal installation in commit `e5efcbb`, with the
+subsequent verified [CPU scaling integration](power-bringup.md).
 The target is the original Tegra20 Lenovo ThinkPad Tablet (Indigo). Normal ROM
 restarts into internal XFCE passed. Physical cold power-on with the SD removed
 is still pending in the [installation record](internal-install.md).
@@ -9,7 +10,7 @@ is still pending in the [installation record](internal-install.md).
 
 | Operation | Status |
 | --- | --- |
-| Assemble and check an SD image using frozen inputs | Scripted; 66 inputs and four assembler/toolchain containers are pinned |
+| Assemble and check an SD image using frozen inputs | Scripted; current default pins 68 inputs and four assembler/toolchain containers, including verified CPU scaling |
 | Write the SD image and check its full readback | Tested with our USB card reader; accepts an image manifest and fresh disk identity |
 | Build the internal image and persistent boot image | Scripted for this checkpoint; still depends on dated paths and this board's saved BCT |
 | Transfer files to the diagnostic Linux system | Scripted USB upload/download with end-to-end SHA256; bulk image transfer used Wi-Fi |
@@ -17,8 +18,10 @@ is still pending in the [installation record](internal-install.md).
 | Reflash the already installed tablet, or install another unit | Requires a reusable installer; the archived first-install scripts deliberately refuse these states |
 | Build everything on a clean machine from source | Not yet verified end to end; Git alone does not contain the ignored source trees and binary inputs |
 
-The frozen input files were rechecked against `port/image-inputs.lock.json` on
-2026-10-06: all 66 matched. Filesystem timestamps, UUIDs and password salts can
+The earlier 66-input lock remains archived as
+`port/image-inputs-touch-watchdog.lock.json`. The current default and
+`port/image-inputs-cpufreq.lock.json` include the verified cpufreq module and
+its integration manifest. Filesystem timestamps, UUIDs and password salts can
 change image hashes, so repeatable assembly does not mean byte-identical disks.
 
 ## Preserve the build inputs
@@ -56,7 +59,7 @@ several GiB of free space for assembly, filesystem checks and image copies.
 
 ```sh
 python3 scripts/create_nura_sd_image.py \
-  --lock port/image-inputs-touch-watchdog.lock.json \
+  --lock port/image-inputs.lock.json \
   --output build/nura-sd-next \
   --password-file build/image-inputs/login-password
 
@@ -73,6 +76,10 @@ The assembler uses verified binary inputs. Rebuilding kernel, N-Trig, Mesa or
 DDX creates candidate artifacts; review and freeze a new input lock before
 using them in a release. Existing builders include `build_nura_kernel.sh`,
 `build_ntrig_module.sh`, `build_mesa_grate.sh` and `build_opentegra.sh`.
+Confirmed additions must enter their build/packaging recipe, startup
+configuration, verification and current input lock together. See the
+[promotion workflow](development-workflow.md#promoting-verified-device-changes).
+To reproduce the historical image, explicitly select the archived 66-input lock.
 
 ## Copy an image onto an SD card
 
@@ -118,17 +125,21 @@ they do not write the tablet:
 ```sh
 python3 scripts/make_ramdisk.py --profile nura-internal \
   --root-uuid a1b59fdc-49f7-46bb-b099-4c6012334c07
-python3 scripts/create_internal_root_image.py --output build/nura-internal-next
+python3 scripts/create_internal_root_image.py \
+  --source-manifest build/nura-sd-next/image-manifest.json \
+  --output build/nura-internal-next
 
 bash scripts/build_uboot.sh --nura-extlinux
 python3 scripts/build_internal_boot_image.py --output build/internal-boot-next
 ```
 
-The internal builder currently reads the validated SD image and `root.ext4`
-from `build/nura-sd-20261006-touch-watchdog`, the UUID from
-`build/internal-root.uuid`, and the bootstrap from `build/nura-internal-test`.
-It does not yet accept the new SD manifest above. A new source image or UUID
-requires adapting these inputs and updating the deployment checks together.
+The internal builder requires the selected SD manifest, verifies its image,
+input lock and filesystem hashes, and checks that its verified modules and
+startup entries survive adaptation. It takes the UUID from
+`build/internal-root.uuid` and bootstrap from `build/nura-internal-test`.
+A new UUID or kernel/bootstrap checkpoint still requires updating those
+inputs and deployment checks together. It never silently selects the old
+dated SD image.
 
 The bootstrap generator requires the preserved BusyBox, firmware, regulatory
 database and APX helper inputs. The boot-image builder requires the pinned

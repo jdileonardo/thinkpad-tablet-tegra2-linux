@@ -5,6 +5,7 @@ import hashlib
 import json
 import subprocess
 from pathlib import Path
+from image_kernel_modules import selected_modules
 
 PROJECT = Path(__file__).resolve().parents[1]
 LOCK = PROJECT / 'port/image-inputs.lock.json'
@@ -101,12 +102,18 @@ def main():
             raise SystemExit(f'Expected one pinned {name} APK')
         packages.append(str(matches[0].relative_to(PROJECT)))
     artifacts += packages
+    verified_path = PROJECT / 'port/verified-kernel-modules.json'
+    verified = json.loads(verified_path.read_text())
+    artifacts += [str(verified_path.relative_to(PROJECT)),
+                  *[entry['source'] for entry in verified.values()]]
     lock = {'schema': 1, 'containers': container_ids, 'snapshots': snapshots,
             'xorg_module': str(module_path.relative_to(PROJECT)),
             'ntrig_module': str(ntrig_path.relative_to(PROJECT)),
+            'extra_kernel_modules': verified,
             'package_inventories': inventories, 'overlay_packages': packages,
             'files': {name: digest(PROJECT / name) for name in artifacts},
             'reproducibility': 'Offline assembly from frozen binary inputs; not a bit-identical or fully source-rebuilt filesystem'}
+    selected_modules(lock)
     lock_path.write_text(json.dumps(lock, indent=2) + '\n')
     print(f'Frozen {len(artifacts)} inputs in {lock_path}')
 

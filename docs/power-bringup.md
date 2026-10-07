@@ -86,9 +86,21 @@ cannot be caught by Python's cleanup handler.
 
 To disable the incremental change, remove its autoload line from `/etc/modules`
 and reboot normally. Retain the module and evidence for later packaging.
-The original SD recovery image has not been changed. The 66 earlier frozen
-inputs remain a separate baseline; this module must be added to a new image
-lock and packaging recipe before calling a new image complete.
+The original SD recovery image has not been changed. Its 66 frozen inputs
+remain a separate baseline. The newer CPU scaling checkpoint is now recorded
+in `port/image-inputs-cpufreq.lock.json` and the default input lock, with 68
+inputs. The assembler installs the module, adds autoload/module order and runs
+`depmod`; the verifier checks all those components plus the device alias.
+Internal image adaptation verifies they survive cloning from the explicitly
+selected source manifest.
+
+The actual assembler module-packaging block passed a 16 MiB ext4 fixture in
+the locked container, including `modprobe` resolution. The internal builder
+also adapted that fixture and verified module preservation and fsck. Missing
+autoload, module order, dependency or alias entries are rejected. The earlier
+full SD image still verifies with its archived lock. No new full desktop image
+was assembled or flashed: available host space is below full assembly needs.
+See [packaging evidence](evidence/cpufreq-image-20261007/packaging-verification.json).
 
 ## Remaining thermal and Bluetooth work
 
