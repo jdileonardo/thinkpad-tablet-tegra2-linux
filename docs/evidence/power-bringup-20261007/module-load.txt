@@ -1,0 +1,62 @@
+~ # insmod /tmp/tegra20-cpufreq.ko; echo MODULE_LOAD_EXIT:$?; sleep 2; for p in
+/sys/devices/system/cpu/cpufreq/policy*; do echo POLICY:$p; for f in scaling_dri
+ver scaling_available_frequencies scaling_governor scaling_min_freq scaling_max_
+freq scaling_cur_freq related_cpus; do echo $f; cat "$p/$f"; done; done; ls /sys
+/class/thermal/cooling_device*; cat /sys/kernel/debug/clk/clk_summary | sed -n "
+/pll_x /p; /cclk /p"; dmesg | tail -35; cat /tmp/indigo-sidekeys-20261007.txt
+MODULE_LOAD_EXIT:0
+POLICY:/sys/devices/system/cpu/cpufreq/policy0
+scaling_driver
+cpufreq-dt
+scaling_available_frequencies
+216000 312000 456000 608000 760000 816000 912000 1000000
+scaling_governor
+ondemand
+scaling_min_freq
+216000
+scaling_max_freq
+1000000
+scaling_cur_freq
+1000000
+related_cpus
+0 1
+ls: /sys/class/thermal/cooling_device*: No such file or directory
+       pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id
+          cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id
+[   12.633428] platform wifi-pwrseq: deferred probe pending: pwrseq_simple: reset control not ready
+[   12.633452] platform sound-hdmi: deferred probe pending: asoc-simple-card: parse error
+[   12.633468] tegra-mc 7000f000.memory-controller: sync_state() pending due to 6001a000.vde
+[   12.633488] tegra-pmc 7000e400.pmc: sync_state() pending due to wifi-pwrseq
+[   12.633507] tegra-pmc 7000e400.pmc: sync_state() pending due to 6001a000.vde
+[   12.633520] tegra-pmc 7000e400.pmc: sync_state() pending due to c8000000.mmc
+[   16.881562] random: crng init done
+[   16.948248] udevd[487]: starting eudev-3.2.14
+[   17.218715] reset_gpio: module verification failed: signature and/or required key missing - tainting kernel
+[   17.245701] sdhci-tegra c8000000.mmc: allocated mmc-pwrseq
+[   17.279283] mmc2: Invalid maximum block size, assuming 512 bytes
+[   17.360323] ntrig_indigo: loading out-of-tree module taints kernel.
+[   17.361757] input: N-Trig Indigo Touchscreen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input3
+[   17.362023] input: N-Trig Indigo Pen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input4
+[   17.687022] mmc2: SDHCI controller on c8000000.mmc [c8000000.mmc] using ADMA
+[   17.725810] mmc2: queuing unknown CIS tuple 0x02 [ff] (1 bytes)
+[   17.730063] mmc2: new SDIO card at address 0001
+[   17.732759] brcmfmac: F1 signature read @0x18000000=0x9934329
+[   17.735149] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4329-sdio for chip BCM4329/3
+[   17.737272] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.lenovo,indigo.bin failed with error -2
+[   17.758552] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.clm_blob failed with error -2
+[   17.906001] brcmfmac: brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may have limited channels available
+[   17.906025] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)
+[   17.906572] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4329/3 wl0: Sep  2 2011 14:48:19 version 4.220.48
+[   17.921418] ieee80211 phy0: brcmf_setup_wiphybands: rxchain unsupported
+[   17.993150] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[   18.726634] usbcore: registered new interface driver usbhid
+[   18.726659] usbhid: USB HID core driver
+[   20.316071] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.316097] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.316108] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   20.787024] zram0: detected capacity change from 0 to 3041280
+[   20.807787] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   23.322679] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+[  336.427858] tegra20-cpufreq tegra20-cpufreq: hardware version 0x2 0x2
+device /dev/input/event2: gpio-keys
+~ #

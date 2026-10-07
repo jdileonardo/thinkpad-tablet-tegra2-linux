@@ -1,0 +1,3 @@
+~ # rc-service lightdm stop >/tmp/cpufreq-reboot-lightdm.txt 2>&1; sync; echo u
+> /proc/sysrq-trigger; grep " / ext4 " /proc/mounts; sleep 1; reboot -f
+/dev/mmcblk1p1 / ext4 rw,noatime 0 0

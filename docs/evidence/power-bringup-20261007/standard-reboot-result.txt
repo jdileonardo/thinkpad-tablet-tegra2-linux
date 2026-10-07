@@ -1,0 +1,28 @@
+~ #
+~ #
+~ #
+~ # ~ # ^[[6n
+/bin/sh: /: Permission denied
+~ # date -u; cat /proc/uptime; cat /proc/cmdline; grep " / ext4 " /proc/mounts;
+dmesg | grep -E "EXT4-fs|cpufreq|WARNING|BUG:|Oops|ntrig"; cat /sys/devices/syst
+em/cpu/cpufreq/policy0/scaling_governor; ip -brief addr; ps -ef | grep -E "Xorg|
+indigo-rotate|xfce4-session"
+Wed Oct  7 01:17:18 UTC 2026
+47.54 29.01
+console=tty0 console=ttyS0,115200 panic=0 rdinit=/init indigo_boot=extlinux-internal
+/dev/mmcblk1p1 / ext4 rw,noatime 0 0
+[    3.689279] EXT4-fs (mmcblk1p1): mounted filesystem a1b59fdc-49f7-46bb-b099-4c6012334c07 r/w with ordered data mode. Quota mode: disabled.
+[    5.225450] EXT4-fs (mmcblk1p1): re-mounted a1b59fdc-49f7-46bb-b099-4c6012334c07.
+[   16.665519] tegra20_cpufreq: module verification failed: signature and/or required key missing - tainting kernel
+[   16.666262] tegra20-cpufreq tegra20-cpufreq: hardware version 0x2 0x2
+[   16.860940] ntrig_indigo: loading out-of-tree module taints kernel.
+[   17.488174] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+ondemand
+lo               UNKNOWN        127.0.0.1/8 ::1/128
+wlan0            UP             192.168.0.192/24 fe80::6830:97ff:fe3e:dcf4/64
+root      1387  1283  8 21:16 tty7     00:00:02 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+julian    1625  1560 12 21:17 ?        00:00:02 xfce4-session
+julian    1638     1  0 21:17 ?        00:00:00 /usr/sbin/dbus-launch --sh-syntax --exit-with-session xfce4-session
+julian    2035  1625  8 21:17 ?        00:00:00 python3 /usr/local/bin/indigo-rotate watch
+root      2313  1515  0 21:17 ttyGS0   00:00:00 grep -E Xorg|indigo-rotate|xfce4-session
+~ #

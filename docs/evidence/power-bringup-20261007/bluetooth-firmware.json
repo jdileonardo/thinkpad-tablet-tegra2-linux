@@ -1,0 +1,12 @@
+{
+  "stock_path": "/etc/firmware/bcm4329.hcd",
+  "size": 17179,
+  "sha256": "8fd56bf6a3b0fec64b158e3d688e343fd1f73526ce3d4c2d0b261851e9b678b6",
+  "record_count": 96,
+  "opcodes": {
+    "0xfc4c": 95,
+    "0xfc4e": 1
+  },
+  "hardware_loaded": false,
+  "redistribution_reviewed": false
+}

@@ -1,0 +1,23 @@
+{
+  "device": "Lenovo ThinkPad Tablet Indigo",
+  "kernel_release": "7.0.1-nura-indigo-ram",
+  "root_uuid": "a1b59fdc-49f7-46bb-b099-4c6012334c07",
+  "selected_module_sha256": "6d6031809a52eb6a6841e8a0bb87ceede59460200fb8a5d7017e8d0733cfc106",
+  "cpu_frequency_trial_passed": true,
+  "cpu_voltage_changes_verified": true,
+  "peak_trial_millicelsius": 38750,
+  "autoload_restart_checks": 2,
+  "standard_reboot_clean_ext4_mount": true,
+  "xfce_running_after_restart": true,
+  "wifi_reconnected_and_ping_passed": true,
+  "touch_devices_enumerated_after_restart": true,
+  "physical_input_after_restart_confirmed": false,
+  "brightness_driver_trial_passed": true,
+  "brightness_visual_confirmation": false,
+  "side_key_capture_events": 0,
+  "side_key_physical_presses_confirmed": false,
+  "cpu_thermal_cooling_configured": false,
+  "bluetooth_hardware_trial": false,
+  "earlier_frozen_image_inputs_unchanged": 66,
+  "new_image_assembled": false
+}

@@ -1,0 +1,55 @@
+{
+  "normalization": "Remove CR bytes, ANSI escape sequences, trailing line whitespace and leading/trailing blank lines; original captures retained in ignored diagnostics/.",
+  "captures": {
+    "baseline.txt": {
+      "raw_host_capture": "diagnostics/linux-console-20261007T011043Z.txt",
+      "raw_sha256": "19e531906fed10d13767ee80706d61c19cae871a1c6e302a9f6a230cbad5f184",
+      "normalized_sha256": "da50da9157baa0dc92fa5eb9f2d5bf039dfa8b7025c46b614d3d312bf6075bbd"
+    },
+    "module-load.txt": {
+      "raw_host_capture": "diagnostics/linux-console-20261007T011137Z.txt",
+      "raw_sha256": "7a7d0e723854a953977a4e2ed49b5823f4946181318be5233ba38109596f0bf0",
+      "normalized_sha256": "88a7e3ffa2f96061191fa1681ff7accccc8cf63603d16d3065e52f194396bcfb"
+    },
+    "install.txt": {
+      "raw_host_capture": "diagnostics/linux-console-20261007T011436Z.txt",
+      "raw_sha256": "44d32a70b5bb9bc52d6457bec0630e7d401ae261d822b597a1a1f7e1d8274ea5",
+      "normalized_sha256": "2602b1f78c131e652bc0d1a2949de506cca377993e9d774e3f2155ea512e6f01"
+    },
+    "gpio-debug-warnings.txt": {
+      "raw_host_capture": "diagnostics/linux-console-20261007T011443Z.txt",
+      "raw_sha256": "a5956ed33e54d4eedf0da819a6fdbc881e503238894a97e3d35d7046a84f4709",
+      "normalized_sha256": "fcd5a22005196731f510427722623335d9384fdf65658d67e265c285a693c709"
+    },
+    "autoload-first-boot.txt": {
+      "raw_host_capture": "diagnostics/linux-console-20261007T011536Z.txt",
+      "raw_sha256": "ff23331d32722458f0151fd7566bf6371c495f22761f865b04cf99e99055673e",
+      "normalized_sha256": "aed1ccdbf8fec2a300e569a3dcc103a6e5968ac7bcd49cc5ec79ed24f82106eb"
+    },
+    "shutdown-baseline.txt": {
+      "raw_host_capture": "diagnostics/linux-console-20261007T011557Z.txt",
+      "raw_sha256": "98dd6532fa5477ba9a60dabd1e4af1e842ac03da9585162d42b884ef6fd8451a",
+      "normalized_sha256": "b6f66d3996c1dc6c7c17655140474bfd1ec21d9d77accddff63792b44b67ea3c"
+    },
+    "forced-reboot-request.txt": {
+      "raw_host_capture": "diagnostics/linux-console-20261007T011505Z.txt",
+      "raw_sha256": "08cd27b0edbf2cf4bd5de80afbcac2ba45b75296c1fe78cf56ef222def6decf7",
+      "normalized_sha256": "df867eb3e956502ae36906ce9fe214780c776161cbcbc066667a8bf27727abca"
+    },
+    "standard-reboot-request.txt": {
+      "raw_host_capture": "diagnostics/linux-console-20261007T011611Z.txt",
+      "raw_sha256": "9f3aa9409029f28747c301ce823351a8990d42a255deb29dcc1c720b9d933108",
+      "normalized_sha256": "a97df5201fabc0c027ce536ed858bc2ab29ca14edf050611e0f8c31ea16d0e7e"
+    },
+    "standard-reboot-result.txt": {
+      "raw_host_capture": "diagnostics/linux-console-20261007T011727Z.txt",
+      "raw_sha256": "927a7596abd5a9e48da16f912e5e98d4872559a371185f9cae695dfd56cc7dc6",
+      "normalized_sha256": "b8ec4fc227ceb780b0c8db9d7134c30573e4ea89221f8aad1a9a3ae5f1fd6b7e"
+    },
+    "final-runtime.txt": {
+      "raw_host_capture": "diagnostics/linux-console-20261007T011830Z.txt",
+      "raw_sha256": "f97e10d518970ba390d517c41693a31794b16f655b64d7a36e5bcb5c9655ed12",
+      "normalized_sha256": "dbb0055f5324a72a729e6d19351f69e866a4d9b9aedabb4435981cc5fe0c541e"
+    }
+  }
+}

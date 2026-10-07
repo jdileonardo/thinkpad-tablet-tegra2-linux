@@ -1,0 +1,40 @@
+~ # sh /tmp/install-cpufreq.sh --apply; echo INSTALL_EXIT:$?; cat /etc/modules;
+cat /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq; cat /sys/class/the
+rmal/thermal_zone0/temp; ping -c 2 -W 2 192.168.0.1; ps -ef | grep -E "Xorg|indi
+go-rotate"; dmesg | tail -8
+/tmp/tegra20-cpufreq.ko: OK
+CHECK_OK
+/lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/cpufreq/tegra20-cpufreq.ko: OK
+insmod /lib/modules/7.0.1-nura-indigo-ram/kernel/drivers/cpufreq/tegra20-cpufreq.ko
+INSTALL_OK
+INSTALL_EXIT:0
+af_packet
+ipv6
+evdev
+hid-generic
+usbhid
+reset-gpio
+ntrig_indigo
+
+tegra20-cpufreq
+912000
+35750
+PING 192.168.0.1 (192.168.0.1): 56 data bytes
+64 bytes from 192.168.0.1: seq=0 ttl=63 time=3.133 ms
+64 bytes from 192.168.0.1: seq=1 ttl=63 time=2.526 ms
+
+--- 192.168.0.1 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 2.526/2.829/3.133 ms
+root      1587  1481  4 21:06 tty7     00:00:20 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+julian    2251  1832  3 21:06 ?        00:00:18 python3 /usr/local/bin/indigo-rotate watch
+root      6687  1709  0 21:14 ttyGS0   00:00:00 grep -E Xorg|indigo-rotate
+[  374.195545]  full_proxy_read from vfs_read+0xfc/0x380
+[  374.195563]  vfs_read from ksys_read+0x74/0xe0
+[  374.195581]  ksys_read from ret_fast_syscall+0x0/0x54
+[  374.195596] Exception stack(0xf19b5fa8 to 0xf19b5ff0)
+[  374.195609] 5fa0:                   00000000 00000000 00000003 b6e76000 00010000 00000000
+[  374.195619] 5fc0: 00000000 00000000 00000000 00000003 00010000 b6e76000 00000001 00000001
+[  374.195628] 5fe0: be9e7d60 be9e7d50 b6ed2f3b b6ed287e
+[  374.195634] ---[ end trace 0000000000000000 ]---
+~ #

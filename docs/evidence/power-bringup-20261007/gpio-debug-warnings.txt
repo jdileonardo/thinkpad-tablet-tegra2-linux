@@ -1,0 +1,108 @@
+~ # dmesg | tail -100; cat /sys/kernel/debug/clk/clk_summary | sed -n "/pll_x /p
+; /cclk /p"; cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor; cat /
+proc/sys/kernel/tainted
+[   16.948248] udevd[487]: starting eudev-3.2.14
+[   17.218715] reset_gpio: module verification failed: signature and/or required key missing - tainting kernel
+[   17.245701] sdhci-tegra c8000000.mmc: allocated mmc-pwrseq
+[   17.279283] mmc2: Invalid maximum block size, assuming 512 bytes
+[   17.360323] ntrig_indigo: loading out-of-tree module taints kernel.
+[   17.361757] input: N-Trig Indigo Touchscreen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input3
+[   17.362023] input: N-Trig Indigo Pen as /devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input4
+[   17.687022] mmc2: SDHCI controller on c8000000.mmc [c8000000.mmc] using ADMA
+[   17.725810] mmc2: queuing unknown CIS tuple 0x02 [ff] (1 bytes)
+[   17.730063] mmc2: new SDIO card at address 0001
+[   17.732759] brcmfmac: F1 signature read @0x18000000=0x9934329
+[   17.735149] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4329-sdio for chip BCM4329/3
+[   17.737272] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.lenovo,indigo.bin failed with error -2
+[   17.758552] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.clm_blob failed with error -2
+[   17.906001] brcmfmac: brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may have limited channels available
+[   17.906025] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)
+[   17.906572] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4329/3 wl0: Sep  2 2011 14:48:19 version 4.220.48
+[   17.921418] ieee80211 phy0: brcmf_setup_wiphybands: rxchain unsupported
+[   17.993150] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[   18.726634] usbcore: registered new interface driver usbhid
+[   18.726659] usbhid: USB HID core driver
+[   20.316071] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.316097] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.316108] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   20.787024] zram0: detected capacity change from 0 to 3041280
+[   20.807787] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   23.322679] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+[  336.427858] tegra20-cpufreq tegra20-cpufreq: hardware version 0x2 0x2
+[  374.193649] ------------[ cut here ]------------
+[  374.193681] WARNING: drivers/gpio/gpiolib.c:423 at gpiod_get_direction+0x180/0x1c8, CPU#1: cat/5678
+[  374.193733] Modules linked in: tegra20_cpufreq(E) usbhid(E) hid_generic(E) evdev(E) ntrig_indigo(OE) reset_gpio(E)
+[  374.193799] CPU: 1 UID: 0 PID: 5678 Comm: cat Tainted: G           OE       7.0.1-nura-indigo-ram #3 VOLUNTARY
+[  374.193819] Tainted: [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[  374.193823] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[  374.193830] Call trace:
+[  374.193846]  unwind_backtrace from show_stack+0x28/0x30
+[  374.193880]  show_stack from dump_stack_lvl+0x50/0x5c
+[  374.193905]  dump_stack_lvl from __warn+0xfc/0x280
+[  374.193924]  __warn from warn_slowpath_fmt+0xa4/0x150
+[  374.193942]  warn_slowpath_fmt from gpiod_get_direction+0x180/0x1c8
+[  374.193965]  gpiod_get_direction from gpiolib_seq_show+0x258/0x50c
+[  374.193991]  gpiolib_seq_show from seq_read_iter+0x430/0x5d0
+[  374.194011]  seq_read_iter from seq_read+0x118/0x130
+[  374.194024]  seq_read from full_proxy_read+0x88/0xf0
+[  374.194041]  full_proxy_read from vfs_read+0xfc/0x380
+[  374.194062]  vfs_read from ksys_read+0x74/0xe0
+[  374.194079]  ksys_read from ret_fast_syscall+0x0/0x54
+[  374.194095] Exception stack(0xf19b5fa8 to 0xf19b5ff0)
+[  374.194109] 5fa0:                   00000000 00000000 00000003 b6e76000 00010000 00000000
+[  374.194120] 5fc0: 00000000 00000000 00000000 00000003 00010000 b6e76000 00000001 00000001
+[  374.194128] 5fe0: be9e7d60 be9e7d50 b6ed2f3b b6ed287e
+[  374.194140] ---[ end trace 0000000000000000 ]---
+[  374.194463] ------------[ cut here ]------------
+[  374.194477] WARNING: drivers/gpio/gpiolib.c:423 at gpiod_get_direction+0x180/0x1c8, CPU#1: cat/5678
+[  374.194510] Modules linked in: tegra20_cpufreq(E) usbhid(E) hid_generic(E) evdev(E) ntrig_indigo(OE) reset_gpio(E)
+[  374.194564] CPU: 1 UID: 0 PID: 5678 Comm: cat Tainted: G        W  OE       7.0.1-nura-indigo-ram #3 VOLUNTARY
+[  374.194583] Tainted: [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[  374.194587] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[  374.194593] Call trace:
+[  374.194599]  unwind_backtrace from show_stack+0x28/0x30
+[  374.194622]  show_stack from dump_stack_lvl+0x50/0x5c
+[  374.194642]  dump_stack_lvl from __warn+0xfc/0x280
+[  374.194660]  __warn from warn_slowpath_fmt+0xa4/0x150
+[  374.194677]  warn_slowpath_fmt from gpiod_get_direction+0x180/0x1c8
+[  374.194699]  gpiod_get_direction from gpiolib_seq_show+0x258/0x50c
+[  374.194721]  gpiolib_seq_show from seq_read_iter+0x430/0x5d0
+[  374.194737]  seq_read_iter from seq_read+0x118/0x130
+[  374.194750]  seq_read from full_proxy_read+0x88/0xf0
+[  374.194765]  full_proxy_read from vfs_read+0xfc/0x380
+[  374.194782]  vfs_read from ksys_read+0x74/0xe0
+[  374.194799]  ksys_read from ret_fast_syscall+0x0/0x54
+[  374.194814] Exception stack(0xf19b5fa8 to 0xf19b5ff0)
+[  374.194826] 5fa0:                   00000000 00000000 00000003 b6e76000 00010000 00000000
+[  374.194837] 5fc0: 00000000 00000000 00000000 00000003 00010000 b6e76000 00000001 00000001
+[  374.194846] 5fe0: be9e7d60 be9e7d50 b6ed2f3b b6ed287e
+[  374.194852] ---[ end trace 0000000000000000 ]---
+[  374.195141] ------------[ cut here ]------------
+[  374.195154] WARNING: drivers/gpio/gpiolib.c:423 at gpiod_get_direction+0x180/0x1c8, CPU#1: cat/5678
+[  374.195185] Modules linked in: tegra20_cpufreq(E) usbhid(E) hid_generic(E) evdev(E) ntrig_indigo(OE) reset_gpio(E)
+[  374.195335] CPU: 1 UID: 0 PID: 5678 Comm: cat Tainted: G        W  OE       7.0.1-nura-indigo-ram #3 VOLUNTARY
+[  374.195355] Tainted: [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[  374.195359] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[  374.195365] Call trace:
+[  374.195371]  unwind_backtrace from show_stack+0x28/0x30
+[  374.195395]  show_stack from dump_stack_lvl+0x50/0x5c
+[  374.195417]  dump_stack_lvl from __warn+0xfc/0x280
+[  374.195436]  __warn from warn_slowpath_fmt+0xa4/0x150
+[  374.195454]  warn_slowpath_fmt from gpiod_get_direction+0x180/0x1c8
+[  374.195478]  gpiod_get_direction from gpiolib_seq_show+0x258/0x50c
+[  374.195501]  gpiolib_seq_show from seq_read_iter+0x430/0x5d0
+[  374.195517]  seq_read_iter from seq_read+0x118/0x130
+[  374.195531]  seq_read from full_proxy_read+0x88/0xf0
+[  374.195545]  full_proxy_read from vfs_read+0xfc/0x380
+[  374.195563]  vfs_read from ksys_read+0x74/0xe0
+[  374.195581]  ksys_read from ret_fast_syscall+0x0/0x54
+[  374.195596] Exception stack(0xf19b5fa8 to 0xf19b5ff0)
+[  374.195609] 5fa0:                   00000000 00000000 00000003 b6e76000 00010000 00000000
+[  374.195619] 5fc0: 00000000 00000000 00000000 00000003 00010000 b6e76000 00000001 00000001
+[  374.195628] 5fe0: be9e7d60 be9e7d50 b6ed2f3b b6ed287e
+[  374.195634] ---[ end trace 0000000000000000 ]---
+       pll_x                         1       1        0        816000000   0          0     50000      Y         deviceless                      no_connection_id
+          cclk                       2       2        0        816000000   0          0     50000      Y            cpu0                            no_connection_id
+ondemand
+12800
+~ #

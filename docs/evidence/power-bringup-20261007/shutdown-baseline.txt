@@ -1,0 +1,55 @@
+~ # readlink -f /proc/1/exe; cat /proc/1/comm; cat /etc/inittab; command -v rebo
+ot; readlink -f /sbin/reboot; cat /proc/sys/kernel/sysrq; zcat /proc/config.gz |
+ grep MAGIC_SYSRQ; ps -ef | grep -E "Xorg|indigo-rotate|xfce4-session"; ip -brie
+f addr; dmesg | tail -8; cat /sys/class/backlight/backlight/brightness
+/usr/bin/busybox
+init
+# /etc/inittab
+
+::sysinit:/sbin/openrc sysinit
+::sysinit:/sbin/openrc boot
+::wait:/sbin/openrc default
+
+# Set up a couple of getty's
+tty1::respawn:/sbin/getty 38400 tty1
+tty2::respawn:/sbin/getty 38400 tty2
+tty3::respawn:/sbin/getty 38400 tty3
+tty4::respawn:/sbin/getty 38400 tty4
+tty5::respawn:/sbin/getty 38400 tty5
+tty6::respawn:/sbin/getty 38400 tty6
+
+# Put a getty on the serial port
+#ttyS0::respawn:/sbin/getty -L 115200 ttyS0 vt100
+
+# Stuff to do for the 3-finger salute
+::ctrlaltdel:/sbin/reboot
+
+# Stuff to do before rebooting
+::shutdown:/sbin/openrc shutdown
+
+
+# Temporary wired root shell for hardware bring-up; no network autologin.
+ttyGS0::respawn:/sbin/getty -n -l /bin/sh -L 115200 ttyGS0 vt100
+/sbin/reboot
+/usr/bin/busybox
+1
+CONFIG_MAGIC_SYSRQ=y
+CONFIG_MAGIC_SYSRQ_DEFAULT_ENABLE=0x1
+CONFIG_MAGIC_SYSRQ_SERIAL=y
+CONFIG_MAGIC_SYSRQ_SERIAL_SEQUENCE=""
+root      1642  1479  8 21:15 tty7     00:00:01 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+julian    2032  1765 17 21:15 ?        00:00:02 xfce4-session
+julian    2045     1  0 21:15 ?        00:00:00 /usr/sbin/dbus-launch --sh-syntax --exit-with-session xfce4-session
+root      2493  1708  0 21:15 ttyGS0   00:00:00 grep -E Xorg|indigo-rotate|xfce4-session
+lo               UNKNOWN        127.0.0.1/8 ::1/128
+wlan0            UP             192.168.0.192/24 fe80::6830:97ff:fe3e:dcf4/64
+[   18.250633] usbcore: registered new interface driver usbhid
+[   18.250666] usbhid: USB HID core driver
+[   20.313280] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.313313] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.313328] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   21.201227] zram0: detected capacity change from 0 to 3041280
+[   21.228589] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   24.288523] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+6
+~ #

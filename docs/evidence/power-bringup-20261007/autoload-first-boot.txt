@@ -1,0 +1,36 @@
+~ # date -u; uname -r; cat /proc/cmdline; grep " / ext4 " /proc/mounts; cat /pro
+c/modules; for f in scaling_driver scaling_governor scaling_available_frequencie
+s scaling_cur_freq; do echo $f; cat /sys/devices/system/cpu/cpufreq/policy0/$f;
+done; dmesg | grep -E "cpufreq|WARNING|BUG:|Oops|EXT4-fs|ntrig"; ip -brief addr;
+ ps -ef | grep -E "Xorg|indigo-rotate"
+Wed Oct  7 01:15:34 UTC 2026
+7.0.1-nura-indigo-ram
+console=tty0 console=ttyS0,115200 panic=0 rdinit=/init indigo_boot=extlinux-internal
+/dev/mmcblk1p1 / ext4 rw,noatime 0 0
+usbhid 57344 0 - Live 0xbf028000 (E)
+hid_generic 12288 0 - Live 0xbf019000 (E)
+evdev 20480 1 - Live 0xbf00c000 (E)
+ntrig_indigo 16384 0 - Live 0xbf012000 (OE)
+reset_gpio 12288 1 - Live 0xbf006000 (E)
+tegra20_cpufreq 12288 0 - Live 0xbf000000 (E)
+scaling_driver
+cpufreq-dt
+scaling_governor
+ondemand
+scaling_available_frequencies
+216000 312000 456000 608000 760000 816000 912000 1000000
+scaling_cur_freq
+912000
+[    3.752013] EXT4-fs (mmcblk1p1): 5 orphan inodes deleted
+[    3.757433] EXT4-fs (mmcblk1p1): recovery complete
+[    3.925866] EXT4-fs (mmcblk1p1): mounted filesystem a1b59fdc-49f7-46bb-b099-4c6012334c07 r/w with ordered data mode. Quota mode: disabled.
+[    6.453273] EXT4-fs (mmcblk1p1): re-mounted a1b59fdc-49f7-46bb-b099-4c6012334c07.
+[   16.543493] tegra20_cpufreq: module verification failed: signature and/or required key missing - tainting kernel
+[   16.544151] tegra20-cpufreq tegra20-cpufreq: hardware version 0x2 0x2
+[   16.683899] ntrig_indigo: loading out-of-tree module taints kernel.
+[   17.336021] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+lo               UNKNOWN        127.0.0.1/8 ::1/128
+wlan0            DOWN
+root      1642  1479  4 21:15 ?        00:00:00 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+root      1726  1708  0 21:15 ttyGS0   00:00:00 grep -E Xorg|indigo-rotate
+~ #

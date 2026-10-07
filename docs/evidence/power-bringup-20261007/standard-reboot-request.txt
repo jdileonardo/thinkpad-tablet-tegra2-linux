@@ -1,0 +1,3 @@
+~ # sync; echo STANDARD_REBOOT_REQUEST; /sbin/reboot
+STANDARD_REBOOT_REQUEST
+~ #

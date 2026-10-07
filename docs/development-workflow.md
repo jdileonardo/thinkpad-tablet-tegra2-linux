@@ -55,6 +55,14 @@ The [internal installation](internal-install.md) now supplies the normal boot
 path. The bootloader is persistent, and kernel updates use replaceable extlinux
 files rather than requiring a new bootloader flash.
 
+The subsequent [CPU/backlight bring-up](power-bringup.md) adds an incremental
+custom-kernel cpufreq module to the live internal installation. Automatic
+scaling and module autoload pass ordinary reboot. This module is not yet in
+the frozen image; keep its build/install recipe with the next image work.
+Use standard `/sbin/reboot` so init runs the OpenRC shutdown path. Its latest
+restart mounted internal ext4 without journal recovery, unlike the older
+forced restart procedure.
+
 | Part | Location and role |
 | --- | --- |
 | Board BCT and U-Boot | Internal eMMC hardware boot0, protected after installation |

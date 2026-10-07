@@ -1,0 +1,332 @@
+{
+  "cpu_samples": [
+    {
+      "label": "before",
+      "monotonic_seconds": 402.926881253,
+      "temperature_millicelsius": 35750,
+      "frequency_khz": 1000000,
+      "clock_lines": [
+        "pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown  1000mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "userspace-216000",
+      "monotonic_seconds": 404.002444874,
+      "temperature_millicelsius": 35250,
+      "frequency_khz": 216000,
+      "clock_lines": [
+        "cclk                       2       2        0        216000000   0          0     50000      Y            cpu0                            no_connection_id",
+        "pll_x                         0       0        0        1000000000  0          0     50000      N         deviceless                      no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   750mV     0mA   750mV  1125mV"
+      ],
+      "sha256_8mib_seconds": 0.9339166420000424
+    },
+    {
+      "label": "userspace-608000",
+      "monotonic_seconds": 405.991321705,
+      "temperature_millicelsius": 35500,
+      "frequency_khz": 608000,
+      "clock_lines": [
+        "pll_x                         1       1        0        608000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        608000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   850mV     0mA   750mV  1125mV"
+      ],
+      "sha256_8mib_seconds": 0.32813990199997534
+    },
+    {
+      "label": "userspace-1000000",
+      "monotonic_seconds": 407.345756192,
+      "temperature_millicelsius": 35500,
+      "frequency_khz": 1000000,
+      "clock_lines": [
+        "pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown  1000mV     0mA   750mV  1125mV"
+      ],
+      "sha256_8mib_seconds": 0.19942419500000597
+    },
+    {
+      "label": "idle-0",
+      "monotonic_seconds": 408.571335968,
+      "temperature_millicelsius": 36000,
+      "frequency_khz": 608000,
+      "clock_lines": [
+        "pll_x                         1       1        0        456000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        456000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   850mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "idle-1",
+      "monotonic_seconds": 409.60268766,
+      "temperature_millicelsius": 35500,
+      "frequency_khz": 456000,
+      "clock_lines": [
+        "pll_x                         1       1        0        312000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        312000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   800mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "idle-2",
+      "monotonic_seconds": 410.636258398,
+      "temperature_millicelsius": 35500,
+      "frequency_khz": 456000,
+      "clock_lines": [
+        "pll_x                         1       1        0        456000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        456000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   800mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "idle-3",
+      "monotonic_seconds": 411.659502919,
+      "temperature_millicelsius": 35500,
+      "frequency_khz": 456000,
+      "clock_lines": [
+        "pll_x                         1       1        0        456000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        456000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   800mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "idle-4",
+      "monotonic_seconds": 412.685075489,
+      "temperature_millicelsius": 35500,
+      "frequency_khz": 456000,
+      "clock_lines": [
+        "pll_x                         1       1        0        456000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        456000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   800mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "load-0",
+      "monotonic_seconds": 413.740746693,
+      "temperature_millicelsius": 36500,
+      "frequency_khz": 1000000,
+      "clock_lines": [
+        "pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown  1000mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "load-1",
+      "monotonic_seconds": 414.763490203,
+      "temperature_millicelsius": 37250,
+      "frequency_khz": 1000000,
+      "clock_lines": [
+        "pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown  1000mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "load-2",
+      "monotonic_seconds": 415.801396033,
+      "temperature_millicelsius": 37500,
+      "frequency_khz": 1000000,
+      "clock_lines": [
+        "pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown  1000mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "load-3",
+      "monotonic_seconds": 416.821190481,
+      "temperature_millicelsius": 37750,
+      "frequency_khz": 1000000,
+      "clock_lines": [
+        "pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown  1000mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "load-4",
+      "monotonic_seconds": 417.861091353,
+      "temperature_millicelsius": 38250,
+      "frequency_khz": 1000000,
+      "clock_lines": [
+        "pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown  1000mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "load-5",
+      "monotonic_seconds": 418.883589858,
+      "temperature_millicelsius": 38500,
+      "frequency_khz": 1000000,
+      "clock_lines": [
+        "pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown  1000mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "load-6",
+      "monotonic_seconds": 419.923325726,
+      "temperature_millicelsius": 38750,
+      "frequency_khz": 1000000,
+      "clock_lines": [
+        "pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown  1000mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "load-7",
+      "monotonic_seconds": 420.940331116,
+      "temperature_millicelsius": 38750,
+      "frequency_khz": 1000000,
+      "clock_lines": [
+        "pll_x                         1       1        0        1000000000  0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        1000000000  0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown  1000mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "settled-0",
+      "monotonic_seconds": 421.969134754,
+      "temperature_millicelsius": 37500,
+      "frequency_khz": 608000,
+      "clock_lines": [
+        "pll_x                         1       1        0        456000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        456000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   850mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "settled-1",
+      "monotonic_seconds": 423.002493488,
+      "temperature_millicelsius": 37000,
+      "frequency_khz": 312000,
+      "clock_lines": [
+        "pll_x                         1       1        0        312000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        312000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   750mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "settled-2",
+      "monotonic_seconds": 424.038515278,
+      "temperature_millicelsius": 37000,
+      "frequency_khz": 816000,
+      "clock_lines": [
+        "pll_x                         1       1        0        456000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        456000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   950mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "settled-3",
+      "monotonic_seconds": 425.060446771,
+      "temperature_millicelsius": 36750,
+      "frequency_khz": 456000,
+      "clock_lines": [
+        "pll_x                         1       1        0        456000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        456000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   800mV     0mA   750mV  1125mV"
+      ]
+    },
+    {
+      "label": "settled-4",
+      "monotonic_seconds": 426.098689608,
+      "temperature_millicelsius": 36750,
+      "frequency_khz": 312000,
+      "clock_lines": [
+        "pll_x                         1       1        0        312000000   0          0     50000      Y         deviceless                      no_connection_id",
+        "cclk                       2       2        0        312000000   0          0     50000      Y            cpu0                            no_connection_id"
+      ],
+      "cpu_regulator_lines": [
+        "vdd_sm1,vdd_cpu            2    1      0 unknown   750mV     0mA   750mV  1125mV"
+      ]
+    }
+  ],
+  "brightness_samples": [
+    {
+      "requested": 2,
+      "actual": 2,
+      "pwm": "0: platform/7000a000.pwm, npwm: 4\n pwm-0   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-1   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-2   (backlight           ): requested\n  requested configuration:  enabled, 156862/5000000 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-3   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n"
+    },
+    {
+      "requested": 4,
+      "actual": 4,
+      "pwm": "0: platform/7000a000.pwm, npwm: 4\n pwm-0   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-1   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-2   (backlight           ): requested\n  requested configuration:  enabled, 627450/5000000 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-3   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n"
+    },
+    {
+      "requested": 7,
+      "actual": 7,
+      "pwm": "0: platform/7000a000.pwm, npwm: 4\n pwm-0   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-1   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-2   (backlight           ): requested\n  requested configuration:  enabled, 5000000/5000000 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-3   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n"
+    }
+  ],
+  "passed": true,
+  "available_frequencies_khz": [
+    216000,
+    312000,
+    456000,
+    608000,
+    760000,
+    816000,
+    912000,
+    1000000
+  ],
+  "original_cpu_settings": {
+    "scaling_governor": "ondemand",
+    "scaling_min_freq": "216000",
+    "scaling_max_freq": "1000000"
+  },
+  "blanked_pwm": "0: platform/7000a000.pwm, npwm: 4\n pwm-0   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-1   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-2   (backlight           ): requested\n  requested configuration: disabled, 0/5000000 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n pwm-3   ((null)              ):\n  requested configuration: disabled, 0/0 ns, normal polarity\n  actual configuration: read out error: -EOPNOTSUPP\n",
+  "restored": {
+    "governor": "ondemand",
+    "brightness": "6",
+    "bl_power": "0"
+  }
+}

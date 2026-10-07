@@ -41,8 +41,9 @@ for feature in USB_CONFIGFS_ACM RFKILL CFG80211 BRCMUTIL BRCMFMAC; do
 done
 run_make -j8 zImage nvidia/tegra20-lenovo-indigo.dtb
 run_make -j8 drivers/input/evdev.ko drivers/hid/hid-generic.ko drivers/hid/usbhid/usbhid.ko \
-  drivers/reset/reset-gpio.ko
+  drivers/reset/reset-gpio.ko drivers/cpufreq/tegra20-cpufreq.ko
 bash scripts/build_ntrig_module.sh
 sha256sum build/linux-nura/arch/arm/boot/zImage \
   build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb \
+  build/linux-nura/drivers/cpufreq/tegra20-cpufreq.ko \
   > build/linux-nura/SHA256SUMS
