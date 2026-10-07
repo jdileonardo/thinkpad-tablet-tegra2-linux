@@ -7,11 +7,12 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument('--profile', choices=['historical', 'nura', 'nura-sd',
+parser.add_argument('--profile', choices=['historical', 'nura', 'nura-sd', 'nura-internal',
                                        'nura-storage-test'], default='historical')
 args = parser.parse_args()
 out = root / {'historical': 'build/ram-test', 'nura': 'build/nura-ram-test',
               'nura-sd': 'build/nura-sd-test',
+              'nura-internal': 'build/nura-internal-test',
               'nura-storage-test': 'build/nura-storage-test'}[args.profile]
 out.mkdir(parents=True, exist_ok=True)
 load_address = 0x108000
@@ -23,6 +24,7 @@ components = [
 ]
 if args.profile != 'historical':
     uboot_dir = {'nura-sd': 'uboot-nura-sd', 'nura': 'uboot-nura',
+                 'nura-internal': 'uboot-nura-internal',
                  'nura-storage-test': 'uboot-nura-storage-test'}[args.profile]
     initramfs = (root / 'build/nura-sd-test/initramfs.cpio.gz'
                  if args.profile == 'nura-storage-test' else out / 'initramfs.cpio.gz')

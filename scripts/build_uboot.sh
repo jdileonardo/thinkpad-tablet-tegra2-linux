@@ -10,6 +10,8 @@ elif [[ "${1:-}" == "--nura" ]]; then
   build_output=uboot-nura
 elif [[ "${1:-}" == "--nura-sd" ]]; then
   build_output=uboot-nura-sd
+elif [[ "${1:-}" == "--nura-internal" ]]; then
+  build_output=uboot-nura-internal
 elif [[ "${1:-}" == "--nura-storage-test" ]]; then
   build_output=uboot-nura-storage-test
   build_config=thinkpad_storage_test_defconfig

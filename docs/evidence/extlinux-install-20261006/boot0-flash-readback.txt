@@ -1,0 +1,10 @@
+
+~ # [6nsh /tmp/boot0-install.sh --apply /tmp/indigo-boot-region-padded.img; echo BO
+OT0_INSTALL_EXIT=$?
+PRECHECK_OK: /dev/mmcblk1boot0, boot0 only, offset 0, 4096 sectors, SHA256 0f16cc41acc0383839467b1c539c2de86ead52d6b4fb0f8bfc820c757881dc6d
+4096+0 records in
+4096+0 records out
+2097152 bytes (2.0MB) copied, 1.088027 seconds, 1.8MB/s
+BOOT0_WRITE_AND_READBACK_OK: boot1 and main prefix unchanged.
+BOOT0_INSTALL_EXIT=0
+~ # [6n

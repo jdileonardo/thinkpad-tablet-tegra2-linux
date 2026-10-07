@@ -26,4 +26,19 @@ writing. It restores boot write protection and checks readback and untouched
 boot1/main-prefix hashes afterward. The original BCT, APX RAM payload, SD root
 and original hardware boot-region backups are retained for recovery.
 
-Installation results and any limits will be recorded below as each stage runs.
+## Installed bootloader
+
+The boot0 write and full 2 MiB readback passed. Boot1 and the original first
+10 MiB of the main area remained unchanged. Both hardware boot areas are
+write-protected again. A normal ROM restart then loaded XFCE from SD without
+an APX download; Wi-Fi reconnected automatically. See the
+[write/readback log](evidence/extlinux-install-20261006/boot0-flash-readback.txt)
+and [ROM boot identity](evidence/extlinux-install-20261006/first-rom-boot-identity.txt).
+Linux changed its MMC numbering on that restart, so the main-area installer
+continues to discover internal storage by controller, CID and capacity.
+
+The [main-area installer](../port/internal/user-area-install.sh) validates the
+source image and original main prefix, writes the bounded 4,097 MiB image,
+checks its entire readback, then expands the partition and ext4 filesystem to
+the internal capacity. Both hardware boot areas remain protected and their
+hashes are checked again. Internal installation results follow below.

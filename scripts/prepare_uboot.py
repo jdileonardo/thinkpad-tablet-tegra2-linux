@@ -11,6 +11,8 @@ profiles = parser.add_mutually_exclusive_group()
 profiles.add_argument('--direct-linux', action='store_true')
 profiles.add_argument('--nura', action='store_true')
 profiles.add_argument('--nura-sd', action='store_true')
+profiles.add_argument('--nura-internal', action='store_true',
+                      help='APX RAM Linux with the internal-root bootstrap')
 profiles.add_argument('--nura-storage-test', action='store_true',
                       help='Verify SD boot and an eMMC read, with an APX RAM fallback')
 profiles.add_argument('--nura-storage', action='store_true',
@@ -52,12 +54,13 @@ CONFIG_FASTBOOT_BUF_SIZE=0x08000000
 # CONFIG_FASTBOOT_CMD_OEM_FORMAT is not set
 # CONFIG_PYLIBFDT is not set
 '''
-if args.direct_linux or args.nura or args.nura_sd:
-    ramdisk_dir = ('build/nura-sd-test' if args.nura_sd else
+if args.direct_linux or args.nura or args.nura_sd or args.nura_internal:
+    ramdisk_dir = ('build/nura-internal-test' if args.nura_internal else
+                   'build/nura-sd-test' if args.nura_sd else
                    'build/nura-ram-test' if args.nura else 'build/ram-test')
     ramdisk_size = (ROOT / ramdisk_dir / 'initramfs.cpio.gz').stat().st_size
-    ramdisk_addr = 0x02400000 if args.nura or args.nura_sd else 0x02000000
-    dtb_addr = 0x02600000 if args.nura or args.nura_sd else 0x02200000
+    ramdisk_addr = 0x02400000 if args.nura or args.nura_sd or args.nura_internal else 0x02000000
+    dtb_addr = 0x02600000 if args.nura or args.nura_sd or args.nura_internal else 0x02200000
     boot_command = (
         'setenv bootargs console=tty0 console=ttyS0,115200 loglevel=7 '
         'panic=0 rdinit=/init; echo Starting ThinkPad diagnostic Linux from RAM; '

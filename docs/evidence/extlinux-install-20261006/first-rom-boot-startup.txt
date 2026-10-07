@@ -1,0 +1,27 @@
+
+~ # 
+~ # 
+~ # 
+~ # ~ # ^[[6n
+/bin/sh: /: Permission denied
+cat /proc/cmdline; cat /proc/uptime; rc-service lightdm status; ip -4 addr show wlan0; sha256sum /dev/mmcblk1boot0 /dev/mmcblk1boot1; cat /sys/class/block/mmcblk1boot0/force_ro; command -v resize2fs; command -v e2fsck; command -v sfdisk; command -v blockdev; df -h /
+~ # cat /proc/cmdline; cat /proc/uptime; rc-service lightdm status; ip -4 addr s
+how wlan0; sha256sum /dev/mmcblk1boot0 /dev/mmcblk1boot1; cat /sys/class/block/m
+mcblk1boot0/force_ro; command -v resize2fs; command -v e2fsck; command -v sfdisk
+; command -v blockdev; df -h /
+console=tty0 console=ttyS0,115200 panic=0 rdinit=/init indigo_boot=extlinux-b
+71.62 61.34
+ [1m[32m*[m status: started[K
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.191/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 7153sec preferred_lft 7153sec
+sha256sum: can't open '/dev/mmcblk1boot0': No such file or directory
+sha256sum: can't open '/dev/mmcblk1boot1': No such file or directory
+cat: can't open '/sys/class/block/mmcblk1boot0/force_ro': No such file or directory
+/sbin/resize2fs
+/sbin/e2fsck
+/sbin/sfdisk
+/sbin/blockdev
+Filesystem                Size      Used Available Use% Mounted on
+/dev/mmcblk1p1           58.6G      1.1G     57.5G   2% /
+~ # [6n

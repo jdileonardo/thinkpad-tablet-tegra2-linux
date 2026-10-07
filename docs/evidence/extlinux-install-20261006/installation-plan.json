@@ -16,7 +16,13 @@
     "root_filesystem": "existing SD UUID 2a6e5a89-5a50-46c6-95ec-b718e7abd62b",
     "guard_script": "port/internal/boot0-install.sh",
     "approval_received_for_execution": true,
-    "cold_boot_tested": false
+    "cold_boot_tested": false,
+    "boot0_write_and_readback_passed": true,
+    "boot1_and_main_prefix_unchanged_verified": true,
+    "boot_write_protection_restored": true,
+    "normal_rom_restart_passed_without_apx_download": true,
+    "cold_physical_power_on_test_pending": true,
+    "linux_internal_device_after_rom_boot": "/dev/mmcblk0"
   },
   "phase_2": {
     "purpose": "Self-contained Linux, no SD card required",
@@ -28,7 +34,7 @@
     "initial_root_sectors": 8388608,
     "expanded_root_sectors": 62519296,
     "root_uuid": "a1b59fdc-49f7-46bb-b099-4c6012334c07",
-    "status": "host image prepared; complete stage-one cold boot first",
+    "status": "image staging on SD; normal ROM stage-one boot passed",
     "android_preservation_required": false,
     "internal_root_boot_tested": false,
     "approval_received_for_execution": true
@@ -39,7 +45,10 @@
     "phase_1_boot0_restore_image": "backups/MP0GKR7-20261005T160450Z/emmc-boot0.img",
     "phase_1_boot0_restore_sha256": "8b5ba2a6e48071b990498a22720e0c3173e601789b35fec6c3520aadcd943c3b",
     "keep_working_sd": true,
-    "physical_apx_entry_needed_if_software_reboot_returns_to_android": true
+    "physical_apx_entry_needed_if_software_reboot_returns_to_android": true,
+    "internal_apx_payload": "build/nura-internal-test/thinkpad-ram-payload.bin",
+    "internal_apx_payload_sha256": "638f57f9a404d71896e9733266260ca0708bc4fee2fad4cbbf9d736e5bd95651",
+    "internal_apx_payload_hardware_tested": false
   },
   "authorization": "User explicitly authorized completing the flash while away on 2026-10-06."
 }
