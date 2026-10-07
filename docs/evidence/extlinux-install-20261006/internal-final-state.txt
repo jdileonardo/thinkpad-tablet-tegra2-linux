@@ -1,0 +1,16 @@
+
+~ # [6nrootdev=$(awk '$2=="/" {print $1}' /proc/mounts); case "$(readlink -f /sys/c
+lass/block/${rootdev##*/})" in *c8000600.mmc*) for n in /sys/class/block/mmcblk*
+p*; do case "$(readlink -f "$n")" in *c8000400.mmc*) dev=/dev/${n##*/}; if awk -
+v d="$dev" '$1==d {found=1} END {exit !found}' /proc/mounts; then umount "$dev" 
+|| break; fi ;; esac; done; if awk '$1~/mmcblk1/ {bad=1} END {exit bad}' /proc/m
+ounts; then echo SD_UNMOUNTED_OK_INTERNAL_ROOT_ACTIVE; fi ;; *) echo ROOT_CONTRO
+LLER_GUARD_FAILED ;; esac; cat /proc/mounts | grep mmcblk; free -m; sync; date -
+u
+SD_UNMOUNTED_OK_INTERNAL_ROOT_ACTIVE
+/dev/mmcblk0p1 / ext4 rw,noatime 0 0
+               total        used        free      shared  buff/cache   available
+Mem:             990         276         470           5         277         713
+Swap:           1484           0        1484
+Wed Oct  7 00:38:49 UTC 2026
+~ # [6n

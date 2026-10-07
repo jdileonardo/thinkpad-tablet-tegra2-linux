@@ -1,0 +1,55 @@
+
+~ # [6nps -ef | grep -E "indigo-rotate|indigo-tablet-start|setup-indigo-desktop"; t
+ail -25 /home/julian/.local/state/indigo-tablet/rotation.log 2>/dev/null; ls -la
+ /home/julian/.config/indigo-tablet; su julian -s /bin/sh -c 'DISPLAY=:0 XAUTHOR
+ITY=/home/julian/.Xauthority xinput list; DISPLAY=:0 XAUTHORITY=/home/julian/.Xa
+uthority xrandr --current'; tail -25 /var/log/Xorg.0.log; date -u
+julian    3394  1782  3 20:37 ?        00:00:01 python3 /usr/local/bin/indigo-rotate watch
+root      4102  2095  0 20:38 ttyGS0   00:00:00 grep -E indigo-rotate|indigo-tablet-start|setup-indigo-desktop
+rotation=left; synchronized 1 touch/pen inputs
+rotation=left; synchronized 1 touch/pen inputs
+total 28
+drwxr-xr-x    2 julian   julian        4096 Oct  6 20:37 [1;34m.[m
+drwxr-xr-x    9 julian   julian        4096 Oct  6 20:37 [1;34m..[m
+-rw-r--r--    1 julian   julian           0 Oct  6 20:37 [0;0mbuttons-configured[m
+-rw-r--r--    1 julian   julian       13072 Oct  6 20:37 [0;0mkeyboard-before-indigo.xml[m
+-rw-r--r--    1 julian   julian          96 Oct  6 18:48 [0;0mrotation.json[m
+-rw-r--r--    1 julian   julian           0 Oct  6 20:37 [0;0mrotation.watch.lock[m
+⎡ Virtual core pointer                    	id=2	[master pointer  (3)]
+⎜   ↳ Virtual core XTEST pointer              	id=4	[slave  pointer  (2)]
+⎜   ↳ N-Trig Indigo Touchscreen               	id=6	[slave  pointer  (2)]
+⎣ Virtual core keyboard                   	id=3	[master keyboard (2)]
+    ↳ Virtual core XTEST keyboard             	id=5	[slave  keyboard (3)]
+    ↳ N-Trig Indigo Pen                       	id=7	[slave  keyboard (3)]
+    ↳ gpio-keys                               	id=8	[slave  keyboard (3)]
+Screen 0: minimum 320 x 200, current 800 x 1280, maximum 4096 x 4096
+HDMI-0 disconnected (normal left inverted right x axis y axis)
+Unknown-0 connected 800x1280+0+0 left (normal left inverted right x axis y axis) 0mm x 0mm
+   1280x800      60.33*+
+[    28.580] (II) event4  - N-Trig Indigo Pen: device is a tablet
+[    28.580] (II) event4  - N-Trig Indigo Pen: device removed
+[    28.640] (**) Option "config_info" "udev:/sys/devices/soc0/7000d400.spi/spi_master/spi0/spi0.0/input/input4/event4"
+[    28.640] (II) XINPUT: Adding extended input device "N-Trig Indigo Pen" (type: TABLET, id 7)
+[    28.643] (II) event4  - N-Trig Indigo Pen: is tagged by udev as: Tablet
+[    28.644] (II) event4  - N-Trig Indigo Pen: device is a tablet
+[    28.645] (II) config/udev: Adding input device gpio-keys (/dev/input/event2)
+[    28.645] (**) gpio-keys: Applying InputClass "libinput keyboard catchall"
+[    28.645] (II) Using input driver 'libinput' for 'gpio-keys'
+[    28.645] (**) gpio-keys: always reports core events
+[    28.645] (**) Option "Device" "/dev/input/event2"
+[    28.647] (II) event2  - gpio-keys: is tagged by udev as: Keyboard
+[    28.648] (II) event2  - gpio-keys: device is a keyboard
+[    28.649] (II) event2  - gpio-keys: device removed
+[    28.680] (**) Option "config_info" "udev:/sys/devices/soc0/gpio-keys/input/input2/event2"
+[    28.680] (II) XINPUT: Adding extended input device "gpio-keys" (type: KEYBOARD, id 8)
+[    28.683] (II) event2  - gpio-keys: is tagged by udev as: Keyboard
+[    28.684] (II) event2  - gpio-keys: device is a keyboard
+[    28.685] (II) config/udev: Adding input device NVIDIA Tegra Ventana Headphones Jack (/dev/input/event0)
+[    28.685] (II) No input driver specified, ignoring this device.
+[    28.685] (II) This device may have been added with another device file.
+[    28.686] (II) config/udev: Adding input device NVIDIA Tegra Ventana Mic Jack (/dev/input/event1)
+[    28.686] (II) No input driver specified, ignoring this device.
+[    28.686] (II) This device may have been added with another device file.
+[    64.125] (II) opentegra(0): Allocate new frame buffer 800x1280 stride
+Wed Oct  7 00:38:10 UTC 2026
+~ # [6n

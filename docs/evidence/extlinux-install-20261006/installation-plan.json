@@ -34,10 +34,30 @@
     "initial_root_sectors": 8388608,
     "expanded_root_sectors": 62519296,
     "root_uuid": "a1b59fdc-49f7-46bb-b099-4c6012334c07",
-    "status": "image staging on SD; normal ROM stage-one boot passed",
+    "status": "written, readback verified, expanded and booted from internal eMMC",
     "android_preservation_required": false,
-    "internal_root_boot_tested": false,
-    "approval_received_for_execution": true
+    "internal_root_boot_tested": true,
+    "approval_received_for_execution": true,
+    "guard_script": "port/internal/user-area-install.sh",
+    "linux_write_target": "/dev/mmcblk0",
+    "full_source_checksum_passed": true,
+    "full_image_readback_passed": true,
+    "filesystem_checks_before_and_after_expansion_passed": true,
+    "linux_root_device": "/dev/mmcblk0p1",
+    "normal_rom_restart_without_apx_download": true,
+    "physical_sd_removed_tested": false,
+    "cold_physical_power_on_test_pending": true,
+    "boot1_unchanged_verified": true,
+    "boot_areas_write_protected": true,
+    "installer_sha256": "1ffb2aee57eb48ad2317d5756e64ec3e2888b73525306cde4bca51bd99a99d9e",
+    "runtime_file_count": 34,
+    "runtime_file_hashes_passed": true,
+    "package_count": 770,
+    "xfce_autologin_running": true,
+    "wifi_reconnected": true,
+    "network_ping_passed": true,
+    "rotation_watch_running": true,
+    "sd_unmounted_at_handoff": true
   },
   "recovery": {
     "apx_bct": "backups/MP0GKR7-20261005T160450Z/active.bct",
@@ -48,7 +68,8 @@
     "physical_apx_entry_needed_if_software_reboot_returns_to_android": true,
     "internal_apx_payload": "build/nura-internal-test/thinkpad-ram-payload.bin",
     "internal_apx_payload_sha256": "638f57f9a404d71896e9733266260ca0708bc4fee2fad4cbbf9d736e5bd95651",
-    "internal_apx_payload_hardware_tested": false
+    "internal_apx_payload_hardware_tested": false,
+    "sd_extlinux_saved_as": "/boot/extlinux/extlinux.conf.sd-recovery"
   },
   "authorization": "User explicitly authorized completing the flash while away on 2026-10-06."
 }

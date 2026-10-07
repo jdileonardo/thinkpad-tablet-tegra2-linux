@@ -1,0 +1,6 @@
+
+~ # [6nsync; echo u >/proc/sysrq-trigger; sleep 2; if awk '$2=="/" && $1~/^\/dev\/m
+mcblk/ {n=split($4,a,",");for(i=1;i<=n;i++)if(a[i]=="ro")ok=1} END {exit !ok}' /
+proc/mounts; then echo ROOT_RO_NORMAL_ROM_REBOOT_TO_INTERNAL; reboot -f; else ec
+ho ROOT_NOT_RO_ABORT; fi
+ROOT_RO_NORMAL_ROM_REBOOT_TO_INTERNAL

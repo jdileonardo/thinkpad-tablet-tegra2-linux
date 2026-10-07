@@ -1,0 +1,27 @@
+
+~ # [6nsh /tmp/check-installed-root.sh; echo ROOT_INSPECTION_EXIT=$?; cat /proc/mou
+nts | head -10; date -u
+UUID=a1b59fdc-49f7-46bb-b099-4c6012334c07 / ext4 defaults,noatime 0 1
+DEFAULT indigo
+TIMEOUT 0
+LABEL indigo
+  LINUX /boot/vmlinuz-indigo
+  INITRD /boot/initramfs-indigo
+  FDT /boot/tegra20-lenovo-indigo.dtb
+  APPEND console=tty0 console=ttyS0,115200 panic=0 rdinit=/init indigo_boot=extlinux-internal
+Filesystem                Size      Used Available Use% Mounted on
+/dev/mmcblk0p1           29.3G      1.1G     28.2G   4% /mnt/indigo-internal-inspect
+INSTALLED_INTERNAL_ROOT_INSPECTION_OK
+ROOT_INSPECTION_EXIT=0
+proc /proc proc rw,relatime 0 0
+sysfs /sys sysfs rw,relatime 0 0
+devtmpfs /dev devtmpfs rw,nosuid,noexec,relatime,size=10240k,nr_inodes=118225,mode=755 0 0
+tmpfs /run tmpfs rw,relatime 0 0
+configfs /sys/kernel/config configfs rw,relatime 0 0
+/dev/mmcblk1p1 / ext4 rw,noatime 0 0
+mqueue /dev/mqueue mqueue rw,nosuid,nodev,noexec,relatime 0 0
+devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0
+shm /dev/shm tmpfs rw,nosuid,nodev,noexec,relatime 0 0
+securityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0
+Wed Oct  7 00:35:53 UTC 2026
+~ # [6n

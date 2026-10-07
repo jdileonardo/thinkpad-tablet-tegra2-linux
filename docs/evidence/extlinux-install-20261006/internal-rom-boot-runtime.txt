@@ -1,0 +1,52 @@
+
+~ # [6npython3 /tmp/internal-runtime-file-check.py; echo RUNTIME_FILE_CHECK_EXIT=$?
+; sha256sum /dev/mmcblk0boot0 /dev/mmcblk0boot1; cat /sys/class/block/mmcblk0boo
+t0/force_ro /sys/class/block/mmcblk0boot1/force_ro; ps -ef | grep -E "indigo-rot
+ate|indigo-buttons|xfce4-session"; ping -c 3 -W 3 192.168.0.147; cat /proc/mount
+s | grep mmcblk; dmesg | tail -15; date -u
+{
+  "failures": [],
+  "checked_monotonic": 47.342126,
+  "root_mount": [
+    "/dev/mmcblk0p1 / ext4 rw,noatime 0 0"
+  ],
+  "root_sysfs_path": "/sys/devices/soc0/c8000600.mmc/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0p1",
+  "touch_recovery_attribute_present": true,
+  "package_count": 770,
+  "all_expected_files_match": true,
+  "internal_root_confirmed": true
+}
+RUNTIME_FILE_CHECK_EXIT=0
+0f16cc41acc0383839467b1c539c2de86ead52d6b4fb0f8bfc820c757881dc6d  /dev/mmcblk0boot0
+92132a5db6f10c1eafd2e2437c32d3d966865ba534052bf284bf61b072ce6132  /dev/mmcblk0boot1
+1
+1
+julian    1782  1696 22 20:36 ?        00:00:04 xfce4-session
+julian    1795     1  0 20:36 ?        00:00:00 /usr/sbin/dbus-launch --sh-syntax --exit-with-session xfce4-session
+root      2900  2095  0 20:37 ttyGS0   00:00:00 grep -E indigo-rotate|indigo-buttons|xfce4-session
+PING 192.168.0.147 (192.168.0.147): 56 data bytes
+64 bytes from 192.168.0.147: seq=0 ttl=64 time=66.934 ms
+64 bytes from 192.168.0.147: seq=1 ttl=64 time=3.785 ms
+64 bytes from 192.168.0.147: seq=2 ttl=64 time=4.346 ms
+
+--- 192.168.0.147 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 3.785/25.021/66.934 ms
+/dev/mmcblk0p1 / ext4 rw,noatime 0 0
+[   17.875440] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.lenovo,indigo.bin failed with error -2
+[   17.892775] brcmfmac mmc2:0001:1: Direct firmware load for brcm/brcmfmac4329-sdio.clm_blob failed with error -2
+[   18.037029] brcmfmac: brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may have limited channels available
+[   18.037048] brcmfmac: brcmf_c_process_txcap_blob: no txcap_blob available (err=-2)
+[   18.037587] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4329/3 wl0: Sep  2 2011 14:48:19 version 4.220.48
+[   18.052591] ieee80211 phy0: brcmf_setup_wiphybands: rxchain unsupported
+[   18.101618] ntrig-indigo spi0.0: Indigo SPI touch/pen ready at 3000000 Hz
+[   18.881088] usbcore: registered new interface driver usbhid
+[   18.881120] usbhid: USB HID core driver
+[   20.340292] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_SENSORS 0x00000006
+[   20.340331] tegra-phy c5008000.usb-phy: debug: USB_PHY_VBUS_WAKEUP_ID 0x000000c6
+[   20.340343] tegra-phy c5008000.usb-phy: debug: suspend ok
+[   21.090543] zram0: detected capacity change from 0 to 3041280
+[   21.111293] Adding 1520636k swap on /dev/zram0.  Priority:300 extents:1 across:1520636k SS
+[   23.821594] ieee80211 phy0: _brcmf_set_multicast_list: BRCMF_C_SET_PROMISC unsupported
+Wed Oct  7 00:37:18 UTC 2026
+~ # [6n

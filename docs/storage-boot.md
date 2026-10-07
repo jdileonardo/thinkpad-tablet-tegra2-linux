@@ -1,5 +1,10 @@
 # Storage-loading U-Boot checkpoint
 
+This is a historical pre-installation checkpoint. The later
+[internal installation](internal-install.md) records the successful persistent
+bootloader flash, full main-area write/readback, expansion and internal Linux
+boot. Physical card removal and cold power-on remain to be checked.
+
 On 2026-10-06 the tablet successfully booted the validated XFCE SD system after
 an APX download containing only U-Boot (498,484 bytes). U-Boot read the kernel,
 bootstrap initramfs and Indigo device tree from SD and verified their SHA256

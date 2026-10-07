@@ -48,17 +48,20 @@ other reproduced driver defects remain documented rather than prerequisites
 for this desktop target. Battery reporting and pen testing remain follow-ups
 under the user's existing docked-use and pen-battery constraints.
 
-The current boot has three parts:
+The [internal installation](internal-install.md) now supplies the normal boot
+path. The bootloader is persistent, and kernel updates use replaceable extlinux
+files rather than requiring a new bootloader flash.
 
 | Part | Location and role |
 | --- | --- |
-| U-Boot, kernel, device tree and bootstrap initramfs | Downloaded over USB APX into RAM on each development boot |
-| Nura root filesystem, packages and configuration | Persist on the external SD card between boots |
-| Stock Android and its boot layout | Remain on internal eMMC; unchanged by this port |
+| Board BCT and U-Boot | Internal eMMC hardware boot0, protected after installation |
+| Kernel, device tree, bootstrap initramfs and extlinux configuration | `/boot` on the internal Linux root |
+| Nura root filesystem, packages and configuration | Internal eMMC, expanded to its available capacity |
+| Recovery root | Original working SD; its automatic extlinux entry is saved under a recovery filename |
 
-USB is also the diagnostic console. The SD card is not rewritten for each
-kernel or graphics test. Normal userspace development changes persist there;
-kernel changes require rebuilding the RAM payload and booting it again.
+USB remains the diagnostic console. The known-good APX/SD RAM payload starts
+the recovery root without consulting its disabled extlinux entry. A separate
+APX/internal-root payload has been built, but has not yet been tested on hardware.
 
 ## Workflow for the next bring-up work
 
@@ -66,9 +69,12 @@ The [source branch checkpoint](source-branches.md) exports the recorded patches
 as local commits in the kernel, Xorg DDX and candidate Mesa repositories without
 switching their build checkouts. It also lists the remaining image release checks.
 
-Keep RAM boot and the SD root while validating XFCE and its applications. This
-allows kernel rollback without changing the internal bootloader and keeps
-the working XFCE desktop available between reversible graphics trials.
+Keep the APX payload, board BCT and working SD recovery root while developing
+on internal storage. Userspace changes persist on eMMC. For kernel trials,
+retain the installed known-good kernel/initramfs/DTB and use versioned filenames
+in extlinux; the bootloader does not need reflashing. Match modules to each
+candidate kernel. APX can still load a diagnostic or trial kernel into RAM.
+The existing SD recovery payload is the hardware-tested recovery path.
 
 1. Keep source changes and patches in Git. Record source revisions, artifact
    hashes and hardware evidence with each meaningful checkpoint.
@@ -89,22 +95,21 @@ long-duration reliability remains unmeasured, and the user cancelled the
 additional 30-minute observation. Reproducibility from entirely rebuilt source
 inputs remains distinct from this offline assembly checkpoint.
 
-## Eventual internal installation
+## Internal installation and recovery
 
-On 2026-10-06 the user confirmed cache, userdata and returning to Android are
-not requirements. The [internal installation readiness audit](internal-install-readiness.md)
-verifies all 13 original backup files and live critical boot regions, records
-the eMMC identity and addressing, and defines the remaining boot work.
-No internal write has occurred.
+The user authorized a clean Linux installation; cache, userdata and returning
+to Android are not requirements. The [installation record](internal-install.md)
+contains exact images, write bounds, checksums and physical boot results.
+The [readiness audit](internal-install-readiness.md) retains original backups
+and records the board BCT and eMMC identity. No additional MMC boot-configuration
+change was required.
 
-The SD OS has passed two physical boots. The [storage-loading U-Boot test](storage-boot.md)
-also passed, including an APX download containing only U-Boot and a verified
-internal eMMC read. Host-independent boot still needs a correctly generated
-persistent boot image; an internal root needs a new controller/UUID profile.
-Prepare bounded write/readback/recovery steps. A staged first
-installation can retain the proven SD root while establishing persistent boot,
-followed by a clean Linux user-area layout and internal root.
+The SD-first bootloader falls through to internal eMMC because the SD's
+`/boot/extlinux/extlinux.conf` was renamed to `extlinux.conf.sd-recovery`.
+To restore automatic SD boot, start the known-good APX/SD payload and restore
+that filename. Keep its original controller/UUID bootstrap on the SD.
 
-Keep the known-good APX/SD recovery setup and board BCT. Use dock power given
-the unverified battery. The backups are useful recovery material, but a full
-stock restore has not been tested and is not the user's target.
+Normal ROM restarts have been tested without an APX download. Physical card
+removal and cold power-on still need the user's check. Use dock power given
+the unverified battery. Original Android backups remain useful porting and
+recovery material; a full stock restore has not been tested.

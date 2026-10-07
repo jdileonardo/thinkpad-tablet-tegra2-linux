@@ -1,0 +1,35 @@
+{
+  "profile": "nura-internal",
+  "load_address": "0x108000",
+  "components": [
+    {
+      "name": "uboot",
+      "address": "0x108000",
+      "size": 492864,
+      "sha256": "90b922383e3b4d3065f8ed2a28a4ab2f114b6457e2c8fcc7a822b0f9e459f962",
+      "path": "build/uboot-nura-internal/u-boot-dtb-tegra.bin"
+    },
+    {
+      "name": "kernel",
+      "address": "0x1000000",
+      "size": 6832640,
+      "sha256": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff",
+      "path": "build/linux-nura/arch/arm/boot/zImage"
+    },
+    {
+      "name": "initramfs",
+      "address": "0x2400000",
+      "size": 1454382,
+      "sha256": "095877922ca4aec038af2e5fd52db12d0642a0fa8b03cf8844613c4e547d9fc2",
+      "path": "build/nura-internal-test/initramfs.cpio.gz"
+    },
+    {
+      "name": "dtb",
+      "address": "0x2600000",
+      "size": 52066,
+      "sha256": "b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b",
+      "path": "build/linux-nura/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dtb"
+    }
+  ],
+  "sha256": "638f57f9a404d71896e9733266260ca0708bc4fee2fad4cbbf9d736e5bd95651"
+}

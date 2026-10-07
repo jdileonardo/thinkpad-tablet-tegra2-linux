@@ -1,0 +1,8 @@
+
+~ # [6nif [ "$(sha256sum /boot/extlinux/extlinux.conf | cut -d ' ' -f 1)" = b5612d2
+523a1ca4d4ad02fdf137464567ae8d1f7ab8819d34219fe4ce8220da9 ] && [ ! -e /boot/extl
+inux/extlinux.conf.sd-recovery ]; then mv /boot/extlinux/extlinux.conf /boot/ext
+linux/extlinux.conf.sd-recovery && sync && echo SD_AUTOMATIC_ENTRY_SAVED_FOR_REC
+OVERY; else echo SD_CONFIG_GUARD_FAILED; fi
+SD_AUTOMATIC_ENTRY_SAVED_FOR_RECOVERY
+~ # [6n

@@ -7,8 +7,8 @@ image=${2:-/var/tmp/indigo-internal-install/internal-user-area.img}
 mbr=${3:-/tmp/expanded-mbr.bin}
 trap 'result=$?; echo INTERNAL_INSTALL_EXIT=$result' EXIT
 [ "$(id -u)" = 0 ]
-[ "$(wc -c < "$image")" -eq 4296015872 ]
-[ "$(wc -c < "$mbr")" -eq 512 ]
+[ "$(stat -c %s "$image")" -eq 4296015872 ]
+[ "$(stat -c %s "$mbr")" -eq 512 ]
 [ "$(sha256sum "$mbr" | cut -d ' ' -f 1)" = 05c4ad9419cabcb4a77e6d3f3682ac5e44858ea0eb64e7cab36cb3482e1b02b3 ]
 rootdev=$(awk '$2=="/" {print $1}' /proc/mounts)
 case "$(readlink -f "/sys/class/block/${rootdev##*/}")" in *c8000400.mmc*) ;; *) exit 1 ;; esac
@@ -36,8 +36,26 @@ check_boot_regions() {
 }
 check_boot_regions
 [ "$(dd if="$emmc" bs=1M count=10 2>/dev/null | sha256sum | cut -d ' ' -f 1)" = e7363f61c81b70d54f4bfeb7fea9ee98e3d9f8b138f5cbcdcea670c8aba3c50e ]
+# Use the installed OpenSSL-backed hashlib for bounded full-image hashes.
+# Every requested byte is read; a short read or I/O error aborts installation.
+hash_region() {
+    python3 - "$1" "$2" <<'PYHASH'
+import hashlib, sys
+remaining = int(sys.argv[2])
+hash_value = hashlib.sha256()
+with open(sys.argv[1], 'rb', buffering=0) as source:
+    while remaining:
+        chunk = source.read(min(1024 * 1024, remaining))
+        if not chunk:
+            raise SystemExit('Short read during full-image verification')
+        hash_value.update(chunk)
+        remaining -= len(chunk)
+print(hash_value.hexdigest())
+PYHASH
+}
+command -v python3 >/dev/null
 echo INTERNAL_SOURCE_HASH_BEGIN
-[ "$(sha256sum "$image" | cut -d ' ' -f 1)" = 5edc6763f85c754991be57e6a8dbcad3f054bd987f43d934f1bcdcdc0d162078 ]
+[ "$(hash_region "$image" 4296015872)" = 5edc6763f85c754991be57e6a8dbcad3f054bd987f43d934f1bcdcdc0d162078 ]
 printf 'INTERNAL_PRECHECK_OK: %s main area, offset 0, 4296015872 bytes\n' "$emmc"
 if [ "$mode" = --check ]; then exit 0; fi
 for tool in blockdev e2fsck resize2fs; do command -v "$tool" >/dev/null; done
@@ -48,7 +66,7 @@ dd if="$image" of="$emmc" bs=1M count=4097 conv=fsync
 sync
 blockdev --flushbufs "$emmc"
 echo INTERNAL_READBACK_BEGIN
-[ "$(dd if="$emmc" bs=1M count=4097 2>/dev/null | sha256sum | cut -d ' ' -f 1)" = 5edc6763f85c754991be57e6a8dbcad3f054bd987f43d934f1bcdcdc0d162078 ]
+[ "$(hash_region "$emmc" 4296015872)" = 5edc6763f85c754991be57e6a8dbcad3f054bd987f43d934f1bcdcdc0d162078 ]
 echo INTERNAL_READBACK_OK
 check_boot_regions
 echo INTERNAL_EXPAND_BEGIN

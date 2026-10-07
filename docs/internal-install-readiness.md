@@ -1,5 +1,10 @@
 # Internal Linux installation readiness
 
+This is a historical pre-installation checkpoint. The later
+[internal installation](internal-install.md) records the successful persistent
+bootloader flash, full main-area write/readback, expansion and internal Linux
+boot. Physical card removal and cold power-on remain to be checked.
+
 Read-only checkpoint, 2026-10-06. No internal writes were performed.
 
 Follow-up: [storage-loading U-Boot passed physical testing](storage-boot.md),

@@ -1,0 +1,14 @@
+
+~ # [6npython3 /tmp/hash-speed-check.py; cat /run/internal-stage.log /run/internal-
+install.log; cat /proc/6313/fdinfo/3 2>/dev/null; date -u
+{"sha256sum_seconds": 0.6867420500000208, "hashlib_seconds": 0.2242972420000342, "hashes_match": true, "sha256": "5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff"}
+STAGE_DOWNLOAD_BEGIN
+STAGE_COMPRESSED_HASH
+STAGE_DECOMPRESS_BEGIN
+STAGE_EXPANDED_HASH
+pos:	1492844544
+flags:	0400000
+mnt_id:	28
+ino:	131173
+Wed Oct  7 00:11:52 UTC 2026
+~ # [6n

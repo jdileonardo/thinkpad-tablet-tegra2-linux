@@ -1,0 +1,32 @@
+
+
+~ # [6nuname -a; cat /proc/cmdline; awk '$2=="/" {print}' /proc/mounts; df -h /; fo
+r n in /sys/class/block/mmcblk[0-9]; do echo $n; cat $n/device/cid $n/size; read
+link -f $n; done; /bin/busybox blkid /dev/mmcblk*p1; rc-service lightdm status; 
+ps -ef | grep -E "xfce4-session|Xorg|indigo-rotate|indigo-buttons"; ip -4 addr s
+how wlan0; date -u
+Linux thinkpad-indigo 7.0.1-nura-indigo-ram #3 SMP Tue Oct  6 14:10:41 UTC 2026 armv7l Linux
+console=tty0 console=ttyS0,115200 panic=0 rdinit=/init indigo_boot=extlinux-internal
+/dev/mmcblk0p1 / ext4 rw,noatime 0 0
+Filesystem                Size      Used Available Use% Mounted on
+/dev/mmcblk0p1           29.3G      1.1G     28.2G   4% /
+/sys/class/block/mmcblk0
+1101004d4d4333324703100a18dd6e00
+62521344
+/sys/devices/soc0/c8000600.mmc/mmc_host/mmc0/mmc0:0001/block/mmcblk0
+/sys/class/block/mmcblk1
+9f544953444954316162100014019a00
+125085696
+/sys/devices/soc0/c8000400.mmc/mmc_host/mmc1/mmc1:5048/block/mmcblk1
+/dev/mmcblk0p1: LABEL="INDIGO_INTERNAL" UUID="a1b59fdc-49f7-46bb-b099-4c6012334c07" TYPE="ext4"
+/dev/mmcblk1p1: LABEL="NURA_INDIGO" UUID="2a6e5a89-5a50-46c6-95ec-b718e7abd62b" TYPE="ext4"
+ [1m[32m*[m status: started[K
+root      1598  1483  6 20:36 tty7     00:00:00 /usr/libexec/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -modulepath /opt/indigo-xorg/xfce/lib/xorg/modules,/usr/lib/xorg/modules -config /opt/indigo-xorg/xfce/indigo-xorg.conf
+julian    1782  1696 40 20:36 ?        00:00:02 xfce4-session
+julian    1795     1  0 20:36 ?        00:00:00 /usr/sbin/dbus-launch --sh-syntax --exit-with-session xfce4-session
+root      2125  2095  0 20:37 ttyGS0   00:00:00 grep -E xfce4-session|Xorg|indigo-rotate|indigo-buttons
+2: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    inet 192.168.0.192/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+       valid_lft 7191sec preferred_lft 7191sec
+Wed Oct  7 00:37:01 UTC 2026
+~ # [6n
