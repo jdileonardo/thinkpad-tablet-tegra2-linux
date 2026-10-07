@@ -3,6 +3,10 @@
 The user authorized flashing boot storage and a clean internal Linux image on
 2026-10-06, with cache/userdata and Android preservation not required.
 
+See [build, copy and flash instructions](build-copy-flash.md) for the commands,
+preserved prerequisites and distinction between the tested first installation
+and a reusable reflash tool.
+
 The [installation plan](evidence/extlinux-install-20261006/installation-plan.json)
 records the two stages: install the 2 MiB hardware boot0 image and verify a normal
 ROM boot into the working SD system, then install the prepared internal root and

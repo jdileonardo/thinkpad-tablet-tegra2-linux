@@ -65,9 +65,17 @@ testing remain deferred under the user's existing constraints.
 
 `scripts/create_nura_sd_image.py` now assembles and checks an external-SD
 image containing the selected graphics additions and desktop configuration.
-SD image production and internal installation are distinct: the existing image
-uses APX/RAM boot and a bootstrap tied to the external SD controller/UUID.
-An internal root needs a new boot profile; autonomous internal boot also needs
-a device-specific persistent bootloader/kernel installation and verified recovery.
-The SD whole-disk image must not be written directly over the Tegra eMMC layout.
-See [development workflow](development-workflow.md#eventual-internal-installation).
+SD image production and internal installation are distinct: the SD bootstrap
+selects the external controller/UUID. The subsequent
+[internal installation](internal-install.md) added an internal bootstrap,
+persistent U-Boot and a clean eMMC layout, with full write/readback and normal
+ROM boot checks. Physical cold power-on with the card removed remains pending.
+The SD whole-disk image must not be used unchanged as an internal install image.
+See [build, copy, flash and upstream preparation](build-copy-flash.md) for the
+repeatable commands and remaining installer/source-bootstrap limitations.
+
+The exported kernel branch does not include the out-of-tree N-Trig module.
+U-Boot changes and Nura device packaging also need separate submission work.
+These exported branches preserve our working source changes; their commit
+descriptions, sign-offs and target-tree compatibility still need review before
+upstream submission.

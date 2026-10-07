@@ -1,5 +1,8 @@
 # Development workflow and internal installation
 
+The [build, copy, flash and upstream guide](build-copy-flash.md) consolidates
+the current recipes, frozen inputs and remaining release/submission work.
+
 ## Current checkpoint
 
 The [XFCE stability and calendar check](xfce-stability.md) records five minutes
