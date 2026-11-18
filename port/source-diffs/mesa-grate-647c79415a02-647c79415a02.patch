@@ -1,0 +1,73 @@
+diff --git a/src/gallium/drivers/grate/fp/tgsi.c b/src/gallium/drivers/grate/fp/tgsi.c
+index 4461f3fb..272a2147 100644
+--- a/src/gallium/drivers/grate/fp/tgsi.c
++++ b/src/gallium/drivers/grate/fp/tgsi.c
+@@ -224,6 +224,10 @@ grate_tgsi_to_fp(struct grate_fp_shader *fp, struct tgsi_parse_context *tgsi)
+       }
+    }
+ 
++   /* Constant-only shaders have no interpolation instructions. */
++   if (list_is_empty(&fp->mfu_instructions))
++      return;
++
+    /*
+     * HACK: insert barycentric interpolation setup
+     * This will overwrite instructions in some cases, need proper scheduler
+diff --git a/src/gallium/drivers/grate/grate_resource.c b/src/gallium/drivers/grate/grate_resource.c
+index ecc95ff4..55256973 100644
+--- a/src/gallium/drivers/grate/grate_resource.c
++++ b/src/gallium/drivers/grate/grate_resource.c
+@@ -510,4 +510,5 @@ grate_context_resource_init(struct pipe_context *pcontext)
+    pcontext->flush_resource = grate_flush_resource;
+    pcontext->clear_render_target = grate_clear_render_target;
+    pcontext->clear_depth_stencil = grate_clear_depth_stencil;
++   pcontext->sampler_view_release = u_default_sampler_view_release;
+ }
+diff --git a/src/gallium/drivers/grate/grate_screen.c b/src/gallium/drivers/grate/grate_screen.c
+index e02f0a4b..513121e9 100755
+--- a/src/gallium/drivers/grate/grate_screen.c
++++ b/src/gallium/drivers/grate/grate_screen.c
+@@ -366,10 +366,11 @@ grate_screen_is_format_supported(struct pipe_screen *pscreen,
+                                  unsigned storage_sample_count,
+                                  unsigned usage)
+ {
+-   if (usage & (PIPE_BIND_RENDER_TARGET | PIPE_BIND_DEPTH_STENCIL)) {
+-      if (grate_pixel_format(format) < 0)
+-         return false;
+-   }
++   /* Texture allocation uses grate_pixel_format regardless of bind flags. */
++   if (target != PIPE_BUFFER && grate_pixel_format(format) < 0)
++      return false;
++   if (sample_count > 1 || storage_sample_count > 1)
++      return false;
+ 
+    return true;
+ }
+diff --git a/src/gallium/drivers/grate/grate_state.c b/src/gallium/drivers/grate/grate_state.c
+index b2aad5f2..db377526 100644
+--- a/src/gallium/drivers/grate/grate_state.c
++++ b/src/gallium/drivers/grate/grate_state.c
+@@ -123,7 +123,7 @@ grate_set_viewport_states(struct pipe_context *pcontext,
+                           const struct pipe_viewport_state *viewports)
+ {
+    struct grate_context *context = grate_context(pcontext);
+-   static const float zeps = powf(2.0f, -21);
++   static const float zeps = 0x1p-21f;
+    unsigned int hw_scale;
+ 
+    if (context->tegra114)
+@@ -575,8 +575,12 @@ emit_render_targets(struct grate_context *context)
+    }
+ 
+    grate_stream_push(stream, host1x_opcode_incr(TGR3D_RT_PTR(0), fb->num_rts));
+-   for (i = 0; i < fb->num_rts; ++i)
+-      grate_stream_push_reloc(stream, fb->bos[i], 0);
++   for (i = 0; i < fb->num_rts; ++i) {
++      if (fb->bos[i])
++         grate_stream_push_reloc(stream, fb->bos[i], 0);
++      else
++         grate_stream_push(stream, 0);
++   }
+ 
+    grate_stream_push(stream, host1x_opcode_incr(TGR3D_RT_ENABLE, 1));
+    grate_stream_push(stream, fb->mask);

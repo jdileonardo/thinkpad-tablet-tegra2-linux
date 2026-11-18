@@ -34,7 +34,7 @@ on an exported branch can be used for reviewing or preparing submissions.
 
 ## Readiness for the selected XFCE workload
 
-The target is a docked calendar and Spotify controller. Physical touch,
+The target is a docked XFCE desktop. Physical touch,
 user-confirmed rotation and Wi-Fi work; small GTK calendar rendering and several
 hardware 3D/compositor paths have measured device evidence. This is a useful
 development system, not yet a validated daily-use image.
@@ -54,8 +54,7 @@ Before an image is selected as the working baseline:
    for offline assembly. A fully source-rebuilt release remains separate work.
 3. Boot a freshly built SD image repeatedly and exercise the intended workload
    for hours, checking memory growth, display, touch/rotation, Wi-Fi and recovery.
-4. Add the chosen calendar service and Spotify-control client and verify them
-   with their actual accounts/playback device.
+4. Verify the intended desktop applications on the tablet.
 
 RGB565 rendering and KWin's missing 3D-texture capability remain defects or
 unsupported capabilities; they are not prerequisites for the verified GTK/XFCE

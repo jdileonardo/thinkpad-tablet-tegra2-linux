@@ -1,0 +1,1631 @@
+diff --git a/src/gallium/drivers/grate/drm/channel.c b/src/gallium/drivers/grate/drm/channel.c
+index e3f0b4c2..e234bc52 100644
+--- a/src/gallium/drivers/grate/drm/channel.c
++++ b/src/gallium/drivers/grate/drm/channel.c
+@@ -40,11 +40,14 @@ drm_tegra_channel_open(struct grate_device *drm,
+                        enum drm_tegra_class client,
+                        struct drm_tegra_channel **channelp)
+ {
+-    struct drm_tegra_channel_open args;
++    struct drm_tegra_open_channel args;
+     struct drm_tegra_channel *channel;
+     enum host1x_class class;
+     int err;
+ 
++    if (drm->soc_id != DRM_TEGRA_SOC_T20)
++        return -ENOTSUP;
++
+     switch (client) {
+     case DRM_TEGRA_HOST1X:
+         class = HOST1X_CLASS_HOST1X;
+@@ -73,17 +76,17 @@ drm_tegra_channel_open(struct grate_device *drm,
+     channel->drm = drm;
+ 
+     memset(&args, 0, sizeof(args));
+-    args.host1x_class = class;
++    args.client = class;
+ 
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CHANNEL_OPEN, &args);
++    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_OPEN_CHANNEL, &args);
+     if (err < 0) {
+         free(channel);
+         return -errno;
+     }
+ 
+     channel->context = args.context;
+-    channel->version = args.version;
+-    channel->capabilities = args.capabilities;
++    channel->version = 0x20; /* This adapter is validated for Tegra20 only. */
++    channel->capabilities = 0;
+     channel->class = class;
+ 
+     switch (channel->version) {
+@@ -111,7 +114,7 @@ drm_tegra_channel_open(struct grate_device *drm,
+ 
+ int drm_tegra_channel_close(struct drm_tegra_channel *channel)
+ {
+-    struct drm_tegra_channel_close args;
++    struct drm_tegra_close_channel args;
+     struct grate_device *drm;
+     int err;
+ 
+@@ -123,7 +126,7 @@ int drm_tegra_channel_close(struct drm_tegra_channel *channel)
+     memset(&args, 0, sizeof(args));
+     args.context = channel->context;
+ 
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CHANNEL_CLOSE, &args);
++    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CLOSE_CHANNEL, &args);
+     if (err < 0)
+         return -errno;
+ 
+@@ -138,61 +141,29 @@ drm_tegra_channel_get_version(struct drm_tegra_channel *channel)
+     return channel->version;
+ }
+ 
++/* Legacy SUBMIT patches GEM handles; it has no channel mapping ioctl. */
+ int
+ drm_tegra_channel_map(struct drm_tegra_channel *channel,
+                       struct grate_bo *bo, uint32_t flags,
+                       struct drm_tegra_mapping **mapp)
+ {
+-    struct grate_device *drm = channel->drm;
+-    struct drm_tegra_channel_map args;
+-    struct drm_tegra_mapping *map;
+-    int err;
+-
+-    if (!drm || !bo || !mapp)
++    if (!channel || !bo || !mapp)
+         return -EINVAL;
+-
+-    map = calloc(1, sizeof(*map));
++    struct drm_tegra_mapping *map = calloc(1, sizeof(*map));
+     if (!map)
+         return -ENOMEM;
+-
+-    memset(&args, 0, sizeof(args));
+-    args.context = channel->context;
+-    args.handle = bo->handle;
+-    args.flags = flags;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CHANNEL_MAP, &args);
+-    if (err < 0) {
+-        free(map);
+-        return -errno;
+-    }
+-
+     map->channel = channel;
+-    map->id = args.mapping;
++    map->id = bo->handle;
+     map->flags = flags;
+     *mapp = map;
+-
+     return 0;
+ }
+ 
+ int
+ drm_tegra_channel_unmap(struct drm_tegra_mapping *map)
+ {
+-    struct drm_tegra_channel *channel = map->channel;
+-    struct grate_device *drm = channel->drm;
+-    struct drm_tegra_channel_unmap args;
+-    int err;
+-
+-    if (!channel || !map)
++    if (!map)
+         return -EINVAL;
+-
+-    memset(&args, 0, sizeof(args));
+-    args.context = channel->context;
+-    args.mapping = map->id;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CHANNEL_UNMAP, &args);
+-    if (err < 0)
+-        return -errno;
+-
+     free(map);
+     return 0;
+ }
+diff --git a/src/gallium/drivers/grate/drm/job.c b/src/gallium/drivers/grate/drm/job.c
+index bc6b595e..2ee19c9f 100644
+--- a/src/gallium/drivers/grate/drm/job.c
++++ b/src/gallium/drivers/grate/drm/job.c
+@@ -36,6 +36,7 @@
+ #include <poll.h>
+ 
+ #include "grate_device.h"
++#include "grate_bo.h"
+ #include "tegra_private.h"
+ 
+ struct drm_tegra_submit_cmd *
+@@ -94,6 +95,7 @@ int drm_tegra_job_free(struct drm_tegra_job *job)
+     if (job->buffers)
+         free(job->buffers);
+ 
++    grate_bo_unref(job->legacy_bo);
+     free(job);
+ 
+     return 0;
+@@ -129,60 +131,70 @@ drm_tegra_job_get_pushbuf(struct drm_tegra_job *job,
+     return 0;
+ }
+ 
++/* Translate the new userspace job representation to legacy GEM submission.
++ * Structure setup follows the working grate-25.1.9 uapi_v1/job.c path.
++ */
+ int
+ drm_tegra_job_submit(struct drm_tegra_job *job, struct drm_tegra_fence *fence)
+ {
+     struct drm_tegra_channel *channel = job->channel;
+     struct grate_device *drm = channel->drm;
+-    struct drm_tegra_channel_submit args;
+-    int err;
+-
+-    memset(&args, 0, sizeof(args));
+-    args.context = channel->context;
+-    args.num_bufs = job->num_buffers;
+-    args.num_cmds = job->num_commands;
+-    args.gather_data_words = job->pushbuf->ptr - job->pushbuf->start;
+-    args.syncpt.id = job->syncpt.id;
+-    args.syncpt.increments = job->syncpt.increments;
+-
+-    args.bufs_ptr = (uintptr_t)job->buffers;
+-    args.cmds_ptr = (uintptr_t)job->commands;
+-    args.gather_data_ptr = (uintptr_t)job->pushbuf->start;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_CHANNEL_SUBMIT, &args);
++    unsigned words = job->pushbuf->ptr - job->pushbuf->start;
++    if (job->num_commands != 1 ||
++        job->commands[0].type != DRM_TEGRA_SUBMIT_CMD_GATHER_UPTR)
++        return -ENOTSUP;
++    job->legacy_bo = grate_bo_alloc(drm, (words + 1) * 4, 0);
++    if (!job->legacy_bo)
++        return -ENOMEM;
++    uint32_t *commands;
++    int err = grate_bo_map(job->legacy_bo, (void **)&commands);
++    if (err < 0)
++        return err;
++    /* Upstream selects the class implicitly; legacy command buffers need it. */
++    commands[0] = channel->class << 6;
++    memcpy(commands + 1, job->pushbuf->start, words * 4);
++    struct drm_tegra_cmdbuf cmdbuf = {
++        .handle = job->legacy_bo->handle, .words = words + 1,
++    };
++    struct drm_tegra_syncpt syncpt = {
++        .id = job->syncpt.id, .incrs = job->syncpt.increments,
++    };
++    struct drm_tegra_reloc *relocs = calloc(job->num_buffers, sizeof(*relocs));
++    if (job->num_buffers && !relocs)
++        return -ENOMEM;
++    for (unsigned i = 0; i < job->num_buffers; ++i) {
++        struct drm_tegra_submit_buf *buffer = &job->buffers[i];
++        relocs[i].cmdbuf.handle = cmdbuf.handle;
++        relocs[i].cmdbuf.offset = (buffer->reloc.gather_offset_words + 1) * 4;
++        relocs[i].target.handle = buffer->mapping;
++        relocs[i].target.offset = buffer->reloc.target_offset;
++        relocs[i].shift = buffer->reloc.shift;
++    }
++    struct drm_tegra_submit args = {
++        .context = channel->context, .num_syncpts = 1, .num_cmdbufs = 1,
++        .num_relocs = job->num_buffers, .timeout = 1000,
++        .syncpts = (uintptr_t)&syncpt, .cmdbufs = (uintptr_t)&cmdbuf,
++        .relocs = (uintptr_t)relocs,
++    };
++    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_SUBMIT, &args);
++    free(relocs);
+     if (err < 0)
+         return -errno;
+-
+-    job->syncpt.fence = args.syncpt.value;
+-
++    job->syncpt.fence = args.fence;
+     if (fence) {
+         fence->drm = drm;
+-        fence->syncpt = job->syncpt.id;
+-        fence->value = job->syncpt.fence;
++        fence->syncpt = syncpt.id;
++        fence->value = args.fence;
+     }
+-
+     return 0;
+ }
+ 
+ int
+ drm_tegra_job_wait(struct drm_tegra_job *job, unsigned long timeout)
+ {
+-    struct drm_tegra_channel *channel = job->channel;
+-    struct grate_device *drm = channel->drm;
+-    struct drm_tegra_syncpoint_wait args;
+-    struct timespec ts;
+-    int err;
+-
+-    clock_gettime(CLOCK_MONOTONIC, &ts);
+-
+-    memset(&args, 0, sizeof(args));
+-    args.timeout_ns = ts.tv_sec * 1000000000 + ts.tv_nsec + timeout;
+-    args.id = job->syncpt.id;
+-    args.threshold = job->syncpt.fence;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_SYNCPOINT_WAIT, &args);
+-    if (err < 0)
+-        return -errno;
+-
+-    return 0;
++    struct drm_tegra_fence fence = {
++        .drm = job->channel->drm, .syncpt = job->syncpt.id,
++        .value = job->syncpt.fence,
++    };
++    return drm_tegra_fence_wait(&fence, timeout);
+ }
+diff --git a/src/gallium/drivers/grate/drm/syncpt.c b/src/gallium/drivers/grate/drm/syncpt.c
+index 4656ac76..36e8a75e 100644
+--- a/src/gallium/drivers/grate/drm/syncpt.c
++++ b/src/gallium/drivers/grate/drm/syncpt.c
+@@ -32,71 +32,42 @@
+ #include "grate_device.h"
+ #include "tegra_private.h"
+ 
++/* Channel-owned syncpoints are used by the legacy ABI. */
+ int
+-drm_tegra_syncpoint_new(struct grate_device *drm,
++drm_tegra_syncpoint_new(struct drm_tegra_channel *channel,
+                         struct drm_tegra_syncpoint **syncptp)
+ {
+-    struct drm_tegra_syncpoint_allocate args;
+-    struct drm_tegra_syncpoint *syncpt;
+-    int err;
+-
+-    syncpt = calloc(1, sizeof(*syncpt));
++    struct drm_tegra_get_syncpt args = { .context = channel->context, .index = 0 };
++    if (ioctl(channel->drm->fd, DRM_IOCTL_TEGRA_GET_SYNCPT, &args) < 0)
++        return -errno;
++    struct drm_tegra_syncpoint *syncpt = calloc(1, sizeof(*syncpt));
+     if (!syncpt)
+         return -ENOMEM;
+-
+-    memset(&args, 0, sizeof(args));
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_SYNCPOINT_ALLOCATE, &args);
+-    if (err < 0) {
+-        free(syncpt);
+-        return -errno;
+-    }
+-
+-    syncpt->drm = drm;
++    syncpt->drm = channel->drm;
+     syncpt->id = args.id;
+-
+     *syncptp = syncpt;
+-
+     return 0;
+ }
+ 
+ int
+ drm_tegra_syncpoint_free(struct drm_tegra_syncpoint *syncpt)
+ {
+-    struct drm_tegra_syncpoint_free args;
+-    struct grate_device *drm = syncpt->drm;
+-    int err;
+-
+     if (!syncpt)
+         return -EINVAL;
+-
+-    memset(&args, 0, sizeof(args));
+-    args.id = syncpt->id;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_SYNCPOINT_FREE, &args);
+-    if (err < 0)
+-        return -errno;
+-
+     free(syncpt);
+-
+     return 0;
+ }
+ 
+ int
+ drm_tegra_fence_wait(struct drm_tegra_fence *fence, unsigned long timeout)
+ {
+-    struct drm_tegra_syncpoint_wait args;
+-    struct grate_device *drm = fence->drm;
+-    int err;
+-
+-    memset(&args, 0, sizeof(args));
+-    args.timeout_ns = 0;
+-    args.id = fence->syncpt;
+-    args.threshold = fence->value;
+-
+-    err = ioctl(drm->fd, DRM_IOCTL_TEGRA_SYNCPOINT_WAIT, &args);
+-    if (err < 0)
++    /* Legacy waits take a relative millisecond timeout, new callers use ns. */
++    uint64_t ms = ((uint64_t)timeout + 999999) / 1000000;
++    struct drm_tegra_syncpt_wait args = {
++        .id = fence->syncpt, .thresh = fence->value,
++        .timeout = ms > UINT32_MAX ? UINT32_MAX : (uint32_t)ms,
++    };
++    if (ioctl(fence->drm->fd, DRM_IOCTL_TEGRA_SYNCPT_WAIT, &args) < 0)
+         return -errno;
+-
+     return 0;
+ }
+diff --git a/src/gallium/drivers/grate/drm/tegra.h b/src/gallium/drivers/grate/drm/tegra.h
+index 7d387f52..c1ff444f 100644
+--- a/src/gallium/drivers/grate/drm/tegra.h
++++ b/src/gallium/drivers/grate/drm/tegra.h
+@@ -98,7 +98,7 @@ int drm_tegra_pushbuf_sync_cond(struct drm_tegra_pushbuf *pushbuf,
+                                 struct drm_tegra_syncpoint *syncpt,
+                                 enum drm_tegra_sync_cond cond);
+ 
+-int drm_tegra_syncpoint_new(struct grate_device *drm,
++int drm_tegra_syncpoint_new(struct drm_tegra_channel *channel,
+                             struct drm_tegra_syncpoint **syncptp);
+ int drm_tegra_syncpoint_free(struct drm_tegra_syncpoint *syncpt);
+ int drm_tegra_fence_wait(struct drm_tegra_fence *fence, unsigned long timeout);
+diff --git a/src/gallium/drivers/grate/drm/tegra_private.h b/src/gallium/drivers/grate/drm/tegra_private.h
+index b31b66eb..9d023f6d 100644
+--- a/src/gallium/drivers/grate/drm/tegra_private.h
++++ b/src/gallium/drivers/grate/drm/tegra_private.h
+@@ -70,6 +70,7 @@ struct drm_tegra_job {
+     struct drm_tegra_channel *channel;
+     struct drm_tegra_pushbuf *pushbuf;
+     size_t page_size;
++    struct grate_bo *legacy_bo;
+ 
+     struct drm_tegra_submit_cmd *commands;
+     unsigned int num_commands;
+diff --git a/src/gallium/drivers/grate/fp/fpir.h b/src/gallium/drivers/grate/fp/fpir.h
+index 9bacaf3a..635833f7 100644
+--- a/src/gallium/drivers/grate/fp/fpir.h
++++ b/src/gallium/drivers/grate/fp/fpir.h
+@@ -169,7 +169,7 @@ struct fp_sched {
+ 
+ struct fp_instr {
+    struct list_head link;
+-   // TODO: PSEQ
++   uint32_t pseq;
+    struct fp_sched mfu_sched;
+    struct fp_tex_instr tex;
+    struct fp_sched alu_sched;
+diff --git a/src/gallium/drivers/grate/fp/nir.c b/src/gallium/drivers/grate/fp/nir.c
+index df17221e..3966ce85 100644
+--- a/src/gallium/drivers/grate/fp/nir.c
++++ b/src/gallium/drivers/grate/fp/nir.c
+@@ -28,6 +28,7 @@
+ 
+ struct fp_nir_ctx {
+    struct grate_fp_shader *fp;
++   unsigned color_target;
+    int *ssa_slot;
+    unsigned num_ssa;
+    unsigned num_slots;
+@@ -72,9 +73,14 @@ struct fp_nir_ctx {
+     * has been read for the last time, but not before the instruction being
+     * built is emitted, or a pending operation would read a reused register */
+    unsigned *last_use;
++   unsigned *component_last_use;
++   unsigned varying_last_use[16][4];
++   unsigned instruction_index;
++   unsigned last_row_clobber;
++   int dead_slot;
+    unsigned free_slot[FP_NUM_GLOBALS + FP_SPILL_COUNT];
+    unsigned num_free;
+-   unsigned dying[FP_MAX_SLOTS];
++   unsigned dying[FP_NUM_GLOBALS + FP_SPILL_COUNT];
+    unsigned num_dying;
+ 
+    struct fp_alu_instr batch[FP_MAX_SLOTS];
+@@ -261,6 +267,27 @@ fp_nir_src(struct fp_nir_ctx *ctx, nir_src src, unsigned comp)
+          return op;
+       }
+ 
++      case nir_intrinsic_load_output: {
++         int slot = ctx->tex_slot[src.ssa->index * 4 + comp];
++         if (slot <= -2) {
++            /* Destination UNORM channels retained as packed FX10 in R0/R1,
++             * away from the R2/R3 color output and the global scalar file. */
++            unsigned o = comp < 3 ? 2 - comp : 3;
++            op.index = o / 2;
++            op.datatype = FP_DATATYPE_FIXED10;
++            op.sub_reg_select_high = o & 1;
++            return op;
++         }
++         if (slot < 0) {
++            fprintf(stderr, "GRATE FRAG: framebuffer result not available\n");
++            ctx->fp->unsupported = true;
++            return fp_src_zero();
++         }
++         op.index = fp_reg_for_slot(ctx, slot);
++         op.datatype = FP_DATATYPE_FP20;
++         return op;
++      }
++
+       default:
+          break;
+       }
+@@ -552,6 +579,8 @@ fp_dst_output(unsigned comp, bool saturate)
+    return d;
+ }
+ 
++static const nir_def *fp_peel(nir_src src, unsigned *comp);
++
+ static void
+ fp_emit_form(struct fp_nir_ctx *ctx, nir_alu_instr *alu, enum fp_alu_op op,
+              enum fp_form form, enum fp_condition cond)
+@@ -581,6 +610,42 @@ fp_emit_form(struct fp_nir_ctx *ctx, nir_alu_instr *alu, enum fp_alu_op op,
+    default: UNREACHABLE("bad fragment source form");
+    }
+ 
++   /* An ALU can read and replace its source register in one operation.
++    * Reuse a last-use scalar operand before allocating another register;
++    * fp_prepare has already separated any earlier write from this read. */
++   for (unsigned i = 0; i < n && i < 3; ++i) {
++      unsigned comp = alu->src[i].swizzle[0];
++      const nir_def *def = fp_peel(alu->src[i].src, &comp);
++      if (comp == 0 && ctx->last_use[def->index] == ctx->instruction_index &&
++          ctx->ssa_slot[def->index] >= 0) {
++         ctx->ssa_slot[alu->def.index] = ctx->ssa_slot[def->index];
++         ctx->ssa_slot[def->index] = -1;
++         break;
++      }
++      /* Fetches and preserved varyings use per-component slots rather than
++       * scalar SSA slots. They can be replaced at their last component use
++       * too, provided the preservation copy has already been emitted. */
++      const nir_instr *parent = nir_def_instr(def);
++      const nir_intrinsic_instr *intr = parent->type == nir_instr_type_intrinsic ?
++         nir_instr_as_intrinsic(parent) : NULL;
++      bool varying = intr && (intr->intrinsic == nir_intrinsic_load_input ||
++                             intr->intrinsic == nir_intrinsic_load_interpolated_input);
++      bool cached = varying || parent->type == nir_instr_type_tex ||
++         (intr && intr->intrinsic == nir_intrinsic_load_output);
++      unsigned row = varying ? nir_intrinsic_base(intr) : 0;
++      if (cached && comp < 4 && (!varying || row < 16)) {
++         unsigned last = varying ? ctx->varying_last_use[row][comp] :
++            ctx->component_last_use[def->index * 4 + comp];
++         int *cache = varying ? &ctx->varying_slot[row][comp] :
++            &ctx->tex_slot[def->index * 4 + comp];
++         if (last == ctx->instruction_index && *cache >= 0) {
++            ctx->ssa_slot[alu->def.index] = *cache;
++            *cache = -1;
++            break;
++         }
++      }
++   }
++
+    struct fp_alu_instr out = {
+       .op = op,
+       .condition = cond,
+@@ -714,10 +779,75 @@ fp_emit_csel(struct fp_nir_ctx *ctx, nir_alu_instr *alu, enum fp_condition cond)
+       ctx->dying[ctx->num_dying++] = diff;
+ }
+ 
++/* SFU operations update one row register in place before this instruction's
++ * ALU stage (Grate assembler-syntax.md, MFU example). R0 is scratch here:
++ * interpolated inputs and TEX results have already been kept by fp_flush.
++ * Keep the input move in a separate pipeline instruction so MFU reads it
++ * after the preceding ALU has written it.
++ */
++static void
++fp_emit_sfu(struct fp_nir_ctx *ctx, nir_alu_instr *alu, enum fp_sfu_op op,
++            bool floor)
++{
++   fp_flush(ctx);
++   struct fp_alu_src_operand input = fp_nir_alu_src(ctx, alu, 0);
++   struct fp_alu_dst_operand row = {
++      .index = 0, .write_low_sub_reg = true, .write_high_sub_reg = true,
++   };
++   fp_gather(ctx, (struct fp_alu_instr){
++      .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS, .dst = row,
++      .src = { input, fp_src_one(), fp_src_zero(), fp_src_zero() },
++   });
++
++   /* floor(x) = x - fract(x); preserve x before the in-place SFU. */
++   unsigned original = 0;
++   if (floor) {
++      original = fp_alloc_slot(ctx);
++      row.index = fp_reg_for_slot(ctx, original);
++      fp_gather(ctx, (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS, .dst = row,
++         .src = { input, fp_src_one(), fp_src_zero(), fp_src_zero() },
++      });
++   }
++   fp_flush(ctx);
++
++   ctx->mfu = CALLOC_STRUCT(fp_mfu_instr);
++   list_inithead(&ctx->mfu->link);
++   ctx->mfu->sfu.op = op;
++   ctx->mfu->sfu.reg = 0;
++   ctx->mfu->mul[0].dst = FP_MFU_MUL_DST_ROW_REG_0;
++   ctx->mfu->mul[0].src[0] = FP_MFU_MUL_SRC_SFU_RESULT;
++   ctx->mfu->mul[0].src[1] = FP_MFU_MUL_SRC_CONST_1;
++
++   struct fp_alu_src_operand result = { .index = 0 };
++   struct fp_alu_src_operand add = fp_src_zero();
++   if (floor) {
++      result.negate = true;
++      add.index = fp_reg_for_slot(ctx, original);
++      add.datatype = FP_DATATYPE_FP20;
++      add.sub_reg_select_high = false;
++   }
++   ctx->cur_def = &alu->def;
++   fp_gather(ctx, (struct fp_alu_instr){
++      .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++      .dst = fp_dst_for_def(ctx, &alu->def, false),
++      .src = { result, fp_src_one(), add, add },
++   });
++   /* R0 must be read before another SFU, TEX or interpolation can overwrite it. */
++   if (floor)
++      ctx->dying[ctx->num_dying++] = original;
++   fp_flush(ctx);
++}
++
+ static void
+ fp_emit_alu(struct fp_nir_ctx *ctx, nir_alu_instr *alu)
+ {
+    switch (alu->op) {
++   case nir_op_ffract: fp_emit_sfu(ctx, alu, FP_SFU_OP_FRC, false); break;
++   case nir_op_ffloor: fp_emit_sfu(ctx, alu, FP_SFU_OP_FRC, true); break;
++   case nir_op_frcp:   fp_emit_sfu(ctx, alu, FP_SFU_OP_RCP, false); break;
++   case nir_op_frsq:   fp_emit_sfu(ctx, alu, FP_SFU_OP_RSQ, false); break;
++   case nir_op_fsqrt:  fp_emit_sfu(ctx, alu, FP_SFU_OP_SQRT, false); break;
+    case nir_op_mov:  fp_emit_form(ctx, alu, FP_ALU_OP_MAD, FP_FORM_MOV,
+                                   FP_CONDITION_ALWAYS); break;
+    case nir_op_fmul: fp_emit_form(ctx, alu, FP_ALU_OP_MAD, FP_FORM_MUL,
+@@ -951,6 +1081,55 @@ fp_emit_tex(struct fp_nir_ctx *ctx, nir_tex_instr *tex)
+    }
+ }
+ 
++/* PSEQ runs before the ALU: copy the fetched pixel in that instruction,
++ * preserving it while blend arithmetic consumes the original source color.
++ */
++static void
++fp_emit_fbfetch(struct fp_nir_ctx *ctx, nir_intrinsic_instr *intr)
++{
++   fp_flush(ctx);
++   unsigned location = nir_intrinsic_io_semantics(intr).location;
++   if (location != FRAG_RESULT_DATA0) {
++      fprintf(stderr, "GRATE FRAG: framebuffer fetch target %u unsupported\n", location);
++      ctx->fp->unsupported = true;
++      return;
++   }
++   struct fp_instr *inst = fp_new_instr();
++   struct fp_alu_instr_packet *pkt = fp_new_packet(ctx->fp);
++   inst->pseq = 0x0080000a | (ctx->color_target << 16);
++   inst->alu_sched.address = list_length(&ctx->fp->alu_instructions);
++   inst->alu_sched.num_instructions = 1;
++   unsigned read = nir_def_components_read(&intr->def);
++   for (unsigned c = 0; c < 4; ++c) {
++      if (!(read & (1u << c)))
++         continue;
++      bool packed = ctx->instruction_index >= ctx->last_row_clobber;
++      unsigned o = c < 3 ? 2 - c : 3;
++      struct fp_alu_dst_operand dst;
++      if (packed) {
++         ctx->tex_slot[intr->def.index * 4 + c] = -2 - c;
++         dst = (struct fp_alu_dst_operand){
++            .index = o / 2, .write_low_sub_reg = !(o & 1),
++            .write_high_sub_reg = o & 1,
++         };
++      } else {
++         unsigned slot = fp_alloc_slot(ctx);
++         ctx->tex_slot[intr->def.index * 4 + c] = slot;
++         dst = (struct fp_alu_dst_operand){
++            .index = fp_reg_for_slot(ctx, slot),
++            .write_low_sub_reg = true, .write_high_sub_reg = true,
++         };
++      }
++      pkt->slots[c] = (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++         .dst = dst,
++         .src = { fp_src_tex(c), fp_src_one(), fp_src_zero(), fp_src_zero() },
++      };
++   }
++   list_addtail(&pkt->link, &ctx->fp->alu_instructions);
++   list_addtail(&inst->link, &ctx->fp->fp_instructions);
++}
++
+ static void
+ fp_emit_intrinsic(struct fp_nir_ctx *ctx, nir_intrinsic_instr *intr)
+ {
+@@ -966,6 +1145,10 @@ fp_emit_intrinsic(struct fp_nir_ctx *ctx, nir_intrinsic_instr *intr)
+       fp_emit_store_output(ctx, intr);
+       return;
+ 
++   case nir_intrinsic_load_output:
++      fp_emit_fbfetch(ctx, intr);
++      return;
++
+    default:
+       fprintf(stderr, "GRATE FRAG NIR UNIMPLEMENTED intrinsic: %s\n",
+               nir_intrinsic_infos[intr->intrinsic].name);
+@@ -1094,6 +1277,10 @@ fp_note_use(nir_src *src, void *data)
+    struct fp_use_ctx *u = data;
+ 
+    u->ctx->last_use[src->ssa->index] = u->idx;
++   unsigned mask = nir_src_components_read(src);
++   for (unsigned c = 0; c < 4; ++c)
++      if (mask & (1u << c))
++         u->ctx->component_last_use[src->ssa->index * 4 + c] = u->idx;
+    return true;
+ }
+ 
+@@ -1104,6 +1291,12 @@ fp_extend_use(nir_src *src, void *data)
+    unsigned *slot = &u->ctx->last_use[src->ssa->index];
+ 
+    *slot = MAX2(*slot, u->idx);
++   unsigned mask = nir_src_components_read(src);
++   for (unsigned c = 0; c < 4; ++c)
++      if (mask & (1u << c)) {
++         unsigned *component = &u->ctx->component_last_use[src->ssa->index * 4 + c];
++         *component = MAX2(*component, u->idx);
++      }
+    return true;
+ }
+ 
+@@ -1114,6 +1307,36 @@ fp_release_use(nir_src *src, void *data)
+    struct fp_nir_ctx *ctx = u->ctx;
+    unsigned i = src->ssa->index;
+ 
++   nir_instr *parent = nir_def_instr(src->ssa);
++   nir_intrinsic_instr *intr = parent->type == nir_instr_type_intrinsic ?
++      nir_instr_as_intrinsic(parent) : NULL;
++   bool varying = intr && (intr->intrinsic == nir_intrinsic_load_input ||
++                          intr->intrinsic == nir_intrinsic_load_interpolated_input);
++   bool cached = varying || parent->type == nir_instr_type_tex ||
++      (intr && intr->intrinsic == nir_intrinsic_load_output);
++   unsigned row = varying ? nir_intrinsic_base(intr) : 0;
++   unsigned mask = nir_src_components_read(src);
++   if (cached && (!varying || row < 16)) {
++      for (unsigned c = 0; c < 4; ++c) {
++         unsigned last = varying ? ctx->varying_last_use[row][c] :
++            ctx->component_last_use[i * 4 + c];
++         if (!(mask & (1u << c)) || last != u->idx)
++            continue;
++         int *cache = varying ? &ctx->varying_slot[row][c] : &ctx->tex_slot[i * 4 + c];
++         int slot = *cache;
++         *cache = -1;
++         /* A first use can still have its preservation copy pending. It
++          * must execute before this slot becomes available after flush. */
++         for (unsigned k = 0; k < ctx->num_keep; ++k)
++            if (ctx->keep[k].commit == cache) {
++               slot = ctx->keep[k].slot;
++               ctx->keep[k].commit = &ctx->dead_slot;
++            }
++         if (slot >= 0 && ctx->num_dying < ARRAY_SIZE(ctx->dying))
++            ctx->dying[ctx->num_dying++] = slot;
++      }
++   }
++
+    if (ctx->last_use[i] != u->idx || ctx->ssa_slot[i] < 0)
+       return true;
+ 
+@@ -1124,7 +1347,7 @@ fp_release_use(nir_src *src, void *data)
+ }
+ 
+ void
+-grate_nir_to_fp(struct grate_fp_shader *fp, nir_shader *s)
++grate_nir_to_fp(struct grate_fp_shader *fp, nir_shader *s, unsigned color_target)
+ {
+    list_inithead(&fp->fp_instructions);
+    list_inithead(&fp->alu_instructions);
+@@ -1165,6 +1388,7 @@ grate_nir_to_fp(struct grate_fp_shader *fp, nir_shader *s)
+ 
+    struct fp_nir_ctx ctx = { 0 };
+    ctx.fp = fp;
++   ctx.color_target = color_target;
+    for (unsigned r = 0; r < 16; ++r)
+       for (unsigned c = 0; c < 4; ++c) {
+          ctx.varying_slot[r][c] = -1;
+@@ -1184,6 +1408,7 @@ grate_nir_to_fp(struct grate_fp_shader *fp, nir_shader *s)
+     * where that is before translating anything.
+     */
+    ctx.last_use = CALLOC(impl->ssa_alloc, sizeof(unsigned));
++   ctx.component_last_use = CALLOC(impl->ssa_alloc * 4, sizeof(unsigned));
+    {
+       unsigned idx = 0;
+       nir_foreach_block(block, impl) {
+@@ -1217,9 +1442,54 @@ grate_nir_to_fp(struct grate_fp_shader *fp, nir_shader *s)
+       }
+    }
+ 
++   /* Several loads can name the same varying component. Retire its shared
++    * preservation slot only after the last actual use across all loads. */
++   nir_foreach_block(block, impl) {
++      nir_foreach_instr(instr, block) {
++         if (instr->type != nir_instr_type_intrinsic)
++            continue;
++         nir_intrinsic_instr *intr = nir_instr_as_intrinsic(instr);
++         if (intr->intrinsic != nir_intrinsic_load_input &&
++             intr->intrinsic != nir_intrinsic_load_interpolated_input)
++            continue;
++         unsigned row = nir_intrinsic_base(intr);
++         if (row >= 16)
++            continue;
++         for (unsigned c = 0; c < 4; ++c)
++            ctx.varying_last_use[row][c] = MAX2(ctx.varying_last_use[row][c],
++               ctx.component_last_use[intr->def.index * 4 + c]);
++      }
++   }
++
++   /* R0/R1 are available for the packed destination only after the last
++    * interpolation, texture preservation and SFU operation. Otherwise keep
++    * the ordinary scalar copies. Blend lowering's math uses only the ALU. */
+    unsigned idx = 0;
+    nir_foreach_block(block, impl) {
+       nir_foreach_instr(instr, block) {
++         if (instr->type == nir_instr_type_tex)
++            ctx.last_row_clobber = MAX2(ctx.last_row_clobber,
++               ctx.last_use[nir_instr_as_tex(instr)->def.index]);
++         if (instr->type == nir_instr_type_intrinsic) {
++            nir_intrinsic_instr *intr = nir_instr_as_intrinsic(instr);
++            if (intr->intrinsic == nir_intrinsic_load_input ||
++                intr->intrinsic == nir_intrinsic_load_interpolated_input)
++               ctx.last_row_clobber = MAX2(ctx.last_row_clobber,
++                  ctx.last_use[intr->def.index]);
++         }
++         if (instr->type == nir_instr_type_alu) {
++            nir_op op = nir_instr_as_alu(instr)->op;
++            if (op == nir_op_ffract || op == nir_op_ffloor || op == nir_op_frcp ||
++                op == nir_op_frsq || op == nir_op_fsqrt)
++               ctx.last_row_clobber = MAX2(ctx.last_row_clobber, idx);
++         }
++         idx++;
++      }
++   }
++   idx = 0;
++   nir_foreach_block(block, impl) {
++      nir_foreach_instr(instr, block) {
++         ctx.instruction_index = idx;
+          switch (instr->type) {
+          case nir_instr_type_alu:
+             fp_emit_alu(&ctx, nir_instr_as_alu(instr));
+@@ -1252,6 +1522,7 @@ grate_nir_to_fp(struct grate_fp_shader *fp, nir_shader *s)
+    FREE(ctx.ssa_slot);
+    FREE(ctx.tex_slot);
+    FREE(ctx.last_use);
++   FREE(ctx.component_last_use);
+ 
+    /* store what the ALU built up in R2-R3, once, at the end */
+    if (!list_is_empty(&fp->fp_instructions)) {
+diff --git a/src/gallium/drivers/grate/grate_compiler.h b/src/gallium/drivers/grate/grate_compiler.h
+index 23525733..136d3b22 100644
+--- a/src/gallium/drivers/grate/grate_compiler.h
++++ b/src/gallium/drivers/grate/grate_compiler.h
+@@ -72,7 +72,7 @@ grate_nir_to_vp(struct grate_vp_shader *vp, struct nir_shader *s);
+ 
+ 
+ void
+-grate_nir_to_fp(struct grate_fp_shader *fp, struct nir_shader *s);
++grate_nir_to_fp(struct grate_fp_shader *fp, struct nir_shader *s, unsigned color_target);
+ 
+ void
+ grate_fp_finish(struct grate_fp_shader *fp);
+diff --git a/src/gallium/drivers/grate/grate_context.h b/src/gallium/drivers/grate/grate_context.h
+index be8ba330..b3fc0d22 100644
+--- a/src/gallium/drivers/grate/grate_context.h
++++ b/src/gallium/drivers/grate/grate_context.h
+@@ -52,10 +52,12 @@ struct grate_context {
+ 
+    struct grate_zsa_state *zsa;
+    struct pipe_blend_state *blend;
++   struct pipe_blend_color blend_color;
+    struct grate_rasterizer_state *rast;
+ 
+    struct grate_vertex_shader_state *vshader;
+    struct grate_fragment_shader_state *fshader;
++   struct grate_fs_variant *fs_variant;
+ 
+    struct pipe_sampler_view *sampler_views[GRATE_MAX_SAMPLERS];
+    struct pipe_sampler_state *samplers[GRATE_MAX_SAMPLERS];
+diff --git a/src/gallium/drivers/grate/grate_draw.c b/src/gallium/drivers/grate/grate_draw.c
+index 5a61b92d..02ee7c8a 100644
+--- a/src/gallium/drivers/grate/grate_draw.c
++++ b/src/gallium/drivers/grate/grate_draw.c
+@@ -143,7 +143,8 @@ grate_init_state(struct grate_context *context, uint32_t **ptrp)
+     * result. So the destination is readable by the hardware and not by the
+     * shader, which is what blending would need. Left off.
+     */
+-   GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_GLOBAL_MEMORY_OUTPUT_READS, 0));
++   GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_GLOBAL_MEMORY_OUTPUT_READS,
++                                      getenv("GRATE_DEBUG_READ_DEST") ? 1 : 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_GLOBAL_HORIZONTAL_SWATH_RENDERING, 0));
+ 
+    /* Common stuff */
+@@ -251,13 +252,17 @@ grate_init_state(struct grate_context *context, uint32_t **ptrp)
+                        TGR3D_PSEQ_CTL_MERGE_REGISTERS |
+                        TGR3D_PSEQ_CTL_REMOVE_KILLED_PIXELS |
+                        TGR3D_PSEQ_CTL_ALLOW_QID_COLLISIONS |
+-                       TGR3D_PSEQ_CTL_MAX_OUT(GRATE_PSEQ_MAX_OUT) |
+-                       TGR3D_PSEQ_CTL_MIN_OUT(GRATE_PSEQ_MIN_OUT);
++                       TGR3D_PSEQ_CTL_MAX_OUT(context->fs_variant->pseq_max_out) |
++                       TGR3D_PSEQ_CTL_MIN_OUT(context->fs_variant->pseq_min_out);
+ 
++   /* MIN_OUT starts at bit 14. An IMM command only carries 16 data bits,
++    * silently discarding almost all of that field (even MIN_OUT=4).
++    */
++   unsigned pseq_reg = REG_TGR3D_PSEQ_CTL;
+    if (soc_id == DRM_TEGRA_SOC_T114)
+-      GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_PSEQ_CTL | 0x2200, pseq_ctl));
+-   else
+-      GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_PSEQ_CTL, pseq_ctl));
++      pseq_reg |= 0x2200;
++   GRATE_PUSHBUF_WORD(ptr, host1x_opcode_incr(pseq_reg, 1));
++   GRATE_PUSHBUF_WORD(ptr, pseq_ctl);
+ 
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_PSEQ_TIMEOUT, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_PSEQ_PC, 0));
+@@ -275,14 +280,22 @@ grate_init_state(struct grate_context *context, uint32_t **ptrp)
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_AT_CLKEN_OVERRIDE, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_TEX_COLORKEY, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_TEX_TEXCTL,
+-                                               TGR3D_TEX_TEXCTL_TEXTURE_CACHE_EN(TGR3D_STATE_ENABLED)));
++                                               TGR3D_TEX_TEXCTL_TEXTURE_CACHE_EN(
++                                                  getenv("GRATE_DISABLE_TEXTURE_CACHE") ?
++                                                  TGR3D_STATE_DISABLED : TGR3D_STATE_ENABLED)));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_TEX_CLKEN_OVERRIDE, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_TEX_NV_MCCIF_FIFOCTRL_RO, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_DW_LOGIC_OP, 0));
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_imm(REG_TGR3D_DW_ST_ENABLE, 0));
+ 
+    GRATE_PUSHBUF_WORD(ptr, host1x_opcode_incr(REG_TGR3D_FDC_CONTROL, 13));
+-   GRATE_PUSHBUF_WORD(ptr, 0x00000e00); // REG_TGR3D_FDC_CONTROL
++   /* The target can have been cleared by GR2D or written by another
++    * context. Match opentegra's FDC invalidation before reading its pixels.
++    */
++   uint32_t fdc_control = 0x00000e00;
++   if (!getenv("GRATE_DEBUG_SKIP_FDC_INVALIDATE"))
++      fdc_control |= TGR3D_FDC_CONTROL_INVALIDATE;
++   GRATE_PUSHBUF_WORD(ptr, fdc_control);
+    GRATE_PUSHBUF_WORD(ptr, 0x00000000); // REG_TGR3D_FDC_STATUS
+    GRATE_PUSHBUF_WORD(ptr, 0x000001ff); // REG_TGR3D_FDC_MAX_QZ_LINES
+    GRATE_PUSHBUF_WORD(ptr, 0x000001ff); // REG_TGR3D_FDC_MAX_QV_LINES
+@@ -337,6 +350,9 @@ grate_draw_vbo(struct pipe_context *pcontext,
+    if (!indirect && (!draws[0].count || !info->instance_count))
+       return;
+ 
++   if (!grate_select_fs_variant(context))
++      return;
++
+    err = grate_stream_begin(stream, &ptr);
+    if (err < 0) {
+       grate_loge("grate_stream_begin() failed: %d\n", err);
+diff --git a/src/gallium/drivers/grate/grate_nir.c b/src/gallium/drivers/grate/grate_nir.c
+index 5ef1604f..7894db0e 100644
+--- a/src/gallium/drivers/grate/grate_nir.c
++++ b/src/gallium/drivers/grate/grate_nir.c
+@@ -8,8 +8,42 @@
+  */
+ #include "compiler/nir/nir.h"
+ #include "compiler/nir/nir_builder.h"
++#include "compiler/nir/nir_lower_blend.h"
+ 
+ #include "grate_nir.h"
++#include "grate_program.h"
++
++static bool
++grate_lower_blend_constant(nir_builder *b, nir_intrinsic_instr *intr, void *data)
++{
++   if (intr->intrinsic != nir_intrinsic_load_blend_const_color_rgba)
++      return false;
++   const float *color = data;
++   b->cursor = nir_before_instr(&intr->instr);
++   nir_def *value = nir_imm_vec4(b, color[0], color[1], color[2], color[3]);
++   nir_def_rewrite_uses(&intr->def, value);
++   nir_instr_remove(&intr->instr);
++   return true;
++}
++
++/* Keep destination reads close to the blend math. Fetching before the
++ * source is computed extends both live ranges and consumes row registers. */
++static bool
++grate_sink_fbfetch(nir_builder *b, nir_intrinsic_instr *intr, void *data)
++{
++   if (intr->intrinsic != nir_intrinsic_load_output)
++      return false;
++   nir_index_instrs(b->impl);
++   nir_instr *first = NULL;
++   nir_foreach_use(use, &intr->def) {
++      nir_instr *parent = nir_src_use_instr(use);
++      if (parent->block != intr->instr.block)
++         return false;
++      if (!first || parent->index < first->index)
++         first = parent;
++   }
++   return first && nir_instr_move(nir_before_instr(first), &intr->instr);
++}
+ 
+ /* io is addressed in whole vec4 slots, one per location */
+ static unsigned
+@@ -75,7 +109,7 @@ grate_nir_lower_vs(nir_shader *s)
+ }
+ 
+ void
+-grate_nir_lower_fs(nir_shader *s)
++grate_nir_lower_fs(nir_shader *s, const struct grate_fs_key *key)
+ {
+    NIR_PASS(_, s, nir_lower_vars_to_ssa);
+    NIR_PASS(_, s, nir_lower_returns);
+@@ -89,9 +123,36 @@ grate_nir_lower_fs(nir_shader *s)
+    NIR_PASS(_, s, nir_lower_global_vars_to_local);
+    NIR_PASS(_, s, nir_lower_vars_to_ssa);
+ 
++   NIR_PASS(_, s, nir_lower_fragcolor, 1);
+    NIR_PASS(_, s, nir_lower_io, nir_var_shader_in | nir_var_shader_out,
+             grate_type_size, 0);
+ 
++   if (!getenv("GRATE_DEBUG_ALPHA_OVER") && key->rt.colormask &&
++       (key->rt.blend_enable || key->rt.colormask != 0xf)) {
++      nir_lower_blend_options options = { 0 };
++      options.rt[0].format = key->format;
++      options.rt[0].colormask = key->rt.colormask;
++      options.rt[0].rgb = (nir_lower_blend_channel){
++         .func = PIPE_BLEND_ADD, .src_factor = PIPE_BLENDFACTOR_ONE,
++         .dst_factor = PIPE_BLENDFACTOR_ZERO,
++      };
++      options.rt[0].alpha = options.rt[0].rgb;
++      if (key->rt.blend_enable) {
++         options.rt[0].rgb = (nir_lower_blend_channel){
++            key->rt.rgb_func, key->rt.rgb_src_factor, key->rt.rgb_dst_factor,
++         };
++         options.rt[0].alpha = (nir_lower_blend_channel){
++            key->rt.alpha_func, key->rt.alpha_src_factor, key->rt.alpha_dst_factor,
++         };
++      }
++      NIR_PASS(_, s, nir_lower_blend, &options);
++      /* The state tracker already lowered the application shader. Blend
++       * lowering introduces fresh lerps, so permit the pass to run again. */
++      s->info.flrp_lowered = false;
++      NIR_PASS(_, s, nir_shader_intrinsics_pass, grate_lower_blend_constant,
++               nir_metadata_control_flow, (void *)key->blend_color);
++   }
++
+    /* the ALU has no lerp, only multiply-add */
+    NIR_PASS(_, s, nir_lower_flrp, 32, false);
+ 
+@@ -104,9 +165,20 @@ grate_nir_lower_fs(nir_shader *s)
+ 
+    grate_nir_optimize(s);
+ 
++   /* MAD computes the final sum without materializing both products.
++    * Reuse Mesa's contraction pass to reduce live values and instructions. */
++   NIR_PASS(_, s, nir_opt_algebraic_before_ffma);
++   grate_nir_optimize(s);
++   NIR_PASS(_, s, nir_opt_algebraic_late);
++   NIR_PASS(_, s, nir_opt_copy_prop);
++   NIR_PASS(_, s, nir_opt_dce);
++
+    NIR_PASS(_, s, nir_convert_from_ssa, true, false);
+    NIR_PASS(_, s, nir_opt_dce);
+ 
++   NIR_PASS(_, s, nir_shader_intrinsics_pass, grate_sink_fbfetch,
++            nir_metadata_control_flow, NULL);
++
+    nir_index_ssa_defs(nir_shader_get_entrypoint(s));
+ 
+    if (getenv("GRATE_NIR_DUMP"))
+diff --git a/src/gallium/drivers/grate/grate_nir.h b/src/gallium/drivers/grate/grate_nir.h
+index 261b77d6..9d27ff96 100644
+--- a/src/gallium/drivers/grate/grate_nir.h
++++ b/src/gallium/drivers/grate/grate_nir.h
+@@ -9,6 +9,7 @@ void grate_nir_lower_vs(struct nir_shader *s);
+ 
+ /* Bring a fragment shader into the shape the fragment unit can take: scalar
+  * maths, no control flow, varyings resolved to load_input. */
+-void grate_nir_lower_fs(struct nir_shader *s);
++struct grate_fs_key;
++void grate_nir_lower_fs(struct nir_shader *s, const struct grate_fs_key *key);
+ 
+ #endif
+diff --git a/src/gallium/drivers/grate/grate_program.c b/src/gallium/drivers/grate/grate_program.c
+index 01858f8f..cb53a209 100644
+--- a/src/gallium/drivers/grate/grate_program.c
++++ b/src/gallium/drivers/grate/grate_program.c
+@@ -119,24 +119,209 @@ grate_delete_vs_state(struct pipe_context *pcontext, void *so)
+    FREE(so);
+ }
+ 
+-static void *
+-grate_create_fs_state(struct pipe_context *pcontext,
+-                      const struct pipe_shader_state *template)
++/* Diagnostic epilogue: read a render target through PSEQ, then copy its
++ * packed FX10 channels to the color output. Keep this opt-in until the
++ * destination-read instruction has been validated on Tegra20.
++ */
++static void
++grate_debug_pseq_read(struct grate_fp_shader *fp, uint32_t word)
+ {
+-   grate_trace();
+-   struct grate_context *context = grate_context(pcontext);
+-   struct grate_fragment_shader_state *so = CALLOC_STRUCT(grate_fragment_shader_state);
+-   enum drm_tegra_soc_id soc_id = context->drm->soc_id;
++   struct fp_instr *last = list_last_entry(&fp->fp_instructions, struct fp_instr, link);
++   struct fp_instr *inst = CALLOC_STRUCT(fp_instr);
++   struct fp_alu_instr_packet *pkt = CALLOC_STRUCT(fp_alu_instr_packet);
++   list_inithead(&inst->link);
++   list_inithead(&pkt->link);
++   inst->pseq = word;
++   inst->alu_sched.address = list_length(&fp->alu_instructions);
++   inst->alu_sched.num_instructions = 1;
++   inst->dw = last->dw;
++   last->dw.enable = false;
++   if (getenv("GRATE_DEBUG_PSEQ_ONLY")) {
++      list_for_each_entry_safe(struct fp_instr, i, &fp->fp_instructions, link)
++         FREE(i);
++      list_for_each_entry_safe(struct fp_alu_instr_packet, a, &fp->alu_instructions, link)
++         FREE(a);
++      list_for_each_entry_safe(struct fp_mfu_instr, m, &fp->mfu_instructions, link)
++         FREE(m);
++      list_inithead(&fp->fp_instructions);
++      list_inithead(&fp->alu_instructions);
++      list_inithead(&fp->mfu_instructions);
++      inst->alu_sched.address = 0;
++   }
++   inst->dw.src_regs = FP_DW_REGS_R0_R1;
++   unsigned source = (word & 2) ? 2 : 0;
++   for (unsigned i = 0; i < 4; ++i) {
++      pkt->slots[i] = (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++         .dst = { .index = i / 2, .write_low_sub_reg = !(i & 1),
++                  .write_high_sub_reg = i & 1 },
++         .src = {
++            { .index = source + i / 2, .datatype = FP_DATATYPE_FIXED10,
++              .sub_reg_select_high = i & 1 },
++            { .index = 31, .datatype = FP_DATATYPE_FIXED10,
++              .sub_reg_select_high = true },
++            { .index = 31, .datatype = FP_DATATYPE_FIXED10 },
++            { .index = 31, .datatype = FP_DATATYPE_FIXED10 },
++         },
++      };
++   }
++   list_addtail(&pkt->link, &fp->alu_instructions);
++   list_addtail(&inst->link, &fp->fp_instructions);
++}
+ 
+-   if (!so)
+-      return NULL;
++/* First blend probe: preserve the compiled color, then use opentegra's
++ * destination-fetch instruction and alpha-over equation. Opt-in until
++ * shader variants and the full Gallium blend state are implemented.
++ */
++static bool
++grate_debug_alpha_over(struct grate_fp_shader *fp, unsigned target)
++{
++   if (list_is_empty(&fp->fp_instructions))
++      return false;
++   struct fp_instr *last = list_last_entry(&fp->fp_instructions, struct fp_instr, link);
++   struct fp_instr *save = CALLOC_STRUCT(fp_instr);
++   struct fp_instr *compute = CALLOC_STRUCT(fp_instr);
++   struct fp_instr *blend = CALLOC_STRUCT(fp_instr);
++   struct fp_alu_instr_packet *copy = CALLOC_STRUCT(fp_alu_instr_packet);
++   struct fp_alu_instr_packet *scale = CALLOC_STRUCT(fp_alu_instr_packet);
++   struct fp_alu_instr_packet *mix = CALLOC_STRUCT(fp_alu_instr_packet);
++   if (!save || !compute || !blend || !copy || !scale || !mix) {
++      FREE(save); FREE(compute); FREE(blend); FREE(copy); FREE(scale); FREE(mix);
++      return false;
++   }
++   struct fp_alu_src_operand zero = { .index = 31, .datatype = FP_DATATYPE_FIXED10 };
++   struct fp_alu_src_operand one = zero;
++   one.sub_reg_select_high = true;
++   struct fp_alu_src_operand alpha = { .index = 19, .datatype = FP_DATATYPE_FP20 };
++   unsigned source = last->dw.src_regs == FP_DW_REGS_R2_R3 ? 2 : 0;
++   for (unsigned i = 0; i < 4; ++i) {
++      copy->slots[i] = (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++         .dst = { .index = 16 + i, .write_low_sub_reg = true, .write_high_sub_reg = true },
++         .src = { { .index = source + i / 2, .datatype = FP_DATATYPE_FIXED10,
++                    .sub_reg_select_high = i & 1 }, one, zero, zero },
++      };
++      scale->slots[i] = (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++         .dst = { .index = 16 + i, .write_low_sub_reg = true, .write_high_sub_reg = true },
++         .src = { { .index = 16 + i, .datatype = FP_DATATYPE_FP20 }, alpha, zero, zero },
++      };
++      mix->slots[i] = (struct fp_alu_instr){
++         .op = FP_ALU_OP_MAD, .condition = FP_CONDITION_ALWAYS,
++         .dst = { .index = i / 2, .write_low_sub_reg = !(i & 1),
++                  .write_high_sub_reg = i & 1, .saturate = true },
++         .src = { { .index = 2 + i / 2, .datatype = FP_DATATYPE_FIXED10,
++                    .sub_reg_select_high = i & 1 },
++                  { .index = 20, .datatype = FP_DATATYPE_FP20 },
++                  { .index = 16 + i, .datatype = FP_DATATYPE_FP20 }, zero },
++      };
++   }
++   /* RGB source factor is alpha, alpha source factor is one. Reuse the
++    * fourth scalar slot to retain 1-alpha in a separate global register.
++    */
++   alpha.negate = true;
++   scale->slots[3].dst.index = 20;
++   scale->slots[3].src[0] = alpha;
++   scale->slots[3].src[1] = one;
++   scale->slots[3].src[2] = one;
++
++   save->alu_sched.address = list_length(&fp->alu_instructions);
++   save->alu_sched.num_instructions = 1;
++   compute->alu_sched.address = save->alu_sched.address + 1;
++   compute->alu_sched.num_instructions = 1;
++   blend->alu_sched.address = save->alu_sched.address + 2;
++   blend->alu_sched.num_instructions = 1;
++   blend->pseq = 0x0080000a | (target << 16);
++   blend->dw = last->dw;
++   blend->dw.src_regs = FP_DW_REGS_R0_R1;
++   last->dw.enable = false;
++   list_addtail(&copy->link, &fp->alu_instructions);
++   list_addtail(&scale->link, &fp->alu_instructions);
++   list_addtail(&mix->link, &fp->alu_instructions);
++   list_addtail(&save->link, &fp->fp_instructions);
++   list_addtail(&compute->link, &fp->fp_instructions);
++   list_addtail(&blend->link, &fp->fp_instructions);
++   return true;
++}
+ 
+-   so->base = *template;
++static void
++grate_free_fp(struct grate_fp_shader *fp)
++{
++   list_for_each_entry_safe(struct fp_instr, i, &fp->fp_instructions, link)
++      FREE(i);
++   list_for_each_entry_safe(struct fp_alu_instr_packet, a, &fp->alu_instructions, link)
++      FREE(a);
++   list_for_each_entry_safe(struct fp_mfu_instr, m, &fp->mfu_instructions, link)
++      FREE(m);
++}
+ 
++static struct grate_fs_variant *
++grate_compile_fs_variant(struct grate_context *context,
++                         struct grate_fragment_shader_state *fs,
++                         const struct grate_fs_key *key)
++{
++   struct grate_fs_variant *so = CALLOC_STRUCT(grate_fs_variant);
++   enum drm_tegra_soc_id soc_id = context->drm->soc_id;
++   if (!so)
++      return NULL;
++   so->key = *key;
++   nir_shader *nir = nir_shader_clone(NULL, fs->base.ir.nir);
++   if (!nir) {
++      FREE(so);
++      return NULL;
++   }
+    struct grate_fp_shader fp;
++   grate_nir_lower_fs(nir, key);
++   grate_nir_to_fp(&fp, nir, key->target);
++   if (fp.unsupported) {
++      grate_free_fp(&fp);
++      ralloc_free(nir);
++      FREE(so);
++      return NULL;
++   }
++   bool alpha_over = getenv("GRATE_DEBUG_ALPHA_OVER") != NULL;
++   if (alpha_over && !grate_debug_alpha_over(&fp, key->target)) {
++      grate_free_fp(&fp);
++      ralloc_free(nir);
++      FREE(so);
++      return NULL;
++   }
++   const char *pseq_read = getenv("GRATE_DEBUG_PSEQ_READ");
++   if (pseq_read)
++      grate_debug_pseq_read(&fp, strtoul(pseq_read, NULL, 0));
++
++   so->pseq_max_out = GRATE_PSEQ_MAX_OUT;
++   so->pseq_min_out = GRATE_PSEQ_MIN_OUT;
++   /* On Indigo, ALU-to-SFU row feedback produces wrong pixels with multiple
++    * quads in flight. A single-quad output window passes all 331 fptest
++    * samples. This is a conservative Tegra20 workaround; the underlying
++    * scheduling requirement and SFU throughput remain to be investigated.
++    * RCP R4 belongs to the ordinary interpolation setup, not NIR SFU work.
++    */
++   if (soc_id == DRM_TEGRA_SOC_T20) {
++      /* Multi-instruction row feedback also needs the workaround, as shown
++       * by the uniform/SFU isolation harness's offset-only shader. */
++      if (list_length(&fp.fp_instructions) > 1) {
++         so->pseq_max_out = 4;
++         so->pseq_min_out = 4;
++      }
++      list_for_each_entry(struct fp_mfu_instr, m, &fp.mfu_instructions, link) {
++         if (m->sfu.op != FP_SFU_OP_NOP && m->sfu.reg != 4) {
++            so->pseq_max_out = 4;
++            so->pseq_min_out = 4;
++            break;
++         }
++      }
++   }
+ 
+-   grate_nir_lower_fs(template->ir.nir);
+-   grate_nir_to_fp(&fp, template->ir.nir);
++   /* Diagnostic control for testing the original concurrency after fixing
++    * the truncated sequencer register write. Keep the safe default until
++    * all the expanded samples have been compared on the tablet.
++    */
++   if (getenv("GRATE_DEBUG_FULL_PSEQ_WINDOW")) {
++      so->pseq_max_out = GRATE_PSEQ_MAX_OUT;
++      so->pseq_min_out = GRATE_PSEQ_MIN_OUT;
++   }
+ 
+    if (getenv("GRATE_FS_TRACE")) {
+       int idx = 0;
+@@ -177,7 +362,7 @@ grate_create_fs_state(struct pipe_context *pcontext,
+     */
+    PUSH(host1x_opcode_incr(REG_TGR3D_GLOBAL_PIX_ATTR, 1));
+    PUSH(TGR3D_GLOBAL_PIX_ATTR_NUM_ROWS(GRATE_ALU_BUFFER_SIZE - 1) |
+-        TGR3D_GLOBAL_PIX_ATTR_MAX_QID((GRATE_PSEQ_MAX_OUT - 1) /
++        TGR3D_GLOBAL_PIX_ATTR_MAX_QID((so->pseq_max_out - 1) /
+                                       (GRATE_ALU_BUFFER_SIZE * 4)));
+ 
+    PUSH(host1x_opcode_imm(REG_TGR3D_PSEQ_QUAD_ID, 0));
+@@ -197,7 +382,11 @@ grate_create_fs_state(struct pipe_context *pcontext,
+       fprintf(stderr, "GRATE FRAG: %d instructions exceeds the 63 the pixel "
+                       "sequencer can address; this shader will render wrong\n",
+               num_fp_instrs);
+-      num_fp_instrs = 63;
++      util_dynarray_fini(&buf);
++      grate_free_fp(&fp);
++      ralloc_free(nir);
++      FREE(so);
++      return NULL;
+    }
+ 
+    /*
+@@ -205,10 +394,13 @@ grate_create_fs_state(struct pipe_context *pcontext,
+     * count: grate's reference shaders use 1 for both a one-EXEC and a two-EXEC
+     * program, and each has exactly one "DW: store".
+     */
++   bool fbfetch = false;
+    int num_dw_instrs = 0;
+-   list_for_each_entry(struct fp_instr, instr, &fp.fp_instructions, link)
++   list_for_each_entry(struct fp_instr, instr, &fp.fp_instructions, link) {
++      fbfetch |= instr->pseq != 0;
+       if (instr->dw.enable)
+          num_dw_instrs++;
++   }
+ 
+    PUSH(host1x_opcode_incr(REG_TGR3D_PSEQ_COMMAND_EVEN(0), 1));
+    // TODO: document/convert the remaining bits
+@@ -217,7 +409,7 @@ grate_create_fs_state(struct pipe_context *pcontext,
+    PUSH(host1x_opcode_incr(REG_TGR3D_PSEQ_DWR_IF_STATE, 1));
+    /* START=0, COUNT=1. Feeding num_dw_instrs in here instead was measured to
+     * change nothing, so the hardware evidently does not want the store count. */
+-   PUSH(TGR3D_PSEQ_DWR_IF_STATE_START(0) | TGR3D_PSEQ_DWR_IF_STATE_COUNT(1));
++   PUSH(TGR3D_PSEQ_DWR_IF_STATE_START(0) | TGR3D_PSEQ_DWR_IF_STATE_COUNT((pseq_read || alpha_over || fbfetch) ? num_fp_instrs : 1));
+ 
+    if (soc_id == DRM_TEGRA_SOC_T114) {
+       // TODO: document/convert these values
+@@ -231,7 +423,8 @@ grate_create_fs_state(struct pipe_context *pcontext,
+ 
+    PUSH(host1x_opcode_nonincr(REG_TGR3D_PSEQ_INST_DATA, num_fp_instrs));
+    list_for_each_entry(struct fp_instr, instr, &fp.fp_instructions, link)
+-      PUSH(0x00000000);
++      PUSH(instr->pseq);
++   PUSH(host1x_opcode_imm(REG_TGR3D_PSEQ_FLUSH, 0));
+ 
+    PUSH(host1x_opcode_nonincr(REG_TGR3D_AT_REMAP_DATA, num_fp_instrs));
+    list_for_each_entry(struct fp_instr, instr, &fp.fp_instructions, link)
+@@ -288,7 +481,9 @@ grate_create_fs_state(struct pipe_context *pcontext,
+       /* the shader names colour target n; the surface it lives in is offset by
+        * however many surfaces come before the colour targets */
+       struct fp_dw_instr dw = instr->dw;
+-      dw.index += context->framebuffer.rt_base;
++      dw.index += key->target;
++      if (key->rt.colormask == 0)
++         dw.enable = false;
+       PUSH(grate_fp_pack_dw(&dw));
+    }
+ 
+@@ -305,20 +500,111 @@ grate_create_fs_state(struct pipe_context *pcontext,
+    so->blob.num_commands = buf.size / sizeof(uint32_t);
+    so->blob.commands = buf.data;
+    so->info = fp.info;
++   grate_free_fp(&fp);
++   ralloc_free(nir);
+    return so;
+ }
+ 
++static void *
++grate_create_fs_state(struct pipe_context *pcontext,
++                      const struct pipe_shader_state *template)
++{
++   struct grate_fragment_shader_state *so = CALLOC_STRUCT(grate_fragment_shader_state);
++   if (!so)
++      return NULL;
++   so->base = *template; /* Gallium transfers ownership of the original NIR. */
++   return so;
++}
++
++bool
++grate_select_fs_variant(struct grate_context *context)
++{
++   struct grate_fragment_shader_state *fs = context->fshader;
++   if (!fs)
++      return false;
++   if (context->blend && context->blend->logicop_enable) {
++      fprintf(stderr, "GRATE FRAG: logic operations are not implemented\n");
++      return false;
++   }
++   struct grate_fs_key key;
++   memset(&key, 0, sizeof(key));
++   key.rt.colormask = 0xf;
++   if (context->blend) {
++      const struct pipe_rt_blend_state *rt = &context->blend->rt[0];
++      key.rt.colormask = rt->colormask;
++      key.rt.blend_enable = rt->blend_enable;
++      if (rt->blend_enable) {
++         key.rt.rgb_func = rt->rgb_func;
++         key.rt.rgb_src_factor = rt->rgb_src_factor;
++         key.rt.rgb_dst_factor = rt->rgb_dst_factor;
++         key.rt.alpha_func = rt->alpha_func;
++         key.rt.alpha_src_factor = rt->alpha_src_factor;
++         key.rt.alpha_dst_factor = rt->alpha_dst_factor;
++         memcpy(key.blend_color, context->blend_color.color, sizeof(key.blend_color));
++      }
++   }
++   key.format = context->framebuffer.base.nr_cbufs ?
++      context->framebuffer.base.cbufs[0].format : PIPE_FORMAT_R8G8B8A8_UNORM;
++   key.target = context->framebuffer.rt_base + (getenv("GRATE_DEBUG_COLOR_RT1") ? 1 : 0);
++   struct grate_fs_variant **link = &fs->variants;
++   struct grate_fs_variant *variant;
++   while ((variant = *link)) {
++      if (!memcmp(&variant->key, &key, sizeof(key))) {
++         *link = variant->next;
++         variant->next = fs->variants;
++         fs->variants = variant;
++         context->fs_variant = variant;
++         return true;
++      }
++      link = &variant->next;
++   }
++   variant = grate_compile_fs_variant(context, fs, &key);
++   if (!variant) {
++      fprintf(stderr, "GRATE FRAG: blend variant compilation failed\n");
++      return false;
++   }
++   variant->next = fs->variants;
++   fs->variants = variant;
++   context->fs_variant = variant;
++   if (++fs->num_variants > 32) {
++      /* Constants are part of the key, so animated blend colors must not
++       * grow the cache indefinitely. Keep the 32 most recently used variants.
++       */
++      link = &fs->variants;
++      while ((*link)->next)
++         link = &(*link)->next;
++      FREE((*link)->blob.commands);
++      FREE(*link);
++      *link = NULL;
++      fs->num_variants--;
++   }
++   if (getenv("GRATE_FS_TRACE"))
++      fprintf(stderr, "GRATE FS VARIANT: compiled blend=%u mask=%x cache=%u\n",
++              key.rt.blend_enable, key.rt.colormask, fs->num_variants);
++   return true;
++}
++
+ static void
+ grate_bind_fs_state(struct pipe_context *pcontext, void *so)
+ {
+    grate_trace();
+    grate_context(pcontext)->fshader = so;
++   grate_context(pcontext)->fs_variant = NULL;
+ }
+ 
+ static void
+-grate_delete_fs_state(struct pipe_context *pcontext, void *so)
++grate_delete_fs_state(struct pipe_context *pcontext, void *state)
+ {
+-   grate_trace();
++   struct grate_fragment_shader_state *so = state;
++   if (!so)
++      return;
++   while (so->variants) {
++      struct grate_fs_variant *v = so->variants;
++      so->variants = v->next;
++      FREE(v->blob.commands);
++      FREE(v);
++   }
++   ralloc_free(so->base.ir.nir);
+    FREE(so);
+ }
+ 
+diff --git a/src/gallium/drivers/grate/grate_program.h b/src/gallium/drivers/grate/grate_program.h
+index 716443f7..7fec847f 100644
+--- a/src/gallium/drivers/grate/grate_program.h
++++ b/src/gallium/drivers/grate/grate_program.h
+@@ -17,12 +17,31 @@ struct grate_vertex_shader_state {
+    uint16_t output_mask;
+ };
+ 
+-struct grate_fragment_shader_state {
+-   struct pipe_shader_state base;
++struct grate_fs_key {
++   struct pipe_rt_blend_state rt;
++   enum pipe_format format;
++   unsigned target;
++   float blend_color[4];
++};
++
++struct grate_fs_variant {
++   struct grate_fs_key key;
+    struct grate_shader_blob blob;
+    struct grate_fp_info info;
++   unsigned pseq_max_out;
++   unsigned pseq_min_out;
++   struct grate_fs_variant *next;
+ };
+ 
++struct grate_fragment_shader_state {
++   struct pipe_shader_state base;
++   struct grate_fs_variant *variants;
++   unsigned num_variants;
++};
++
++struct grate_context;
++bool grate_select_fs_variant(struct grate_context *context);
++
+ void
+ grate_context_program_init(struct pipe_context *pcontext);
+ 
+diff --git a/src/gallium/drivers/grate/grate_resource.c b/src/gallium/drivers/grate/grate_resource.c
+index 8f4262fa..790266c6 100644
+--- a/src/gallium/drivers/grate/grate_resource.c
++++ b/src/gallium/drivers/grate/grate_resource.c
+@@ -287,6 +287,14 @@ grate_screen_resource_create(struct pipe_screen *pscreen,
+       if (!pot)
+          resource->pitch = align(resource->pitch, GRATE_TEXTURE_PITCH_ALIGN);
+ 
++      /* Tegra20 RGBA sampling advances tiny POT rows by at least 16 bytes.
++       * A 2x2 upload with pitch 8 reads row zero correctly and zeroes for row
++       * one; pitch 16 fixes the four-quadrant pixel check on Indigo.
++       */
++      if (screen->drm->soc_id == DRM_TEGRA_SOC_T20 && pot &&
++          util_format_get_blocksize(template->format) == 4)
++         resource->pitch = MAX2(resource->pitch, 16u);
++
+       bool scanout = template->bind & (PIPE_BIND_SCANOUT |
+                                        PIPE_BIND_DISPLAY_TARGET);
+ 
+@@ -314,6 +322,17 @@ grate_screen_resource_create(struct pipe_screen *pscreen,
+          flags = DRM_TEGRA_GEM_CREATE_BOTTOM_UP;
+    }
+ 
++   /* Shared RGB buffers must back the full bottom block used by EXA's
++    * 16-byte block operations. Keep the visible image extent unchanged.
++    */
++   if ((template->bind & PIPE_BIND_SHARED) &&
++       (template->target == PIPE_TEXTURE_2D ||
++        template->target == PIPE_TEXTURE_RECT)) {
++      unsigned bytes = util_format_get_blocksize(template->format);
++      if (bytes == 2 || bytes == 4)
++         height = align(height, 16u / bytes);
++   }
++
+    if (getenv("GRATE_RES_TRACE"))
+       fprintf(stderr, "grate: RES %4ux%-4u bind=0x%-5x pitch=%-6u rows=%-5u fmt=%s\n",
+               template->width0, template->height0, template->bind,
+@@ -348,6 +367,9 @@ grate_screen_resource_create(struct pipe_screen *pscreen,
+       else if (!util_is_power_of_two_or_zero(lw))
+          lpitch = align(lpitch, GRATE_TEXTURE_PITCH_ALIGN);
+ 
++      if (screen->drm->soc_id == DRM_TEGRA_SOC_T20 && pot && blocksize == 4)
++         lpitch = MAX2(lpitch, 16u);
++
+       resource->level_offset[l] = size;
+       resource->level_pitch[l] = lpitch;
+       size += lpitch * MAX2(lh, 1u);
+@@ -356,6 +378,15 @@ grate_screen_resource_create(struct pipe_screen *pscreen,
+       lh = MAX2(lh >> 1, 1u);
+    }
+ 
++   /* The experimental Tegra20 ABI supports scattered pages via GART.
++    * Use that existing path for large off-screen resources, avoiding the
++    * small CMA pool. Display/export buffers keep their established allocation.
++    */
++   if (screen->drm->soc_id == DRM_TEGRA_SOC_T20 && size >= 1024 * 1024 &&
++       !(template->bind & (PIPE_BIND_SCANOUT | PIPE_BIND_DISPLAY_TARGET |
++                           PIPE_BIND_SHARED)))
++      flags |= 1u << 4; /* DRM_TEGRA_GEM_CREATE_SPARSE in grate_drm.h */
++
+    resource->bo = grate_bo_alloc(screen->drm, size, flags);
+    if (!resource->bo) {
+       fprintf(stderr, "grate_bo_alloc() failed\n");
+diff --git a/src/gallium/drivers/grate/grate_screen.c b/src/gallium/drivers/grate/grate_screen.c
+index a528cbde..b28f3f9e 100755
+--- a/src/gallium/drivers/grate/grate_screen.c
++++ b/src/gallium/drivers/grate/grate_screen.c
+@@ -463,6 +463,8 @@ static const nir_shader_compiler_options grate_base_compiler_options = {
+    .force_indirect_unrolling_sampler = true,
+    .max_unroll_iterations = 32,
+     */
++   .lower_flrp32 = true,
++   .float_mul_add32 = nir_float_muladd_support_has_ffma | nir_float_muladd_support_fuse,
+    .lower_fdiv = true,
+    .no_integers = true,
+ };
+diff --git a/src/gallium/drivers/grate/grate_state.c b/src/gallium/drivers/grate/grate_state.c
+index 7b2e4d45..217f1ebf 100644
+--- a/src/gallium/drivers/grate/grate_state.c
++++ b/src/gallium/drivers/grate/grate_state.c
+@@ -158,7 +158,7 @@ grate_set_viewport_states(struct pipe_context *pcontext,
+                           const struct pipe_viewport_state *viewports)
+ {
+    struct grate_context *context = grate_context(pcontext);
+-   static const float zeps = powf(2.0f, -21);
++   static const float zeps = 0x1p-21f;
+    unsigned int hw_scale;
+ 
+    if (context->drm->soc_id == DRM_TEGRA_SOC_T114)
+@@ -251,7 +251,7 @@ static void
+ grate_set_blend_color(struct pipe_context *pctx,
+                       const struct pipe_blend_color *blend_color)
+ {
+-   grate_unimplemented();
++   grate_context(pctx)->blend_color = *blend_color;
+ }
+ 
+ static void
+@@ -306,14 +306,6 @@ grate_create_blend_state(struct pipe_context *pcontext,
+ static void
+ grate_bind_blend_state(struct pipe_context *pcontext, void *so)
+ {
+-   /*
+-    * Kept, but it changes nothing yet: there is no blending in the register
+-    * set at all - the data write stage offers a logic op and nothing else -
+-    * and the one destination read path the hardware does have (see
+-    * GLOBAL_MEMORY_OUTPUT_READS in grate_draw.c) delivers the destination
+-    * after the fragment program has run, so a shader cannot combine with it.
+-    * Everything therefore draws opaque.
+-    */
+    grate_context(pcontext)->blend = so;
+ }
+ 
+@@ -705,7 +697,8 @@ emit_render_targets(struct grate_context *context, uint32_t **ptrp)
+    struct grate_stream *stream = &context->gr3d->stream;
+    const struct grate_framebuffer_state *fb = &context->framebuffer;
+ 
+-   *(*ptrp)++ = host1x_opcode_incr(REG_TGR3D_GLOBAL_SURFDESC(0), fb->num_rts);
++   unsigned base = getenv("GRATE_DEBUG_COLOR_RT1") ? 1 : 0;
++   *(*ptrp)++ = host1x_opcode_incr(REG_TGR3D_GLOBAL_SURFDESC(base), fb->num_rts);
+    for (i = 0; i < fb->num_rts; ++i) {
+       uint32_t rt_params = fb->rt_params[i];
+       /* TODO: setup dither */
+@@ -713,14 +706,14 @@ emit_render_targets(struct grate_context *context, uint32_t **ptrp)
+       *(*ptrp)++ = rt_params;
+    }
+ 
+-   GRATE_PUSHBUF_WORD(*ptrp, host1x_opcode_incr(REG_TGR3D_GLOBAL_SURFADDR(0), fb->num_rts));
++   GRATE_PUSHBUF_WORD(*ptrp, host1x_opcode_incr(REG_TGR3D_GLOBAL_SURFADDR(base), fb->num_rts));
+    for (i = 0; i < fb->num_rts; ++i) {
+       grate_stream_push_reloc(stream, ptrp, fb->rt_bos[i], fb->rt_offset[i]);
+    }
+ 
+ 
+    GRATE_PUSHBUF_WORD(*ptrp, host1x_opcode_incr(REG_TGR3D_DW_ST_ENABLE, 1));
+-   GRATE_PUSHBUF_WORD(*ptrp, fb->rt_mask);
++   GRATE_PUSHBUF_WORD(*ptrp, fb->rt_mask << base);
+ }
+ 
+ /*
+@@ -965,7 +958,7 @@ emit_program(struct grate_context *context, uint32_t **ptrp)
+    uint32_t cull_face_linker_setup;
+ 
+    emit_shader(stream, ptrp, &context->vshader->blob);
+-   emit_shader(stream, ptrp, &context->fshader->blob);
++   emit_shader(stream, ptrp, &context->fs_variant->blob);
+ 
+    cull_face_linker_setup = TGR3D_SU_PARAM_SUBPIX_XOFF(0x38) |
+                             TGR3D_SU_PARAM_SUBPIX_YOFF(0x38) |
+@@ -976,7 +969,7 @@ emit_program(struct grate_context *context, uint32_t **ptrp)
+    cull_face_linker_setup |= context->rast->cull_face[context->y_invert];
+ 
+    /* depends on linking */
+-   struct grate_fp_info *info = &context->fshader->info;
++   struct grate_fp_info *info = &context->fs_variant->info;
+    cull_face_linker_setup |= TGR3D_SU_PARAM_LAST_INST(0 < info->num_inputs ?
+                                                       (info->num_inputs - 1) : 0);
+ 
+diff --git a/src/gallium/drivers/grate/grate_stream.c b/src/gallium/drivers/grate/grate_stream.c
+index 698fe48b..f6c5fcfc 100644
+--- a/src/gallium/drivers/grate/grate_stream.c
++++ b/src/gallium/drivers/grate/grate_stream.c
+@@ -74,7 +74,7 @@ grate_stream_create(struct grate_device *drm,
+    stream->channel   = channel;
+    stream->num_words = words_num;
+    
+-   ret = drm_tegra_syncpoint_new(stream->channel->drm, &stream->syncpt);
++   ret = drm_tegra_syncpoint_new(stream->channel, &stream->syncpt);
+    if (ret < 0) {
+       fprintf(stderr, "%s: drm_tegra_syncpoint_new() failed %d\n", __func__, ret);
+       return ret;

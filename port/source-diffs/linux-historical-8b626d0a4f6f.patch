@@ -1,0 +1,25 @@
+diff --git a/arch/arm/boot/dts/tegra20-lenovo-indigo.dts b/arch/arm/boot/dts/tegra20-lenovo-indigo.dts
+new file mode 100644
+index 000000000..0fba3e9da
+--- /dev/null
++++ b/arch/arm/boot/dts/tegra20-lenovo-indigo.dts
+@@ -0,0 +1,19 @@
++// SPDX-License-Identifier: GPL-2.0
++// Bootstrap from Dobrica Pavlinusic's ThinkPad-specific Ventana port.
++#include "tegra20-ventana.dts"
++
++/ {
++    model = "Lenovo ThinkPad Tablet (Indigo) RAM test";
++    compatible = "lenovo,indigo", "nvidia,ventana", "nvidia,tegra20";
++
++    usb@c5000000 {
++        compatible = "nvidia,tegra20-udc";
++        dr_mode = "peripheral";
++        status = "okay";
++    };
++
++    usb-phy@c5000000 {
++        dr_mode = "peripheral";
++        status = "okay";
++    };
++};

@@ -1,0 +1,257 @@
+diff --git a/arch/arm/boot/dts/nvidia/Makefile b/arch/arm/boot/dts/nvidia/Makefile
+index 9dc69e016..4a49b0bd0 100644
+--- a/arch/arm/boot/dts/nvidia/Makefile
++++ b/arch/arm/boot/dts/nvidia/Makefile
+@@ -59,3 +59,5 @@ dtb-$(CONFIG_ARCH_TEGRA_3x_SOC) += \
+ 	tegra30-microsoft-surface-rt-efi.dtb \
+ 	tegra30-ouya.dtb \
+ 	tegra30-pegatron-chagall.dtb
++
++dtb-$(CONFIG_ARCH_TEGRA_2x_SOC) += tegra20-lenovo-indigo.dtb
+diff --git a/drivers/gpu/drm/grate/gem.c b/drivers/gpu/drm/grate/gem.c
+index cb125311b..475dd8cb7 100644
+--- a/drivers/gpu/drm/grate/gem.c
++++ b/drivers/gpu/drm/grate/gem.c
+@@ -614,7 +614,11 @@ static int tegra_gem_prime_begin_cpu_access(struct dma_buf *buf,
+ 	struct tegra_bo *bo = to_tegra_bo(gem);
+ 	struct drm_device *drm = gem->dev;
+ 
+-	if (bo->sgt)
++	/* Only scattered pages have a streaming DMA mapping. The sg_table
++	 * from dma_get_sgtable() describes a coherent allocation and has no
++	 * mapped DMA addresses; syncing it can touch unrelated physical pages.
++	 */
++	if (bo->pages)
+ 		dma_sync_sgtable_for_cpu(drm->dev, bo->sgt, DMA_FROM_DEVICE);
+ 
+ 	return 0;
+@@ -627,7 +631,8 @@ static int tegra_gem_prime_end_cpu_access(struct dma_buf *buf,
+ 	struct tegra_bo *bo = to_tegra_bo(gem);
+ 	struct drm_device *drm = gem->dev;
+ 
+-	if (bo->sgt)
++	/* dma_alloc_attrs() allocations are already coherent. */
++	if (bo->pages)
+ 		dma_sync_sgtable_for_device(drm->dev, bo->sgt, DMA_TO_DEVICE);
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 91ab28086..d61880cd6 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -5099,7 +5099,36 @@ static const struct panel_desc arm_rtsm = {
+ 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+ };
+ 
++/* Fixed RGB timing verified on the Lenovo ThinkPad Tablet (Indigo). */
++static const struct drm_display_mode lg_lp101wx1_mode = {
++	.clock = 71500,
++	.hdisplay = 1280,
++	.hsync_start = 1280 + 48,
++	.hsync_end = 1280 + 48 + 32,
++	.htotal = 1280 + 48 + 32 + 80,
++	.vdisplay = 800,
++	.vsync_start = 800 + 2,
++	.vsync_end = 800 + 2 + 6,
++	.vtotal = 800 + 2 + 6 + 15,
++};
++
++static const struct panel_desc lg_lp101wx1 = {
++	.modes = &lg_lp101wx1_mode,
++	.num_modes = 1,
++	.bpc = 6,
++	.size = {
++		.width = 229,
++		.height = 149,
++	},
++	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
++	.connector_type = DRM_MODE_CONNECTOR_DPI,
++};
++
+ static const struct of_device_id platform_of_match[] = {
++	{
++		.compatible = "lg,lp101wx1",
++		.data = &lg_lp101wx1,
++	},
+ 	{
+ 		.compatible = "ampire,am-1280800n3tzqw-t00h",
+ 		.data = &ampire_am_1280800n3tzqw_t00h,
+diff --git a/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dts b/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dts
+new file mode 100644
+index 000000000..9b0c6f6a4
+--- /dev/null
++++ b/arch/arm/boot/dts/nvidia/tegra20-lenovo-indigo.dts
+@@ -0,0 +1,173 @@
++// SPDX-License-Identifier: GPL-2.0-only
++// Indigo overrides for the current Tegra tree, based on the verified 2019 port.
++#include "tegra20-ventana.dts"
++#include <dt-bindings/soc/tegra-pmc.h>
++
++/ {
++	model = "Lenovo ThinkPad Tablet (Indigo)";
++	compatible = "lenovo,indigo", "nvidia,tegra20";
++
++	usb@c5000000 {
++		compatible = "nvidia,tegra20-udc";
++		dr_mode = "peripheral";
++	};
++
++	usb-phy@c5000000 {
++		dr_mode = "peripheral";
++	};
++
++	mmc@c8000000 {
++		/delete-property/ power-gpios;
++		bus-width = <4>;
++		non-removable;
++		vmmc-supply = <&vdd_wifi>;
++		mmc-pwrseq = <&wifi_pwrseq>;
++	};
++
++	wifi_pwrseq: wifi-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		clocks = <&tegra_pmc TEGRA_PMC_CLK_BLINK>;
++		clock-names = "ext_clock";
++		reset-gpios = <&gpio TEGRA_GPIO(K, 6) GPIO_ACTIVE_LOW>;
++		post-power-on-delay-ms = <200>;
++	};
++
++	vdd_wifi: regulator-wifi {
++		compatible = "regulator-fixed";
++		regulator-name = "wifi-enable";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio TEGRA_GPIO(K, 5) GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		startup-delay-us = <100000>;
++	};
++
++	usb-phy@c5008000 {
++		vbus-supply = <&vdd_usb_host>;
++	};
++
++	vdd_usb_host: regulator-usb-host {
++		compatible = "regulator-fixed";
++		regulator-name = "usb-host-vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		gpio = <&gpio TEGRA_GPIO(D, 3) GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++	};
++
++	spi@7000d400 {
++		status = "okay";
++		touchscreen@0 {
++			compatible = "ntrig,duosense-spi";
++			reg = <0>;
++			spi-max-frequency = <3000000>;
++			interrupt-parent = <&gpio>;
++			interrupts = <TEGRA_GPIO(V, 6) IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-gpios = <&gpio TEGRA_GPIO(V, 6) GPIO_ACTIVE_HIGH>;
++			power-gpios = <&gpio TEGRA_GPIO(A, 5) GPIO_ACTIVE_HIGH>;
++			enable-gpios = <&gpio TEGRA_GPIO(Q, 7) GPIO_ACTIVE_HIGH>;
++			touchscreen-size-x = <9601>;
++			touchscreen-size-y = <7201>;
++		};
++	};
++
++	// Ventana leaves SPI1 pads tristated; Indigo connects its N-Trig here.
++	pinmux@70000014 {
++		pinmux {
++			conf_ntrig_spi_down {
++				nvidia,pins = "spid", "spif";
++				nvidia,function = "spi1";
++				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
++				nvidia,tristate = <TEGRA_PIN_DISABLE>;
++			};
++			conf_ntrig_spi_up {
++				nvidia,pins = "spie";
++				nvidia,function = "spi1";
++				nvidia,pull = <TEGRA_PIN_PULL_UP>;
++				nvidia,tristate = <TEGRA_PIN_DISABLE>;
++			};
++		};
++	};
++
++	mmc@c8000400 {
++		power-gpios = <&gpio TEGRA_GPIO(T, 3) GPIO_ACTIVE_HIGH>;
++	};
++
++	mmc@c8000600 {
++		power-gpios = <&gpio TEGRA_GPIO(I, 6) GPIO_ACTIVE_HIGH>;
++	};
++
++	// Ventana's light sensor wiring was not present in the historical Indigo tree.
++	i2c@7000c000 {
++		/delete-node/ isl29018@44;
++	};
++
++	i2c@7000d000 {
++		accelerometer@f {
++			compatible = "kionix,kxtf9";
++			reg = <0x0f>;
++			// Original Indigo axis_map_x=1, axis_map_y=0, negate_z=1.
++			mount-matrix = "0", "1", "0",
++				       "1", "0", "0",
++				       "0", "0", "-1";
++		};
++	};
++
++	/delete-node/ gpio-keys;
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		key-www {
++			label = "www";
++			gpios = <&gpio TEGRA_GPIO(Q, 0) GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_WWW>;
++		};
++		key-homepage {
++			label = "homepage";
++			gpios = <&gpio TEGRA_GPIO(Q, 1) GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_HOMEPAGE>;
++		};
++		key-back {
++			label = "back";
++			gpios = <&gpio TEGRA_GPIO(Q, 2) GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_BACK>;
++		};
++		key-rotation {
++			label = "rotation";
++			gpios = <&gpio TEGRA_GPIO(Q, 3) GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_ROTATE_DISPLAY>;
++		};
++		key-volumedown {
++			label = "volumedown";
++			gpios = <&gpio TEGRA_GPIO(Q, 4) GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_VOLUMEDOWN>;
++		};
++		key-volumeup {
++			label = "volumeup";
++			gpios = <&gpio TEGRA_GPIO(Q, 5) GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_VOLUMEUP>;
++		};
++		key-power {
++			label = "Power";
++			gpios = <&gpio TEGRA_GPIO(C, 7) GPIO_ACTIVE_HIGH>;
++			linux,code = <KEY_POWER>;
++			wakeup-source;
++		};
++		key-power2 {
++			label = "Power2";
++			gpios = <&gpio TEGRA_GPIO(I, 3) GPIO_ACTIVE_HIGH>;
++			linux,code = <KEY_POWER2>;
++		};
++		key-proximity {
++			label = "proximity";
++			gpios = <&gpio TEGRA_GPIO(C, 1) GPIO_ACTIVE_HIGH>;
++			linux,code = <KEY_DASHBOARD>;
++		};
++	};
++};
++
++&panel {
++	compatible = "lg,lp101wx1";
++	/delete-property/ ddc-i2c-bus;
++};

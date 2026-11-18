@@ -1,0 +1,284 @@
+diff --git a/arch/arm/dts/tegra20-ventana.dts b/arch/arm/dts/tegra20-ventana.dts
+index f27980fe..773be522 100644
+--- a/arch/arm/dts/tegra20-ventana.dts
++++ b/arch/arm/dts/tegra20-ventana.dts
+@@ -566,6 +566,7 @@
+ 
+ 	usb@c5000000 {
+ 		status = "okay";
++		dr_mode = "peripheral";
+ 	};
+ 
+ 	usb-phy@c5000000 {
+diff --git a/configs/thinkpad_extlinux_defconfig b/configs/thinkpad_extlinux_defconfig
+new file mode 100644
+index 00000000..65be498f
+--- /dev/null
++++ b/configs/thinkpad_extlinux_defconfig
+@@ -0,0 +1,62 @@
++CONFIG_ARM=y
++CONFIG_TEGRA=y
++CONFIG_SYS_TEXT_BASE=0x00110000
++CONFIG_TEGRA20=y
++CONFIG_TARGET_VENTANA=y
++CONFIG_DEFAULT_DEVICE_TREE="tegra20-ventana"
++CONFIG_NR_DRAM_BANKS=2
++CONFIG_OF_SYSTEM_SETUP=y
++CONFIG_SYS_PROMPT="Tegra20 (Ventana) # "
++# CONFIG_CMD_IMI is not set
++# CONFIG_CMD_FLASH is not set
++CONFIG_CMD_GPIO=y
++CONFIG_CMD_MMC=y
++CONFIG_CMD_USB=y
++# CONFIG_CMD_SETEXPR is not set
++# CONFIG_CMD_NFS is not set
++CONFIG_CMD_PMIC=y
++CONFIG_CMD_REGULATOR=y
++# CONFIG_SPL_DOS_PARTITION is not set
++# CONFIG_SPL_EFI_PARTITION is not set
++CONFIG_SPL_DM=y
++CONFIG_DM_PMIC=y
++CONFIG_DM_REGULATOR=y
++CONFIG_DM_REGULATOR_FIXED=y
++CONFIG_PWM_TEGRA=y
++CONFIG_SYS_NS16550=y
++CONFIG_USB=y
++CONFIG_DM_USB=y
++CONFIG_USB_EHCI_HCD=y
++CONFIG_USB_ULPI_VIEWPORT=y
++CONFIG_USB_ULPI=y
++CONFIG_USB_STORAGE=y
++CONFIG_USB_HOST_ETHER=y
++CONFIG_USB_ETHER_ASIX=y
++CONFIG_DM_VIDEO=y
++CONFIG_VIDEO_TEGRA20=y
++CONFIG_CONSOLE_SCROLL_LINES=10
++
++CONFIG_ENV_IS_NOWHERE=y
++# CONFIG_ENV_IS_IN_MMC is not set
++# CONFIG_USB_KEYBOARD is not set
++# CONFIG_CMD_EXT4_WRITE is not set
++CONFIG_BOOTDELAY=0
++CONFIG_USE_BOOTCOMMAND=y
++CONFIG_BOOTCOMMAND="setenv kernel_addr_r 0x01000000; setenv ramdisk_addr_r 0x02400000; setenv fdt_addr_r 0x02600000; setenv pxefile_addr_r 0x03000000; for indigo_mmc in 1 0; do if mmc dev ${indigo_mmc}; then echo Loading extlinux from mmc ${indigo_mmc}:1; sysboot mmc ${indigo_mmc}:1 any ${pxefile_addr_r} /boot/extlinux/extlinux.conf; fi; done; echo No bootable Indigo storage configuration; fastboot usb 0"
++CONFIG_USB_GADGET=y
++CONFIG_CI_UDC=y
++CONFIG_USB_GADGET_DOWNLOAD=y
++CONFIG_USB_FUNCTION_FASTBOOT=y
++CONFIG_CMD_FASTBOOT=y
++CONFIG_USB_GADGET_MANUFACTURER="ThinkPad RAM port"
++CONFIG_USB_GADGET_VENDOR_NUM=0x17ef
++CONFIG_USB_GADGET_PRODUCT_NUM=0x741c
++CONFIG_FASTBOOT_BUF_ADDR=0x01000000
++CONFIG_FASTBOOT_BUF_SIZE=0x08000000
++# CONFIG_FASTBOOT_FLASH is not set
++# CONFIG_FASTBOOT_CMD_OEM_FORMAT is not set
++# CONFIG_PYLIBFDT is not set
++
++CONFIG_CMD_PXE=y
++# CONFIG_MMC_WRITE is not set
++# CONFIG_MMC_HW_PARTITIONING is not set
+diff --git a/configs/thinkpad_ram_defconfig b/configs/thinkpad_ram_defconfig
+new file mode 100644
+index 00000000..f6858896
+--- /dev/null
++++ b/configs/thinkpad_ram_defconfig
+@@ -0,0 +1,58 @@
++CONFIG_ARM=y
++CONFIG_TEGRA=y
++CONFIG_SYS_TEXT_BASE=0x00110000
++CONFIG_TEGRA20=y
++CONFIG_TARGET_VENTANA=y
++CONFIG_DEFAULT_DEVICE_TREE="tegra20-ventana"
++CONFIG_NR_DRAM_BANKS=2
++CONFIG_OF_SYSTEM_SETUP=y
++CONFIG_SYS_PROMPT="Tegra20 (Ventana) # "
++# CONFIG_CMD_IMI is not set
++# CONFIG_CMD_FLASH is not set
++CONFIG_CMD_GPIO=y
++CONFIG_CMD_MMC=y
++CONFIG_CMD_USB=y
++# CONFIG_CMD_SETEXPR is not set
++# CONFIG_CMD_NFS is not set
++CONFIG_CMD_PMIC=y
++CONFIG_CMD_REGULATOR=y
++# CONFIG_SPL_DOS_PARTITION is not set
++# CONFIG_SPL_EFI_PARTITION is not set
++CONFIG_SPL_DM=y
++CONFIG_DM_PMIC=y
++CONFIG_DM_REGULATOR=y
++CONFIG_DM_REGULATOR_FIXED=y
++CONFIG_PWM_TEGRA=y
++CONFIG_SYS_NS16550=y
++CONFIG_USB=y
++CONFIG_DM_USB=y
++CONFIG_USB_EHCI_HCD=y
++CONFIG_USB_ULPI_VIEWPORT=y
++CONFIG_USB_ULPI=y
++CONFIG_USB_STORAGE=y
++CONFIG_USB_HOST_ETHER=y
++CONFIG_USB_ETHER_ASIX=y
++CONFIG_DM_VIDEO=y
++CONFIG_VIDEO_TEGRA20=y
++CONFIG_CONSOLE_SCROLL_LINES=10
++
++CONFIG_ENV_IS_NOWHERE=y
++# CONFIG_ENV_IS_IN_MMC is not set
++# CONFIG_USB_KEYBOARD is not set
++# CONFIG_CMD_EXT4_WRITE is not set
++CONFIG_BOOTDELAY=0
++CONFIG_USE_BOOTCOMMAND=y
++CONFIG_BOOTCOMMAND="setenv bootargs console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init; echo Starting ThinkPad diagnostic Linux from RAM; bootz 0x01000000 0x02400000:0x16312e 0x02600000"
++CONFIG_USB_GADGET=y
++CONFIG_CI_UDC=y
++CONFIG_USB_GADGET_DOWNLOAD=y
++CONFIG_USB_FUNCTION_FASTBOOT=y
++CONFIG_CMD_FASTBOOT=y
++CONFIG_USB_GADGET_MANUFACTURER="ThinkPad RAM port"
++CONFIG_USB_GADGET_VENDOR_NUM=0x17ef
++CONFIG_USB_GADGET_PRODUCT_NUM=0x741c
++CONFIG_FASTBOOT_BUF_ADDR=0x01000000
++CONFIG_FASTBOOT_BUF_SIZE=0x08000000
++# CONFIG_FASTBOOT_FLASH is not set
++# CONFIG_FASTBOOT_CMD_OEM_FORMAT is not set
++# CONFIG_PYLIBFDT is not set
+diff --git a/configs/thinkpad_storage_defconfig b/configs/thinkpad_storage_defconfig
+new file mode 100644
+index 00000000..e669d52f
+--- /dev/null
++++ b/configs/thinkpad_storage_defconfig
+@@ -0,0 +1,64 @@
++CONFIG_ARM=y
++CONFIG_TEGRA=y
++CONFIG_SYS_TEXT_BASE=0x00110000
++CONFIG_TEGRA20=y
++CONFIG_TARGET_VENTANA=y
++CONFIG_DEFAULT_DEVICE_TREE="tegra20-ventana"
++CONFIG_NR_DRAM_BANKS=2
++CONFIG_OF_SYSTEM_SETUP=y
++CONFIG_SYS_PROMPT="Tegra20 (Ventana) # "
++# CONFIG_CMD_IMI is not set
++# CONFIG_CMD_FLASH is not set
++CONFIG_CMD_GPIO=y
++CONFIG_CMD_MMC=y
++CONFIG_CMD_USB=y
++# CONFIG_CMD_SETEXPR is not set
++# CONFIG_CMD_NFS is not set
++CONFIG_CMD_PMIC=y
++CONFIG_CMD_REGULATOR=y
++# CONFIG_SPL_DOS_PARTITION is not set
++# CONFIG_SPL_EFI_PARTITION is not set
++CONFIG_SPL_DM=y
++CONFIG_DM_PMIC=y
++CONFIG_DM_REGULATOR=y
++CONFIG_DM_REGULATOR_FIXED=y
++CONFIG_PWM_TEGRA=y
++CONFIG_SYS_NS16550=y
++CONFIG_USB=y
++CONFIG_DM_USB=y
++CONFIG_USB_EHCI_HCD=y
++CONFIG_USB_ULPI_VIEWPORT=y
++CONFIG_USB_ULPI=y
++CONFIG_USB_STORAGE=y
++CONFIG_USB_HOST_ETHER=y
++CONFIG_USB_ETHER_ASIX=y
++CONFIG_DM_VIDEO=y
++CONFIG_VIDEO_TEGRA20=y
++CONFIG_CONSOLE_SCROLL_LINES=10
++
++CONFIG_ENV_IS_NOWHERE=y
++# CONFIG_ENV_IS_IN_MMC is not set
++# CONFIG_USB_KEYBOARD is not set
++# CONFIG_CMD_EXT4_WRITE is not set
++CONFIG_BOOTDELAY=0
++CONFIG_USE_BOOTCOMMAND=y
++CONFIG_BOOTCOMMAND="setenv indigo_emmc fail; if mmc dev 0 && mmc read 0x03000000 0 0x800 && hash -v sha256 0x03000000 0x100000 ae01487c3087ac83c8d38203361539c25b74a9855330ef857b172be3a2269a79; then setenv indigo_emmc pass; fi; setenv indigo_stage sd-select; if mmc dev 1; then setenv indigo_stage kernel; if ext4load mmc 1:1 0x1000000 /boot/vmlinuz-indigo 0x684200 && test ${filesize} = 684200 && hash -v sha256 0x1000000 0x684200 5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff; then setenv indigo_stage initramfs; if ext4load mmc 1:1 0x2400000 /boot/initramfs-indigo 0x16311e && test ${filesize} = 16311e && hash -v sha256 0x2400000 0x16311e 637942e060dc76659e738a3f6085907a162c9d4c2e79c4503e5bd95610634556; then setenv indigo_stage dtb; if ext4load mmc 1:1 0x2600000 /boot/tegra20-lenovo-indigo.dtb 0xcb62 && test ${filesize} = cb62 && hash -v sha256 0x2600000 0xcb62 b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b; then setenv indigo_stage bootz; setenv bootargs console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init indigo_boot=sd-sha256 indigo_emmc=${indigo_emmc}; echo Starting SHA256-verified Linux from SD; bootz 0x1000000 0x2400000:0x16311e 0x2600000; fi; fi; fi; fi; echo SD boot failed at ${indigo_stage}; fastboot usb 0"
++CONFIG_USB_GADGET=y
++CONFIG_CI_UDC=y
++CONFIG_USB_GADGET_DOWNLOAD=y
++CONFIG_USB_FUNCTION_FASTBOOT=y
++CONFIG_CMD_FASTBOOT=y
++CONFIG_USB_GADGET_MANUFACTURER="ThinkPad RAM port"
++CONFIG_USB_GADGET_VENDOR_NUM=0x17ef
++CONFIG_USB_GADGET_PRODUCT_NUM=0x741c
++CONFIG_FASTBOOT_BUF_ADDR=0x01000000
++CONFIG_FASTBOOT_BUF_SIZE=0x08000000
++# CONFIG_FASTBOOT_FLASH is not set
++# CONFIG_FASTBOOT_CMD_OEM_FORMAT is not set
++# CONFIG_PYLIBFDT is not set
++
++CONFIG_CMD_HASH=y
++CONFIG_HASH_VERIFY=y
++CONFIG_SHA256=y
++# CONFIG_MMC_WRITE is not set
++# CONFIG_MMC_HW_PARTITIONING is not set
+diff --git a/configs/thinkpad_storage_test_defconfig b/configs/thinkpad_storage_test_defconfig
+new file mode 100644
+index 00000000..f7781627
+--- /dev/null
++++ b/configs/thinkpad_storage_test_defconfig
+@@ -0,0 +1,64 @@
++CONFIG_ARM=y
++CONFIG_TEGRA=y
++CONFIG_SYS_TEXT_BASE=0x00110000
++CONFIG_TEGRA20=y
++CONFIG_TARGET_VENTANA=y
++CONFIG_DEFAULT_DEVICE_TREE="tegra20-ventana"
++CONFIG_NR_DRAM_BANKS=2
++CONFIG_OF_SYSTEM_SETUP=y
++CONFIG_SYS_PROMPT="Tegra20 (Ventana) # "
++# CONFIG_CMD_IMI is not set
++# CONFIG_CMD_FLASH is not set
++CONFIG_CMD_GPIO=y
++CONFIG_CMD_MMC=y
++CONFIG_CMD_USB=y
++# CONFIG_CMD_SETEXPR is not set
++# CONFIG_CMD_NFS is not set
++CONFIG_CMD_PMIC=y
++CONFIG_CMD_REGULATOR=y
++# CONFIG_SPL_DOS_PARTITION is not set
++# CONFIG_SPL_EFI_PARTITION is not set
++CONFIG_SPL_DM=y
++CONFIG_DM_PMIC=y
++CONFIG_DM_REGULATOR=y
++CONFIG_DM_REGULATOR_FIXED=y
++CONFIG_PWM_TEGRA=y
++CONFIG_SYS_NS16550=y
++CONFIG_USB=y
++CONFIG_DM_USB=y
++CONFIG_USB_EHCI_HCD=y
++CONFIG_USB_ULPI_VIEWPORT=y
++CONFIG_USB_ULPI=y
++CONFIG_USB_STORAGE=y
++CONFIG_USB_HOST_ETHER=y
++CONFIG_USB_ETHER_ASIX=y
++CONFIG_DM_VIDEO=y
++CONFIG_VIDEO_TEGRA20=y
++CONFIG_CONSOLE_SCROLL_LINES=10
++
++CONFIG_ENV_IS_NOWHERE=y
++# CONFIG_ENV_IS_IN_MMC is not set
++# CONFIG_USB_KEYBOARD is not set
++# CONFIG_CMD_EXT4_WRITE is not set
++CONFIG_BOOTDELAY=0
++CONFIG_USE_BOOTCOMMAND=y
++CONFIG_BOOTCOMMAND="cp.b 0x1000000 0x05000000 0x684200; cp.b 0x2400000 0x06000000 0x16311e; cp.b 0x2600000 0x06200000 0xcb62; setenv indigo_emmc fail; if mmc dev 0 && mmc read 0x03000000 0 0x800 && hash -v sha256 0x03000000 0x100000 ae01487c3087ac83c8d38203361539c25b74a9855330ef857b172be3a2269a79; then setenv indigo_emmc pass; fi; setenv indigo_stage sd-select; if mmc dev 1; then setenv indigo_stage kernel; if ext4load mmc 1:1 0x1000000 /boot/vmlinuz-indigo 0x684200 && test ${filesize} = 684200 && hash -v sha256 0x1000000 0x684200 5c1afb5c526506209b86a69424ffef25b65b2b9640490e1c3b46ea0b91fea9ff; then setenv indigo_stage initramfs; if ext4load mmc 1:1 0x2400000 /boot/initramfs-indigo 0x16311e && test ${filesize} = 16311e && hash -v sha256 0x2400000 0x16311e 637942e060dc76659e738a3f6085907a162c9d4c2e79c4503e5bd95610634556; then setenv indigo_stage dtb; if ext4load mmc 1:1 0x2600000 /boot/tegra20-lenovo-indigo.dtb 0xcb62 && test ${filesize} = cb62 && hash -v sha256 0x2600000 0xcb62 b9de2d486774d32b8d1a87c2a36374a07c5c3ceb327d9ceaf3ade8abdc9be73b; then setenv indigo_stage bootz; setenv bootargs console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init indigo_boot=sd-sha256 indigo_emmc=${indigo_emmc}; echo Starting SHA256-verified Linux from SD; bootz 0x1000000 0x2400000:0x16311e 0x2600000; fi; fi; fi; fi; cp.b 0x05000000 0x1000000 0x684200; cp.b 0x06000000 0x2400000 0x16311e; cp.b 0x06200000 0x2600000 0xcb62; setenv bootargs console=tty0 console=ttyS0,115200 loglevel=7 panic=0 rdinit=/init indigo_boot=ram-fallback indigo_stage=${indigo_stage} indigo_emmc=${indigo_emmc}; echo SD boot failed - using APX RAM rescue; bootz 0x1000000 0x2400000:0x16311e 0x2600000"
++CONFIG_USB_GADGET=y
++CONFIG_CI_UDC=y
++CONFIG_USB_GADGET_DOWNLOAD=y
++CONFIG_USB_FUNCTION_FASTBOOT=y
++CONFIG_CMD_FASTBOOT=y
++CONFIG_USB_GADGET_MANUFACTURER="ThinkPad RAM port"
++CONFIG_USB_GADGET_VENDOR_NUM=0x17ef
++CONFIG_USB_GADGET_PRODUCT_NUM=0x741c
++CONFIG_FASTBOOT_BUF_ADDR=0x01000000
++CONFIG_FASTBOOT_BUF_SIZE=0x08000000
++# CONFIG_FASTBOOT_FLASH is not set
++# CONFIG_FASTBOOT_CMD_OEM_FORMAT is not set
++# CONFIG_PYLIBFDT is not set
++
++CONFIG_CMD_HASH=y
++CONFIG_HASH_VERIFY=y
++CONFIG_SHA256=y
++# CONFIG_MMC_WRITE is not set
++# CONFIG_MMC_HW_PARTITIONING is not set

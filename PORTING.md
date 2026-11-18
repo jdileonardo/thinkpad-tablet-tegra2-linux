@@ -1,7 +1,7 @@
 # ThinkPad Tablet Indigo Linux port
 
-The current target is an XFCE tablet that displays a calendar and controls
-Spotify playback. See the [desktop priorities](docs/development-workflow.md#desktop-target-and-priorities).
+The goal is Nura Linux with an XFCE desktop on this tablet, bootable from SD
+and installable to the internal eMMC. See the [desktop priorities](docs/development-workflow.md#desktop-target-and-priorities).
 The latest desktop result is the [rotation buffer reference fix](docs/graphics-rotation-fix.md),
 following the [graphics allocation checkpoint](docs/graphics-memory.md) and
 the [XFCE stability and calendar check](docs/xfce-stability.md).

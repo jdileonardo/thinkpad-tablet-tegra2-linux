@@ -23,12 +23,12 @@ queries and the observer itself contributed some CPU and memory use. The second
 phase includes application launch, framebuffer captures and recovery after the
 window closes; its CPU figure is not a pure application cost or an FPS result.
 These seven minutes are a bounded baseline, not an overnight stability test.
-LAN pings do not validate internet service access or Spotify authentication.
+LAN pings do not validate internet service access.
 
 The GTK3 calendar fixture ran as `julian` for 60.4 seconds and closed itself.
 Its process RSS stayed at 33.23 MiB in the samples containing it. RSS includes
 shared libraries and is not an exclusive memory cost. It displays the local
-date and a month selector; no remote events or Spotify integration are included.
+date and a month selector; no remote events are included.
 
 GTK 3.24.52 drew the date heading, month, weekdays and selected day. A 620×680
 Xorg client capture exactly matches the calendar region of the active DRM
@@ -126,8 +126,6 @@ the distribution driver, 800×1280 left rotation and three framebuffer objects
 are unchanged. Only Xorg appears in DRM's active-client list. Final memory
 available was 731.7 MiB, with the same 0.348 MiB logical swap use.
 
-Fresh physical touch/rotation confirmation is pending. Calendar service and
-Spotify playback-device choices were requested and remain unanswered. Keep
-those integrations separate from this local rendering proof. Prioritize the
+Fresh physical touch/rotation confirmation is pending. Prioritize the
 graphics allocation investigation, then reproduce the verified XFCE setup in
 a fresh SD image and test the selected applications on the tablet.

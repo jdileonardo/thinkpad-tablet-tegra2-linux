@@ -8,9 +8,6 @@ This backlog combines source, stock backups and saved hardware evidence with
 the [live CPU/backlight checks](docs/power-bringup.md). The entries below
 distinguish missing integration from features that need physical testing.
 
-The intended workload is a docked calendar display and Spotify controller.
-Local Spotify audio playback is not currently a requirement.
-
 ## Working baseline
 
 The latest [SD-image checkpoint](docs/xfce-image.md#card-write-and-remaining-hardware-checks)

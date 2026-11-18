@@ -1,0 +1,527 @@
+diff --git a/src/Makefile.am b/src/Makefile.am
+index e9486d7..8498614 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -46,7 +46,7 @@ opentegra_drv_la_CFLAGS += -pthread
+ opentegra_drv_la_CFLAGS += -I$(srcdir)/tegradrm
+ 
+ # enable fp16 for the 3d vertex attributes
+-opentegra_drv_la_CFLAGS += -mfp16-format=ieee
++# Clang uses the IEEE __fp16 storage format without the GCC-only option.
+ 
+ opentegra_drv_la_SOURCES = \
+ 	compat-api.h \
+diff --git a/src/driver.c b/src/driver.c
+index a104986..f946975 100644
+--- a/src/driver.c
++++ b/src/driver.c
+@@ -750,6 +750,7 @@ TegraScreenInit(SCREEN_INIT_ARGS_DECL)
+ #endif
+     TegraVBlankScreenInit(pScreen);
+     TegraDRI2ScreenInit(pScreen);
++    TegraDRI3ScreenInit(pScreen);
+ 
+     if (!miCreateDefColormap(pScreen))
+         return FALSE;
+diff --git a/src/driver.h b/src/driver.h
+index 674e783..aa0c8a2 100644
+--- a/src/driver.h
++++ b/src/driver.h
+@@ -209,6 +209,8 @@ void TegraXvScreenExit(ScreenPtr pScreen);
+ Bool TegraEXAScreenInit(ScreenPtr pScreen);
+ void TegraEXAScreenExit(ScreenPtr pScreen);
+ 
++Bool TegraDRI3ScreenInit(ScreenPtr pScreen);
++
+ Bool TegraDRI2ScreenInit(ScreenPtr pScreen);
+ void TegraDRI2ScreenExit(ScreenPtr pScreen);
+ 
+diff --git a/src/exa/exa.c b/src/exa/exa.c
+index 4eb9643..fb0a8e8 100644
+--- a/src/exa/exa.c
++++ b/src/exa/exa.c
+@@ -252,3 +252,188 @@ void TegraEXAScreenExit(ScreenPtr pScreen)
+ }
+ 
+ /* vim: set et sts=4 sw=4 ts=4: */
++
++
++#ifdef DRI3
++#include <xorg/dri3.h>
++#include <xorg/present.h>
++#include <xorg/misyncshm.h>
++#include <limits.h>
++
++/* DRI3 v1: single-plane linear buffers. No page-flipping advertised. */
++static int TegraDRI3Open(ClientPtr client, ScreenPtr screen,
++                         RRProviderPtr provider, int *fd)
++{
++    TegraPtr tegra = TegraPTR(xf86ScreenToScrn(screen));
++    char *path = drmGetRenderDeviceNameFromFd(tegra->fd);
++    int render_fd;
++
++    if (!path)
++        return BadMatch;
++    render_fd = open(path, O_RDWR | O_CLOEXEC);
++    free(path);
++    if (render_fd < 0)
++        return BadAlloc;
++    *fd = render_fd;
++    return Success;
++}
++
++static PixmapPtr TegraDRI3PixmapFromFD(ScreenPtr screen, int fd,
++                                       CARD16 width, CARD16 height,
++                                       CARD16 stride, CARD8 depth, CARD8 bpp)
++{
++    TegraPtr tegra = TegraPTR(xf86ScreenToScrn(screen));
++    struct drm_tegra_bo *bo = NULL;
++    struct tegra_pixmap *priv;
++    PixmapPtr pixmap;
++    uint32_t size;
++    struct drm_tegra_bo_tiling tiling;
++    uint64_t needed;
++
++    if (!width || !height ||
++        !((depth == 16 && bpp == 16) ||
++          ((depth == 24 || depth == 32) && bpp == 32)) ||
++        stride < (uint32_t)width * (bpp / 8) || (stride & 15))
++        return NULL;
++
++    /* EXA's block operations may access the aligned bottom rows. */
++    needed = (uint64_t)stride * tegra_height_hw_aligned(height, bpp);
++    if (drm_tegra_bo_from_dmabuf(&bo, tegra->drm, fd, 0))
++        return NULL;
++    if (drm_tegra_bo_get_size(bo, &size) || needed > size ||
++        drm_tegra_bo_get_tiling(bo, &tiling) || tiling.mode)
++        goto fail_bo;
++
++    pixmap = screen->CreatePixmap(screen, 0, 0, depth, 0);
++    if (!pixmap)
++        goto fail_bo;
++    if (!screen->ModifyPixmapHeader(pixmap, width, height, depth, bpp,
++                                    stride, NULL)) {
++        screen->DestroyPixmap(pixmap);
++        goto fail_bo;
++    }
++    priv = exaGetPixmapDriverPrivate(pixmap);
++    priv->bo = bo;
++    priv->type = TEGRA_EXA_PIXMAP_TYPE_BO;
++    priv->tegra_data = true;
++    priv->offscreen = true;
++    priv->accel = true;
++    priv->dri = true;
++    priv->base = pixmap;
++    drm_tegra_bo_forbid_caching(bo);
++    return pixmap;
++
++fail_bo:
++    drm_tegra_bo_unref(bo);
++    return NULL;
++}
++
++static int TegraDRI3FDFromPixmap(ScreenPtr screen, PixmapPtr pixmap,
++                                 CARD16 *stride, CARD32 *size)
++{
++    TegraPtr tegra = TegraPTR(xf86ScreenToScrn(screen));
++    struct tegra_pixmap *priv = exaGetPixmapDriverPrivate(pixmap);
++    struct tegra_pixmap dedicated = { .accel = true, .dri = true };
++    uint32_t fd, bo_size;
++    void *old_data, *new_data;
++    unsigned int y, row_bytes;
++
++    if (!priv || !priv->tegra_data || !priv->accel ||
++        pixmap->devKind <= 0 || pixmap->devKind > UINT16_MAX)
++        return -1;
++    tegra_exa_thaw_pixmap(pixmap, true);
++    tegra_exa_flush_deferred_operations(pixmap, true, true, true);
++    if (priv->type > TEGRA_EXA_PIXMAP_TYPE_FALLBACK)
++        TEGRA_PIXMAP_WAIT_ALL_FENCES(priv);
++
++    /* Pooled BOs contain other pixmaps; never export those allocations. */
++    if (priv->type != TEGRA_EXA_PIXMAP_TYPE_BO) {
++        if (!tegra_exa_pixmap_allocate_from_bo(tegra, &dedicated,
++                                               tegra_exa_pixmap_size(priv)))
++            return -1;
++        if (drm_tegra_bo_map(dedicated.bo, &new_data)) {
++            drm_tegra_bo_unref(dedicated.bo);
++            return -1;
++        }
++        if (!tegra_exa_prepare_cpu_access(pixmap, EXA_PREPARE_SRC,
++                                          &old_data, true)) {
++            drm_tegra_bo_unmap(dedicated.bo);
++            drm_tegra_bo_unref(dedicated.bo);
++            return -1;
++        }
++        row_bytes = pixmap->drawable.width *
++                    (pixmap->drawable.bitsPerPixel / 8);
++        memset(new_data, 0, tegra_exa_pixmap_size(priv));
++        for (y = 0; y < pixmap->drawable.height; ++y)
++            memcpy((char *)new_data + y * pixmap->devKind,
++                   (char *)old_data + y * pixmap->devKind, row_bytes);
++        /* Prevent finish_access from putting the pixmap back in the fridge. */
++        priv->dri = true;
++        tegra_exa_finish_cpu_access(pixmap, EXA_PREPARE_SRC);
++        if (priv->type == TEGRA_EXA_PIXMAP_TYPE_POOL)
++            tegra_exa_pixmap_pool_free_entry(&priv->pool_entry);
++        else if (priv->type == TEGRA_EXA_PIXMAP_TYPE_FALLBACK) {
++            free(priv->fallback);
++            tegra->exa->release_count++;
++        }
++        drm_tegra_bo_unmap(dedicated.bo);
++        priv->bo = dedicated.bo;
++        priv->type = TEGRA_EXA_PIXMAP_TYPE_BO;
++        priv->sparse = dedicated.sparse;
++        memset(priv->fence_read, 0, sizeof(priv->fence_read));
++        memset(priv->fence_write, 0, sizeof(priv->fence_write));
++    }
++    if (drm_tegra_bo_to_dmabuf(priv->bo, &fd))
++        return -1;
++    priv->dri = true;
++    /* External clients can change every pixel; don't retain solid/alpha hints. */
++    priv->state.solid_fill = false;
++    priv->state.alpha_0 = false;
++    drm_tegra_bo_forbid_caching(priv->bo);
++    *stride = pixmap->devKind;
++    drm_tegra_bo_get_size(priv->bo, &bo_size);
++    *size = bo_size;
++    return fd;
++}
++
++static void TegraPresentFlush(WindowPtr window)
++{
++    ScreenPtr screen = window->drawable.pScreen;
++    PixmapPtr pixmap = screen->GetWindowPixmap(window);
++    struct tegra_pixmap *priv = exaGetPixmapDriverPrivate(pixmap);
++
++    if (priv && priv->type > TEGRA_EXA_PIXMAP_TYPE_FALLBACK) {
++        tegra_exa_flush_deferred_operations(pixmap, true, true, true);
++        TEGRA_PIXMAP_WAIT_ALL_FENCES(priv);
++    }
++}
++
++static const dri3_screen_info_rec tegra_dri3_info = {
++    .version = 1,
++    .open_client = TegraDRI3Open,
++    .pixmap_from_fd = TegraDRI3PixmapFromFD,
++    .fd_from_pixmap = TegraDRI3FDFromPixmap,
++};
++
++static present_screen_info_rec tegra_present_info = {
++    .version = PRESENT_SCREEN_INFO_VERSION,
++    .flush = TegraPresentFlush,
++};
++#endif
++
++Bool TegraDRI3ScreenInit(ScreenPtr screen)
++{
++#ifdef DRI3
++    ScrnInfoPtr scrn = xf86ScreenToScrn(screen);
++    TegraPtr tegra = TegraPTR(scrn);
++
++    if (tegra->exa && miSyncShmScreenInit(screen) && present_screen_init(screen, &tegra_present_info) &&
++        dri3_screen_init(screen, &tegra_dri3_info)) {
++        xf86DrvMsg(scrn->scrnIndex, X_INFO,
++                   "DRI3 enabled (linear buffers, Present copy path)\n");
++        return TRUE;
++    }
++    xf86DrvMsg(scrn->scrnIndex, X_WARNING, "DRI3 initialization failed\n");
++#endif
++    return FALSE;
++}
+diff --git a/src/exa/exa.h b/src/exa/exa.h
+index ef241b5..a649137 100644
+--- a/src/exa/exa.h
++++ b/src/exa/exa.h
+@@ -341,6 +341,7 @@ struct tegra_exa {
+ 
+     unsigned release_count;
+     unsigned long default_drm_bo_flags;
++    uint64_t cma_capacity_bytes;
+ 
+     CreatePictureProcPtr create_picture;
+     ScreenBlockHandlerProcPtr block_handler;
+diff --git a/src/exa/mm.c b/src/exa/mm.c
+index f0ed85b..4b6a074 100644
+--- a/src/exa/mm.c
++++ b/src/exa/mm.c
+@@ -47,6 +47,16 @@ static bool tegra_exa_pixmap_allocate_from_bo(TegraPtr tegra,
+     if (!pixmap->accel && !pixmap->dri)
+         return false;
+ 
++    /*
++     * Without an IOMMU, ordinary pixmaps larger than the entire CMA area
++     * should use the existing CPU fallback. Attempting those BOs cannot
++     * be helped by the allocator's system-wide cache-drop retry. Keep DRI
++     * allocation semantics and the unknown-capacity path unchanged.
++     */
++    if (!pixmap->dri && !exa->has_iommu && exa->cma_capacity_bytes &&
++            size > exa->cma_capacity_bytes)
++        return false;
++
+     drm_ver = drm_tegra_version(tegra->drm);
+     flags = exa->default_drm_bo_flags;
+ 
+@@ -116,8 +126,24 @@ static bool tegra_exa_pixmap_allocate_from_sysmem(TegraPtr tegra,
+ static int tegra_exa_init_mm(TegraPtr tegra, struct tegra_exa *exa)
+ {
+     bool has_iommu = false;
++    unsigned long long cma_kib;
++    char line[128];
++    FILE *memory;
+     int drm_ver;
+ 
++    exa->cma_capacity_bytes = 0;
++    memory = fopen("/proc/meminfo", "r");
++    if (memory) {
++        while (fgets(line, sizeof(line), memory)) {
++            if (sscanf(line, "CmaTotal: %llu kB", &cma_kib) == 1) {
++                if (cma_kib <= UINT64_MAX / 1024)
++                    exa->cma_capacity_bytes = cma_kib * 1024;
++                break;
++            }
++        }
++        fclose(memory);
++    }
++
+     drm_ver = drm_tegra_version(tegra->drm);
+ 
+     xorg_list_init(&exa->pixmaps_freelist);
+@@ -152,6 +178,9 @@ static int tegra_exa_init_mm(TegraPtr tegra, struct tegra_exa *exa)
+     }
+ 
+     exa->has_iommu = has_iommu;
++    if (!has_iommu && exa->cma_capacity_bytes)
++        INFO_MSG2("Non-IOMMU pixmap CMA capacity %llu KiB\n",
++                  (unsigned long long)(exa->cma_capacity_bytes / 1024));
+ 
+     /*
+      * CMA doesn't guarantee contiguous allocations. We should do our best
+diff --git a/src/exa/pixmap.c b/src/exa/pixmap.c
+index 3cde95b..94281f3 100644
+--- a/src/exa/pixmap.c
++++ b/src/exa/pixmap.c
+@@ -364,6 +364,21 @@ static void tegra_exa_destroy_pixmap(void *driverPriv)
+         free(pixmap);
+ }
+ 
++static void tegra_exa_replace_scanout_bo(struct tegra_pixmap *priv,
++                                        struct drm_tegra_bo *scanout)
++{
++    struct drm_tegra_bo *old = priv->type == TEGRA_EXA_PIXMAP_TYPE_BO ?
++                              priv->bo : NULL;
++
++    /* RandR rebinds the existing screen pixmap on every front-buffer resize. */
++    if (old != scanout) {
++        priv->bo = drm_tegra_bo_ref(scanout);
++        if (old)
++            drm_tegra_bo_unref(old);
++    }
++    priv->type = TEGRA_EXA_PIXMAP_TYPE_BO;
++}
++
+ static bool tegra_exa_modify_pixmap_header(PixmapPtr pixmap, int width,
+                                            int height, int depth, int bpp,
+                                            int devKind, pointer pix_data)
+@@ -374,6 +389,12 @@ static bool tegra_exa_modify_pixmap_header(PixmapPtr pixmap, int width,
+     struct drm_tegra_bo *scanout;
+     bool ret;
+ 
++    /* Finish work using the old dimensions/buffer before changing the header. */
++    if (pix_data && priv->type == TEGRA_EXA_PIXMAP_TYPE_BO && priv->scanout) {
++        tegra_exa_flush_deferred_operations(pixmap, false, true, true);
++        TEGRA_PIXMAP_WAIT_ALL_FENCES(priv);
++    }
++
+     ret = miModifyPixmapHeader(pixmap, width, height, depth, bpp,
+                                devKind, pix_data);
+     if (!ret)
+@@ -384,8 +405,8 @@ static bool tegra_exa_modify_pixmap_header(PixmapPtr pixmap, int width,
+     if (pix_data) {
+         if (pix_data == drmmode_map_front_bo(&tegra->drmmode)) {
+             scanout = drmmode_get_front_bo(&tegra->drmmode);
+-            priv->type = TEGRA_EXA_PIXMAP_TYPE_BO;
+-            priv->bo = drm_tegra_bo_ref(scanout);
++            tegra_exa_replace_scanout_bo(priv, scanout);
++            priv->scanout_rotated = false;
+             priv->tegra_data = true;
+             priv->offscreen = true;
+             priv->scanout = true;
+@@ -395,8 +416,7 @@ static bool tegra_exa_modify_pixmap_header(PixmapPtr pixmap, int width,
+ 
+         if (pix_data == drmmode_crtc_map_rotate_bo(pScrn, 0)) {
+             scanout = drmmode_crtc_get_rotate_bo(pScrn, 0);
+-            priv->type = TEGRA_EXA_PIXMAP_TYPE_BO;
+-            priv->bo = drm_tegra_bo_ref(scanout);
++            tegra_exa_replace_scanout_bo(priv, scanout);
+             priv->scanout_rotated = true;
+             priv->tegra_data = true;
+             priv->offscreen = true;
+@@ -408,8 +428,7 @@ static bool tegra_exa_modify_pixmap_header(PixmapPtr pixmap, int width,
+ 
+         if (pix_data == drmmode_crtc_map_rotate_bo(pScrn, 1)) {
+             scanout = drmmode_crtc_get_rotate_bo(pScrn, 1);
+-            priv->type = TEGRA_EXA_PIXMAP_TYPE_BO;
+-            priv->bo = drm_tegra_bo_ref(scanout);
++            tegra_exa_replace_scanout_bo(priv, scanout);
+             priv->scanout_rotated = true;
+             priv->tegra_data = true;
+             priv->offscreen = true;
+diff --git a/src/tegradrm/tegra.c b/src/tegradrm/tegra.c
+index de7b843..f8da8a7 100644
+--- a/src/tegradrm/tegra.c
++++ b/src/tegradrm/tegra.c
+@@ -985,7 +985,7 @@ int drm_tegra_bo_to_dmabuf(struct drm_tegra_bo *bo, uint32_t *handle)
+ 	if (!bo || !handle)
+ 		return -EINVAL;
+ 
+-	err = drmPrimeHandleToFD(bo->drm->fd, bo->handle, DRM_CLOEXEC,
++	err = drmPrimeHandleToFD(bo->drm->fd, bo->handle, DRM_CLOEXEC | DRM_RDWR,
+ 				 &prime_fd);
+ 	if (err) {
+ 		VDBG_BO(bo, "faile err %d strerror(%s)\n",
+@@ -1001,74 +1001,37 @@ int drm_tegra_bo_to_dmabuf(struct drm_tegra_bo *bo, uint32_t *handle)
+ }
+ 
+ int drm_tegra_bo_from_dmabuf(struct drm_tegra_bo **bop, struct drm_tegra *drm,
+-			     int fd, uint32_t flags)
++                             int fd, uint32_t flags)
+ {
+-	struct drm_tegra_bo *dup;
+-	struct drm_tegra_bo *bo;
+-	uint32_t handle;
+-	uint32_t size;
+-	int err;
+-
+-	if (!drm || !bop)
+-		return -EINVAL;
+-
+-	pthread_mutex_lock(&table_lock);
+-
+-	bo = calloc(1, sizeof(*bo));
+-	if (!bo) {
+-		err = -ENOMEM;
+-		goto unlock;
+-	}
+-
+-	err = drmPrimeFDToHandle(drm->fd, fd, &handle);
+-	if (err) {
+-		free(bo);
+-		bo = NULL;
+-		goto unlock;
+-	}
+-
+-	/* check handle table to see if BO is already open */
+-	dup = lookup_bo(drm->handle_table, handle);
+-	if (dup) {
+-		DBG_BO(dup, "success reused\n");
+-		free(bo);
+-		bo = dup;
+-		goto unlock;
+-	}
+-
+-	errno = 0;
+-	/* lseek() to get bo size */
+-	size = lseek(fd, 0, SEEK_END);
+-	lseek(fd, 0, SEEK_CUR);
+-	/* store lseek() error number */
+-	err = -errno;
+-
+-	atomic_set(&bo->ref, 1);
+-	bo->handle = handle;
+-	bo->flags = flags;
+-	bo->size = size;
+-	bo->drm = drm;
+-
+-	VG_BO_ALLOC(bo);
+-
+-	/* add ourself into the handle table: */
+-	drmHashInsert(drm->handle_table, handle, bo);
+-
+-	/* handle lseek() error */
+-	if (err) {
+-		VDBG_BO(bo, "lseek failed %d (%s)\n", err, strerror(-err));
+-		drm_tegra_bo_free(bo);
+-		bo = NULL;
+-	} else {
+-		DBG_BO(bo, "success\n");
+-	}
+-
+-unlock:
+-	pthread_mutex_unlock(&table_lock);
+-
+-	*bop = bo;
+-
+-	return err;
++    struct drm_gem_close close_args = {0};
++    off_t size;
++    uint32_t handle;
++    int err;
++
++    if (!drm || !bop)
++        return -EINVAL;
++    *bop = NULL;
++
++    /* DMA-BUF permits SEEK_END/SEEK_SET, but not SEEK_CUR. The old helper
++     * treated the latter's EINVAL as a failed size query, then freed a BO
++     * whose list heads had never been initialized.
++     */
++    size = lseek(fd, 0, SEEK_END);
++    if (size < 0)
++        return -errno;
++    if (!size || (uint64_t)size > UINT32_MAX)
++        return -EINVAL;
++    err = drmPrimeFDToHandle(drm->fd, fd, &handle);
++    if (err)
++        return -errno;
++
++    /* Reuse the existing handle cache, reference count and list setup. */
++    err = drm_tegra_bo_wrap(bop, drm, handle, flags, size);
++    if (err) {
++        close_args.handle = handle;
++        drmIoctl(drm->fd, DRM_IOCTL_GEM_CLOSE, &close_args);
++    }
++    return err;
+ }
+ 
+ int drm_tegra_bo_get_size(struct drm_tegra_bo *bo, uint32_t *size)
+diff --git a/src/tegradrm/uapi_v3/strlcpy.c b/src/tegradrm/uapi_v3/strlcpy.c
+index fd7e653..7a058de 100644
+--- a/src/tegradrm/uapi_v3/strlcpy.c
++++ b/src/tegradrm/uapi_v3/strlcpy.c
+@@ -22,7 +22,7 @@
+  * Returns strlen(src); if retval >= siz, truncation occurred.
+  */
+ static size_t
+-strlcpy(char *dst, const char *src, size_t siz)
++tegra_strlcpy(char *dst, const char *src, size_t siz)
+ {
+ 	char *d = dst;
+ 	const char *s = src;
+diff --git a/src/tegradrm/uapi_v3/sync.h b/src/tegradrm/uapi_v3/sync.h
+index 76fa733..0bf0526 100644
+--- a/src/tegradrm/uapi_v3/sync.h
++++ b/src/tegradrm/uapi_v3/sync.h
+@@ -23,7 +23,6 @@
+ #ifndef ANDROID_SYNC_H
+ #define ANDROID_SYNC_H
+ #include <stdint.h>
+-#include <sys/cdefs.h>
+ #include "sync_file.h"
+ 
+ /* Fences indicate the status of an asynchronous task. They are initially
+@@ -125,8 +124,12 @@ void sync_file_info_free(struct sync_file_info* info);
+  * after this change has been delivered to AOSP so that integrations don't
+  * break builds.
+  */
+-__BEGIN_DECLS
++#ifdef __cplusplus
++extern "C" {
++#endif
+ /* timeout in msecs */
+ int sync_wait(int fd, int timeout);
+-__END_DECLS
++#ifdef __cplusplus
++}
++#endif
+ #endif /* __SYS_CORE_SYNC_H */

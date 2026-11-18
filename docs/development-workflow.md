@@ -27,10 +27,7 @@ The ordinary XFCE configuration is the intended desktop and the recovery path.
 
 ## Desktop target and priorities
 
-On 2026-10-06 the user chose to focus on XFCE. The intended docked workload is
-displaying a calendar and eventually controlling Spotify playback. Application
-choices, calendar source and the Spotify playback device remain undecided.
-Local Spotify audio playback is not currently a requirement.
+On 2026-10-06 the user chose to focus on XFCE as the desktop for docked use.
 
 Prioritize the working XFCE session on the tablet's approximately 1 GB of RAM:
 
@@ -40,8 +37,8 @@ Prioritize the working XFCE session on the tablet's approximately 1 GB of RAM:
 2. Integrate the verified system into a reproducible SD image. Experimental
    graphics installations and packages should be included only when they are
    needed and validated for the intended workload.
-3. Select and test calendar and Spotify-control applications against the actual
-   services, measuring responsiveness and memory pressure on the tablet.
+3. Test the intended desktop applications on the tablet, measuring
+   responsiveness and memory pressure.
 4. Configure reliable startup into the selected display/controller workflow,
    then evaluate host-independent boot and eventual internal installation.
 

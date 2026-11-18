@@ -96,8 +96,7 @@ power-on configuration or an instruction to restore those bytes.
    touch, rotation, buttons and Wi-Fi on dock power.
 
 No additional 30-minute observation is required by the user. Long-duration
-reliability, battery reporting, pen testing and calendar/Spotify integrations
-remain separate follow-ups.
+reliability, battery reporting and pen testing remain separate follow-ups.
 
 The [readiness record](evidence/internal-install-20261006/readiness.json),
 [backup audit](evidence/internal-install-20261006/backup-audit.json),
